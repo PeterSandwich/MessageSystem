@@ -28,6 +28,6 @@ message Pack{
 		Pull_Msg	=16;
 		Pull_Response	=17;
 	}
-	PackType type = 1;	//数据报类型
+	PackType type = 1;	//包类型
 	string body = 2;
 }
