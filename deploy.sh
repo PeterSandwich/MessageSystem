@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd ../
-cp MessageSystem /home/ubuntu/goproject/src
+cp -r MessageSystem /home/ubuntu/goproject/src
