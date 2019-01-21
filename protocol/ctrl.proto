@@ -1,0 +1,46 @@
+syntax="proto3";
+
+package Protocol;
+
+message CtrlSendRequest{
+	enum CtrlSendType {
+		CREATE_GROUP = 0; //创建群
+		GROUP_ADDMEMBERS = 1;//添加成员
+		GROUP_EXIT  =3;	//退出群组
+		GROUP_DELETE = 4;//解散群组
+		MSG_BACK = 5;//消息撤回
+	}
+	int64 from = 1;		//发送者
+	CtrlSendType type = 2;		//控制类型
+	int64 to = 3;		//目的用户或组
+	int64 msgid = 4;  	//消息id ，当type=消息撤回有效
+	string content = 5;	//消息内容
+}
+
+message CtrlSendResponse{
+	int64 msgid = 1;	//落地存储的消息id
+	int64 timestamp = 2;//收到信息的时间戳
+	string content = 3;	//消息内容
+}
+
+
+////////////
+message CtrPushRequest {
+	 enum CtrlPushType{
+		CREATE_GROUP = 0; //创建群
+		GROUP_ADDMEMBERS = 1;//添加成员
+		GROUP_EXIT  =3;	//退出群组
+		GROUP_DELETE = 4;//解散群组
+		 }
+
+	int64 from = 1;		//发送者
+	CtrlPushType type = 2;		//控制类型
+	int64 to = 3;		//目的用户或组
+	int64 msgid = 4;  	//消息id ，当type=消息撤回有效
+	string content = 5;	//消息内容
+}
+
+message CtrlPushResponse{
+	int64 msgid = 1;	//落地存储的消息id
+	int64 timestamp = 2;//收到信息的时间戳
+}
