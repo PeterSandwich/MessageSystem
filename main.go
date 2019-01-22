@@ -17,14 +17,14 @@ func main() {
 	go logic.Run()
 
 
-	fs:=http.FileServer(http.Dir("/home/pjw/GoProject/src/MessageSystem/dist/MessageSystem"))
+	fs:=http.FileServer(http.Dir("./frontend/dist/MessageSystem"))
 	http.HandleFunc("/ws",func(w http.ResponseWriter, r *http.Request){
 		 serverWs(logic,w,r)
 	})
 
 	http.Handle("/",fs)
 
-	err := http.ListenAndServe(":8888", nil)
+	err := http.ListenAndServe(":9876", nil)
 	if err != nil {
 		panic(err)
 	}
