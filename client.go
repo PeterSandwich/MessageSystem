@@ -68,7 +68,7 @@ func serverWs(center *CenterLogic,w http.ResponseWriter,r * http.Request){
 	fmt.Println(r.URL)
 	vars := r.URL.Query();
 	id := vars["id"][0]
-	fmt.Println("[conncted]",id)
+	fmt.Println("[conncted id]",id)
 	uid,_ := strconv.ParseInt(id,10,64)
 	client:= &Client{conn:conn,send:make(chan []byte,1024),uid:uid,center:center}
 
