@@ -52,6 +52,12 @@ func (c *Client)writePump(){
 }
 
 func serverWs(center *CenterLogic,w http.ResponseWriter,r * http.Request){
+	var upgrader = websocket.Upgrader{
+		// 解决跨域问题
+		CheckOrigin: func(r *http.Request) bool {
+			return true
+		},
+	}
 	conn,err := upgrader.Upgrade(w,r,nil)
 	if err != nil {
 		log.Println(err)
