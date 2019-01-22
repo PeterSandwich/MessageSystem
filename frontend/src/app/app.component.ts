@@ -25,6 +25,7 @@ export class AppComponent {
   }
   sendMsg() {
     console.log("had send message");
+
     this.chat.sendMessage({"PackType":2,"Body":JSON.stringify({"From":this.id, "To":this.to, "Content":this.msg})})
   }
   
