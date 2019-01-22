@@ -1,0 +1,33 @@
+syntax="proto3";
+
+package Protocol;
+
+message Pack{
+	enum PackType{
+		Auth_Request	=0;
+		Auth_Response	=1;
+
+		C2CSend_Request	=2;
+		C2CSend_Response	=3;
+		C2CPush_Request	=4;
+		C2CPush_Response	=5;
+
+		C2GSend_Request	=6;
+		C2GSend_Response	=7;
+		C2GPush_Request	=8;
+		C2GPush_Response	=9;
+
+		CtrlSend_Request	=10;
+		CtrlSend_Response	=11;
+		CtrlPush_Request	=12;
+		CtrlPush_Response	=13;
+
+		Kickout_Request	=14;
+
+		Pull_Request	=15;
+		Pull_Msg	=16;
+		Pull_Response	=17;
+	}
+	PackType type = 1;	//数据报类型
+	bytes body = 2;
+}

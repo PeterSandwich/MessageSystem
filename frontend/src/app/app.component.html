@@ -1,0 +1,19 @@
+<h3>填写消息</h3>
+<div>
+<input [(ngModel)]="msg">
+</div>
+<h3>发送给谁</h3>
+<div>
+    <input [(ngModel)]="to" type="number">
+</div>
+<div>
+  <button (click)="sendMsg()" >发送</button>
+</div>
+
+<h3>我的ID</h3>
+<div>
+  <input [(ngModel)]="id" type="number"/>
+</div>
+<div>
+  <button (click)="connect()" >connect</button>
+</div>

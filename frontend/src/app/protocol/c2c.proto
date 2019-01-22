@@ -1,0 +1,31 @@
+syntax="proto3";
+
+package Protocol; // 单对单聊天
+
+//客户端的发送消息
+
+message C2CSendRequest{
+	int64 from = 1; //发送者
+	int64 to = 2;//接受着
+	string content = 3;//消息内容
+}
+
+message C2CSendResponse{
+	int64 msgid = 1; //落地存储的消息id
+	int64 timestamp = 2; //消息存储系统收到单聊信息的时间戳
+}
+
+// 服务器的推送消息
+
+message C2CPushRequest{
+	int64 from = 1; //发送者
+	string content = 2; //消息内容
+	int64 msgid = 3; //消息服务器对消息的编号
+	int64 timestamp = 4; //收到单聊信息的时间戳
+}
+
+message C2CPushResponse{
+	int64 msgid = 1; //返回消息id进行确认收到
+}
+
+
