@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Protocol } from './protocol/c2g'
 
 @Injectable()
 export class WebsocketService {

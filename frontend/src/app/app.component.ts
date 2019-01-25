@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { load } from "protobufjs";
 import {WebsocketService } from './websocket.service';
+import { Protocol } from "./protocol/c2c";
+
  @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,6 +10,13 @@ import {WebsocketService } from './websocket.service';
 })
 export class AppComponent {
 
+  request: Protocol.C2CSendRequest = new(Protocol.C2CSendRequest);
+  test(){
+    this.request.content="dasdadsad";
+    this.request.from=1;
+    this.request.to=2;
+    console.log("this.request=", this.request.content);
+  }
   constructor(private chat : WebsocketService){}
   ngOnInit(){
  
