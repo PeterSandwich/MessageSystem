@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { load } from "protobufjs";
 import {WebsocketService } from './websocket.service';
+import {environment} from '../environments/environment';
  @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,7 +17,7 @@ export class AppComponent {
   msg = '';
   to = 2;
   connect(){
-    this.chat.createObservableSocket("ws://139.199.196.31:9876/ws?id="+this.id)
+    this.chat.createObservableSocket(environment.ws_url+"?id="+this.id)
     .subscribe(
       data => {alert(data);},
       err => console.log(err),
