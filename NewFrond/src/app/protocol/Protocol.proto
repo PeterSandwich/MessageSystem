@@ -1,0 +1,98 @@
+syntax="proto3";
+
+package Protocol;
+
+message MessageRequest{
+
+	enum RequestType {
+	AUTH_REQUEST    = 0;
+	C2CSEND_REQUEST = 1;
+	C2CPUSH_REQUEST = 2;
+	C2GSEND_REQUEST = 3;
+	C2GPUSH_REQUEST = 4;
+	CtrlSEND_REQUEST= 5;
+	CtrPUSH_REQUEST = 6;
+	KICKOUT_REQUEST = 7;
+	PULL_REQUEST    = 8;
+	CONTROL_REQUEST = 9;
+	}
+	enum CtrlType {
+	CREATE_GROUP      = 0;//创建群
+	GROUP_ADDMEMBERS  = 1;//添加成员
+	GROUP_EXIT        = 3;//退出群组
+	GROUP_DELETE      = 4;//解散群组
+	MSG_BACK          = 5;//消息撤回
+	}
+
+	enum Reasion{
+	OTHER_LOGIN = 0; //其他地方登录
+	}
+
+	RequestType TypeOfMsg   = 1;
+	int64 from              = 2; //发送者
+	int64 to                = 3;//接受着
+	int64 group             = 4; 	//目的群
+	string content          = 5;//消息内容
+	int64 uid               = 6; //用户id
+	int64 msgid             = 7; //消息服务器对消息的编号
+	string token            = 8; //用户token
+	int64  timestamp        = 9; //发包时间戳
+	CtrlType TypeOfCtrl     = 10;		//控制类型
+	Reasion reasion         = 11 ; //踢人原因
+	int64 offset            = 12;	//拉取离线消息起始位置，初始时0，之后用服务器放回的数据
+	int32 limit             = 13;	//单次拉取离线消息的数量，默认值10
+}
+
+
+message PullMsg{
+	int64 from      = 1;	//发送者
+	int64 to        = 2;
+	int64 group     = 3;	//目的群，-1表示单聊
+	string content  = 4;	//消息内容
+	int64 msgid     = 5;	//消息服务器对消息的编号
+	int32 cmdid     = 6;	//消息原始命令号
+	int64 send_time = 7;    //服务器接受消息的时间
+}
+
+
+message MessageResponse{
+	enum Status {
+	OK = 0;
+	Err = 1;
+	}
+
+	enum ResponseType {
+	Auth_RESPONSE       = 0;
+	C2CSEND_RESPONSE    = 1;
+	C2CPUSH_RESPONSE    = 2;
+	C2GSEND_RESPONSE    = 3;
+	C2GPUSH_RESPONSE    = 4;
+	CtrlSEND_RESPONSE   = 5;
+	CtrlPUSH_RESPONSE   = 6;
+	PULL_RESPONSE       = 7;
+	}
+
+	ResponseType TypeOfResponse  = 1;
+	int64 msg_to			= 2;
+	Status status           = 3;//状态，使用枚举
+	int32 err_code          = 4; //错误码，统一定义的错误码
+	string	err_msg         = 5;//错误描述
+	int64 msgid             = 6; //落地存储的消息id
+	int64 timestamp         = 7; //消息存储系统收到单聊信息的时间戳
+	string content          = 8;	//消息内容
+    repeated PullMsg msg    = 9;
+}
+
+message ACKResponse {
+	int64 msgid = 1;
+	int64 timestamp = 2;
+}
+message EmptyRequest{
+
+}
+
+service ToServerMsg {
+	rpc SendMsg (MessageRequest) returns(ACKResponse){}
+	rpc ResponseToGate(EmptyRequest) returns (stream MessageResponse) {}
+}
+

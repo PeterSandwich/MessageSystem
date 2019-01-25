@@ -91,6 +91,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _websocket_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./websocket.service */ "./src/app/websocket.service.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+
 
 
 
@@ -104,7 +106,7 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.ngOnInit = function () {
     };
     AppComponent.prototype.connect = function () {
-        this.chat.createObservableSocket("ws://139.199.196.31:9876/ws?id=" + this.id)
+        this.chat.createObservableSocket(_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].ws_url + "?id=" + this.id)
             .subscribe(function (data) { alert(data); }, function (err) { return console.log(err); }, function () { return console.log("流已结束"); });
     };
     AppComponent.prototype.sendMsg = function () {
@@ -230,7 +232,8 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 var environment = {
-    production: false
+    production: false,
+    ws_url: 'ws://localhost:9876/ws'
 };
 /*
  * For easier debugging in development mode, you can import the following file
