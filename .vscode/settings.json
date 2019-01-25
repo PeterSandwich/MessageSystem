@@ -1,0 +1,13 @@
+{
+    "files.autoSave": "onFocusChange",
+    "go.buildFlags": [],
+    "go.buildOnSave": true,
+    "go.vetOnSave": true,
+    "go.lintOnSave": true,
+    "go.lintFlags": [],
+    "go.vetFlags": [],
+    "go.useCodeSnippetsOnFunctionSuggest": false ,
+    "go.formatTool": "goreturns",
+    "go.goroot": "/usr/local/go",
+    "go.gopath": "/media/misarien/48ab015a-0410-4610-92d3-8236f438cc82/goworks",
+}
