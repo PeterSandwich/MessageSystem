@@ -1,7 +1,7 @@
 package main
 
 import (
-	pb "MessageSystem-v1/proto/protocol"
+	pb "MessageSystem/proto/protocol"
 	"fmt"
 	"github.com/go-redis/redis"
 	"github.com/golang/protobuf/proto"

@@ -6,9 +6,9 @@ import (
 	"log"
 	"strconv"
 	"time"
-	pb "MessageSystem-v1/proto/protocol"
-	c2c "MessageSystem-v1/proto/c2c"
-	c2g "MessageSystem-v1/proto/c2g"
+	pb "MessageSystem/proto/protocol"
+	c2c "MessageSystem/proto/c2c"
+	c2g "MessageSystem/proto/c2g"
 )
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

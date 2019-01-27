@@ -1,7 +1,7 @@
 package main
 
 import (
-	pb "MessageSystem-v1/proto/protocol"
+	pb "MessageSystem/proto/protocol"
 	"fmt"
 	"github.com/golang/protobuf/proto"
 	"golang.org/x/net/context"
