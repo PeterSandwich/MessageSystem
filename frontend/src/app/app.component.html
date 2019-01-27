@@ -1,0 +1,21 @@
+
+
+<h1>Message System v1</h1>
+<nav>
+  <div>
+  <a routerLink="/login" routerLinkActive="active" nz-button nzType="primary" [nzBlock]=50>登录</a>
+</div>
+<nav>
+  <div>
+  <a (click)="quit()" nz-button nzType="primary" [nzBlock]=50>退出</a>
+</div>
+<div>
+  <a routerLink="/signup" routerLinkActive="active" nz-button nzType="primary" [nzBlock]=50>注册</a>
+</div>
+<div>
+  <a routerLink="/chat" routerLinkActive="active" nz-button nzType="primary" [nzBlock]=50>|聊天|</a>
+</div>
+</nav>
+<br>
+<br>
+<router-outlet></router-outlet>

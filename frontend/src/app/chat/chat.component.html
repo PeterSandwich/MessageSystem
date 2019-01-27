@@ -1,0 +1,65 @@
+
+<h2>单聊</h2>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="发送给：" >
+    <input type="text" nz-input [(ngModel)]="to_id">
+  </nz-input-group>
+</div>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="内容：" >
+    <input type="text" nz-input [(ngModel)]="content">
+  </nz-input-group>
+</div>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="我的ID：" >
+    <input type="text" nz-input [(ngModel)]="from_id">
+  </nz-input-group>
+</div>
+<button nz-button nzType="primary" (click)="sendMsg()">发送</button>
+
+
+<h2>群聊</h2>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="发送给组：" >
+    <input type="text" nz-input [(ngModel)]="group">
+  </nz-input-group>
+</div>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="内容：" >
+    <input type="text" nz-input [(ngModel)]="content">
+  </nz-input-group>
+</div>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="我的ID：" >
+    <input type="text" nz-input [(ngModel)]="from_id">
+  </nz-input-group>
+</div>
+<button nz-button nzType="primary" (click)="sendToGoup()">发送</button>
+
+
+
+<h2>邀请进入组</h2>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="组ID：" >
+    <input type="text" nz-input [(ngModel)]="addgtoup_id">
+  </nz-input-group>
+</div>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="被邀请人的ID：" >
+    <input type="text" nz-input [(ngModel)]="to_id">
+  </nz-input-group>
+</div>
+<button nz-button nzType="primary" (click)="addMemToGoup()">邀请进入组</button>
+
+<h2>创建群</h2>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="群名" >
+    <input type="text" nz-input [(ngModel)]="group_name">
+  </nz-input-group>
+</div>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="我的ID：" >
+    <input type="text" nz-input [(ngModel)]="from_id">
+  </nz-input-group>
+</div>
+<button nz-button nzType="primary" (click)="createGroup()">创建群</button>
