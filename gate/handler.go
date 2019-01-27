@@ -149,7 +149,7 @@ func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 	go client.writePump()
 }
 func indexFileServer(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "/home/pjw/AgProject/WStest/dist/WStest/index.html")
+	http.ServeFile(w, r, "../frontend/dist/WStest/index.html")
 }
 func staticFileHandler() http.Handler{
 	return http.StripPrefix("/static", http.FileServer(http.Dir("/home/pjw/AgProject/WStest/dist/WStest")))
