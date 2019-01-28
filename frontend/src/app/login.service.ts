@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 export class LoginService {
   constructor(private http: HttpClient) { }
 
-  configUrl = '';
+  configUrl = '/api';
   loginUrl = this.configUrl+"/login"
   signupUrl = this.configUrl+'/signup'
   quitUrl = this.configUrl+'/quit'
