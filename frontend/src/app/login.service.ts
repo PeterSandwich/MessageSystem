@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { environment } from '../environments/environment';
 @Injectable()
 export class LoginService {
   constructor(private http: HttpClient) { }
 
   public isLogin = false;
-  configUrl = 'http://localhost:9876/api';
+  configUrl = environment.apiUrl;
   loginUrl = this.configUrl+"/login"
   signupUrl = this.configUrl+'/signup'
   quitUrl = this.configUrl+'/quit'

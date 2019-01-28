@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {WebsocketService  } from '../websocket.service';
 import { Protocol } from '../protocol/Protocol';
-import { environment } from '../../environments/environment';
+
 
 
 
