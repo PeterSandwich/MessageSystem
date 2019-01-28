@@ -87,6 +87,7 @@ func loginHandle(w http.ResponseWriter, r *http.Request) {
 	gate.Redis_conn.HSet("user"+sid,"img_url",info.img_url)
 	gate.Redis_conn.HSet("user"+sid,"name",user.Name)
 	http.SetCookie(w,c)
+
 	gate.SessToUid[c.Value]=info.id
 
 	lr:=LoginRsp{
