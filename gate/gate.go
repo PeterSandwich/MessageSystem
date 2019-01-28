@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/go-redis/redis"
 	"google.golang.org/grpc"
 	"sync"
@@ -22,7 +21,7 @@ var singleton *Gate
 func GetGateInstance() *Gate {
 
 	once.Do(func(){
-		fmt.Println("=============================GateInstance had get=====================================")
+
 		Grpc_conn, err := grpc.Dial(":9877", grpc.WithInsecure())
 		if err != nil {
 			panic(err)

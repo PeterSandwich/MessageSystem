@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/websocket"
-	"github.com/gpmgo/gopm/modules/log"
+	log "github.com/sirupsen/logrus"
 	"github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
@@ -16,6 +16,11 @@ import (
 type User struct{
 	Name string `json:name`
 	Password string `json:password`
+}
+type LoginRsp struct {
+	Ok bool `json:ok`
+	Uid int64 `json:uid`
+	Errmsg string `json:errmsg`
 }
 type UserInfo struct {
 	RightPW string
@@ -33,17 +38,30 @@ func loginHandle(w http.ResponseWriter, r *http.Request) {
 	}
 	body,_:=ioutil.ReadAll(r.Body)
 	_=json.Unmarshal(body,&user)
-	fmt.Println("login: ",user)
+	log.WithFields(log.Fields{"file":"gate/handler.go","func":"loginHandle","where":"json Unmarshal"}).Info(user)
 
 	info,err:=gate.DB.CheckLogin(user.Name)
 	if err != nil {
-		log.Print(log.WARNING,"name or password is wrong : %v\n",err)
-		w.Write([]byte("账号不存在"))
+		log.Warn("账号不存在"+err.Error())
+		lr:=LoginRsp{
+			Uid:0,
+			Ok:false,
+			Errmsg:"账号不存在",
+		}
+		data,_:=json.Marshal(lr)
+		w.Write(data)
 		return
 	}
 	err = bcrypt.CompareHashAndPassword( []byte(info.RightPW),[]byte(user.Password))
 	if err != nil {
-		w.Write([]byte("账号或密码错误"))
+
+		lr:=LoginRsp{
+			Uid:0,
+			Ok:false,
+			Errmsg:"账号或密码错误",
+		}
+		data,_:=json.Marshal(lr)
+		w.Write(data)
 		return
 	}
 	sid := strconv.FormatInt(info.id,10)
@@ -70,7 +88,16 @@ func loginHandle(w http.ResponseWriter, r *http.Request) {
 	gate.Redis_conn.HSet("user"+sid,"name",user.Name)
 	http.SetCookie(w,c)
 	gate.SessToUid[c.Value]=info.id
-	w.Write([]byte(sid))
+
+	lr:=LoginRsp{
+		Uid:info.id,
+		Ok:true,
+		Errmsg:"",
+	}
+	data,_:=json.Marshal(lr)
+	w.Write(data)
+
+
 }
 
 

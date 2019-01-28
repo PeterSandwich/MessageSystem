@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {WebsocketService  } from '../websocket.service';
 import { Protocol } from '../protocol/Protocol';
+import { environment } from '../../environments/environment';
 
 
 
@@ -19,12 +20,11 @@ export class ChatComponent implements OnInit {
   addgtoup_id=0;
   content="";
   group_name = '';
-  constructor(private ws:WebsocketService) { 
+  constructor(public ws:WebsocketService) { 
    
   }
 
   ngOnInit() {
-    this.ws.createSocket("ws://im.surpass2018.cn/ws");
    
   }
 

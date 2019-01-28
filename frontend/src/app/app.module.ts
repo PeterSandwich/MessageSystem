@@ -15,6 +15,7 @@ import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { HomeComponent } from './home/home.component';
 
 registerLocaleData(en);
 
@@ -23,7 +24,8 @@ registerLocaleData(en);
     AppComponent,
     LoginComponent,
     ChatComponent,
-    SignupComponent
+    SignupComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

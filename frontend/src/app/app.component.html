@@ -1,21 +1,21 @@
 
 
-<h1>Message System v1</h1>
-<nav>
-  <div>
-  <a routerLink="/login" routerLinkActive="active" nz-button nzType="primary" [nzBlock]=50>登录</a>
-</div>
-<nav>
-  <div>
-  <a (click)="quit()" nz-button nzType="primary" [nzBlock]=50>退出</a>
-</div>
-<div>
-  <a routerLink="/signup" routerLinkActive="active" nz-button nzType="primary" [nzBlock]=50>注册</a>
-</div>
-<div>
-  <a routerLink="/chat" routerLinkActive="active" nz-button nzType="primary" [nzBlock]=50>|聊天|</a>
-</div>
-</nav>
-<br>
-<br>
-<router-outlet></router-outlet>
+ <nz-layout class="layout">
+  <nz-header>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;">
+      <li nz-menu-item routerLink="" routerLinkActive="active" >首页</li>
+      <li nz-menu-item routerLink="/login" routerLinkActive="active" [hidden]="login.isLogin">登录</li>
+      <li nz-menu-item routerLink="/signup" routerLinkActive="active" [hidden]="login.isLogin">注册</li>
+      <li nz-menu-item routerLink="/chat" routerLinkActive="active" [hidden]="!login.isLogin"> <nz-badge nzDot style="color:white"><a>消息</a></nz-badge></li>
+      <li nz-menu-item  (click)="quit()" [hidden]="!login.isLogin">退出</li>
+    </ul>
+  </nz-header>
+  <nz-content style="padding:0 50px;">
+    <div style="background:#fff; padding: 24px; min-height: 800px;">
+      <router-outlet></router-outlet>
+    </div>
+  </nz-content>
+</nz-layout>
+
+
+

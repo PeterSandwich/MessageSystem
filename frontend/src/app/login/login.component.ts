@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService  } from '../login.service';
+import { Router } from '@angular/router';
+import { WebsocketService } from '../websocket.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +11,7 @@ import { LoginService  } from '../login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private login: LoginService) { }
+  constructor(private login: LoginService,private ws: WebsocketService,private router: Router) { }
 
   ngOnInit() {
   }
@@ -18,7 +21,15 @@ export class LoginComponent implements OnInit {
   submit(){
       let body = {name:this.name,password:this.password}
       this.login.postLoginData(body).subscribe(data =>{
-        console.log(data);
+        if(data['Ok']){
+          this.login.isLogin=true;
+          this.router.navigate(['']);
+          console.log(data['Uid'])
+          this.ws.createSocket(environment.websocketUrl+"?id="+data['Uid'])
+        }else{
+          alert(data['Errmsg']);
+        }
+
       })
   }
 }
