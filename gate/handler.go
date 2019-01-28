@@ -152,5 +152,5 @@ func indexFileServer(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "../frontend/dist/WStest/index.html")
 }
 func staticFileHandler() http.Handler{
-	return http.StripPrefix("/static", http.FileServer(http.Dir("/home/pjw/AgProject/WStest/dist/WStest")))
+	return http.StripPrefix("/static", http.FileServer(http.Dir("../frontend/dist/WStest")))
 }
