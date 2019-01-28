@@ -1,7 +1,7 @@
 package main
 
 import (
-	pb "MessageSystem/proto/protocol"
+	pb "../proto/protocol"
 	"github.com/golang/protobuf/proto"
 	"github.com/gorilla/websocket"
 	"golang.org/x/net/context"
