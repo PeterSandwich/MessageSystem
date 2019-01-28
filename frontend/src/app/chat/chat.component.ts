@@ -24,7 +24,7 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ws.createSocket("ws://localhost:9876/ws");
+    this.ws.createSocket("ws://139.199.196.31:9876/ws");
    
   }
 
