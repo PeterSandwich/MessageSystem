@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
           this.login.isLogin=true;
           this.router.navigate(['']);
           console.log(data['Uid'])
-          this.ws.createSocket(environment.websocketUrl+"?id="+data['Uid'])
+          this.ws.createSocket(environment.websocketUrl)
         }else{
           alert(data['Errmsg']);
         }
