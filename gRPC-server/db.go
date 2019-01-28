@@ -7,9 +7,9 @@ import (
 	_ "github.com/lib/pq"
 	"strconv"
 	"time"
-	c2c "MessageSystem/proto/c2c"
-	pb "MessageSystem/proto/protocol"
-	c2g "MessageSystem/proto/c2g"
+	c2c "../proto/c2c"
+	pb "../proto/protocol"
+	c2g "../proto/c2g"
 )
 
 type DbControl struct {
