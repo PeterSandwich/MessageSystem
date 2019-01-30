@@ -52,6 +52,11 @@ func main() {
 	http.HandleFunc("/ws",func(w http.ResponseWriter, r *http.Request){
 		ServeWs(w,r)
 	})
+	//fileserver
+	http.HandleFunc("/upload", uploadFileHandler())
+	http.HandleFunc("/files/",downloadfilehandler())
+	fs := http.FileServer(http.Dir(uploadPath))
+	http.Handle("/getpic/", http.StripPrefix("/getpic", fs))
 	log.Info("* IM Server Start")
 	go Run()
 	if err := http.ListenAndServe(":9988", nil);err != nil {

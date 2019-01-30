@@ -3,7 +3,9 @@ import { Protocol } from '../protocol/Protocol';
 import { WebsocketService } from '../websocket.service';
 import { timer } from 'rxjs';
 import { UserService } from '../user.service';
-
+import { Injectable } from '@angular/core';
+import { UploadService } from '../http.service'
+@Injectable()
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -17,7 +19,8 @@ export class ChatComponent implements OnInit {
 
   constructor(
     public ws:WebsocketService,
-    private us:UserService  
+    private us:UserService ,
+    private upload: UploadService 
     ) { }
 
   ngOnInit() {
@@ -118,6 +121,77 @@ export class ChatComponent implements OnInit {
       console.log(data);
     })
   }
+
+
+
+  
+
+  picpath: string
+  GetPicUrl = "http://localhost:9876/getpic/"
+  picurl: string
+  fileurl = 'http://localhost:9876/upload'
+  dfileurl=""
+  filep = ""
+  filename: string
+  selectFile(event: any) {
+    let fileList: FileList = event.target.files;
+    this.uploadFile(fileList);
+  }
+
+  uploadFile(files: FileList) {
+    if (files.length == 0) {
+      console.log("No file selected!");
+      return
+    }
+    let file: File = files[0];
+    console.log(file.name)
+    this.filename = file.name;
+    this.upload.uploadFile(this.fileurl, file)
+      .subscribe(
+        (response: any) => {
+          //.log(response);
+          if (response["body"] != null) {
+            if (response["body"]["code"] != 1) {
+              console.log(response["body"]["data"]);
+              this.filep = response["body"]["data"]["filepath"];
+              this.dfileurl=response["body"]["data"]["fileurl"];
+              this.show = true;
+            }
+          }
+          // if (event.type == HttpEventType.UploadProgress) {
+          //   const percentDone = Math.round(100 * event.loaded / event.total);
+          //   console.log(`File is ${percentDone}% loaded.`);
+          // } else if (event instanceof HttpResponse) {
+          //   console.log('File is completely loaded!');
+          // }
+        },
+        (err) => {
+          console.log("Upload Error:", err);
+        }, () => {
+          console.log("Upload done");
+        }
+      )
+    //this.getpath();
+
+  }
+  getpath() {
+    this.filep = "getpic/3ea62ac5fb0758efadb15e36_compress.jpg"
+    console.log(this.filep);
+  }
+  download() {
+    this.fileurl = "http://localhost:9876/files";
+    window.open(this.fileurl, '_blank');
+    return;
+  }
+    // 调用浏览器的下载
+    downloadFile() {
+      const a: HTMLAnchorElement = document.createElement('a');
+      a.href = this.dfileurl;
+      a.download = 'download';
+      a.click();
+      a.remove();
+      console.log('download:' + a.href);
+    }
 
 }
 
