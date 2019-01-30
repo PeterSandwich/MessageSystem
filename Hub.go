@@ -159,6 +159,7 @@ func C2G_SendRequest(in *pb.Message){
 			Cmd:pb.Message_NONE,
 			Msgid:msgid,
 			To:id,
+			From: in.From,
 			Content:in.GetContent(),
 			Group:in.GetGroup(),
 			Time: in.GetTime(),
