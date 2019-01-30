@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService  } from '../login.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +8,8 @@ import { LoginService  } from '../login.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private login: LoginService) { }
+  
+  constructor(private login: UserService) { }
 
 
   ngOnInit() {
@@ -22,4 +23,5 @@ export class SignupComponent implements OnInit {
         console.log(data);
       })
   }
+
 }
