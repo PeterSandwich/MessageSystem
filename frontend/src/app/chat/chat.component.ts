@@ -47,14 +47,14 @@ export class ChatComponent implements OnInit {
   c2c_content = ""
   sendMsg() {
     let msg = new(Protocol.Message)
-    msg.type = Protocol.Message.Type.REQUEST;
-    msg.cmd = Protocol.Message.CtrlType.NONE;
-    msg.from = this.us.MyUserId;
-    msg.to = this.c2c_to_id;
-    msg.content = this.c2c_content;
-    msg.contentType = Protocol.Message.ContentType.TEXT;
-    msg.time = Date.now()
-    msg.isgroup = false;
+    msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
+    msg.cmd = Protocol.Message.CtrlType.NONE;// 消息的功能
+    msg.from = this.us.MyUserId;              // 消息发送方
+    msg.to = this.c2c_to_id;                   //消息接收方
+    msg.content = this.c2c_content;             //消息内容
+    msg.contentType = Protocol.Message.ContentType.TEXT;　  //消息类型
+    msg.time = Date.now()                     //消息的发送时间
+    msg.isgroup = false;                       //是不是群组消息
     this.ws.sendMessage(Protocol.Message.encode(msg).finish())
   }
 
