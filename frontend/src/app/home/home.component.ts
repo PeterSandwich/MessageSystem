@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
   array = [ 1, 2, 3, 4 ];
   ngOnInit() {
+    console.log("miao???")
   }
 
 }

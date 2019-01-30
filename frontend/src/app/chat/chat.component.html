@@ -1,76 +1,74 @@
-<nz-sider>
-  <div>
 
-      <nz-list>
-        <nz-list-item *ngFor="let item of ws.chatList">
-          <h3>{{item.name}}</h3>
-        </nz-list-item>
-      </nz-list>
-  </div>
-</nz-sider>
+<div class="container">
+  <table >
+    <tr>
+      <th class = "avatar" rowspan="2">
+        <div>
+            <img src = {{my_img_url}} style = "height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;">
+            <div style = "left: 90px; top:30px; position: absolute">名字</div>
+            <div style = "left:90px; top:55px; position: absolute; color:#999999">个性签名</div>
+        </div>
+        <div class = "search">
+            <nz-input-group [nzSuffix]="suffixIconSearch">
+              <input type="text" nz-input placeholder="输入搜索内容">
+            </nz-input-group>
+            <ng-template #suffixIconSearch>
+            <i nz-icon type="search"></i>
+              </ng-template>
+              <div>
+                  <button class = "grad">聊天</button>|<button class = "grad">通讯录</button>|<button class = "grad">添加</button>
+              </div>    
+        </div>
+      </th>
+      <th class = "him">对方的名字</th>
+    </tr>
+    <tr class = "avatar2" >
+      <td rowspan="2" class = "message">
+        <div *ngIf="!isslect" class = "tips">
+          暂无新消息
+        </div>
+          <div *ngIf="to_id!=0" class = "message1">
+              <div *ngFor="let item of list" >
+                    <div *ngIf="item.to == from_id" id="box">{{item.content}}</div>
+                    <div *ngIf="item.from == from_id" id="box1">{{item.content}}</div>
+              </div>
+          </div>
+      </td>
+      
+    </tr>
+    <tr>
+      <td rowspan="3">
+          <div class = "list" >
+            <div class = "item" *ngFor="let item of ws.chatList" (click) = "test2(item.id)">
+                <!-- <tr  > -->
+                  <!-- <td> -->
+                      <nz-badge *ngIf="list!=NULL" nzDot>
+                          <nz-avatar nzIcon="user" class = "img" [nzShape]="'circle'" nzSrc={{item.img_url}} >
+                          </nz-avatar>
+                          <!-- <img src = {{item.img_url}} style = "height:40px; width:40px; border-radius:50%; overflow:hedden;"> -->
 
-
-<h2>单聊</h2>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="发送给：" >
-    <input type="text" nz-input [(ngModel)]="to_id">
-  </nz-input-group>
+                        </nz-badge>
+                      {{item.name}}
+                  <!-- </td> -->
+                <!-- </tr> -->
+            </div>
+            
+          </div>
+      </td>
+    </tr>
+    <tr class = "inputmes">
+      <!-- <td > -->
+        <div></div>
+      <div  *ngIf="isslect">
+        <div class = "tool">
+            <i nz-icon type="folder" theme="outline" style="font-size: 25px" class = "icon"></i>
+            <i nz-icon type="picture" theme="outline" style="font-size: 25px" class = "icon"></i>
+        </div>
+        <textarea class = "textarea" [(ngModel)] = "content"></textarea>
+        <button class = "send" nz-button nzType="primary" (click) = "sendMsg()" >发送</button>
+      </div>
+    <!-- </td> -->
+    </tr>
+  </table>
+ 
 </div>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="内容：" >
-    <input type="text" nz-input [(ngModel)]="content">
-  </nz-input-group>
-</div>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="我的ID：" >
-    <input type="text" nz-input [(ngModel)]="from_id">
-  </nz-input-group>
-</div>
-<button nz-button nzType="primary" (click)="sendMsg()">发送</button>
-
-
-<h2>群聊</h2>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="发送给组：" >
-    <input type="text" nz-input [(ngModel)]="group">
-  </nz-input-group>
-</div>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="内容：" >
-    <input type="text" nz-input [(ngModel)]="content">
-  </nz-input-group>
-</div>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="我的ID：" >
-    <input type="text" nz-input [(ngModel)]="from_id">
-  </nz-input-group>
-</div>
-<button nz-button nzType="primary" (click)="sendToGoup()">发送</button>
-
-
-
-<h2>邀请进入组</h2>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="组ID：" >
-    <input type="text" nz-input [(ngModel)]="addgtoup_id">
-  </nz-input-group>
-</div>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="被邀请人的ID：" >
-    <input type="text" nz-input [(ngModel)]="to_id">
-  </nz-input-group>
-</div>
-<button nz-button nzType="primary" (click)="addMemToGoup()">邀请进入组</button>
-
-<h2>创建群</h2>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="群名" >
-    <input type="text" nz-input [(ngModel)]="group_name">
-  </nz-input-group>
-</div>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="我的ID：" >
-    <input type="text" nz-input [(ngModel)]="from_id">
-  </nz-input-group>
-</div>
-<button nz-button nzType="primary" (click)="createGroup()">创建群</button>
