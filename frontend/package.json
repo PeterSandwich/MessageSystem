@@ -20,8 +20,11 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "core-js": "^2.5.4",
+<<<<<<< HEAD
     "hammerjs": "^2.0.8",
     "ng-zorro-antd": "^7.0.0-rc.3",
+=======
+>>>>>>> aa3379ff8397e5d32d6796d8bb746ad1186448b6
     "protobufjs": "^6.8.8",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
