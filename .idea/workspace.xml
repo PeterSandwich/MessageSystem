@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="7b5cfce3-0825-4a47-8dd7-315859aeb7cd" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-=======
     <list default="true" id="af9477f7-5fc3-412d-9094-d4f7d45a4e7e" name="Default" comment="">
       <change beforePath="" afterPath="$PROJECT_DIR$/feedback/feedback.go" />
       <change beforePath="" afterPath="$PROJECT_DIR$/feedback/feedbackcode.go" />
@@ -13,39 +9,11 @@
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-<<<<<<< HEAD
-  <component name="FUSProjectUsageTrigger">
-    <session id="64409311">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.js.language.service.starts">
-        <counts>
-          <entry key="TypeScriptServerServiceImpl" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/app/app.component.spec.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="1" />
-              <folding>
-                <element signature="e#0#55#0" expanded="true" />
-=======
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file leaf-file-name="client.go" pinned="false" current-in-tab="false">
@@ -70,20 +38,11 @@
                 <marker date="1548853715339" expanded="true" signature="2499:2567" ph="insert into groups... " />
                 <marker date="1548853715339" expanded="true" signature="2810:2855" ph="insert into membership... " />
                 <marker date="1548853715339" expanded="true" signature="4957:5009" ph="select id,na... users" />
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/frontend/src/app/app.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-=======
       <file leaf-file-name="handler.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/handler.go">
           <provider selected="true" editor-type-id="text-editor">
@@ -91,21 +50,11 @@
               <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
               <folding>
                 <element signature="e#14#189#0" expanded="true" />
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/app/websocket.service.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-=======
       <file leaf-file-name="fileserver.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileserver.go">
           <provider selected="true" editor-type-id="text-editor">
@@ -123,21 +72,11 @@
                 <element signature="n#!!block;n#GetFileMD5#0" expanded="false" />
                 <element signature="n#!!block;n#createfile#0" expanded="false" />
                 <element signature="n#!!block;n#Substr#0" expanded="false" />
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/app/app.module.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="1" />
-              <folding>
-                <element signature="e#0#58#0" expanded="true" />
-=======
       <file leaf-file-name="feedback.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/feedback/feedback.go">
           <provider selected="true" editor-type-id="text-editor">
@@ -177,7 +116,6 @@
               <caret line="56" column="41" lean-forward="false" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
               <folding>
                 <element signature="e#14#121#0" expanded="true" />
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
               </folding>
             </state>
           </provider>
@@ -185,8 +123,6 @@
       </file>
     </leaf>
   </component>
-<<<<<<< HEAD
-=======
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -194,13 +130,10 @@
       </list>
     </option>
   </component>
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
   <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-<<<<<<< HEAD
-=======
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -211,28 +144,12 @@
       </list>
     </option>
   </component>
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-<<<<<<< HEAD
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths>
-      <path value="$PROJECT_DIR$/frontend/package.json" />
-    </packageJsonPaths>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="981" />
-    <option name="y" value="61" />
-    <option name="width" value="980" />
-    <option name="height" value="1090" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-=======
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="2391" />
     <option name="y" value="41" />
@@ -252,7 +169,6 @@
       <autoscrollFromSource />
       <sortByType />
       <manualOrder />
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -266,42 +182,13 @@
             <path>
               <item name="MessageSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="MessageSystem" type="462c0819:PsiDirectoryNode" />
-<<<<<<< HEAD
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MessageSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MessageSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MessageSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MessageSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-=======
               <item name="feedback" type="462c0819:PsiDirectoryNode" />
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
-<<<<<<< HEAD
-    </panes>
-  </component>
-  <component name="PropertiesComponent">
-    <property name="go.gopath.indexing.explicitly.defined" value="true" />
-    <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="go" />
-    <property name="ts.external.directory.path" value="D:\jet GoLand\GoLand 2018.2.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
-=======
       <pane id="Scratches" />
     </panes>
   </component>
@@ -317,7 +204,6 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\Desktop\GoProject\src\MessageSystem\feedback" />
     </key>
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -331,31 +217,6 @@
       </list>
     </option>
   </component>
-<<<<<<< HEAD
-  <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="TypeScript" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-=======
   <component name="RunManager">
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="MessageSystem" />
@@ -396,7 +257,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,15 +265,6 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-<<<<<<< HEAD
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/frontend/src/app/app.component.spec.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="1" />
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-=======
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -501,19 +352,10 @@
             <marker date="1548853715339" expanded="true" signature="2499:2567" ph="insert into groups... " />
             <marker date="1548853715339" expanded="true" signature="2810:2855" ph="insert into membership... " />
             <marker date="1548853715339" expanded="true" signature="4957:5009" ph="select id,na... users" />
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
           </folding>
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/frontend/src/app/websocket.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-=======
     <entry file="file://$PROJECT_DIR$/feedback/feedback.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -536,19 +378,10 @@
           <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
           <folding>
             <element signature="e#14#189#0" expanded="true" />
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
           </folding>
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/frontend/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="1" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-=======
     <entry file="file://$PROJECT_DIR$/fileserver/fileserver.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
@@ -573,25 +406,16 @@
             <element signature="n#!!block;n#GetFileMD5#0" expanded="false" />
             <element signature="n#!!block;n#createfile#0" expanded="false" />
             <element signature="n#!!block;n#Substr#0" expanded="false" />
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
           </folding>
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/frontend/src/app/app.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-=======
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
           <caret line="56" column="41" lean-forward="false" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
           <folding>
             <element signature="e#14#121#0" expanded="true" />
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
           </folding>
         </state>
       </provider>

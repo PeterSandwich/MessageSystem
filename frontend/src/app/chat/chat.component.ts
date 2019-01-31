@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Protocol } from '../protocol/Protocol';
-import { MAX_UNSIGNED_VALUE } from 'long';
-import { Content } from '@angular/compiler/src/render3/r3_ast';
-import { MesList, FriendList, FriendItem, MessageList } from './data';
+// import { MesList, FriendList, FriendItem, MessageList } from './data';
 
 
-import { WebsocketService, Hist, HistList, ChatList } from '../websocket.service';
+import { WebsocketService,FriendList, MessageList, MessageItem} from '../websocket.service';
 // import { WebsocketService,FriendItem,Session,MessageItem } from '../websocket.service';
 import { timer } from 'rxjs';
 import { UserService } from '../user.service';
@@ -24,15 +21,17 @@ export class ChatComponent implements OnInit {
 
   from_id = 1;
   to_id = 0;
-  group = 0;
-  addgtoup_id = 0;
+  my_id = this.us.MyUserId;
+  // group = 0;
+  // addgtoup_id = 0;
   content = "";
-  group_name = '';
+  // group_name = '';
   list = [];
-  tips = "";
+  showmsg : MessageItem[];
+  // tips = "";
   isslect: boolean;
   friendlist : FriendList;
-  mssesgelist : MessageList;
+  messagelist : MessageList;
   my_img_url = "https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg";
 
   constructor(
@@ -42,8 +41,31 @@ export class ChatComponent implements OnInit {
     ) { }
 
     ngOnInit(){
-      this.ws.wsFriendList.List[0].ID;
-      this.ws.wsMessageList.List[0].MList[0].Content
+      // this.ws.wsFriendList.List[0].ID;
+      // this.ws.wsMessageList.List[0].MList[0].Content;
+      this.friendlist = this.ws.wsFriendList;
+      console.log("friendList=", this.friendlist);
+      console.log("wsfriendlist=", this.ws.wsFriendList);
+      this.messagelist = this.ws.wsMessageList;
+      console.log("messagelist = ", this.messagelist);
+      // this.MesList = this.mssesgelist.List;
+    }
+    test2(id: number){
+      // this.to_id = id;
+      // console.log("this.to_id=", this.to_id);
+      // this.isslect = true;
+      // let len = this.list.length;
+      // this.showmsg = this.messagelist.List[0].MList;
+      // console.log("showmsg=", this.showmsg);
+      for(var i = 0; i < this.messagelist.List.length; i++){
+        // this.showmsg = this.messagelist.List[i].MList;
+        //   console.log("showmsg = ", i, this.showmsg);
+        if(id == this.messagelist.List[i].ID){
+          this.showmsg = this.messagelist.List[i].MList;
+          console.log("************** = ", this.showmsg);
+          // console.log("item[0]=",this.)
+        }
+      }
     }
  
   // test2(id: number, isGroup: boolean){

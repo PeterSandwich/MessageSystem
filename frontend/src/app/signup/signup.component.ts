@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
   signup(){
       let body = {name:this.name,password:this.password}
       this.login.postSignupData(body).subscribe(data =>{
-        console.log(data);
+        console.log("data=", data);
       })
   }
 

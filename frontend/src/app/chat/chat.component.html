@@ -27,10 +27,12 @@
         <div *ngIf="!isslect" class = "tips">
           暂无新消息
         </div>
-          <div *ngIf="to_id!=0" class = "message1">
-              <div *ngFor="let item of list" >
-                    <div *ngIf="item.To == from_id" id="box">{{item.Content}}</div>
-                    <div *ngIf="item.From == from_id" id="box1">{{item.Content}}</div>
+          <div class = "message1">
+              <div *ngFor="let item of showmsg" >
+                <!-- <div *ngFor="let mes of item"> -->
+                    <div *ngIf="item.To == my_id" id="box">{{item.Content}}</div>
+                    <div *ngIf="item.From == my_id" id="box1">{{item.Content}}</div>
+                <!-- </div> -->
               </div>
           </div>
       </td>
@@ -39,16 +41,16 @@
     <tr>
       <td rowspan="3">
           <div class = "list" >
-            <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID, item.ISGROUP)">
+            <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID)">
                 <!-- <tr  > -->
                   <!-- <td> -->
                           <!-- <nz-avatar nzIcon="user" class = "img" [nzShape]="'square'" nzSrc={{item.img_url}} >
                           </nz-avatar> -->
                           <nz-badge [nzCount]="5" *ngIf="list!=NULL" class = "point" style = "height: 5px;">
-                              <img src = "{{item.HEADIMG}}" class = "img">
+                              <img src = "{{item.Headimg}}" class = "img">
                             </nz-badge>
                           <!-- <img src = {{item.img_url}} style = "height:40px; width:40px; border-radius:50%; overflow:hedden;"> -->
-                      {{item.NAME}}
+                      {{item.Name}}
                   <!-- </td> -->
                 <!-- </tr> -->
             </div>
@@ -61,8 +63,8 @@
         <div></div>
       <div  *ngIf="isslect">
         <div class = "tool">
-          <i nz-icon type="folder" theme="outline" style="font-size: 25px" class = "icon"></i>            
-          <i nz-icon type="picture" theme="outline" style="font-size: 25px" class = "icon"></i>       
+          <!-- <i nz-icon type="folder" theme="outline" style="font-size: 25px" class = "icon"></i>            
+          <i nz-icon type="picture" theme="outline" style="font-size: 25px" class = "icon"></i>        -->
         </div>
         <textarea class = "textarea" [(ngModel)] = "content"></textarea>
         <button class = "send" nz-button nzType="primary" (click) = "sendMsg()" >发送</button>

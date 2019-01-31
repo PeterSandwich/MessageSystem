@@ -240,7 +240,7 @@ module.exports = "/* :host ::ng-deep .demo-infinite-container {\n    height: 300
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container\">\n  <table >\n    <tr>\n      <th class = \"avatar\" rowspan=\"2\">\n        <div>\n            <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n            <div style = \"left: 90px; top:30px; position: absolute\">名字</div>\n            <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n        </div>\n        <div class = \"search\">\n            <nz-input-group [nzSuffix]=\"suffixIconSearch\">\n              <input type=\"text\" nz-input placeholder=\"输入搜索内容\">\n            </nz-input-group>\n            <ng-template #suffixIconSearch>\n            <i nz-icon type=\"search\"></i>\n              </ng-template>\n              <div>\n                  <button class = \"grad\">聊天</button>|<button class = \"grad\">通讯录</button>|<button class = \"grad\">添加</button>\n              </div>    \n        </div>\n      </th>\n      <th class = \"him\">对方的名字</th>\n    </tr>\n    <tr class = \"avatar2\" >\n      <td rowspan=\"2\" class = \"message\">\n        <div *ngIf=\"!isslect\" class = \"tips\">\n          暂无新消息\n        </div>\n          <div *ngIf=\"to_id!=0\" class = \"message1\">\n              <div *ngFor=\"let item of list\" >\n                    <div *ngIf=\"item.To == from_id\" id=\"box\">{{item.Content}}</div>\n                    <div *ngIf=\"item.From == from_id\" id=\"box1\">{{item.Content}}</div>\n              </div>\n          </div>\n      </td>\n      \n    </tr>\n    <tr>\n      <td rowspan=\"3\">\n          <div class = \"list\" >\n            <div class = \"item\" *ngFor=\"let item of friendlist.List\" (click) = \"test2(item.ID, item.ISGROUP)\">\n                <!-- <tr  > -->\n                  <!-- <td> -->\n                          <!-- <nz-avatar nzIcon=\"user\" class = \"img\" [nzShape]=\"'square'\" nzSrc={{item.img_url}} >\n                          </nz-avatar> -->\n                          <nz-badge [nzCount]=\"5\" *ngIf=\"list!=NULL\" class = \"point\" style = \"height: 5px;\">\n                              <img src = \"{{item.HEADIMG}}\" class = \"img\">\n                            </nz-badge>\n                          <!-- <img src = {{item.img_url}} style = \"height:40px; width:40px; border-radius:50%; overflow:hedden;\"> -->\n                      {{item.NAME}}\n                  <!-- </td> -->\n                <!-- </tr> -->\n            </div>\n            \n          </div>\n      </td>\n    </tr>\n    <tr class = \"inputmes\">\n      <!-- <td > -->\n        <div></div>\n      <div  *ngIf=\"isslect\">\n        <div class = \"tool\">\n          <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n          <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>       \n        </div>\n        <textarea class = \"textarea\" [(ngModel)] = \"content\"></textarea>\n        <button class = \"send\" nz-button nzType=\"primary\" (click) = \"sendMsg()\" >发送</button>\n      </div>\n    <!-- </td> -->\n    </tr>\n  </table>\n\n\n"
+module.exports = "\n<div class=\"container\">\n  <table >\n    <tr>\n      <th class = \"avatar\" rowspan=\"2\">\n        <div>\n            <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n            <div style = \"left: 90px; top:30px; position: absolute\">名字</div>\n            <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n        </div>\n        <div class = \"search\">\n            <nz-input-group [nzSuffix]=\"suffixIconSearch\">\n              <input type=\"text\" nz-input placeholder=\"输入搜索内容\">\n            </nz-input-group>\n            <ng-template #suffixIconSearch>\n            <i nz-icon type=\"search\"></i>\n              </ng-template>\n              <div>\n                  <button class = \"grad\">聊天</button>|<button class = \"grad\">通讯录</button>|<button class = \"grad\">添加</button>\n              </div>    \n        </div>\n      </th>\n      <th class = \"him\">对方的名字</th>\n    </tr>\n    <tr class = \"avatar2\" >\n      <td rowspan=\"2\" class = \"message\">\n        <div *ngIf=\"!isslect\" class = \"tips\">\n          暂无新消息\n        </div>\n          <div class = \"message1\">\n            ???\n              <div *ngFor=\"let item of showmsg\" >\n                <!-- <div *ngFor=\"let mes of item\"> -->\n                    <div *ngIf=\"item.To == my_id\" id=\"box\">{{item.Content}}</div>\n                    <div *ngIf=\"item.From == my_id\" id=\"box1\">{{item.Content}}</div>\n                <!-- </div> -->\n              </div>\n          </div>\n      </td>\n      \n    </tr>\n    <tr>\n      <td rowspan=\"3\">\n          <div class = \"list\" >\n            <div class = \"item\" *ngFor=\"let item of friendlist.List\" (click) = \"test2(item.ID)\">\n                <!-- <tr  > -->\n                  <!-- <td> -->\n                          <!-- <nz-avatar nzIcon=\"user\" class = \"img\" [nzShape]=\"'square'\" nzSrc={{item.img_url}} >\n                          </nz-avatar> -->\n                          <nz-badge [nzCount]=\"5\" *ngIf=\"list!=NULL\" class = \"point\" style = \"height: 5px;\">\n                              <img src = \"{{item.Headimg}}\" class = \"img\">\n                            </nz-badge>\n                          <!-- <img src = {{item.img_url}} style = \"height:40px; width:40px; border-radius:50%; overflow:hedden;\"> -->\n                      {{item.Name}}\n                  <!-- </td> -->\n                <!-- </tr> -->\n            </div>\n            \n          </div>\n      </td>\n    </tr>\n    <tr class = \"inputmes\">\n      <!-- <td > -->\n        <div></div>\n      <div  *ngIf=\"isslect\">\n        <div class = \"tool\">\n          <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n          <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\n        </div>\n        <textarea class = \"textarea\" [(ngModel)] = \"content\"></textarea>\n        <button class = \"send\" nz-button nzType=\"primary\" (click) = \"sendMsg()\" >发送</button>\n      </div>\n    <!-- </td> -->\n    </tr>\n  </table>\n\n\n"
 
 /***/ }),
 
@@ -261,6 +261,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _file_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../file.service */ "./src/app/file.service.ts");
 
 
+// import { MesList, FriendList, FriendItem, MessageList } from './data';
 
 
 
@@ -273,17 +274,40 @@ var ChatComponent = /** @class */ (function () {
         this.upload = upload;
         this.from_id = 1;
         this.to_id = 0;
-        this.group = 0;
-        this.addgtoup_id = 0;
+        this.my_id = this.us.MyUserId;
+        // group = 0;
+        // addgtoup_id = 0;
         this.content = "";
-        this.group_name = '';
+        // group_name = '';
         this.list = [];
-        this.tips = "";
         this.my_img_url = "https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg";
     }
     ChatComponent.prototype.ngOnInit = function () {
-        this.ws.wsFriendList.List[0].ID;
-        this.ws.wsMessageList.List[0].MList[0].Content;
+        // this.ws.wsFriendList.List[0].ID;
+        // this.ws.wsMessageList.List[0].MList[0].Content;
+        this.friendlist = this.ws.wsFriendList;
+        console.log("friendList=", this.friendlist);
+        console.log("wsfriendlist=", this.ws.wsFriendList);
+        this.messagelist = this.ws.wsMessageList;
+        console.log("messagelist = ", this.messagelist);
+        // this.MesList = this.mssesgelist.List;
+    };
+    ChatComponent.prototype.test2 = function (id) {
+        // this.to_id = id;
+        // console.log("this.to_id=", this.to_id);
+        // this.isslect = true;
+        // let len = this.list.length;
+        // this.showmsg = this.messagelist.List[0].MList;
+        // console.log("showmsg=", this.showmsg);
+        for (var i = 0; i < this.messagelist.List.length; i++) {
+            // this.showmsg = this.messagelist.List[i].MList;
+            //   console.log("showmsg = ", i, this.showmsg);
+            if (id == this.messagelist.List[i].ID) {
+                this.showmsg = this.messagelist.List[i].MList;
+                console.log("************** = ", this.showmsg);
+                // console.log("item[0]=",this.)
+            }
+        }
     };
     ChatComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -526,7 +550,6 @@ var HomeComponent = /** @class */ (function () {
     function HomeComponent() {
     }
     HomeComponent.prototype.ngOnInit = function () {
-        console.log("miao???");
     };
     HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1341,7 +1364,7 @@ var SignupComponent = /** @class */ (function () {
     SignupComponent.prototype.signup = function () {
         var body = { name: this.name, password: this.password };
         this.login.postSignupData(body).subscribe(function (data) {
-            console.log(data);
+            console.log("data=", data);
         });
     };
     SignupComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1551,7 +1574,7 @@ var WebsocketService = /** @class */ (function () {
     WebsocketService.prototype.HistoryMessage = function (info) {
         var _this = this;
         this.getChatMessageList(info).subscribe(function (data) {
-            console.log(data);
+            console.log("HistoryMessage-data=", data);
             _this.wsMessageList.List = [];
             for (var i = 0; i < data.List.length; i++) {
                 var session = new (Session);

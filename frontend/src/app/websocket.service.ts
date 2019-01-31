@@ -137,7 +137,7 @@ export class WebsocketService {
 
   HistoryMessage(info){
     this.getChatMessageList(info).subscribe((data:MsgList) => {
-      console.log(data);
+      console.log("HistoryMessage-data=", data);
       this.wsMessageList.List =[];
       for(let i=0;i<data.List.length;i++){
           let session = new(Session);

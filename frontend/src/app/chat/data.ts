@@ -31,7 +31,7 @@ export class MessageItem{
     Mid: number = 0;
     From: number = 0;
     To: number = 0;
-    Gid: number = 0;//群组ＩＤ
+    Gid: number = 0;//群组TD
     Content: string = "";
     ContentType: number = 0;
     Time: number = 0;
