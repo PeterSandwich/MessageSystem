@@ -638,7 +638,7 @@ var LoginComponent = /** @class */ (function () {
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 
 
-var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "./node_modules/protobufjs/minimal.js");
+var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "../node_modules/protobufjs/minimal.js");
 
 // Common aliases
 var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
@@ -1396,6 +1396,10 @@ var UserService = /** @class */ (function () {
     UserService.prototype.quit = function () {
         return this.http.get(this.quitUrl);
     };
+    UserService.prototype.getUserbyId = function (id) {
+        var url = this.configUrl + '/user?id=' + id;
+        return this.http.get(url);
+    };
     UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
@@ -1491,24 +1495,83 @@ var WebsocketService = /** @class */ (function () {
                     }
                 }
             }
+            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) { //添加好友请求
+                this.createSessById(conn, conn.from);
+            }
+            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_GROUP || conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS) {
+            }
         }
         else if (conn.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.ACK) {
-            for (var i = 0; i < this.wsMessageList.List.length; i++) {
-                if (conn.from == this.wsMessageList.List[i].ID && conn.isgroup == this.wsMessageList.List[i].Isgroup) {
-                    for (var j = 0; j < this.wsMessageList.List[i].MList.length; j++) {
-                        if (this.wsMessageList.List[i].MList[j].Time == conn.time) {
-                            this.wsMessageList.List[i].MList[j].Mid = conn.msgid;
-                            break;
+            if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
+                for (var i = 0; i < this.wsMessageList.List.length; i++) {
+                    if (conn.from == this.wsMessageList.List[i].ID && conn.isgroup == this.wsMessageList.List[i].Isgroup) {
+                        for (var j = 0; j < this.wsMessageList.List[i].MList.length; j++) {
+                            if (this.wsMessageList.List[i].MList[j].Time == conn.time) {
+                                this.wsMessageList.List[i].MList[j].Mid = conn.msgid;
+                                break;
+                            }
                         }
+                        break;
                     }
-                    break;
                 }
+            }
+            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) { //添加好友请求确认信息
+                this.createSessById(conn, conn.to);
             }
         }
     };
+    WebsocketService.prototype.createSessById = function (conn, uid) {
+        var item = new (FriendItem);
+        item.ID = uid;
+        this.us.getUserbyId(item.ID).subscribe(function (data) {
+            item.Name = data["Name"];
+            item.Headimg = data["Img_url"];
+        });
+        item.Counter = 1;
+        item.Isgroup = false;
+        this.wsFriendList.List.push(item);
+        var sess = new (Session);
+        sess.ID = item.ID;
+        sess.Isgroup = false;
+        sess.MList = [];
+        this.wsMessageList.List.push(sess);
+    };
     // 发送信息，不在这里构造消息体
     WebsocketService.prototype.sendMessage = function (message) {
-        this.ws.send(message);
+        message.time = Date.now();
+        if (message.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST) {
+            if (message.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) { // 单聊或群聊
+                for (var i = 0; i < this.wsMessageList.List.length; i++) {
+                    if (message.to == this.wsMessageList.List[i].ID && message.isgroup == this.wsMessageList.List[i].Isgroup) {
+                        var item = new (MessageItem);
+                        item.Mid = 0;
+                        item.From = message.from;
+                        item.To = message.to;
+                        item.Content = message.content;
+                        item.ContentType = message.contentType;
+                        item.Time = message.time;
+                        this.wsMessageList.List[i].MList.push(item);
+                        break;
+                    }
+                }
+            }
+            else if (message.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) { // 撤回消息
+                if (message.msgid == 0) {
+                    alert("消息ＩＤ不存在，无法撤回");
+                }
+                for (var i = 0; i < this.wsMessageList.List.length; i++) {
+                    if (message.to == this.wsMessageList.List[i].ID && message.isgroup == this.wsMessageList.List[i].Isgroup) {
+                        for (var j = 0; j < this.wsMessageList.List[i].MList.length; j++) {
+                            if (this.wsMessageList.List[i].MList[j].Mid == message.msgid) {
+                                this.wsMessageList.List[i].MList.slice(j, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        this.ws.send(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(message).finish());
     };
     // 按名字取得用户列表
     WebsocketService.prototype.getUserList = function (name) {
@@ -1653,6 +1716,33 @@ var MsgList = /** @class */ (function () {
     return MsgList;
 }());
 
+/////////////////////////////////////////////////////////////////
+// FriendList = [
+//   {ID:1000021,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 1},
+//   {ID:1000022,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 9},
+//   {ID:1000023,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 0},
+//   {ID:1000024,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 4},
+//   {ID:1000025,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 5},
+//   {ID:1000026,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 3},
+// ];
+// MessageList = [
+//   {ID:1000021,ISGROUP: false,Message: [
+//     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1000021,To:1, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+//   ]},
+//   {ID:1000022,ISGROUP: false,Message: [
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+//   ]},
+//   {ID:100001,ISGROUP: false,Message: [
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 0,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+//   ]}
+// ]
 
 
 /***/ }),
@@ -1723,7 +1813,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/goworks/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/pjw/GoProject/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
 
 
 /***/ })
