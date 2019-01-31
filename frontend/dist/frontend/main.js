@@ -233,7 +233,7 @@ module.exports = ":host ::ng-deep .demo-infinite-container {\n    height: 300px;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <button nz-button nzType=\"primary\" (click)=\"getalluser()\">获取全部用户列表</button>\n</div>\n<div>\n  <button nz-button nzType=\"primary\" (click)=\"ChatList()\">获取好友列表</button>\n</div>\n<div>\n  <button nz-button nzType=\"primary\" (click)=\"HistoryMessage()\">获取历史消息</button>\n</div>\n<div>\n  <input [(ngModel)]=\"chatto\">\n  <button nz-button nzType=\"primary\" (click)=\"chatToPeo(chatto)\">加好友</button>\n</div>\n\n<h2>单聊</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"发送给：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"c2c_to_id\">\n  </nz-input-group>\n</div>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"内容：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"c2c_content\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"sendMsg()\">发送</button>\n\n\n\n\n\n<br>\n<br>\n<div>\n  <input id=\"upfile\" type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\">\n  <div class=\"action-box\">\n    <button class=\"upload-btn\" onclick=\"upfile.click()\"> 点击上传\n    </button>\n  </div>\n  <div *ngIf=\"show\">\n    <div style=\"display: -webkit-box;\">\n      <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+GetPicUrl+filep+ ')'}\"></div>\n      <div class=\"hint\">\n        {{filename}}\n      </div>\n      <div class=\"action-box\">\n        <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n<br>\n<br>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<h2>创建群</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"群名\">\n    <input type=\"text\" nz-input [(ngModel)]=\"group_name\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"createGroup()\">创建群</button>\n\n<h2>邀请进入组</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"组ID：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"gtoup_id\">\n  </nz-input-group>\n</div>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"被邀请人的ID：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"add_mem_id\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"addMemToGoup()\">邀请进入组</button>\n\n<h2>群聊</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"发送给组：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"c2g_group_id\">\n  </nz-input-group>\n</div>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"内容：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"c2g_content\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"sendToGoup()\">发送</button>"
+module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!-- <div>\n  <button nz-button nzType=\"primary\" (click)=\"getalluser()\">获取全部用户列表</button>\n</div>\n<div>\n  <button nz-button nzType=\"primary\" (click)=\"ChatList()\">获取好友列表</button>\n</div>\n<div>\n  <input [(ngModel)]=\"chatto\">\n  <button nz-button nzType=\"primary\" (click)=\"chatToPeo(chatto)\">加好友</button>\n</div>\n\n<h2>单聊</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"发送给：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"c2c_to_id\">\n  </nz-input-group>\n</div>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"内容：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"c2c_content\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"sendMsg()\">发送</button>\n<br>\n<br>\n<div>\n  <input id=\"upfile\" type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\">\n  <div class=\"action-box\">\n    <button class=\"upload-btn\" onclick=\"upfile.click()\"> 点击上传\n    </button>\n  </div>\n  <div *ngIf=\"show\">\n    <div style=\"display: -webkit-box;\">\n      <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+GetPicUrl+filep+ ')'}\"></div>\n      <div class=\"hint\">\n        {{filename}}\n      </div>\n      <div class=\"action-box\">\n        <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n<br>\n<br>\n<h2>创建群</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"群名\">\n    <input type=\"text\" nz-input [(ngModel)]=\"group_name\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"createGroup()\">创建群</button>\n\n<h2>邀请进入组</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"组ID：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"gtoup_id\">\n  </nz-input-group>\n</div>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"被邀请人的ID：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"add_mem_id\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"addMemToGoup()\">邀请进入组</button>\n\n<h2>群聊</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"发送给组：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"c2g_group_id\">\n  </nz-input-group>\n</div>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"内容：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"c2g_content\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"sendToGoup()\">发送</button> -->"
 
 /***/ }),
 
@@ -241,26 +241,17 @@ module.exports = "<div>\n  <button nz-button nzType=\"primary\" (click)=\"getall
 /*!****************************************!*\
   !*** ./src/app/chat/chat.component.ts ***!
   \****************************************/
-/*! exports provided: ChatComponent, Hist, HistList, ChatItem, ChatList, MsgItem, MsgList */
+/*! exports provided: ChatComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatComponent", function() { return ChatComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Hist", function() { return Hist; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HistList", function() { return HistList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatItem", function() { return ChatItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatList", function() { return ChatList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgItem", function() { return MsgItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgList", function() { return MsgList; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../protocol/Protocol */ "./src/app/protocol/Protocol.js");
-/* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _websocket_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../websocket.service */ "./src/app/websocket.service.ts");
-/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../user.service */ "./src/app/user.service.ts");
-/* harmony import */ var _file_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../file.service */ "./src/app/file.service.ts");
-
+/* harmony import */ var _websocket_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../websocket.service */ "./src/app/websocket.service.ts");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../user.service */ "./src/app/user.service.ts");
+/* harmony import */ var _file_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../file.service */ "./src/app/file.service.ts");
 
 
 
@@ -268,191 +259,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ChatComponent = /** @class */ (function () {
-    function ChatComponent(ws, us, upload) {
+    function ChatComponent(ws, us, // 里面有 我的Id: this.us.MyUserId
+    upload) {
         this.ws = ws;
         this.us = us;
         this.upload = upload;
-        this.chatto = 0;
-        this.c2c_to_id = 0;
-        this.c2c_content = "";
-        this.group_name = '';
-        this.add_mem_id = 0;
-        this.gtoup_id = 0;
-        this.c2g_group_id = 0;
-        this.c2g_content = "";
-        this.GetPicUrl = "http://localhost:9988/getpic/";
-        this.fileurl = 'http://localhost:9988/upload';
-        this.dfileurl = "";
-        this.filep = "";
     }
-    ChatComponent.prototype.ngOnInit = function () {
-        this.one = { ID: 1, Isgroup: false };
-        this.msglist = { List: [] };
-    };
-    //////////////////////////////////////////////////////////////////////////////////////
-    ChatComponent.prototype.getalluser = function () {
-        this.ws.getUserList("").subscribe(function (data) {
-            console.log(data);
-        });
-    };
-    ChatComponent.prototype.chatToPeo = function (to) {
-        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message);
-        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST;
-        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION;
-        msg.from = this.us.MyUserId;
-        msg.to = to;
-        msg.time = Date.now();
-        this.ws.sendMessage(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(msg).finish());
-    };
-    ChatComponent.prototype.sendMsg = function () {
-        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message);
-        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST; //消息的类型的请求类型
-        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE; // 消息的功能
-        msg.from = this.us.MyUserId; // 消息发送方
-        msg.to = this.c2c_to_id; //消息接收方
-        msg.content = this.c2c_content; //消息内容
-        msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.ContentType.TEXT; //消息类型
-        msg.time = Date.now(); //消息的发送时间
-        msg.isgroup = false; //是不是群组消息
-        this.ws.sendMessage(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(msg).finish());
-    };
-    ChatComponent.prototype.createGroup = function () {
-        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message);
-        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST;
-        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_GROUP;
-        msg.from = this.us.MyUserId;
-        msg.content = this.group_name;
-        msg.userlist.push(this.us.MyUserId);
-        msg.time = Date.now();
-        this.ws.sendMessage(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(msg).finish());
-    };
-    ChatComponent.prototype.addMemToGoup = function () {
-        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message);
-        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST;
-        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS;
-        msg.from = this.us.MyUserId;
-        msg.group = this.gtoup_id;
-        msg.userlist.push(this.add_mem_id);
-        msg.time = Date.now();
-        this.ws.sendMessage(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(msg).finish());
-    };
-    ChatComponent.prototype.sendToGoup = function () {
-        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message);
-        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST;
-        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE;
-        msg.from = this.us.MyUserId;
-        msg.group = this.c2g_group_id;
-        msg.content = this.c2g_content;
-        msg.isgroup = true;
-        msg.time = Date.now();
-        this.ws.sendMessage(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(msg).finish());
-    };
-    ChatComponent.prototype.ChatList = function () {
-        var _this = this;
-        this.ws.getChatList().subscribe(function (data) {
-            var HL = new (HistList);
-            HL.List = [];
-            for (var i = 0; i < data.List.length; i++) {
-                var FriItem = new (_websocket_service__WEBPACK_IMPORTED_MODULE_3__["FriendItem"]);
-                FriItem.ID = data.List[i].Id;
-                FriItem.Name = data.List[i].Name;
-                FriItem.Headimg = data.List[i].Headimg;
-                FriItem.Isgroup = data.List[i].Isgroup;
-                FriItem.Counter = data.List[i].Counter;
-                _this.ws.FriendList.List.push(FriItem);
-                var Ht = new (Hist);
-                Ht.ID = data.List[i].Id;
-                Ht.Isgroup = data.List[i].Isgroup;
-                HL.List.push(Ht);
-            }
-            _this.HistoryMessage(HL);
-        });
-    };
-    ChatComponent.prototype.HistoryMessage = function (info) {
-        var _this = this;
-        this.ws.getChatMessageList(info).subscribe(function (data) {
-            console.log(data);
-            _this.ws.MessageList.List = [];
-            for (var i = 0; i < data.List.length; i++) {
-                var session = new (_websocket_service__WEBPACK_IMPORTED_MODULE_3__["Session"]);
-                session.MList = [];
-                if (data.List[i].length > 0) {
-                    session.ID = data.List[i][0].From;
-                    if (session.ID == _this.us.MyUserId) {
-                        session.ID = data.List[i][0].To;
-                    }
-                    session.Isgroup = data.List[i][0].Isgroup;
-                }
-                for (var j = 0; j < data.List[i].length; j++) {
-                    var Item = new (_websocket_service__WEBPACK_IMPORTED_MODULE_3__["MessageItem"]);
-                    Item.Mid = data.List[i][j].Mid;
-                    Item.From = data.List[i][j].From;
-                    Item.To = data.List[i][j].To;
-                    Item.Content = data.List[i][j].Content;
-                    Item.ContentType = data.List[i][j].ContentType;
-                    Item.Time = data.List[i][j].Time;
-                    session.MList.push(Item);
-                }
-                _this.ws.MessageList.List.push(session);
-            }
-            console.log(_this.ws.MessageList);
-        });
-    };
-    ChatComponent.prototype.selectFile = function (event) {
-        var fileList = event.target.files;
-        this.uploadFile(fileList);
-    };
-    ChatComponent.prototype.uploadFile = function (files) {
-        var _this = this;
-        if (files.length == 0) {
-            console.log("No file selected!");
-            return;
-        }
-        var file = files[0];
-        console.log(file.name);
-        this.filename = file.name;
-        this.upload.uploadFile(this.fileurl, file)
-            .subscribe(function (response) {
-            //.log(response);
-            if (response["body"] != null) {
-                if (response["body"]["code"] != 1) {
-                    console.log(response["body"]["data"]);
-                    _this.filep = response["body"]["data"]["filepath"];
-                    _this.dfileurl = response["body"]["data"]["fileurl"];
-                    // this.show = true;
-                }
-            }
-            // if (event.type == HttpEventType.UploadProgress) {
-            //   const percentDone = Math.round(100 * event.loaded / event.total);
-            //   console.log(`File is ${percentDone}% loaded.`);
-            // } else if (event instanceof HttpResponse) {
-            //   console.log('File is completely loaded!');
-            // }
-        }, function (err) {
-            console.log("Upload Error:", err);
-        }, function () {
-            console.log("Upload done");
-        });
-        //this.getpath();
-    };
-    ChatComponent.prototype.getpath = function () {
-        this.filep = "getpic/3ea62ac5fb0758efadb15e36_compress.jpg";
-        console.log(this.filep);
-    };
-    ChatComponent.prototype.download = function () {
-        this.fileurl = "http://localhost:9876/files";
-        window.open(this.fileurl, '_blank');
-        return;
-    };
-    // 调用浏览器的下载
-    ChatComponent.prototype.downloadFile = function () {
-        var a = document.createElement('a');
-        a.href = this.dfileurl;
-        a.download = 'download';
-        a.click();
-        a.remove();
-        console.log('download:' + a.href);
-    };
+    ChatComponent.prototype.ngOnInit = function () { };
     ChatComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -460,52 +273,151 @@ var ChatComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./chat.component.html */ "./src/app/chat/chat.component.html"),
             styles: [__webpack_require__(/*! ./chat.component.css */ "./src/app/chat/chat.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_websocket_service__WEBPACK_IMPORTED_MODULE_3__["WebsocketService"],
-            _user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"],
-            _file_service__WEBPACK_IMPORTED_MODULE_5__["UploadService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_websocket_service__WEBPACK_IMPORTED_MODULE_2__["WebsocketService"],
+            _user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"],
+            _file_service__WEBPACK_IMPORTED_MODULE_4__["UploadService"]])
     ], ChatComponent);
     return ChatComponent;
 }());
 
-// 发送请求漫游消息的结构体
-var Hist = /** @class */ (function () {
-    function Hist() {
+// 先不要管下面的
+var Old = /** @class */ (function () {
+    function Old() {
     }
-    return Hist;
+    Old.prototype.old = function () {
+        //////////////////////////////////////////////////////////////////////////////////////
+        // getalluser(){
+        //   this.ws.getUserList("").subscribe(data => {
+        //     console.log(data)
+        //   })
+        // }
+        // chatto=0;
+        // chatToPeo(to:number){
+        //   let msg = new(Protocol.Message)
+        //   msg.type = Protocol.Message.Type.REQUEST;
+        //   msg.cmd = Protocol.Message.CtrlType.CREATE_SESSION;
+        //   msg.from = this.us.MyUserId;
+        //   msg.to = to;
+        //   msg.time = Date.now();
+        //   this.ws.sendMessage(Protocol.Message.encode(msg).finish())
+        // }
+        // c2c_to_id = 0;
+        // c2c_content = ""
+        // sendMsg() {
+        //   let msg = new(Protocol.Message)
+        //   msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
+        //   msg.cmd = Protocol.Message.CtrlType.NONE;// 消息的功能
+        //   msg.from = this.us.MyUserId;              // 消息发送方
+        //   msg.to = this.c2c_to_id;                   //消息接收方
+        //   msg.content = this.c2c_content;             //消息内容
+        //   msg.contentType = Protocol.Message.ContentType.TEXT;　  //消息类型
+        //   msg.time = Date.now()                     //消息的发送时间
+        //   msg.isgroup = false;                       //是不是群组消息
+        //   this.ws.sendMessage(Protocol.Message.encode(msg).finish())
+        // }
+        // group_name = '';
+        // createGroup(){
+        //   let msg = new(Protocol.Message)
+        //   msg.type = Protocol.Message.Type.REQUEST;
+        //   msg.cmd = Protocol.Message.CtrlType.CREATE_GROUP;
+        //   msg.from = this.us.MyUserId;
+        //   msg.content = this.group_name;
+        //   msg.userlist.push(this.us.MyUserId);
+        //   msg.time = Date.now()
+        //   this.ws.sendMessage(Protocol.Message.encode(msg).finish())
+        // }
+        // add_mem_id = 0;
+        // gtoup_id = 0;
+        // addMemToGoup() {
+        //   let msg = new(Protocol.Message)
+        //   msg.type = Protocol.Message.Type.REQUEST;
+        //   msg.cmd = Protocol.Message.CtrlType.GROUP_ADDMEMBERS;
+        //   msg.from = this.us.MyUserId;
+        //   msg.group = this.gtoup_id;
+        //   msg.userlist.push(this.add_mem_id);
+        //   msg.time = Date.now()
+        //   this.ws.sendMessage(Protocol.Message.encode(msg).finish())
+        // }
+        // c2g_group_id = 0;
+        // c2g_content = "";
+        // sendToGoup() {
+        //   let msg = new(Protocol.Message)
+        //   msg.type = Protocol.Message.Type.REQUEST;
+        //   msg.cmd = Protocol.Message.CtrlType.NONE;
+        //   msg.from =  this.us.MyUserId;
+        //   msg.group  = this.c2g_group_id;
+        //   msg.content = this.c2g_content;
+        //   msg.isgroup = true;
+        //   msg.time = Date.now();
+        //   this.ws.sendMessage(Protocol.Message.encode(msg).finish())
+        // }
+        // picpath: string
+        // GetPicUrl = "http://localhost:9988/getpic/"
+        // picurl: string
+        // fileurl = 'http://localhost:9988/upload'
+        // dfileurl=""
+        // filep = ""
+        // filename: string
+        // selectFile(event: any) {
+        //   let fileList: FileList = event.target.files;
+        //   this.uploadFile(fileList);
+        // }
+        // uploadFile(files: FileList) {
+        //   if (files.length == 0) {
+        //     console.log("No file selected!");
+        //     return
+        //   }
+        //   let file: File = files[0];
+        //   console.log(file.name)
+        //   this.filename = file.name;
+        //   this.upload.uploadFile(this.fileurl, file)
+        //     .subscribe(
+        //       (response: any) => {
+        //         //.log(response);
+        //         if (response["body"] != null) {
+        //           if (response["body"]["code"] != 1) {
+        //             console.log(response["body"]["data"]);
+        //             this.filep = response["body"]["data"]["filepath"];
+        //             this.dfileurl=response["body"]["data"]["fileurl"];
+        //            // this.show = true;
+        //           }
+        //         }
+        //         // if (event.type == HttpEventType.UploadProgress) {
+        //         //   const percentDone = Math.round(100 * event.loaded / event.total);
+        //         //   console.log(`File is ${percentDone}% loaded.`);
+        //         // } else if (event instanceof HttpResponse) {
+        //         //   console.log('File is completely loaded!');
+        //         // }
+        //       },
+        //       (err) => {
+        //         console.log("Upload Error:", err);
+        //       }, () => {
+        //         console.log("Upload done");
+        //       }
+        //     )
+        //   //this.getpath();
+        // }
+        // getpath() {
+        //   this.filep = "getpic/3ea62ac5fb0758efadb15e36_compress.jpg"
+        //   console.log(this.filep);
+        // }
+        // download() {
+        //   this.fileurl = "http://localhost:9876/files";
+        //   window.open(this.fileurl, '_blank');
+        //   return;
+        // }
+        //   // 调用浏览器的下载
+        //   downloadFile() {
+        //     const a: HTMLAnchorElement = document.createElement('a');
+        //     a.href = this.dfileurl;
+        //     a.download = 'download';
+        //     a.click();
+        //     a.remove();
+        //     console.log('download:' + a.href);
+        //   }
+    };
+    return Old;
 }());
-
-var HistList = /** @class */ (function () {
-    function HistList() {
-    }
-    return HistList;
-}());
-
-//接收 好友列表的结构体
-var ChatItem = /** @class */ (function () {
-    function ChatItem() {
-    }
-    return ChatItem;
-}());
-
-var ChatList = /** @class */ (function () {
-    function ChatList() {
-    }
-    return ChatList;
-}());
-
-// 接收 漫游信息的结构体
-var MsgItem = /** @class */ (function () {
-    function MsgItem() {
-    }
-    return MsgItem;
-}());
-
-var MsgList = /** @class */ (function () {
-    function MsgList() {
-    }
-    return MsgList;
-}());
-
 
 
 /***/ }),
@@ -663,8 +575,6 @@ var LoginComponent = /** @class */ (function () {
         this.name = '';
         this.password = '';
     }
-    LoginComponent.prototype.ngOnInit = function () {
-    };
     LoginComponent.prototype.submit = function () {
         var _this = this;
         var body = { name: this.name, password: this.password };
@@ -675,6 +585,7 @@ var LoginComponent = /** @class */ (function () {
                 console.log(data['Uid']);
                 _this.login.MyUserId = data['Uid'];
                 _this.ws.createSocket(_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].websocketUrl);
+                _this.ws.InitChatList();
             }
             else {
                 alert(data['Errmsg']);
@@ -1480,7 +1391,7 @@ var UserService = /** @class */ (function () {
 /*!**************************************!*\
   !*** ./src/app/websocket.service.ts ***!
   \**************************************/
-/*! exports provided: WebsocketService, FriendItem, FriendList, MessageItem, Session, MessageList */
+/*! exports provided: WebsocketService, FriendItem, FriendList, MessageItem, Session, MessageList, Hist, HistList, ChatItem, ChatList, MsgItem, MsgList */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1491,27 +1402,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageItem", function() { return MessageItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Session", function() { return Session; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageList", function() { return MessageList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Hist", function() { return Hist; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HistList", function() { return HistList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatItem", function() { return ChatItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatList", function() { return ChatList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgItem", function() { return MsgItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgList", function() { return MsgList; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./protocol/Protocol */ "./src/app/protocol/Protocol.js");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./user.service */ "./src/app/user.service.ts");
+
 
 
 
 
 
 var WebsocketService = /** @class */ (function () {
-    function WebsocketService(http) {
+    function WebsocketService(http, us) {
         this.http = http;
+        this.us = us;
         this.collection = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message);
-        this.FriendList = new (FriendList);
-        this.FriendList.List = [];
-        this.MessageList = new (MessageList);
-        this.MessageList.List = [];
+        this.wsFriendList = new (FriendList);
+        this.wsFriendList.List = [];
+        this.wsMessageList = new (MessageList);
+        this.wsMessageList.List = [];
     }
+    // 建立websocket链接
     WebsocketService.prototype.createSocket = function (url) {
+        var that = this;
         this.ws = new WebSocket(url);
         this.ws.onopen = function () {
             console.log("WebSocket打开");
@@ -1522,32 +1444,122 @@ var WebsocketService = /** @class */ (function () {
             reader.onload = function (e) {
                 var buf = new Uint8Array(reader.result);
                 var conn = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.decode(buf);
-                console.log(conn);
+                that.parseNotification(conn); //收到消息解析后分析消息
             };
         };
         this.ws.onclose = function () {
             console.log("WebSocket结束");
         };
     };
+    //分析消息
+    WebsocketService.prototype.parseNotification = function (conn) {
+        if (conn.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.NOTIFICATION) {
+            console.log("NOTIFICATION");
+            if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
+                console.log("NONE");
+                for (var i = 0; i < this.wsMessageList.List.length; i++) {
+                    if (conn.from == this.wsMessageList.List[i].ID && conn.isgroup == this.wsMessageList.List[i].Isgroup) {
+                        var item = new (MessageItem);
+                        item.Mid = conn.msgid;
+                        item.From = conn.from;
+                        item.To = conn.to;
+                        item.Content = conn.content;
+                        item.ContentType = conn.contentType;
+                        item.Time = conn.time;
+                        this.wsMessageList.List[i].MList.push(item);
+                        break;
+                    }
+                }
+            }
+        }
+        else if (conn.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.ACK) {
+            for (var i = 0; i < this.wsMessageList.List.length; i++) {
+                if (conn.from == this.wsMessageList.List[i].ID && conn.isgroup == this.wsMessageList.List[i].Isgroup) {
+                    for (var j = 0; j < this.wsMessageList.List[i].MList.length; j++) {
+                        if (this.wsMessageList.List[i].MList[j].Time == conn.time) {
+                            this.wsMessageList.List[i].MList[j].Mid = conn.msgid;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    };
+    // 发送信息，不在这里构造消息体
     WebsocketService.prototype.sendMessage = function (message) {
         this.ws.send(message);
     };
+    // 按名字取得用户列表
     WebsocketService.prototype.getUserList = function (name) {
+        if (name === void 0) { name = ""; }
         var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/userlist?name" + name;
-        return this.http.get(url);
-    };
-    // 获取聊天列表，或者是好友聊天列表
-    WebsocketService.prototype.getChatList = function () {
-        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/chatlist";
         return this.http.get(url);
     };
     WebsocketService.prototype.getChatMessageList = function (data) {
         var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/histchat";
         return this.http.post(url, JSON.stringify(data));
     };
+    //  下面函数是登录的时候初始数据 
+    //
+    // 获取聊天列表，或者是好友聊天列表
+    WebsocketService.prototype.getChatList = function () {
+        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/chatlist";
+        return this.http.get(url);
+    };
+    WebsocketService.prototype.InitChatList = function () {
+        var _this = this;
+        this.getChatList().subscribe(function (data) {
+            var HL = new (HistList);
+            HL.List = [];
+            for (var i = 0; i < data.List.length; i++) {
+                var FriItem = new (FriendItem);
+                FriItem.ID = data.List[i].Id;
+                FriItem.Name = data.List[i].Name;
+                FriItem.Headimg = data.List[i].Headimg;
+                FriItem.Isgroup = data.List[i].Isgroup;
+                FriItem.Counter = data.List[i].Counter;
+                _this.wsFriendList.List.push(FriItem);
+                var Ht = new (Hist);
+                Ht.ID = data.List[i].Id;
+                Ht.Isgroup = data.List[i].Isgroup;
+                HL.List.push(Ht);
+            }
+            _this.HistoryMessage(HL);
+        });
+    };
+    WebsocketService.prototype.HistoryMessage = function (info) {
+        var _this = this;
+        this.getChatMessageList(info).subscribe(function (data) {
+            console.log(data);
+            _this.wsMessageList.List = [];
+            for (var i = 0; i < data.List.length; i++) {
+                var session = new (Session);
+                session.MList = [];
+                if (data.List[i].length > 0) {
+                    session.ID = data.List[i][0].From;
+                    if (session.ID == _this.us.MyUserId) {
+                        session.ID = data.List[i][0].To;
+                    }
+                    session.Isgroup = data.List[i][0].Isgroup;
+                }
+                for (var j = 0; j < data.List[i].length; j++) {
+                    var Item = new (MessageItem);
+                    Item.Mid = data.List[i][j].Mid;
+                    Item.From = data.List[i][j].From;
+                    Item.To = data.List[i][j].To;
+                    Item.Content = data.List[i][j].Content;
+                    Item.ContentType = data.List[i][j].ContentType;
+                    Item.Time = data.List[i][j].Time;
+                    session.MList.push(Item);
+                }
+                _this.wsMessageList.List.push(session);
+            }
+        });
+    };
     WebsocketService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"], _user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"]])
     ], WebsocketService);
     return WebsocketService;
 }());
@@ -1580,6 +1592,45 @@ var MessageList = /** @class */ (function () {
     function MessageList() {
     }
     return MessageList;
+}());
+
+// 发送请求漫游消息的结构体
+var Hist = /** @class */ (function () {
+    function Hist() {
+    }
+    return Hist;
+}());
+
+var HistList = /** @class */ (function () {
+    function HistList() {
+    }
+    return HistList;
+}());
+
+//接收 好友列表的结构体
+var ChatItem = /** @class */ (function () {
+    function ChatItem() {
+    }
+    return ChatItem;
+}());
+
+var ChatList = /** @class */ (function () {
+    function ChatList() {
+    }
+    return ChatList;
+}());
+
+// 接收 漫游信息的结构体
+var MsgItem = /** @class */ (function () {
+    function MsgItem() {
+    }
+    return MsgItem;
+}());
+
+var MsgList = /** @class */ (function () {
+    function MsgList() {
+    }
+    return MsgList;
 }());
 
 
