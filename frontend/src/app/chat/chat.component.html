@@ -29,8 +29,8 @@
         </div>
           <div *ngIf="to_id!=0" class = "message1">
               <div *ngFor="let item of list" >
-                    <div *ngIf="item.to == from_id" id="box">{{item.content}}</div>
-                    <div *ngIf="item.from == from_id" id="box1">{{item.content}}</div>
+                    <div *ngIf="item.To == from_id" id="box">{{item.Content}}</div>
+                    <div *ngIf="item.From == from_id" id="box1">{{item.Content}}</div>
               </div>
           </div>
       </td>
@@ -39,16 +39,16 @@
     <tr>
       <td rowspan="3">
           <div class = "list" >
-            <div class = "item" *ngFor="let item of ws.chatList" (click) = "test2(item.id)">
+            <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID, item.ISGROUP)">
                 <!-- <tr  > -->
                   <!-- <td> -->
-                      <nz-badge *ngIf="list!=NULL" nzDot>
-                          <nz-avatar nzIcon="user" class = "img" [nzShape]="'circle'" nzSrc={{item.img_url}} >
-                          </nz-avatar>
+                          <!-- <nz-avatar nzIcon="user" class = "img" [nzShape]="'square'" nzSrc={{item.img_url}} >
+                          </nz-avatar> -->
+                          <nz-badge [nzCount]="5" *ngIf="list!=NULL" class = "point" style = "height: 5px;">
+                              <img src = "{{item.HEADIMG}}" class = "img">
+                            </nz-badge>
                           <!-- <img src = {{item.img_url}} style = "height:40px; width:40px; border-radius:50%; overflow:hedden;"> -->
-
-                        </nz-badge>
-                      {{item.name}}
+                      {{item.NAME}}
                   <!-- </td> -->
                 <!-- </tr> -->
             </div>
@@ -72,3 +72,64 @@
   </table>
  
 </div>
+<div>
+<button  nz-button nzType="primary" (click)="getalluser()">获取全部用户列表</button>
+</div>
+<div>
+  <button  nz-button nzType="primary" (click)="ChatList()">获取好友列表</button>
+  </div>
+  <div>
+    <button  nz-button nzType="primary" (click)="HistoryMessage()">获取历史消息</button>
+    </div>
+<div>
+<input [(ngModel)]="chatto">
+<button nz-button nzType="primary" (click)="chatToPeo(chatto)">加好友</button>
+</div>
+<!-- 
+<h2>单聊</h2>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="发送给：" >
+    <input type="text" nz-input [(ngModel)]="c2c_to_id">
+  </nz-input-group>
+</div>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="内容：" >
+    <input type="text" nz-input [(ngModel)]="c2c_content">
+  </nz-input-group>
+</div>
+<button nz-button nzType="primary" (click)="sendMsg()">发送</button>
+
+
+<h2>创建群</h2>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="群名" >
+    <input type="text" nz-input [(ngModel)]="group_name">
+  </nz-input-group>
+</div>
+<button nz-button nzType="primary" (click)="createGroup()">创建群</button>
+
+<h2>邀请进入组</h2>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="组ID：" >
+    <input type="text" nz-input [(ngModel)]="gtoup_id">
+  </nz-input-group>
+</div>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="被邀请人的ID：" >
+    <input type="text" nz-input [(ngModel)]="add_mem_id">
+  </nz-input-group>
+</div>
+<button nz-button nzType="primary" (click)="addMemToGoup()">邀请进入组</button>
+
+<h2>群聊</h2>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="发送给组：" >
+    <input type="text" nz-input [(ngModel)]="c2g_group_id">
+  </nz-input-group>
+</div>
+<div style="margin-bottom: 16px;">
+  <nz-input-group nzAddOnBefore="内容：" >
+    <input type="text" nz-input [(ngModel)]="c2g_content">
+  </nz-input-group>
+</div>
+<button nz-button nzType="primary" (click)="sendToGoup()">发送</button> -->

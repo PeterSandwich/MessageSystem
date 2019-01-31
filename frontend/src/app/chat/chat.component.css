@@ -62,12 +62,12 @@
   color: white;
 } */
 .img{
-  margin: 5px;
+  /* margin: 5px; */
   /* margin-top: 10px; */
   height:40px; 
   width:40px; 
   position: relative;
-  border-radius:50%; 
+  /* border-radius:50%;  */
   overflow:hidden;
 }
 .message{
@@ -221,4 +221,9 @@
   border: 0px;
   outline: none;
   cursor: pointer;
+}
+.point{
+  /* width: 2px; */
+  /* left: 60px; */
+  margin:5px;
 }

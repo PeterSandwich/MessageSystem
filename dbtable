@@ -1,0 +1,147 @@
+create table im_message_recieve_0 (
+	id bigint primary key,
+	msg_from bigint,
+	msg_to bigint,
+	content text,
+	content_type int,
+	arrive_time bigint,
+	isgroup bool
+);
+
+CREATE SEQUENCE id_seq_0
+START WITH 1
+INCREMENT BY 4
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
+
+alter table im_message_recieve_0 alter column id set default nextval('id_seq_0');
+//////////////////////////////////////////////////////////////////////////////////////////////
+create table im_message_recieve_1 (
+	id bigint primary key,
+	msg_from bigint,
+	msg_to bigint,
+	content text,
+	content_type int,
+	arrive_time bigint,
+	isgroup bool
+);
+
+
+CREATE SEQUENCE id_seq_1
+START WITH 2
+INCREMENT BY 4
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
+
+alter table im_message_recieve_1 alter column id set default nextval('id_seq_1');
+//////////////////////////////////////////////////////////////////////////////////////////////
+create table im_message_recieve_2 (
+	id bigint primary key,
+	msg_from bigint,
+	msg_to bigint,
+	content text,
+	content_type int,
+	arrive_time bigint,
+	isgroup bool
+);
+
+
+CREATE SEQUENCE id_seq_2
+START WITH 3
+INCREMENT BY 4
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
+
+alter table im_message_recieve_2 alter column id set default nextval('id_seq_2');
+//////////////////////////////////////////////////////////////////////////////////////////////
+create table im_message_recieve_3 (
+	id bigint primary key,
+	msg_from bigint,
+	msg_to bigint,
+	content text,
+	content_type int,
+	arrive_time bigint,
+	isgroup bool
+);
+
+
+CREATE SEQUENCE id_seq_3
+START WITH 4
+INCREMENT BY 4
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
+
+alter table im_message_recieve_3 alter column id set default nextval('id_seq_3');
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+create table users(
+	id bigint primary key,
+	name varchar(200),
+	pw	varchar(200),
+	headimg varchar(500)
+)
+CREATE SEQUENCE user_id
+START WITH 100000
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
+
+alter table users alter column id set default nextval('user_id');
+////////////////////////////////////////////////////////////////////////////////////////////////////
+create table groups(
+	id bigint primary key,
+	name varchar(200),
+	headimg varchar(500),
+	creater bigint,
+	owner bigint
+)
+CREATE SEQUENCE group_id
+START WITH 1000
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
+
+alter table groups alter column id set default nextval('group_id');
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+create table membership(
+	uid bigint,
+	gid bigint,
+	primary key(uid,gid)
+)
+
+//////////////////////////////////////////////////////////////////////////////////////////
+create table im_message_counter_0 (
+	master bigint,
+	sender bigint,
+	counter bigint,
+	isgroup bool,
+	last_ack_msg bigint
+);
+create table im_message_counter_1 (
+	master bigint,
+	sender bigint,
+	counter bigint,
+	isgroup bool,
+	last_ack_msg bigint
+);
+create table im_message_counter_2 (
+	master bigint,
+	sender bigint,
+	counter bigint,
+	isgroup bool,
+	last_ack_msg bigint
+);
+create table im_message_counter_3 (
+	master bigint,
+	sender bigint,
+	counter bigint,
+	isgroup bool,
+	last_ack_msg bigint
+);
+

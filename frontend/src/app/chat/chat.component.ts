@@ -1,21 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import {WebsocketService  } from '../websocket.service';
 import { Protocol } from '../protocol/Protocol';
 import { MAX_UNSIGNED_VALUE } from 'long';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
-import { MesList } from './data';
+import { MesList, FriendList, FriendItem, MessageList } from './data';
 
 
+import { WebsocketService } from '../websocket.service';
+import { timer } from 'rxjs';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
-  
 
-  from_id = 0;
+
+
+export class ChatComponent implements OnInit {
+
+  from_id = 1;
   to_id = 0;
   group = 0;
   addgtoup_id = 0;
@@ -24,99 +28,158 @@ export class ChatComponent implements OnInit {
   list = [];
   tips = "";
   isslect: boolean;
+  friendlist : FriendList;
+  mssesgelist : MessageList;
   my_img_url = "https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg";
-  constructor(public ws:WebsocketService) { 
-   
-  }
+
+  constructor(
+    public ws:WebsocketService,
+    private us:UserService  
+    ) { }
 
   msg1: MesList[] = [{from: this.from_id, to: this.to_id, msgid: 0, content:this.content, img_url:this.my_img_url}];
   ngOnInit() {
-   console.log("msg1=", typeof(this.msg1));
-   this.list = [];
-   this.isslect = false;
+    this.one={ID:1,Isgroup:false}
+    this.msglist = { List:[]}
+    this.friendlist = {List:[]}
+    this.mssesgelist = {List:[]}
+    this.friendlist.List = this.ws.FriendList;
+    console.log("friendlist:", this.friendlist.List);
+    console.log("MessageList=", this.ws.MessageList);
+    this.isslect = false;
+    // this.getalluser();
+  }  
+  getalluser(){
+    this.ws.getUserList("").subscribe(data => {
+      console.log("getUserList = " ,data)
+      this.friendlist = data;
+    })
+  }
+  
+
+
+  chatto=0;
+  chatToPeo(to:number){
+    let msg = new(Protocol.Message)
+    msg.type = Protocol.Message.Type.REQUEST;
+    msg.cmd = Protocol.Message.CtrlType.CREATE_SESSION;
+    msg.from = this.us.MyUserId;
+    msg.to = to;
+    msg.time = Date.now();
+    this.ws.sendMessage(Protocol.Message.encode(msg).finish())
   }
 
 
-  // sendMsg() {
-  //   console.log("had send message");
-  //   let msg = new(Protocol.MessageRequest)
-  //   msg.from = this.from_id;
-  //   msg.to  = this.to_id;
-  //   msg.content = this.content;
-  //   msg.TypeOfMsg = Protocol.MessageRequest.RequestType.C2CSEND_REQUEST
-  //   this.ws.sendMessage(Protocol.MessageRequest.encode(msg).finish())
-  //   console.log("msg = ", msg)
-  // }
-  i = 0;
-  sendMsg(){
-    // let len = this.list.length;
-    var m = this.i;
-    if (m > 0){
-      this.msg1[m] = this.msg1[m-1];
-    }
-    this.msg1[m].from = this.from_id;
-    this.msg1[m].to = this.to_id;
-    this.msg1[m].msgid = 0;
-    this.msg1[m].content = this.content;
-    // console.log("content2= ", this.msg1[m]);
-    let msg = this.msg1[m];
-    // console.log("msg=", msg);
-    // this.list.push(this.msg1[m]);
-    this.list.push({from:this.from_id, to:this.to_id, msgid:0, content: this.content, img_url:this.my_img_url});
-    console.log("this.newlist=", this.list);
-    this.content = "";
-    m++;
+  c2c_to_id = 0;
+  c2c_content = ""
+  sendMsg() {
+    let msg = new(Protocol.Message)//先构造函数
+    msg.type = Protocol.Message.Type.REQUEST; //消息的类型是请求类型
+    msg.cmd = Protocol.Message.CtrlType.NONE;//功能
+    msg.from = this.us.MyUserId; //我的Id 
+    msg.to = this.c2c_to_id; //对方的id
+    msg.content = this.c2c_content; //消息内容
+    msg.contentType = Protocol.Message.ContentType.TEXT;//消息类型，文本，文件，图片
+    msg.time = Date.now();//消息时间
+    msg.isgroup = false;//是否是群组
+    this.ws.sendMessage(Protocol.Message.encode(msg).finish()) //发送
   }
 
-  // sendToGoup() {
-  //   console.log("had send message");
-  //   let msg = new(Protocol.MessageRequest)
-  //   msg.from = this.from_id;
-  //   msg.group  = this.group;
-  //   msg.content = this.content;
-  //   msg.TypeOfMsg = Protocol.MessageRequest.RequestType.C2GSEND_REQUEST
-  //   this.ws.sendMessage(Protocol.MessageRequest.encode(msg).finish())
-  // }
+  createGroup(){//创建群组
+    let msg = new(Protocol.Message)
+    msg.type = Protocol.Message.Type.REQUEST;
+    msg.cmd = Protocol.Message.CtrlType.CREATE_GROUP;
+    msg.from = this.us.MyUserId;
+    msg.content = this.group_name;
+    msg.userlist.push(this.us.MyUserId);
+    msg.time = Date.now()
+    this.ws.sendMessage(Protocol.Message.encode(msg).finish())
+  }
 
-  // addMemToGoup() {
-  //   console.log("had send message");
-  //   let msg = new(Protocol.MessageRequest)
-  //   msg.to = this.to_id;
-  //   msg.group  = this.addgtoup_id;
-  //   msg.TypeOfMsg = Protocol.MessageRequest.RequestType.CONTROL_REQUEST;
-  //   msg.TypeOfCtrl = Protocol.MessageRequest.CtrlType.GROUP_ADDMEMBERS;
-  //   this.ws.sendMessage(Protocol.MessageRequest.encode(msg).finish())
-  // }
+  add_mem_id = 0;
+  gtoup_id = 0;
+  addMemToGoup() {//添加人员到群
+    let msg = new(Protocol.Message)
+    msg.type = Protocol.Message.Type.REQUEST;
+    msg.cmd = Protocol.Message.CtrlType.GROUP_ADDMEMBERS;
+    msg.from = this.us.MyUserId;
+    msg.group = this.gtoup_id;
+    msg.userlist.push(this.add_mem_id);
+    msg.time = Date.now()
+    this.ws.sendMessage(Protocol.Message.encode(msg).finish())
+  }
 
-  // createGroup(){
-  //   console.log("had send message");
-  //   let msg = new(Protocol.MessageRequest)
-  //   msg.from = this.from_id;
-  //   msg.content = this.group_name;
-  //   msg.TypeOfMsg = Protocol.MessageRequest.RequestType.CONTROL_REQUEST;
-  //   msg.TypeOfCtrl = Protocol.MessageRequest.CtrlType.CREATE_GROUP;
-  //   this.ws.sendMessage(Protocol.MessageRequest.encode(msg).finish())
-  // }
-  // test(){
-  //   let msg = new(Protocol.MessageResponse)
-  //   msg.content = "testing websocket protocol buf"
-  //   msg.msgid = 28;
-  //   console.log(Protocol.MessageRequest.encode(msg).finish())
-  // }
-  test2(id: number){
+  c2g_group_id = 0;
+  c2g_content = "";
+
+  sendToGoup() {//发送到群
+    let msg = new(Protocol.Message)
+    msg.type = Protocol.Message.Type.REQUEST;
+    msg.cmd = Protocol.Message.CtrlType.NONE;
+    msg.from =  this.us.MyUserId;
+    msg.group  = this.c2g_group_id;
+    msg.content = this.c2g_content;
+    msg.isgroup = true;
+    msg.time = Date.now();
+    this.ws.sendMessage(Protocol.Message.encode(msg).finish())
+  }
+
+
+  msglist: HistList
+  one: Hist
+  ChatList(){
+    this.ws.getChatList().subscribe((data: ChatList) => {
+      console.log(data)
+      for(let i=0;i<data.List.length;i++){
+        this.one.ID = data.List[i].Id
+        this.one.Isgroup = data.List[i].Isgroup;
+        this.msglist.List.push({ID: this.one.ID,Isgroup: this.one.Isgroup})
+      }
+    })
+  }
+  test2(id: number, isGroup: boolean){
     this.to_id = id;
     this.isslect = true;
-    console.log("to_id = ", this.to_id);
-    console.log("from_id = ", this.from_id);
-    console.log("content= ", this.content);
-
-    switch(id){
-      case 2: this.list = this.ws.contentList_id_2; break;
-      case 4: this.list = this.ws.contentList_id_4; break;
-      case 9: this.list = this.ws.contentList_id_9; break;
-      default: this.list = []; break;
-    } 
-    console.log("list=", this.list)
+    // isgroup = this.friendlist.List.
+    let len = this.ws.MessageList.length;
+    console.log("toid=", this.to_id, this.from_id);
+    for(var i = 0; i < len; i++){
+      console.log("i=", i);
+      if(this.ws.MessageList[i].ID == this.to_id){
+        this.list = this.ws.MessageList[i].Message
+        console.log("toid=", this.to_id, this.from_id);
+        console.log('msgLsif[',i,"]=",  this.list)
+      }
+    }
+    // this.list = this.ws.MessageList;
   }
+  HistoryMessage(){
+    console.log(this.msglist)
+    this.ws.getChatMessageList(this.msglist).subscribe((data) => {
+      console.log(data);
+    })
+  }
+
+}
+
+
+export class Hist {
+   ID: number
+   Isgroup: boolean
+}
+export class HistList {
+   List: Hist[]
+}
+
+export class ChatItem {
+   Sender:number
+   Name: string
+   Counter:number
+   Headimg: string
+   Id:number
+   Isgroup:boolean
+}
+export class ChatList {
+   List: ChatItem[]
 }
 

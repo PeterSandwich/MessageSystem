@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService  } from '../login.service';
-import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 import { WebsocketService } from '../websocket.service';
+import {  Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private login: LoginService,private ws: WebsocketService,private router: Router) { }
+  constructor(private login: UserService,private ws: WebsocketService,private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
           this.login.isLogin=true;
           this.router.navigate(['']);
           console.log(data['Uid'])
+          this.login.MyUserId = data['Uid']
           this.ws.createSocket(environment.websocketUrl)
         }else{
           alert(data['Errmsg']);
