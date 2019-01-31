@@ -41,6 +41,7 @@ func main() {
 	http.HandleFunc("/api/login", loginHandle)
 	http.HandleFunc("/api/quit", quitHandle)
 	http.HandleFunc("/api/user", GetUser)
+	http.HandleFunc("/api/group", GetGroup)
 	http.HandleFunc("/api/userlist", GetUserList)
 	http.HandleFunc("/api/chatlist", GetChatList)
 	http.HandleFunc("/api/histchat", GetHistrotyMessage)

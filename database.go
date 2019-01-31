@@ -244,3 +244,16 @@ func GetUserById(uid int64)( UserItem,error){
 	err := DB_conn.QueryRow("select (id,name,heading) from users where id=$1", uid).Scan(&user.ID, &user.Name, &user.Img_url)
 	return user,err
 }
+
+type GroupInfo struct {
+	Id int64
+	Name string
+	Heading string
+	Creater int64
+	Owner int64
+}
+func GetGroupById(gid int64)(GroupInfo,error){
+	group := GroupInfo{}
+	err := DB_conn.QueryRow("select (id,name,heading,creater,owner) from groups where id=$1", gid).Scan(&group.Id, &group.Name, &group.Heading,&group.Creater,&group.Owner)
+	return group,err
+}

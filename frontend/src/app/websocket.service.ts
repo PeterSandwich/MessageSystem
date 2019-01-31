@@ -67,7 +67,7 @@ export class WebsocketService {
       }else if(conn.cmd == Protocol.Message.CtrlType.CREATE_SESSION){ //添加好友请求
         this.createSessById(conn,conn.from)
       }else if (conn.cmd == Protocol.Message.CtrlType.CREATE_GROUP || conn.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
-
+          
       }
     }else if(conn.type==Protocol.Message.Type.ACK){
       if (conn.cmd == Protocol.Message.CtrlType.NONE){
