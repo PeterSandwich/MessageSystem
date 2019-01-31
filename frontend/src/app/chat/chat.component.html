@@ -76,33 +76,51 @@
 <button  nz-button nzType="primary" (click)="getalluser()">获取全部用户列表</button>
 </div>
 <div>
-  <button  nz-button nzType="primary" (click)="ChatList()">获取好友列表</button>
-  </div>
-  <div>
-    <button  nz-button nzType="primary" (click)="HistoryMessage()">获取历史消息</button>
-    </div>
+  <button nz-button nzType="primary" (click)="ChatList()">获取好友列表</button>
+</div>
 <div>
-<input [(ngModel)]="chatto">
-<button nz-button nzType="primary" (click)="chatToPeo(chatto)">加好友</button>
+  <input [(ngModel)]="chatto">
+  <button nz-button nzType="primary" (click)="chatToPeo(chatto)">加好友</button>
 </div>
 <!-- 
 <h2>单聊</h2>
 <div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="发送给：" >
+  <nz-input-group nzAddOnBefore="发送给：">
     <input type="text" nz-input [(ngModel)]="c2c_to_id">
   </nz-input-group>
 </div>
 <div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="内容：" >
+  <nz-input-group nzAddOnBefore="内容：">
     <input type="text" nz-input [(ngModel)]="c2c_content">
   </nz-input-group>
 </div>
 <button nz-button nzType="primary" (click)="sendMsg()">发送</button>
-
-
+<br>
+<br>
+<div>
+  <input id="upfile" type="file" style="display: none;" (change)="selectFile($event)">
+  <div class="action-box">
+    <button class="upload-btn" onclick="upfile.click()"> 点击上传
+    </button>
+  </div>
+  <div *ngIf="show">
+    <div style="display: -webkit-box;">
+      <div class="picture" [ngStyle]="{ 'background-image': 'url('+GetPicUrl+filep+ ')'}"></div>
+      <div class="hint">
+        {{filename}}
+      </div>
+      <div class="action-box">
+        <button class="upload-btn" (click)=" downloadFile()"> 下载
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
 <h2>创建群</h2>
 <div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="群名" >
+  <nz-input-group nzAddOnBefore="群名">
     <input type="text" nz-input [(ngModel)]="group_name">
   </nz-input-group>
 </div>
@@ -110,12 +128,12 @@
 
 <h2>邀请进入组</h2>
 <div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="组ID：" >
+  <nz-input-group nzAddOnBefore="组ID：">
     <input type="text" nz-input [(ngModel)]="gtoup_id">
   </nz-input-group>
 </div>
 <div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="被邀请人的ID：" >
+  <nz-input-group nzAddOnBefore="被邀请人的ID：">
     <input type="text" nz-input [(ngModel)]="add_mem_id">
   </nz-input-group>
 </div>
@@ -123,13 +141,17 @@
 
 <h2>群聊</h2>
 <div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="发送给组：" >
+  <nz-input-group nzAddOnBefore="发送给组：">
     <input type="text" nz-input [(ngModel)]="c2g_group_id">
   </nz-input-group>
 </div>
 <div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="内容：" >
+  <nz-input-group nzAddOnBefore="内容：">
     <input type="text" nz-input [(ngModel)]="c2g_content">
   </nz-input-group>
 </div>
+<<<<<<< HEAD
 <button nz-button nzType="primary" (click)="sendToGoup()">发送</button> -->
+=======
+<button nz-button nzType="primary" (click)="sendToGoup()">发送</button> -->
+>>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e

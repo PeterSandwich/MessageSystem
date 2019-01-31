@@ -17,7 +17,7 @@ import en from '@angular/common/locales/en';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './user.service';
 
-
+import { UploadService } from '../app/file.service'
 registerLocaleData(en);
 
 @NgModule({
@@ -36,7 +36,7 @@ registerLocaleData(en);
     NgZorroAntdModule,
     BrowserAnimationsModule
   ],
-  providers: [WebsocketService,UserService, { provide: NZ_I18N, useValue: en_US }],
+  providers: [WebsocketService,UserService, { provide: NZ_I18N, useValue: en_US },UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

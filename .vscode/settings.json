@@ -8,14 +8,9 @@
     "go.vetFlags": [],
     "go.useCodeSnippetsOnFunctionSuggest": false ,
     "go.formatTool": "goreturns",
-<<<<<<< HEAD
     "go.gopath": ["/home/goworks"
     ],
     // "go.gopath": "/home/misarien/桌面/项目/MessageSystem",
 
     "go.goroot": "/usr/local/go",
-=======
-    "go.goroot": "/usr/local/go",
-    "go.gopath": "/media/misarien/48ab015a-0410-4610-92d3-8236f438cc82/goworks",
->>>>>>> aa3379ff8397e5d32d6796d8bb746ad1186448b6
 }
