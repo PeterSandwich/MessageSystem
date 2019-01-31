@@ -356,6 +356,3 @@ export class MsgList {
   //   ]}
 
   // ]
-
-
-

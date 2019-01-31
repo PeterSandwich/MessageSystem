@@ -108,7 +108,7 @@ export class ChatComponent implements OnInit {
       msg.cmd = Protocol.Message.CtrlType.NONE;
       msg.from =  this.us.MyUserId;
       // msg.group  = this.to_id;
-      msg.to = this.to_id;
+      msg.group = this.to_id;
       msg.content = this.content;
       msg.isgroup = true;
       console.log("isgroup2=", msg.isgroup);
