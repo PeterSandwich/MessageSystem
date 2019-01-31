@@ -64,18 +64,17 @@ export class ChatComponent implements OnInit {
 
     msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
     msg.cmd = Protocol.Message.CtrlType.NONE;// 消息的功
-    if(msg.isgroup){
+    if(this.isgroup){
+      console.log("这是群发");
       this.sendToGoup();
     }else{
+      console.log("这是单发");
       msg.from = this.us.MyUserId;              // 消息发送方
       msg.to = this.to_id;                   //消息接收方
       msg.content = this.content;             //消息内容
       msg.contentType = Protocol.Message.ContentType.TEXT;　  //消息类型
-     msg.isgroup = this.isgroup;                       //是不是群组消息
-     console.log("isgroup=", msg.isgroup);
-      console.log("this.msg = ", msg)
+      msg.isgroup = false;                       //是不是群组消息
       this.ws.sendMessage(msg)
-
     }
     this.content = "";
   }
@@ -88,7 +87,6 @@ export class ChatComponent implements OnInit {
       msg.group  = this.to_id;
       msg.content = this.content;
       msg.isgroup = true;
-      console.log("isgroup2=", msg.isgroup);
 
       // msg.time = Date.now();
       // this.ws.sendMessage(Protocol.Message.encode(msg).finish())

@@ -307,17 +307,17 @@ var ChatComponent = /** @class */ (function () {
         var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message);
         msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.Type.REQUEST; //消息的类型的请求类型
         msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.NONE; // 消息的功
-        if (msg.isgroup) {
+        if (this.isgroup) {
+            console.log("这是群发");
             this.sendToGoup();
         }
         else {
+            console.log("这是单发");
             msg.from = this.us.MyUserId; // 消息发送方
             msg.to = this.to_id; //消息接收方
             msg.content = this.content; //消息内容
             msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.ContentType.TEXT; //消息类型
-            msg.isgroup = this.isgroup; //是不是群组消息
-            console.log("isgroup=", msg.isgroup);
-            console.log("this.msg = ", msg);
+            msg.isgroup = false; //是不是群组消息
             this.ws.sendMessage(msg);
         }
         this.content = "";
@@ -330,7 +330,6 @@ var ChatComponent = /** @class */ (function () {
         msg.group = this.to_id;
         msg.content = this.content;
         msg.isgroup = true;
-        console.log("isgroup2=", msg.isgroup);
         // msg.time = Date.now();
         // this.ws.sendMessage(Protocol.Message.encode(msg).finish())
         this.ws.sendMessage(msg);
@@ -687,7 +686,7 @@ var LoginComponent = /** @class */ (function () {
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 
 
-var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "./node_modules/protobufjs/minimal.js");
+var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "../node_modules/protobufjs/minimal.js");
 
 // Common aliases
 var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
@@ -1449,6 +1448,10 @@ var UserService = /** @class */ (function () {
         var url = this.configUrl + '/user?id=' + id;
         return this.http.get(url);
     };
+    UserService.prototype.getGroupById = function (id) {
+        var url = this.configUrl + '/group?id=' + id;
+        return this.http.get(url);
+    };
     UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
@@ -1620,6 +1623,7 @@ var WebsocketService = /** @class */ (function () {
                 }
             }
         }
+        console.log("发送前的数据", message);
         this.ws.send(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(message).finish());
     };
     // 按名字取得用户列表
@@ -1642,6 +1646,7 @@ var WebsocketService = /** @class */ (function () {
     WebsocketService.prototype.InitChatList = function () {
         var _this = this;
         this.getChatList().subscribe(function (data) {
+            console.log("聊天列表", data);
             var HL = new (HistList);
             HL.List = [];
             for (var i = 0; i < data.List.length; i++) {
@@ -1862,7 +1867,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/goworks/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/pjw/GoProject/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
 
 
 /***/ })

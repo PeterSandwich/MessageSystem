@@ -3,6 +3,7 @@ package main
 import (
 	pb "./protocol/protoc"
 	"database/sql"
+	"fmt"
 	_ "github.com/lib/pq"
 	"github.com/satori/go.uuid"
 	log "github.com/sirupsen/logrus"
@@ -213,6 +214,7 @@ func GetChatListDB(myid int64) ([]ChatItem, error) {
 }
 
 func HistrotyMessageDB(from, to int64, isgroup bool) ([]MessageItem, error) {
+	fmt.Println("################",from,to,isgroup)
 	var hash_num int64
 	var Item MessageItem
 	list := []MessageItem{}

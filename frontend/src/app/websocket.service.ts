@@ -142,6 +142,7 @@ export class WebsocketService {
         }
       }
     } 
+    console.log("发送前的数据",message)
     this.ws.send(Protocol.Message.encode(message).finish());
   }
 
@@ -171,6 +172,7 @@ export class WebsocketService {
 
   InitChatList(){
     this.getChatList().subscribe((data: ChatList) => {
+      console.log("聊天列表",data);
       let HL =  new(HistList);
       HL.List = [];
       for(let i=0;i<data.List.length;i++){
@@ -193,6 +195,7 @@ export class WebsocketService {
 
   HistoryMessage(info){
     this.getChatMessageList(info).subscribe((data:MsgList) => {
+    
       console.log("HistoryMessage-data=", data);
       this.wsMessageList.List =[];
       for(let i=0;i<data.List.length;i++){

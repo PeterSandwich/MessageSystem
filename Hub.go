@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/go-redis/redis"
 	"github.com/golang/protobuf/proto"
 	log "github.com/sirupsen/logrus"
@@ -36,6 +37,7 @@ func PraseMessage(data []byte) {
 	if msg.GetType() == pb.Message_REQUEST {
 		switch msg.GetCmd() {
 		case pb.Message_NONE: // cmd为空
+		fmt.Println("&&&&&&&&&&&&",msg.GetIsgroup())
 			if !msg.GetIsgroup() {
 				C2C_SendRequest(msg)
 			} else {
@@ -118,6 +120,7 @@ func C2C_SendRequest(in *pb.Message) {
 }
 
 func C2G_SendRequest(in *pb.Message) {
+	fmt.Println("$$$$$$$$$$$$$$$$$$$$$$$",in)
 	msgid, err := C2GStore(in)
 	if err != nil {
 		log.Error("* C2Gstore wrong: " + err.Error())
@@ -144,7 +147,9 @@ func C2G_SendRequest(in *pb.Message) {
 	}
 
 	//给每个人存储转发
+
 	idlist, err := GetGroupMember(in.GetGroup())
+	fmt.Println("$$$$$$$$$$$$$$$$$$$$$$$",idlist)
 	if err != nil {
 		log.Error("* GetGroupMember wrong: " + err.Error())
 		return
