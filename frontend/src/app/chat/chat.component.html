@@ -30,7 +30,7 @@
           <div class = "message1" id="scrolldIV" >
               <div *ngFor="let item of showmsg" >
                 <!-- <div *ngFor="let mes of item"> -->
-                    <div *ngIf="item.To == my_id" id="box">{{item.Content}}</div>
+                    <div *ngIf="item.From != my_id" id="box">{{item.Content}}</div>
                     <div *ngIf="item.From == my_id" id="box1">{{item.Content}}</div>
                 <!-- </div> -->
               </div>

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/go-redis/redis"
 	"github.com/golang/protobuf/proto"
 	log "github.com/sirupsen/logrus"
@@ -144,7 +145,9 @@ func C2G_SendRequest(in *pb.Message) {
 	}
 
 	//给每个人存储转发
+
 	idlist, err := GetGroupMember(in.GetGroup())
+	fmt.Println("$$$$$$$$$$$$$$$$$$$$$$$",idlist)
 	if err != nil {
 		log.Error("* GetGroupMember wrong: " + err.Error())
 		return

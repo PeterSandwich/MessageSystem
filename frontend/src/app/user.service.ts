@@ -24,4 +24,8 @@ export class UserService {
     let url = this.configUrl+'/user?id='+id
     return this.http.get(url)
   }
+  getGroupById(id){
+    let url = this.configUrl+'/group?id='+id
+    return this.http.get(url)
+  }
 }

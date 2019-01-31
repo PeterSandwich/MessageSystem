@@ -50,10 +50,23 @@ export class WebsocketService {
     if (conn.type==Protocol.Message.Type.NOTIFICATION){
       console.log("NOTIFICATION");
       if (conn.cmd == Protocol.Message.CtrlType.NONE){
-        console.log("NONE");
+        console.log("NONE",conn);
         for(let i=0;i<this.wsMessageList.List.length;i++){
-          if (conn.from==this.wsMessageList.List[i].ID && conn.isgroup == this.wsMessageList.List[i].Isgroup){
-            let item = new(MessageItem);
+          if(conn.isgroup == this.wsMessageList.List[i].Isgroup){
+            if(conn.isgroup == true && conn.group==this.wsMessageList.List[i].ID){
+              let item = new(MessageItem);
+              item.Mid = conn.msgid;
+              item.From = conn.from;
+              item.To = conn.group;
+              item.Content = conn.content;
+              item.ContentType =conn.contentType;
+              item.Time = conn.time;
+              this.wsMessageList.List[i].MList.push(item);
+              console.log(this.wsMessageList.List[i]);
+              break;
+            }
+            if(conn.isgroup == false && conn.to==this.wsMessageList.List[i].ID){
+              let item = new(MessageItem);
             item.Mid = conn.msgid;
             item.From = conn.from;
             item.To = conn.to;
@@ -62,12 +75,15 @@ export class WebsocketService {
             item.Time = conn.time;
             this.wsMessageList.List[i].MList.push(item);
             break;
+            }
+
           }
+      
         }
       }else if(conn.cmd == Protocol.Message.CtrlType.CREATE_SESSION){ //添加好友请求
         this.createSessById(conn,conn.from)
       }else if (conn.cmd == Protocol.Message.CtrlType.CREATE_GROUP || conn.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
-
+          
       }
     }else if(conn.type==Protocol.Message.Type.ACK){
       if (conn.cmd == Protocol.Message.CtrlType.NONE){
@@ -114,7 +130,19 @@ export class WebsocketService {
     if (message.type ==  Protocol.Message.Type.REQUEST) {
       if(message.cmd == Protocol.Message.CtrlType.NONE){  // 单聊或群聊
         for(let i=0;i<this.wsMessageList.List.length;i++){
-          if (message.to==this.wsMessageList.List[i].ID && message.isgroup == this.wsMessageList.List[i].Isgroup){
+          if(message.isgroup == this.wsMessageList.List[i].Isgroup){
+          if(message.isgroup == true && message.group==this.wsMessageList.List[i].ID){
+            let item = new(MessageItem);
+            item.Mid = 0;
+            item.From = message.from;
+            item.To = message.group;
+            item.Content = message.content;
+            item.ContentType =message.contentType;
+            item.Time = message.time;
+            this.wsMessageList.List[i].MList.push(item);
+            break;
+          }
+          if(message.isgroup == false && message.to==this.wsMessageList.List[i].ID){
             let item = new(MessageItem);
             item.Mid = 0;
             item.From = message.from;
@@ -124,6 +152,9 @@ export class WebsocketService {
             item.Time = message.time;
             this.wsMessageList.List[i].MList.push(item);
             break;
+          }
+        }
+            
           }
         }
       }else if(message.cmd == Protocol.Message.CtrlType.MSG_BACK){   // 撤回消息
@@ -141,7 +172,8 @@ export class WebsocketService {
           }
         }
       }
-    } 
+    
+    console.log("发送前的数据",message)
     this.ws.send(Protocol.Message.encode(message).finish());
   }
 
@@ -171,6 +203,7 @@ export class WebsocketService {
 
   InitChatList(){
     this.getChatList().subscribe((data: ChatList) => {
+      console.log("聊天列表",data);
       let HL =  new(HistList);
       HL.List = [];
       for(let i=0;i<data.List.length;i++){
@@ -193,18 +226,18 @@ export class WebsocketService {
 
   HistoryMessage(info){
     this.getChatMessageList(info).subscribe((data:MsgList) => {
-      console.log("HistoryMessage-data=", data);
       this.wsMessageList.List =[];
       for(let i=0;i<data.List.length;i++){
           let session = new(Session);
           session.MList = [];
           if (data.List[i].length>0){
             session.ID = data.List[i][0].From;
-            if (session.ID == this.us.MyUserId) {
+            if (data.List[i][0].Isgroup ||session.ID == this.us.MyUserId) {
               session.ID = data.List[i][0].To;
             }
             session.Isgroup = data.List[i][0].Isgroup;
-          }
+          }else{break;}
+          console.log("session.ID",session.ID, data.List[i][0].To,data.List[i][0].From)
          for(let j=0;j<data.List[i].length;j++){
           let Item = new(MessageItem);
           Item.Mid = data.List[i][j].Mid;
@@ -217,6 +250,7 @@ export class WebsocketService {
         }
         this.wsMessageList.List.push(session)
       }
+      console.log("历史消息",this.wsMessageList.List)
     })
   }
 }

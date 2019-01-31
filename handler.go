@@ -270,3 +270,19 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Write(bytes)
 }
+
+func GetGroup(w http.ResponseWriter, r *http.Request) {
+	m, _ := url.ParseQuery(r.URL.RawQuery)
+	uid,_ :=strconv.ParseInt(fmt.Sprintf("%s", m["id"][0]),10,64)
+	item, err := GetGroupById(uid)
+	if err!= nil {
+		log.Error("* Get group by id wrong",err.Error())
+		return
+	}
+	bytes, err := json.Marshal(item)
+	if err != nil {
+		log.Error("* GetGroup json marshal wrong:", err.Error())
+		return
+	}
+	w.Write(bytes)
+}
