@@ -31,6 +31,7 @@ export class ChatComponent implements OnInit {
   showmsg : MessageItem[];
   // tips = "";
   isslect: boolean;
+  isgroup: boolean = false;
   friendlist : FriendList;
   messagelist : MessageList;
   my_img_url = "https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg";
@@ -43,15 +44,18 @@ export class ChatComponent implements OnInit {
 
     ngOnInit(){
       this.friendlist = this.ws.wsFriendList;
-      console.log("friendList=", this.friendlist);
-      console.log("wsfriendlist=", this.ws.wsFriendList);
+      // console.log("friendList=", this.friendlist);
+      // console.log("wsfriendlist=", this.ws.wsFriendList);
       this.messagelist = this.ws.wsMessageList;
-      console.log("messagelist = ", this.messagelist);
+      // console.log("messagelist = ", this.messagelist);
     }
     test2(id: number){
+      this.isslect = true;
+      this.to_id = id;
       for(var i = 0; i < this.messagelist.List.length; i++){
         if(id == this.messagelist.List[i].ID){
           this.showmsg = this.messagelist.List[i].MList;
+          this.isgroup = this.messagelist.List[i].Isgroup;
         }
       }
     }
@@ -60,34 +64,36 @@ export class ChatComponent implements OnInit {
 
     msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
     msg.cmd = Protocol.Message.CtrlType.NONE;// 消息的功
+    if(msg.isgroup){
+      this.sendToGoup();
+    }else{
+      msg.from = this.us.MyUserId;              // 消息发送方
+      msg.to = this.to_id;                   //消息接收方
+      msg.content = this.content;             //消息内容
+      msg.contentType = Protocol.Message.ContentType.TEXT;　  //消息类型
+     msg.isgroup = this.isgroup;                       //是不是群组消息
+     console.log("isgroup=", msg.isgroup);
+      console.log("this.msg = ", msg)
+      this.ws.sendMessage(msg)
 
-    msg.from = this.us.MyUserId;              // 消息发送方
-    msg.to = this.to_id;                   //消息接收方
-    msg.content = this.content;             //消息内容
-
-    msg.contentType = Protocol.Message.ContentType.TEXT;　  //消息类型
-     msg.isgroup = false;                       //是不是群组消息
-    
-    this.ws.sendMessage(msg)
+    }
+    this.content = "";
   }
  
-  // test2(id: number, isGroup: boolean){
-  //   this.to_id = id;
-  //   this.isslect = true;
-  //   // isgroup = this.friendlist.List.
-  //   let len = this.ws.MessageList.length;
-  //   console.log("toid=", this.to_id, this.from_id);
-  //   for(var i = 0; i < len; i++){
-  //     console.log("i=", i);
-  //     if(this.ws.MessageList[i].ID == this.to_id){
-  //       this.list = this.ws.MessageList[i].Message
-  //       console.log("toid=", this.to_id, this.from_id);
-  //       console.log('msgLsif[',i,"]=",  this.list)
-  //     }
-  //   }
-  //   // this.list = this.ws.MessageList;
-  // }
+  sendToGoup() {
+      let msg = new(Protocol.Message)
+      msg.type = Protocol.Message.Type.REQUEST;
+      msg.cmd = Protocol.Message.CtrlType.NONE;
+      msg.from =  this.us.MyUserId;
+      msg.group  = this.to_id;
+      msg.content = this.content;
+      msg.isgroup = true;
+      console.log("isgroup2=", msg.isgroup);
 
+      // msg.time = Date.now();
+      // this.ws.sendMessage(Protocol.Message.encode(msg).finish())
+      this.ws.sendMessage(msg);
+    }
 
 
 }

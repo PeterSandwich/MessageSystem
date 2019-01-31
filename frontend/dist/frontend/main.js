@@ -259,9 +259,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _websocket_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../websocket.service */ "./src/app/websocket.service.ts");
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../user.service */ "./src/app/user.service.ts");
 /* harmony import */ var _file_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../file.service */ "./src/app/file.service.ts");
+/* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../protocol/Protocol */ "./src/app/protocol/Protocol.js");
+/* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__);
 
 
 // import { MesList, FriendList, FriendItem, MessageList } from './data';
+
 
 
 
@@ -280,21 +283,57 @@ var ChatComponent = /** @class */ (function () {
         this.content = "";
         // group_name = '';
         this.list = [];
+        this.isgroup = false;
         this.my_img_url = "https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg";
     }
     ChatComponent.prototype.ngOnInit = function () {
         this.friendlist = this.ws.wsFriendList;
-        console.log("friendList=", this.friendlist);
-        console.log("wsfriendlist=", this.ws.wsFriendList);
+        // console.log("friendList=", this.friendlist);
+        // console.log("wsfriendlist=", this.ws.wsFriendList);
         this.messagelist = this.ws.wsMessageList;
-        console.log("messagelist = ", this.messagelist);
+        // console.log("messagelist = ", this.messagelist);
     };
     ChatComponent.prototype.test2 = function (id) {
+        this.isslect = true;
+        this.to_id = id;
         for (var i = 0; i < this.messagelist.List.length; i++) {
             if (id == this.messagelist.List[i].ID) {
                 this.showmsg = this.messagelist.List[i].MList;
+                this.isgroup = this.messagelist.List[i].Isgroup;
             }
         }
+    };
+    ChatComponent.prototype.sendMsg = function () {
+        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message);
+        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.Type.REQUEST; //消息的类型的请求类型
+        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.NONE; // 消息的功
+        if (msg.isgroup) {
+            this.sendToGoup();
+        }
+        else {
+            msg.from = this.us.MyUserId; // 消息发送方
+            msg.to = this.to_id; //消息接收方
+            msg.content = this.content; //消息内容
+            msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.ContentType.TEXT; //消息类型
+            msg.isgroup = this.isgroup; //是不是群组消息
+            console.log("isgroup=", msg.isgroup);
+            console.log("this.msg = ", msg);
+            this.ws.sendMessage(msg);
+        }
+        this.content = "";
+    };
+    ChatComponent.prototype.sendToGoup = function () {
+        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message);
+        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.Type.REQUEST;
+        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.NONE;
+        msg.from = this.us.MyUserId;
+        msg.group = this.to_id;
+        msg.content = this.content;
+        msg.isgroup = true;
+        console.log("isgroup2=", msg.isgroup);
+        // msg.time = Date.now();
+        // this.ws.sendMessage(Protocol.Message.encode(msg).finish())
+        this.ws.sendMessage(msg);
     };
     ChatComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
