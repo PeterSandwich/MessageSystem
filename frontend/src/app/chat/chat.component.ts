@@ -8,6 +8,7 @@ import { timer } from 'rxjs';
 import { UserService } from '../user.service';
 import { Injectable } from '@angular/core';
 import { UploadService } from '../file.service';
+import { Protocol } from '../protocol/Protocol';
 @Injectable()
 @Component({
   selector: 'app-chat',
@@ -41,32 +42,34 @@ export class ChatComponent implements OnInit {
     ) { }
 
     ngOnInit(){
-      // this.ws.wsFriendList.List[0].ID;
-      // this.ws.wsMessageList.List[0].MList[0].Content;
       this.friendlist = this.ws.wsFriendList;
       console.log("friendList=", this.friendlist);
       console.log("wsfriendlist=", this.ws.wsFriendList);
       this.messagelist = this.ws.wsMessageList;
       console.log("messagelist = ", this.messagelist);
-      // this.MesList = this.mssesgelist.List;
     }
     test2(id: number){
-      // this.to_id = id;
-      // console.log("this.to_id=", this.to_id);
-      // this.isslect = true;
-      // let len = this.list.length;
-      // this.showmsg = this.messagelist.List[0].MList;
-      // console.log("showmsg=", this.showmsg);
       for(var i = 0; i < this.messagelist.List.length; i++){
-        // this.showmsg = this.messagelist.List[i].MList;
-        //   console.log("showmsg = ", i, this.showmsg);
         if(id == this.messagelist.List[i].ID){
           this.showmsg = this.messagelist.List[i].MList;
-          console.log("************** = ", this.showmsg);
-          // console.log("item[0]=",this.)
         }
       }
     }
+    sendMsg() {
+    let msg = new(Protocol.Message)
+
+    msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
+    msg.cmd = Protocol.Message.CtrlType.NONE;// 消息的功
+
+    msg.from = this.us.MyUserId;              // 消息发送方
+    msg.to = this.to_id;                   //消息接收方
+    msg.content = this.content;             //消息内容
+
+    msg.contentType = Protocol.Message.ContentType.TEXT;　  //消息类型
+     msg.isgroup = false;                       //是不是群组消息
+    
+    this.ws.sendMessage(msg)
+  }
  
   // test2(id: number, isGroup: boolean){
   //   this.to_id = id;

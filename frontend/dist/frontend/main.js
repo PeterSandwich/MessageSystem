@@ -240,7 +240,7 @@ module.exports = "/* :host ::ng-deep .demo-infinite-container {\n    height: 300
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container\">\n  <table >\n    <tr>\n      <th class = \"avatar\" rowspan=\"2\">\n        <div>\n            <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n            <div style = \"left: 90px; top:30px; position: absolute\">名字</div>\n            <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n        </div>\n        <div class = \"search\">\n            <nz-input-group [nzSuffix]=\"suffixIconSearch\">\n              <input type=\"text\" nz-input placeholder=\"输入搜索内容\">\n            </nz-input-group>\n            <ng-template #suffixIconSearch>\n            <i nz-icon type=\"search\"></i>\n              </ng-template>\n              <div>\n                  <button class = \"grad\">聊天</button>|<button class = \"grad\">通讯录</button>|<button class = \"grad\">添加</button>\n              </div>    \n        </div>\n      </th>\n      <th class = \"him\">对方的名字</th>\n    </tr>\n    <tr class = \"avatar2\" >\n      <td rowspan=\"2\" class = \"message\">\n        <div *ngIf=\"!isslect\" class = \"tips\">\n          暂无新消息\n        </div>\n          <div class = \"message1\">\n            ???\n              <div *ngFor=\"let item of showmsg\" >\n                <!-- <div *ngFor=\"let mes of item\"> -->\n                    <div *ngIf=\"item.To == my_id\" id=\"box\">{{item.Content}}</div>\n                    <div *ngIf=\"item.From == my_id\" id=\"box1\">{{item.Content}}</div>\n                <!-- </div> -->\n              </div>\n          </div>\n      </td>\n      \n    </tr>\n    <tr>\n      <td rowspan=\"3\">\n          <div class = \"list\" >\n            <div class = \"item\" *ngFor=\"let item of friendlist.List\" (click) = \"test2(item.ID)\">\n                <!-- <tr  > -->\n                  <!-- <td> -->\n                          <!-- <nz-avatar nzIcon=\"user\" class = \"img\" [nzShape]=\"'square'\" nzSrc={{item.img_url}} >\n                          </nz-avatar> -->\n                          <nz-badge [nzCount]=\"5\" *ngIf=\"list!=NULL\" class = \"point\" style = \"height: 5px;\">\n                              <img src = \"{{item.Headimg}}\" class = \"img\">\n                            </nz-badge>\n                          <!-- <img src = {{item.img_url}} style = \"height:40px; width:40px; border-radius:50%; overflow:hedden;\"> -->\n                      {{item.Name}}\n                  <!-- </td> -->\n                <!-- </tr> -->\n            </div>\n            \n          </div>\n      </td>\n    </tr>\n    <tr class = \"inputmes\">\n      <!-- <td > -->\n        <div></div>\n      <div  *ngIf=\"isslect\">\n        <div class = \"tool\">\n          <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n          <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\n        </div>\n        <textarea class = \"textarea\" [(ngModel)] = \"content\"></textarea>\n        <button class = \"send\" nz-button nzType=\"primary\" (click) = \"sendMsg()\" >发送</button>\n      </div>\n    <!-- </td> -->\n    </tr>\n  </table>\n\n\n"
+module.exports = "\n<div class=\"container\">\n  <table >\n    <tr>\n      <th class = \"avatar\" rowspan=\"2\">\n        <div>\n            <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n            <div style = \"left: 90px; top:30px; position: absolute\">名字</div>\n            <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n        </div>\n        <div class = \"search\">\n            <nz-input-group [nzSuffix]=\"suffixIconSearch\">\n              <input type=\"text\" nz-input placeholder=\"输入搜索内容\">\n            </nz-input-group>\n            <ng-template #suffixIconSearch>\n            <i nz-icon type=\"search\"></i>\n              </ng-template>\n              <div>\n                  <button class = \"grad\">聊天</button>|<button class = \"grad\">通讯录</button>|<button class = \"grad\">添加</button>\n              </div>    \n        </div>\n      </th>\n      <th class = \"him\">对方的名字</th>\n    </tr>\n    <tr class = \"avatar2\" >\n      <td rowspan=\"2\" class = \"message\">\n        <div *ngIf=\"!isslect\" class = \"tips\">\n          暂无新消息\n        </div>\n          <div class = \"message1\">\n              <div *ngFor=\"let item of showmsg\" >\n                <!-- <div *ngFor=\"let mes of item\"> -->\n                    <div *ngIf=\"item.To == my_id\" id=\"box\">{{item.Content}}</div>\n                    <div *ngIf=\"item.From == my_id\" id=\"box1\">{{item.Content}}</div>\n                <!-- </div> -->\n              </div>\n          </div>\n      </td>\n      \n    </tr>\n    <tr>\n      <td rowspan=\"3\">\n          <div class = \"list\" >\n            <div class = \"item\" *ngFor=\"let item of friendlist.List\" (click) = \"test2(item.ID)\">\n                <!-- <tr  > -->\n                  <!-- <td> -->\n                          <!-- <nz-avatar nzIcon=\"user\" class = \"img\" [nzShape]=\"'square'\" nzSrc={{item.img_url}} >\n                          </nz-avatar> -->\n                          <nz-badge [nzCount]=\"5\" *ngIf=\"list!=NULL\" class = \"point\" style = \"height: 5px;\">\n                              <img src = \"{{item.Headimg}}\" class = \"img\">\n                            </nz-badge>\n                          <!-- <img src = {{item.img_url}} style = \"height:40px; width:40px; border-radius:50%; overflow:hedden;\"> -->\n                      {{item.Name}}\n                  <!-- </td> -->\n                <!-- </tr> -->\n            </div>\n            \n          </div>\n      </td>\n    </tr>\n    <tr class = \"inputmes\">\n      <!-- <td > -->\n        <div></div>\n      <div  *ngIf=\"isslect\">\n        <div class = \"tool\">\n          <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n          <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\n        </div>\n        <textarea class = \"textarea\" [(ngModel)] = \"content\"></textarea>\n        <button class = \"send\" nz-button nzType=\"primary\" (click) = \"sendMsg()\" >发送</button>\n      </div>\n    <!-- </td> -->\n    </tr>\n  </table>\n\n\n"
 
 /***/ }),
 
@@ -283,29 +283,16 @@ var ChatComponent = /** @class */ (function () {
         this.my_img_url = "https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg";
     }
     ChatComponent.prototype.ngOnInit = function () {
-        // this.ws.wsFriendList.List[0].ID;
-        // this.ws.wsMessageList.List[0].MList[0].Content;
         this.friendlist = this.ws.wsFriendList;
         console.log("friendList=", this.friendlist);
         console.log("wsfriendlist=", this.ws.wsFriendList);
         this.messagelist = this.ws.wsMessageList;
         console.log("messagelist = ", this.messagelist);
-        // this.MesList = this.mssesgelist.List;
     };
     ChatComponent.prototype.test2 = function (id) {
-        // this.to_id = id;
-        // console.log("this.to_id=", this.to_id);
-        // this.isslect = true;
-        // let len = this.list.length;
-        // this.showmsg = this.messagelist.List[0].MList;
-        // console.log("showmsg=", this.showmsg);
         for (var i = 0; i < this.messagelist.List.length; i++) {
-            // this.showmsg = this.messagelist.List[i].MList;
-            //   console.log("showmsg = ", i, this.showmsg);
             if (id == this.messagelist.List[i].ID) {
                 this.showmsg = this.messagelist.List[i].MList;
-                console.log("************** = ", this.showmsg);
-                // console.log("item[0]=",this.)
             }
         }
     };
@@ -1419,6 +1406,10 @@ var UserService = /** @class */ (function () {
     UserService.prototype.quit = function () {
         return this.http.get(this.quitUrl);
     };
+    UserService.prototype.getUserbyId = function (id) {
+        var url = this.configUrl + '/user?id=' + id;
+        return this.http.get(url);
+    };
     UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
@@ -1514,24 +1505,83 @@ var WebsocketService = /** @class */ (function () {
                     }
                 }
             }
+            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) { //添加好友请求
+                this.createSessById(conn, conn.from);
+            }
+            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_GROUP || conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS) {
+            }
         }
         else if (conn.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.ACK) {
-            for (var i = 0; i < this.wsMessageList.List.length; i++) {
-                if (conn.from == this.wsMessageList.List[i].ID && conn.isgroup == this.wsMessageList.List[i].Isgroup) {
-                    for (var j = 0; j < this.wsMessageList.List[i].MList.length; j++) {
-                        if (this.wsMessageList.List[i].MList[j].Time == conn.time) {
-                            this.wsMessageList.List[i].MList[j].Mid = conn.msgid;
-                            break;
+            if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
+                for (var i = 0; i < this.wsMessageList.List.length; i++) {
+                    if (conn.from == this.wsMessageList.List[i].ID && conn.isgroup == this.wsMessageList.List[i].Isgroup) {
+                        for (var j = 0; j < this.wsMessageList.List[i].MList.length; j++) {
+                            if (this.wsMessageList.List[i].MList[j].Time == conn.time) {
+                                this.wsMessageList.List[i].MList[j].Mid = conn.msgid;
+                                break;
+                            }
                         }
+                        break;
                     }
-                    break;
                 }
+            }
+            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) { //添加好友请求确认信息
+                this.createSessById(conn, conn.to);
             }
         }
     };
+    WebsocketService.prototype.createSessById = function (conn, uid) {
+        var item = new (FriendItem);
+        item.ID = uid;
+        this.us.getUserbyId(item.ID).subscribe(function (data) {
+            item.Name = data["Name"];
+            item.Headimg = data["Img_url"];
+        });
+        item.Counter = 1;
+        item.Isgroup = false;
+        this.wsFriendList.List.push(item);
+        var sess = new (Session);
+        sess.ID = item.ID;
+        sess.Isgroup = false;
+        sess.MList = [];
+        this.wsMessageList.List.push(sess);
+    };
     // 发送信息，不在这里构造消息体
     WebsocketService.prototype.sendMessage = function (message) {
-        this.ws.send(message);
+        message.time = Date.now();
+        if (message.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST) {
+            if (message.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) { // 单聊或群聊
+                for (var i = 0; i < this.wsMessageList.List.length; i++) {
+                    if (message.to == this.wsMessageList.List[i].ID && message.isgroup == this.wsMessageList.List[i].Isgroup) {
+                        var item = new (MessageItem);
+                        item.Mid = 0;
+                        item.From = message.from;
+                        item.To = message.to;
+                        item.Content = message.content;
+                        item.ContentType = message.contentType;
+                        item.Time = message.time;
+                        this.wsMessageList.List[i].MList.push(item);
+                        break;
+                    }
+                }
+            }
+            else if (message.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) { // 撤回消息
+                if (message.msgid == 0) {
+                    alert("消息ＩＤ不存在，无法撤回");
+                }
+                for (var i = 0; i < this.wsMessageList.List.length; i++) {
+                    if (message.to == this.wsMessageList.List[i].ID && message.isgroup == this.wsMessageList.List[i].Isgroup) {
+                        for (var j = 0; j < this.wsMessageList.List[i].MList.length; j++) {
+                            if (this.wsMessageList.List[i].MList[j].Mid == message.msgid) {
+                                this.wsMessageList.List[i].MList.slice(j, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        this.ws.send(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(message).finish());
     };
     // 按名字取得用户列表
     WebsocketService.prototype.getUserList = function (name) {
@@ -1676,6 +1726,33 @@ var MsgList = /** @class */ (function () {
     return MsgList;
 }());
 
+/////////////////////////////////////////////////////////////////
+// FriendList = [
+//   {ID:1000021,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 1},
+//   {ID:1000022,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 9},
+//   {ID:1000023,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 0},
+//   {ID:1000024,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 4},
+//   {ID:1000025,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 5},
+//   {ID:1000026,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 3},
+// ];
+// MessageList = [
+//   {ID:1000021,ISGROUP: false,Message: [
+//     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1000021,To:1, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+//   ]},
+//   {ID:1000022,ISGROUP: false,Message: [
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+//   ]},
+//   {ID:100001,ISGROUP: false,Message: [
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 0,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+//   ]}
+// ]
 
 
 /***/ }),

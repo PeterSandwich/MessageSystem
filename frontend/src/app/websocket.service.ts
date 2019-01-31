@@ -64,29 +64,85 @@ export class WebsocketService {
             break;
           }
         }
+      }else if(conn.cmd == Protocol.Message.CtrlType.CREATE_SESSION){ //添加好友请求
+        this.createSessById(conn,conn.from)
+      }else if (conn.cmd == Protocol.Message.CtrlType.CREATE_GROUP || conn.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
+
       }
     }else if(conn.type==Protocol.Message.Type.ACK){
-      for(let i=0;i<this.wsMessageList.List.length;i++){
-        if (conn.from==this.wsMessageList.List[i].ID && conn.isgroup == this.wsMessageList.List[i].Isgroup){
-          for(let j=0;j<this.wsMessageList.List[i].MList.length;j++){
-            if (this.wsMessageList.List[i].MList[j].Time == conn.time){
-              this.wsMessageList.List[i].MList[j].Mid = conn.msgid;
-              break;
+      if (conn.cmd == Protocol.Message.CtrlType.NONE){
+        for(let i=0;i<this.wsMessageList.List.length;i++){
+          if (conn.from==this.wsMessageList.List[i].ID && conn.isgroup == this.wsMessageList.List[i].Isgroup){
+            for(let j=0;j<this.wsMessageList.List[i].MList.length;j++){
+              if (this.wsMessageList.List[i].MList[j].Time == conn.time){
+                this.wsMessageList.List[i].MList[j].Mid = conn.msgid;
+                break;
+              }
             }
+            break;
           }
-          break;
         }
+      }else if(conn.cmd == Protocol.Message.CtrlType.CREATE_SESSION){//添加好友请求确认信息
+       this.createSessById(conn,conn.to)
       }
     }
   }
 
 
+    createSessById(conn: Protocol.Message,uid: number|Long){
+        let item = new(FriendItem);
+        item.ID = uid;
+        this.us.getUserbyId(item.ID).subscribe((data)=>{
+          item.Name = data["Name"];
+          item.Headimg = data["Img_url"];
+        });
+        item.Counter = 1;
+        item.Isgroup = false;
+        this.wsFriendList.List.push(item);
 
+        let sess = new(Session)
+        sess.ID = item.ID
+        sess.Isgroup = false;
+        sess.MList = [];
+        this.wsMessageList.List.push(sess);
+   }
   
 
   // 发送信息，不在这里构造消息体
-  sendMessage(message: any){
-    this.ws.send(message);
+  sendMessage(message: Protocol.Message){
+    message.time = Date.now()
+    if (message.type ==  Protocol.Message.Type.REQUEST) {
+      if(message.cmd == Protocol.Message.CtrlType.NONE){  // 单聊或群聊
+        for(let i=0;i<this.wsMessageList.List.length;i++){
+          if (message.to==this.wsMessageList.List[i].ID && message.isgroup == this.wsMessageList.List[i].Isgroup){
+            let item = new(MessageItem);
+            item.Mid = 0;
+            item.From = message.from;
+            item.To = message.to;
+            item.Content = message.content;
+            item.ContentType =message.contentType;
+            item.Time = message.time;
+            this.wsMessageList.List[i].MList.push(item);
+            break;
+          }
+        }
+      }else if(message.cmd == Protocol.Message.CtrlType.MSG_BACK){   // 撤回消息
+        if(message.msgid == 0){
+          alert("消息ＩＤ不存在，无法撤回");
+        }
+        for(let i=0;i<this.wsMessageList.List.length;i++){
+          if (message.to==this.wsMessageList.List[i].ID && message.isgroup == this.wsMessageList.List[i].Isgroup){
+            for(let j=0;j<this.wsMessageList.List[i].MList.length;j++){
+              if (this.wsMessageList.List[i].MList[j].Mid == message.msgid){
+                this.wsMessageList.List[i].MList.slice(j,1);
+                break;
+              }
+            }
+          }
+        }
+      }
+    } 
+    this.ws.send(Protocol.Message.encode(message).finish());
   }
 
   // 按名字取得用户列表
@@ -163,35 +219,6 @@ export class WebsocketService {
       }
     })
   }
-  /////////////////////////////////////////////////////////////////
-  // FriendList = [
-  //   {ID:1000021,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 1},
-  //   {ID:1000022,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 9},
-  //   {ID:1000023,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 0},
-  //   {ID:1000024,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 4},
-  //   {ID:1000025,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 5},
-  //   {ID:1000026,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 3},
-  // ];
-
-  // MessageList = [
-  //   {ID:1000021,ISGROUP: false,Message: [
-  //     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-  //     {Mid: 1,From: 1000021,To:1, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-  //     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
-  //   ]},
-  //   {ID:1000022,ISGROUP: false,Message: [
-  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
-  //   ]},
-  //   {ID:100001,ISGROUP: false,Message: [
-  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-  //     {Mid: 0,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
-  //   ]}
-
-  // ]
 }
 
 export class FriendItem {
@@ -263,6 +290,38 @@ export class MsgList {
  List: MsgItem[][];
 }
 
+
+
+
+  /////////////////////////////////////////////////////////////////
+  // FriendList = [
+  //   {ID:1000021,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 1},
+  //   {ID:1000022,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 9},
+  //   {ID:1000023,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 0},
+  //   {ID:1000024,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 4},
+  //   {ID:1000025,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 5},
+  //   {ID:1000026,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 3},
+  // ];
+
+  // MessageList = [
+  //   {ID:1000021,ISGROUP: false,Message: [
+  //     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1000021,To:1, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+  //   ]},
+  //   {ID:1000022,ISGROUP: false,Message: [
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+  //   ]},
+  //   {ID:100001,ISGROUP: false,Message: [
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 0,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+  //   ]}
+
+  // ]
 
 
 

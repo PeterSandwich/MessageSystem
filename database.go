@@ -238,3 +238,9 @@ func HistrotyMessageDB(from, to int64, isgroup bool) ([]MessageItem, error) {
 	}
 	return list, nil
 }
+
+func GetUserById(uid int64)( UserItem,error){
+	user := UserItem{}
+	err := DB_conn.QueryRow("select (id,name,heading) from users where id=$1", uid).Scan(&user.ID, &user.Name, &user.Img_url)
+	return user,err
+}
