@@ -21,3 +21,4 @@ export class UploadService {
     const req = new HttpRequest('POST', url, formData, options);
     return this.http.request(req);
   }
+}

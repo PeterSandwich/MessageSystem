@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Protocol } from '../protocol/Protocol';
-import { WebsocketService } from '../websocket.service';
+import { WebsocketService,FriendItem,Session,MessageItem } from '../websocket.service';
 import { timer } from 'rxjs';
 import { UserService } from '../user.service';
 import { Injectable } from '@angular/core';
-import { UploadService } from '../http.service'
+import { UploadService } from '../file.service';
 @Injectable()
 @Component({
   selector: 'app-chat',
@@ -106,19 +106,53 @@ export class ChatComponent implements OnInit {
   one: Hist
   ChatList(){
     this.ws.getChatList().subscribe((data: ChatList) => {
-      console.log(data)
+      let HL =  new(HistList);
+      HL.List = [];
       for(let i=0;i<data.List.length;i++){
-        this.one.ID = data.List[i].Id
-        this.one.Isgroup = data.List[i].Isgroup;
-        this.msglist.List.push({ID: this.one.ID,Isgroup: this.one.Isgroup})
+        let FriItem:FriendItem = new(FriendItem);
+        FriItem.ID=data.List[i].Id;
+        FriItem.Name=data.List[i].Name;
+        FriItem.Headimg=data.List[i].Headimg;
+        FriItem.Isgroup=data.List[i].Isgroup;
+        FriItem.Counter=data.List[i].Counter;
+        this.ws.FriendList.List.push(FriItem)
+
+        let Ht = new(Hist);
+        Ht.ID = data.List[i].Id;
+        Ht.Isgroup = data.List[i].Isgroup;
+        HL.List.push(Ht)
       }
+      this.HistoryMessage(HL)
     })
   }
 
-  HistoryMessage(){
-    console.log(this.msglist)
-    this.ws.getChatMessageList(this.msglist).subscribe((data) => {
+  HistoryMessage(info){
+    this.ws.getChatMessageList(info).subscribe((data:MsgList) => {
       console.log(data);
+      this.ws.MessageList.List =[];
+      for(let i=0;i<data.List.length;i++){
+          let session = new(Session);
+          session.MList = [];
+          if (data.List[i].length>0){
+            session.ID = data.List[i][0].From;
+            if (session.ID == this.us.MyUserId) {
+              session.ID = data.List[i][0].To;
+            }
+            session.Isgroup = data.List[i][0].Isgroup;
+          }
+         for(let j=0;j<data.List[i].length;j++){
+          let Item = new(MessageItem);
+          Item.Mid = data.List[i][j].Mid;
+          Item.From = data.List[i][j].From;
+          Item.To = data.List[i][j].To;
+          Item.Content = data.List[i][j].Content;
+          Item.ContentType = data.List[i][j].ContentType;
+          Item.Time = data.List[i][j].Time;
+          session.MList.push(Item);
+        }
+        this.ws.MessageList.List.push(session)
+      }
+      console.log(this.ws.MessageList);
     })
   }
 
@@ -127,9 +161,9 @@ export class ChatComponent implements OnInit {
   
 
   picpath: string
-  GetPicUrl = "http://localhost:9876/getpic/"
+  GetPicUrl = "http://localhost:9988/getpic/"
   picurl: string
-  fileurl = 'http://localhost:9876/upload'
+  fileurl = 'http://localhost:9988/upload'
   dfileurl=""
   filep = ""
   filename: string
@@ -155,7 +189,7 @@ export class ChatComponent implements OnInit {
               console.log(response["body"]["data"]);
               this.filep = response["body"]["data"]["filepath"];
               this.dfileurl=response["body"]["data"]["fileurl"];
-              this.show = true;
+             // this.show = true;
             }
           }
           // if (event.type == HttpEventType.UploadProgress) {
@@ -196,6 +230,8 @@ export class ChatComponent implements OnInit {
 }
 
 
+
+// 发送请求漫游消息的结构体
 export class Hist {
    ID: number
    Isgroup: boolean
@@ -204,6 +240,8 @@ export class HistList {
    List: Hist[]
 }
 
+
+//接收 好友列表的结构体
 export class ChatItem {
    Sender:number
    Name: string
@@ -216,3 +254,18 @@ export class ChatList {
    List: ChatItem[]
 }
 
+
+// 接收 漫游信息的结构体
+export class MsgItem{
+  Mid: number;
+  From: number;
+  To: number;
+  Content: string;
+  ContentType: number;
+  Time: number;
+  Isgroup: boolean;
+}
+
+export class MsgList {
+  List: MsgItem[][];
+}

@@ -8,8 +8,15 @@ import { environment } from '../environments/environment';
 export class WebsocketService {
 
   ws: WebSocket;
+  FriendList:FriendList;
+  MessageList:MessageList;
   collection: Protocol.Message = new(Protocol.Message);
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) { 
+    this.FriendList = new(FriendList);
+    this.FriendList.List = [];
+    this.MessageList = new(MessageList);
+    this.MessageList.List = [];
+  }
 
   createSocket(url:string){
     this.ws = new WebSocket(url);
@@ -39,6 +46,7 @@ export class WebsocketService {
       return this.http.get(url)
   }
 
+  // 获取聊天列表，或者是好友聊天列表
   getChatList(){
     let url  = environment.apiUrl+"/chatlist"
     return this.http.get(url)
@@ -51,34 +59,64 @@ export class WebsocketService {
 
 
   /////////////////////////////////////////////////////////////////
-  FriendList = [
-    {ID:1000021,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 1},
-    {ID:1000022,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 9},
-    {ID:1000023,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 0},
-    {ID:1000024,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 4},
-    {ID:1000025,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 5},
-    {ID:1000026,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 3},
-  ];
+  // FriendList = [
+  //   {ID:1000021,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 1},
+  //   {ID:1000022,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 9},
+  //   {ID:1000023,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 0},
+  //   {ID:1000024,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 4},
+  //   {ID:1000025,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 5},
+  //   {ID:1000026,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 3},
+  // ];
 
-  MessageList = [
-    {ID:1000021,ISGROUP: false,Message: [
-      {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-      {Mid: 1,From: 1000021,To:1, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-      {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
-    ]},
-    {ID:1000022,ISGROUP: false,Message: [
-      {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-      {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-      {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
-    ]},
-    {ID:100001,ISGROUP: false,Message: [
-      {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-      {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-      {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-      {Mid: 0,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
-    ]}
+  // MessageList = [
+  //   {ID:1000021,ISGROUP: false,Message: [
+  //     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1000021,To:1, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+  //   ]},
+  //   {ID:1000022,ISGROUP: false,Message: [
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+  //   ]},
+  //   {ID:100001,ISGROUP: false,Message: [
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 0,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+  //   ]}
 
-  ]
+  // ]
 }
+
+export class FriendItem {
+  ID: number;
+  Name: string;
+  Headimg: string;
+  Isgroup: boolean;
+  Counter: number;
+}
+
+export class FriendList {
+  List: FriendItem[];
+}
+
+export class MessageItem {
+  Mid: number;
+  From: number;
+  To: number;
+  Content: string;
+  ContentType: number;
+  Time: number;
+}
+export class Session{
+  ID: number;
+  Isgroup: boolean;
+  MList: MessageItem[];
+}
+export class MessageList {
+  List: Session[];
+}
+
 
 

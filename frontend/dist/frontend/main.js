@@ -164,6 +164,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_locales_en__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_en__WEBPACK_IMPORTED_MODULE_14__);
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./user.service */ "./src/app/user.service.ts");
+/* harmony import */ var _app_file_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../app/file.service */ "./src/app/file.service.ts");
+
 
 
 
@@ -202,7 +204,7 @@ var AppModule = /** @class */ (function () {
                 ng_zorro_antd__WEBPACK_IMPORTED_MODULE_11__["NgZorroAntdModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__["BrowserAnimationsModule"]
             ],
-            providers: [_websocket_service__WEBPACK_IMPORTED_MODULE_8__["WebsocketService"], _user_service__WEBPACK_IMPORTED_MODULE_16__["UserService"], { provide: ng_zorro_antd__WEBPACK_IMPORTED_MODULE_11__["NZ_I18N"], useValue: ng_zorro_antd__WEBPACK_IMPORTED_MODULE_11__["en_US"] }],
+            providers: [_websocket_service__WEBPACK_IMPORTED_MODULE_8__["WebsocketService"], _user_service__WEBPACK_IMPORTED_MODULE_16__["UserService"], { provide: ng_zorro_antd__WEBPACK_IMPORTED_MODULE_11__["NZ_I18N"], useValue: ng_zorro_antd__WEBPACK_IMPORTED_MODULE_11__["en_US"] }, _app_file_service__WEBPACK_IMPORTED_MODULE_17__["UploadService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
         })
     ], AppModule);
@@ -220,7 +222,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NoYXQvY2hhdC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = ":host ::ng-deep .demo-infinite-container {\n    height: 300px;\n    border: 1px solid #e8e8e8;\n    border-radius: 4px;\n  }\n  .headportrait{\n    position: relative;\n    width:230px;\n    height:230px;\n    bottom: -26px;\n    margin-left:26px;\n    cursor:pointer;\n}\n  :host ::ng-deep .headportrait img{\n    width:100%;height:100%;\n\n}\n  .mask  {    \n    position: absolute;    \n    width: 100%;    \n    height: 100%;      \n    background: #868c89;    \n    opacity: 0;\t\n    color: black;\n    text-align: center;\n    line-height:230px;\n    margin-top: -230px;\n}\n  /*hover状态（按你的需求）控制显示。opacity/display/z-index都可以*/\n  .headportrait:hover .mask {    opacity: .5;\t}\n  .upload-btn {\n  background-color: #337ab7;\n  color: #fff;\n  border-radius: 2px;\n  border: none;\n  padding: .5rem 1.3rem;\n  cursor: pointer;\n}\n  .picture {\n  width: 7rem;\n  height: 7rem;\n  margin-right: 1rem;\n  background-size: cover;\n}\n  .action-box {\n  margin-left: 1rem;\n}\n  .hint {\n  color: #909090;\n  font-size: 1.7rem;\n  margin-bottom: 1.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2hhdC9jaGF0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0lBQ2IseUJBQXlCO0lBQ3pCLGtCQUFrQjtFQUNwQjtFQUNBO0lBQ0Usa0JBQWtCO0lBQ2xCLFdBQVc7SUFDWCxZQUFZO0lBQ1osYUFBYTtJQUNiLGdCQUFnQjtJQUNoQixjQUFjO0FBQ2xCO0VBRUE7SUFDSSxVQUFVLENBQUMsV0FBVzs7QUFFMUI7RUFFQTtJQUNJLGtCQUFrQjtJQUNsQixXQUFXO0lBQ1gsWUFBWTtJQUNaLG1CQUFtQjtJQUNuQixVQUFVO0lBQ1YsWUFBWTtJQUNaLGtCQUFrQjtJQUNsQixpQkFBaUI7SUFDakIsa0JBQWtCO0FBQ3RCO0VBQUMsZ0RBQWdEO0VBQ2pELCtCQUErQixXQUFXLEVBQUU7RUFFNUM7RUFDRSx5QkFBeUI7RUFDekIsV0FBVztFQUNYLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1oscUJBQXFCO0VBQ3JCLGVBQWU7QUFDakI7RUFFQTtFQUNFLFdBQVc7RUFDWCxZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLHNCQUFzQjtBQUN4QjtFQUVBO0VBQ0UsaUJBQWlCO0FBQ25CO0VBQ0E7RUFDRSxjQUFjO0VBQ2QsaUJBQWlCO0VBQ2pCLHFCQUFxQjtBQUN2QiIsImZpbGUiOiJzcmMvYXBwL2NoYXQvY2hhdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgOjpuZy1kZWVwIC5kZW1vLWluZmluaXRlLWNvbnRhaW5lciB7XG4gICAgaGVpZ2h0OiAzMDBweDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjZThlOGU4O1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgfVxuICAuaGVhZHBvcnRyYWl0e1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICB3aWR0aDoyMzBweDtcbiAgICBoZWlnaHQ6MjMwcHg7XG4gICAgYm90dG9tOiAtMjZweDtcbiAgICBtYXJnaW4tbGVmdDoyNnB4O1xuICAgIGN1cnNvcjpwb2ludGVyO1xufVxuXG46aG9zdCA6Om5nLWRlZXAgLmhlYWRwb3J0cmFpdCBpbWd7XG4gICAgd2lkdGg6MTAwJTtoZWlnaHQ6MTAwJTtcblxufVxuXG4ubWFzayAgeyAgICBcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7ICAgIFxuICAgIHdpZHRoOiAxMDAlOyAgICBcbiAgICBoZWlnaHQ6IDEwMCU7ICAgICAgXG4gICAgYmFja2dyb3VuZDogIzg2OGM4OTsgICAgXG4gICAgb3BhY2l0eTogMDtcdFxuICAgIGNvbG9yOiBibGFjaztcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgbGluZS1oZWlnaHQ6MjMwcHg7XG4gICAgbWFyZ2luLXRvcDogLTIzMHB4O1xufS8qaG92ZXLnirbmgIHvvIjmjInkvaDnmoTpnIDmsYLvvInmjqfliLbmmL7npLrjgIJvcGFjaXR5L2Rpc3BsYXkvei1pbmRleOmDveWPr+S7pSovXHRcbi5oZWFkcG9ydHJhaXQ6aG92ZXIgLm1hc2sgeyAgICBvcGFjaXR5OiAuNTtcdH1cblxuLnVwbG9hZC1idG4ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzM3YWI3O1xuICBjb2xvcjogI2ZmZjtcbiAgYm9yZGVyLXJhZGl1czogMnB4O1xuICBib3JkZXI6IG5vbmU7XG4gIHBhZGRpbmc6IC41cmVtIDEuM3JlbTtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4ucGljdHVyZSB7XG4gIHdpZHRoOiA3cmVtO1xuICBoZWlnaHQ6IDdyZW07XG4gIG1hcmdpbi1yaWdodDogMXJlbTtcbiAgYmFja2dyb3VuZC1zaXplOiBjb3Zlcjtcbn1cblxuLmFjdGlvbi1ib3gge1xuICBtYXJnaW4tbGVmdDogMXJlbTtcbn1cbi5oaW50IHtcbiAgY29sb3I6ICM5MDkwOTA7XG4gIGZvbnQtc2l6ZTogMS43cmVtO1xuICBtYXJnaW4tYm90dG9tOiAxLjVyZW07XG59Il19 */"
 
 /***/ }),
 
@@ -231,7 +233,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div>\n<button  nz-button nzType=\"primary\" (click)=\"getalluser()\">获取全部用户列表</button>\n</div>\n<div>\n  <button  nz-button nzType=\"primary\" (click)=\"ChatList()\">获取好友列表</button>\n  </div>\n  <div>\n    <button  nz-button nzType=\"primary\" (click)=\"HistoryMessage()\">获取历史消息</button>\n    </div>\n<div>\n<input [(ngModel)]=\"chatto\">\n<button nz-button nzType=\"primary\" (click)=\"chatToPeo(chatto)\">加好友</button>\n</div>\n\n<h2>单聊</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"发送给：\" >\n    <input type=\"text\" nz-input [(ngModel)]=\"c2c_to_id\">\n  </nz-input-group>\n</div>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"内容：\" >\n    <input type=\"text\" nz-input [(ngModel)]=\"c2c_content\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"sendMsg()\">发送</button>\n\n\n<h2>创建群</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"群名\" >\n    <input type=\"text\" nz-input [(ngModel)]=\"group_name\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"createGroup()\">创建群</button>\n\n<h2>邀请进入组</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"组ID：\" >\n    <input type=\"text\" nz-input [(ngModel)]=\"gtoup_id\">\n  </nz-input-group>\n</div>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"被邀请人的ID：\" >\n    <input type=\"text\" nz-input [(ngModel)]=\"add_mem_id\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"addMemToGoup()\">邀请进入组</button>\n\n<h2>群聊</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"发送给组：\" >\n    <input type=\"text\" nz-input [(ngModel)]=\"c2g_group_id\">\n  </nz-input-group>\n</div>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"内容：\" >\n    <input type=\"text\" nz-input [(ngModel)]=\"c2g_content\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"sendToGoup()\">发送</button>"
+module.exports = "<div>\n  <button nz-button nzType=\"primary\" (click)=\"getalluser()\">获取全部用户列表</button>\n</div>\n<div>\n  <button nz-button nzType=\"primary\" (click)=\"ChatList()\">获取好友列表</button>\n</div>\n<div>\n  <button nz-button nzType=\"primary\" (click)=\"HistoryMessage()\">获取历史消息</button>\n</div>\n<div>\n  <input [(ngModel)]=\"chatto\">\n  <button nz-button nzType=\"primary\" (click)=\"chatToPeo(chatto)\">加好友</button>\n</div>\n\n<h2>单聊</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"发送给：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"c2c_to_id\">\n  </nz-input-group>\n</div>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"内容：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"c2c_content\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"sendMsg()\">发送</button>\n\n\n\n\n\n<br>\n<br>\n<div>\n  <input id=\"upfile\" type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\">\n  <div class=\"action-box\">\n    <button class=\"upload-btn\" onclick=\"upfile.click()\"> 点击上传\n    </button>\n  </div>\n  <div *ngIf=\"show\">\n    <div style=\"display: -webkit-box;\">\n      <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+GetPicUrl+filep+ ')'}\"></div>\n      <div class=\"hint\">\n        {{filename}}\n      </div>\n      <div class=\"action-box\">\n        <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n<br>\n<br>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<h2>创建群</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"群名\">\n    <input type=\"text\" nz-input [(ngModel)]=\"group_name\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"createGroup()\">创建群</button>\n\n<h2>邀请进入组</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"组ID：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"gtoup_id\">\n  </nz-input-group>\n</div>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"被邀请人的ID：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"add_mem_id\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"addMemToGoup()\">邀请进入组</button>\n\n<h2>群聊</h2>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"发送给组：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"c2g_group_id\">\n  </nz-input-group>\n</div>\n<div style=\"margin-bottom: 16px;\">\n  <nz-input-group nzAddOnBefore=\"内容：\">\n    <input type=\"text\" nz-input [(ngModel)]=\"c2g_content\">\n  </nz-input-group>\n</div>\n<button nz-button nzType=\"primary\" (click)=\"sendToGoup()\">发送</button>"
 
 /***/ }),
 
@@ -239,7 +241,7 @@ module.exports = "\n<div>\n<button  nz-button nzType=\"primary\" (click)=\"getal
 /*!****************************************!*\
   !*** ./src/app/chat/chat.component.ts ***!
   \****************************************/
-/*! exports provided: ChatComponent, Hist, HistList, ChatItem, ChatList */
+/*! exports provided: ChatComponent, Hist, HistList, ChatItem, ChatList, MsgItem, MsgList */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -249,21 +251,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HistList", function() { return HistList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatItem", function() { return ChatItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatList", function() { return ChatList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgItem", function() { return MsgItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgList", function() { return MsgList; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../protocol/Protocol */ "./src/app/protocol/Protocol.js");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _websocket_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../websocket.service */ "./src/app/websocket.service.ts");
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../user.service */ "./src/app/user.service.ts");
+/* harmony import */ var _file_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../file.service */ "./src/app/file.service.ts");
+
+
 
 
 
 
 
 var ChatComponent = /** @class */ (function () {
-    function ChatComponent(ws, us) {
+    function ChatComponent(ws, us, upload) {
         this.ws = ws;
         this.us = us;
+        this.upload = upload;
         this.chatto = 0;
         this.c2c_to_id = 0;
         this.c2c_content = "";
@@ -272,6 +280,10 @@ var ChatComponent = /** @class */ (function () {
         this.gtoup_id = 0;
         this.c2g_group_id = 0;
         this.c2g_content = "";
+        this.GetPicUrl = "http://localhost:9988/getpic/";
+        this.fileurl = 'http://localhost:9988/upload';
+        this.dfileurl = "";
+        this.filep = "";
     }
     ChatComponent.prototype.ngOnInit = function () {
         this.one = { ID: 1, Isgroup: false };
@@ -294,14 +306,14 @@ var ChatComponent = /** @class */ (function () {
     };
     ChatComponent.prototype.sendMsg = function () {
         var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message);
-        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST;
-        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE;
-        msg.from = this.us.MyUserId;
-        msg.to = this.c2c_to_id;
-        msg.content = this.c2c_content;
-        msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.ContentType.TEXT;
-        msg.time = Date.now();
-        msg.isgroup = false;
+        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST; //消息的类型的请求类型
+        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE; // 消息的功能
+        msg.from = this.us.MyUserId; // 消息发送方
+        msg.to = this.c2c_to_id; //消息接收方
+        msg.content = this.c2c_content; //消息内容
+        msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.ContentType.TEXT; //消息类型
+        msg.time = Date.now(); //消息的发送时间
+        msg.isgroup = false; //是不是群组消息
         this.ws.sendMessage(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(msg).finish());
     };
     ChatComponent.prototype.createGroup = function () {
@@ -338,32 +350,124 @@ var ChatComponent = /** @class */ (function () {
     ChatComponent.prototype.ChatList = function () {
         var _this = this;
         this.ws.getChatList().subscribe(function (data) {
-            console.log(data);
+            var HL = new (HistList);
+            HL.List = [];
             for (var i = 0; i < data.List.length; i++) {
-                _this.one.ID = data.List[i].Id;
-                _this.one.Isgroup = data.List[i].Isgroup;
-                _this.msglist.List.push({ ID: _this.one.ID, Isgroup: _this.one.Isgroup });
+                var FriItem = new (_websocket_service__WEBPACK_IMPORTED_MODULE_3__["FriendItem"]);
+                FriItem.ID = data.List[i].Id;
+                FriItem.Name = data.List[i].Name;
+                FriItem.Headimg = data.List[i].Headimg;
+                FriItem.Isgroup = data.List[i].Isgroup;
+                FriItem.Counter = data.List[i].Counter;
+                _this.ws.FriendList.List.push(FriItem);
+                var Ht = new (Hist);
+                Ht.ID = data.List[i].Id;
+                Ht.Isgroup = data.List[i].Isgroup;
+                HL.List.push(Ht);
             }
+            _this.HistoryMessage(HL);
         });
     };
-    ChatComponent.prototype.HistoryMessage = function () {
-        console.log(this.msglist);
-        this.ws.getChatMessageList(this.msglist).subscribe(function (data) {
+    ChatComponent.prototype.HistoryMessage = function (info) {
+        var _this = this;
+        this.ws.getChatMessageList(info).subscribe(function (data) {
             console.log(data);
+            _this.ws.MessageList.List = [];
+            for (var i = 0; i < data.List.length; i++) {
+                var session = new (_websocket_service__WEBPACK_IMPORTED_MODULE_3__["Session"]);
+                session.MList = [];
+                if (data.List[i].length > 0) {
+                    session.ID = data.List[i][0].From;
+                    if (session.ID == _this.us.MyUserId) {
+                        session.ID = data.List[i][0].To;
+                    }
+                    session.Isgroup = data.List[i][0].Isgroup;
+                }
+                for (var j = 0; j < data.List[i].length; j++) {
+                    var Item = new (_websocket_service__WEBPACK_IMPORTED_MODULE_3__["MessageItem"]);
+                    Item.Mid = data.List[i][j].Mid;
+                    Item.From = data.List[i][j].From;
+                    Item.To = data.List[i][j].To;
+                    Item.Content = data.List[i][j].Content;
+                    Item.ContentType = data.List[i][j].ContentType;
+                    Item.Time = data.List[i][j].Time;
+                    session.MList.push(Item);
+                }
+                _this.ws.MessageList.List.push(session);
+            }
+            console.log(_this.ws.MessageList);
         });
+    };
+    ChatComponent.prototype.selectFile = function (event) {
+        var fileList = event.target.files;
+        this.uploadFile(fileList);
+    };
+    ChatComponent.prototype.uploadFile = function (files) {
+        var _this = this;
+        if (files.length == 0) {
+            console.log("No file selected!");
+            return;
+        }
+        var file = files[0];
+        console.log(file.name);
+        this.filename = file.name;
+        this.upload.uploadFile(this.fileurl, file)
+            .subscribe(function (response) {
+            //.log(response);
+            if (response["body"] != null) {
+                if (response["body"]["code"] != 1) {
+                    console.log(response["body"]["data"]);
+                    _this.filep = response["body"]["data"]["filepath"];
+                    _this.dfileurl = response["body"]["data"]["fileurl"];
+                    // this.show = true;
+                }
+            }
+            // if (event.type == HttpEventType.UploadProgress) {
+            //   const percentDone = Math.round(100 * event.loaded / event.total);
+            //   console.log(`File is ${percentDone}% loaded.`);
+            // } else if (event instanceof HttpResponse) {
+            //   console.log('File is completely loaded!');
+            // }
+        }, function (err) {
+            console.log("Upload Error:", err);
+        }, function () {
+            console.log("Upload done");
+        });
+        //this.getpath();
+    };
+    ChatComponent.prototype.getpath = function () {
+        this.filep = "getpic/3ea62ac5fb0758efadb15e36_compress.jpg";
+        console.log(this.filep);
+    };
+    ChatComponent.prototype.download = function () {
+        this.fileurl = "http://localhost:9876/files";
+        window.open(this.fileurl, '_blank');
+        return;
+    };
+    // 调用浏览器的下载
+    ChatComponent.prototype.downloadFile = function () {
+        var a = document.createElement('a');
+        a.href = this.dfileurl;
+        a.download = 'download';
+        a.click();
+        a.remove();
+        console.log('download:' + a.href);
     };
     ChatComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-chat',
             template: __webpack_require__(/*! ./chat.component.html */ "./src/app/chat/chat.component.html"),
             styles: [__webpack_require__(/*! ./chat.component.css */ "./src/app/chat/chat.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_websocket_service__WEBPACK_IMPORTED_MODULE_3__["WebsocketService"],
-            _user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]])
+            _user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"],
+            _file_service__WEBPACK_IMPORTED_MODULE_5__["UploadService"]])
     ], ChatComponent);
     return ChatComponent;
 }());
 
+// 发送请求漫游消息的结构体
 var Hist = /** @class */ (function () {
     function Hist() {
     }
@@ -376,6 +480,7 @@ var HistList = /** @class */ (function () {
     return HistList;
 }());
 
+//接收 好友列表的结构体
 var ChatItem = /** @class */ (function () {
     function ChatItem() {
     }
@@ -386,6 +491,64 @@ var ChatList = /** @class */ (function () {
     function ChatList() {
     }
     return ChatList;
+}());
+
+// 接收 漫游信息的结构体
+var MsgItem = /** @class */ (function () {
+    function MsgItem() {
+    }
+    return MsgItem;
+}());
+
+var MsgList = /** @class */ (function () {
+    function MsgList() {
+    }
+    return MsgList;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/file.service.ts":
+/*!*********************************!*\
+  !*** ./src/app/file.service.ts ***!
+  \*********************************/
+/*! exports provided: UploadService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UploadService", function() { return UploadService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+var UploadService = /** @class */ (function () {
+    function UploadService(http) {
+        this.http = http;
+    }
+    // file from event.target.files[0]
+    UploadService.prototype.uploadFile = function (url, file) {
+        var filetype = file.type;
+        var formData = new FormData();
+        formData.append('uploadFile', file);
+        formData.append('type', filetype);
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]();
+        var options = {
+            params: params,
+            reportProgress: true,
+        };
+        var req = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpRequest"]('POST', url, formData, options);
+        return this.http.request(req);
+    };
+    UploadService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], UploadService);
+    return UploadService;
 }());
 
 
@@ -1317,12 +1480,17 @@ var UserService = /** @class */ (function () {
 /*!**************************************!*\
   !*** ./src/app/websocket.service.ts ***!
   \**************************************/
-/*! exports provided: WebsocketService */
+/*! exports provided: WebsocketService, FriendItem, FriendList, MessageItem, Session, MessageList */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WebsocketService", function() { return WebsocketService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FriendItem", function() { return FriendItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FriendList", function() { return FriendList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageItem", function() { return MessageItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Session", function() { return Session; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageList", function() { return MessageList; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./protocol/Protocol */ "./src/app/protocol/Protocol.js");
@@ -1338,6 +1506,10 @@ var WebsocketService = /** @class */ (function () {
     function WebsocketService(http) {
         this.http = http;
         this.collection = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message);
+        this.FriendList = new (FriendList);
+        this.FriendList.List = [];
+        this.MessageList = new (MessageList);
+        this.MessageList.List = [];
     }
     WebsocketService.prototype.createSocket = function (url) {
         this.ws = new WebSocket(url);
@@ -1364,6 +1536,7 @@ var WebsocketService = /** @class */ (function () {
         var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/userlist?name" + name;
         return this.http.get(url);
     };
+    // 获取聊天列表，或者是好友聊天列表
     WebsocketService.prototype.getChatList = function () {
         var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/chatlist";
         return this.http.get(url);
@@ -1377,6 +1550,36 @@ var WebsocketService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
     ], WebsocketService);
     return WebsocketService;
+}());
+
+var FriendItem = /** @class */ (function () {
+    function FriendItem() {
+    }
+    return FriendItem;
+}());
+
+var FriendList = /** @class */ (function () {
+    function FriendList() {
+    }
+    return FriendList;
+}());
+
+var MessageItem = /** @class */ (function () {
+    function MessageItem() {
+    }
+    return MessageItem;
+}());
+
+var Session = /** @class */ (function () {
+    function Session() {
+    }
+    return Session;
+}());
+
+var MessageList = /** @class */ (function () {
+    function MessageList() {
+    }
+    return MessageList;
 }());
 
 

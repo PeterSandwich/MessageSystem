@@ -27,12 +27,11 @@ type Client struct {
 	send chan []byte
 }
 
-
 func (c *Client) readPump() {
 	defer func() {
 		e := c.Conn.Close()
 		if e != nil {
-			log.Error("* Client Close wrong: "+e.Error())
+			log.Error("* Client Close wrong: " + e.Error())
 		}
 	}()
 
@@ -43,16 +42,15 @@ func (c *Client) readPump() {
 		_, message, err := c.Conn.ReadMessage()
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
-				log.Error("* read message find websocket had close: "+err.Error())
+				log.Error("* read message find websocket had close: " + err.Error())
 			}
 			break
 		}
-		log.Debug("* websocket reading: ",message)
-		Redis_conn.Publish("rawmessage",message)
+		log.Debug("* websocket reading: ", message)
+		Redis_conn.Publish("rawmessage", message)
 	}
 
 }
-
 
 func (c *Client) writePump() {
 	ticker := time.NewTicker(pingPeriod)
@@ -60,7 +58,7 @@ func (c *Client) writePump() {
 		ticker.Stop()
 		e := c.Conn.Close()
 		if e != nil {
-			log.Error("* Client Close wrong: "+e.Error())
+			log.Error("* Client Close wrong: " + e.Error())
 		}
 	}()
 
@@ -77,9 +75,8 @@ func (c *Client) writePump() {
 
 			err := c.Conn.WriteMessage(websocket.BinaryMessage, message)
 			if err != nil {
-				log.Error("* Client Write wrong: "+err.Error())
+				log.Error("* Client Write wrong: " + err.Error())
 			}
-
 
 		case <-ticker.C:
 			_ = c.Conn.SetWriteDeadline(time.Now().Add(writeWait))
@@ -90,8 +87,7 @@ func (c *Client) writePump() {
 	}
 }
 
-
-func ServeWs( w http.ResponseWriter, r *http.Request) {
+func ServeWs(w http.ResponseWriter, r *http.Request) {
 	upgrader := websocket.Upgrader{
 		CheckOrigin: func(r *http.Request) bool {
 			return true
@@ -99,24 +95,23 @@ func ServeWs( w http.ResponseWriter, r *http.Request) {
 	}
 	uuids, err := r.Cookie("session")
 	if err != nil {
-		log.Error("* [ServeWs] get session in cookie wrong: ",err)
+		log.Error("* [ServeWs] get session in cookie wrong: ", err)
 		return
 	}
 	s, err := Redis_conn.Get(uuids.Value).Result()
 	if err != nil {
-		log.Error("* [ServeWs] get session in Redis_conn wrong: ",err)
+		log.Error("* [ServeWs] get session in Redis_conn wrong: ", err)
 		return
 	}
-	id,_ := strconv.ParseInt(s,10,64)
-
+	id, _ := strconv.ParseInt(s, 10, 64)
 
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
-		log.Error("* WebSocket Upgrader wrong: "+err.Error())
+		log.Error("* WebSocket Upgrader wrong: " + err.Error())
 		return
 	}
 	client := &Client{Conn: conn, send: make(chan []byte, 1024)}
-	Clients[id]=client
+	Clients[id] = client
 	go client.writePump()
 	go client.readPump()
 }

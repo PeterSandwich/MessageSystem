@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
           console.log(data['Uid'])
           this.login.MyUserId = data['Uid']
           this.ws.createSocket(environment.websocketUrl)
+          this.ws.getChatList
         }else{
           alert(data['Errmsg']);
         }
