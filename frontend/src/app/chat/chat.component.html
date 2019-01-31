@@ -23,11 +23,11 @@
       <th class = "him">对方的名字</th>
     </tr>
     <tr class = "avatar2" >
-      <td rowspan="2" class = "message" id = "message">
+      <td rowspan="2" class = "message" >
         <div *ngIf="!isslect" class = "tips">
           暂无新消息
         </div>
-          <div class = "message1">
+          <div class = "message1" id="scrolldIV" >
               <div *ngFor="let item of showmsg" >
                 <!-- <div *ngFor="let mes of item"> -->
                     <div *ngIf="item.To == my_id" id="box">{{item.Content}}</div>
@@ -46,7 +46,7 @@
                   <!-- <td> -->
                           <!-- <nz-avatar nzIcon="user" class = "img" [nzShape]="'square'" nzSrc={{item.img_url}} >
                           </nz-avatar> -->
-                          <nz-badge [nzCount]="5" *ngIf="list!=NULL" class = "point" style = "height: 5px;">
+                          <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point" style = "height: 5px;">
                               <img src = "{{item.Headimg}}" class = "img">
                             </nz-badge>
                           <!-- <img src = {{item.img_url}} style = "height:40px; width:40px; border-radius:50%; overflow:hedden;"> -->
@@ -73,4 +73,9 @@
     </tr>
   </table>
 
+<!--               
+          <span class="notice">请点击“插入一行”按钮，插入最新信息，当出现滚动条时，滚动条将自动保持在底部。</span><br />
 
+          <div id="scrolldIV" style="overflow:auto; height: 100px; width: 400px; border: 1px solid #999;">
+          </div>
+          <input type="button" value="插入一行" (click)="add();"> -->

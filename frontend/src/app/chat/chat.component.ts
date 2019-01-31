@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 // import { MesList, FriendList, FriendItem, MessageList } from './data';
 
 
 import { WebsocketService,FriendList, MessageList, MessageItem} from '../websocket.service';
 // import { WebsocketService,FriendItem,Session,MessageItem } from '../websocket.service';
-import { timer } from 'rxjs';
+import { timer, Observable, fromEvent} from 'rxjs';
 import { UserService } from '../user.service';
 import { Injectable } from '@angular/core';
 import { UploadService } from '../file.service';
@@ -19,7 +19,7 @@ import { Protocol } from '../protocol/Protocol';
 
 
 export class ChatComponent implements OnInit {
-
+  // @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   from_id = 1;
   to_id = 0;
   my_id = this.us.MyUserId;
@@ -39,16 +39,22 @@ export class ChatComponent implements OnInit {
   constructor(
     public ws:WebsocketService, 
     private us:UserService,    // 里面有 我的Id: this.us.MyUserId
-    private upload: UploadService 
+    private upload: UploadService ,
+    private el: ElementRef
     ) { }
-
     ngOnInit(){
       this.friendlist = this.ws.wsFriendList;
       // console.log("friendList=", this.friendlist);
       // console.log("wsfriendlist=", this.ws.wsFriendList);
       this.messagelist = this.ws.wsMessageList;
       // console.log("messagelist = ", this.messagelist);
+      var now = new Date(); //设置滚动条保持在最底部
+      var div = document.getElementById('scrolldIV');
+      now.getTime();
+      div.scrollTop = div.scrollHeight;
     }
+
+
     test2(id: number, isgroup: boolean){
       this.isslect = true;
       this.to_id = id;
@@ -69,6 +75,10 @@ export class ChatComponent implements OnInit {
       }
     }
     sendMsg() {
+      var now = new Date();
+      var div = document.getElementById('scrolldIV');
+      now.getTime();
+      div.scrollTop = div.scrollHeight;
       switch(this.isgroup){
         case false: this.sendC2C();break;
         case true: this.sendToGoup();break;
@@ -89,8 +99,6 @@ export class ChatComponent implements OnInit {
     //   console.log("this.msg = ", msg)
       this.ws.sendMessage(msg)
 
-      // var div = document.getElementById('message'); 
-      // div.scrollTop = div.scrollHeight; 
     this.content = "";
   }
  
@@ -99,7 +107,8 @@ export class ChatComponent implements OnInit {
       msg.type = Protocol.Message.Type.REQUEST;
       msg.cmd = Protocol.Message.CtrlType.NONE;
       msg.from =  this.us.MyUserId;
-      msg.group  = this.to_id;
+      // msg.group  = this.to_id;
+      msg.to = this.to_id;
       msg.content = this.content;
       msg.isgroup = true;
       console.log("isgroup2=", msg.isgroup);
