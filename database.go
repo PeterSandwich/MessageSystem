@@ -225,13 +225,21 @@ func HistrotyMessageDB(from, to int64, isgroup bool) ([]MessageItem, error) {
 		hash_num = int64((from + to) % 4)
 	}
 	table_name := "im_message_recieve_" + strconv.FormatInt(hash_num, 10)
-	rows, err := DB_conn.Query("select id,msg_from,msg_to,content,content_type,arrive_time from "+table_name+
+	var err error
+	var rows *sql.Rows
+	if !isgroup {
+	rows, err = DB_conn.Query("select id,msg_from,msg_to,content,content_type,arrive_time,isgroup from "+table_name+
 		" where isgroup=$3 and ((msg_from=$1 and msg_to=$2) or (msg_from=$2 and msg_to=$1))", from, to, isgroup)
+	}else{
+
+		rows, err = DB_conn.Query("select id,msg_from,msg_to,content,content_type,arrive_time,isgroup from "+table_name+
+			" where isgroup=$2 and msg_to=$1", to, isgroup)
+	}
 	if err != nil {
 		return nil, err
 	}
 	for rows.Next() {
-		err := rows.Scan(&Item.Mid, &Item.From, &Item.To, &Item.Content, &Item.ContentType, &Item.Time)
+		err := rows.Scan(&Item.Mid, &Item.From, &Item.To, &Item.Content, &Item.ContentType, &Item.Time,&Item.Isgroup)
 		Item.Isgroup = isgroup
 		if err != nil {
 			log.Error("* when messagelist  scan: " + err.Error())

@@ -23,14 +23,14 @@
       <th class = "him">对方的名字</th>
     </tr>
     <tr class = "avatar2" >
-      <td rowspan="2" class = "message">
+      <td rowspan="2" class = "message" id = "message">
         <div *ngIf="!isslect" class = "tips">
           暂无新消息
         </div>
           <div class = "message1">
               <div *ngFor="let item of showmsg" >
                 <!-- <div *ngFor="let mes of item"> -->
-                    <div *ngIf="item.To == my_id" id="box">{{item.Content}}</div>
+                    <div *ngIf="item.From != my_id" id="box">{{item.Content}}</div>
                     <div *ngIf="item.From == my_id" id="box1">{{item.Content}}</div>
                 <!-- </div> -->
               </div>
@@ -41,7 +41,7 @@
     <tr>
       <td rowspan="3">
           <div class = "list" >
-            <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID)">
+            <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID, item.Isgroup)">
                 <!-- <tr  > -->
                   <!-- <td> -->
                           <!-- <nz-avatar nzIcon="user" class = "img" [nzShape]="'square'" nzSrc={{item.img_url}} >

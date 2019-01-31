@@ -49,19 +49,35 @@ export class ChatComponent implements OnInit {
       this.messagelist = this.ws.wsMessageList;
       // console.log("messagelist = ", this.messagelist);
     }
-    test2(id: number){
+    test2(id: number, isgroup: boolean){
       this.isslect = true;
       this.to_id = id;
+      this.isgroup = isgroup;
+      var flag : boolean = false;
       for(var i = 0; i < this.messagelist.List.length; i++){
+        console.log(id,this.messagelist.List[i].ID);
         if(id == this.messagelist.List[i].ID){
           this.showmsg = this.messagelist.List[i].MList;
           this.isgroup = this.messagelist.List[i].Isgroup;
+          console.log("this.isgroup1 = ", this.isgroup, "showmsg = ", this.showmsg);
+          console.log("this.my_id) = ", this.my_id);
+          flag = true;
         }
+      }
+      if(!flag){
+          this.showmsg = [];
+          console.log("else");
       }
     }
     sendMsg() {
+      switch(this.isgroup){
+        case false: this.sendC2C();break;
+        case true: this.sendToGoup();break;
+        default: console.log("default");break;
+      }
+    }
+    sendC2C(){
     let msg = new(Protocol.Message)
-
     msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
     msg.cmd = Protocol.Message.CtrlType.NONE;// 消息的功
     if(this.isgroup){
@@ -87,10 +103,9 @@ export class ChatComponent implements OnInit {
       msg.group  = this.to_id;
       msg.content = this.content;
       msg.isgroup = true;
-
-      // msg.time = Date.now();
-      // this.ws.sendMessage(Protocol.Message.encode(msg).finish())
+      console.log("isgroup2=", msg.isgroup);
       this.ws.sendMessage(msg);
+      this.content = "";
     }
 
 
