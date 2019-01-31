@@ -109,12 +109,12 @@ export class WebsocketService {
     return this.http.post(url,JSON.stringify(data))
   }
   FriendList = [
-    {ID:1000021,NAME:"用户/群名1",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 1},
-    {ID:1000022,NAME:"用户/群名2",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 9},
-    {ID:1000023,NAME:"用户/群名3",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 0},
-    {ID:1000024,NAME:"用户/群名4",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 4},
-    {ID:1000025,NAME:"用户/群名5",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 5},
-    {ID:1000026,NAME:"用户/群名6",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 3},
+    {ID:1000021,NAME:"用户/群名1",HEADIMG:"https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg",ISGROUP: false,Counter: 1},
+    {ID:1000022,NAME:"用户/群名2",HEADIMG:"https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg",ISGROUP: false,Counter: 9},
+    {ID:1000023,NAME:"用户/群名3",HEADIMG:"https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg",ISGROUP: false,Counter: 0},
+    {ID:1000024,NAME:"用户/群名4",HEADIMG:"https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg",ISGROUP: false,Counter: 4},
+    {ID:1000025,NAME:"用户/群名5",HEADIMG:"https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg",ISGROUP: false,Counter: 5},
+    {ID:1000026,NAME:"用户/群名6",HEADIMG:"https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg",ISGROUP: false,Counter: 3},
   ];
 
   MessageList = [
