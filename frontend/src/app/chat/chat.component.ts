@@ -49,34 +49,48 @@ export class ChatComponent implements OnInit {
       this.messagelist = this.ws.wsMessageList;
       // console.log("messagelist = ", this.messagelist);
     }
-    test2(id: number){
+    test2(id: number, isgroup: boolean){
       this.isslect = true;
       this.to_id = id;
+      this.isgroup = isgroup;
+      var flag : boolean = false;
       for(var i = 0; i < this.messagelist.List.length; i++){
         if(id == this.messagelist.List[i].ID){
           this.showmsg = this.messagelist.List[i].MList;
           this.isgroup = this.messagelist.List[i].Isgroup;
+          console.log("this.isgroup1 = ", this.isgroup, "showmsg = ", this.showmsg);
+          console.log("this.my_id) = ", this.my_id);
+          flag = true;
         }
+      }
+      if(!flag){
+          this.showmsg = [];
+          console.log("else");
       }
     }
     sendMsg() {
+      switch(this.isgroup){
+        case false: this.sendC2C();break;
+        case true: this.sendToGoup();break;
+        default: console.log("default");break;
+      }
+    }
+    sendC2C(){
     let msg = new(Protocol.Message)
 
     msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
     msg.cmd = Protocol.Message.CtrlType.NONE;// 消息的功
-    if(msg.isgroup){
-      this.sendToGoup();
-    }else{
       msg.from = this.us.MyUserId;              // 消息发送方
       msg.to = this.to_id;                   //消息接收方
       msg.content = this.content;             //消息内容
       msg.contentType = Protocol.Message.ContentType.TEXT;　  //消息类型
-     msg.isgroup = this.isgroup;                       //是不是群组消息
+     msg.isgroup = false;                       //是不是群组消息
      console.log("isgroup=", msg.isgroup);
-      console.log("this.msg = ", msg)
+    //   console.log("this.msg = ", msg)
       this.ws.sendMessage(msg)
 
-    }
+      // var div = document.getElementById('message'); 
+      // div.scrollTop = div.scrollHeight; 
     this.content = "";
   }
  
@@ -89,10 +103,9 @@ export class ChatComponent implements OnInit {
       msg.content = this.content;
       msg.isgroup = true;
       console.log("isgroup2=", msg.isgroup);
-
-      // msg.time = Date.now();
-      // this.ws.sendMessage(Protocol.Message.encode(msg).finish())
       this.ws.sendMessage(msg);
+      this.content = "";
+
     }
 
 
