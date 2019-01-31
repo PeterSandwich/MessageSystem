@@ -37,13 +37,8 @@ func PraseMessage(data []byte) {
 		switch msg.GetCmd() {
 		case pb.Message_NONE: // cmd为空
 			if !msg.GetIsgroup() {
-<<<<<<< HEAD
-				C2C_SendRequest(msg)//单对单
-			}else{
-=======
 				C2C_SendRequest(msg)
 			} else {
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
 				C2G_SendRequest(msg)
 			}
 		case pb.Message_CREATE_GROUP:
@@ -83,12 +78,7 @@ func C2C_SendRequest(in *pb.Message) {
 		log.Error("* C2CCounter wrong: " + err.Error())
 	}
 
-<<<<<<< HEAD
-
-	//处理数据ACK，消息发送成功才会有msgid
-=======
 	//处理数据ACK
->>>>>>> 4c8b915d6c565a214cc56da429dacc3af020c88e
 	log.Debug("* sending ACK")
 	ack := &pb.Message{
 		Type:    pb.Message_ACK,
