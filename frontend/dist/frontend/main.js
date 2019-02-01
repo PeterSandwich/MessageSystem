@@ -361,6 +361,7 @@ var ChatComponent = /** @class */ (function () {
         // msg.group  = this.to_id;
         msg.to = this.to_id;
         msg.content = this.content;
+        msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.ContentType.TEXT;
         msg.isgroup = true;
         console.log("isgroup2=", msg.isgroup);
         this.ws.sendMessage(msg);
@@ -397,17 +398,17 @@ var ChatComponent = /** @class */ (function () {
                     _this.show = true;
                 }
                 console.log("####", _this.us.MyUserId, _this.to_id, _this.filep, _this.dfileurl, filetype);
+                var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message);
+                msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.Type.REQUEST;
+                msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.NONE;
+                msg.from = _this.us.MyUserId;
+                // msg.to = this.to_id;
+                msg.content = _this.filep;
+                // msg.isgroup = true;
+                // console.log("isgroup2=", msg.isgroup);
+                // this.ws.sendMessage(msg);
+                // this.content = "";
             }
-            // let msg = new(Protocol.Message)
-            // msg.type = Protocol.Message.Type.REQUEST;
-            // msg.cmd = Protocol.Message.CtrlType.NONE;
-            // msg.from =  this.us.MyUserId;
-            // msg.to = this.to_id;
-            // msg.content = this.filep;
-            // msg.isgroup = true;
-            // console.log("isgroup2=", msg.isgroup);
-            // this.ws.sendMessage(msg);
-            // this.content = "";
         }, function (err) {
             console.log("Upload Error:", err);
         }, function () {

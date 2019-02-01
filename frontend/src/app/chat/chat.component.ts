@@ -111,6 +111,7 @@ export class ChatComponent implements OnInit {
       // msg.group  = this.to_id;
       msg.to = this.to_id;
       msg.content = this.content;
+      msg.contentType = Protocol.Message.ContentType.TEXT;
       msg.isgroup = true;
       console.log("isgroup2=", msg.isgroup);
       this.ws.sendMessage(msg);
