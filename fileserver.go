@@ -1,7 +1,7 @@
 package main
 
 import (
-	"MessageSystem/feedback"
+	"./feedback"
 	"crypto/md5"
 	"encoding/hex"
 	"errors"

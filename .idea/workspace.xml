@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af9477f7-5fc3-412d-9094-d4f7d45a4e7e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/environments/environment.ts" afterPath="$PROJECT_DIR$/frontend/src/environments/environment.ts" />
-      <change beforePath="$PROJECT_DIR$/main.go" afterPath="$PROJECT_DIR$/main.go" />
+      <change beforePath="$PROJECT_DIR$/fileserver.go" afterPath="$PROJECT_DIR$/fileserver.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,13 +37,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fileserver.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fileserver.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileserver.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="30" column="2" lean-forward="false" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
+            <state relative-caret-position="240">
+              <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
               <folding>
-                <element signature="e#14#239#0" expanded="true" />
                 <element signature="n#!!block;n#imageCompress#0" expanded="false" />
                 <element signature="n#!!block;n#GetFileMD5#0" expanded="false" />
                 <element signature="n#!!block;n#Substr#0" expanded="false" />
@@ -110,7 +107,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.service.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user.service.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/app/user.service.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-301">
@@ -150,9 +147,9 @@
       <list>
         <option value="$PROJECT_DIR$/handler.go" />
         <option value="$PROJECT_DIR$/fileserver/fileserver.go" />
-        <option value="$PROJECT_DIR$/fileserver.go" />
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/frontend/src/environments/environment.ts" />
+        <option value="$PROJECT_DIR$/fileserver.go" />
       </list>
     </option>
   </component>
@@ -196,29 +193,6 @@
             <path>
               <item name="MessageSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="MessageSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MessageSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MessageSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="feedback" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MessageSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MessageSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MessageSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MessageSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MessageSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MessageSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -276,6 +250,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="41" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1475322" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -285,7 +260,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32955536" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -339,7 +314,6 @@
         <state relative-caret-position="600">
           <caret line="30" column="2" lean-forward="false" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
           <folding>
-            <element signature="e#14#239#0" expanded="true" />
             <element signature="n#!!block;n#imageCompress#0" expanded="false" />
             <element signature="n#!!block;n#GetFileMD5#0" expanded="false" />
             <element signature="n#!!block;n#Substr#0" expanded="false" />
@@ -430,7 +404,6 @@
         <state relative-caret-position="2120">
           <caret line="124" column="23" lean-forward="false" selection-start-line="124" selection-start-column="23" selection-end-line="124" selection-end-column="23" />
           <folding>
-            <element signature="e#14#239#0" expanded="true" />
             <element signature="n#!!block;n#imageCompress#0" expanded="false" />
             <element signature="n#!!block;n#GetFileMD5#0" expanded="false" />
             <element signature="n#!!block;n#Substr#0" expanded="false" />
@@ -504,7 +477,6 @@
         <state relative-caret-position="800">
           <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
-            <element signature="e#14#239#0" expanded="true" />
             <element signature="n#!!block;n#imageCompress#0" expanded="false" />
             <element signature="n#!!block;n#GetFileMD5#0" expanded="false" />
             <element signature="n#!!block;n#Substr#0" expanded="false" />
@@ -545,7 +517,6 @@
         <state relative-caret-position="1460">
           <caret line="73" column="5" lean-forward="false" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
           <folding>
-            <element signature="e#14#239#0" expanded="true" />
             <element signature="n#!!block;n#imageCompress#0" expanded="false" />
             <element signature="n#!!block;n#GetFileMD5#0" expanded="false" />
             <element signature="n#!!block;n#Substr#0" expanded="false" />
@@ -707,19 +678,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fileserver.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="30" column="2" lean-forward="false" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
-          <folding>
-            <element signature="e#14#239#0" expanded="true" />
-            <element signature="n#!!block;n#imageCompress#0" expanded="false" />
-            <element signature="n#!!block;n#GetFileMD5#0" expanded="false" />
-            <element signature="n#!!block;n#Substr#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="452">
@@ -764,6 +722,18 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fileserver.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <folding>
+            <element signature="n#!!block;n#imageCompress#0" expanded="false" />
+            <element signature="n#!!block;n#GetFileMD5#0" expanded="false" />
+            <element signature="n#!!block;n#Substr#0" expanded="false" />
           </folding>
         </state>
       </provider>
