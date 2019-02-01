@@ -57,7 +57,7 @@ func main() {
 
 	log.Info("* IM Server Start")
 	go Run()
-	if err := http.ListenAndServe(":9988", nil); err != nil {
+	if err := http.ListenAndServe(":9876", nil); err != nil {
 		log.Panic("* IM Server " + err.Error())
 	}
 }
