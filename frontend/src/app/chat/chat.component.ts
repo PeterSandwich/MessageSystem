@@ -52,7 +52,7 @@ export class ChatComponent implements OnInit {
       this.messagelist = this.ws.wsMessageList;
       // console.log("messagelist = ", this.messagelist);
       console.log("my=", this.us);
-
+      console.log("from_id=", this.my_id);
       var now = new Date(); //设置滚动条保持在最底部
       var div = document.getElementById('scrolldIV');
       now.getTime();
@@ -98,7 +98,7 @@ export class ChatComponent implements OnInit {
       msg.content = this.content;             //消息内容
       msg.contentType = Protocol.Message.ContentType.TEXT;　  //消息类型
      msg.isgroup = false;                       //是不是群组消息
-    //   console.log("this.msg = ", msg)
+      console.log("this.msg && this.to_id = ", msg, this.to_id);
       this.ws.sendMessage(msg)
 
     this.content = "";
@@ -146,6 +146,9 @@ export class ChatComponent implements OnInit {
         this.userlist = data.Ulist;
         this.flag = false;
       })
+      if(this.searchContent == ""){
+        return;
+      }
       if(this.userlist.length == 0) {
         this.flag = true;
       }

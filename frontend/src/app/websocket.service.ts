@@ -114,6 +114,7 @@ export class WebsocketService {
         let item = new(FriendItem);
         item.ID = uid;
         this.us.getUserbyId(item.ID).subscribe((data)=>{
+          console.log("data=", data)
           item.Name = data["Name"];
           item.Headimg = data["Img_url"];
         });
@@ -212,6 +213,7 @@ export class WebsocketService {
   }
   HistoryMessage(info){
     this.getChatMessageList(info).subscribe((data:MsgList) => {
+      console.log("历史消息原数据",data)
       this.wsMessageList.List =[];
       for(let i=0;i<data.List.length;i++){
           let session = new(Session);
@@ -222,7 +224,7 @@ export class WebsocketService {
               session.ID = data.List[i][0].To;
             }
             session.Isgroup = data.List[i][0].Isgroup;
-          }else{break;}
+          }else{continue;}
           console.log("session.ID",session.ID, data.List[i][0].To,data.List[i][0].From)
          for(let j=0;j<data.List[i].length;j++){
           let Item = new(MessageItem);

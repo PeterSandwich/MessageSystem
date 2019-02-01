@@ -300,6 +300,7 @@ var ChatComponent = /** @class */ (function () {
         this.messagelist = this.ws.wsMessageList;
         // console.log("messagelist = ", this.messagelist);
         console.log("my=", this.us);
+        console.log("from_id=", this.my_id);
         var now = new Date(); //设置滚动条保持在最底部
         var div = document.getElementById('scrolldIV');
         now.getTime();
@@ -348,7 +349,7 @@ var ChatComponent = /** @class */ (function () {
         msg.content = this.content; //消息内容
         msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.ContentType.TEXT; //消息类型
         msg.isgroup = false; //是不是群组消息
-        //   console.log("this.msg = ", msg)
+        console.log("this.msg && this.to_id = ", msg, this.to_id);
         this.ws.sendMessage(msg);
         this.content = "";
     };
@@ -1703,6 +1704,7 @@ var WebsocketService = /** @class */ (function () {
         var item = new (FriendItem);
         item.ID = uid;
         this.us.getUserbyId(item.ID).subscribe(function (data) {
+            console.log("data=", data);
             item.Name = data["Name"];
             item.Headimg = data["Img_url"];
         });
@@ -1790,6 +1792,7 @@ var WebsocketService = /** @class */ (function () {
     WebsocketService.prototype.HistoryMessage = function (info) {
         var _this = this;
         this.getChatMessageList(info).subscribe(function (data) {
+            console.log("历史消息原数据", data);
             _this.wsMessageList.List = [];
             for (var i = 0; i < data.List.length; i++) {
                 var session = new (Session);
@@ -1802,7 +1805,7 @@ var WebsocketService = /** @class */ (function () {
                     session.Isgroup = data.List[i][0].Isgroup;
                 }
                 else {
-                    break;
+                    continue;
                 }
                 console.log("session.ID", session.ID, data.List[i][0].To, data.List[i][0].From);
                 for (var j = 0; j < data.List[i].length; j++) {
