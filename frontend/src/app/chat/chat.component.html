@@ -9,7 +9,7 @@
         <label nz-checkbox [(ngModel)]="item.Check">
             <img src = "{{item.Headimg}}" class = "img">
           {{item.Name}}
-      </label>
+          </label>
       </div>
     </div>
   </ng-template>
@@ -23,18 +23,35 @@
 
 <!-- 添加好友 -->
 <nz-modal [(nzVisible)]="isAddFriendVisible" [nzTitle]="modalTitle1" [nzContent]="modalContent1"  (nzOnCancel)="handleAddFriendCancel()">
-  <ng-template #modalTitle1>
-    添加好友
-  </ng-template>
+    <ng-template #modalTitle1>
+      添加好友
+      <nz-input-group [nzSuffix]="suffixIconSearch"> 
+          <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索的用户名" 
+           id = "search" (keyup) = "keyUpSearch($event)">
+        </nz-input-group> 
 
-  <ng-template #modalContent1>
-    <p>添加好友Modal Content</p>
-    <p>添加好友Modal Content</p>
-    <p>添加好友Modal Content</p>
-    <p>添加好友Modal Content</p>
-    <p>添加好友Modal Content</p>
-  </ng-template>
-</nz-modal>
+        <ng-template #suffixIconSearch>
+          <i nz-icon type="search" class = "icon" (click) = "search()"></i>
+        </ng-template>
+    </ng-template>
+  
+    <ng-template #modalContent1>
+            <div *ngIf="!searchContent">
+              正在搜索内容
+            </div>
+            <div *ngIf="searchContent">
+                <div *ngIf="flag;else Show">查无此人</div>
+              <ng-template #Show>
+                  <div *ngFor="let item of userlist">
+                      <img src = "{{item.Img_url}}" class = "img">
+                      {{item.Name}}
+                    <button (click) = "addfriend(item.ID)">添加好友</button>
+                </div>
+              </ng-template>
+
+            </div>
+    </ng-template>
+  </nz-modal>
 
 
 
@@ -44,33 +61,37 @@
       <th class = "avatar" rowspan="2">
         <div>
             <img src = {{my_img_url}} style = "height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;">
-            <div style = "left: 90px; top:30px; position: absolute">{{my_name}}</div>
-            <div style = "left:90px; top:55px; position: absolute; color:#999999">个性签名</div>
+            <div>
+                <div style = "left: 90px; top:30px; position: absolute">{{my_name}}</div>
+                <div style = "left:90px; top:55px; position: absolute; color:#999999">个性签名</div>
+            </div>
+            
+
+           
         </div>
 
 
         <div class = "search">
-          <nz-input-group [nzSuffix]="suffixIconSearch"> 
-            <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索内容" 
-            (click)="clickMe()" (blur)="outMe()" id = "search" (keyup) = "keyUpSearch($event)">
+          <nz-input-group [nzSuffix]="suffixIconSearch1"> 
+            <input type="text" [(ngModel)]="searchFriend" nz-input placeholder="输入搜索内容" 
+              id = "search">
           </nz-input-group> 
 
-          <ng-template #suffixIconSearch>
-            <i nz-icon type="search" class = "icon" (click) = "search()"></i>
+          <ng-template #suffixIconSearch1>
+            <i nz-icon type="search" class = "icon"></i>
           </ng-template>
 
           <div class = "smallContainer">
             <div *ngIf="isVisible">
-              <div *ngIf="!searchContent">
+              <div *ngIf="!searchFriend">
                 正在搜索内容
               </div>
-              <div *ngIf="searchContent">
+              <div *ngIf="searchFriend">
                   <div *ngIf="flag;else Show">查无此人</div>
                 <ng-template #Show>
                     <div *ngFor="let item of userlist">
                         <img src = "{{item.Img_url}}" class = "img">
                         {{item.Name}}
-                      <button (click) = "addfriend(item.ID)">添加好友</button>
                   </div>
                 </ng-template>
 
@@ -78,10 +99,26 @@
             </div>
           </div>
           <div>
-
-            <button class = "grad">聊天</button>|<button class = "grad">通讯录</button>|<button class = "grad">添加</button>
-          </div>    
-        </div>
+  
+            </div>
+            <button class = "grad">聊天</button>|<button class = "grad">通讯录</button>| 
+            <!-- <div> -->
+              <nz-dropdown class = "dropdown" >
+                  <a nz-dropdown>
+                      添加 <i nz-icon type="down"></i>
+                  </a>
+                  <ul nz-menu nzSelectable>
+                    <li nz-menu-item (click)="showAddFriendModal()">
+                      <a>添加好友</a>
+                    </li>
+                    <li nz-menu-item (click) = "showAddGroupModal()">
+                      <a>创建群聊</a>
+                    </li>
+                  </ul>
+                </nz-dropdown>
+  
+              <!-- </div> -->
+          </div>  
 
 
       </th>
@@ -94,7 +131,6 @@
         </div>
         <div class = "message1" id="scrolldIV" >
           <div *ngFor="let item of showmsg" >
-                <!-- <div *ngFor="let mes of item"> -->
                     <div *ngIf="item.From != my_id" id="box">
                       <div *ngIf="item.ContentType == 0">{{item.Content}}</div>
                       <div *ngIf="item.ContentType == 1">     
@@ -123,10 +159,10 @@
       </td>
     </tr>
     <tr>
-      <td rowspan="3">
+      <td rowspan="2">
         <div class = "list" >
           <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID,item.Name, item.Headimg, item.Isgroup)">
-            <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point" style = "height: 5px;">
+            <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point">
               <img src = "{{item.Headimg}}" class = "img">
             </nz-badge>
             {{item.Name}}
@@ -143,15 +179,15 @@
           <i nz-icon type="picture" theme="outline" style="font-size: 25px" class = "icon"></i>        -->
           <input id="upfile" type="file" style="display: none;" (change)="selectFile($event)" accept=".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt">
           <div class="action-box">
-            <button class="upload-btn" onclick="upfile.click()"> 点击上传
+            <button class="upload-btn" (click)="upfile.click()"> 点击上传
             </button>
           </div>
         </div>
         <textarea class = "textarea" [(ngModel)] = "content"></textarea>
         <button class = "send" nz-button nzType="primary" (click) = "sendMsg()" >发送</button>
         
-<br>
-<br>
+<!-- <br>
+<br> -->
 <div>
 
   <div *ngIf="show">
@@ -166,8 +202,8 @@
     </div>
   </div>
 </div>
-<br>
-<br>
+<!-- <br>
+<br> -->
 
 
 
@@ -175,13 +211,4 @@
       </div>
     </tr>
   </table>
-
-
-  <button nz-button nzType="primary" (click)="showAddGroupModal()">
-    <span>创建群</span>
-  </button>
-  <button nz-button nzType="primary" (click)="showAddFriendModal()">
-    <span>添加好友</span>
-  </button>
-
 

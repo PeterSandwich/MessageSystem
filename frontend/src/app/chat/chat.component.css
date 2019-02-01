@@ -31,7 +31,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: １;
+  z-index: 1;
   border-color: #616060;
   /* border: 2px;
   color: #000000 */
@@ -41,6 +41,7 @@
   margin-top: 15px;
   margin-left: 5px;
   width: 240px;
+  height: 30px;
 }
 .icon{
   cursor: pointer;
@@ -48,7 +49,7 @@
 .list{
   background-color: #7a7a7a;
   width: 250px;
-  height: 600px;
+  height: 590px;
   /* color: white; */
 
   /* overflow-y:scroll;  纵向滚动条始终显示 */
@@ -225,11 +226,12 @@
   vertical-align: middle;;
 }
 .grad{
-  width: 75px;
+  width: 80px;
   background-color:transparent;
   border: 0px;
   outline: none;
   cursor: pointer;
+  height: 25px;
 }
 .point{
   /* width: 2px; */
@@ -242,7 +244,7 @@
   background-color: #FFFFFF;
   position:absolute;
   text-align: center;
-  z-index: 5000;
+  z-index: 50;
 }
 .headportrait{
   position: relative;
@@ -276,13 +278,14 @@ background-color: #337ab7;
 color: #fff;
 border-radius: 2px;
 border: none;
-padding: .5rem 1.3rem;
+/* padding: .5rem 1.3rem; */
 cursor: pointer;
+height: 30px;
 }
 
 .picture {
 width: 7rem;
-height: 7rem;
+/* height: 7rem; */
 margin-right: 1rem;
 background-size: cover;
 }
@@ -294,4 +297,13 @@ margin-left: 1rem;
 color: #909090;
 font-size: 1.7rem;
 margin-bottom: 1.5rem;
+}
+
+.dropdown{
+  z-index: 100;
+  position:absolute;
+  margin-left: 16px;
+  background-position-y: 230px;  
+  width: 80px;
+  height: 25px;
 }

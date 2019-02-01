@@ -36,9 +36,14 @@ export class ChatComponent implements OnInit {
   list = [];
   showmsg : MessageItem[];
   searchContent : string = "";
+  searchFriend : string = "";
+  groupName : string = "";
+
+  idList : number[] = null;
   isVisible : boolean = false;
   isslect: boolean;
   isgroup: boolean = false;
+
   friendlist : FriendList;
   userlist : Userlist[];
   messagelist : MessageList;
@@ -50,11 +55,21 @@ export class ChatComponent implements OnInit {
     private us:UserService,    // 里面有 我的Id: this.us.MyUserId
     private upload: UploadService ,
     private el: ElementRef
-    ) { 
+    ) {
       this.addGroupUserList=new(AddGroupUserlist);
       this.addGroupUserList.AGlist = [];
+      this.userlist = [];
+     }
+
+
+    ngAfterViewInit() {
+      // this.elementRef.nativeElement.focus();
+      this.el.nativeElement.focus();
     }
+    
     ngOnInit(){
+      this.friendlist = this.ws.wsFriendList;
+      console.log("friendList=", this.friendlist);
       this.friendlist = this.ws.wsFriendList;
       
       // console.log("friendList=", this.friendlist);
@@ -79,6 +94,11 @@ export class ChatComponent implements OnInit {
       this.to_img = img;
       this.isgroup = isgroup;
       var flag : boolean = false;
+      for(let i = 0; i < this.friendlist.List.length; i++){
+        if(id == this.friendlist.List[i].ID){
+          this.friendlist.List[i].Counter = 0;
+        }
+      }
       for(var i = 0; i < this.messagelist.List.length; i++){
         if(id == this.messagelist.List[i].ID){
           this.showmsg = this.messagelist.List[i].MList;
@@ -130,6 +150,8 @@ export class ChatComponent implements OnInit {
 
     }
 
+    
+
     clickMe(){
         var btn = document.getElementById("search");
         btn.focus();
@@ -142,7 +164,9 @@ export class ChatComponent implements OnInit {
       this.isVisible = document.hasFocus();
       this.userlist = [];
     }
-
+    cancelEditingTodo(){
+      this.isVisible = false;
+    }
     flag : boolean;
     keyUpSearch(content: string){
       // this.ws.getUserList(this.searchContent).subscribe(data => {
