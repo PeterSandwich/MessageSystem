@@ -49,9 +49,16 @@ export class ChatComponent implements OnInit {
     private upload: UploadService ,
     private el: ElementRef
     ) { }
+
+
+    ngAfterViewInit() {
+      // this.elementRef.nativeElement.focus();
+      this.el.nativeElement.focus();
+    }
+
     ngOnInit(){
       this.friendlist = this.ws.wsFriendList;
-      // console.log("friendList=", this.friendlist);
+      console.log("friendList=", this.friendlist);
       // console.log("wsfriendlist=", this.ws.wsFriendList);
       this.messagelist = this.ws.wsMessageList;
       // console.log("messagelist = ", this.messagelist);
@@ -72,6 +79,11 @@ export class ChatComponent implements OnInit {
       this.to_img = img;
       this.isgroup = isgroup;
       var flag : boolean = false;
+      for(let i = 0; i < this.friendlist.List.length; i++){
+        if(id == this.friendlist.List[i].ID){
+          this.friendlist.List[i].Counter = 0;
+        }
+      }
       for(var i = 0; i < this.messagelist.List.length; i++){
         if(id == this.messagelist.List[i].ID){
           this.showmsg = this.messagelist.List[i].MList;
@@ -123,19 +135,23 @@ export class ChatComponent implements OnInit {
 
     }
 
-    clickMe(){
-        var btn = document.getElementById("search");
-        btn.focus();
-        this.isVisible = document.hasFocus();
-        this.userlist = [];
-    }
-    outMe(){
-      var btn = document.getElementById("search");
-      btn.blur();
-      this.isVisible = document.hasFocus();
-      this.userlist = [];
-    }
+    
 
+    // clickMe(){
+    //     var btn = document.getElementById("search");
+    //     btn.focus();
+    //     this.isVisible = document.hasFocus();
+    //     this.userlist = [];
+    // }
+    // outMe(){
+    //   var btn = document.getElementById("search");
+    //   btn.blur();
+    //   this.isVisible = document.hasFocus();
+    //   this.userlist = [];
+    // }
+    cancelEditingTodo(){
+      this.isVisible = false;
+    }
     flag : boolean;
     keyUpSearch(content: string){
       // this.ws.getUserList(this.searchContent).subscribe(data => {
@@ -212,7 +228,7 @@ export class ChatComponent implements OnInit {
              msg.type = Protocol.Message.Type.REQUEST;
              msg.cmd = Protocol.Message.CtrlType.NONE;
              msg.from =  this.us.MyUserId;
-             msg.to = 100001;
+             msg.to = this.to_id;
              msg.content = this.dfileurl;
              msg.contentType = filetype; 
              msg.isgroup = false;

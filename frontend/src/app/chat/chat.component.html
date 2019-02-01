@@ -12,8 +12,10 @@
 
         <div class = "search">
           <nz-input-group [nzSuffix]="suffixIconSearch"> 
-            <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索内容" 
-            (click)="clickMe()" (blur)="outMe()" id = "search" (keyup) = "keyUpSearch($event)">
+            <!-- <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索内容" 
+            (click)="clickMe()" (blur)="outMe()" id = "search" (keyup) = "keyUpSearch($event)"> -->
+            <input type="text" [value] = "searchContent" nz-input placeholder="输入搜索内容" 
+            (blur)="cancelEditingTodo()" app-chat id = "search" (keyup.enter) = "keyUpSearch($event)">
           </nz-input-group> 
 
           <ng-template #suffixIconSearch>

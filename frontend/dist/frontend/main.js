@@ -240,7 +240,7 @@ module.exports = "/* :host ::ng-deep .demo-infinite-container {\n    height: 300
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container\">\n  <table >\n    <tr>\n      <th class = \"avatar\" rowspan=\"2\">\n        <div>\n            <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n            <div style = \"left: 90px; top:30px; position: absolute\">{{my_name}}</div>\n            <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n        </div>\n\n\n        <div class = \"search\">\n          <nz-input-group [nzSuffix]=\"suffixIconSearch\"> \n            <input type=\"text\" [(ngModel)]=\"searchContent\" nz-input placeholder=\"输入搜索内容\" \n            (click)=\"clickMe()\" (blur)=\"outMe()\" id = \"search\" (keyup) = \"keyUpSearch($event)\">\n          </nz-input-group> \n\n          <ng-template #suffixIconSearch>\n            <i nz-icon type=\"search\" class = \"icon\" (click) = \"search()\"></i>\n          </ng-template>\n\n          <div class = \"smallContainer\">\n            <div *ngIf=\"isVisible\">\n              <div *ngIf=\"!searchContent\">\n                正在搜索内容\n              </div>\n              <div *ngIf=\"searchContent\">\n                  <div *ngIf=\"flag;else Show\">查无此人</div>\n                <ng-template #Show>\n                    <div *ngFor=\"let item of userlist\">\n                        <img src = \"{{item.Img_url}}\" class = \"img\">\n                        {{item.Name}}\n                      <button (click) = \"addfriend(item.ID)\">添加好友</button>\n                  </div>\n                </ng-template>\n\n              </div>\n            </div>\n          </div>\n          <div>\n\n            <button class = \"grad\">聊天</button>|<button class = \"grad\">通讯录</button>|<button class = \"grad\">添加</button>\n          </div>    \n        </div>\n\n\n      </th>\n      <th class = \"him\">{{to_name}}</th>\n    </tr>\n    <tr class = \"avatar2\" >\n      <td rowspan=\"2\" class = \"message\" >\n        <div *ngIf=\"!isslect\" class = \"tips\">\n          暂无新消息\n        </div>\n        <div class = \"message1\" id=\"scrolldIV\" >\n          <div *ngFor=\"let item of showmsg\" >\n                <!-- <div *ngFor=\"let mes of item\"> -->\n                    <div *ngIf=\"item.From != my_id\" id=\"box\">\n                      <div *ngIf=\"item.ContentType == 0\">{{item.Content}}</div>\n                      <div *ngIf=\"item.ContentType == 1\">     \n                         <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.Content+ ')'}\"></div>\n                      </div>\n                      <div *ngIf=\"item.ContentType == 2\">\n                          <img src=\"/files/uknow.png\" class=\"picture\" >\n                          <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                          </button>\n                      </div>\n                    </div>\n                    <div *ngIf=\"item.From == my_id\" id=\"box1\">\n                        <div *ngIf=\"item.ContentType != 1 && item.ContentType != 2\">{{item.Content}}</div>\n                        <div *ngIf=\"item.ContentType == 1\">     \n                           <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.Content+ ')'}\"></div>\n                        </div>\n                        <div *ngIf=\"item.ContentType == 2\">\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\n                            <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                            </button>\n                        </div>\n                    </div>\n                <!-- </div> -->\n          </div>\n        </div>\n      </td>\n    </tr>\n    <tr>\n      <td rowspan=\"3\">\n        <div class = \"list\" >\n          <div class = \"item\" *ngFor=\"let item of friendlist.List\" (click) = \"test2(item.ID,item.Name, item.Headimg, item.Isgroup)\">\n            <nz-badge [nzCount]=\"item.Counter\" *ngIf=\"list!=NULL\" class = \"point\" style = \"height: 5px;\">\n              <img src = \"{{item.Headimg}}\" class = \"img\">\n            </nz-badge>\n            {{item.Name}}\n          </div>\n        </div>\n      </td>\n    </tr>\n    <tr class = \"inputmes\">\n      <!-- <td > -->\n      <div></div>\n        <div  *ngIf=\"isslect\">\n        <div class = \"tool\">\n          <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n          <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\n          <input id=\"upfile\" type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\" accept=\".pdf,.doc,.docx,.txt,.jpg,.zip,.jpeg\">\n          <div class=\"action-box\">\n            <button class=\"upload-btn\" onclick=\"upfile.click()\"> 点击上传\n            </button>\n          </div>\n        </div>\n        <textarea class = \"textarea\" [(ngModel)] = \"content\"></textarea>\n        <button class = \"send\" nz-button nzType=\"primary\" (click) = \"sendMsg()\" >发送</button>\n        \n<br>\n<br>\n<div>\n\n  <div *ngIf=\"show\">\n    <div style=\"display: -webkit-box;\">\n      <div class=\"hint\">\n        {{filename}}\n      </div>\n      <div class=\"action-box\">\n        <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n<br>\n<br>\n\n\n\n\n      </div>\n    </tr>\n  </table>\n\n"
+module.exports = "\n<div class=\"container\">\n  <table >\n    <tr>\n      <th class = \"avatar\" rowspan=\"2\">\n        <div>\n            <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n            <div style = \"left: 90px; top:30px; position: absolute\">{{my_name}}</div>\n            <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n        </div>\n\n\n        <div class = \"search\">\n          <nz-input-group [nzSuffix]=\"suffixIconSearch\"> \n            <!-- <input type=\"text\" [(ngModel)]=\"searchContent\" nz-input placeholder=\"输入搜索内容\" \n            (click)=\"clickMe()\" (blur)=\"outMe()\" id = \"search\" (keyup) = \"keyUpSearch($event)\"> -->\n            <input type=\"text\" [value] = \"searchContent\" nz-input placeholder=\"输入搜索内容\" \n            (blur)=\"cancelEditingTodo()\" app-chat id = \"search\" (keyup.enter) = \"keyUpSearch($event)\">\n          </nz-input-group> \n\n          <ng-template #suffixIconSearch>\n            <i nz-icon type=\"search\" class = \"icon\" (click) = \"search()\"></i>\n          </ng-template>\n\n          <div class = \"smallContainer\">\n            <div *ngIf=\"isVisible\">\n              <div *ngIf=\"!searchContent\">\n                正在搜索内容\n              </div>\n              <div *ngIf=\"searchContent\">\n                  <div *ngIf=\"flag;else Show\">查无此人</div>\n                <ng-template #Show>\n                    <div *ngFor=\"let item of userlist\">\n                        <img src = \"{{item.Img_url}}\" class = \"img\">\n                        {{item.Name}}\n                      <button (click) = \"addfriend(item.ID)\">添加好友</button>\n                  </div>\n                </ng-template>\n\n              </div>\n            </div>\n          </div>\n          <div>\n\n            <button class = \"grad\">聊天</button>|<button class = \"grad\">通讯录</button>|<button class = \"grad\">添加</button>\n          </div>    \n        </div>\n\n\n      </th>\n      <th class = \"him\">{{to_name}}</th>\n    </tr>\n    <tr class = \"avatar2\" >\n      <td rowspan=\"2\" class = \"message\" >\n        <div *ngIf=\"!isslect\" class = \"tips\">\n          暂无新消息\n        </div>\n        <div class = \"message1\" id=\"scrolldIV\" >\n          <div *ngFor=\"let item of showmsg\" >\n                <!-- <div *ngFor=\"let mes of item\"> -->\n                    <div *ngIf=\"item.From != my_id\" id=\"box\">\n                      <div *ngIf=\"item.ContentType == 0\">{{item.Content}}</div>\n                      <div *ngIf=\"item.ContentType == 1\">     \n                         <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.Content+ ')'}\"></div>\n                      </div>\n                      <div *ngIf=\"item.ContentType == 2\">\n                          <img src=\"/files/uknow.png\" class=\"picture\" >\n                          <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                          </button>\n                      </div>\n                    </div>\n                    <div *ngIf=\"item.From == my_id\" id=\"box1\">\n                        <div *ngIf=\"item.ContentType != 1 && item.ContentType != 2\">{{item.Content}}</div>\n                        <div *ngIf=\"item.ContentType == 1\">     \n                           <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.Content+ ')'}\"></div>\n                        </div>\n                        <div *ngIf=\"item.ContentType == 2\">\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\n                            <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                            </button>\n                        </div>\n                    </div>\n                <!-- </div> -->\n          </div>\n        </div>\n      </td>\n    </tr>\n    <tr>\n      <td rowspan=\"3\">\n        <div class = \"list\" >\n          <div class = \"item\" *ngFor=\"let item of friendlist.List\" (click) = \"test2(item.ID,item.Name, item.Headimg, item.Isgroup)\">\n            <nz-badge [nzCount]=\"item.Counter\" *ngIf=\"list!=NULL\" class = \"point\" style = \"height: 5px;\">\n              <img src = \"{{item.Headimg}}\" class = \"img\">\n            </nz-badge>\n            {{item.Name}}\n          </div>\n        </div>\n      </td>\n    </tr>\n    <tr class = \"inputmes\">\n      <!-- <td > -->\n      <div></div>\n        <div  *ngIf=\"isslect\">\n        <div class = \"tool\">\n          <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n          <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\n          <input id=\"upfile\" type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\" accept=\".pdf,.doc,.docx,.txt,.jpg,.zip,.jpeg\">\n          <div class=\"action-box\">\n            <button class=\"upload-btn\" onclick=\"upfile.click()\"> 点击上传\n            </button>\n          </div>\n        </div>\n        <textarea class = \"textarea\" [(ngModel)] = \"content\"></textarea>\n        <button class = \"send\" nz-button nzType=\"primary\" (click) = \"sendMsg()\" >发送</button>\n        \n<br>\n<br>\n<div>\n\n  <div *ngIf=\"show\">\n    <div style=\"display: -webkit-box;\">\n      <div class=\"hint\">\n        {{filename}}\n      </div>\n      <div class=\"action-box\">\n        <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n<br>\n<br>\n\n\n\n\n      </div>\n    </tr>\n  </table>\n\n"
 
 /***/ }),
 
@@ -296,9 +296,13 @@ var ChatComponent = /** @class */ (function () {
         this.dfileurl = "http://localhost:9988/upload/c4fb3e1e6b7e.jpg";
         this.filep = "";
     }
+    ChatComponent.prototype.ngAfterViewInit = function () {
+        // this.elementRef.nativeElement.focus();
+        this.el.nativeElement.focus();
+    };
     ChatComponent.prototype.ngOnInit = function () {
         this.friendlist = this.ws.wsFriendList;
-        // console.log("friendList=", this.friendlist);
+        console.log("friendList=", this.friendlist);
         // console.log("wsfriendlist=", this.ws.wsFriendList);
         this.messagelist = this.ws.wsMessageList;
         // console.log("messagelist = ", this.messagelist);
@@ -317,6 +321,11 @@ var ChatComponent = /** @class */ (function () {
         this.to_img = img;
         this.isgroup = isgroup;
         var flag = false;
+        for (var i_1 = 0; i_1 < this.friendlist.List.length; i_1++) {
+            if (id == this.friendlist.List[i_1].ID) {
+                this.friendlist.List[i_1].Counter = 0;
+            }
+        }
         for (var i = 0; i < this.messagelist.List.length; i++) {
             if (id == this.messagelist.List[i].ID) {
                 this.showmsg = this.messagelist.List[i].MList;
@@ -363,7 +372,6 @@ var ChatComponent = /** @class */ (function () {
         msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.Type.REQUEST;
         msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.NONE;
         msg.from = this.us.MyUserId;
-        // msg.group  = this.to_id;
         msg.to = this.to_id;
         msg.content = this.content;
         msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.ContentType.TEXT;
@@ -372,17 +380,20 @@ var ChatComponent = /** @class */ (function () {
         this.ws.sendMessage(msg);
         this.content = "";
     };
-    ChatComponent.prototype.clickMe = function () {
-        var btn = document.getElementById("search");
-        btn.focus();
-        this.isVisible = document.hasFocus();
-        this.userlist = [];
-    };
-    ChatComponent.prototype.outMe = function () {
-        var btn = document.getElementById("search");
-        btn.blur();
-        this.isVisible = document.hasFocus();
-        this.userlist = [];
+    // clickMe(){
+    //     var btn = document.getElementById("search");
+    //     btn.focus();
+    //     this.isVisible = document.hasFocus();
+    //     this.userlist = [];
+    // }
+    // outMe(){
+    //   var btn = document.getElementById("search");
+    //   btn.blur();
+    //   this.isVisible = document.hasFocus();
+    //   this.userlist = [];
+    // }
+    ChatComponent.prototype.cancelEditingTodo = function () {
+        this.isVisible = false;
     };
     ChatComponent.prototype.keyUpSearch = function (content) {
         // this.ws.getUserList(this.searchContent).subscribe(data => {
@@ -448,7 +459,7 @@ var ChatComponent = /** @class */ (function () {
                 msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.Type.REQUEST;
                 msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.NONE;
                 msg.from = _this.us.MyUserId;
-                msg.to = 100001;
+                msg.to = _this.to_id;
                 msg.content = _this.dfileurl;
                 msg.contentType = filetype;
                 msg.isgroup = false;
@@ -1581,7 +1592,7 @@ var UserService = /** @class */ (function () {
 /*!**************************************!*\
   !*** ./src/app/websocket.service.ts ***!
   \**************************************/
-/*! exports provided: WebsocketService, FriendItem, FriendList, MessageItem, Session, MessageList, Hist, HistList, ChatItem, ChatList, MsgItem, MsgList, UserItem, Uerlist */
+/*! exports provided: WebsocketService, FriendItem, FriendList, MessageItem, Session, MessageList, Hist, HistList, ChatItem, ChatList, MsgItem, MsgList, UserItem, Userlist */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1599,7 +1610,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgItem", function() { return MsgItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgList", function() { return MsgList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserItem", function() { return UserItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Uerlist", function() { return Uerlist; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Userlist", function() { return Userlist; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./protocol/Protocol */ "./src/app/protocol/Protocol.js");
@@ -1622,7 +1633,7 @@ var WebsocketService = /** @class */ (function () {
         this.wsFriendList.List = [];
         this.wsMessageList = new (MessageList);
         this.wsMessageList.List = [];
-        this.wsUserList = new (Uerlist);
+        this.wsUserList = new (Userlist);
         this.wsUserList.Ulist = [];
     }
     // 建立websocket链接
@@ -1941,10 +1952,10 @@ var UserItem = /** @class */ (function () {
     return UserItem;
 }());
 
-var Uerlist = /** @class */ (function () {
-    function Uerlist() {
+var Userlist = /** @class */ (function () {
+    function Userlist() {
     }
-    return Uerlist;
+    return Userlist;
 }());
 
 /////////////////////////////////////////////////////////////////
