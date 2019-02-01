@@ -134,7 +134,7 @@ export class WebsocketService {
     item.ID = gid;
     this.us.getGroupById(item.ID).subscribe((data)=>{
       item.Name = data["Name"];
-      item.Headimg = data["Heading"];
+      item.Headimg = data["Headimg"];
     });
     item.Counter = 1;
     item.Isgroup = true;

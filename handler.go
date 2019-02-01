@@ -285,7 +285,7 @@ func GetGroup(w http.ResponseWriter, r *http.Request) {
 	gid,_ :=strconv.ParseInt(r.Form.Get("id"),10,64)
 	item, err := GetGroupById(gid)
 	if err!= nil {
-		log.Error("* Get group by id wrong",err.Error())
+		log.Error("* Get group by id wrong",err.Error(),"gid=",gid)
 		return
 	}
 	bytes, err := json.Marshal(item)

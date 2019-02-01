@@ -4,19 +4,17 @@
     创建群
   </ng-template>
   <ng-template #modalContent>
-    <div class = "list1" >
-      <div class = "item" *ngFor="let item of friendlist.List" >
-        <nz-checkbox-group >
-          <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point" style = "height: 5px;" (ngModelChange)="log(item.if)">
+    <div class = "list" >
+      <div class = "item" *ngFor="let item of addGroupUserList.AGlist" >
+        <label nz-checkbox [(ngModel)]="item.Check">
             <img src = "{{item.Headimg}}" class = "img">
-          </nz-badge>
           {{item.Name}}
-      </nz-checkbox-group>
+          </label>
       </div>
     </div>
   </ng-template>
   <ng-template #modalFooter>
-    <input nz-input placeholder="群名字"[(ngModel)]="groupName">
+    <input nz-input placeholder="群名字"[(ngModel)]="GroupName">
     <button nz-button nzType="default" (click)="handleAddGroupCancel()">取消</button>
     <button nz-button nzType="primary" (click)="handleAddGroupOk()" [nzLoading]="isConfirmLoading">创建</button>
   </ng-template>
