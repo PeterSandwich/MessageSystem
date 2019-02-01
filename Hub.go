@@ -297,6 +297,7 @@ func C2C_MsgBack(in *pb.Message) {
 		Type:    pb.Message_ACK,
 		Cmd:     pb.Message_MSG_BACK,
 		From:    in.GetFrom(),
+		To: 	 in.GetTo(),
 		Time:    in.GetTime(),
 		Msgid:   in.GetMsgid(),
 		Isgroup: false,
@@ -372,7 +373,7 @@ func C2G_MsgBack(in *pb.Message) {
 			Cmd:     pb.Message_MSG_BACK,
 			Msgid:   in.Msgid,
 			Content: in.GetContent(),
-			To:in.GetTo(),
+			To:			in.GetTo(),
 			Time:    in.GetTime(),
 			Isgroup: true,
 		}
