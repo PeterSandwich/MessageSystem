@@ -34,7 +34,7 @@ func C2CStore(in *pb.Message) (int64, error) {
 	hash_num := int((in.GetFrom() + in.GetTo()) % 4)
 	table_name := "im_message_recieve_" + strconv.Itoa(hash_num)
 	err := DB_conn.QueryRow("insert into "+table_name+"(msg_from,msg_to,content,content_type,arrive_time,isgroup) values ($1,$2,$3,$4,$5,$6) RETURNING id",
-		in.GetFrom(), in.GetTo(), in.GetContent(), 1, in.Time, false).Scan(&msg_id)
+		in.GetFrom(), in.GetTo(), in.GetContent(), in.ContentType, in.Time, false).Scan(&msg_id)
 	if err != nil {
 		return 0, err
 	}
@@ -58,7 +58,7 @@ func C2GStore(in *pb.Message) (int64, error) {
 	hash_num := int(in.GetTo() % 4)
 	table_name := "im_message_recieve_" + strconv.Itoa(hash_num)
 	err := DB_conn.QueryRow("insert into "+table_name+"(msg_from,msg_to,content,content_type,arrive_time,isgroup) values ($1,$2,$3,$4,$5,$6) RETURNING id",
-		in.GetFrom(), in.GetTo(), in.GetContent(), 1, in.Time, true).Scan(&msg_id)
+		in.GetFrom(), in.GetTo(), in.GetContent(), in.ContentType, in.Time, true).Scan(&msg_id)
 	if err != nil {
 		return 0, err
 	}

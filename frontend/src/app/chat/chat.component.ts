@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@ang
 // import { MesList, FriendList, FriendItem, MessageList } from './data';
 
 
-import { WebsocketService,FriendList, Uerlist, MessageList, MessageItem} from '../websocket.service';
+import { WebsocketService,FriendList, Userlist, MessageList, MessageItem} from '../websocket.service';
 // import { WebsocketService,FriendItem,Session,MessageItem } from '../websocket.service';
 import { timer, Observable, fromEvent} from 'rxjs';
 import { UserService } from '../user.service';
@@ -40,7 +40,7 @@ export class ChatComponent implements OnInit {
   isslect: boolean;
   isgroup: boolean = false;
   friendlist : FriendList;
-  userlist : Uerlist[];
+  userlist : Userlist[];
   messagelist : MessageList;
 
   constructor(
@@ -95,19 +95,17 @@ export class ChatComponent implements OnInit {
       }
     }
     sendC2C(){
-    let msg = new(Protocol.Message)
-
-    msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
-    msg.cmd = Protocol.Message.CtrlType.NONE;// 消息的功
+      let msg = new(Protocol.Message)
+      msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
+      msg.cmd = Protocol.Message.CtrlType.NONE;// 消息的功
       msg.from = this.us.MyUserId;              // 消息发送方
       msg.to = this.to_id;                   //消息接收方
       msg.content = this.content;             //消息内容
       msg.contentType = Protocol.Message.ContentType.TEXT;　  //消息类型
-     msg.isgroup = false;                       //是不是群组消息
+      msg.isgroup = false;                       //是不是群组消息
       console.log("this.msg && this.to_id = ", msg, this.to_id);
-      this.ws.sendMessage(msg)
-
-    this.content = "";
+      this.ws.sendMessage(msg);
+      this.content = "";
   }
  
   sendToGoup() {
@@ -115,7 +113,6 @@ export class ChatComponent implements OnInit {
       msg.type = Protocol.Message.Type.REQUEST;
       msg.cmd = Protocol.Message.CtrlType.NONE;
       msg.from =  this.us.MyUserId;
-      // msg.group  = this.to_id;
       msg.to = this.to_id;
       msg.content = this.content;
       msg.contentType = Protocol.Message.ContentType.TEXT;
