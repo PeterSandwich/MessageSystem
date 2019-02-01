@@ -8,17 +8,43 @@
             <div style = "left: 90px; top:30px; position: absolute">名字</div>
             <div style = "left:90px; top:55px; position: absolute; color:#999999">个性签名</div>
         </div>
+
+
         <div class = "search">
-            <nz-input-group [nzSuffix]="suffixIconSearch">
-              <input type="text" nz-input placeholder="输入搜索内容">
-            </nz-input-group>
-            <ng-template #suffixIconSearch>
-            <i nz-icon type="search"></i>
-              </ng-template>
-              <div>
-                  <button class = "grad">聊天</button>|<button class = "grad">通讯录</button>|<button class = "grad">添加</button>
-              </div>    
+          <nz-input-group [nzSuffix]="suffixIconSearch"> 
+            <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索内容" 
+            (click)="clickMe()" (blur)="outMe()" id = "search" (keyup) = "keyUpSearch($event)">
+          </nz-input-group> 
+
+          <ng-template #suffixIconSearch>
+            <i nz-icon type="search" class = "icon" (click) = "search()"></i>
+          </ng-template>
+
+          <div class = "smallContainer">
+            <div *ngIf="isVisible">
+              <div *ngIf="!searchContent">
+                正在搜索内容
+              </div>
+              <div *ngIf="searchContent">
+                  <div *ngIf="flag;else Show">查无此人</div>
+                <ng-template #Show>
+                    <div *ngFor="let item of userlist">
+                        <img src = "{{item.Img_url}}" class = "img">
+                        {{item.Name}}
+                      <button (click) = "addfriend(item.ID)">添加好友</button>
+                  </div>
+                </ng-template>
+
+              </div>
+            </div>
+          </div>
+          <div>
+
+            <button class = "grad">聊天</button>|<button class = "grad">通讯录</button>|<button class = "grad">添加</button>
+          </div>    
         </div>
+
+
       </th>
       <th class = "him">对方的名字</th>
     </tr>
@@ -27,55 +53,37 @@
         <div *ngIf="!isslect" class = "tips">
           暂无新消息
         </div>
-          <div class = "message1" id="scrolldIV" >
-              <div *ngFor="let item of showmsg" >
+        <div class = "message1" id="scrolldIV" >
+          <div *ngFor="let item of showmsg" >
                 <!-- <div *ngFor="let mes of item"> -->
-                    <div *ngIf="item.From != my_id" id="box">{{item.Content}}</div>
-                    <div *ngIf="item.From == my_id" id="box1">{{item.Content}}</div>
+            <div *ngIf="item.From != my_id" id="box">{{item.Content}}</div>
+            <div *ngIf="item.From == my_id" id="box1">{{item.Content}}</div>
                 <!-- </div> -->
-              </div>
           </div>
+        </div>
       </td>
-      
     </tr>
     <tr>
       <td rowspan="3">
-          <div class = "list" >
-            <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID, item.Isgroup)">
-                <!-- <tr  > -->
-                  <!-- <td> -->
-                          <!-- <nz-avatar nzIcon="user" class = "img" [nzShape]="'square'" nzSrc={{item.img_url}} >
-                          </nz-avatar> -->
-                          <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point" style = "height: 5px;">
-                              <img src = "{{item.Headimg}}" class = "img">
-                            </nz-badge>
-                          <!-- <img src = {{item.img_url}} style = "height:40px; width:40px; border-radius:50%; overflow:hedden;"> -->
-                      {{item.Name}}
-                  <!-- </td> -->
-                <!-- </tr> -->
-            </div>
-            
+        <div class = "list" >
+          <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID, item.Isgroup)">
+            <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point" style = "height: 5px;">
+              <img src = "{{item.Headimg}}" class = "img">
+            </nz-badge>
+            {{item.Name}}
           </div>
+        </div>
       </td>
     </tr>
     <tr class = "inputmes">
       <!-- <td > -->
-        <div></div>
-      <div  *ngIf="isslect">
+      <div></div>
+        <div  *ngIf="isslect">
         <div class = "tool">
-          <!-- <i nz-icon type="folder" theme="outline" style="font-size: 25px" class = "icon"></i>            
-          <i nz-icon type="picture" theme="outline" style="font-size: 25px" class = "icon"></i>        -->
         </div>
         <textarea class = "textarea" [(ngModel)] = "content"></textarea>
         <button class = "send" nz-button nzType="primary" (click) = "sendMsg()" >发送</button>
       </div>
-    <!-- </td> -->
     </tr>
   </table>
 
-<!--               
-          <span class="notice">请点击“插入一行”按钮，插入最新信息，当出现滚动条时，滚动条将自动保持在底部。</span><br />
-
-          <div id="scrolldIV" style="overflow:auto; height: 100px; width: 400px; border: 1px solid #999;">
-          </div>
-          <input type="button" value="插入一行" (click)="add();"> -->

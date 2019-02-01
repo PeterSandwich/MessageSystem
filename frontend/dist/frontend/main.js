@@ -229,7 +229,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* :host ::ng-deep .demo-infinite-container {\n    height: 300px;\n    border: 1px solid #e8e8e8;\n    border-radius: 4px;\n  } */\n.avatar{\n  height: 80px;\n  width: 200px;\n\n}\n.avatar2{\n  overflow-y: auto;\n  overflow-x:none;\n  height: 80px;\n  width: 200px;\n}\n.container{\n  /* background-color:rgb(223, 219, 219); */\n  background-color: #DDDDDD;\n  width: 1002px;\n  height: 740px;\n  position: absolute;\n  margin: auto;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 5000;\n  border-color: #616060;\n  /* border: 2px;\n  color: #000000 */\n}\n.search{\n  position:absolute;\n  margin-top: 15px;\n  margin-left: 5px;\n  width: 240px;\n}\n.list{\n  background-color: #7a7a7a;\n  width: 250px;\n  height: 600px;\n  /* color: white; */\n\n  /* overflow-y:scroll;  纵向滚动条始终显示 */\n  overflow-y: auto;\n  overflow-x:none;\n}\n.item{\n  color: white;\n  border-bottom:1px solid #EEE;\n  height: 65px;\n  font-size: 12px;\n  /* font-display: center; */\n  vertical-align: middle;\n  /* text-align: center; */\n  position: relative;\n  cursor: pointer;\n\n}\n/* nz-list-item{\n  color: white;\n} */\n.img{\n  /* margin: 5px; */\n  /* margin-top: 10px; */\n  height:40px; \n  width:40px; \n  position: relative;\n  /* border-radius:50%;  */\n  overflow:hidden;\n}\n.message{\n  width: 750px;\n  height: 480px;\n  background-color: #F9F9F9;\n  padding: 0px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n.message1{\n  width: 750px;\n  height: 480px;\n  background-color: #F9F9F9;\n  padding: 10px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n.inputmes{\n  width: 749px;\n  height: 200px;\n  background-color: white;\n}\n.him{\n  height: 60px;\n  color: #444444;\n}\n.textarea{\n  background-color: white;\n  resize: none;\n  width: 750px;\n  height: 140px;\n  position: absolute;\n  padding: 10px;\n  border: none;\n  outline: none;\n  /* margin-top: 30px; */\n}\n.tool{\n  width: 750px;\n  background-color: #EEEEEE;\n  height: 30px;\n  cursor: pointer;\n\n}\n.icon{\n  margin-left: 15px;\n  margin-top: 3px;\n  color: #777777;\n}\n.send{\n  position: absolute;\n  margin-left: 680px;\n  margin-top: 130px;\n}\n/* .arrow {\n  vertical-align: middle;\n  width:200px;\n  height:25px;\n  font-size:16px;\n  background-color: #AABBCC ;\n  margin: 15px;\n  overflow-wrap: normal;\n} */\n#box{\n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-left: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n\n    position: relative;\n    left:30px; \n    width: 140px;\n    min-height: 30px;\n    line-height: 20px;\n    margin-left: 10px;\n    word-wrap: 5px;\n    background: #088cb7;\n    border-radius: 4px;\n    padding: 10px;\n    margin-top:10px;\n    vertical-align: middle;\n    text-align: center;\n}\n/*左方说话*/\n#box:before{\n    position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    right: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-right: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n/*右方说话*/\n#box1{          \n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-right: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n  position: relative;\n  left:560px; \n  width: 140px;\n  /* height: 30px; */\n  background: #088cb7;\n  border-radius: 4px;\n  /* padding: 10px; */\n  margin-top:10px;\n  vertical-align: middle;\n  text-align: center;\n}\n#box1:before{\n  position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    left: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-left: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n.tips{\n  position: relative; \n  text-align: center;\n  vertical-align: middle;;\n}\n.grad{\n  width: 75px;\n  background-color:transparent;\n  border: 0px;\n  outline: none;\n  cursor: pointer;\n}\n.point{\n  /* width: 2px; */\n  /* left: 60px; */\n  margin:5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2hhdC9jaGF0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7S0FJSztBQUNMO0VBQ0UsWUFBWTtFQUNaLFlBQVk7O0FBRWQ7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixlQUFlO0VBQ2YsWUFBWTtFQUNaLFlBQVk7QUFDZDtBQUNBO0VBQ0UseUNBQXlDO0VBQ3pDLHlCQUF5QjtFQUN6QixhQUFhO0VBQ2IsYUFBYTtFQUNiLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osTUFBTTtFQUNOLE9BQU87RUFDUCxRQUFRO0VBQ1IsU0FBUztFQUNULGFBQWE7RUFDYixxQkFBcUI7RUFDckI7a0JBQ2dCO0FBQ2xCO0FBQ0E7RUFDRSxpQkFBaUI7RUFDakIsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixZQUFZO0FBQ2Q7QUFDQTtFQUNFLHlCQUF5QjtFQUN6QixZQUFZO0VBQ1osYUFBYTtFQUNiLGtCQUFrQjs7RUFFbEIsa0NBQWtDO0VBQ2xDLGdCQUFnQjtFQUNoQixlQUFlO0FBQ2pCO0FBQ0E7RUFDRSxZQUFZO0VBQ1osNEJBQTRCO0VBQzVCLFlBQVk7RUFDWixlQUFlO0VBQ2YsMEJBQTBCO0VBQzFCLHNCQUFzQjtFQUN0Qix3QkFBd0I7RUFDeEIsa0JBQWtCO0VBQ2xCLGVBQWU7O0FBRWpCO0FBQ0E7O0dBRUc7QUFDSDtFQUNFLGlCQUFpQjtFQUNqQixzQkFBc0I7RUFDdEIsV0FBVztFQUNYLFVBQVU7RUFDVixrQkFBa0I7RUFDbEIsd0JBQXdCO0VBQ3hCLGVBQWU7QUFDakI7QUFDQTtFQUNFLFlBQVk7RUFDWixhQUFhO0VBQ2IseUJBQXlCO0VBQ3pCLFlBQVk7RUFDWixnQkFBZ0I7RUFDaEIsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtBQUNyQjtBQUNBO0VBQ0UsWUFBWTtFQUNaLGFBQWE7RUFDYix5QkFBeUI7RUFDekIsYUFBYTtFQUNiLGdCQUFnQjtFQUNoQixnQkFBZ0I7RUFDaEIsbUJBQW1CO0FBQ3JCO0FBQ0E7RUFDRSxZQUFZO0VBQ1osYUFBYTtFQUNiLHVCQUF1QjtBQUN6QjtBQUNBO0VBQ0UsWUFBWTtFQUNaLGNBQWM7QUFDaEI7QUFFQTtFQUNFLHVCQUF1QjtFQUN2QixZQUFZO0VBQ1osWUFBWTtFQUNaLGFBQWE7RUFDYixrQkFBa0I7RUFDbEIsYUFBYTtFQUNiLFlBQVk7RUFDWixhQUFhO0VBQ2Isc0JBQXNCO0FBQ3hCO0FBQ0E7RUFDRSxZQUFZO0VBQ1oseUJBQXlCO0VBQ3pCLFlBQVk7RUFDWixlQUFlOztBQUVqQjtBQUNBO0VBQ0UsaUJBQWlCO0VBQ2pCLGVBQWU7RUFDZixjQUFjO0FBQ2hCO0FBQ0E7RUFDRSxrQkFBa0I7RUFDbEIsa0JBQWtCO0VBQ2xCLGlCQUFpQjtBQUNuQjtBQUNBOzs7Ozs7OztHQVFHO0FBRUg7RUFDRSxnQkFBZ0I7RUFDaEIsa0JBQWtCO0VBQ2xCLCtCQUErQjtFQUMvQixpQkFBaUI7RUFDakIsc0JBQXNCO0VBQ3RCLFlBQVk7RUFDWixZQUFZO0VBQ1osaUJBQWlCOzs7SUFHZixrQkFBa0I7SUFDbEIsU0FBUztJQUNULFlBQVk7SUFDWixnQkFBZ0I7SUFDaEIsaUJBQWlCO0lBQ2pCLGlCQUFpQjtJQUNqQixjQUFjO0lBQ2QsbUJBQW1CO0lBR25CLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2IsZUFBZTtJQUNmLHNCQUFzQjtJQUN0QixrQkFBa0I7QUFDdEI7QUFDQSxPQUFPO0FBQ1A7SUFDSSxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFFBQVE7SUFDUixTQUFTO0lBQ1QsV0FBVztJQUNYLFFBQVE7SUFDUixpQ0FBaUM7SUFDakMsZ0NBQWdDO0lBQ2hDLG9DQUFvQztBQUN4QztBQUNBLE9BQU87QUFDUDtFQUNFLGdCQUFnQjtFQUNoQixrQkFBa0I7RUFDbEIsK0JBQStCO0VBQy9CLGtCQUFrQjtFQUNsQixzQkFBc0I7RUFDdEIsWUFBWTtFQUNaLFlBQVk7RUFDWixpQkFBaUI7O0VBRWpCLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsWUFBWTtFQUNaLGtCQUFrQjtFQUNsQixtQkFBbUI7RUFHbkIsa0JBQWtCO0VBQ2xCLG1CQUFtQjtFQUNuQixlQUFlO0VBQ2Ysc0JBQXNCO0VBQ3RCLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0Usa0JBQWtCO0lBQ2hCLFdBQVc7SUFDWCxRQUFRO0lBQ1IsU0FBUztJQUNULFVBQVU7SUFDVixRQUFRO0lBQ1IsaUNBQWlDO0lBQ2pDLCtCQUErQjtJQUMvQixvQ0FBb0M7QUFDeEM7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixrQkFBa0I7RUFDbEIsc0JBQXNCO0FBQ3hCO0FBQ0E7RUFDRSxXQUFXO0VBQ1gsNEJBQTRCO0VBQzVCLFdBQVc7RUFDWCxhQUFhO0VBQ2IsZUFBZTtBQUNqQjtBQUNBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixVQUFVO0FBQ1oiLCJmaWxlIjoic3JjL2FwcC9jaGF0L2NoYXQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIDpob3N0IDo6bmctZGVlcCAuZGVtby1pbmZpbml0ZS1jb250YWluZXIge1xuICAgIGhlaWdodDogMzAwcHg7XG4gICAgYm9yZGVyOiAxcHggc29saWQgI2U4ZThlODtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIH0gKi9cbi5hdmF0YXJ7XG4gIGhlaWdodDogODBweDtcbiAgd2lkdGg6IDIwMHB4O1xuXG59XG4uYXZhdGFyMntcbiAgb3ZlcmZsb3cteTogYXV0bztcbiAgb3ZlcmZsb3cteDpub25lO1xuICBoZWlnaHQ6IDgwcHg7XG4gIHdpZHRoOiAyMDBweDtcbn1cbi5jb250YWluZXJ7XG4gIC8qIGJhY2tncm91bmQtY29sb3I6cmdiKDIyMywgMjE5LCAyMTkpOyAqL1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjREREREREO1xuICB3aWR0aDogMTAwMnB4O1xuICBoZWlnaHQ6IDc0MHB4O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIG1hcmdpbjogYXV0bztcbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcbiAgYm90dG9tOiAwO1xuICB6LWluZGV4OiA1MDAwO1xuICBib3JkZXItY29sb3I6ICM2MTYwNjA7XG4gIC8qIGJvcmRlcjogMnB4O1xuICBjb2xvcjogIzAwMDAwMCAqL1xufVxuLnNlYXJjaHtcbiAgcG9zaXRpb246YWJzb2x1dGU7XG4gIG1hcmdpbi10b3A6IDE1cHg7XG4gIG1hcmdpbi1sZWZ0OiA1cHg7XG4gIHdpZHRoOiAyNDBweDtcbn1cbi5saXN0e1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjN2E3YTdhO1xuICB3aWR0aDogMjUwcHg7XG4gIGhlaWdodDogNjAwcHg7XG4gIC8qIGNvbG9yOiB3aGl0ZTsgKi9cblxuICAvKiBvdmVyZmxvdy15OnNjcm9sbDsgIOe6teWQkea7muWKqOadoeWni+e7iOaYvuekuiAqL1xuICBvdmVyZmxvdy15OiBhdXRvO1xuICBvdmVyZmxvdy14Om5vbmU7XG59XG4uaXRlbXtcbiAgY29sb3I6IHdoaXRlO1xuICBib3JkZXItYm90dG9tOjFweCBzb2xpZCAjRUVFO1xuICBoZWlnaHQ6IDY1cHg7XG4gIGZvbnQtc2l6ZTogMTJweDtcbiAgLyogZm9udC1kaXNwbGF5OiBjZW50ZXI7ICovXG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gIC8qIHRleHQtYWxpZ246IGNlbnRlcjsgKi9cbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBjdXJzb3I6IHBvaW50ZXI7XG5cbn1cbi8qIG56LWxpc3QtaXRlbXtcbiAgY29sb3I6IHdoaXRlO1xufSAqL1xuLmltZ3tcbiAgLyogbWFyZ2luOiA1cHg7ICovXG4gIC8qIG1hcmdpbi10b3A6IDEwcHg7ICovXG4gIGhlaWdodDo0MHB4OyBcbiAgd2lkdGg6NDBweDsgXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgLyogYm9yZGVyLXJhZGl1czo1MCU7ICAqL1xuICBvdmVyZmxvdzpoaWRkZW47XG59XG4ubWVzc2FnZXtcbiAgd2lkdGg6IDc1MHB4O1xuICBoZWlnaHQ6IDQ4MHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjRjlGOUY5O1xuICBwYWRkaW5nOiAwcHg7XG4gIG92ZXJmbG93LXk6IGF1dG87XG4gIG92ZXJmbG93LXg6IG5vbmU7XG4gIHZlcnRpY2FsLWFsaWduOiB0b3A7XG59XG4ubWVzc2FnZTF7XG4gIHdpZHRoOiA3NTBweDtcbiAgaGVpZ2h0OiA0ODBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI0Y5RjlGOTtcbiAgcGFkZGluZzogMTBweDtcbiAgb3ZlcmZsb3cteTogYXV0bztcbiAgb3ZlcmZsb3cteDogbm9uZTtcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcbn1cbi5pbnB1dG1lc3tcbiAgd2lkdGg6IDc0OXB4O1xuICBoZWlnaHQ6IDIwMHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbn1cbi5oaW17XG4gIGhlaWdodDogNjBweDtcbiAgY29sb3I6ICM0NDQ0NDQ7XG59XG5cbi50ZXh0YXJlYXtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gIHJlc2l6ZTogbm9uZTtcbiAgd2lkdGg6IDc1MHB4O1xuICBoZWlnaHQ6IDE0MHB4O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIGJvcmRlcjogbm9uZTtcbiAgb3V0bGluZTogbm9uZTtcbiAgLyogbWFyZ2luLXRvcDogMzBweDsgKi9cbn1cbi50b29se1xuICB3aWR0aDogNzUwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICNFRUVFRUU7XG4gIGhlaWdodDogMzBweDtcbiAgY3Vyc29yOiBwb2ludGVyO1xuXG59XG4uaWNvbntcbiAgbWFyZ2luLWxlZnQ6IDE1cHg7XG4gIG1hcmdpbi10b3A6IDNweDtcbiAgY29sb3I6ICM3Nzc3Nzc7XG59XG4uc2VuZHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBtYXJnaW4tbGVmdDogNjgwcHg7XG4gIG1hcmdpbi10b3A6IDEzMHB4O1xufVxuLyogLmFycm93IHtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgd2lkdGg6MjAwcHg7XG4gIGhlaWdodDoyNXB4O1xuICBmb250LXNpemU6MTZweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI0FBQkJDQyA7XG4gIG1hcmdpbjogMTVweDtcbiAgb3ZlcmZsb3ctd3JhcDogbm9ybWFsO1xufSAqL1xuXG4jYm94e1xuICBtaW4taGVpZ2h0OiAzMHB4OyAgICAgICAgICBcbiAgYm9yZGVyLXJhZGl1czogNXB4OyAgICAgICAgXG4gIC8qIGxpbmUtaGVpZ2h0OiA1MHB4OyAgICAgICAgICovXG4gIG1hcmdpbi1sZWZ0OiAxMHB4OyAgICAgICAgXG4gIHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQ7ICAgICAgICBcbiAgY29sb3I6IHdoaXRlOyAgICAgICAgXG4gIHBhZGRpbmc6IDVweDsgICAgICAgIFxuICBsaW5lLWhlaWdodDogMThweDtcblxuXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIGxlZnQ6MzBweDsgXG4gICAgd2lkdGg6IDE0MHB4O1xuICAgIG1pbi1oZWlnaHQ6IDMwcHg7XG4gICAgbGluZS1oZWlnaHQ6IDIwcHg7XG4gICAgbWFyZ2luLWxlZnQ6IDEwcHg7XG4gICAgd29yZC13cmFwOiA1cHg7XG4gICAgYmFja2dyb3VuZDogIzA4OGNiNztcbiAgICAtbW96LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgICAtd2Via2l0LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgcGFkZGluZzogMTBweDtcbiAgICBtYXJnaW4tdG9wOjEwcHg7XG4gICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4vKuW3puaWueivtOivnSovXG4jYm94OmJlZm9yZXtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgY29udGVudDogXCJcIjtcbiAgICB3aWR0aDogMDtcbiAgICBoZWlnaHQ6IDA7XG4gICAgcmlnaHQ6IDEwMCU7XG4gICAgdG9wOiA5cHg7XG4gICAgYm9yZGVyLXRvcDogNXB4IHNvbGlkIHRyYW5zcGFyZW50O1xuICAgIGJvcmRlci1yaWdodDogMTNweCBzb2xpZCAjMDg4Y2I3O1xuICAgIGJvcmRlci1ib3R0b206IDZweCBzb2xpZCB0cmFuc3BhcmVudDtcbn1cbi8q5Y+z5pa56K+06K+dKi9cbiNib3gxeyAgICAgICAgICBcbiAgbWluLWhlaWdodDogMzBweDsgICAgICAgICAgXG4gIGJvcmRlci1yYWRpdXM6IDVweDsgICAgICAgIFxuICAvKiBsaW5lLWhlaWdodDogNTBweDsgICAgICAgICAqL1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7ICAgICAgICBcbiAgd29yZC1icmVhazogYnJlYWstd29yZDsgICAgICAgIFxuICBjb2xvcjogd2hpdGU7ICAgICAgICBcbiAgcGFkZGluZzogNXB4OyAgICAgICAgXG4gIGxpbmUtaGVpZ2h0OiAxOHB4O1xuXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgbGVmdDo1NjBweDsgXG4gIHdpZHRoOiAxNDBweDtcbiAgLyogaGVpZ2h0OiAzMHB4OyAqL1xuICBiYWNrZ3JvdW5kOiAjMDg4Y2I3O1xuICAtbW96LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgLXdlYmtpdC1ib3JkZXItcmFkaXVzOiA0cHg7XG4gIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgLyogcGFkZGluZzogMTBweDsgKi9cbiAgbWFyZ2luLXRvcDoxMHB4O1xuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4jYm94MTpiZWZvcmV7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIHdpZHRoOiAwO1xuICAgIGhlaWdodDogMDtcbiAgICBsZWZ0OiAxMDAlO1xuICAgIHRvcDogOXB4O1xuICAgIGJvcmRlci10b3A6IDVweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICBib3JkZXItbGVmdDogMTNweCBzb2xpZCAjMDg4Y2I3O1xuICAgIGJvcmRlci1ib3R0b206IDZweCBzb2xpZCB0cmFuc3BhcmVudDtcbn1cbi50aXBze1xuICBwb3NpdGlvbjogcmVsYXRpdmU7IFxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7O1xufVxuLmdyYWR7XG4gIHdpZHRoOiA3NXB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOnRyYW5zcGFyZW50O1xuICBib3JkZXI6IDBweDtcbiAgb3V0bGluZTogbm9uZTtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuLnBvaW50e1xuICAvKiB3aWR0aDogMnB4OyAqL1xuICAvKiBsZWZ0OiA2MHB4OyAqL1xuICBtYXJnaW46NXB4O1xufSJdfQ== */"
+module.exports = "/* :host ::ng-deep .demo-infinite-container {\n    height: 300px;\n    border: 1px solid #e8e8e8;\n    border-radius: 4px;\n  } */\n.avatar{\n  height: 80px;\n  width: 200px;\n\n}\n.avatar2{\n  overflow-y: auto;\n  overflow-x:none;\n  height: 80px;\n  width: 200px;\n}\n.container{\n  /* background-color:rgb(223, 219, 219); */\n  background-color: #DDDDDD;\n  width: 1002px;\n  height: 740px;\n  position: absolute;\n  margin: auto;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 5000;\n  border-color: #616060;\n  /* border: 2px;\n  color: #000000 */\n}\n.search{\n  position:absolute;\n  margin-top: 15px;\n  margin-left: 5px;\n  width: 240px;\n}\n.icon{\n  cursor: pointer;\n}\n.list{\n  background-color: #7a7a7a;\n  width: 250px;\n  height: 600px;\n  /* color: white; */\n\n  /* overflow-y:scroll;  纵向滚动条始终显示 */\n  overflow-y: auto;\n  overflow-x:none;\n}\n.item{\n  color: white;\n  border-bottom:1px solid #EEE;\n  height: 65px;\n  font-size: 12px;\n  /* font-display: center; */\n  vertical-align: middle;\n  /* text-align: center; */\n  position: relative;\n  cursor: pointer;\n\n}\n/* nz-list-item{\n  color: white;\n} */\n.img{\n  /* margin: 5px; */\n  /* margin-top: 10px; */\n  height:40px; \n  width:40px; \n  position: relative;\n  /* border-radius:50%;  */\n  overflow:hidden;\n}\n.message{\n  width: 750px;\n  height: 480px;\n  background-color: #F9F9F9;\n  padding: 0px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n.message1{\n  width: 750px;\n  height: 480px;\n  background-color: #F9F9F9;\n  padding: 10px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n.inputmes{\n  width: 749px;\n  height: 200px;\n  background-color: white;\n}\n.him{\n  height: 60px;\n  color: #444444;\n}\n.textarea{\n  background-color: white;\n  resize: none;\n  width: 750px;\n  height: 140px;\n  position: absolute;\n  padding: 10px;\n  border: none;\n  outline: none;\n  /* margin-top: 30px; */\n}\n.tool{\n  width: 750px;\n  background-color: #EEEEEE;\n  height: 30px;\n  cursor: pointer;\n\n}\n.icon{\n  margin-left: 15px;\n  margin-top: 3px;\n  color: #777777;\n}\n.send{\n  position: absolute;\n  margin-left: 680px;\n  margin-top: 130px;\n}\n/* .arrow {\n  vertical-align: middle;\n  width:200px;\n  height:25px;\n  font-size:16px;\n  background-color: #AABBCC ;\n  margin: 15px;\n  overflow-wrap: normal;\n} */\n#box{\n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-left: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n\n    position: relative;\n    left:30px; \n    width: 140px;\n    min-height: 30px;\n    line-height: 20px;\n    margin-left: 10px;\n    word-wrap: 5px;\n    background: #088cb7;\n    border-radius: 4px;\n    padding: 10px;\n    margin-top:10px;\n    vertical-align: middle;\n    text-align: center;\n}\n/*左方说话*/\n#box:before{\n    position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    right: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-right: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n/*右方说话*/\n#box1{          \n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-right: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n  position: relative;\n  left:560px; \n  width: 140px;\n  /* height: 30px; */\n  background: #088cb7;\n  border-radius: 4px;\n  /* padding: 10px; */\n  margin-top:10px;\n  vertical-align: middle;\n  text-align: center;\n}\n#box1:before{\n  position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    left: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-left: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n.tips{\n  position: relative; \n  text-align: center;\n  vertical-align: middle;;\n}\n.grad{\n  width: 75px;\n  background-color:transparent;\n  border: 0px;\n  outline: none;\n  cursor: pointer;\n}\n.point{\n  /* width: 2px; */\n  /* left: 60px; */\n  margin:5px;\n}\n.smallContainer{\n  width: 240px;\n  background-color: #FFFFFF;\n  position:absolute;\n  text-align: center;\n  z-index: 5000;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2hhdC9jaGF0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7S0FJSztBQUNMO0VBQ0UsWUFBWTtFQUNaLFlBQVk7O0FBRWQ7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixlQUFlO0VBQ2YsWUFBWTtFQUNaLFlBQVk7QUFDZDtBQUNBO0VBQ0UseUNBQXlDO0VBQ3pDLHlCQUF5QjtFQUN6QixhQUFhO0VBQ2IsYUFBYTtFQUNiLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osTUFBTTtFQUNOLE9BQU87RUFDUCxRQUFRO0VBQ1IsU0FBUztFQUNULGFBQWE7RUFDYixxQkFBcUI7RUFDckI7a0JBQ2dCO0FBQ2xCO0FBQ0E7RUFDRSxpQkFBaUI7RUFDakIsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixZQUFZO0FBQ2Q7QUFDQTtFQUNFLGVBQWU7QUFDakI7QUFDQTtFQUNFLHlCQUF5QjtFQUN6QixZQUFZO0VBQ1osYUFBYTtFQUNiLGtCQUFrQjs7RUFFbEIsa0NBQWtDO0VBQ2xDLGdCQUFnQjtFQUNoQixlQUFlO0FBQ2pCO0FBQ0E7RUFDRSxZQUFZO0VBQ1osNEJBQTRCO0VBQzVCLFlBQVk7RUFDWixlQUFlO0VBQ2YsMEJBQTBCO0VBQzFCLHNCQUFzQjtFQUN0Qix3QkFBd0I7RUFDeEIsa0JBQWtCO0VBQ2xCLGVBQWU7O0FBRWpCO0FBQ0E7O0dBRUc7QUFDSDtFQUNFLGlCQUFpQjtFQUNqQixzQkFBc0I7RUFDdEIsV0FBVztFQUNYLFVBQVU7RUFDVixrQkFBa0I7RUFDbEIsd0JBQXdCO0VBQ3hCLGVBQWU7QUFDakI7QUFDQTtFQUNFLFlBQVk7RUFDWixhQUFhO0VBQ2IseUJBQXlCO0VBQ3pCLFlBQVk7RUFDWixnQkFBZ0I7RUFDaEIsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtBQUNyQjtBQUNBO0VBQ0UsWUFBWTtFQUNaLGFBQWE7RUFDYix5QkFBeUI7RUFDekIsYUFBYTtFQUNiLGdCQUFnQjtFQUNoQixnQkFBZ0I7RUFDaEIsbUJBQW1CO0FBQ3JCO0FBQ0E7RUFDRSxZQUFZO0VBQ1osYUFBYTtFQUNiLHVCQUF1QjtBQUN6QjtBQUNBO0VBQ0UsWUFBWTtFQUNaLGNBQWM7QUFDaEI7QUFFQTtFQUNFLHVCQUF1QjtFQUN2QixZQUFZO0VBQ1osWUFBWTtFQUNaLGFBQWE7RUFDYixrQkFBa0I7RUFDbEIsYUFBYTtFQUNiLFlBQVk7RUFDWixhQUFhO0VBQ2Isc0JBQXNCO0FBQ3hCO0FBQ0E7RUFDRSxZQUFZO0VBQ1oseUJBQXlCO0VBQ3pCLFlBQVk7RUFDWixlQUFlOztBQUVqQjtBQUNBO0VBQ0UsaUJBQWlCO0VBQ2pCLGVBQWU7RUFDZixjQUFjO0FBQ2hCO0FBQ0E7RUFDRSxrQkFBa0I7RUFDbEIsa0JBQWtCO0VBQ2xCLGlCQUFpQjtBQUNuQjtBQUNBOzs7Ozs7OztHQVFHO0FBRUg7RUFDRSxnQkFBZ0I7RUFDaEIsa0JBQWtCO0VBQ2xCLCtCQUErQjtFQUMvQixpQkFBaUI7RUFDakIsc0JBQXNCO0VBQ3RCLFlBQVk7RUFDWixZQUFZO0VBQ1osaUJBQWlCOzs7SUFHZixrQkFBa0I7SUFDbEIsU0FBUztJQUNULFlBQVk7SUFDWixnQkFBZ0I7SUFDaEIsaUJBQWlCO0lBQ2pCLGlCQUFpQjtJQUNqQixjQUFjO0lBQ2QsbUJBQW1CO0lBR25CLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2IsZUFBZTtJQUNmLHNCQUFzQjtJQUN0QixrQkFBa0I7QUFDdEI7QUFDQSxPQUFPO0FBQ1A7SUFDSSxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFFBQVE7SUFDUixTQUFTO0lBQ1QsV0FBVztJQUNYLFFBQVE7SUFDUixpQ0FBaUM7SUFDakMsZ0NBQWdDO0lBQ2hDLG9DQUFvQztBQUN4QztBQUNBLE9BQU87QUFDUDtFQUNFLGdCQUFnQjtFQUNoQixrQkFBa0I7RUFDbEIsK0JBQStCO0VBQy9CLGtCQUFrQjtFQUNsQixzQkFBc0I7RUFDdEIsWUFBWTtFQUNaLFlBQVk7RUFDWixpQkFBaUI7O0VBRWpCLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsWUFBWTtFQUNaLGtCQUFrQjtFQUNsQixtQkFBbUI7RUFHbkIsa0JBQWtCO0VBQ2xCLG1CQUFtQjtFQUNuQixlQUFlO0VBQ2Ysc0JBQXNCO0VBQ3RCLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0Usa0JBQWtCO0lBQ2hCLFdBQVc7SUFDWCxRQUFRO0lBQ1IsU0FBUztJQUNULFVBQVU7SUFDVixRQUFRO0lBQ1IsaUNBQWlDO0lBQ2pDLCtCQUErQjtJQUMvQixvQ0FBb0M7QUFDeEM7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixrQkFBa0I7RUFDbEIsc0JBQXNCO0FBQ3hCO0FBQ0E7RUFDRSxXQUFXO0VBQ1gsNEJBQTRCO0VBQzVCLFdBQVc7RUFDWCxhQUFhO0VBQ2IsZUFBZTtBQUNqQjtBQUNBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixVQUFVO0FBQ1o7QUFFQTtFQUNFLFlBQVk7RUFDWix5QkFBeUI7RUFDekIsaUJBQWlCO0VBQ2pCLGtCQUFrQjtFQUNsQixhQUFhO0FBQ2YiLCJmaWxlIjoic3JjL2FwcC9jaGF0L2NoYXQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIDpob3N0IDo6bmctZGVlcCAuZGVtby1pbmZpbml0ZS1jb250YWluZXIge1xuICAgIGhlaWdodDogMzAwcHg7XG4gICAgYm9yZGVyOiAxcHggc29saWQgI2U4ZThlODtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIH0gKi9cbi5hdmF0YXJ7XG4gIGhlaWdodDogODBweDtcbiAgd2lkdGg6IDIwMHB4O1xuXG59XG4uYXZhdGFyMntcbiAgb3ZlcmZsb3cteTogYXV0bztcbiAgb3ZlcmZsb3cteDpub25lO1xuICBoZWlnaHQ6IDgwcHg7XG4gIHdpZHRoOiAyMDBweDtcbn1cbi5jb250YWluZXJ7XG4gIC8qIGJhY2tncm91bmQtY29sb3I6cmdiKDIyMywgMjE5LCAyMTkpOyAqL1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjREREREREO1xuICB3aWR0aDogMTAwMnB4O1xuICBoZWlnaHQ6IDc0MHB4O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIG1hcmdpbjogYXV0bztcbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcbiAgYm90dG9tOiAwO1xuICB6LWluZGV4OiA1MDAwO1xuICBib3JkZXItY29sb3I6ICM2MTYwNjA7XG4gIC8qIGJvcmRlcjogMnB4O1xuICBjb2xvcjogIzAwMDAwMCAqL1xufVxuLnNlYXJjaHtcbiAgcG9zaXRpb246YWJzb2x1dGU7XG4gIG1hcmdpbi10b3A6IDE1cHg7XG4gIG1hcmdpbi1sZWZ0OiA1cHg7XG4gIHdpZHRoOiAyNDBweDtcbn1cbi5pY29ue1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG4ubGlzdHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzdhN2E3YTtcbiAgd2lkdGg6IDI1MHB4O1xuICBoZWlnaHQ6IDYwMHB4O1xuICAvKiBjb2xvcjogd2hpdGU7ICovXG5cbiAgLyogb3ZlcmZsb3cteTpzY3JvbGw7ICDnurXlkJHmu5rliqjmnaHlp4vnu4jmmL7npLogKi9cbiAgb3ZlcmZsb3cteTogYXV0bztcbiAgb3ZlcmZsb3cteDpub25lO1xufVxuLml0ZW17XG4gIGNvbG9yOiB3aGl0ZTtcbiAgYm9yZGVyLWJvdHRvbToxcHggc29saWQgI0VFRTtcbiAgaGVpZ2h0OiA2NXB4O1xuICBmb250LXNpemU6IDEycHg7XG4gIC8qIGZvbnQtZGlzcGxheTogY2VudGVyOyAqL1xuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICAvKiB0ZXh0LWFsaWduOiBjZW50ZXI7ICovXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuXG59XG4vKiBuei1saXN0LWl0ZW17XG4gIGNvbG9yOiB3aGl0ZTtcbn0gKi9cbi5pbWd7XG4gIC8qIG1hcmdpbjogNXB4OyAqL1xuICAvKiBtYXJnaW4tdG9wOiAxMHB4OyAqL1xuICBoZWlnaHQ6NDBweDsgXG4gIHdpZHRoOjQwcHg7IFxuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIC8qIGJvcmRlci1yYWRpdXM6NTAlOyAgKi9cbiAgb3ZlcmZsb3c6aGlkZGVuO1xufVxuLm1lc3NhZ2V7XG4gIHdpZHRoOiA3NTBweDtcbiAgaGVpZ2h0OiA0ODBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI0Y5RjlGOTtcbiAgcGFkZGluZzogMHB4O1xuICBvdmVyZmxvdy15OiBhdXRvO1xuICBvdmVyZmxvdy14OiBub25lO1xuICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xufVxuLm1lc3NhZ2Uxe1xuICB3aWR0aDogNzUwcHg7XG4gIGhlaWdodDogNDgwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICNGOUY5Rjk7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIG92ZXJmbG93LXk6IGF1dG87XG4gIG92ZXJmbG93LXg6IG5vbmU7XG4gIHZlcnRpY2FsLWFsaWduOiB0b3A7XG59XG4uaW5wdXRtZXN7XG4gIHdpZHRoOiA3NDlweDtcbiAgaGVpZ2h0OiAyMDBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG59XG4uaGlte1xuICBoZWlnaHQ6IDYwcHg7XG4gIGNvbG9yOiAjNDQ0NDQ0O1xufVxuXG4udGV4dGFyZWF7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICByZXNpemU6IG5vbmU7XG4gIHdpZHRoOiA3NTBweDtcbiAgaGVpZ2h0OiAxNDBweDtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBwYWRkaW5nOiAxMHB4O1xuICBib3JkZXI6IG5vbmU7XG4gIG91dGxpbmU6IG5vbmU7XG4gIC8qIG1hcmdpbi10b3A6IDMwcHg7ICovXG59XG4udG9vbHtcbiAgd2lkdGg6IDc1MHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjRUVFRUVFO1xuICBoZWlnaHQ6IDMwcHg7XG4gIGN1cnNvcjogcG9pbnRlcjtcblxufVxuLmljb257XG4gIG1hcmdpbi1sZWZ0OiAxNXB4O1xuICBtYXJnaW4tdG9wOiAzcHg7XG4gIGNvbG9yOiAjNzc3Nzc3O1xufVxuLnNlbmR7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgbWFyZ2luLWxlZnQ6IDY4MHB4O1xuICBtYXJnaW4tdG9wOiAxMzBweDtcbn1cbi8qIC5hcnJvdyB7XG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gIHdpZHRoOjIwMHB4O1xuICBoZWlnaHQ6MjVweDtcbiAgZm9udC1zaXplOjE2cHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICNBQUJCQ0MgO1xuICBtYXJnaW46IDE1cHg7XG4gIG92ZXJmbG93LXdyYXA6IG5vcm1hbDtcbn0gKi9cblxuI2JveHtcbiAgbWluLWhlaWdodDogMzBweDsgICAgICAgICAgXG4gIGJvcmRlci1yYWRpdXM6IDVweDsgICAgICAgIFxuICAvKiBsaW5lLWhlaWdodDogNTBweDsgICAgICAgICAqL1xuICBtYXJnaW4tbGVmdDogMTBweDsgICAgICAgIFxuICB3b3JkLWJyZWFrOiBicmVhay13b3JkOyAgICAgICAgXG4gIGNvbG9yOiB3aGl0ZTsgICAgICAgIFxuICBwYWRkaW5nOiA1cHg7ICAgICAgICBcbiAgbGluZS1oZWlnaHQ6IDE4cHg7XG5cblxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBsZWZ0OjMwcHg7IFxuICAgIHdpZHRoOiAxNDBweDtcbiAgICBtaW4taGVpZ2h0OiAzMHB4O1xuICAgIGxpbmUtaGVpZ2h0OiAyMHB4O1xuICAgIG1hcmdpbi1sZWZ0OiAxMHB4O1xuICAgIHdvcmQtd3JhcDogNXB4O1xuICAgIGJhY2tncm91bmQ6ICMwODhjYjc7XG4gICAgLW1vei1ib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgLXdlYmtpdC1ib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgbWFyZ2luLXRvcDoxMHB4O1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLyrlt6bmlrnor7Tor50qL1xuI2JveDpiZWZvcmV7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGNvbnRlbnQ6IFwiXCI7XG4gICAgd2lkdGg6IDA7XG4gICAgaGVpZ2h0OiAwO1xuICAgIHJpZ2h0OiAxMDAlO1xuICAgIHRvcDogOXB4O1xuICAgIGJvcmRlci10b3A6IDVweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICBib3JkZXItcmlnaHQ6IDEzcHggc29saWQgIzA4OGNiNztcbiAgICBib3JkZXItYm90dG9tOiA2cHggc29saWQgdHJhbnNwYXJlbnQ7XG59XG4vKuWPs+aWueivtOivnSovXG4jYm94MXsgICAgICAgICAgXG4gIG1pbi1oZWlnaHQ6IDMwcHg7ICAgICAgICAgIFxuICBib3JkZXItcmFkaXVzOiA1cHg7ICAgICAgICBcbiAgLyogbGluZS1oZWlnaHQ6IDUwcHg7ICAgICAgICAgKi9cbiAgbWFyZ2luLXJpZ2h0OiAxMHB4OyAgICAgICAgXG4gIHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQ7ICAgICAgICBcbiAgY29sb3I6IHdoaXRlOyAgICAgICAgXG4gIHBhZGRpbmc6IDVweDsgICAgICAgIFxuICBsaW5lLWhlaWdodDogMThweDtcblxuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGxlZnQ6NTYwcHg7IFxuICB3aWR0aDogMTQwcHg7XG4gIC8qIGhlaWdodDogMzBweDsgKi9cbiAgYmFja2dyb3VuZDogIzA4OGNiNztcbiAgLW1vei1ib3JkZXItcmFkaXVzOiA0cHg7XG4gIC13ZWJraXQtYm9yZGVyLXJhZGl1czogNHB4O1xuICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIC8qIHBhZGRpbmc6IDEwcHg7ICovXG4gIG1hcmdpbi10b3A6MTBweDtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuI2JveDE6YmVmb3Jle1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgY29udGVudDogXCJcIjtcbiAgICB3aWR0aDogMDtcbiAgICBoZWlnaHQ6IDA7XG4gICAgbGVmdDogMTAwJTtcbiAgICB0b3A6IDlweDtcbiAgICBib3JkZXItdG9wOiA1cHggc29saWQgdHJhbnNwYXJlbnQ7XG4gICAgYm9yZGVyLWxlZnQ6IDEzcHggc29saWQgIzA4OGNiNztcbiAgICBib3JkZXItYm90dG9tOiA2cHggc29saWQgdHJhbnNwYXJlbnQ7XG59XG4udGlwc3tcbiAgcG9zaXRpb246IHJlbGF0aXZlOyBcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlOztcbn1cbi5ncmFke1xuICB3aWR0aDogNzVweDtcbiAgYmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtcbiAgYm9yZGVyOiAwcHg7XG4gIG91dGxpbmU6IG5vbmU7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cbi5wb2ludHtcbiAgLyogd2lkdGg6IDJweDsgKi9cbiAgLyogbGVmdDogNjBweDsgKi9cbiAgbWFyZ2luOjVweDtcbn1cblxuLnNtYWxsQ29udGFpbmVye1xuICB3aWR0aDogMjQwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICNGRkZGRkY7XG4gIHBvc2l0aW9uOmFic29sdXRlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIHotaW5kZXg6IDUwMDA7XG59Il19 */"
 
 /***/ }),
 
@@ -240,7 +240,7 @@ module.exports = "/* :host ::ng-deep .demo-infinite-container {\n    height: 300
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container\">\n  <table >\n    <tr>\n      <th class = \"avatar\" rowspan=\"2\">\n        <div>\n            <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n            <div style = \"left: 90px; top:30px; position: absolute\">名字</div>\n            <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n        </div>\n        <div class = \"search\">\n            <nz-input-group [nzSuffix]=\"suffixIconSearch\">\n              <input type=\"text\" nz-input placeholder=\"输入搜索内容\">\n            </nz-input-group>\n            <ng-template #suffixIconSearch>\n            <i nz-icon type=\"search\"></i>\n              </ng-template>\n              <div>\n                  <button class = \"grad\">聊天</button>|<button class = \"grad\">通讯录</button>|<button class = \"grad\">添加</button>\n              </div>    \n        </div>\n      </th>\n      <th class = \"him\">对方的名字</th>\n    </tr>\n    <tr class = \"avatar2\" >\n      <td rowspan=\"2\" class = \"message\" >\n        <div *ngIf=\"!isslect\" class = \"tips\">\n          暂无新消息\n        </div>\n          <div class = \"message1\" id=\"scrolldIV\" >\n              <div *ngFor=\"let item of showmsg\" >\n                <!-- <div *ngFor=\"let mes of item\"> -->\n                    <div *ngIf=\"item.From != my_id\" id=\"box\">{{item.Content}}</div>\n                    <div *ngIf=\"item.From == my_id\" id=\"box1\">{{item.Content}}</div>\n                <!-- </div> -->\n              </div>\n          </div>\n      </td>\n      \n    </tr>\n    <tr>\n      <td rowspan=\"3\">\n          <div class = \"list\" >\n            <div class = \"item\" *ngFor=\"let item of friendlist.List\" (click) = \"test2(item.ID, item.Isgroup)\">\n                <!-- <tr  > -->\n                  <!-- <td> -->\n                          <!-- <nz-avatar nzIcon=\"user\" class = \"img\" [nzShape]=\"'square'\" nzSrc={{item.img_url}} >\n                          </nz-avatar> -->\n                          <nz-badge [nzCount]=\"item.Counter\" *ngIf=\"list!=NULL\" class = \"point\" style = \"height: 5px;\">\n                              <img src = \"{{item.Headimg}}\" class = \"img\">\n                            </nz-badge>\n                          <!-- <img src = {{item.img_url}} style = \"height:40px; width:40px; border-radius:50%; overflow:hedden;\"> -->\n                      {{item.Name}}\n                  <!-- </td> -->\n                <!-- </tr> -->\n            </div>\n            \n          </div>\n      </td>\n    </tr>\n    <tr class = \"inputmes\">\n      <!-- <td > -->\n        <div></div>\n      <div  *ngIf=\"isslect\">\n        <div class = \"tool\">\n          <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n          <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\n        </div>\n        <textarea class = \"textarea\" [(ngModel)] = \"content\"></textarea>\n        <button class = \"send\" nz-button nzType=\"primary\" (click) = \"sendMsg()\" >发送</button>\n      </div>\n    <!-- </td> -->\n    </tr>\n  </table>\n\n<!--               \n          <span class=\"notice\">请点击“插入一行”按钮，插入最新信息，当出现滚动条时，滚动条将自动保持在底部。</span><br />\n\n          <div id=\"scrolldIV\" style=\"overflow:auto; height: 100px; width: 400px; border: 1px solid #999;\">\n          </div>\n          <input type=\"button\" value=\"插入一行\" (click)=\"add();\"> -->"
+module.exports = "\n<div class=\"container\">\n  <table >\n    <tr>\n      <th class = \"avatar\" rowspan=\"2\">\n        <div>\n            <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n            <div style = \"left: 90px; top:30px; position: absolute\">名字</div>\n            <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n        </div>\n\n\n        <div class = \"search\">\n          <nz-input-group [nzSuffix]=\"suffixIconSearch\"> \n            <input type=\"text\" [(ngModel)]=\"searchContent\" nz-input placeholder=\"输入搜索内容\" \n            (click)=\"clickMe()\" (blur)=\"outMe()\" id = \"search\" (keyup) = \"keyUpSearch($event)\">\n          </nz-input-group> \n\n          <ng-template #suffixIconSearch>\n            <i nz-icon type=\"search\" class = \"icon\" (click) = \"search()\"></i>\n          </ng-template>\n\n          <div class = \"smallContainer\">\n            <div *ngIf=\"isVisible\">\n              <div *ngIf=\"!searchContent\">\n                正在搜索内容\n              </div>\n              <div *ngIf=\"searchContent\">\n                  <div *ngIf=\"flag;else Show\">查无此人</div>\n                <ng-template #Show>\n                    <div *ngFor=\"let item of userlist\">\n                        <img src = \"{{item.Img_url}}\" class = \"img\">\n                        {{item.Name}}\n                      <button (click) = \"addfriend(item.ID)\">添加好友</button>\n                  </div>\n                </ng-template>\n\n              </div>\n            </div>\n          </div>\n          <div>\n\n            <button class = \"grad\">聊天</button>|<button class = \"grad\">通讯录</button>|<button class = \"grad\">添加</button>\n          </div>    \n        </div>\n\n\n      </th>\n      <th class = \"him\">对方的名字</th>\n    </tr>\n    <tr class = \"avatar2\" >\n      <td rowspan=\"2\" class = \"message\" >\n        <div *ngIf=\"!isslect\" class = \"tips\">\n          暂无新消息\n        </div>\n        <div class = \"message1\" id=\"scrolldIV\" >\n          <div *ngFor=\"let item of showmsg\" >\n                <!-- <div *ngFor=\"let mes of item\"> -->\n            <div *ngIf=\"item.From != my_id\" id=\"box\">{{item.Content}}</div>\n            <div *ngIf=\"item.From == my_id\" id=\"box1\">{{item.Content}}</div>\n                <!-- </div> -->\n          </div>\n        </div>\n      </td>\n    </tr>\n    <tr>\n      <td rowspan=\"3\">\n        <div class = \"list\" >\n          <div class = \"item\" *ngFor=\"let item of friendlist.List\" (click) = \"test2(item.ID, item.Isgroup)\">\n            <nz-badge [nzCount]=\"item.Counter\" *ngIf=\"list!=NULL\" class = \"point\" style = \"height: 5px;\">\n              <img src = \"{{item.Headimg}}\" class = \"img\">\n            </nz-badge>\n            {{item.Name}}\n          </div>\n        </div>\n      </td>\n    </tr>\n    <tr class = \"inputmes\">\n      <!-- <td > -->\n      <div></div>\n        <div  *ngIf=\"isslect\">\n        <div class = \"tool\">\n        </div>\n        <textarea class = \"textarea\" [(ngModel)] = \"content\"></textarea>\n        <button class = \"send\" nz-button nzType=\"primary\" (click) = \"sendMsg()\" >发送</button>\n      </div>\n    </tr>\n  </table>\n\n"
 
 /***/ }),
 
@@ -280,13 +280,15 @@ var ChatComponent = /** @class */ (function () {
         this.from_id = 1;
         this.to_id = 0;
         this.my_id = this.us.MyUserId;
+        this.my_img_url = "https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg";
         // group = 0;
         // addgtoup_id = 0;
         this.content = "";
         // group_name = '';
         this.list = [];
+        this.searchContent = "";
+        this.isVisible = false;
         this.isgroup = false;
-        this.my_img_url = "https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg";
     }
     ChatComponent.prototype.ngOnInit = function () {
         this.friendlist = this.ws.wsFriendList;
@@ -294,6 +296,7 @@ var ChatComponent = /** @class */ (function () {
         // console.log("wsfriendlist=", this.ws.wsFriendList);
         this.messagelist = this.ws.wsMessageList;
         // console.log("messagelist = ", this.messagelist);
+        console.log("my=", this.us);
         var now = new Date(); //设置滚动条保持在最底部
         var div = document.getElementById('scrolldIV');
         now.getTime();
@@ -308,14 +311,11 @@ var ChatComponent = /** @class */ (function () {
             if (id == this.messagelist.List[i].ID) {
                 this.showmsg = this.messagelist.List[i].MList;
                 this.isgroup = this.messagelist.List[i].Isgroup;
-                console.log("this.isgroup1 = ", this.isgroup, "showmsg = ", this.showmsg);
-                console.log("this.my_id) = ", this.my_id);
                 flag = true;
             }
         }
         if (!flag) {
             this.showmsg = [];
-            console.log("else");
         }
     };
     ChatComponent.prototype.sendMsg = function () {
@@ -344,7 +344,6 @@ var ChatComponent = /** @class */ (function () {
         msg.content = this.content; //消息内容
         msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.ContentType.TEXT; //消息类型
         msg.isgroup = false; //是不是群组消息
-        console.log("isgroup=", msg.isgroup);
         //   console.log("this.msg = ", msg)
         this.ws.sendMessage(msg);
         this.content = "";
@@ -358,9 +357,46 @@ var ChatComponent = /** @class */ (function () {
         msg.to = this.to_id;
         msg.content = this.content;
         msg.isgroup = true;
-        console.log("isgroup2=", msg.isgroup);
         this.ws.sendMessage(msg);
         this.content = "";
+    };
+    ChatComponent.prototype.clickMe = function () {
+        var btn = document.getElementById("search");
+        btn.focus();
+        this.isVisible = document.hasFocus();
+        this.userlist = [];
+    };
+    ChatComponent.prototype.outMe = function () {
+        var btn = document.getElementById("search");
+        btn.blur();
+        this.isVisible = document.hasFocus();
+        this.userlist = [];
+    };
+    ChatComponent.prototype.keyUpSearch = function (content) {
+        // this.ws.getUserList(this.searchContent).subscribe(data => {
+        //   console.log("data2 = ", data.Ulist);
+        //   this.userlist = data.Ulist;
+        // })
+    };
+    ChatComponent.prototype.search = function () {
+        var _this = this;
+        // console.log("search=", this.searchContent);
+        this.ws.getUserList(this.searchContent).subscribe(function (data) {
+            _this.userlist = data.Ulist;
+            _this.flag = false;
+        });
+        if (this.userlist.length == 0) {
+            this.flag = true;
+        }
+    };
+    ChatComponent.prototype.addfriend = function (to) {
+        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message);
+        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.Type.REQUEST;
+        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.CREATE_SESSION;
+        msg.from = this.us.MyUserId;
+        msg.to = to;
+        msg.time = Date.now();
+        this.ws.sendMessage(msg);
     };
     ChatComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -715,7 +751,7 @@ var LoginComponent = /** @class */ (function () {
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 
 
-var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "../node_modules/protobufjs/minimal.js");
+var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "./node_modules/protobufjs/minimal.js");
 
 // Common aliases
 var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
@@ -1460,7 +1496,7 @@ var UserService = /** @class */ (function () {
 /*!**************************************!*\
   !*** ./src/app/websocket.service.ts ***!
   \**************************************/
-/*! exports provided: WebsocketService, FriendItem, FriendList, MessageItem, Session, MessageList, Hist, HistList, ChatItem, ChatList, MsgItem, MsgList */
+/*! exports provided: WebsocketService, FriendItem, FriendList, MessageItem, Session, MessageList, Hist, HistList, ChatItem, ChatList, MsgItem, MsgList, UserItem, Uerlist */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1477,6 +1513,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatList", function() { return ChatList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgItem", function() { return MsgItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgList", function() { return MsgList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserItem", function() { return UserItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Uerlist", function() { return Uerlist; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./protocol/Protocol */ "./src/app/protocol/Protocol.js");
@@ -1499,6 +1537,8 @@ var WebsocketService = /** @class */ (function () {
         this.wsFriendList.List = [];
         this.wsMessageList = new (MessageList);
         this.wsMessageList.List = [];
+        this.wsUserList = new (Uerlist);
+        this.wsUserList.Ulist = [];
     }
     // 建立websocket链接
     WebsocketService.prototype.createSocket = function (url) {
@@ -1570,22 +1610,6 @@ var WebsocketService = /** @class */ (function () {
             }
         }
     };
-    WebsocketService.prototype.createSessById = function (conn, uid) {
-        var item = new (FriendItem);
-        item.ID = uid;
-        this.us.getUserbyId(item.ID).subscribe(function (data) {
-            item.Name = data["Name"];
-            item.Headimg = data["Img_url"];
-        });
-        item.Counter = 1;
-        item.Isgroup = false;
-        this.wsFriendList.List.push(item);
-        var sess = new (Session);
-        sess.ID = item.ID;
-        sess.Isgroup = false;
-        sess.MList = [];
-        this.wsMessageList.List.push(sess);
-    };
     // 发送信息，不在这里构造消息体
     WebsocketService.prototype.sendMessage = function (message) {
         message.time = Date.now();
@@ -1624,10 +1648,28 @@ var WebsocketService = /** @class */ (function () {
         console.log("发送前的数据", message);
         this.ws.send(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(message).finish());
     };
+    WebsocketService.prototype.createSessById = function (conn, uid) {
+        var item = new (FriendItem);
+        item.ID = uid;
+        this.us.getUserbyId(item.ID).subscribe(function (data) {
+            item.Name = data["Name"];
+            item.Headimg = data["Img_url"];
+            console.log("data.name = ", data["Name"]);
+        });
+        item.Counter = 1;
+        item.Isgroup = false;
+        this.wsFriendList.List.push(item);
+        var sess = new (Session);
+        sess.ID = item.ID;
+        sess.Isgroup = false;
+        sess.MList = [];
+        this.wsMessageList.List.push(sess);
+    };
     // 按名字取得用户列表
     WebsocketService.prototype.getUserList = function (name) {
         if (name === void 0) { name = ""; }
-        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/userlist?name" + name;
+        // console.log("name = " ,name);
+        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/userlist?name=" + name;
         return this.http.get(url);
     };
     WebsocketService.prototype.getChatMessageList = function (data) {
@@ -1640,28 +1682,6 @@ var WebsocketService = /** @class */ (function () {
     WebsocketService.prototype.getChatList = function () {
         var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/chatlist";
         return this.http.get(url);
-    };
-    WebsocketService.prototype.InitChatList = function () {
-        var _this = this;
-        this.getChatList().subscribe(function (data) {
-            console.log("聊天列表", data);
-            var HL = new (HistList);
-            HL.List = [];
-            for (var i = 0; i < data.List.length; i++) {
-                var FriItem = new (FriendItem);
-                FriItem.ID = data.List[i].Id;
-                FriItem.Name = data.List[i].Name;
-                FriItem.Headimg = data.List[i].Headimg;
-                FriItem.Isgroup = data.List[i].Isgroup;
-                FriItem.Counter = data.List[i].Counter;
-                _this.wsFriendList.List.push(FriItem);
-                var Ht = new (Hist);
-                Ht.ID = data.List[i].Id;
-                Ht.Isgroup = data.List[i].Isgroup;
-                HL.List.push(Ht);
-            }
-            _this.HistoryMessage(HL);
-        });
     };
     WebsocketService.prototype.HistoryMessage = function (info) {
         var _this = this;
@@ -1694,6 +1714,28 @@ var WebsocketService = /** @class */ (function () {
                 _this.wsMessageList.List.push(session);
             }
             console.log("历史消息", _this.wsMessageList.List);
+        });
+    };
+    WebsocketService.prototype.InitChatList = function () {
+        var _this = this;
+        this.getChatList().subscribe(function (data) {
+            console.log("聊天列表", data);
+            var HL = new (HistList);
+            HL.List = [];
+            for (var i = 0; i < data.List.length; i++) {
+                var FriItem = new (FriendItem);
+                FriItem.ID = data.List[i].Id;
+                FriItem.Name = data.List[i].Name;
+                FriItem.Headimg = data.List[i].Headimg;
+                FriItem.Isgroup = data.List[i].Isgroup;
+                FriItem.Counter = data.List[i].Counter;
+                _this.wsFriendList.List.push(FriItem);
+                var Ht = new (Hist);
+                Ht.ID = data.List[i].Id;
+                Ht.Isgroup = data.List[i].Isgroup;
+                HL.List.push(Ht);
+            }
+            _this.HistoryMessage(HL);
         });
     };
     WebsocketService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1770,6 +1812,18 @@ var MsgList = /** @class */ (function () {
     function MsgList() {
     }
     return MsgList;
+}());
+
+var UserItem = /** @class */ (function () {
+    function UserItem() {
+    }
+    return UserItem;
+}());
+
+var Uerlist = /** @class */ (function () {
+    function Uerlist() {
+    }
+    return Uerlist;
 }());
 
 /////////////////////////////////////////////////////////////////
@@ -1869,7 +1923,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/pjw/GoProject/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/goworks/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
 
 
 /***/ })

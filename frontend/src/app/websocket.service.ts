@@ -14,12 +14,15 @@ export class WebsocketService {
   ws: WebSocket;
   wsFriendList:FriendList;    
   wsMessageList:MessageList;
+  wsUserList: Uerlist;
   collection: Protocol.Message = new(Protocol.Message);
   constructor(private http:HttpClient,private us:UserService) { 
     this.wsFriendList = new(FriendList);
     this.wsFriendList.List = [];
     this.wsMessageList = new(MessageList);
     this.wsMessageList.List = [];
+    this.wsUserList = new(Uerlist);
+    this.wsUserList.Ulist = [];
   }
 
 
@@ -94,24 +97,7 @@ export class WebsocketService {
   }
 
 
-    createSessById(conn: Protocol.Message,uid: number|Long){
-        let item = new(FriendItem);
-        item.ID = uid;
-        this.us.getUserbyId(item.ID).subscribe((data)=>{
-          item.Name = data["Name"];
-          item.Headimg = data["Img_url"];
-        });
-        item.Counter = 1;
-        item.Isgroup = false;
-        this.wsFriendList.List.push(item);
-
-        let sess = new(Session)
-        sess.ID = item.ID
-        sess.Isgroup = false;
-        sess.MList = [];
-        this.wsMessageList.List.push(sess);
-   }
-  
+    
 
   // 发送信息，不在这里构造消息体
   sendMessage(message: Protocol.Message){
@@ -152,9 +138,29 @@ export class WebsocketService {
     this.ws.send(Protocol.Message.encode(message).finish());
   }
 
+  createSessById(conn: Protocol.Message,uid: number|Long){
+    let item = new(FriendItem);
+    item.ID = uid;
+    this.us.getUserbyId(item.ID).subscribe((data)=>{
+      item.Name = data["Name"];
+      item.Headimg = data["Img_url"];
+      console.log("data.name = ", data["Name"])
+    });
+    item.Counter = 1;
+    item.Isgroup = false;
+    this.wsFriendList.List.push(item);
+
+    let sess = new(Session)
+    sess.ID = item.ID
+    sess.Isgroup = false;
+    sess.MList = [];
+    this.wsMessageList.List.push(sess);
+}
+
   // 按名字取得用户列表
-  getUserList(name:string = ""):Observable<any>{
-      let url  = environment.apiUrl+"/userlist?name"+name
+  getUserList(name:string = ""):Observable<any>{//全部用户
+      // console.log("name = " ,name);
+      let url  = environment.apiUrl+"/userlist?name="+name
       return this.http.get(url)
   }
 
@@ -175,30 +181,6 @@ export class WebsocketService {
     let url  = environment.apiUrl+"/chatlist"
     return this.http.get(url)
   }
-
-  InitChatList(){
-    this.getChatList().subscribe((data: ChatList) => {
-      console.log("聊天列表",data);
-      let HL =  new(HistList);
-      HL.List = [];
-      for(let i=0;i<data.List.length;i++){
-        let FriItem:FriendItem = new(FriendItem);
-        FriItem.ID=data.List[i].Id;
-        FriItem.Name=data.List[i].Name;
-        FriItem.Headimg=data.List[i].Headimg;
-        FriItem.Isgroup=data.List[i].Isgroup;
-        FriItem.Counter=data.List[i].Counter;
-        this.wsFriendList.List.push(FriItem)
-
-        let Ht = new(Hist);
-        Ht.ID = data.List[i].Id;
-        Ht.Isgroup = data.List[i].Isgroup;
-        HL.List.push(Ht)
-      }
-      this.HistoryMessage(HL)
-    })
-  }
-
   HistoryMessage(info){
     this.getChatMessageList(info).subscribe((data:MsgList) => {
       this.wsMessageList.List =[];
@@ -226,6 +208,28 @@ export class WebsocketService {
         this.wsMessageList.List.push(session)
       }
       console.log("历史消息",this.wsMessageList.List)
+    })
+  }
+  InitChatList(){
+    this.getChatList().subscribe((data: ChatList) => {
+      console.log("聊天列表",data);
+      let HL =  new(HistList);
+      HL.List = [];
+      for(let i=0;i<data.List.length;i++){
+        let FriItem:FriendItem = new(FriendItem);
+        FriItem.ID=data.List[i].Id;
+        FriItem.Name=data.List[i].Name;
+        FriItem.Headimg=data.List[i].Headimg;
+        FriItem.Isgroup=data.List[i].Isgroup;
+        FriItem.Counter=data.List[i].Counter;
+        this.wsFriendList.List.push(FriItem)
+
+        let Ht = new(Hist);
+        Ht.ID = data.List[i].Id;
+        Ht.Isgroup = data.List[i].Isgroup;
+        HL.List.push(Ht)
+      }
+      this.HistoryMessage(HL)
     })
   }
 }
@@ -300,7 +304,14 @@ export class MsgList {
 }
 
 
-
+export class UserItem{
+	ID :number; 
+	Name :string  ;
+	Img_url :string;
+}
+export class Uerlist{
+	Ulist: UserItem[];
+}
 
   /////////////////////////////////////////////////////////////////
   // FriendList = [

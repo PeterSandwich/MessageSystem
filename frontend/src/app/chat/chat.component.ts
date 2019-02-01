@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@ang
 // import { MesList, FriendList, FriendItem, MessageList } from './data';
 
 
-import { WebsocketService,FriendList, MessageList, MessageItem} from '../websocket.service';
+import { WebsocketService,FriendList, Uerlist, MessageList, MessageItem} from '../websocket.service';
 // import { WebsocketService,FriendItem,Session,MessageItem } from '../websocket.service';
 import { timer, Observable, fromEvent} from 'rxjs';
 import { UserService } from '../user.service';
@@ -23,18 +23,21 @@ export class ChatComponent implements OnInit {
   from_id = 1;
   to_id = 0;
   my_id = this.us.MyUserId;
+  my_img_url = "https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg";
+
   // group = 0;
   // addgtoup_id = 0;
   content = "";
   // group_name = '';
   list = [];
   showmsg : MessageItem[];
-  // tips = "";
+  searchContent : string = "";
+  isVisible : boolean = false;
   isslect: boolean;
   isgroup: boolean = false;
   friendlist : FriendList;
+  userlist : Uerlist[];
   messagelist : MessageList;
-  my_img_url = "https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg";
 
   constructor(
     public ws:WebsocketService, 
@@ -48,6 +51,8 @@ export class ChatComponent implements OnInit {
       // console.log("wsfriendlist=", this.ws.wsFriendList);
       this.messagelist = this.ws.wsMessageList;
       // console.log("messagelist = ", this.messagelist);
+      console.log("my=", this.us);
+
       var now = new Date(); //设置滚动条保持在最底部
       var div = document.getElementById('scrolldIV');
       now.getTime();
@@ -64,14 +69,11 @@ export class ChatComponent implements OnInit {
         if(id == this.messagelist.List[i].ID){
           this.showmsg = this.messagelist.List[i].MList;
           this.isgroup = this.messagelist.List[i].Isgroup;
-          console.log("this.isgroup1 = ", this.isgroup, "showmsg = ", this.showmsg);
-          console.log("this.my_id) = ", this.my_id);
           flag = true;
         }
       }
       if(!flag){
           this.showmsg = [];
-          console.log("else");
       }
     }
     sendMsg() {
@@ -95,7 +97,6 @@ export class ChatComponent implements OnInit {
       msg.content = this.content;             //消息内容
       msg.contentType = Protocol.Message.ContentType.TEXT;　  //消息类型
      msg.isgroup = false;                       //是不是群组消息
-     console.log("isgroup=", msg.isgroup);
     //   console.log("this.msg = ", msg)
       this.ws.sendMessage(msg)
 
@@ -111,15 +112,52 @@ export class ChatComponent implements OnInit {
       msg.to = this.to_id;
       msg.content = this.content;
       msg.isgroup = true;
-      console.log("isgroup2=", msg.isgroup);
       this.ws.sendMessage(msg);
       this.content = "";
 
     }
 
+    clickMe(){
+        var btn = document.getElementById("search");
+        btn.focus();
+        this.isVisible = document.hasFocus();
+        this.userlist = [];
+    }
+    outMe(){
+      var btn = document.getElementById("search");
+      btn.blur();
+      this.isVisible = document.hasFocus();
+      this.userlist = [];
+    }
+
+    flag : boolean;
+    keyUpSearch(content: string){
+      // this.ws.getUserList(this.searchContent).subscribe(data => {
+      //   console.log("data2 = ", data.Ulist);
+      //   this.userlist = data.Ulist;
+      // })
+    }
+    search(){
+      // console.log("search=", this.searchContent);
+      this.ws.getUserList(this.searchContent).subscribe(data => {
+        this.userlist = data.Ulist;
+        this.flag = false;
+      })
+      if(this.userlist.length == 0) {
+        this.flag = true;
+      }
+    }
+    addfriend(to: number){
+      let msg = new(Protocol.Message)
+      msg.type = Protocol.Message.Type.REQUEST;
+      msg.cmd = Protocol.Message.CtrlType.CREATE_SESSION;
+      msg.from = this.us.MyUserId;
+      msg.to = to;
+      msg.time = Date.now();
+      this.ws.sendMessage(msg)
+    }
 
 }
-
 
 
 // 先不要管下面的
