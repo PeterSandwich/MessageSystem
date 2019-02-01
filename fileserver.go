@@ -80,12 +80,12 @@ func uploadFileHandler() http.HandlerFunc {
 		switch filetype {
 		case "image/jpeg", "image/jpg":returnp.Filetype=1
 		case "image/gif", "image/png":returnp.Filetype=1
-		case "application/pdf":returnp.Filetype=1
+		case "application/pdf":returnp.Filetype=2
 		case "application/octet-stream":
 			filetype="application/x-zip-compressed"
-			returnp.Filetype=1
+			returnp.Filetype=2
 		case "text/plain; charset=utf-8":
-			returnp.Filetype=1
+			returnp.Filetype=2
 			filetype = "text/plain"
 		default:
 			fb.Code(feedbcak.ERROR_FILESERVER).Msg("INVALID_FILE_TYPE").Response()
