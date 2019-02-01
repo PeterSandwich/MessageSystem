@@ -14,14 +14,14 @@ export class WebsocketService {
   ws: WebSocket;
   wsFriendList:FriendList;    
   wsMessageList:MessageList;
-  wsUserList: Uerlist;
+  wsUserList: Userlist;
   collection: Protocol.Message = new(Protocol.Message);
   constructor(private http:HttpClient,private us:UserService) { 
     this.wsFriendList = new(FriendList);
     this.wsFriendList.List = [];
     this.wsMessageList = new(MessageList);
     this.wsMessageList.List = [];
-    this.wsUserList = new(Uerlist);
+    this.wsUserList = new(Userlist);
     this.wsUserList.Ulist = [];
   }
 
@@ -183,7 +183,6 @@ export class WebsocketService {
         }
       }
     }
-    
     console.log("发送前的数据",message)
     this.ws.send(Protocol.Message.encode(message).finish());
   }
@@ -341,10 +340,10 @@ export class MsgList {
 
 export class UserItem{
 	ID :number; 
-	Name :string  ;
+	Name :string;
 	Img_url :string;
 }
-export class Uerlist{
+export class Userlist{
 	Ulist: UserItem[];
 }
 

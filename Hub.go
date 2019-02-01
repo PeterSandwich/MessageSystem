@@ -88,6 +88,7 @@ func C2C_SendRequest(in *pb.Message) {
 		To:      in.GetTo(),
 		From:    in.GetFrom(),
 		Time:    in.GetTime(),
+		ContentType:in.ContentType,
 		Isgroup: false,
 	}
 	bytes, err := proto.Marshal(ack)
