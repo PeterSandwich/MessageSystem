@@ -124,7 +124,6 @@ export class ChatComponent implements OnInit {
 
 
   picpath: string
-  GetPicUrl = "http://localhost:9988/getpic/"
   picurl: string
   fileurl = 'http://localhost:9988/upload'
   dfileurl="http://localhost:9988/upload/c4fb3e1e6b7e.jpg"
@@ -150,25 +149,32 @@ export class ChatComponent implements OnInit {
     //console.log(file.type)
     //console.log(file.name)
     this.filename = file.name;
-    this.upload.uploadFile(this.fileurl, file)
-      .subscribe(
-        (response: any) => {
+    this.upload.uploadFile(this.fileurl, file).subscribe((response: any) => {
           //.log(response);
+          let filetype = -1;
           if (response["body"] != null) {
             if (response["body"]["code"] != 1) {
               console.log(response["body"]["data"]);
               this.filep = response["body"]["data"]["originalfile"];
               this.dfileurl=response["body"]["data"]["thumbnail"];
-              console.log(this.GetPicUrl+this.dfileurl)
+              filetype = response["body"]["data"]["filetype"];
+              console.log(this.dfileurl)
               this.show = true;
             }
+            console.log("####",this.us.MyUserId,this.to_id,this.filep,this.dfileurl,filetype)
+             let msg = new(Protocol.Message)
+             msg.type = Protocol.Message.Type.REQUEST;
+             msg.cmd = Protocol.Message.CtrlType.NONE;
+             msg.from =  this.us.MyUserId;
+            // msg.to = this.to_id;
+             msg.content = this.filep;
+            // msg.isgroup = true;
+            // console.log("isgroup2=", msg.isgroup);
+            // this.ws.sendMessage(msg);
+            // this.content = "";
           }
-          // if (event.type == HttpEventType.UploadProgress) {
-          //   const percentDone = Math.round(100 * event.loaded / event.total);
-          //   console.log(`File is ${percentDone}% loaded.`);
-          // } else if (event instanceof HttpResponse) {
-          //   console.log('File is completely loaded!');
-          // }
+         
+            
         },
         (err) => {
           console.log("Upload Error:", err);
