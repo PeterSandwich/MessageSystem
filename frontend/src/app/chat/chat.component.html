@@ -1,3 +1,61 @@
+<!-- 创建群聊 -->
+<nz-modal [(nzVisible)]="isAddGroupVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleAddGroupCancel()">
+  <ng-template #modalTitle>
+    创建群
+  </ng-template>
+  <ng-template #modalContent>
+    <div class = "list1" >
+      <div class = "item" *ngFor="let item of friendlist.List" >
+        <nz-checkbox-group >
+          <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point" style = "height: 5px;" (ngModelChange)="log(item.if)">
+            <img src = "{{item.Headimg}}" class = "img">
+          </nz-badge>
+          {{item.Name}}
+      </nz-checkbox-group>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #modalFooter>
+    <input nz-input placeholder="群名字"[(ngModel)]="groupName">
+    <button nz-button nzType="default" (click)="handleAddGroupCancel()">取消</button>
+    <button nz-button nzType="primary" (click)="handleAddGroupOk()" [nzLoading]="isConfirmLoading">创建</button>
+  </ng-template>
+</nz-modal>
+
+
+<!-- 添加好友 -->
+<nz-modal [(nzVisible)]="isAddFriendVisible" [nzTitle]="modalTitle1" [nzContent]="modalContent1"  (nzOnCancel)="handleAddFriendCancel()">
+    <ng-template #modalTitle1>
+      添加好友
+      <nz-input-group [nzSuffix]="suffixIconSearch"> 
+          <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索的用户名" 
+           id = "search" (keyup) = "keyUpSearch($event)">
+        </nz-input-group> 
+
+        <ng-template #suffixIconSearch>
+          <i nz-icon type="search" class = "icon" (click) = "search()"></i>
+        </ng-template>
+    </ng-template>
+  
+    <ng-template #modalContent1>
+            <div *ngIf="!searchContent">
+              正在搜索内容
+            </div>
+            <div *ngIf="searchContent">
+                <div *ngIf="flag;else Show">查无此人</div>
+              <ng-template #Show>
+                  <div *ngFor="let item of userlist">
+                      <img src = "{{item.Img_url}}" class = "img">
+                      {{item.Name}}
+                    <button (click) = "addfriend(item.ID)">添加好友</button>
+                </div>
+              </ng-template>
+
+            </div>
+    </ng-template>
+  </nz-modal>
+
+
 
 <div class="container">
   <table >
@@ -11,50 +69,31 @@
             </div>
             
 
-            <div class = "dropdown">
-
-              <nz-dropdown>
-                <a nz-dropdown>
-                    <i nz-icon type="bars" theme="outline"></i> <i nz-icon type="down"></i>
-                </a>
-                <ul nz-menu nzSelectable>
-                  <li nz-menu-item>
-                    <a>添加好友</a>
-                  </li>
-                  <li nz-menu-item>
-                    <a>创建群聊</a>
-                  </li>
-                </ul>
-              </nz-dropdown>
-
-            </div>
+           
         </div>
 
 
         <div class = "search">
-          <nz-input-group [nzSuffix]="suffixIconSearch"> 
-            <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索内容" 
-            (click)="clickMe()" (blur)="outMe()" id = "search" (keyup) = "keyUpSearch($event)">
-            <!-- <input type="text" [value] = "searchContent" nz-input placeholder="输入搜索内容" 
-            (blur)="cancelEditingTodo()" app-chat id = "search" (keyup.enter) = "keyUpSearch($event)"> -->
+          <nz-input-group [nzSuffix]="suffixIconSearch1"> 
+            <input type="text" [(ngModel)]="searchFriend" nz-input placeholder="输入搜索内容" 
+              id = "search">
           </nz-input-group> 
 
-          <ng-template #suffixIconSearch>
-            <i nz-icon type="search" class = "icon" (click) = "search()"></i>
+          <ng-template #suffixIconSearch1>
+            <i nz-icon type="search" class = "icon"></i>
           </ng-template>
 
           <div class = "smallContainer">
             <div *ngIf="isVisible">
-              <div *ngIf="!searchContent">
+              <div *ngIf="!searchFriend">
                 正在搜索内容
               </div>
-              <div *ngIf="searchContent">
+              <div *ngIf="searchFriend">
                   <div *ngIf="flag;else Show">查无此人</div>
                 <ng-template #Show>
                     <div *ngFor="let item of userlist">
                         <img src = "{{item.Img_url}}" class = "img">
                         {{item.Name}}
-                      <button (click) = "addfriend(item.ID)">添加好友</button>
                   </div>
                 </ng-template>
 
@@ -62,10 +101,26 @@
             </div>
           </div>
           <div>
-
-            <button class = "grad">聊天</button>|<button class = "grad">通讯录</button>|<button class = "grad" (click) = "creatGroup()">建群</button>
-          </div>    
-        </div>
+  
+            </div>
+            <button class = "grad">聊天</button>|<button class = "grad">通讯录</button>| 
+            <!-- <div> -->
+              <nz-dropdown class = "dropdown" >
+                  <a nz-dropdown>
+                      添加 <i nz-icon type="down"></i>
+                  </a>
+                  <ul nz-menu nzSelectable>
+                    <li nz-menu-item (click)="showAddFriendModal()">
+                      <a>添加好友</a>
+                    </li>
+                    <li nz-menu-item (click) = "showAddGroupModal()">
+                      <a>创建群聊</a>
+                    </li>
+                  </ul>
+                </nz-dropdown>
+  
+              <!-- </div> -->
+          </div>  
 
 
       </th>
@@ -106,7 +161,7 @@
       </td>
     </tr>
     <tr>
-      <td rowspan="3">
+      <td rowspan="2">
         <div class = "list" >
           <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID,item.Name, item.Headimg, item.Isgroup)">
             <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point">
