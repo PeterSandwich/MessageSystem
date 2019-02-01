@@ -1,3 +1,44 @@
+<!-- 创建群聊 -->
+<nz-modal [(nzVisible)]="isAddGroupVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleAddGroupCancel()">
+  <ng-template #modalTitle>
+    创建群
+  </ng-template>
+  <ng-template #modalContent>
+    <div class = "list" >
+      <div class = "item" *ngFor="let item of friendlist.List" >
+        <label nz-checkbox >
+          <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point" style = "height: 5px;">
+            <img src = "{{item.Headimg}}" class = "img">
+          </nz-badge>
+          {{item.Name}}
+      </label>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #modalFooter>
+    <input nz-input placeholder="群名字"[(ngModel)]="GroupName">
+    <button nz-button nzType="default" (click)="handleAddGroupCancel()">取消</button>
+    <button nz-button nzType="primary" (click)="handleAddGroupOk()" [nzLoading]="isConfirmLoading">创建</button>
+  </ng-template>
+</nz-modal>
+
+
+<!-- 添加好友 -->
+<nz-modal [(nzVisible)]="isAddFriendVisible" [nzTitle]="modalTitle1" [nzContent]="modalContent1"  (nzOnCancel)="handleAddFriendCancel()">
+  <ng-template #modalTitle1>
+    添加好友
+  </ng-template>
+
+  <ng-template #modalContent1>
+    <p>添加好友Modal Content</p>
+    <p>添加好友Modal Content</p>
+    <p>添加好友Modal Content</p>
+    <p>添加好友Modal Content</p>
+    <p>添加好友Modal Content</p>
+  </ng-template>
+</nz-modal>
+
+
 
 <div class="container">
   <table >
@@ -136,4 +177,13 @@
       </div>
     </tr>
   </table>
+
+
+  <button nz-button nzType="primary" (click)="showAddGroupModal()">
+    <span>创建群</span>
+  </button>
+  <button nz-button nzType="primary" (click)="showAddFriendModal()">
+    <span>添加好友</span>
+  </button>
+
 
