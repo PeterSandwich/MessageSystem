@@ -50,14 +50,17 @@ export class WebsocketService {
     if (conn.type==Protocol.Message.Type.NOTIFICATION){
       console.log("NOTIFICATION");
       if (conn.cmd == Protocol.Message.CtrlType.NONE){
-        console.log("NONE",conn);
+        console.log("COMMOM",conn);
         for(let i=0;i<this.wsMessageList.List.length;i++){
-          if(conn.isgroup == this.wsMessageList.List[i].Isgroup){
-            if(conn.isgroup == true && conn.group==this.wsMessageList.List[i].ID){
+            if(conn.isgroup == this.wsMessageList.List[i].Isgroup&&
+              ((conn.isgroup &&conn.to==this.wsMessageList.List[i].ID)||(!conn.isgroup &&conn.from==this.wsMessageList.List[i].ID))){
               let item = new(MessageItem);
               item.Mid = conn.msgid;
               item.From = conn.from;
-              item.To = conn.group;
+              item.To = conn.from;
+              if(conn.isgroup){
+                item.To = conn.to;
+              }
               item.Content = conn.content;
               item.ContentType =conn.contentType;
               item.Time = conn.time;
@@ -65,20 +68,6 @@ export class WebsocketService {
               console.log(this.wsMessageList.List[i]);
               break;
             }
-            if(conn.isgroup == false && conn.to==this.wsMessageList.List[i].ID){
-              let item = new(MessageItem);
-            item.Mid = conn.msgid;
-            item.From = conn.from;
-            item.To = conn.to;
-            item.Content = conn.content;
-            item.ContentType =conn.contentType;
-            item.Time = conn.time;
-            this.wsMessageList.List[i].MList.push(item);
-            break;
-            }
-
-          }
-      
         }
       }else if(conn.cmd == Protocol.Message.CtrlType.CREATE_SESSION){ //添加好友请求
         this.createSessById(conn,conn.from)
@@ -130,19 +119,7 @@ export class WebsocketService {
     if (message.type ==  Protocol.Message.Type.REQUEST) {
       if(message.cmd == Protocol.Message.CtrlType.NONE){  // 单聊或群聊
         for(let i=0;i<this.wsMessageList.List.length;i++){
-          if(message.isgroup == this.wsMessageList.List[i].Isgroup){
-          if(message.isgroup == true && message.group==this.wsMessageList.List[i].ID){
-            let item = new(MessageItem);
-            item.Mid = 0;
-            item.From = message.from;
-            item.To = message.group;
-            item.Content = message.content;
-            item.ContentType =message.contentType;
-            item.Time = message.time;
-            this.wsMessageList.List[i].MList.push(item);
-            break;
-          }
-          if(message.isgroup == false && message.to==this.wsMessageList.List[i].ID){
+          if(message.isgroup == this.wsMessageList.List[i].Isgroup&&message.to==this.wsMessageList.List[i].ID){
             let item = new(MessageItem);
             item.Mid = 0;
             item.From = message.from;
@@ -154,24 +131,22 @@ export class WebsocketService {
             break;
           }
         }
-            
-          }
-        }
-      }else if(message.cmd == Protocol.Message.CtrlType.MSG_BACK){   // 撤回消息
-        if(message.msgid == 0){
-          alert("消息ＩＤ不存在，无法撤回");
-        }
-        for(let i=0;i<this.wsMessageList.List.length;i++){
-          if (message.to==this.wsMessageList.List[i].ID && message.isgroup == this.wsMessageList.List[i].Isgroup){
-            for(let j=0;j<this.wsMessageList.List[i].MList.length;j++){
-              if (this.wsMessageList.List[i].MList[j].Mid == message.msgid){
-                this.wsMessageList.List[i].MList.slice(j,1);
-                break;
-              }
+      }
+    }else if(message.cmd == Protocol.Message.CtrlType.MSG_BACK){   // 撤回消息
+      if(message.msgid == 0){
+        alert("消息ＩＤ不存在，无法撤回");
+      }
+      for(let i=0;i<this.wsMessageList.List.length;i++){
+        if (message.to==this.wsMessageList.List[i].ID && message.isgroup == this.wsMessageList.List[i].Isgroup){
+          for(let j=0;j<this.wsMessageList.List[i].MList.length;j++){
+            if (this.wsMessageList.List[i].MList[j].Mid == message.msgid){
+              this.wsMessageList.List[i].MList.slice(j,1);
+              break;
             }
           }
         }
       }
+    }
     
     console.log("发送前的数据",message)
     this.ws.send(Protocol.Message.encode(message).finish());

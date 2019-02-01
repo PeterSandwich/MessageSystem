@@ -18,9 +18,6 @@ export namespace Protocol {
         /** Message to */
         to?: (number|Long|null);
 
-        /** Message group */
-        group?: (number|Long|null);
-
         /** Message isgroup */
         isgroup?: (boolean|null);
 
@@ -60,9 +57,6 @@ export namespace Protocol {
 
         /** Message to. */
         public to: (number|Long);
-
-        /** Message group. */
-        public group: (number|Long);
 
         /** Message isgroup. */
         public isgroup: boolean;
@@ -158,7 +152,7 @@ export namespace Protocol {
         /** Type enum. */
         enum Type {
             ACK = 0,
-            REQUEST = 1, //我发送给服务端
+            REQUEST = 1,
             NOTIFICATION = 2
         }
 
@@ -167,13 +161,13 @@ export namespace Protocol {
             NONE = 0,
             CREATE_GROUP = 1,
             GROUP_ADDMEMBERS = 2,
-            MSG_BACK = 3, //消息撤回
+            MSG_BACK = 3,
             CREATE_SESSION = 4
         }
 
         /** ContentType enum. */
         enum ContentType {
-            TEXT = 0, 
+            TEXT = 0,
             IMG = 1,
             FILE = 2
         }

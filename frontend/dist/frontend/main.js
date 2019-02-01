@@ -355,7 +355,7 @@ var ChatComponent = /** @class */ (function () {
         msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.NONE;
         msg.from = this.us.MyUserId;
         // msg.group  = this.to_id;
-        msg.group = this.to_id;
+        msg.to = this.to_id;
         msg.content = this.content;
         msg.isgroup = true;
         console.log("isgroup2=", msg.isgroup);
@@ -715,7 +715,7 @@ var LoginComponent = /** @class */ (function () {
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 
 
-var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "./node_modules/protobufjs/minimal.js");
+var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "../node_modules/protobufjs/minimal.js");
 
 // Common aliases
 var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
@@ -742,7 +742,6 @@ $root.Protocol = (function() {
          * @property {Protocol.Message.CtrlType|null} [cmd] Message cmd
          * @property {number|Long|null} [from] Message from
          * @property {number|Long|null} [to] Message to
-         * @property {number|Long|null} [group] Message group
          * @property {boolean|null} [isgroup] Message isgroup
          * @property {string|null} [content] Message content
          * @property {Protocol.Message.ContentType|null} [contentType] Message contentType
@@ -798,14 +797,6 @@ $root.Protocol = (function() {
          * @instance
          */
         Message.prototype.to = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-        /**
-         * Message group.
-         * @member {number|Long} group
-         * @memberof Protocol.Message
-         * @instance
-         */
-        Message.prototype.group = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
          * Message isgroup.
@@ -887,20 +878,18 @@ $root.Protocol = (function() {
                 writer.uint32(/* id 3, wireType 0 =*/24).int64(message.from);
             if (message.to != null && message.hasOwnProperty("to"))
                 writer.uint32(/* id 4, wireType 0 =*/32).int64(message.to);
-            if (message.group != null && message.hasOwnProperty("group"))
-                writer.uint32(/* id 5, wireType 0 =*/40).int64(message.group);
             if (message.isgroup != null && message.hasOwnProperty("isgroup"))
-                writer.uint32(/* id 6, wireType 0 =*/48).bool(message.isgroup);
+                writer.uint32(/* id 5, wireType 0 =*/40).bool(message.isgroup);
             if (message.content != null && message.hasOwnProperty("content"))
-                writer.uint32(/* id 7, wireType 2 =*/58).string(message.content);
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.content);
             if (message.contentType != null && message.hasOwnProperty("contentType"))
-                writer.uint32(/* id 8, wireType 0 =*/64).int32(message.contentType);
+                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.contentType);
             if (message.msgid != null && message.hasOwnProperty("msgid"))
-                writer.uint32(/* id 9, wireType 0 =*/72).int64(message.msgid);
+                writer.uint32(/* id 8, wireType 0 =*/64).int64(message.msgid);
             if (message.time != null && message.hasOwnProperty("time"))
-                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.time);
+                writer.uint32(/* id 9, wireType 0 =*/72).int64(message.time);
             if (message.userlist != null && message.userlist.length) {
-                writer.uint32(/* id 11, wireType 2 =*/90).fork();
+                writer.uint32(/* id 10, wireType 2 =*/82).fork();
                 for (var i = 0; i < message.userlist.length; ++i)
                     writer.int64(message.userlist[i]);
                 writer.ldelim();
@@ -952,24 +941,21 @@ $root.Protocol = (function() {
                     message.to = reader.int64();
                     break;
                 case 5:
-                    message.group = reader.int64();
-                    break;
-                case 6:
                     message.isgroup = reader.bool();
                     break;
-                case 7:
+                case 6:
                     message.content = reader.string();
                     break;
-                case 8:
+                case 7:
                     message.contentType = reader.int32();
                     break;
-                case 9:
+                case 8:
                     message.msgid = reader.int64();
                     break;
-                case 10:
+                case 9:
                     message.time = reader.int64();
                     break;
-                case 11:
+                case 10:
                     if (!(message.userlist && message.userlist.length))
                         message.userlist = [];
                     if ((tag & 7) === 2) {
@@ -1040,9 +1026,6 @@ $root.Protocol = (function() {
             if (message.to != null && message.hasOwnProperty("to"))
                 if (!$util.isInteger(message.to) && !(message.to && $util.isInteger(message.to.low) && $util.isInteger(message.to.high)))
                     return "to: integer|Long expected";
-            if (message.group != null && message.hasOwnProperty("group"))
-                if (!$util.isInteger(message.group) && !(message.group && $util.isInteger(message.group.low) && $util.isInteger(message.group.high)))
-                    return "group: integer|Long expected";
             if (message.isgroup != null && message.hasOwnProperty("isgroup"))
                 if (typeof message.isgroup !== "boolean")
                     return "isgroup: boolean expected";
@@ -1140,15 +1123,6 @@ $root.Protocol = (function() {
                     message.to = object.to;
                 else if (typeof object.to === "object")
                     message.to = new $util.LongBits(object.to.low >>> 0, object.to.high >>> 0).toNumber();
-            if (object.group != null)
-                if ($util.Long)
-                    (message.group = $util.Long.fromValue(object.group)).unsigned = false;
-                else if (typeof object.group === "string")
-                    message.group = parseInt(object.group, 10);
-                else if (typeof object.group === "number")
-                    message.group = object.group;
-                else if (typeof object.group === "object")
-                    message.group = new $util.LongBits(object.group.low >>> 0, object.group.high >>> 0).toNumber();
             if (object.isgroup != null)
                 message.isgroup = Boolean(object.isgroup);
             if (object.content != null)
@@ -1230,11 +1204,6 @@ $root.Protocol = (function() {
                     object.to = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.to = options.longs === String ? "0" : 0;
-                if ($util.Long) {
-                    var long = new $util.Long(0, 0, false);
-                    object.group = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                } else
-                    object.group = options.longs === String ? "0" : 0;
                 object.isgroup = false;
                 object.content = "";
                 object.contentType = options.enums === String ? "TEXT" : 0;
@@ -1263,11 +1232,6 @@ $root.Protocol = (function() {
                     object.to = options.longs === String ? String(message.to) : message.to;
                 else
                     object.to = options.longs === String ? $util.Long.prototype.toString.call(message.to) : options.longs === Number ? new $util.LongBits(message.to.low >>> 0, message.to.high >>> 0).toNumber() : message.to;
-            if (message.group != null && message.hasOwnProperty("group"))
-                if (typeof message.group === "number")
-                    object.group = options.longs === String ? String(message.group) : message.group;
-                else
-                    object.group = options.longs === String ? $util.Long.prototype.toString.call(message.group) : options.longs === Number ? new $util.LongBits(message.group.low >>> 0, message.group.high >>> 0).toNumber() : message.group;
             if (message.isgroup != null && message.hasOwnProperty("isgroup"))
                 object.isgroup = message.isgroup;
             if (message.content != null && message.hasOwnProperty("content"))
@@ -1561,32 +1525,23 @@ var WebsocketService = /** @class */ (function () {
         if (conn.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.NOTIFICATION) {
             console.log("NOTIFICATION");
             if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
-                console.log("NONE", conn);
+                console.log("COMMOM", conn);
                 for (var i = 0; i < this.wsMessageList.List.length; i++) {
-                    if (conn.isgroup == this.wsMessageList.List[i].Isgroup) {
-                        if (conn.isgroup == true && conn.group == this.wsMessageList.List[i].ID) {
-                            var item = new (MessageItem);
-                            item.Mid = conn.msgid;
-                            item.From = conn.from;
-                            item.To = conn.group;
-                            item.Content = conn.content;
-                            item.ContentType = conn.contentType;
-                            item.Time = conn.time;
-                            this.wsMessageList.List[i].MList.push(item);
-                            console.log(this.wsMessageList.List[i]);
-                            break;
-                        }
-                        if (conn.isgroup == false && conn.to == this.wsMessageList.List[i].ID) {
-                            var item = new (MessageItem);
-                            item.Mid = conn.msgid;
-                            item.From = conn.from;
+                    if (conn.isgroup == this.wsMessageList.List[i].Isgroup &&
+                        ((conn.isgroup && conn.to == this.wsMessageList.List[i].ID) || (!conn.isgroup && conn.from == this.wsMessageList.List[i].ID))) {
+                        var item = new (MessageItem);
+                        item.Mid = conn.msgid;
+                        item.From = conn.from;
+                        item.To = conn.from;
+                        if (conn.isgroup) {
                             item.To = conn.to;
-                            item.Content = conn.content;
-                            item.ContentType = conn.contentType;
-                            item.Time = conn.time;
-                            this.wsMessageList.List[i].MList.push(item);
-                            break;
                         }
+                        item.Content = conn.content;
+                        item.ContentType = conn.contentType;
+                        item.Time = conn.time;
+                        this.wsMessageList.List[i].MList.push(item);
+                        console.log(this.wsMessageList.List[i]);
+                        break;
                     }
                 }
             }
@@ -1637,29 +1592,16 @@ var WebsocketService = /** @class */ (function () {
         if (message.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST) {
             if (message.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) { // 单聊或群聊
                 for (var i = 0; i < this.wsMessageList.List.length; i++) {
-                    if (message.isgroup == this.wsMessageList.List[i].Isgroup) {
-                        if (message.isgroup == true && message.group == this.wsMessageList.List[i].ID) {
-                            var item = new (MessageItem);
-                            item.Mid = 0;
-                            item.From = message.from;
-                            item.To = message.group;
-                            item.Content = message.content;
-                            item.ContentType = message.contentType;
-                            item.Time = message.time;
-                            this.wsMessageList.List[i].MList.push(item);
-                            break;
-                        }
-                        if (message.isgroup == false && message.to == this.wsMessageList.List[i].ID) {
-                            var item = new (MessageItem);
-                            item.Mid = 0;
-                            item.From = message.from;
-                            item.To = message.to;
-                            item.Content = message.content;
-                            item.ContentType = message.contentType;
-                            item.Time = message.time;
-                            this.wsMessageList.List[i].MList.push(item);
-                            break;
-                        }
+                    if (message.isgroup == this.wsMessageList.List[i].Isgroup && message.to == this.wsMessageList.List[i].ID) {
+                        var item = new (MessageItem);
+                        item.Mid = 0;
+                        item.From = message.from;
+                        item.To = message.to;
+                        item.Content = message.content;
+                        item.ContentType = message.contentType;
+                        item.Time = message.time;
+                        this.wsMessageList.List[i].MList.push(item);
+                        break;
                     }
                 }
             }
@@ -1927,7 +1869,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/goworks/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/pjw/GoProject/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
 
 
 /***/ })
