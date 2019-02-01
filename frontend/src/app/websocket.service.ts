@@ -13,12 +13,15 @@ export class WebsocketService {
   ws: WebSocket;
   wsFriendList:FriendList;    
   wsMessageList:MessageList;
+  wsUserList: Userlist;
   collection: Protocol.Message = new(Protocol.Message);
   constructor(private http:HttpClient,private us:UserService) { 
     this.wsFriendList = new(FriendList);
     this.wsFriendList.List = [];
     this.wsMessageList = new(MessageList);
     this.wsMessageList.List = [];
+    this.wsUserList = new(Userlist);
+    this.wsUserList.Ulist = [];
   }
 
 
@@ -111,6 +114,7 @@ export class WebsocketService {
         let item = new(FriendItem);
         item.ID = uid;
         this.us.getUserbyId(item.ID).subscribe((data)=>{
+          console.log("data=", data)
           item.Name = data["Name"];
           item.Headimg = data["Img_url"];
         });
@@ -129,7 +133,7 @@ export class WebsocketService {
     item.ID = gid;
     this.us.getGroupById(item.ID).subscribe((data)=>{
       item.Name = data["Name"];
-      item.Headimg = data["Heading"];
+      item.Headimg = data["Headimg"];
     });
     item.Counter = 1;
     item.Isgroup = true;
@@ -177,14 +181,15 @@ export class WebsocketService {
         }
       }
     }
-    
     console.log("发送前的数据",message)
     this.ws.send(Protocol.Message.encode(message).finish());
   }
 
+
   // 按名字取得用户列表
-  getUserList(name:string = ""):Observable<any>{
-      let url  = environment.apiUrl+"/userlist?name"+name
+  getUserList(name:string = ""):Observable<any>{//全部用户
+      // console.log("name = " ,name);
+      let url  = environment.apiUrl+"/userlist?name="+name
       return this.http.get(url)
   }
 
@@ -205,7 +210,39 @@ export class WebsocketService {
     let url  = environment.apiUrl+"/chatlist"
     return this.http.get(url)
   }
-
+  HistoryMessage(info){
+    this.getChatMessageList(info).subscribe((data:MsgList) => {
+      console.log("历史消息原数据",data)
+      this.wsMessageList.List =[];
+      if (data.List==null) {
+        data.List = [];
+      }
+      for(let i=0;i<data.List.length;i++){
+          let session = new(Session);
+          session.MList = [];
+          if (data.List[i].length>0){
+            session.ID = data.List[i][0].From;
+            if (data.List[i][0].Isgroup ||session.ID == this.us.MyUserId) {
+              session.ID = data.List[i][0].To;
+            }
+            session.Isgroup = data.List[i][0].Isgroup;
+          }else{continue;}
+          console.log("session.ID",session.ID, data.List[i][0].To,data.List[i][0].From)
+         for(let j=0;j<data.List[i].length;j++){
+          let Item = new(MessageItem);
+          Item.Mid = data.List[i][j].Mid;
+          Item.From = data.List[i][j].From;
+          Item.To = data.List[i][j].To;
+          Item.Content = data.List[i][j].Content;
+          Item.ContentType = data.List[i][j].ContentType;
+          Item.Time = data.List[i][j].Time;
+          session.MList.push(Item);
+        }
+        this.wsMessageList.List.push(session)
+      }
+      console.log("历史消息",this.wsMessageList.List)
+    })
+  }
   InitChatList(){
     this.getChatList().subscribe((data: ChatList) => {
       console.log("聊天列表",data);
@@ -226,36 +263,6 @@ export class WebsocketService {
         HL.List.push(Ht)
       }
       this.HistoryMessage(HL)
-    })
-  }
-
-  HistoryMessage(info){
-    this.getChatMessageList(info).subscribe((data:MsgList) => {
-      this.wsMessageList.List =[];
-      for(let i=0;i<data.List.length;i++){
-          let session = new(Session);
-          session.MList = [];
-          if (data.List[i].length>0){
-            session.ID = data.List[i][0].From;
-            if (data.List[i][0].Isgroup ||session.ID == this.us.MyUserId) {
-              session.ID = data.List[i][0].To;
-            }
-            session.Isgroup = data.List[i][0].Isgroup;
-          }else{break;}
-          console.log("session.ID",session.ID, data.List[i][0].To,data.List[i][0].From)
-         for(let j=0;j<data.List[i].length;j++){
-          let Item = new(MessageItem);
-          Item.Mid = data.List[i][j].Mid;
-          Item.From = data.List[i][j].From;
-          Item.To = data.List[i][j].To;
-          Item.Content = data.List[i][j].Content;
-          Item.ContentType = data.List[i][j].ContentType;
-          Item.Time = data.List[i][j].Time;
-          session.MList.push(Item);
-        }
-        this.wsMessageList.List.push(session)
-      }
-      console.log("历史消息",this.wsMessageList.List)
     })
   }
 }
@@ -328,3 +335,43 @@ export class MsgItem{
 export class MsgList {
  List: MsgItem[][];
 }
+
+
+export class UserItem{
+	ID :number; 
+	Name :string;
+	Img_url :string;
+}
+export class Userlist{
+	Ulist: UserItem[];
+}
+
+  /////////////////////////////////////////////////////////////////
+  // FriendList = [
+  //   {ID:1000021,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 1},
+  //   {ID:1000022,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 9},
+  //   {ID:1000023,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 0},
+  //   {ID:1000024,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 4},
+  //   {ID:1000025,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 5},
+  //   {ID:1000026,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 3},
+  // ];
+
+  // MessageList = [
+  //   {ID:1000021,ISGROUP: false,Message: [
+  //     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1000021,To:1, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+  //   ]},
+  //   {ID:1000022,ISGROUP: false,Message: [
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+  //   ]},
+  //   {ID:100001,ISGROUP: false,Message: [
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+  //     {Mid: 0,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+  //   ]}
+
+  // ]

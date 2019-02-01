@@ -3,6 +3,12 @@
     border: 1px solid #e8e8e8;
     border-radius: 4px;
   } */
+
+:host ::ng-deep .demo-infinite-container {
+  height: 300px;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+}
 .avatar{
   height: 80px;
   width: 200px;
@@ -25,7 +31,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 5000;
+  z-index: １;
   border-color: #616060;
   /* border: 2px;
   color: #000000 */
@@ -35,6 +41,9 @@
   margin-top: 15px;
   margin-left: 5px;
   width: 240px;
+}
+.icon{
+  cursor: pointer;
 }
 .list{
   background-color: #7a7a7a;
@@ -227,10 +236,13 @@
   /* left: 60px; */
   margin:5px;
 }
-:host ::ng-deep .demo-infinite-container {
-  height: 300px;
-  border: 1px solid #e8e8e8;
-  border-radius: 4px;
+
+.smallContainer{
+  width: 240px;
+  background-color: #FFFFFF;
+  position:absolute;
+  text-align: center;
+  z-index: 5000;
 }
 .headportrait{
   position: relative;

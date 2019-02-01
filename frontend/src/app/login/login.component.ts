@@ -11,17 +11,19 @@ import { environment } from '../../environments/environment';
 })
 export class LoginComponent {
 
-  constructor(private login: UserService,private ws: WebsocketService,private router: Router) { }
+  constructor(private us: UserService,private ws: WebsocketService,private router: Router) { }
   name =''
   password = ''
   submit(){
       let body = {name:this.name,password:this.password}
-      this.login.postLoginData(body).subscribe(data =>{
+      this.us.postLoginData(body).subscribe(data =>{
         if(data['Ok']){
-          this.login.isLogin=true;
+          this.us.isLogin=true;
           this.router.navigate(['']);
           console.log(data['Uid']);
-          this.login.MyUserId = data['Uid'];
+          this.us.MyUserId = data['Uid'];
+          this.us.myName = data['Name'];
+          this.us.myImg = data['Headimg'];
           this.ws.createSocket(environment.websocketUrl);
           this.ws.InitChatList();
         }else{

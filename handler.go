@@ -264,9 +264,10 @@ func GetIdBySession(r *http.Request) (int64, error) {
 
 //    ?id=1000001
 func GetUser(w http.ResponseWriter, r *http.Request) {
-	m, _ := url.ParseQuery(r.URL.RawQuery)
-	uid,_ :=strconv.ParseInt(fmt.Sprintf("%s", m["id"][0]),10,64)
+	r.ParseForm();
+	uid,_ :=strconv.ParseInt(r.Form.Get("id"),10,64)
 	item, err := GetUserById(uid)
+	log.Warn("* getuser ",uid,item)
 	if err!= nil {
 		log.Error("* Get user by id wrong",err.Error())
 		return
@@ -280,11 +281,11 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetGroup(w http.ResponseWriter, r *http.Request) {
-	m, _ := url.ParseQuery(r.URL.RawQuery)
-	uid,_ :=strconv.ParseInt(fmt.Sprintf("%s", m["id"][0]),10,64)
-	item, err := GetGroupById(uid)
+	r.ParseForm();
+	gid,_ :=strconv.ParseInt(r.Form.Get("id"),10,64)
+	item, err := GetGroupById(gid)
 	if err!= nil {
-		log.Error("* Get group by id wrong",err.Error())
+		log.Error("* Get group by id wrong",err.Error(),"gid=",gid)
 		return
 	}
 	bytes, err := json.Marshal(item)

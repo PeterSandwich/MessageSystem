@@ -229,7 +229,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* :host ::ng-deep .demo-infinite-container {\n    height: 300px;\n    border: 1px solid #e8e8e8;\n    border-radius: 4px;\n  } */\n.avatar{\n  height: 80px;\n  width: 200px;\n\n}\n.avatar2{\n  overflow-y: auto;\n  overflow-x:none;\n  height: 80px;\n  width: 200px;\n}\n.container{\n  /* background-color:rgb(223, 219, 219); */\n  background-color: #DDDDDD;\n  width: 1002px;\n  height: 740px;\n  position: absolute;\n  margin: auto;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 5000;\n  border-color: #616060;\n  /* border: 2px;\n  color: #000000 */\n}\n.search{\n  position:absolute;\n  margin-top: 15px;\n  margin-left: 5px;\n  width: 240px;\n}\n.list{\n  background-color: #7a7a7a;\n  width: 250px;\n  height: 600px;\n  /* color: white; */\n\n  /* overflow-y:scroll;  纵向滚动条始终显示 */\n  overflow-y: auto;\n  overflow-x:none;\n}\n.item{\n  color: white;\n  border-bottom:1px solid #EEE;\n  height: 65px;\n  font-size: 12px;\n  /* font-display: center; */\n  vertical-align: middle;\n  /* text-align: center; */\n  position: relative;\n  cursor: pointer;\n\n}\n/* nz-list-item{\n  color: white;\n} */\n.img{\n  /* margin: 5px; */\n  /* margin-top: 10px; */\n  height:40px; \n  width:40px; \n  position: relative;\n  /* border-radius:50%;  */\n  overflow:hidden;\n}\n.message{\n  width: 750px;\n  height: 480px;\n  background-color: #F9F9F9;\n  padding: 0px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n.message1{\n  width: 750px;\n  height: 480px;\n  background-color: #F9F9F9;\n  padding: 10px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n.inputmes{\n  width: 749px;\n  height: 200px;\n  background-color: white;\n}\n.him{\n  height: 60px;\n  color: #444444;\n}\n.textarea{\n  background-color: white;\n  resize: none;\n  width: 750px;\n  height: 140px;\n  position: absolute;\n  padding: 10px;\n  border: none;\n  outline: none;\n  /* margin-top: 30px; */\n}\n.tool{\n  width: 750px;\n  background-color: #EEEEEE;\n  height: 30px;\n  cursor: pointer;\n\n}\n.icon{\n  margin-left: 15px;\n  margin-top: 3px;\n  color: #777777;\n}\n.send{\n  position: absolute;\n  margin-left: 680px;\n  margin-top: 130px;\n}\n/* .arrow {\n  vertical-align: middle;\n  width:200px;\n  height:25px;\n  font-size:16px;\n  background-color: #AABBCC ;\n  margin: 15px;\n  overflow-wrap: normal;\n} */\n#box{\n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-left: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n\n    position: relative;\n    left:30px; \n    width: 140px;\n    min-height: 30px;\n    line-height: 20px;\n    margin-left: 10px;\n    word-wrap: 5px;\n    background: #088cb7;\n    border-radius: 4px;\n    padding: 10px;\n    margin-top:10px;\n    vertical-align: middle;\n    text-align: center;\n}\n/*左方说话*/\n#box:before{\n    position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    right: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-right: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n/*右方说话*/\n#box1{          \n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-right: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n  position: relative;\n  left:560px; \n  width: 140px;\n  /* height: 30px; */\n  background: #088cb7;\n  border-radius: 4px;\n  /* padding: 10px; */\n  margin-top:10px;\n  vertical-align: middle;\n  text-align: center;\n}\n#box1:before{\n  position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    left: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-left: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n.tips{\n  position: relative; \n  text-align: center;\n  vertical-align: middle;;\n}\n.grad{\n  width: 75px;\n  background-color:transparent;\n  border: 0px;\n  outline: none;\n  cursor: pointer;\n}\n.point{\n  /* width: 2px; */\n  /* left: 60px; */\n  margin:5px;\n}\n:host ::ng-deep .demo-infinite-container {\n  height: 300px;\n  border: 1px solid #e8e8e8;\n  border-radius: 4px;\n}\n.headportrait{\n  position: relative;\n  width:230px;\n  height:230px;\n  bottom: -26px;\n  margin-left:26px;\n  cursor:pointer;\n}\n:host ::ng-deep .headportrait img{\n  width:100%;height:100%;\n\n}\n.mask  {    \n  position: absolute;    \n  width: 100%;    \n  height: 100%;      \n  background: #868c89;    \n  opacity: 0;\t\n  color: black;\n  text-align: center;\n  line-height:230px;\n  margin-top: -230px;\n}\n/*hover状态（按你的需求）控制显示。opacity/display/z-index都可以*/\n.headportrait:hover .mask {    opacity: .5;\t}\n.upload-btn {\nbackground-color: #337ab7;\ncolor: #fff;\nborder-radius: 2px;\nborder: none;\npadding: .5rem 1.3rem;\ncursor: pointer;\n}\n.picture {\nwidth: 7rem;\nheight: 7rem;\nmargin-right: 1rem;\nbackground-size: cover;\n}\n.action-box {\nmargin-left: 1rem;\n}\n.hint {\ncolor: #909090;\nfont-size: 1.7rem;\nmargin-bottom: 1.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2hhdC9jaGF0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7S0FJSztBQUNMO0VBQ0UsWUFBWTtFQUNaLFlBQVk7O0FBRWQ7QUFDQTtFQUNFLGdCQUFnQjtFQUNoQixlQUFlO0VBQ2YsWUFBWTtFQUNaLFlBQVk7QUFDZDtBQUNBO0VBQ0UseUNBQXlDO0VBQ3pDLHlCQUF5QjtFQUN6QixhQUFhO0VBQ2IsYUFBYTtFQUNiLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osTUFBTTtFQUNOLE9BQU87RUFDUCxRQUFRO0VBQ1IsU0FBUztFQUNULGFBQWE7RUFDYixxQkFBcUI7RUFDckI7a0JBQ2dCO0FBQ2xCO0FBQ0E7RUFDRSxpQkFBaUI7RUFDakIsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixZQUFZO0FBQ2Q7QUFDQTtFQUNFLHlCQUF5QjtFQUN6QixZQUFZO0VBQ1osYUFBYTtFQUNiLGtCQUFrQjs7RUFFbEIsa0NBQWtDO0VBQ2xDLGdCQUFnQjtFQUNoQixlQUFlO0FBQ2pCO0FBQ0E7RUFDRSxZQUFZO0VBQ1osNEJBQTRCO0VBQzVCLFlBQVk7RUFDWixlQUFlO0VBQ2YsMEJBQTBCO0VBQzFCLHNCQUFzQjtFQUN0Qix3QkFBd0I7RUFDeEIsa0JBQWtCO0VBQ2xCLGVBQWU7O0FBRWpCO0FBQ0E7O0dBRUc7QUFDSDtFQUNFLGlCQUFpQjtFQUNqQixzQkFBc0I7RUFDdEIsV0FBVztFQUNYLFVBQVU7RUFDVixrQkFBa0I7RUFDbEIsd0JBQXdCO0VBQ3hCLGVBQWU7QUFDakI7QUFDQTtFQUNFLFlBQVk7RUFDWixhQUFhO0VBQ2IseUJBQXlCO0VBQ3pCLFlBQVk7RUFDWixnQkFBZ0I7RUFDaEIsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtBQUNyQjtBQUNBO0VBQ0UsWUFBWTtFQUNaLGFBQWE7RUFDYix5QkFBeUI7RUFDekIsYUFBYTtFQUNiLGdCQUFnQjtFQUNoQixnQkFBZ0I7RUFDaEIsbUJBQW1CO0FBQ3JCO0FBQ0E7RUFD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ZW50IjpbIi8qIDpob3N0IDo6bmctZGVlcCAuZGVtby1pbmZpbml0ZS1jb250YWluZXIge1xuICAgIGhlaWdodDogMzAwcHg7XG4gICAgYm9yZGVyOiAxcHggc29saWQgI2U4ZThlODtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIH0gKi9cbi5hdmF0YXJ7XG4gIGhlaWdodDogODBweDtcbiAgd2lkdGg6IDIwMHB4O1xuXG59XG4uYXZhdGFyMntcbiAgb3ZlcmZsb3cteTogYXV0bztcbiAgb3ZlcmZsb3cteDpub25lO1xuICBoZWlnaHQ6IDgwcHg7XG4gIHdpZHRoOiAyMDBweDtcbn1cbi5jb250YWluZXJ7XG4gIC8qIGJhY2tncm91bmQtY29sb3I6cmdiKDIyMywgMjE5LCAyMTkpOyAqL1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjREREREREO1xuICB3aWR0aDogMTAwMnB4O1xuICBoZWlnaHQ6IDc0MHB4O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIG1hcmdpbjogYXV0bztcbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcbiAgYm90dG9tOiAwO1xuICB6LWluZGV4OiA1MDAwO1xuICBib3JkZXItY29sb3I6ICM2MTYwNjA7XG4gIC8qIGJvcmRlcjogMnB4O1xuICBjb2xvcjogIzAwMDAwMCAqL1xufVxuLnNlYXJjaHtcbiAgcG9zaXRpb246YWJzb2x1dGU7XG4gIG1hcmdpbi10b3A6IDE1cHg7XG4gIG1hcmdpbi1sZWZ0OiA1cHg7XG4gIHdpZHRoOiAyNDBweDtcbn1cbi5saXN0e1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjN2E3YTdhO1xuICB3aWR0aDogMjUwcHg7XG4gIGhlaWdodDogNjAwcHg7XG4gIC8qIGNvbG9yOiB3aGl0ZTsgKi9cblxuICAvKiBvdmVyZmxvdy15OnNjcm9sbDsgIOe6teWQkea7muWKqOadoeWni+e7iOaYvuekuiAqL1xuICBvdmVyZmxvdy15OiBhdXRvO1xuICBvdmVyZmxvdy14Om5vbmU7XG59XG4uaXRlbXtcbiAgY29sb3I6IHdoaXRlO1xuICBib3JkZXItYm90dG9tOjFweCBzb2xpZCAjRUVFO1xuICBoZWlnaHQ6IDY1cHg7XG4gIGZvbnQtc2l6ZTogMTJweDtcbiAgLyogZm9udC1kaXNwbGF5OiBjZW50ZXI7ICovXG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gIC8qIHRleHQtYWxpZ246IGNlbnRlcjsgKi9cbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBjdXJzb3I6IHBvaW50ZXI7XG5cbn1cbi8qIG56LWxpc3QtaXRlbXtcbiAgY29sb3I6IHdoaXRlO1xufSAqL1xuLmltZ3tcbiAgLyogbWFyZ2luOiA1cHg7ICovXG4gIC8qIG1hcmdpbi10b3A6IDEwcHg7ICovXG4gIGhlaWdodDo0MHB4OyBcbiAgd2lkdGg6NDBweDsgXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgLyogYm9yZGVyLXJhZGl1czo1MCU7ICAqL1xuICBvdmVyZmxvdzpoaWRkZW47XG59XG4ubWVzc2FnZXtcbiAgd2lkdGg6IDc1MHB4O1xuICBoZWlnaHQ6IDQ4MHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjRjlGOUY5O1xuICBwYWRkaW5nOiAwcHg7XG4gIG92ZXJmbG93LXk6IGF1dG87XG4gIG92ZXJmbG93LXg6IG5vbmU7XG4gIHZlcnRpY2FsLWFsaWduOiB0b3A7XG59XG4ubWVzc2FnZTF7XG4gIHdpZHRoOiA3NTBweDtcbiAgaGVpZ2h0OiA0ODBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI0Y5RjlGOTtcbiAgcGFkZGluZzogMTBweDtcbiAgb3ZlcmZsb3cteTogYXV0bztcbiAgb3ZlcmZsb3cteDogbm9uZTtcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcbn1cbi5pbnB1dG1lc3tcbiAgd2lkdGg6IDc0OXB4O1xuICBoZWlnaHQ6IDIwMHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbn1cbi5oaW17XG4gIGhlaWdodDogNjBweDtcbiAgY29sb3I6ICM0NDQ0NDQ7XG59XG5cbi50ZXh0YXJlYXtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gIHJlc2l6ZTogbm9uZTtcbiAgd2lkdGg6IDc1MHB4O1xuICBoZWlnaHQ6IDE0MHB4O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIGJvcmRlcjogbm9uZTtcbiAgb3V0bGluZTogbm9uZTtcbiAgLyogbWFyZ2luLXRvcDogMzBweDsgKi9cbn1cbi50b29se1xuICB3aWR0aDogNzUwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICNFRUVFRUU7XG4gIGhlaWdodDogMzBweDtcbiAgY3Vyc29yOiBwb2ludGVyO1xuXG59XG4uaWNvbntcbiAgbWFyZ2luLWxlZnQ6IDE1cHg7XG4gIG1hcmdpbi10b3A6IDNweDtcbiAgY29sb3I6ICM3Nzc3Nzc7XG59XG4uc2VuZHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBtYXJnaW4tbGVmdDogNjgwcHg7XG4gIG1hcmdpbi10b3A6IDEzMHB4O1xufVxuLyogLmFycm93IHtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgd2lkdGg6MjAwcHg7XG4gIGhlaWdodDoyNXB4O1xuICBmb250LXNpemU6MTZweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI0FBQkJDQyA7XG4gIG1hcmdpbjogMTVweDtcbiAgb3ZlcmZsb3ctd3JhcDogbm9ybWFsO1xufSAqL1xuXG4jYm94e1xuICBtaW4taGVpZ2h0OiAzMHB4OyAgICAgICAgICBcbiAgYm9yZGVyLXJhZGl1czogNXB4OyAgICAgICAgXG4gIC8qIGxpbmUtaGVpZ2h0OiA1MHB4OyAgICAgICAgICovXG4gIG1hcmdpbi1sZWZ0OiAxMHB4OyAgICAgICAgXG4gIHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQ7ICAgICAgICBcbiAgY29sb3I6IHdoaXRlOyAgICAgICAgXG4gIHBhZGRpbmc6IDVweDsgICAgICAgIFxuICBsaW5lLWhlaWdodDogMThweDtcblxuXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIGxlZnQ6MzBweDsgXG4gICAgd2lkdGg6IDE0MHB4O1xuICAgIG1pbi1oZWlnaHQ6IDMwcHg7XG4gICAgbGluZS1oZWlnaHQ6IDIwcHg7XG4gICAgbWFyZ2luLWxlZnQ6IDEwcHg7XG4gICAgd29yZC13cmFwOiA1cHg7XG4gICAgYmFja2dyb3VuZDogIzA4OGNiNztcbiAgICAtbW96LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgICAtd2Via2l0LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgcGFkZGluZzogMTBweDtcbiAgICBtYXJnaW4tdG9wOjEwcHg7XG4gICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4vKuW3puaWueivtOivnSovXG4jYm94OmJlZm9yZXtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgY29udGVudDogXCJcIjtcbiAgICB3aWR0aDogMDtcbiAgICBoZWlnaHQ6IDA7XG4gICAgcmlnaHQ6IDEwMCU7XG4gICAgdG9wOiA5cHg7XG4gICAgYm9yZGVyLXRvcDogNXB4IHNvbGlkIHRyYW5zcGFyZW50O1xuICAgIGJvcmRlci1yaWdodDogMTNweCBzb2xpZCAjMDg4Y2I3O1xuICAgIGJvcmRlci1ib3R0b206IDZweCBzb2xpZCB0cmFuc3BhcmVudDtcbn1cbi8q5Y+z5pa56K+06K+dKi9cbiNib3gxeyAgICAgICAgICBcbiAgbWluLWhlaWdodDogMzBweDsgICAgICAgICAgXG4gIGJvcmRlci1yYWRpdXM6IDVweDsgICAgICAgIFxuICAvKiBsaW5lLWhlaWdodDogNTBweDsgICAgICAgICAqL1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7ICAgICAgICBcbiAgd29yZC1icmVhazogYnJlYWstd29yZDsgICAgICAgIFxuICBjb2xvcjogd2hpdGU7ICAgICAgICBcbiAgcGFkZGluZzogNXB4OyAgICAgICAgXG4gIGxpbmUtaGVpZ2h0OiAxOHB4O1xuXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgbGVmdDo1NjBweDsgXG4gIHdpZHRoOiAxNDBweDtcbiAgLyogaGVpZ2h0OiAzMHB4OyAqL1xuICBiYWNrZ3JvdW5kOiAjMDg4Y2I3O1xuICAtbW96LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgLXdlYmtpdC1ib3JkZXItcmFkaXVzOiA0cHg7XG4gIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgLyogcGFkZGluZzogMTBweDsgKi9cbiAgbWFyZ2luLXRvcDoxMHB4O1xuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4jYm94MTpiZWZvcmV7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIHdpZHRoOiAwO1xuICAgIGhlaWdodDogMDtcbiAgICBsZWZ0OiAxMDAlO1xuICAgIHRvcDogOXB4O1xuICAgIGJvcmRlci10b3A6IDVweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICBib3JkZXItbGVmdDogMTNweCBzb2xpZCAjMDg4Y2I3O1xuICAgIGJvcmRlci1ib3R0b206IDZweCBzb2xpZCB0cmFuc3BhcmVudDtcbn1cbi50aXBze1xuICBwb3NpdGlvbjogcmVsYXRpdmU7IFxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7O1xufVxuLmdyYWR7XG4gIHdpZHRoOiA3NXB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOnRyYW5zcGFyZW50O1xuICBib3JkZXI6IDBweDtcbiAgb3V0bGluZTogbm9uZTtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuLnBvaW50e1xuICAvKiB3aWR0aDogMnB4OyAqL1xuICAvKiBsZWZ0OiA2MHB4OyAqL1xuICBtYXJnaW46NXB4O1xufVxuOmhvc3QgOjpuZy1kZWVwIC5kZW1vLWluZmluaXRlLWNvbnRhaW5lciB7XG4gIGhlaWdodDogMzAwcHg7XG4gIGJvcmRlcjogMXB4IHNvbGlkICNlOGU4ZTg7XG4gIGJvcmRlci1yYWRpdXM6IDRweDtcbn1cbi5oZWFkcG9ydHJhaXR7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgd2lkdGg6MjMwcHg7XG4gIGhlaWdodDoyMzBweDtcbiAgYm90dG9tOiAtMjZweDtcbiAgbWFyZ2luLWxlZnQ6MjZweDtcbiAgY3Vyc29yOnBvaW50ZXI7XG59XG5cbjpob3N0IDo6bmctZGVlcCAuaGVhZHBvcnRyYWl0IGltZ3tcbiAgd2lkdGg6MTAwJTtoZWlnaHQ6MTAwJTtcblxufVxuXG4ubWFzayAgeyAgICBcbiAgcG9zaXRpb246IGFic29sdXRlOyAgICBcbiAgd2lkdGg6IDEwMCU7ICAgIFxuICBoZWlnaHQ6IDEwMCU7ICAgICAgXG4gIGJhY2tncm91bmQ6ICM4NjhjODk7ICAgIFxuICBvcGFjaXR5OiAwO1x0XG4gIGNvbG9yOiBibGFjaztcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBsaW5lLWhlaWdodDoyMzBweDtcbiAgbWFyZ2luLXRvcDogLTIzMHB4O1xufS8qaG92ZXLnirbmgIHvvIjmjInkvaDnmoTpnIDmsYLvvInmjqfliLbmmL7npLrjgIJvcGFjaXR5L2Rpc3BsYXkvei1pbmRleOmDveWPr+S7pSovXHRcbi5oZWFkcG9ydHJhaXQ6aG92ZXIgLm1hc2sgeyAgICBvcGFjaXR5OiAuNTtcdH1cblxuLnVwbG9hZC1idG4ge1xuYmFja2dyb3VuZC1jb2xvcjogIzMzN2FiNztcbmNvbG9yOiAjZmZmO1xuYm9yZGVyLXJhZGl1czogMnB4O1xuYm9yZGVyOiBub25lO1xucGFkZGluZzogLjVyZW0gMS4zcmVtO1xuY3Vyc29yOiBwb2ludGVyO1xufVxuXG4ucGljdHVyZSB7XG53aWR0aDogN3JlbTtcbmhlaWdodDogN3JlbTtcbm1hcmdpbi1yaWdodDogMXJlbTtcbmJhY2tncm91bmQtc2l6ZTogY292ZXI7XG59XG5cbi5hY3Rpb24tYm94IHtcbm1hcmdpbi1sZWZ0OiAxcmVtO1xufVxuLmhpbnQge1xuY29sb3I6ICM5MDkwOTA7XG5mb250LXNpemU6IDEuN3JlbTtcbm1hcmdpbi1ib3R0b206IDEuNXJlbTtcbn0iXX0= */"
+module.exports = "/* :host ::ng-deep .demo-infinite-container {\n    height: 300px;\n    border: 1px solid #e8e8e8;\n    border-radius: 4px;\n  } */\n\n:host ::ng-deep .demo-infinite-container {\n  height: 300px;\n  border: 1px solid #e8e8e8;\n  border-radius: 4px;\n}\n\n.avatar{\n  height: 80px;\n  width: 200px;\n\n}\n\n.avatar2{\n  overflow-y: auto;\n  overflow-x:none;\n  height: 80px;\n  width: 200px;\n}\n\n.container{\n  /* background-color:rgb(223, 219, 219); */\n  background-color: #DDDDDD;\n  width: 1002px;\n  height: 740px;\n  position: absolute;\n  margin: auto;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: １;\n  border-color: #616060;\n  /* border: 2px;\n  color: #000000 */\n}\n\n.search{\n  position:absolute;\n  margin-top: 15px;\n  margin-left: 5px;\n  width: 240px;\n}\n\n.icon{\n  cursor: pointer;\n}\n\n.list{\n  background-color: #7a7a7a;\n  width: 250px;\n  height: 600px;\n  /* color: white; */\n\n  /* overflow-y:scroll;  纵向滚动条始终显示 */\n  overflow-y: auto;\n  overflow-x:none;\n}\n\n.item{\n  color: white;\n  border-bottom:1px solid #EEE;\n  height: 65px;\n  font-size: 12px;\n  /* font-display: center; */\n  vertical-align: middle;\n  /* text-align: center; */\n  position: relative;\n  cursor: pointer;\n\n}\n\n/* nz-list-item{\n  color: white;\n} */\n\n.img{\n  /* margin: 5px; */\n  /* margin-top: 10px; */\n  height:40px; \n  width:40px; \n  position: relative;\n  /* border-radius:50%;  */\n  overflow:hidden;\n}\n\n.message{\n  width: 750px;\n  height: 480px;\n  background-color: #F9F9F9;\n  padding: 0px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n\n.message1{\n  width: 750px;\n  height: 480px;\n  background-color: #F9F9F9;\n  padding: 10px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n\n.inputmes{\n  width: 749px;\n  height: 200px;\n  background-color: white;\n}\n\n.him{\n  height: 60px;\n  color: #444444;\n}\n\n.textarea{\n  background-color: white;\n  resize: none;\n  width: 750px;\n  height: 140px;\n  position: absolute;\n  padding: 10px;\n  border: none;\n  outline: none;\n  /* margin-top: 30px; */\n}\n\n.tool{\n  width: 750px;\n  background-color: #EEEEEE;\n  height: 30px;\n  cursor: pointer;\n\n}\n\n.icon{\n  margin-left: 15px;\n  margin-top: 3px;\n  color: #777777;\n}\n\n.send{\n  position: absolute;\n  margin-left: 680px;\n  margin-top: 130px;\n}\n\n/* .arrow {\n  vertical-align: middle;\n  width:200px;\n  height:25px;\n  font-size:16px;\n  background-color: #AABBCC ;\n  margin: 15px;\n  overflow-wrap: normal;\n} */\n\n#box{\n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-left: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n\n    position: relative;\n    left:30px; \n    width: 140px;\n    min-height: 30px;\n    line-height: 20px;\n    margin-left: 10px;\n    word-wrap: 5px;\n    background: #088cb7;\n    border-radius: 4px;\n    padding: 10px;\n    margin-top:10px;\n    vertical-align: middle;\n    text-align: center;\n}\n\n/*左方说话*/\n\n#box:before{\n    position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    right: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-right: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n\n/*右方说话*/\n\n#box1{          \n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-right: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n  position: relative;\n  left:560px; \n  width: 140px;\n  /* height: 30px; */\n  background: #088cb7;\n  border-radius: 4px;\n  /* padding: 10px; */\n  margin-top:10px;\n  vertical-align: middle;\n  text-align: center;\n}\n\n#box1:before{\n  position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    left: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-left: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n\n.tips{\n  position: relative; \n  text-align: center;\n  vertical-align: middle;;\n}\n\n.grad{\n  width: 75px;\n  background-color:transparent;\n  border: 0px;\n  outline: none;\n  cursor: pointer;\n}\n\n.point{\n  /* width: 2px; */\n  /* left: 60px; */\n  margin:5px;\n}\n\n.smallContainer{\n  width: 240px;\n  background-color: #FFFFFF;\n  position:absolute;\n  text-align: center;\n  z-index: 5000;\n}\n\n.headportrait{\n  position: relative;\n  width:230px;\n  height:230px;\n  bottom: -26px;\n  margin-left:26px;\n  cursor:pointer;\n}\n\n:host ::ng-deep .headportrait img{\n  width:100%;height:100%;\n\n}\n\n.mask  {    \n  position: absolute;    \n  width: 100%;    \n  height: 100%;      \n  background: #868c89;    \n  opacity: 0;\t\n  color: black;\n  text-align: center;\n  line-height:230px;\n  margin-top: -230px;\n}\n\n/*hover状态（按你的需求）控制显示。opacity/display/z-index都可以*/\n\n.headportrait:hover .mask {    opacity: .5;\t}\n\n.upload-btn {\nbackground-color: #337ab7;\ncolor: #fff;\nborder-radius: 2px;\nborder: none;\npadding: .5rem 1.3rem;\ncursor: pointer;\n}\n\n.picture {\nwidth: 7rem;\nheight: 7rem;\nmargin-right: 1rem;\nbackground-size: cover;\n}\n\n.action-box {\nmargin-left: 1rem;\n}\n\n.hint {\ncolor: #909090;\nfont-size: 1.7rem;\nmargin-bottom: 1.5rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2hhdC9jaGF0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7S0FJSzs7QUFFTDtFQUNFLGFBQWE7RUFDYix5QkFBeUI7RUFDekIsa0JBQWtCO0FBQ3BCOztBQUNBO0VBQ0UsWUFBWTtFQUNaLFlBQVk7O0FBRWQ7O0FBQ0E7RUFDRSxnQkFBZ0I7RUFDaEIsZUFBZTtFQUNmLFlBQVk7RUFDWixZQUFZO0FBQ2Q7O0FBQ0E7RUFDRSx5Q0FBeUM7RUFDekMseUJBQXlCO0VBQ3pCLGFBQWE7RUFDYixhQUFhO0VBQ2Isa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixNQUFNO0VBQ04sT0FBTztFQUNQLFFBQVE7RUFDUixTQUFTO0VBQ1QsVUFBVTtFQUNWLHFCQUFxQjtFQUNyQjtrQkFDZ0I7QUFDbEI7O0FBQ0E7RUFDRSxpQkFBaUI7RUFDakIsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixZQUFZO0FBQ2Q7O0FBQ0E7RUFDRSxlQUFlO0FBQ2pCOztBQUNBO0VBQ0UseUJBQXlCO0VBQ3pCLFlBQVk7RUFDWixhQUFhO0VBQ2Isa0JBQWtCOztFQUVsQixrQ0FBa0M7RUFDbEMsZ0JBQWdCO0VBQ2hCLGVBQWU7QUFDakI7O0FBQ0E7RUFDRSxZQUFZO0VBQ1osNEJBQTRCO0VBQzVCLFlBQVk7RUFDWixlQUFlO0VBQ2YsMEJBQTBCO0VBQzFCLHNCQUFzQjtFQUN0Qix3QkFBd0I7RUFDeEIsa0JBQWtCO0VBQ2xCLGVBQWU7O0FBRWpCOztBQUNBOztHQUVHOztBQUNIO0VBQ0UsaUJBQWlCO0VBQ2pCLHNCQUFzQjtFQUN0QixXQUFXO0VBQ1gsVUFBVTtFQUNWLGtCQUFrQjtFQUNsQix3QkFBd0I7RUFDeEIsZUFBZTtBQUNqQjs7QUFDQTtFQUNFLFlBQVk7RUFDWixhQUFhO0VBQ2IseUJBQXlCO0VBQ3pCLFlBQVk7RUFDWixnQkFBZ0I7RUFDaEIsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtBQUNyQjs7QUFDQTtFQUNFLFlBQVk7RUFDWixh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dEI7O0FBRUE7QUFDQSxpQkFBaUI7QUFDakI7O0FBQ0E7QUFDQSxjQUFjO0FBQ2QsaUJBQWlCO0FBQ2pCLHFCQUFxQjtBQUNyQiIsImZpbGUiOiJzcmMvYXBwL2NoYXQvY2hhdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogOmhvc3QgOjpuZy1kZWVwIC5kZW1vLWluZmluaXRlLWNvbnRhaW5lciB7XG4gICAgaGVpZ2h0OiAzMDBweDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjZThlOGU4O1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgfSAqL1xuXG46aG9zdCA6Om5nLWRlZXAgLmRlbW8taW5maW5pdGUtY29udGFpbmVyIHtcbiAgaGVpZ2h0OiAzMDBweDtcbiAgYm9yZGVyOiAxcHggc29saWQgI2U4ZThlODtcbiAgYm9yZGVyLXJhZGl1czogNHB4O1xufVxuLmF2YXRhcntcbiAgaGVpZ2h0OiA4MHB4O1xuICB3aWR0aDogMjAwcHg7XG5cbn1cbi5hdmF0YXIye1xuICBvdmVyZmxvdy15OiBhdXRvO1xuICBvdmVyZmxvdy14Om5vbmU7XG4gIGhlaWdodDogODBweDtcbiAgd2lkdGg6IDIwMHB4O1xufVxuLmNvbnRhaW5lcntcbiAgLyogYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjIzLCAyMTksIDIxOSk7ICovXG4gIGJhY2tncm91bmQtY29sb3I6ICNEREREREQ7XG4gIHdpZHRoOiAxMDAycHg7XG4gIGhlaWdodDogNzQwcHg7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgbWFyZ2luOiBhdXRvO1xuICB0b3A6IDA7XG4gIGxlZnQ6IDA7XG4gIHJpZ2h0OiAwO1xuICBib3R0b206IDA7XG4gIHotaW5kZXg6IO+8kTtcbiAgYm9yZGVyLWNvbG9yOiAjNjE2MDYwO1xuICAvKiBib3JkZXI6IDJweDtcbiAgY29sb3I6ICMwMDAwMDAgKi9cbn1cbi5zZWFyY2h7XG4gIHBvc2l0aW9uOmFic29sdXRlO1xuICBtYXJnaW4tdG9wOiAxNXB4O1xuICBtYXJnaW4tbGVmdDogNXB4O1xuICB3aWR0aDogMjQwcHg7XG59XG4uaWNvbntcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuLmxpc3R7XG4gIGJhY2tncm91bmQtY29sb3I6ICM3YTdhN2E7XG4gIHdpZHRoOiAyNTBweDtcbiAgaGVpZ2h0OiA2MDBweDtcbiAgLyogY29sb3I6IHdoaXRlOyAqL1xuXG4gIC8qIG92ZXJmbG93LXk6c2Nyb2xsOyAg57q15ZCR5rua5Yqo5p2h5aeL57uI5pi+56S6ICovXG4gIG92ZXJmbG93LXk6IGF1dG87XG4gIG92ZXJmbG93LXg6bm9uZTtcbn1cbi5pdGVte1xuICBjb2xvcjogd2hpdGU7XG4gIGJvcmRlci1ib3R0b206MXB4IHNvbGlkICNFRUU7XG4gIGhlaWdodDogNjVweDtcbiAgZm9udC1zaXplOiAxMnB4O1xuICAvKiBmb250LWRpc3BsYXk6IGNlbnRlcjsgKi9cbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgLyogdGV4dC1hbGlnbjogY2VudGVyOyAqL1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGN1cnNvcjogcG9pbnRlcjtcblxufVxuLyogbnotbGlzdC1pdGVte1xuICBjb2xvcjogd2hpdGU7XG59ICovXG4uaW1ne1xuICAvKiBtYXJnaW46IDVweDsgKi9cbiAgLyogbWFyZ2luLXRvcDogMTBweDsgKi9cbiAgaGVpZ2h0OjQwcHg7IFxuICB3aWR0aDo0MHB4OyBcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAvKiBib3JkZXItcmFkaXVzOjUwJTsgICovXG4gIG92ZXJmbG93OmhpZGRlbjtcbn1cbi5tZXNzYWdle1xuICB3aWR0aDogNzUwcHg7XG4gIGhlaWdodDogNDgwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICNGOUY5Rjk7XG4gIHBhZGRpbmc6IDBweDtcbiAgb3ZlcmZsb3cteTogYXV0bztcbiAgb3ZlcmZsb3cteDogbm9uZTtcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcbn1cbi5tZXNzYWdlMXtcbiAgd2lkdGg6IDc1MHB4O1xuICBoZWlnaHQ6IDQ4MHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjRjlGOUY5O1xuICBwYWRkaW5nOiAxMHB4O1xuICBvdmVyZmxvdy15OiBhdXRvO1xuICBvdmVyZmxvdy14OiBub25lO1xuICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xufVxuLmlucHV0bWVze1xuICB3aWR0aDogNzQ5cHg7XG4gIGhlaWdodDogMjAwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xufVxuLmhpbXtcbiAgaGVpZ2h0OiA2MHB4O1xuICBjb2xvcjogIzQ0NDQ0NDtcbn1cblxuLnRleHRhcmVhe1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgcmVzaXplOiBub25lO1xuICB3aWR0aDogNzUwcHg7XG4gIGhlaWdodDogMTQwcHg7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgcGFkZGluZzogMTBweDtcbiAgYm9yZGVyOiBub25lO1xuICBvdXRsaW5lOiBub25lO1xuICAvKiBtYXJnaW4tdG9wOiAzMHB4OyAqL1xufVxuLnRvb2x7XG4gIHdpZHRoOiA3NTBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI0VFRUVFRTtcbiAgaGVpZ2h0OiAzMHB4O1xuICBjdXJzb3I6IHBvaW50ZXI7XG5cbn1cbi5pY29ue1xuICBtYXJnaW4tbGVmdDogMTVweDtcbiAgbWFyZ2luLXRvcDogM3B4O1xuICBjb2xvcjogIzc3Nzc3Nztcbn1cbi5zZW5ke1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIG1hcmdpbi1sZWZ0OiA2ODBweDtcbiAgbWFyZ2luLXRvcDogMTMwcHg7XG59XG4vKiAuYXJyb3cge1xuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICB3aWR0aDoyMDBweDtcbiAgaGVpZ2h0OjI1cHg7XG4gIGZvbnQtc2l6ZToxNnB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjQUFCQkNDIDtcbiAgbWFyZ2luOiAxNXB4O1xuICBvdmVyZmxvdy13cmFwOiBub3JtYWw7XG59ICovXG5cbiNib3h7XG4gIG1pbi1oZWlnaHQ6IDMwcHg7ICAgICAgICAgIFxuICBib3JkZXItcmFkaXVzOiA1cHg7ICAgICAgICBcbiAgLyogbGluZS1oZWlnaHQ6IDUwcHg7ICAgICAgICAgKi9cbiAgbWFyZ2luLWxlZnQ6IDEwcHg7ICAgICAgICBcbiAgd29yZC1icmVhazogYnJlYWstd29yZDsgICAgICAgIFxuICBjb2xvcjogd2hpdGU7ICAgICAgICBcbiAgcGFkZGluZzogNXB4OyAgICAgICAgXG4gIGxpbmUtaGVpZ2h0OiAxOHB4O1xuXG5cbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbGVmdDozMHB4OyBcbiAgICB3aWR0aDogMTQwcHg7XG4gICAgbWluLWhlaWdodDogMzBweDtcbiAgICBsaW5lLWhlaWdodDogMjBweDtcbiAgICBtYXJnaW4tbGVmdDogMTBweDtcbiAgICB3b3JkLXdyYXA6IDVweDtcbiAgICBiYWNrZ3JvdW5kOiAjMDg4Y2I3O1xuICAgIC1tb3otYm9yZGVyLXJhZGl1czogNHB4O1xuICAgIC13ZWJraXQtYm9yZGVyLXJhZGl1czogNHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICBwYWRkaW5nOiAxMHB4O1xuICAgIG1hcmdpbi10b3A6MTBweDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi8q5bem5pa56K+06K+dKi9cbiNib3g6YmVmb3Jle1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIHdpZHRoOiAwO1xuICAgIGhlaWdodDogMDtcbiAgICByaWdodDogMTAwJTtcbiAgICB0b3A6IDlweDtcbiAgICBib3JkZXItdG9wOiA1cHggc29saWQgdHJhbnNwYXJlbnQ7XG4gICAgYm9yZGVyLXJpZ2h0OiAxM3B4IHNvbGlkICMwODhjYjc7XG4gICAgYm9yZGVyLWJvdHRvbTogNnB4IHNvbGlkIHRyYW5zcGFyZW50O1xufVxuLyrlj7Pmlrnor7Tor50qL1xuI2JveDF7ICAgICAgICAgIFxuICBtaW4taGVpZ2h0OiAzMHB4OyAgICAgICAgICBcbiAgYm9yZGVyLXJhZGl1czogNXB4OyAgICAgICAgXG4gIC8qIGxpbmUtaGVpZ2h0OiA1MHB4OyAgICAgICAgICovXG4gIG1hcmdpbi1yaWdodDogMTBweDsgICAgICAgIFxuICB3b3JkLWJyZWFrOiBicmVhay13b3JkOyAgICAgICAgXG4gIGNvbG9yOiB3aGl0ZTsgICAgICAgIFxuICBwYWRkaW5nOiA1cHg7ICAgICAgICBcbiAgbGluZS1oZWlnaHQ6IDE4cHg7XG5cbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBsZWZ0OjU2MHB4OyBcbiAgd2lkdGg6IDE0MHB4O1xuICAvKiBoZWlnaHQ6IDMwcHg7ICovXG4gIGJhY2tncm91bmQ6ICMwODhjYjc7XG4gIC1tb3otYm9yZGVyLXJhZGl1czogNHB4O1xuICAtd2Via2l0LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAvKiBwYWRkaW5nOiAxMHB4OyAqL1xuICBtYXJnaW4tdG9wOjEwcHg7XG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbiNib3gxOmJlZm9yZXtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGNvbnRlbnQ6IFwiXCI7XG4gICAgd2lkdGg6IDA7XG4gICAgaGVpZ2h0OiAwO1xuICAgIGxlZnQ6IDEwMCU7XG4gICAgdG9wOiA5cHg7XG4gICAgYm9yZGVyLXRvcDogNXB4IHNvbGlkIHRyYW5zcGFyZW50O1xuICAgIGJvcmRlci1sZWZ0OiAxM3B4IHNvbGlkICMwODhjYjc7XG4gICAgYm9yZGVyLWJvdHRvbTogNnB4IHNvbGlkIHRyYW5zcGFyZW50O1xufVxuLnRpcHN7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTsgXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTs7XG59XG4uZ3JhZHtcbiAgd2lkdGg6IDc1cHg7XG4gIGJhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7XG4gIGJvcmRlcjogMHB4O1xuICBvdXRsaW5lOiBub25lO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG4ucG9pbnR7XG4gIC8qIHdpZHRoOiAycHg7ICovXG4gIC8qIGxlZnQ6IDYwcHg7ICovXG4gIG1hcmdpbjo1cHg7XG59XG5cbi5zbWFsbENvbnRhaW5lcntcbiAgd2lkdGg6IDI0MHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjRkZGRkZGO1xuICBwb3NpdGlvbjphYnNvbHV0ZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICB6LWluZGV4OiA1MDAwO1xufVxuLmhlYWRwb3J0cmFpdHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICB3aWR0aDoyMzBweDtcbiAgaGVpZ2h0OjIzMHB4O1xuICBib3R0b206IC0yNnB4O1xuICBtYXJnaW4tbGVmdDoyNnB4O1xuICBjdXJzb3I6cG9pbnRlcjtcbn1cblxuOmhvc3QgOjpuZy1kZWVwIC5oZWFkcG9ydHJhaXQgaW1ne1xuICB3aWR0aDoxMDAlO2hlaWdodDoxMDAlO1xuXG59XG5cbi5tYXNrICB7ICAgIFxuICBwb3NpdGlvbjogYWJzb2x1dGU7ICAgIFxuICB3aWR0aDogMTAwJTsgICAgXG4gIGhlaWdodDogMTAwJTsgICAgICBcbiAgYmFja2dyb3VuZDogIzg2OGM4OTsgICAgXG4gIG9wYWNpdHk6IDA7XHRcbiAgY29sb3I6IGJsYWNrO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGxpbmUtaGVpZ2h0OjIzMHB4O1xuICBtYXJnaW4tdG9wOiAtMjMwcHg7XG59Lypob3ZlcueKtuaAge+8iOaMieS9oOeahOmcgOaxgu+8ieaOp+WItuaYvuekuuOAgm9wYWNpdHkvZGlzcGxheS96LWluZGV46YO95Y+v5LulKi9cdFxuLmhlYWRwb3J0cmFpdDpob3ZlciAubWFzayB7ICAgIG9wYWNpdHk6IC41O1x0fVxuXG4udXBsb2FkLWJ0biB7XG5iYWNrZ3JvdW5kLWNvbG9yOiAjMzM3YWI3O1xuY29sb3I6ICNmZmY7XG5ib3JkZXItcmFkaXVzOiAycHg7XG5ib3JkZXI6IG5vbmU7XG5wYWRkaW5nOiAuNXJlbSAxLjNyZW07XG5jdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5waWN0dXJlIHtcbndpZHRoOiA3cmVtO1xuaGVpZ2h0OiA3cmVtO1xubWFyZ2luLXJpZ2h0OiAxcmVtO1xuYmFja2dyb3VuZC1zaXplOiBjb3Zlcjtcbn1cblxuLmFjdGlvbi1ib3gge1xubWFyZ2luLWxlZnQ6IDFyZW07XG59XG4uaGludCB7XG5jb2xvcjogIzkwOTA5MDtcbmZvbnQtc2l6ZTogMS43cmVtO1xubWFyZ2luLWJvdHRvbTogMS41cmVtO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -240,7 +240,7 @@ module.exports = "/* :host ::ng-deep .demo-infinite-container {\n    height: 300
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container\">\n  <table >\n    <tr>\n      <th class = \"avatar\" rowspan=\"2\">\n        <div>\n            <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n            <div style = \"left: 90px; top:30px; position: absolute\">名字</div>\n            <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n        </div>\n        <div class = \"search\">\n            <nz-input-group [nzSuffix]=\"suffixIconSearch\">\n              <input type=\"text\" nz-input placeholder=\"输入搜索内容\">\n            </nz-input-group>\n            <ng-template #suffixIconSearch>\n            <i nz-icon type=\"search\"></i>\n              </ng-template>\n              <div>\n                  <button class = \"grad\">聊天</button>|<button class = \"grad\">通讯录</button>|<button class = \"grad\">添加</button>\n              </div>    \n        </div>\n      </th>\n      <th class = \"him\">对方的名字</th>\n    </tr>\n    <tr class = \"avatar2\" >\n      <td rowspan=\"2\" class = \"message\" >\n        <div *ngIf=\"!isslect\" class = \"tips\">\n          暂无新消息\n        </div>\n          <div class = \"message1\" id=\"scrolldIV\" >\n              <div *ngFor=\"let item of showmsg\" >\n                <!-- <div *ngFor=\"let mes of item\"> -->\n                    <div *ngIf=\"item.From != my_id\" id=\"box\">\n                      <div *ngIf=\"item.ContentType == 0\">{{item.Content}}</div>\n                      <div *ngIf=\"item.ContentType == 1\">     \n                         <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.Content+ ')'}\"></div>\n                      </div>\n                      <div *ngIf=\"item.ContentType == 2\">\n                          <img src=\"../../assets/uknow.png\" class=\"picture\" >\n                          <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                          </button>\n                      </div>\n                    </div>\n                    <div *ngIf=\"item.From == my_id\" id=\"box1\">\n                        <div *ngIf=\"item.ContentType != 1 && item.ContentType != 2\">{{item.Content}}</div>\n                        <div *ngIf=\"item.ContentType == 1\">     \n                           <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.Content+ ')'}\"></div>\n                        </div>\n                        <div *ngIf=\"item.ContentType == 2\">\n                            <img src=\"../../assets/uknow.png\" class=\"picture\" >\n                            <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                            </button>\n                        </div>\n                    </div>\n                <!-- </div> -->\n              </div>\n          </div>\n      </td>\n      \n    </tr>\n    <tr>\n      <td rowspan=\"3\">\n          <div class = \"list\" >\n            <div class = \"item\" *ngFor=\"let item of friendlist.List\" (click) = \"test2(item.ID, item.Isgroup)\">\n                <!-- <tr  > -->\n                  <!-- <td> -->\n                          <!-- <nz-avatar nzIcon=\"user\" class = \"img\" [nzShape]=\"'square'\" nzSrc={{item.img_url}} >\n                          </nz-avatar> -->\n                          <nz-badge [nzCount]=\"item.Counter\" *ngIf=\"list!=NULL\" class = \"point\" style = \"height: 5px;\">\n                              <img src = \"{{item.Headimg}}\" class = \"img\">\n                            </nz-badge>\n                          <!-- <img src = {{item.img_url}} style = \"height:40px; width:40px; border-radius:50%; overflow:hedden;\"> -->\n                      {{item.Name}}\n                  <!-- </td> -->\n                <!-- </tr> -->\n            </div>\n            \n          </div>\n      </td>\n    </tr>\n    <tr class = \"inputmes\">\n      <!-- <td > -->\n        <div></div>\n      <div  *ngIf=\"isslect\">\n        <div class = \"tool\">\n          <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n          <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\n          <input id=\"upfile\" type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\">\n          <div class=\"action-box\">\n            <button class=\"upload-btn\" onclick=\"upfile.click()\"> 点击上传\n            </button>\n          </div>\n        </div>\n        <textarea class = \"textarea\" [(ngModel)] = \"content\"></textarea>\n        <button class = \"send\" nz-button nzType=\"primary\" (click) = \"sendMsg()\" >发送</button>\n        \n<br>\n<br>\n<div>\n\n  <div *ngIf=\"show\">\n    <div style=\"display: -webkit-box;\">\n      <div class=\"hint\">\n        {{filename}}\n      </div>\n      <div class=\"action-box\">\n        <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n<br>\n<br>\n\n\n\n\n      </div>\n    <!-- </td> -->\n    </tr>\n  </table>\n\n<!--               \n          <span class=\"notice\">请点击“插入一行”按钮，插入最新信息，当出现滚动条时，滚动条将自动保持在底部。</span><br />\n\n          <div id=\"scrolldIV\" style=\"overflow:auto; height: 100px; width: 400px; border: 1px solid #999;\">\n          </div>\n          <input type=\"button\" value=\"插入一行\" (click)=\"add();\"> -->"
+module.exports = "<!-- 创建群聊 -->\n<nz-modal [(nzVisible)]=\"isAddGroupVisible\" [nzTitle]=\"modalTitle\" [nzContent]=\"modalContent\" [nzFooter]=\"modalFooter\" (nzOnCancel)=\"handleAddGroupCancel()\">\n  <ng-template #modalTitle>\n    创建群\n  </ng-template>\n  <ng-template #modalContent>\n    <div class = \"list\" >\n      <div class = \"item\" *ngFor=\"let item of addGroupUserList.AGlist\" >\n        <label nz-checkbox [(ngModel)]=\"item.Check\">\n            <img src = \"{{item.Headimg}}\" class = \"img\">\n          {{item.Name}}\n      </label>\n      </div>\n    </div>\n  </ng-template>\n  <ng-template #modalFooter>\n    <input nz-input placeholder=\"群名字\"[(ngModel)]=\"GroupName\">\n    <button nz-button nzType=\"default\" (click)=\"handleAddGroupCancel()\">取消</button>\n    <button nz-button nzType=\"primary\" (click)=\"handleAddGroupOk()\" [nzLoading]=\"isConfirmLoading\">创建</button>\n  </ng-template>\n</nz-modal>\n\n\n<!-- 添加好友 -->\n<nz-modal [(nzVisible)]=\"isAddFriendVisible\" [nzTitle]=\"modalTitle1\" [nzContent]=\"modalContent1\"  (nzOnCancel)=\"handleAddFriendCancel()\">\n  <ng-template #modalTitle1>\n    添加好友\n  </ng-template>\n\n  <ng-template #modalContent1>\n    <p>添加好友Modal Content</p>\n    <p>添加好友Modal Content</p>\n    <p>添加好友Modal Content</p>\n    <p>添加好友Modal Content</p>\n    <p>添加好友Modal Content</p>\n  </ng-template>\n</nz-modal>\n\n\n\n<div class=\"container\">\n  <table >\n    <tr>\n      <th class = \"avatar\" rowspan=\"2\">\n        <div>\n            <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n            <div style = \"left: 90px; top:30px; position: absolute\">{{my_name}}</div>\n            <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n        </div>\n\n\n        <div class = \"search\">\n          <nz-input-group [nzSuffix]=\"suffixIconSearch\"> \n            <input type=\"text\" [(ngModel)]=\"searchContent\" nz-input placeholder=\"输入搜索内容\" \n            (click)=\"clickMe()\" (blur)=\"outMe()\" id = \"search\" (keyup) = \"keyUpSearch($event)\">\n          </nz-input-group> \n\n          <ng-template #suffixIconSearch>\n            <i nz-icon type=\"search\" class = \"icon\" (click) = \"search()\"></i>\n          </ng-template>\n\n          <div class = \"smallContainer\">\n            <div *ngIf=\"isVisible\">\n              <div *ngIf=\"!searchContent\">\n                正在搜索内容\n              </div>\n              <div *ngIf=\"searchContent\">\n                  <div *ngIf=\"flag;else Show\">查无此人</div>\n                <ng-template #Show>\n                    <div *ngFor=\"let item of userlist\">\n                        <img src = \"{{item.Img_url}}\" class = \"img\">\n                        {{item.Name}}\n                      <button (click) = \"addfriend(item.ID)\">添加好友</button>\n                  </div>\n                </ng-template>\n\n              </div>\n            </div>\n          </div>\n          <div>\n\n            <button class = \"grad\">聊天</button>|<button class = \"grad\">通讯录</button>|<button class = \"grad\">添加</button>\n          </div>    \n        </div>\n\n\n      </th>\n      <th class = \"him\">{{to_name}}</th>\n    </tr>\n    <tr class = \"avatar2\" >\n      <td rowspan=\"2\" class = \"message\" >\n        <div *ngIf=\"!isslect\" class = \"tips\">\n          暂无新消息\n        </div>\n        <div class = \"message1\" id=\"scrolldIV\" >\n          <div *ngFor=\"let item of showmsg\" >\n                <!-- <div *ngFor=\"let mes of item\"> -->\n                    <div *ngIf=\"item.From != my_id\" id=\"box\">\n                      <div *ngIf=\"item.ContentType == 0\">{{item.Content}}</div>\n                      <div *ngIf=\"item.ContentType == 1\">     \n                         <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.Content+ ')'}\"></div>\n                      </div>\n                      <div *ngIf=\"item.ContentType == 2\">\n                          <img src=\"/files/uknow.png\" class=\"picture\" >\n                          <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                          </button>\n                      </div>\n                    </div>\n                    <div *ngIf=\"item.From == my_id\" id=\"box1\">\n                        <div *ngIf=\"item.ContentType != 1 && item.ContentType != 2\">{{item.Content}}</div>\n                        <div *ngIf=\"item.ContentType == 1\">     \n                           <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.Content+ ')'}\"></div>\n                        </div>\n                        <div *ngIf=\"item.ContentType == 2\">\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\n                            <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                            </button>\n                        </div>\n                    </div>\n                <!-- </div> -->\n          </div>\n        </div>\n      </td>\n    </tr>\n    <tr>\n      <td rowspan=\"3\">\n        <div class = \"list\" >\n          <div class = \"item\" *ngFor=\"let item of friendlist.List\" (click) = \"test2(item.ID,item.Name, item.Headimg, item.Isgroup)\">\n            <nz-badge [nzCount]=\"item.Counter\" *ngIf=\"list!=NULL\" class = \"point\" style = \"height: 5px;\">\n              <img src = \"{{item.Headimg}}\" class = \"img\">\n            </nz-badge>\n            {{item.Name}}\n          </div>\n        </div>\n      </td>\n    </tr>\n    <tr class = \"inputmes\">\n      <!-- <td > -->\n      <div></div>\n        <div  *ngIf=\"isslect\">\n        <div class = \"tool\">\n          <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n          <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\n          <input id=\"upfile\" type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\" accept=\".pdf,.doc,.docx,.txt,.jpg,.zip,.jpeg\">\n          <div class=\"action-box\">\n            <button class=\"upload-btn\" onclick=\"upfile.click()\"> 点击上传\n            </button>\n          </div>\n        </div>\n        <textarea class = \"textarea\" [(ngModel)] = \"content\"></textarea>\n        <button class = \"send\" nz-button nzType=\"primary\" (click) = \"sendMsg()\" >发送</button>\n        \n<br>\n<br>\n<div>\n\n  <div *ngIf=\"show\">\n    <div style=\"display: -webkit-box;\">\n      <div class=\"hint\">\n        {{filename}}\n      </div>\n      <div class=\"action-box\">\n        <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n<br>\n<br>\n\n\n\n\n      </div>\n    </tr>\n  </table>\n\n\n  <button nz-button nzType=\"primary\" (click)=\"showAddGroupModal()\">\n    <span>创建群</span>\n  </button>\n  <button nz-button nzType=\"primary\" (click)=\"showAddFriendModal()\">\n    <span>添加好友</span>\n  </button>\n\n\n"
 
 /***/ }),
 
@@ -248,12 +248,14 @@ module.exports = "\n<div class=\"container\">\n  <table >\n    <tr>\n      <th c
 /*!****************************************!*\
   !*** ./src/app/chat/chat.component.ts ***!
   \****************************************/
-/*! exports provided: ChatComponent */
+/*! exports provided: ChatComponent, AddGroupUserItem, AddGroupUserlist */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatComponent", function() { return ChatComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddGroupUserItem", function() { return AddGroupUserItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddGroupUserlist", function() { return AddGroupUserlist; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _websocket_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../websocket.service */ "./src/app/websocket.service.ts");
@@ -280,16 +282,34 @@ var ChatComponent = /** @class */ (function () {
         this.from_id = 1;
         this.to_id = 0;
         this.my_id = this.us.MyUserId;
+        this.my_img_url = this.us.myImg;
+        this.my_name = this.us.myName;
+        this.to_name = "";
+        this.to_img = "";
         // group = 0;
         // addgtoup_id = 0;
         this.content = "";
         // group_name = '';
         this.list = [];
+        this.searchContent = "";
+        this.isVisible = false;
         this.isgroup = false;
-        this.my_img_url = "https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg";
         this.fileurl = 'http://localhost:9988/upload';
         this.dfileurl = "http://localhost:9988/upload/c4fb3e1e6b7e.jpg";
         this.filep = "";
+        /////////////////////////////////////////
+        //// 创建群//////////////////////////////
+        ////////////////////////////////////////
+        this.GroupName = '';
+        this.isAddGroupVisible = false;
+        this.isAddGroupConfirmLoading = false;
+        /////////////////////////////////////////
+        //// 添加成员//////////////////////////////
+        ////////////////////////////////////////
+        this.isAddFriendVisible = false;
+        this.isAddFriendConfirmLoading = false;
+        this.addGroupUserList = new (AddGroupUserlist);
+        this.addGroupUserList.AGlist = [];
     }
     ChatComponent.prototype.ngOnInit = function () {
         this.friendlist = this.ws.wsFriendList;
@@ -297,29 +317,30 @@ var ChatComponent = /** @class */ (function () {
         // console.log("wsfriendlist=", this.ws.wsFriendList);
         this.messagelist = this.ws.wsMessageList;
         // console.log("messagelist = ", this.messagelist);
+        console.log("my=", this.us);
+        console.log("from_id=", this.my_id);
         var now = new Date(); //设置滚动条保持在最底部
         var div = document.getElementById('scrolldIV');
         now.getTime();
         div.scrollTop = div.scrollHeight;
         this.show = false;
     };
-    ChatComponent.prototype.test2 = function (id, isgroup) {
+    ChatComponent.prototype.test2 = function (id, name, img, isgroup) {
         this.isslect = true;
         this.to_id = id;
+        this.to_name = name;
+        this.to_img = img;
         this.isgroup = isgroup;
         var flag = false;
         for (var i = 0; i < this.messagelist.List.length; i++) {
             if (id == this.messagelist.List[i].ID) {
                 this.showmsg = this.messagelist.List[i].MList;
                 this.isgroup = this.messagelist.List[i].Isgroup;
-                console.log("this.isgroup1 = ", this.isgroup, "showmsg = ", this.showmsg);
-                console.log("this.my_id) = ", this.my_id);
                 flag = true;
             }
         }
         if (!flag) {
             this.showmsg = [];
-            console.log("else");
         }
     };
     ChatComponent.prototype.sendMsg = function () {
@@ -348,8 +369,7 @@ var ChatComponent = /** @class */ (function () {
         msg.content = this.content; //消息内容
         msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.ContentType.TEXT; //消息类型
         msg.isgroup = false; //是不是群组消息
-        console.log("isgroup=", msg.isgroup);
-        //   console.log("this.msg = ", msg)
+        console.log("this.msg && this.to_id = ", msg, this.to_id);
         this.ws.sendMessage(msg);
         this.content = "";
     };
@@ -358,14 +378,54 @@ var ChatComponent = /** @class */ (function () {
         msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.Type.REQUEST;
         msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.NONE;
         msg.from = this.us.MyUserId;
-        // msg.group  = this.to_id;
         msg.to = this.to_id;
         msg.content = this.content;
         msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.ContentType.TEXT;
+        console.log("type=", msg.contentType);
         msg.isgroup = true;
-        console.log("isgroup2=", msg.isgroup);
         this.ws.sendMessage(msg);
         this.content = "";
+    };
+    ChatComponent.prototype.clickMe = function () {
+        var btn = document.getElementById("search");
+        btn.focus();
+        this.isVisible = document.hasFocus();
+        this.userlist = [];
+    };
+    ChatComponent.prototype.outMe = function () {
+        var btn = document.getElementById("search");
+        btn.blur();
+        this.isVisible = document.hasFocus();
+        this.userlist = [];
+    };
+    ChatComponent.prototype.keyUpSearch = function (content) {
+        // this.ws.getUserList(this.searchContent).subscribe(data => {
+        //   console.log("data2 = ", data.Ulist);
+        //   this.userlist = data.Ulist;
+        // })
+    };
+    ChatComponent.prototype.search = function () {
+        var _this = this;
+        // console.log("search=", this.searchContent);
+        this.ws.getUserList(this.searchContent).subscribe(function (data) {
+            _this.userlist = data.Ulist;
+            _this.flag = false;
+        });
+        if (this.searchContent == "") {
+            return;
+        }
+        if (this.userlist.length == 0) {
+            this.flag = true;
+        }
+    };
+    ChatComponent.prototype.addfriend = function (to) {
+        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message);
+        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.Type.REQUEST;
+        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.CREATE_SESSION;
+        msg.from = this.us.MyUserId;
+        msg.to = to;
+        msg.time = Date.now();
+        this.ws.sendMessage(msg);
     };
     ChatComponent.prototype.selectFile = function (event) {
         var fileList = event.target.files;
@@ -402,7 +462,7 @@ var ChatComponent = /** @class */ (function () {
                 msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.Type.REQUEST;
                 msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.NONE;
                 msg.from = _this.us.MyUserId;
-                msg.to = 100001;
+                msg.to = _this.to_id;
                 msg.content = _this.dfileurl;
                 msg.contentType = filetype;
                 msg.isgroup = false;
@@ -433,6 +493,60 @@ var ChatComponent = /** @class */ (function () {
         a.remove();
         console.log('download:' + a.href);
     };
+    ChatComponent.prototype.showAddGroupModal = function () {
+        for (var i = 0; i < this.ws.wsFriendList.List.length; i++) {
+            if (this.ws.wsFriendList.List[i].Isgroup) {
+                continue;
+            }
+            var item = new (AddGroupUserItem);
+            item.ID = Number(this.ws.wsFriendList.List[i].ID);
+            item.Name = this.ws.wsFriendList.List[i].Name;
+            item.Headimg = this.ws.wsFriendList.List[i].Headimg;
+            item.Check = false;
+            this.addGroupUserList.AGlist.push(item);
+        }
+        this.isAddGroupVisible = true;
+    };
+    ChatComponent.prototype.handleAddGroupCancel = function () {
+        this.isAddGroupVisible = false;
+        this.addGroupUserList.AGlist = [];
+        this.GroupName = '';
+    };
+    ChatComponent.prototype.handleAddGroupOk = function () {
+        if (this.GroupName == '' || this.addGroupUserList.AGlist.length == 0) {
+            alert("注意：群名不能为空并且至少选中一人");
+            this.GroupName = '';
+            this.addGroupUserList.AGlist = [];
+            return;
+        }
+        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message);
+        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.Type.REQUEST;
+        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.CREATE_GROUP;
+        msg.from = this.us.MyUserId;
+        msg.content = this.GroupName;
+        msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.ContentType.TEXT;
+        msg.isgroup = true;
+        msg.userlist = [];
+        for (var i = 0; i < this.addGroupUserList.AGlist.length; i++) {
+            if (this.addGroupUserList.AGlist[i].Check) {
+                console.log(this.addGroupUserList.AGlist[i].ID);
+                msg.userlist.push(this.addGroupUserList.AGlist[i].ID);
+            }
+        }
+        msg.userlist.push(this.us.MyUserId);
+        this.ws.sendMessage(msg);
+        this.addGroupUserList.AGlist = [];
+        this.GroupName = '';
+        this.isAddGroupVisible = false;
+    };
+    ChatComponent.prototype.showAddFriendModal = function () {
+        this.isAddFriendVisible = true;
+    };
+    ChatComponent.prototype.handleAddFriendCancel = function () {
+        this.isAddFriendVisible = false;
+    };
+    ChatComponent.prototype.handleAddFriendOk = function () {
+    };
     ChatComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -448,144 +562,18 @@ var ChatComponent = /** @class */ (function () {
     return ChatComponent;
 }());
 
-// 先不要管下面的
-var Old = /** @class */ (function () {
-    function Old() {
+var AddGroupUserItem = /** @class */ (function () {
+    function AddGroupUserItem() {
     }
-    Old.prototype.old = function () {
-        //////////////////////////////////////////////////////////////////////////////////////
-        // getalluser(){
-        //   this.ws.getUserList("").subscribe(data => {
-        //     console.log(data)
-        //   })
-        // }
-        // chatto=0;
-        // chatToPeo(to:number){
-        //   let msg = new(Protocol.Message)
-        //   msg.type = Protocol.Message.Type.REQUEST;
-        //   msg.cmd = Protocol.Message.CtrlType.CREATE_SESSION;
-        //   msg.from = this.us.MyUserId;
-        //   msg.to = to;
-        //   msg.time = Date.now();
-        //   this.ws.sendMessage(Protocol.Message.encode(msg).finish())
-        // }
-        // c2c_to_id = 0;
-        // c2c_content = ""
-        // sendMsg() {
-        //   let msg = new(Protocol.Message)
-        //   msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
-        //   msg.cmd = Protocol.Message.CtrlType.NONE;// 消息的功能
-        //   msg.from = this.us.MyUserId;              // 消息发送方
-        //   msg.to = this.c2c_to_id;                   //消息接收方
-        //   msg.content = this.c2c_content;             //消息内容
-        //   msg.contentType = Protocol.Message.ContentType.TEXT;　  //消息类型
-        //   msg.time = Date.now()                     //消息的发送时间
-        //   msg.isgroup = false;                       //是不是群组消息
-        //   this.ws.sendMessage(Protocol.Message.encode(msg).finish())
-        // }
-        // group_name = '';
-        // createGroup(){
-        //   let msg = new(Protocol.Message)
-        //   msg.type = Protocol.Message.Type.REQUEST;
-        //   msg.cmd = Protocol.Message.CtrlType.CREATE_GROUP;
-        //   msg.from = this.us.MyUserId;
-        //   msg.content = this.group_name;
-        //   msg.userlist.push(this.us.MyUserId);
-        //   msg.time = Date.now()
-        //   this.ws.sendMessage(Protocol.Message.encode(msg).finish())
-        // }
-        // add_mem_id = 0;
-        // gtoup_id = 0;
-        // addMemToGoup() {
-        //   let msg = new(Protocol.Message)
-        //   msg.type = Protocol.Message.Type.REQUEST;
-        //   msg.cmd = Protocol.Message.CtrlType.GROUP_ADDMEMBERS;
-        //   msg.from = this.us.MyUserId;
-        //   msg.group = this.gtoup_id;
-        //   msg.userlist.push(this.add_mem_id);
-        //   msg.time = Date.now()
-        //   this.ws.sendMessage(Protocol.Message.encode(msg).finish())
-        // }
-        // c2g_group_id = 0;
-        // c2g_content = "";
-        // sendToGoup() {
-        //   let msg = new(Protocol.Message)
-        //   msg.type = Protocol.Message.Type.REQUEST;
-        //   msg.cmd = Protocol.Message.CtrlType.NONE;
-        //   msg.from =  this.us.MyUserId;
-        //   msg.group  = this.c2g_group_id;
-        //   msg.content = this.c2g_content;
-        //   msg.isgroup = true;
-        //   msg.time = Date.now();
-        //   this.ws.sendMessage(Protocol.Message.encode(msg).finish())
-        // }
-        // picpath: string
-        // GetPicUrl = "http://localhost:9988/getpic/"
-        // picurl: string
-        // fileurl = 'http://localhost:9988/upload'
-        // dfileurl=""
-        // filep = ""
-        // filename: string
-        // selectFile(event: any) {
-        //   let fileList: FileList = event.target.files;
-        //   this.uploadFile(fileList);
-        // }
-        // uploadFile(files: FileList) {
-        //   if (files.length == 0) {
-        //     console.log("No file selected!");
-        //     return
-        //   }
-        //   let file: File = files[0];
-        //   console.log(file.name)
-        //   this.filename = file.name;
-        //   this.upload.uploadFile(this.fileurl, file)
-        //     .subscribe(
-        //       (response: any) => {
-        //         //.log(response);
-        //         if (response["body"] != null) {
-        //           if (response["body"]["code"] != 1) {
-        //             console.log(response["body"]["data"]);
-        //             this.filep = response["body"]["data"]["filepath"];
-        //             this.dfileurl=response["body"]["data"]["fileurl"];
-        //            // this.show = true;
-        //           }
-        //         }
-        //         // if (event.type == HttpEventType.UploadProgress) {
-        //         //   const percentDone = Math.round(100 * event.loaded / event.total);
-        //         //   console.log(`File is ${percentDone}% loaded.`);
-        //         // } else if (event instanceof HttpResponse) {
-        //         //   console.log('File is completely loaded!');
-        //         // }
-        //       },
-        //       (err) => {
-        //         console.log("Upload Error:", err);
-        //       }, () => {
-        //         console.log("Upload done");
-        //       }
-        //     )
-        //   //this.getpath();
-        // }
-        // getpath() {
-        //   this.filep = "getpic/3ea62ac5fb0758efadb15e36_compress.jpg"
-        //   console.log(this.filep);
-        // }
-        // download() {
-        //   this.fileurl = "http://localhost:9876/files";
-        //   window.open(this.fileurl, '_blank');
-        //   return;
-        // }
-        //   // 调用浏览器的下载
-        //   downloadFile() {
-        //     const a: HTMLAnchorElement = document.createElement('a');
-        //     a.href = this.dfileurl;
-        //     a.download = 'download';
-        //     a.click();
-        //     a.remove();
-        //     console.log('download:' + a.href);
-        //   }
-    };
-    return Old;
+    return AddGroupUserItem;
 }());
+
+var AddGroupUserlist = /** @class */ (function () {
+    function AddGroupUserlist() {
+    }
+    return AddGroupUserlist;
+}());
+
 
 
 /***/ }),
@@ -736,8 +724,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(login, ws, router) {
-        this.login = login;
+    function LoginComponent(us, ws, router) {
+        this.us = us;
         this.ws = ws;
         this.router = router;
         this.name = '';
@@ -746,12 +734,14 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.submit = function () {
         var _this = this;
         var body = { name: this.name, password: this.password };
-        this.login.postLoginData(body).subscribe(function (data) {
+        this.us.postLoginData(body).subscribe(function (data) {
             if (data['Ok']) {
-                _this.login.isLogin = true;
+                _this.us.isLogin = true;
                 _this.router.navigate(['']);
                 console.log(data['Uid']);
-                _this.login.MyUserId = data['Uid'];
+                _this.us.MyUserId = data['Uid'];
+                _this.us.myName = data['Name'];
+                _this.us.myImg = data['Headimg'];
                 _this.ws.createSocket(_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].websocketUrl);
                 _this.ws.InitChatList();
             }
@@ -1494,6 +1484,8 @@ var UserService = /** @class */ (function () {
         this.http = http;
         this.isLogin = false;
         this.MyUserId = -1;
+        this.myImg = "";
+        this.myName = "";
         this.configUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl;
         this.loginUrl = this.configUrl + "/login";
         this.signupUrl = this.configUrl + '/signup';
@@ -1531,7 +1523,7 @@ var UserService = /** @class */ (function () {
 /*!**************************************!*\
   !*** ./src/app/websocket.service.ts ***!
   \**************************************/
-/*! exports provided: WebsocketService, FriendItem, FriendList, MessageItem, Session, MessageList, Hist, HistList, ChatItem, ChatList, MsgItem, MsgList */
+/*! exports provided: WebsocketService, FriendItem, FriendList, MessageItem, Session, MessageList, Hist, HistList, ChatItem, ChatList, MsgItem, MsgList, UserItem, Userlist */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1548,6 +1540,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatList", function() { return ChatList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgItem", function() { return MsgItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgList", function() { return MsgList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserItem", function() { return UserItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Userlist", function() { return Userlist; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./protocol/Protocol */ "./src/app/protocol/Protocol.js");
@@ -1570,6 +1564,8 @@ var WebsocketService = /** @class */ (function () {
         this.wsFriendList.List = [];
         this.wsMessageList = new (MessageList);
         this.wsMessageList.List = [];
+        this.wsUserList = new (Userlist);
+        this.wsUserList.Ulist = [];
     }
     // 建立websocket链接
     WebsocketService.prototype.createSocket = function (url) {
@@ -1662,6 +1658,7 @@ var WebsocketService = /** @class */ (function () {
         var item = new (FriendItem);
         item.ID = uid;
         this.us.getUserbyId(item.ID).subscribe(function (data) {
+            console.log("data=", data);
             item.Name = data["Name"];
             item.Headimg = data["Img_url"];
         });
@@ -1679,7 +1676,7 @@ var WebsocketService = /** @class */ (function () {
         item.ID = gid;
         this.us.getGroupById(item.ID).subscribe(function (data) {
             item.Name = data["Name"];
-            item.Headimg = data["Heading"];
+            item.Headimg = data["Headimg"];
         });
         item.Counter = 1;
         item.Isgroup = true;
@@ -1731,7 +1728,8 @@ var WebsocketService = /** @class */ (function () {
     // 按名字取得用户列表
     WebsocketService.prototype.getUserList = function (name) {
         if (name === void 0) { name = ""; }
-        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/userlist?name" + name;
+        // console.log("name = " ,name);
+        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/userlist?name=" + name;
         return this.http.get(url);
     };
     WebsocketService.prototype.getChatMessageList = function (data) {
@@ -1744,6 +1742,43 @@ var WebsocketService = /** @class */ (function () {
     WebsocketService.prototype.getChatList = function () {
         var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/chatlist";
         return this.http.get(url);
+    };
+    WebsocketService.prototype.HistoryMessage = function (info) {
+        var _this = this;
+        this.getChatMessageList(info).subscribe(function (data) {
+            console.log("历史消息原数据", data);
+            _this.wsMessageList.List = [];
+            if (data.List == null) {
+                data.List = [];
+            }
+            for (var i = 0; i < data.List.length; i++) {
+                var session = new (Session);
+                session.MList = [];
+                if (data.List[i].length > 0) {
+                    session.ID = data.List[i][0].From;
+                    if (data.List[i][0].Isgroup || session.ID == _this.us.MyUserId) {
+                        session.ID = data.List[i][0].To;
+                    }
+                    session.Isgroup = data.List[i][0].Isgroup;
+                }
+                else {
+                    continue;
+                }
+                console.log("session.ID", session.ID, data.List[i][0].To, data.List[i][0].From);
+                for (var j = 0; j < data.List[i].length; j++) {
+                    var Item = new (MessageItem);
+                    Item.Mid = data.List[i][j].Mid;
+                    Item.From = data.List[i][j].From;
+                    Item.To = data.List[i][j].To;
+                    Item.Content = data.List[i][j].Content;
+                    Item.ContentType = data.List[i][j].ContentType;
+                    Item.Time = data.List[i][j].Time;
+                    session.MList.push(Item);
+                }
+                _this.wsMessageList.List.push(session);
+            }
+            console.log("历史消息", _this.wsMessageList.List);
+        });
     };
     WebsocketService.prototype.InitChatList = function () {
         var _this = this;
@@ -1765,39 +1800,6 @@ var WebsocketService = /** @class */ (function () {
                 HL.List.push(Ht);
             }
             _this.HistoryMessage(HL);
-        });
-    };
-    WebsocketService.prototype.HistoryMessage = function (info) {
-        var _this = this;
-        this.getChatMessageList(info).subscribe(function (data) {
-            _this.wsMessageList.List = [];
-            for (var i = 0; i < data.List.length; i++) {
-                var session = new (Session);
-                session.MList = [];
-                if (data.List[i].length > 0) {
-                    session.ID = data.List[i][0].From;
-                    if (data.List[i][0].Isgroup || session.ID == _this.us.MyUserId) {
-                        session.ID = data.List[i][0].To;
-                    }
-                    session.Isgroup = data.List[i][0].Isgroup;
-                }
-                else {
-                    break;
-                }
-                console.log("session.ID", session.ID, data.List[i][0].To, data.List[i][0].From);
-                for (var j = 0; j < data.List[i].length; j++) {
-                    var Item = new (MessageItem);
-                    Item.Mid = data.List[i][j].Mid;
-                    Item.From = data.List[i][j].From;
-                    Item.To = data.List[i][j].To;
-                    Item.Content = data.List[i][j].Content;
-                    Item.ContentType = data.List[i][j].ContentType;
-                    Item.Time = data.List[i][j].Time;
-                    session.MList.push(Item);
-                }
-                _this.wsMessageList.List.push(session);
-            }
-            console.log("历史消息", _this.wsMessageList.List);
         });
     };
     WebsocketService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1876,6 +1878,45 @@ var MsgList = /** @class */ (function () {
     return MsgList;
 }());
 
+var UserItem = /** @class */ (function () {
+    function UserItem() {
+    }
+    return UserItem;
+}());
+
+var Userlist = /** @class */ (function () {
+    function Userlist() {
+    }
+    return Userlist;
+}());
+
+/////////////////////////////////////////////////////////////////
+// FriendList = [
+//   {ID:1000021,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 1},
+//   {ID:1000022,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 9},
+//   {ID:1000023,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 0},
+//   {ID:1000024,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 4},
+//   {ID:1000025,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 5},
+//   {ID:1000026,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 3},
+// ];
+// MessageList = [
+//   {ID:1000021,ISGROUP: false,Message: [
+//     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1000021,To:1, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+//   ]},
+//   {ID:1000022,ISGROUP: false,Message: [
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+//   ]},
+//   {ID:100001,ISGROUP: false,Message: [
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
+//     {Mid: 0,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
+//   ]}
+// ]
 
 
 /***/ }),
