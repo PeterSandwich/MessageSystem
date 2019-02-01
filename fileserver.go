@@ -4,7 +4,6 @@ import (
 	"MessageSystem/feedback"
 	"crypto/md5"
 	"encoding/hex"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/nfnt/resize"
@@ -16,9 +15,7 @@ import (
 	"log"
 	"mime"
 	"net/http"
-	"net/url"
 	"os"
-	"path"
 	"path/filepath"
 	"strings"
 )
@@ -32,38 +29,6 @@ import (
 const maxUploadSize = 10 * 1024 * 1024 // 10 mb
 const uploadPath = "C:/Users/User/Desktop/GoProject/files/"
 
-func downloadfilehandler() http.HandlerFunc {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		vars := r.URL.Query()
-		fmt.Println(vars)
-		//获取文件路径
-		fileFullPath := uploadPath
-
-		fileFullPath += "c7f3c3b980a0.jpg"
-		fmt.Println(fileFullPath)
-		//打开文件
-		file, err := os.Open(fileFullPath)
-		if err != nil {
-			renderError(w, "downloadfilehandler_openfile_error", http.StatusBadRequest)
-		}
-		defer file.Close()
-
-		//准备工作
-		fileName := path.Base(fileFullPath)
-		fileName = url.QueryEscape(fileName) // 防止中文乱码
-		w.Header().Add("Content-Type", "application/octet-stream")
-		w.Header().Add("content-disposition", "attachment; filename=\""+fileName+"\"")
-
-		//传输文件
-		_, error := io.Copy(w, file)
-		if error != nil {
-			renderError(w, "downloadfilehandler_copyfile_error", http.StatusBadRequest)
-		}
-		data, _ := json.Marshal("下载合同成功")
-		w.Write(data)
-	})
-}
-
 type InputArgs struct {
 	OutputPath string /** 输出目录 */
 	LocalPath  string /** 输入的目录或文件路径 */
@@ -73,14 +38,17 @@ type InputArgs struct {
 }
 
 type ReturnPath struct {
-	Filepath string `json:"filepath"`
-	Fileurl  string `json:"fileurl"`
+	OriginalFile   string `json:"originalfile"`
+	Thumbnail      string `json:"thumbnail"`
+	Filetype       int64  `json:"filetype"`
 }
+
 
 var inputArgs InputArgs
 
 func uploadFileHandler() http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		returnp := ReturnPath{}
 		fb := feedbcak.NewFeedBack(w)
 
 		// 检查文件大小
@@ -92,6 +60,7 @@ func uploadFileHandler() http.HandlerFunc {
 
 		// 解析文件
 		fileType := r.PostFormValue("type")
+		fmt.Println(len(fileType))
 		file, _, err := r.FormFile("uploadFile")
 		if err != nil {
 			fb.Code(feedbcak.ERROR_FILESERVER).Msg("INVALID_FILE").Response()
@@ -106,25 +75,33 @@ func uploadFileHandler() http.HandlerFunc {
 
 		// 获取文件类型，只需读取文件前512位
 		filetype := http.DetectContentType(fileBytes)
+		fmt.Println(fileType)
 		fmt.Println(filetype)
+
 		switch filetype {
-		case "image/jpeg", "image/jpg":
-		case "image/gif", "image/png":
-		case "application/pdf":
-			break
+		case "image/jpeg", "image/jpg":returnp.Filetype=1
+		case "image/gif", "image/png":returnp.Filetype=1
+		case "application/pdf":returnp.Filetype=1
+		case "application/octet-stream":
+			filetype="application/x-zip-compressed"
+			returnp.Filetype=1
 		case "text/plain; charset=utf-8":
+			returnp.Filetype=1
 			filetype = "text/plain"
 		default:
-			renderError(w, "INVALID_FILE_TYPE", http.StatusBadRequest)
+			fb.Code(feedbcak.ERROR_FILESERVER).Msg("INVALID_FILE_TYPE").Response()
 			return
 		}
 		fmt.Println("after:" + filetype)
 		//获取文件类型
 		fileEndings, err := mime.ExtensionsByType(fileType)
+
 		if err != nil {
-			renderError(w, "CANT_READ_FILE_TYPE", http.StatusInternalServerError)
+			fmt.Println(err)
+			fb.Code(feedbcak.ERROR_FILESERVER).Msg("CANT_READ_FILE_TYPE").Response()
 			return
 		}
+		fmt.Println("123+",fileEndings)
 		//划分文件类型
 		typew := strings.Split(fileEndings[0], ".")
 		//生成文件名
@@ -139,7 +116,7 @@ func uploadFileHandler() http.HandlerFunc {
 			fb.Code(feedbcak.ERROR_FILESERVER).Msg("SUBSTRFILENAME_ERROR").Response()
 			return
 		}
-		//获取可执行文件绝对路径
+		//获取可执行文件绝对路径(改为自定义)
 		PATH, err := exepath(typew[1])
 		if err != nil {
 			fb.Code(feedbcak.ERROR_FILESERVER).Msg("GETEXEPATH_ERROR").Response()
@@ -154,7 +131,6 @@ func uploadFileHandler() http.HandlerFunc {
 		}
 		//创建文件
 		newPath := PATH + CreateFileName + fileEndings[0]
-
 		err = createfile(newPath, fileBytes)
 		if err != nil {
 			fb.Code(feedbcak.ERROR_FILESERVER).Msg("CERATEFILE_ERROR").Response()
@@ -189,16 +165,16 @@ func uploadFileHandler() http.HandlerFunc {
 			} else {
 				fmt.Println("生成缩略图成功 " + inputArgs.OutputPath)
 			}
-			returnp := ReturnPath{}
-			returnpath := "http://localhost:9876/files/" + newPath
-			returnp.Fileurl = returnpath
-			returnp.Filepath = fname
-			fmt.Println(uploadPath + inputArgs.OutputPath)
+
+			returnp.OriginalFile = CreateFileName+fileEndings[0]
+			returnp.Thumbnail = fname
 			fmt.Println(returnp)
 			fb.Code(feedbcak.SUCCESS).Data(returnp).Response()
-		}
-		if fileEndings[0] == ".txt" {
-
+		} else{
+			returnp.OriginalFile = CreateFileName+fileEndings[0]
+			returnp.Thumbnail = ""
+			fmt.Println(returnp)
+			fb.Code(feedbcak.SUCCESS).Data(returnp).Response()
 		}
 	})
 }
@@ -224,12 +200,6 @@ func Mkdir(dir string) error {
 		return err
 	}
 	return nil
-}
-
-func renderError(w http.ResponseWriter, message string, statusCode int) {
-	fmt.Println(message)
-	w.WriteHeader(http.StatusBadRequest)
-	w.Write([]byte(message))
 }
 
 func imageCompress(getReadSizeFile func() (io.Reader, error), getDecodeFile func() (*os.File, error),
@@ -334,12 +304,14 @@ func GetFileMD5(fbyte []byte) (string, error) {
 //创建文件
 func createfile(fileurl string, filebyte []byte) error {
 	file, err := os.Create(fileurl)
+	defer file.Close()
 	if err != nil {
 		fmt.Println(err)
 		return err
 
 	}
 	_, err = file.Write(filebyte)
+
 	if err != nil {
 		fmt.Println("qweqweqweqweqwe")
 		return err

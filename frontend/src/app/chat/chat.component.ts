@@ -26,6 +26,7 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
     this.one={ID:1,Isgroup:false}
     this.msglist = { List:[]}
+    this.show=false
   }  
 //////////////////////////////////////////////////////////////////////////////////////
   getalluser(){
@@ -164,11 +165,13 @@ export class ChatComponent implements OnInit {
   GetPicUrl = "http://localhost:9988/getpic/"
   picurl: string
   fileurl = 'http://localhost:9988/upload'
-  dfileurl=""
+  dfileurl="http://localhost:9988/upload/c4fb3e1e6b7e.jpg"
   filep = ""
   filename: string
+  show:boolean
   selectFile(event: any) {
     let fileList: FileList = event.target.files;
+    
     this.uploadFile(fileList);
   }
 
@@ -178,7 +181,12 @@ export class ChatComponent implements OnInit {
       return
     }
     let file: File = files[0];
-    console.log(file.name)
+    if(file.size>10*1024*1024){
+      console.log("file is too big!")
+      return
+    }
+    //console.log(file.type)
+    //console.log(file.name)
     this.filename = file.name;
     this.upload.uploadFile(this.fileurl, file)
       .subscribe(
@@ -187,9 +195,10 @@ export class ChatComponent implements OnInit {
           if (response["body"] != null) {
             if (response["body"]["code"] != 1) {
               console.log(response["body"]["data"]);
-              this.filep = response["body"]["data"]["filepath"];
-              this.dfileurl=response["body"]["data"]["fileurl"];
-             // this.show = true;
+              this.filep = response["body"]["data"]["originalfile"];
+              this.dfileurl=response["body"]["data"]["thumbnail"];
+              console.log(this.GetPicUrl+this.dfileurl)
+              this.show = true;
             }
           }
           // if (event.type == HttpEventType.UploadProgress) {
