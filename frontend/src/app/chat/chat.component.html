@@ -56,8 +56,28 @@
         <div class = "message1" id="scrolldIV" >
           <div *ngFor="let item of showmsg" >
                 <!-- <div *ngFor="let mes of item"> -->
-            <div *ngIf="item.From != my_id" id="box">{{item.Content}}</div>
-            <div *ngIf="item.From == my_id" id="box1">{{item.Content}}</div>
+                    <div *ngIf="item.From != my_id" id="box">
+                      <div *ngIf="item.ContentType == 0">{{item.Content}}</div>
+                      <div *ngIf="item.ContentType == 1">     
+                         <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.Content+ ')'}"></div>
+                      </div>
+                      <div *ngIf="item.ContentType == 2">
+                          <img src="../../assets/uknow.png" class="picture" >
+                          <button class="upload-btn" (click)=" downloadFile()"> 下载
+                          </button>
+                      </div>
+                    </div>
+                    <div *ngIf="item.From == my_id" id="box1">
+                        <div *ngIf="item.ContentType != 1 && item.ContentType != 2">{{item.Content}}</div>
+                        <div *ngIf="item.ContentType == 1">     
+                           <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.Content+ ')'}"></div>
+                        </div>
+                        <div *ngIf="item.ContentType == 2">
+                            <img src="../../assets/uknow.png" class="picture" >
+                            <button class="upload-btn" (click)=" downloadFile()"> 下载
+                            </button>
+                        </div>
+                    </div>
                 <!-- </div> -->
           </div>
         </div>
@@ -80,9 +100,39 @@
       <div></div>
         <div  *ngIf="isslect">
         <div class = "tool">
+          <!-- <i nz-icon type="folder" theme="outline" style="font-size: 25px" class = "icon"></i>            
+          <i nz-icon type="picture" theme="outline" style="font-size: 25px" class = "icon"></i>        -->
+          <input id="upfile" type="file" style="display: none;" (change)="selectFile($event)">
+          <div class="action-box">
+            <button class="upload-btn" onclick="upfile.click()"> 点击上传
+            </button>
+          </div>
         </div>
         <textarea class = "textarea" [(ngModel)] = "content"></textarea>
         <button class = "send" nz-button nzType="primary" (click) = "sendMsg()" >发送</button>
+        
+<br>
+<br>
+<div>
+
+  <div *ngIf="show">
+    <div style="display: -webkit-box;">
+      <div class="hint">
+        {{filename}}
+      </div>
+      <div class="action-box">
+        <button class="upload-btn" (click)=" downloadFile()"> 下载
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+
+
+
       </div>
     </tr>
   </table>

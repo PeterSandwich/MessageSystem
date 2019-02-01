@@ -57,6 +57,7 @@ export class ChatComponent implements OnInit {
       var div = document.getElementById('scrolldIV');
       now.getTime();
       div.scrollTop = div.scrollHeight;
+      this.show=false
     }
 
 
@@ -111,6 +112,8 @@ export class ChatComponent implements OnInit {
       // msg.group  = this.to_id;
       msg.to = this.to_id;
       msg.content = this.content;
+      msg.contentType = Protocol.Message.ContentType.TEXT;
+      console.log("type=", msg.contentType)
       msg.isgroup = true;
       this.ws.sendMessage(msg);
       this.content = "";
@@ -157,7 +160,91 @@ export class ChatComponent implements OnInit {
       this.ws.sendMessage(msg)
     }
 
+
+///////////////////////////////////////////////////////////////////
+  picpath: string
+  picurl: string
+  fileurl = 'http://localhost:9988/upload'
+  dfileurl="http://localhost:9988/upload/c4fb3e1e6b7e.jpg"
+  filep = ""
+  filename: string
+  show:boolean
+  selectFile(event: any) {
+    let fileList: FileList = event.target.files;
+    
+    this.uploadFile(fileList);
+  }
+
+  uploadFile(files: FileList) {
+    if (files.length == 0) {
+      console.log("No file selected!");
+      return
+    }
+    let file: File = files[0];
+    if(file.size>10*1024*1024){
+      console.log("file is too big!")
+      return
+    }
+    //console.log(file.type)
+    //console.log(file.name)
+    this.filename = file.name;
+    this.upload.uploadFile(this.fileurl, file).subscribe((response: any) => {
+          //.log(response);
+          let filetype = -1;
+          if (response["body"] != null) {
+            if (response["body"]["code"] != 1) {
+              console.log(response["body"]["data"]);
+              this.filep = response["body"]["data"]["originalfile"];
+              this.dfileurl=response["body"]["data"]["thumbnail"];
+              filetype = response["body"]["data"]["filetype"];
+              console.log(this.dfileurl)
+              this.show = true;
+
+            }
+            console.log("####",this.us.MyUserId,this.to_id,this.filep,this.dfileurl,filetype)
+             let msg = new(Protocol.Message)
+             msg.type = Protocol.Message.Type.REQUEST;
+             msg.cmd = Protocol.Message.CtrlType.NONE;
+             msg.from =  this.us.MyUserId;
+             msg.to = 100001;
+             msg.content = this.dfileurl;
+             msg.contentType = filetype; 
+             msg.isgroup = false;
+             this.ws.sendMessage(msg);
+             this.content = "";
+          }
+         
+            
+        },
+        (err) => {
+          console.log("Upload Error:", err);
+        }, () => {
+          console.log("Upload done");
+        }
+      )
+    //this.getpath();
+
+  }
+  getpath() {
+    this.filep = "getpic/3ea62ac5fb0758efadb15e36_compress.jpg"
+    console.log(this.filep);
+  }
+  download() {
+    window.open(this.fileurl, '_blank');
+    return;
+  }
+    // 调用浏览器的下载
+    downloadFile() {
+      const a: HTMLAnchorElement = document.createElement('a');
+      a.href = this.filep;
+      a.download = 'download';
+      a.click();
+      a.remove();
+      console.log('download:' + a.href);
+    }
+
 }
+  
 
 
 // 先不要管下面的

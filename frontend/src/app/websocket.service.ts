@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Protocol } from "./protocol/Protocol";
-import { MesList } from './chat/data';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
@@ -75,7 +74,19 @@ export class WebsocketService {
       }else if(conn.cmd == Protocol.Message.CtrlType.CREATE_SESSION){ //添加好友请求
         this.createSessById(conn,conn.from)
       }else if (conn.cmd == Protocol.Message.CtrlType.CREATE_GROUP || conn.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
-          
+        this.createGroupById(conn,conn.to)
+      }else if(conn.cmd == Protocol.Message.CtrlType.MSG_BACK){
+        for(let i=0;i<this.wsMessageList.List.length;i++){
+          if(conn.isgroup == this.wsMessageList.List[i].Isgroup&&
+            ((conn.isgroup &&conn.to==this.wsMessageList.List[i].ID)||(!conn.isgroup &&conn.from==this.wsMessageList.List[i].ID))){
+             for(let j=0;j<this.wsMessageList.List[i].MList.length;j++){
+              if (this.wsMessageList.List[i].MList[j].Mid == conn.msgid){
+                this.wsMessageList.List[i].MList.slice(j,1);
+                break;
+              }
+            }
+          }
+        }
       }
     }else if(conn.type==Protocol.Message.Type.ACK){
       if (conn.cmd == Protocol.Message.CtrlType.NONE){
@@ -92,12 +103,48 @@ export class WebsocketService {
         }
       }else if(conn.cmd == Protocol.Message.CtrlType.CREATE_SESSION){//添加好友请求确认信息
        this.createSessById(conn,conn.to)
+      }else if (conn.cmd == Protocol.Message.CtrlType.CREATE_GROUP || conn.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
+        this.createGroupById(conn,conn.to)
       }
     }
   }
 
 
-    
+    createSessById(conn: Protocol.Message,uid: number|Long){
+        let item = new(FriendItem);
+        item.ID = uid;
+        this.us.getUserbyId(item.ID).subscribe((data)=>{
+          item.Name = data["Name"];
+          item.Headimg = data["Img_url"];
+        });
+        item.Counter = 1;
+        item.Isgroup = false;
+        this.wsFriendList.List.push(item);
+
+        let sess = new(Session)
+        sess.ID = item.ID
+        sess.Isgroup = false;
+        sess.MList = [];
+        this.wsMessageList.List.push(sess);
+   }
+   createGroupById(conn: Protocol.Message,gid: number|Long){
+    let item = new(FriendItem);
+    item.ID = gid;
+    this.us.getGroupById(item.ID).subscribe((data)=>{
+      item.Name = data["Name"];
+      item.Headimg = data["Heading"];
+    });
+    item.Counter = 1;
+    item.Isgroup = true;
+    this.wsFriendList.List.push(item);
+
+    let sess = new(Session)
+    sess.ID = item.ID
+    sess.Isgroup = true;
+    sess.MList = [];
+    this.wsMessageList.List.push(sess);
+}
+  
 
   // 发送信息，不在这里构造消息体
   sendMessage(message: Protocol.Message){
@@ -138,24 +185,6 @@ export class WebsocketService {
     this.ws.send(Protocol.Message.encode(message).finish());
   }
 
-  createSessById(conn: Protocol.Message,uid: number|Long){
-    let item = new(FriendItem);
-    item.ID = uid;
-    this.us.getUserbyId(item.ID).subscribe((data)=>{
-      item.Name = data["Name"];
-      item.Headimg = data["Img_url"];
-      console.log("data.name = ", data["Name"])
-    });
-    item.Counter = 1;
-    item.Isgroup = false;
-    this.wsFriendList.List.push(item);
-
-    let sess = new(Session)
-    sess.ID = item.ID
-    sess.Isgroup = false;
-    sess.MList = [];
-    this.wsMessageList.List.push(sess);
-}
 
   // 按名字取得用户列表
   getUserList(name:string = ""):Observable<any>{//全部用户

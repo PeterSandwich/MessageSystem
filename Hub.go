@@ -107,6 +107,7 @@ func C2C_SendRequest(in *pb.Message) {
 	in.Cmd = pb.Message_NONE
 	in.Isgroup = false
 
+
 	msgbytes, err := proto.Marshal(in)
 	if err != nil {
 		log.Error("* proto.Marshal Send wrong: " + err.Error())
@@ -164,6 +165,7 @@ func C2G_SendRequest(in *pb.Message) {
 			To:      in.GetTo(),
 			From:    in.From,
 			Content: in.GetContent(),
+			ContentType:in.GetContentType(),
 			Time:    in.GetTime(),
 			Isgroup: true,
 		}
@@ -297,6 +299,7 @@ func C2C_MsgBack(in *pb.Message) {
 		Type:    pb.Message_ACK,
 		Cmd:     pb.Message_MSG_BACK,
 		From:    in.GetFrom(),
+		To: 	 in.GetTo(),
 		Time:    in.GetTime(),
 		Msgid:   in.GetMsgid(),
 		Isgroup: false,
@@ -372,7 +375,7 @@ func C2G_MsgBack(in *pb.Message) {
 			Cmd:     pb.Message_MSG_BACK,
 			Msgid:   in.Msgid,
 			Content: in.GetContent(),
-			To:in.GetTo(),
+			To:			in.GetTo(),
 			Time:    in.GetTime(),
 			Isgroup: true,
 		}

@@ -52,9 +52,8 @@ func main() {
 	})
 	//fileserver
 	http.HandleFunc("/upload", uploadFileHandler())
-	http.HandleFunc("/files/", downloadfilehandler())
 	fs := http.FileServer(http.Dir(uploadPath))
-	http.Handle("/getpic/", http.StripPrefix("/getpic", fs))
+	http.Handle("/files/", http.StripPrefix("/files", fs))
 
 	log.Info("* IM Server Start")
 	go Run()
