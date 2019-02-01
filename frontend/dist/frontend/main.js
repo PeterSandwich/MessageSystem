@@ -1748,6 +1748,7 @@ var WebsocketService = /** @class */ (function () {
     // 发送信息，不在这里构造消息体
     WebsocketService.prototype.sendMessage = function (message) {
         message.time = Date.now();
+        console.log("mes.contentype=", message.contentType);
         if (message.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST) {
             if (message.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) { // 单聊或群聊
                 for (var i = 0; i < this.wsMessageList.List.length; i++) {
@@ -1831,6 +1832,7 @@ var WebsocketService = /** @class */ (function () {
                     session.MList.push(Item);
                 }
                 _this.wsMessageList.List.push(session);
+                console.log("ContenType = ", session.MList);
             }
             console.log("历史消息", _this.wsMessageList.List);
         });

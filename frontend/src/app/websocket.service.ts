@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { Long } from 'protobufjs';
 import { UserService } from './user.service';
+import { MesList } from './chat/data';
 
 @Injectable()
 export class WebsocketService {
@@ -150,6 +151,7 @@ export class WebsocketService {
   // 发送信息，不在这里构造消息体
   sendMessage(message: Protocol.Message){
     message.time = Date.now()
+    console.log("mes.contentype=",message.contentType);
     if (message.type ==  Protocol.Message.Type.REQUEST) {
       if(message.cmd == Protocol.Message.CtrlType.NONE){  // 单聊或群聊
         for(let i=0;i<this.wsMessageList.List.length;i++){
@@ -237,6 +239,8 @@ export class WebsocketService {
           session.MList.push(Item);
         }
         this.wsMessageList.List.push(session)
+        console.log("ContenType = ", session.MList);
+
       }
       console.log("历史消息",this.wsMessageList.List)
     })
