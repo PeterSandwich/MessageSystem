@@ -3,7 +3,6 @@ package main
 import (
 	pb "./protocol/protoc"
 	"database/sql"
-	"fmt"
 	_ "github.com/lib/pq"
 	"github.com/satori/go.uuid"
 	log "github.com/sirupsen/logrus"
@@ -214,7 +213,6 @@ func GetChatListDB(myid int64) ([]ChatItem, error) {
 }
 
 func HistrotyMessageDB(from, to int64, isgroup bool) ([]MessageItem, error) {
-	fmt.Println("################",from,to,isgroup)
 	var hash_num int64
 	var Item MessageItem
 	list := []MessageItem{}
@@ -246,13 +244,12 @@ func HistrotyMessageDB(from, to int64, isgroup bool) ([]MessageItem, error) {
 		}
 		list = append(list, Item)
 	}
-	fmt.Println("################",list)
 	return list, nil
 }
 
 func GetUserById(uid int64)( UserItem,error){
 	user := UserItem{}
-	err := DB_conn.QueryRow("select (id,name,heading) from users where id=$1", uid).Scan(&user.ID, &user.Name, &user.Img_url)
+	err := DB_conn.QueryRow("select id,name,headimg from users where id=$1", uid).Scan(&user.ID, &user.Name, &user.Img_url)
 	return user,err
 }
 
@@ -265,6 +262,6 @@ type GroupInfo struct {
 }
 func GetGroupById(gid int64)(GroupInfo,error){
 	group := GroupInfo{}
-	err := DB_conn.QueryRow("select (id,name,heading,creater,owner) from groups where id=$1", gid).Scan(&group.Id, &group.Name, &group.Heading,&group.Creater,&group.Owner)
+	err := DB_conn.QueryRow("select id,name,headimg,creater,owner from groups where id=$1", gid).Scan(&group.Id, &group.Name, &group.Heading,&group.Creater,&group.Owner)
 	return group,err
 }
