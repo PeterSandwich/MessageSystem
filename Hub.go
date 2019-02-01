@@ -193,7 +193,7 @@ func CreateGroupRequest(in *pb.Message) {
 		Type:    pb.Message_ACK,
 		Cmd:     pb.Message_CREATE_GROUP,
 		From:    in.GetFrom(),
-		To:      in.GetTo(),
+		To:      gid,
 		Time:    in.GetTime(),
 		Isgroup: true,
 		Content: gname,
@@ -219,7 +219,7 @@ func CreateGroupRequest(in *pb.Message) {
 			Cmd:     pb.Message_CREATE_GROUP,
 			From:    in.GetFrom(),
 			Time:    in.GetTime(),
-			To:      in.GetTo(),
+			To:      gid,
 			Isgroup: true,
 			Content: gname,
 

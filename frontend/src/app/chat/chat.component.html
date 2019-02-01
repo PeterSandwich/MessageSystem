@@ -5,11 +5,9 @@
   </ng-template>
   <ng-template #modalContent>
     <div class = "list" >
-      <div class = "item" *ngFor="let item of friendlist.List" >
-        <label nz-checkbox >
-          <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point" style = "height: 5px;">
+      <div class = "item" *ngFor="let item of addGroupUserList.AGlist" >
+        <label nz-checkbox [(ngModel)]="item.Check">
             <img src = "{{item.Headimg}}" class = "img">
-          </nz-badge>
           {{item.Name}}
       </label>
       </div>

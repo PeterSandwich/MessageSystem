@@ -42,18 +42,25 @@ export class ChatComponent implements OnInit {
   friendlist : FriendList;
   userlist : Userlist[];
   messagelist : MessageList;
+  addGroupUserList:AddGroupUserlist;
+
 
   constructor(
     public ws:WebsocketService, 
     private us:UserService,    // 里面有 我的Id: this.us.MyUserId
     private upload: UploadService ,
     private el: ElementRef
-    ) { }
+    ) { 
+      this.addGroupUserList=new(AddGroupUserlist);
+      this.addGroupUserList.AGlist = [];
+    }
     ngOnInit(){
       this.friendlist = this.ws.wsFriendList;
+      
       // console.log("friendList=", this.friendlist);
       // console.log("wsfriendlist=", this.ws.wsFriendList);
       this.messagelist = this.ws.wsMessageList;
+
       // console.log("messagelist = ", this.messagelist);
       console.log("my=", this.us);
       console.log("from_id=", this.my_id);
@@ -250,20 +257,62 @@ export class ChatComponent implements OnInit {
     }
 
     /////////////////////////////////////////
-    //// 创建群
+    //// 创建群//////////////////////////////
+    ////////////////////////////////////////
+    
     GroupName = ''
     isAddGroupVisible = false;
     isAddGroupConfirmLoading = false;
     showAddGroupModal(): void {
+      for(let i=0;i<this.ws.wsFriendList.List.length;i++){
+        if(this.ws.wsFriendList.List[i].Isgroup){continue;}
+        let item = new(AddGroupUserItem);
+        item.ID=Number(this.ws.wsFriendList.List[i].ID);
+        item.Name=this.ws.wsFriendList.List[i].Name;
+        item.Headimg=this.ws.wsFriendList.List[i].Headimg;
+        item.Check = false;
+        this.addGroupUserList.AGlist.push(item);
+      }
       this.isAddGroupVisible = true;
     }
     handleAddGroupCancel(): void {
       this.isAddGroupVisible = false;
+      this.addGroupUserList.AGlist = [];
+      this.GroupName = '';
     }
     handleAddGroupOk(){
-      
+      if(this.GroupName=='' || this.addGroupUserList.AGlist.length==0){
+        alert("注意：群名不能为空并且至少选中一人");
+        this.GroupName='';
+        this.addGroupUserList.AGlist = [];
+        return;
+      }
+      let msg = new(Protocol.Message)
+      msg.type = Protocol.Message.Type.REQUEST;
+      msg.cmd = Protocol.Message.CtrlType.CREATE_GROUP;
+      msg.from =  this.us.MyUserId;
+      msg.content =  this.GroupName;
+      msg.contentType = Protocol.Message.ContentType.TEXT; 
+      msg.isgroup = true;
+      msg.userlist = [];
+      for(let i=0;i<this.addGroupUserList.AGlist.length;i++){
+        if(this.addGroupUserList.AGlist[i].Check){
+          console.log(this.addGroupUserList.AGlist[i].ID);
+          msg.userlist.push(this.addGroupUserList.AGlist[i].ID);
+        }
+      }
+      msg.userlist.push(this.us.MyUserId);
+      this.ws.sendMessage(msg);
+      this.addGroupUserList.AGlist = [];
+      this.GroupName = '';
+      this.isAddGroupVisible = false;
     }
-    //////////////////////////////////////////
+
+
+    
+    /////////////////////////////////////////
+    //// 添加成员//////////////////////////////
+    ////////////////////////////////////////
     isAddFriendVisible = false;
     isAddFriendConfirmLoading = false;
     showAddFriendModal(): void {
@@ -278,4 +327,13 @@ export class ChatComponent implements OnInit {
 
 }
   
+export class AddGroupUserItem{
+	ID :number; 
+	Name :string;
+  Headimg :string;
+  Check: boolean;
+}
+export class AddGroupUserlist{
+	AGlist: AddGroupUserItem[];
+}
 
