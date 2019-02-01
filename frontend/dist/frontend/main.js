@@ -1549,6 +1549,20 @@ var WebsocketService = /** @class */ (function () {
                 this.createSessById(conn, conn.from);
             }
             else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_GROUP || conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS) {
+                this.createGroupById(conn, conn.to);
+            }
+            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
+                for (var i = 0; i < this.wsMessageList.List.length; i++) {
+                    if (conn.isgroup == this.wsMessageList.List[i].Isgroup &&
+                        ((conn.isgroup && conn.to == this.wsMessageList.List[i].ID) || (!conn.isgroup && conn.from == this.wsMessageList.List[i].ID))) {
+                        for (var j = 0; j < this.wsMessageList.List[i].MList.length; j++) {
+                            if (this.wsMessageList.List[i].MList[j].Mid == conn.msgid) {
+                                this.wsMessageList.List[i].MList.slice(j, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
             }
         }
         else if (conn.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.ACK) {
@@ -1568,6 +1582,9 @@ var WebsocketService = /** @class */ (function () {
             else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) { //添加好友请求确认信息
                 this.createSessById(conn, conn.to);
             }
+            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_GROUP || conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS) {
+                this.createGroupById(conn, conn.to);
+            }
         }
     };
     WebsocketService.prototype.createSessById = function (conn, uid) {
@@ -1583,6 +1600,22 @@ var WebsocketService = /** @class */ (function () {
         var sess = new (Session);
         sess.ID = item.ID;
         sess.Isgroup = false;
+        sess.MList = [];
+        this.wsMessageList.List.push(sess);
+    };
+    WebsocketService.prototype.createGroupById = function (conn, gid) {
+        var item = new (FriendItem);
+        item.ID = gid;
+        this.us.getGroupById(item.ID).subscribe(function (data) {
+            item.Name = data["Name"];
+            item.Headimg = data["Heading"];
+        });
+        item.Counter = 1;
+        item.Isgroup = true;
+        this.wsFriendList.List.push(item);
+        var sess = new (Session);
+        sess.ID = item.ID;
+        sess.Isgroup = true;
         sess.MList = [];
         this.wsMessageList.List.push(sess);
     };
