@@ -1770,6 +1770,7 @@ var WebsocketService = /** @class */ (function () {
     WebsocketService.prototype.HistoryMessage = function (info) {
         var _this = this;
         this.getChatMessageList(info).subscribe(function (data) {
+            console.log("历史消息原数据", data);
             _this.wsMessageList.List = [];
             for (var i = 0; i < data.List.length; i++) {
                 var session = new (Session);
@@ -1782,7 +1783,7 @@ var WebsocketService = /** @class */ (function () {
                     session.Isgroup = data.List[i][0].Isgroup;
                 }
                 else {
-                    break;
+                    continue;
                 }
                 console.log("session.ID", session.ID, data.List[i][0].To, data.List[i][0].From);
                 for (var j = 0; j < data.List[i].length; j++) {

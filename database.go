@@ -246,6 +246,7 @@ func HistrotyMessageDB(from, to int64, isgroup bool) ([]MessageItem, error) {
 		}
 		list = append(list, Item)
 	}
+	fmt.Println("################",list)
 	return list, nil
 }
 
