@@ -27,7 +27,7 @@ import (
 
 
 const maxUploadSize = 10 * 1024 * 1024 // 10 mb
-const uploadPath = "C:/Users/User/Desktop/GoProject/files/"
+const uploadPath = "/tmp/files/"
 
 type InputArgs struct {
 	OutputPath string /** 输出目录 */
@@ -115,13 +115,14 @@ func uploadFileHandler() http.HandlerFunc {
 			fb.Code(feedbcak.ERROR_FILESERVER).Msg("SUBSTRFILENAME_ERROR").Response()
 			return
 		}
-		//获取可执行文件绝对路径(改为自定义)
-		PATH, err := exepath(typew[1])
-		if err != nil {
-			fb.Code(feedbcak.ERROR_FILESERVER).Msg("GETEXEPATH_ERROR").Response()
-			return
-		}
-		fmt.Println(PATH)
+		////获取可执行文件绝对路径(改为自定义)
+		//PATH, err := exepath(typew[1])
+		//if err != nil {
+		//	fb.Code(feedbcak.ERROR_FILESERVER).Msg("GETEXEPATH_ERROR").Response()
+		//	return
+		//}
+		//fmt.Println(PATH)
+		PATH:=uploadPath
 		//创建存放文件的文件夹
 		err = Mkdir(PATH)
 		if err != nil {
@@ -165,12 +166,12 @@ func uploadFileHandler() http.HandlerFunc {
 				fmt.Println("生成缩略图成功 " + inputArgs.OutputPath)
 			}
 
-			returnp.OriginalFile = CreateFileName+fileEndings[0]
-			returnp.Thumbnail = fname
+			returnp.OriginalFile = "files/"+CreateFileName+fileEndings[0]
+			returnp.Thumbnail = "files/"+fname
 			fmt.Println(returnp)
 			fb.Code(feedbcak.SUCCESS).Data(returnp).Response()
 		} else{
-			returnp.OriginalFile = CreateFileName+fileEndings[0]
+			returnp.OriginalFile = "files/"+CreateFileName+fileEndings[0]
 			returnp.Thumbnail = ""
 			fmt.Println(returnp)
 			fb.Code(feedbcak.SUCCESS).Data(returnp).Response()

@@ -42,7 +42,7 @@
                       </div>
                     </div>
                     <div *ngIf="item.From == my_id" id="box1">
-                        <div *ngIf="item.ContentType == 0">{{item.Content}}</div>
+                        <div *ngIf="item.ContentType != 1 && item.ContentType != 2">{{item.Content}}</div>
                         <div *ngIf="item.ContentType == 1">     
                            <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.Content+ ')'}"></div>
                         </div>
@@ -100,7 +100,6 @@
 
   <div *ngIf="show">
     <div style="display: -webkit-box;">
-
       <div class="hint">
         {{filename}}
       </div>

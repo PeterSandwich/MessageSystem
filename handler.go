@@ -19,6 +19,8 @@ type User struct {
 type LoginRsp struct {
 	Ok     bool   `json:ok`
 	Uid    int64  `json:uid`
+	Name     string `json:name`
+	Headimg string `json:headimg`
 	Errmsg string `json:errmsg`
 }
 type UserInfo struct {
@@ -66,6 +68,8 @@ func loginHandle(w http.ResponseWriter, r *http.Request) {
 		log.Warn("账号不存在" + err.Error())
 		lr := LoginRsp{
 			Uid:    0,
+			Name:"",
+			Headimg:"",
 			Ok:     false,
 			Errmsg: "账号不存在",
 		}
@@ -79,6 +83,8 @@ func loginHandle(w http.ResponseWriter, r *http.Request) {
 		lr := LoginRsp{
 			Uid:    0,
 			Ok:     false,
+			Name:"",
+			Headimg:"",
 			Errmsg: "账号或密码错误",
 		}
 		data, _ := json.Marshal(lr)
@@ -105,6 +111,8 @@ func loginHandle(w http.ResponseWriter, r *http.Request) {
 	lr := LoginRsp{
 		Uid:    info.id,
 		Ok:     true,
+		Name:user.Name,
+		Headimg:info.img_url,
 		Errmsg: "",
 	}
 	data, _ := json.Marshal(lr)
