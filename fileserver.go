@@ -28,6 +28,7 @@ import (
 
 const maxUploadSize = 10 * 1024 * 1024 // 10 mb
 const uploadPath = "/tmp/files/"
+//const uploadPath = "C:/Users/User/Desktop/GoProject/files/"
 
 type InputArgs struct {
 	OutputPath string /** 输出目录 */
@@ -80,12 +81,12 @@ func uploadFileHandler() http.HandlerFunc {
 		switch filetype {
 		case "image/jpeg", "image/jpg":returnp.Filetype=1
 		case "image/gif", "image/png":returnp.Filetype=1
-		case "application/pdf":returnp.Filetype=1
+		case "application/pdf":returnp.Filetype=2
 		case "application/octet-stream":
 			filetype="application/x-zip-compressed"
-			returnp.Filetype=1
+			returnp.Filetype=2
 		case "text/plain; charset=utf-8":
-			returnp.Filetype=1
+			returnp.Filetype=2
 			filetype = "text/plain"
 		default:
 			fb.Code(feedbcak.ERROR_FILESERVER).Msg("INVALID_FILE_TYPE").Response()
@@ -99,6 +100,9 @@ func uploadFileHandler() http.HandlerFunc {
 			fmt.Println(err)
 			fb.Code(feedbcak.ERROR_FILESERVER).Msg("CANT_READ_FILE_TYPE").Response()
 			return
+		}
+		if fileEndings[0]==".asm"{
+			fileEndings[0]=".txt"
 		}
 		fmt.Println("123+",fileEndings)
 		//划分文件类型
