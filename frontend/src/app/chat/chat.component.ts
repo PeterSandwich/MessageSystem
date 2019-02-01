@@ -212,7 +212,7 @@ export class ChatComponent implements OnInit {
              msg.type = Protocol.Message.Type.REQUEST;
              msg.cmd = Protocol.Message.CtrlType.NONE;
              msg.from =  this.us.MyUserId;
-             msg.to = 100001;
+             msg.to = this.to_id;
              msg.content = this.dfileurl;
              msg.contentType = filetype; 
              msg.isgroup = false;
