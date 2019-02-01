@@ -120,10 +120,6 @@ export class ChatComponent implements OnInit {
     }
 
 
-
-
-
-
   picpath: string
   picurl: string
   fileurl = 'http://localhost:9988/upload'
@@ -168,13 +164,12 @@ export class ChatComponent implements OnInit {
              msg.type = Protocol.Message.Type.REQUEST;
              msg.cmd = Protocol.Message.CtrlType.NONE;
              msg.from =  this.us.MyUserId;
-            // msg.to = this.to_id;
+             msg.to = 100001;
              msg.content = this.dfileurl;
              msg.contentType = filetype; 
-            // msg.isgroup = true;
-            // console.log("isgroup2=", msg.isgroup);
-            // this.ws.sendMessage(msg);
-            // this.content = "";
+             msg.isgroup = false;
+             this.ws.sendMessage(msg);
+             this.content = "";
           }
          
             
