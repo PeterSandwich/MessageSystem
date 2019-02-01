@@ -27,11 +27,10 @@ Type type   			= 1;
 CtrlType cmd			= 2;
 int64 from              = 3; //发送者
 int64 to                = 4;//接受着
-int64 group             = 5; //目的群
-bool isgroup			= 6;
-string content          = 7;//消息内容
-ContentType content_type= 8;
-int64 msgid             = 9; //消息服务器对消息的编号
-int64  time		        = 10; //发包时间戳
-repeated int64 userlist = 11;
+bool isgroup			= 5;
+string content          = 6;//消息内容
+ContentType content_type= 7;
+int64 msgid             = 8; //消息服务器对消息的编号
+int64  time		        = 9; //发包时间戳
+repeated int64 userlist = 10;
 }

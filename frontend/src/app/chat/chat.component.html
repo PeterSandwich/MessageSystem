@@ -1,39 +1,83 @@
-<div>
-  <button nz-button nzType="primary" (click)="getalluser()">获取全部用户列表</button>
-</div>
-<div>
-  <button nz-button nzType="primary" (click)="ChatList()">获取好友列表</button>
-</div>
-<div>
-  <input [(ngModel)]="chatto">
-  <button nz-button nzType="primary" (click)="chatToPeo(chatto)">加好友</button>
-</div>
 
-<h2>单聊</h2>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="发送给：">
-    <input type="text" nz-input [(ngModel)]="c2c_to_id">
-  </nz-input-group>
-</div>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="内容：">
-    <input type="text" nz-input [(ngModel)]="c2c_content">
-  </nz-input-group>
-</div>
-<button nz-button nzType="primary" (click)="sendMsg()">发送</button>
-
-
-
-
-
+<div class="container">
+  <table >
+    <tr>
+      <th class = "avatar" rowspan="2">
+        <div>
+            <img src = {{my_img_url}} style = "height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;">
+            <div style = "left: 90px; top:30px; position: absolute">名字</div>
+            <div style = "left:90px; top:55px; position: absolute; color:#999999">个性签名</div>
+        </div>
+        <div class = "search">
+            <nz-input-group [nzSuffix]="suffixIconSearch">
+              <input type="text" nz-input placeholder="输入搜索内容">
+            </nz-input-group>
+            <ng-template #suffixIconSearch>
+            <i nz-icon type="search"></i>
+              </ng-template>
+              <div>
+                  <button class = "grad">聊天</button>|<button class = "grad">通讯录</button>|<button class = "grad">添加</button>
+              </div>    
+        </div>
+      </th>
+      <th class = "him">对方的名字</th>
+    </tr>
+    <tr class = "avatar2" >
+      <td rowspan="2" class = "message" >
+        <div *ngIf="!isslect" class = "tips">
+          暂无新消息
+        </div>
+          <div class = "message1" id="scrolldIV" >
+              <div *ngFor="let item of showmsg" >
+                <!-- <div *ngFor="let mes of item"> -->
+                    <div *ngIf="item.From != my_id" id="box">{{item.Content}}</div>
+                    <div *ngIf="item.From == my_id" id="box1">{{item.Content}}</div>
+                <!-- </div> -->
+              </div>
+          </div>
+      </td>
+      
+    </tr>
+    <tr>
+      <td rowspan="3">
+          <div class = "list" >
+            <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID, item.Isgroup)">
+                <!-- <tr  > -->
+                  <!-- <td> -->
+                          <!-- <nz-avatar nzIcon="user" class = "img" [nzShape]="'square'" nzSrc={{item.img_url}} >
+                          </nz-avatar> -->
+                          <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point" style = "height: 5px;">
+                              <img src = "{{item.Headimg}}" class = "img">
+                            </nz-badge>
+                          <!-- <img src = {{item.img_url}} style = "height:40px; width:40px; border-radius:50%; overflow:hedden;"> -->
+                      {{item.Name}}
+                  <!-- </td> -->
+                <!-- </tr> -->
+            </div>
+            
+          </div>
+      </td>
+    </tr>
+    <tr class = "inputmes">
+      <!-- <td > -->
+        <div></div>
+      <div  *ngIf="isslect">
+        <div class = "tool">
+          <!-- <i nz-icon type="folder" theme="outline" style="font-size: 25px" class = "icon"></i>            
+          <i nz-icon type="picture" theme="outline" style="font-size: 25px" class = "icon"></i>        -->
+          <input id="upfile" type="file" style="display: none;" (change)="selectFile($event)">
+          <div class="action-box">
+            <button class="upload-btn" onclick="upfile.click()"> 点击上传
+            </button>
+          </div>
+        </div>
+        <textarea class = "textarea" [(ngModel)] = "content"></textarea>
+        <button class = "send" nz-button nzType="primary" (click) = "sendMsg()" >发送</button>
+        
 <br>
 <br>
 <div>
-  <input id="upfile" type="file" style="display: none;" (change)="selectFile($event)">
-  <div class="action-box">
-    <button class="upload-btn" onclick="upfile.click()"> 点击上传
-    </button>
-  </div>
+
   <div *ngIf="show">
     <div style="display: -webkit-box;">
       <div class="picture" [ngStyle]="{ 'background-image': 'url('+GetPicUrl+filep+ ')'}"></div>
@@ -53,51 +97,14 @@
 
 
 
+      </div>
+    <!-- </td> -->
+    </tr>
+  </table>
 
+<!--               
+          <span class="notice">请点击“插入一行”按钮，插入最新信息，当出现滚动条时，滚动条将自动保持在底部。</span><br />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h2>创建群</h2>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="群名">
-    <input type="text" nz-input [(ngModel)]="group_name">
-  </nz-input-group>
-</div>
-<button nz-button nzType="primary" (click)="createGroup()">创建群</button>
-
-<h2>邀请进入组</h2>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="组ID：">
-    <input type="text" nz-input [(ngModel)]="gtoup_id">
-  </nz-input-group>
-</div>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="被邀请人的ID：">
-    <input type="text" nz-input [(ngModel)]="add_mem_id">
-  </nz-input-group>
-</div>
-<button nz-button nzType="primary" (click)="addMemToGoup()">邀请进入组</button>
-
-<h2>群聊</h2>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="发送给组：">
-    <input type="text" nz-input [(ngModel)]="c2g_group_id">
-  </nz-input-group>
-</div>
-<div style="margin-bottom: 16px;">
-  <nz-input-group nzAddOnBefore="内容：">
-    <input type="text" nz-input [(ngModel)]="c2g_content">
-  </nz-input-group>
-</div>
-<button nz-button nzType="primary" (click)="sendToGoup()">发送</button>
+          <div id="scrolldIV" style="overflow:auto; height: 100px; width: 400px; border: 1px solid #999;">
+          </div>
+          <input type="button" value="插入一行" (click)="add();"> -->

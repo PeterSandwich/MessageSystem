@@ -20,4 +20,12 @@ export class UserService {
   quit(){
     return this.http.get(this.quitUrl);
   }
+  getUserbyId(id){
+    let url = this.configUrl+'/user?id='+id
+    return this.http.get(url)
+  }
+  getGroupById(id){
+    let url = this.configUrl+'/group?id='+id
+    return this.http.get(url)
+  }
 }

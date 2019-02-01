@@ -18,9 +18,6 @@ export namespace Protocol {
         /** Message to */
         to?: (number|Long|null);
 
-        /** Message group */
-        group?: (number|Long|null);
-
         /** Message isgroup */
         isgroup?: (boolean|null);
 
@@ -60,9 +57,6 @@ export namespace Protocol {
 
         /** Message to. */
         public to: (number|Long);
-
-        /** Message group. */
-        public group: (number|Long);
 
         /** Message isgroup. */
         public isgroup: boolean;

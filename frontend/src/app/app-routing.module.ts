@@ -6,11 +6,21 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   { path: '',
-  component:HomeComponent
-},
-{path: "login",component:LoginComponent},
-{path: "chat",component:ChatComponent},
-{path: "signup",component:SignupComponent},
+    component:HomeComponent,
+
+  },
+  {
+    path: "login",component:LoginComponent
+  },
+  {
+    path: "chat",
+    component:ChatComponent,
+    // loadChildren:'./chat'
+  },
+  {
+    path: "signup",component:SignupComponent
+  },
+ // {path:"home",component:HomeComponent}
 ];
 
 @NgModule({

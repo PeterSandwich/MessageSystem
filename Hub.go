@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/go-redis/redis"
 	"github.com/golang/protobuf/proto"
 	log "github.com/sirupsen/logrus"
@@ -35,7 +36,7 @@ func PraseMessage(data []byte) {
 	}
 	if msg.GetType() == pb.Message_REQUEST {
 		switch msg.GetCmd() {
-		case pb.Message_NONE:
+		case pb.Message_NONE: // cmd为空
 			if !msg.GetIsgroup() {
 				C2C_SendRequest(msg)
 			} else {
@@ -104,6 +105,7 @@ func C2C_SendRequest(in *pb.Message) {
 	log.Debug("* sending to peer")
 	in.Type = pb.Message_NOTIFICATION
 	in.Cmd = pb.Message_NONE
+	in.Isgroup = false
 
 	msgbytes, err := proto.Marshal(in)
 	if err != nil {
@@ -129,7 +131,7 @@ func C2G_SendRequest(in *pb.Message) {
 		Cmd:     pb.Message_NONE,
 		Msgid:   msgid,
 		From:    in.GetFrom(),
-		Group:   in.GetGroup(),
+		To: 	 in.GetTo(),
 		Time:    in.GetTime(),
 		Isgroup: true,
 	}
@@ -144,7 +146,9 @@ func C2G_SendRequest(in *pb.Message) {
 	}
 
 	//给每个人存储转发
-	idlist, err := GetGroupMember(in.GetGroup())
+
+	idlist, err := GetGroupMember(in.GetTo())
+	fmt.Println("$$$$$$$$$$$$$$$$$$$$$$$",idlist)
 	if err != nil {
 		log.Error("* GetGroupMember wrong: " + err.Error())
 		return
@@ -157,10 +161,9 @@ func C2G_SendRequest(in *pb.Message) {
 			Type:    pb.Message_NOTIFICATION,
 			Cmd:     pb.Message_NONE,
 			Msgid:   msgid,
-			To:      id,
+			To:      in.GetTo(),
 			From:    in.From,
 			Content: in.GetContent(),
-			Group:   in.GetGroup(),
 			Time:    in.GetTime(),
 			Isgroup: true,
 		}
@@ -187,10 +190,10 @@ func CreateGroupRequest(in *pb.Message) {
 		Type:    pb.Message_ACK,
 		Cmd:     pb.Message_CREATE_GROUP,
 		From:    in.GetFrom(),
+		To:      in.GetTo(),
 		Time:    in.GetTime(),
 		Isgroup: true,
 		Content: gname,
-		Group:   gid,
 	}
 	bytes, err := proto.Marshal(ack)
 	if err != nil {
@@ -213,9 +216,10 @@ func CreateGroupRequest(in *pb.Message) {
 			Cmd:     pb.Message_CREATE_GROUP,
 			From:    in.GetFrom(),
 			Time:    in.GetTime(),
+			To:      in.GetTo(),
 			Isgroup: true,
 			Content: gname,
-			Group:   gid,
+
 		}
 		data, _ := proto.Marshal(readysend)
 		if c, ok := Clients[id]; ok {
@@ -228,14 +232,18 @@ func CreateGroupRequest(in *pb.Message) {
 }
 
 func GroupAddMemRequest(in *pb.Message) {
-
-	GroupAddMembersStore(in.Group, in.Userlist)
+	if (!in.Isgroup){
+		log.Warn("Request not group")
+		return
+	}
+	GroupAddMembersStore(in.To, in.Userlist)
 	//处理数据ACK
 	log.Debug("* sending ACK")
 	ack := &pb.Message{
 		Type: pb.Message_ACK,
 		Cmd:  pb.Message_GROUP_ADDMEMBERS,
 		From: in.GetFrom(),
+		To:in.GetTo(),
 		Time: in.GetTime(),
 	}
 	bytes, err := proto.Marshal(ack)
@@ -261,7 +269,7 @@ func GroupAddMemRequest(in *pb.Message) {
 			Time:    in.GetTime(),
 			Isgroup: true,
 			Content: "新的群组",
-			Group:   in.Group,
+			To:in.GetTo(),
 		}
 		data, _ := proto.Marshal(readysend)
 		if c, ok := Clients[id]; ok {
@@ -340,7 +348,7 @@ func C2G_MsgBack(in *pb.Message) {
 		Time:    in.GetTime(),
 		Msgid:   in.GetMsgid(),
 		Isgroup: true,
-		Group:   in.GetGroup(),
+		To:in.GetTo(),
 	}
 	bytes, err := proto.Marshal(ack)
 	if err != nil {
@@ -353,7 +361,7 @@ func C2G_MsgBack(in *pb.Message) {
 	}
 
 	//给每个人存储转发
-	idlist, err := GetGroupMember(in.GetGroup())
+	idlist, err := GetGroupMember(in.GetTo())
 	if err != nil {
 		log.Error("* GetGroupMember wrong: " + err.Error())
 		return
@@ -363,9 +371,8 @@ func C2G_MsgBack(in *pb.Message) {
 			Type:    pb.Message_NOTIFICATION,
 			Cmd:     pb.Message_MSG_BACK,
 			Msgid:   in.Msgid,
-			To:      id,
 			Content: in.GetContent(),
-			Group:   in.GetGroup(),
+			To:in.GetTo(),
 			Time:    in.GetTime(),
 			Isgroup: true,
 		}

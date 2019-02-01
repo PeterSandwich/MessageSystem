@@ -3,6 +3,7 @@ package main
 import (
 	pb "./protocol/protoc"
 	"database/sql"
+	"fmt"
 	_ "github.com/lib/pq"
 	"github.com/satori/go.uuid"
 	log "github.com/sirupsen/logrus"
@@ -55,10 +56,10 @@ func C2CCounter(in *pb.Message) error {
 // 聊天存入数据库， 离线数据和数据漫游
 func C2GStore(in *pb.Message) (int64, error) {
 	var msg_id int64
-	hash_num := int(in.GetGroup() % 4)
+	hash_num := int(in.GetTo() % 4)
 	table_name := "im_message_recieve_" + strconv.Itoa(hash_num)
 	err := DB_conn.QueryRow("insert into "+table_name+"(msg_from,msg_to,content,content_type,arrive_time,isgroup) values ($1,$2,$3,$4,$5,$6) RETURNING id",
-		in.GetFrom(), in.GetGroup(), in.GetContent(), 1, in.Time, true).Scan(&msg_id)
+		in.GetFrom(), in.GetTo(), in.GetContent(), 1, in.Time, true).Scan(&msg_id)
 	if err != nil {
 		return 0, err
 	}
@@ -213,6 +214,7 @@ func GetChatListDB(myid int64) ([]ChatItem, error) {
 }
 
 func HistrotyMessageDB(from, to int64, isgroup bool) ([]MessageItem, error) {
+	fmt.Println("################",from,to,isgroup)
 	var hash_num int64
 	var Item MessageItem
 	list := []MessageItem{}
@@ -223,13 +225,21 @@ func HistrotyMessageDB(from, to int64, isgroup bool) ([]MessageItem, error) {
 		hash_num = int64((from + to) % 4)
 	}
 	table_name := "im_message_recieve_" + strconv.FormatInt(hash_num, 10)
-	rows, err := DB_conn.Query("select id,msg_from,msg_to,content,content_type,arrive_time from "+table_name+
+	var err error
+	var rows *sql.Rows
+	if !isgroup {
+	rows, err = DB_conn.Query("select id,msg_from,msg_to,content,content_type,arrive_time,isgroup from "+table_name+
 		" where isgroup=$3 and ((msg_from=$1 and msg_to=$2) or (msg_from=$2 and msg_to=$1))", from, to, isgroup)
+	}else{
+
+		rows, err = DB_conn.Query("select id,msg_from,msg_to,content,content_type,arrive_time,isgroup from "+table_name+
+			" where isgroup=$2 and msg_to=$1", to, isgroup)
+	}
 	if err != nil {
 		return nil, err
 	}
 	for rows.Next() {
-		err := rows.Scan(&Item.Mid, &Item.From, &Item.To, &Item.Content, &Item.ContentType, &Item.Time)
+		err := rows.Scan(&Item.Mid, &Item.From, &Item.To, &Item.Content, &Item.ContentType, &Item.Time,&Item.Isgroup)
 		Item.Isgroup = isgroup
 		if err != nil {
 			log.Error("* when messagelist  scan: " + err.Error())
@@ -237,4 +247,23 @@ func HistrotyMessageDB(from, to int64, isgroup bool) ([]MessageItem, error) {
 		list = append(list, Item)
 	}
 	return list, nil
+}
+
+func GetUserById(uid int64)( UserItem,error){
+	user := UserItem{}
+	err := DB_conn.QueryRow("select (id,name,heading) from users where id=$1", uid).Scan(&user.ID, &user.Name, &user.Img_url)
+	return user,err
+}
+
+type GroupInfo struct {
+	Id int64
+	Name string
+	Heading string
+	Creater int64
+	Owner int64
+}
+func GetGroupById(gid int64)(GroupInfo,error){
+	group := GroupInfo{}
+	err := DB_conn.QueryRow("select (id,name,heading,creater,owner) from groups where id=$1", gid).Scan(&group.Id, &group.Name, &group.Heading,&group.Creater,&group.Owner)
+	return group,err
 }
