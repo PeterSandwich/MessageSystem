@@ -5,17 +5,38 @@
       <th class = "avatar" rowspan="2">
         <div>
             <img src = {{my_img_url}} style = "height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;">
-            <div style = "left: 90px; top:30px; position: absolute">{{my_name}}</div>
-            <div style = "left:90px; top:55px; position: absolute; color:#999999">个性签名</div>
+            <div>
+                <div style = "left: 90px; top:30px; position: absolute">{{my_name}}</div>
+                <div style = "left:90px; top:55px; position: absolute; color:#999999">个性签名</div>
+            </div>
+            
+
+            <div class = "dropdown">
+
+              <nz-dropdown>
+                <a nz-dropdown>
+                    <i nz-icon type="bars" theme="outline"></i> <i nz-icon type="down"></i>
+                </a>
+                <ul nz-menu nzSelectable>
+                  <li nz-menu-item>
+                    <a>添加好友</a>
+                  </li>
+                  <li nz-menu-item>
+                    <a>创建群聊</a>
+                  </li>
+                </ul>
+              </nz-dropdown>
+
+            </div>
         </div>
 
 
         <div class = "search">
           <nz-input-group [nzSuffix]="suffixIconSearch"> 
-            <!-- <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索内容" 
-            (click)="clickMe()" (blur)="outMe()" id = "search" (keyup) = "keyUpSearch($event)"> -->
-            <input type="text" [value] = "searchContent" nz-input placeholder="输入搜索内容" 
-            (blur)="cancelEditingTodo()" app-chat id = "search" (keyup.enter) = "keyUpSearch($event)">
+            <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索内容" 
+            (click)="clickMe()" (blur)="outMe()" id = "search" (keyup) = "keyUpSearch($event)">
+            <!-- <input type="text" [value] = "searchContent" nz-input placeholder="输入搜索内容" 
+            (blur)="cancelEditingTodo()" app-chat id = "search" (keyup.enter) = "keyUpSearch($event)"> -->
           </nz-input-group> 
 
           <ng-template #suffixIconSearch>
@@ -42,7 +63,7 @@
           </div>
           <div>
 
-            <button class = "grad">聊天</button>|<button class = "grad">通讯录</button>|<button class = "grad">添加</button>
+            <button class = "grad">聊天</button>|<button class = "grad">通讯录</button>|<button class = "grad" (click) = "creatGroup()">建群</button>
           </div>    
         </div>
 
@@ -57,7 +78,6 @@
         </div>
         <div class = "message1" id="scrolldIV" >
           <div *ngFor="let item of showmsg" >
-                <!-- <div *ngFor="let mes of item"> -->
                     <div *ngIf="item.From != my_id" id="box">
                       <div *ngIf="item.ContentType == 0">{{item.Content}}</div>
                       <div *ngIf="item.ContentType == 1">     
@@ -89,7 +109,7 @@
       <td rowspan="3">
         <div class = "list" >
           <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID,item.Name, item.Headimg, item.Isgroup)">
-            <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point" style = "height: 5px;">
+            <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point">
               <img src = "{{item.Headimg}}" class = "img">
             </nz-badge>
             {{item.Name}}
@@ -106,15 +126,15 @@
           <i nz-icon type="picture" theme="outline" style="font-size: 25px" class = "icon"></i>        -->
           <input id="upfile" type="file" style="display: none;" (change)="selectFile($event)" accept=".pdf,.doc,.docx,.txt,.jpg,.zip,.jpeg">
           <div class="action-box">
-            <button class="upload-btn" onclick="upfile.click()"> 点击上传
+            <button class="upload-btn" (click)="upfile.click()"> 点击上传
             </button>
           </div>
         </div>
         <textarea class = "textarea" [(ngModel)] = "content"></textarea>
         <button class = "send" nz-button nzType="primary" (click) = "sendMsg()" >发送</button>
         
-<br>
-<br>
+<!-- <br>
+<br> -->
 <div>
 
   <div *ngIf="show">
@@ -129,8 +149,8 @@
     </div>
   </div>
 </div>
-<br>
-<br>
+<!-- <br>
+<br> -->
 
 
 

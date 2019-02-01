@@ -137,18 +137,18 @@ export class ChatComponent implements OnInit {
 
     
 
-    // clickMe(){
-    //     var btn = document.getElementById("search");
-    //     btn.focus();
-    //     this.isVisible = document.hasFocus();
-    //     this.userlist = [];
-    // }
-    // outMe(){
-    //   var btn = document.getElementById("search");
-    //   btn.blur();
-    //   this.isVisible = document.hasFocus();
-    //   this.userlist = [];
-    // }
+    clickMe(){
+        var btn = document.getElementById("search");
+        btn.focus();
+        this.isVisible = document.hasFocus();
+        this.userlist = [];
+    }
+    outMe(){
+      var btn = document.getElementById("search");
+      btn.blur();
+      this.isVisible = document.hasFocus();
+      this.userlist = [];
+    }
     cancelEditingTodo(){
       this.isVisible = false;
     }

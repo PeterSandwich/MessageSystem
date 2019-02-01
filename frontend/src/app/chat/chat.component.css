@@ -31,7 +31,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 5000;
+  z-index: 20;
   border-color: #616060;
   /* border: 2px;
   color: #000000 */
@@ -276,13 +276,14 @@ background-color: #337ab7;
 color: #fff;
 border-radius: 2px;
 border: none;
-padding: .5rem 1.3rem;
+/* padding: .5rem 1.3rem; */
 cursor: pointer;
+height: 30px;
 }
 
 .picture {
 width: 7rem;
-height: 7rem;
+/* height: 7rem; */
 margin-right: 1rem;
 background-size: cover;
 }
@@ -294,4 +295,15 @@ margin-left: 1rem;
 color: #909090;
 font-size: 1.7rem;
 margin-bottom: 1.5rem;
+}
+
+.dropdown{
+  position:absolute;
+  margin-left: 190px;
+  margin-bottom: 70px;
+}
+
+table{
+  border:1px;
+  z-index: 6000;
 }
