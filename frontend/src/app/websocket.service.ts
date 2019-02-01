@@ -214,6 +214,9 @@ export class WebsocketService {
     this.getChatMessageList(info).subscribe((data:MsgList) => {
       console.log("历史消息原数据",data)
       this.wsMessageList.List =[];
+      if (data.List==null) {
+        data.List = [];
+      }
       for(let i=0;i<data.List.length;i++){
           let session = new(Session);
           session.MList = [];

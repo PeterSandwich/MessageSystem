@@ -363,7 +363,6 @@ var ChatComponent = /** @class */ (function () {
         msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.Type.REQUEST;
         msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.NONE;
         msg.from = this.us.MyUserId;
-        // msg.group  = this.to_id;
         msg.to = this.to_id;
         msg.content = this.content;
         msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.ContentType.TEXT;
@@ -834,7 +833,7 @@ var LoginComponent = /** @class */ (function () {
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 
 
-var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "./node_modules/protobufjs/minimal.js");
+var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "../node_modules/protobufjs/minimal.js");
 
 // Common aliases
 var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
@@ -1581,7 +1580,7 @@ var UserService = /** @class */ (function () {
 /*!**************************************!*\
   !*** ./src/app/websocket.service.ts ***!
   \**************************************/
-/*! exports provided: WebsocketService, FriendItem, FriendList, MessageItem, Session, MessageList, Hist, HistList, ChatItem, ChatList, MsgItem, MsgList, UserItem, Uerlist */
+/*! exports provided: WebsocketService, FriendItem, FriendList, MessageItem, Session, MessageList, Hist, HistList, ChatItem, ChatList, MsgItem, MsgList, UserItem, Userlist */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1599,7 +1598,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgItem", function() { return MsgItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgList", function() { return MsgList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserItem", function() { return UserItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Uerlist", function() { return Uerlist; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Userlist", function() { return Userlist; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./protocol/Protocol */ "./src/app/protocol/Protocol.js");
@@ -1622,7 +1621,7 @@ var WebsocketService = /** @class */ (function () {
         this.wsFriendList.List = [];
         this.wsMessageList = new (MessageList);
         this.wsMessageList.List = [];
-        this.wsUserList = new (Uerlist);
+        this.wsUserList = new (Userlist);
         this.wsUserList.Ulist = [];
     }
     // 建立websocket链接
@@ -1806,6 +1805,9 @@ var WebsocketService = /** @class */ (function () {
         this.getChatMessageList(info).subscribe(function (data) {
             console.log("历史消息原数据", data);
             _this.wsMessageList.List = [];
+            if (data.List == null) {
+                data.List = [];
+            }
             for (var i = 0; i < data.List.length; i++) {
                 var session = new (Session);
                 session.MList = [];
@@ -1939,10 +1941,10 @@ var UserItem = /** @class */ (function () {
     return UserItem;
 }());
 
-var Uerlist = /** @class */ (function () {
-    function Uerlist() {
+var Userlist = /** @class */ (function () {
+    function Userlist() {
     }
-    return Uerlist;
+    return Userlist;
 }());
 
 /////////////////////////////////////////////////////////////////
@@ -2042,7 +2044,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/goworks/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/pjw/GoProject/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
 
 
 /***/ })
