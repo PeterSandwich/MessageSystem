@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="af9477f7-5fc3-412d-9094-d4f7d45a4e7e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/fileserver.go" afterPath="$PROJECT_DIR$/fileserver.go" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/chat/chat.component.html" afterPath="$PROJECT_DIR$/frontend/src/app/chat/chat.component.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,8 +51,8 @@
       <file leaf-file-name="fileserver.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileserver.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="88" column="19" lean-forward="false" selection-start-line="88" selection-start-column="19" selection-end-line="88" selection-end-column="19" />
+            <state relative-caret-position="300">
+              <caret line="30" column="2" lean-forward="false" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
               <folding>
                 <element signature="e#14#239#0" expanded="true" />
                 <element signature="n#!!block;n#imageCompress#0" expanded="false" />
@@ -157,7 +158,7 @@
     <handled-path value="$PROJECT_DIR$/frontend/node_modules" />
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-50" />
     <option name="y" value="50" />
     <option name="width" value="1938" />
@@ -202,7 +203,7 @@
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
@@ -236,6 +237,7 @@
       <filePath value="$PROJECT_DIR$/main.go" />
       <package value="MessageSystem" />
       <directory value="$PROJECT_DIR$/" />
+      <output_directory value="C:\Users\User\Desktop\GoProject" />
     </configuration>
     <recent_temporary>
       <list size="1">
@@ -247,7 +249,7 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="41" width="1938" height="1048" extended-state="7" />
+    <frame x="-9" y="41" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14538626" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -652,8 +654,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fileserver.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="88" column="19" lean-forward="false" selection-start-line="88" selection-start-column="19" selection-end-line="88" selection-end-column="19" />
+        <state relative-caret-position="300">
+          <caret line="30" column="2" lean-forward="false" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
           <folding>
             <element signature="e#14#239#0" expanded="true" />
             <element signature="n#!!block;n#imageCompress#0" expanded="false" />
