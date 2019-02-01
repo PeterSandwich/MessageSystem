@@ -43,7 +43,6 @@ type ReturnPath struct {
 	Filetype       int64  `json:"filetype"`
 }
 
-
 var inputArgs InputArgs
 
 func uploadFileHandler() http.HandlerFunc {

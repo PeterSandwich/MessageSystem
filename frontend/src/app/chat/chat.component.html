@@ -30,8 +30,28 @@
           <div class = "message1" id="scrolldIV" >
               <div *ngFor="let item of showmsg" >
                 <!-- <div *ngFor="let mes of item"> -->
-                    <div *ngIf="item.From != my_id" id="box">{{item.Content}}</div>
-                    <div *ngIf="item.From == my_id" id="box1">{{item.Content}}</div>
+                    <div *ngIf="item.From != my_id" id="box">
+                      <div *ngIf="item.ContentType == 0">{{item.Content}}</div>
+                      <div *ngIf="item.ContentType == 1">     
+                         <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.Content+ ')'}"></div>
+                      </div>
+                      <div *ngIf="item.ContentType == 2">
+                          <img src="../../assets/uknow.png" class="picture" >
+                          <button class="upload-btn" (click)=" downloadFile()"> 下载
+                          </button>
+                      </div>
+                    </div>
+                    <div *ngIf="item.From == my_id" id="box1">
+                        <div *ngIf="item.ContentType == 0">{{item.Content}}</div>
+                        <div *ngIf="item.ContentType == 1">     
+                           <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.Content+ ')'}"></div>
+                        </div>
+                        <div *ngIf="item.ContentType == 2">
+                            <img src="../../assets/uknow.png" class="picture" >
+                            <button class="upload-btn" (click)=" downloadFile()"> 下载
+                            </button>
+                        </div>
+                    </div>
                 <!-- </div> -->
               </div>
           </div>
@@ -80,7 +100,7 @@
 
   <div *ngIf="show">
     <div style="display: -webkit-box;">
-      <div class="picture" [ngStyle]="{ 'background-image': 'url('+GetPicUrl+filep+ ')'}"></div>
+
       <div class="hint">
         {{filename}}
       </div>

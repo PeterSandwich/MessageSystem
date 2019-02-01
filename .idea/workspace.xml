@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af9477f7-5fc3-412d-9094-d4f7d45a4e7e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/fileserver.go" afterPath="$PROJECT_DIR$/fileserver.go" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" afterPath="$PROJECT_DIR$/frontend/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" afterPath="$PROJECT_DIR$/frontend/package.json" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/chat/chat.component.html" afterPath="$PROJECT_DIR$/frontend/src/app/chat/chat.component.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/chat/chat.component.ts" afterPath="$PROJECT_DIR$/frontend/src/app/chat/chat.component.ts" />
-      <change beforePath="$PROJECT_DIR$/main.go" afterPath="$PROJECT_DIR$/main.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,7 +18,7 @@
         <entry file="file://$PROJECT_DIR$/client.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-980">
-              <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+              <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
               <folding>
                 <element signature="e#14#121#0" expanded="true" />
               </folding>
@@ -36,14 +31,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="40">
               <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-              <folding>
-                <marker date="1548904603529" expanded="true" signature="300:345" ph="select id,pw... users" />
-                <marker date="1548904603529" expanded="true" signature="550:604" ph="insert into users... " />
-                <marker date="1548904603529" expanded="true" signature="2175:2216" ph="select uid f... membership" />
-                <marker date="1548904603529" expanded="true" signature="2565:2633" ph="insert into groups... " />
-                <marker date="1548904603529" expanded="true" signature="2888:2933" ph="insert into membership... " />
-                <marker date="1548904603529" expanded="true" signature="5102:5154" ph="select id,na... users" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -63,8 +51,8 @@
       <file leaf-file-name="fileserver.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileserver.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="41" column="42" lean-forward="false" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="42" />
+            <state relative-caret-position="580">
+              <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
               <folding>
                 <element signature="e#14#239#0" expanded="true" />
                 <element signature="n#!!block;n#imageCompress#0" expanded="false" />
@@ -118,8 +106,8 @@
       <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="51" column="51" lean-forward="false" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
+            <state relative-caret-position="940">
+              <caret line="53" column="51" lean-forward="false" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
               <folding>
                 <element signature="e#14#121#0" expanded="true" />
               </folding>
@@ -168,8 +156,9 @@
   </component>
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/frontend/node_modules" />
+    <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-50" />
     <option name="y" value="50" />
     <option name="width" value="1938" />
@@ -259,7 +248,7 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="41" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="41" width="1938" height="1048" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14538626" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -306,14 +295,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <marker date="1548904603529" expanded="true" signature="300:345" ph="select id,pw... users" />
-            <marker date="1548904603529" expanded="true" signature="550:604" ph="insert into users... " />
-            <marker date="1548904603529" expanded="true" signature="2175:2216" ph="select uid f... membership" />
-            <marker date="1548904603529" expanded="true" signature="2565:2633" ph="insert into groups... " />
-            <marker date="1548904603529" expanded="true" signature="2888:2933" ph="insert into membership... " />
-            <marker date="1548904603529" expanded="true" signature="5102:5154" ph="select id,na... users" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -404,14 +386,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <marker date="1548904603529" expanded="true" signature="300:345" ph="select id,pw... users" />
-            <marker date="1548904603529" expanded="true" signature="550:604" ph="insert into users... " />
-            <marker date="1548904603529" expanded="true" signature="2175:2216" ph="select uid f... membership" />
-            <marker date="1548904603529" expanded="true" signature="2565:2633" ph="insert into groups... " />
-            <marker date="1548904603529" expanded="true" signature="2888:2933" ph="insert into membership... " />
-            <marker date="1548904603529" expanded="true" signature="5102:5154" ph="select id,na... users" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -485,14 +460,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <marker date="1548904603529" expanded="true" signature="300:345" ph="select id,pw... users" />
-            <marker date="1548904603529" expanded="true" signature="550:604" ph="insert into users... " />
-            <marker date="1548904603529" expanded="true" signature="2175:2216" ph="select uid f... membership" />
-            <marker date="1548904603529" expanded="true" signature="2565:2633" ph="insert into groups... " />
-            <marker date="1548904603529" expanded="true" signature="2888:2933" ph="insert into membership... " />
-            <marker date="1548904603529" expanded="true" signature="5102:5154" ph="select id,na... users" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -566,14 +534,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <marker date="1548904603529" expanded="true" signature="300:345" ph="select id,pw... users" />
-            <marker date="1548904603529" expanded="true" signature="550:604" ph="insert into users... " />
-            <marker date="1548904603529" expanded="true" signature="2175:2216" ph="select uid f... membership" />
-            <marker date="1548904603529" expanded="true" signature="2565:2633" ph="insert into groups... " />
-            <marker date="1548904603529" expanded="true" signature="2888:2933" ph="insert into membership... " />
-            <marker date="1548904603529" expanded="true" signature="5102:5154" ph="select id,na... users" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -640,14 +601,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <marker date="1548904603529" expanded="true" signature="300:345" ph="select id,pw... users" />
-            <marker date="1548904603529" expanded="true" signature="550:604" ph="insert into users... " />
-            <marker date="1548904603529" expanded="true" signature="2175:2216" ph="select uid f... membership" />
-            <marker date="1548904603529" expanded="true" signature="2565:2633" ph="insert into groups... " />
-            <marker date="1548904603529" expanded="true" signature="2888:2933" ph="insert into membership... " />
-            <marker date="1548904603529" expanded="true" signature="5102:5154" ph="select id,na... users" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -671,8 +625,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="51" column="51" lean-forward="false" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
+        <state relative-caret-position="940">
+          <caret line="53" column="51" lean-forward="false" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
           <folding>
             <element signature="e#14#121#0" expanded="true" />
           </folding>
@@ -690,7 +644,7 @@
     <entry file="file://$PROJECT_DIR$/client.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-980">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding>
             <element signature="e#14#121#0" expanded="true" />
           </folding>
@@ -699,8 +653,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fileserver.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="41" column="42" lean-forward="false" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="42" />
+        <state relative-caret-position="580">
+          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
           <folding>
             <element signature="e#14#239#0" expanded="true" />
             <element signature="n#!!block;n#imageCompress#0" expanded="false" />

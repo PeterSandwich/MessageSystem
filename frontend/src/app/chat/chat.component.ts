@@ -161,6 +161,7 @@ export class ChatComponent implements OnInit {
               this.dfileurl=response["body"]["data"]["thumbnail"];
               console.log(this.GetPicUrl+this.dfileurl)
               this.show = true;
+
             }
           }
           // if (event.type == HttpEventType.UploadProgress) {
@@ -184,7 +185,6 @@ export class ChatComponent implements OnInit {
     console.log(this.filep);
   }
   download() {
-    this.fileurl = "http://localhost:9876/files";
     window.open(this.fileurl, '_blank');
     return;
   }
