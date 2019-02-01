@@ -7,6 +7,8 @@ export class UserService {
 
   public isLogin = false;
   public MyUserId = -1;
+  public myImg = "";
+  public myName = ""
   configUrl = environment.apiUrl;
   loginUrl = this.configUrl+"/login"
   signupUrl = this.configUrl+'/signup'

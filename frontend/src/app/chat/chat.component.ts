@@ -22,9 +22,13 @@ export class ChatComponent implements OnInit {
   // @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   from_id = 1;
   to_id = 0;
-  my_id = this.us.MyUserId;
-  my_img_url = "https://wx4.sinaimg.cn/orj360/828ffde3gy1fpn79ydbrmj20hs0hs40k.jpg";
 
+  my_id = this.us.MyUserId;
+  my_img_url = this.us.myImg;
+  my_name = this.us.myName;
+
+  to_name = ""
+  to_img = "";
   // group = 0;
   // addgtoup_id = 0;
   content = "";
@@ -61,9 +65,11 @@ export class ChatComponent implements OnInit {
     }
 
 
-    test2(id: number, isgroup: boolean){
+    test2(id: number,name : string, img: string, isgroup: boolean){
       this.isslect = true;
       this.to_id = id;
+      this.to_name = name;
+      this.to_img = img;
       this.isgroup = isgroup;
       var flag : boolean = false;
       for(var i = 0; i < this.messagelist.List.length; i++){

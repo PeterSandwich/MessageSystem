@@ -5,7 +5,7 @@
       <th class = "avatar" rowspan="2">
         <div>
             <img src = {{my_img_url}} style = "height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;">
-            <div style = "left: 90px; top:30px; position: absolute">名字</div>
+            <div style = "left: 90px; top:30px; position: absolute">{{my_name}}</div>
             <div style = "left:90px; top:55px; position: absolute; color:#999999">个性签名</div>
         </div>
 
@@ -46,7 +46,7 @@
 
 
       </th>
-      <th class = "him">对方的名字</th>
+      <th class = "him">{{to_name}}</th>
     </tr>
     <tr class = "avatar2" >
       <td rowspan="2" class = "message" >
@@ -86,7 +86,7 @@
     <tr>
       <td rowspan="3">
         <div class = "list" >
-          <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID, item.Isgroup)">
+          <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID,item.Name, item.Headimg, item.Isgroup)">
             <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point" style = "height: 5px;">
               <img src = "{{item.Headimg}}" class = "img">
             </nz-badge>
