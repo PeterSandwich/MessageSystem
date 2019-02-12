@@ -440,3 +440,5 @@ func C2C_CreateSession(in *pb.Message) {
 		log.Warn("* Send message send fail, client offline?")
 	}
 }
+
+
