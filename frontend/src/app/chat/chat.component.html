@@ -4,14 +4,14 @@
     创建群
   </ng-template>
   <ng-template #modalContent>
-    <div class = "list" >
+    <!-- <div class = "list" > -->
       <div class = "item" *ngFor="let item of addGroupUserList.AGlist" >
         <label nz-checkbox [(ngModel)]="item.Check">
             <img src = "{{item.Headimg}}" class = "img">
           {{item.Name}}
           </label>
       </div>
-    </div>
+    <!-- </div> -->
   </ng-template>
   <ng-template #modalFooter>
     <input nz-input placeholder="群名字"[(ngModel)]="GroupName">
@@ -131,7 +131,7 @@
         </div>
         <div class = "message1" id="scrolldIV" >
           <div *ngFor="let item of showmsg" >
-                    <div *ngIf="item.From != my_id" id="box">
+                    <div *ngIf="item.From != my_id" id="box"><!--接受的消息-->
                       <div *ngIf="item.ContentType == 0">{{item.Content}}</div>
                       <div *ngIf="item.ContentType == 1">     
                          <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.Content+ ')'}"></div>
@@ -142,12 +142,12 @@
                           </button>
                       </div>
                     </div>
-                    <div *ngIf="item.From == my_id" id="box1">
-                        <div *ngIf="item.ContentType != 1 && item.ContentType != 2">{{item.Content}}</div>
-                        <div *ngIf="item.ContentType == 1">     
+                    <div *ngIf="item.From == my_id" id="box1"><!--发送的消息-->
+                        <div *ngIf="item.ContentType != 1 && item.ContentType != 2"  (mouseup)="he($event)" (contextmenu)="his($event)">{{item.Content}}</div>
+                        <div *ngIf="item.ContentType == 1"  (mouseup)="he($event)" (contextmenu)="his($event)">     
                            <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.Content+ ')'}"></div>
                         </div>
-                        <div *ngIf="item.ContentType == 2">
+                        <div *ngIf="item.ContentType == 2"  (mouseup)="he($event)" (contextmenu)="his($event)">
                             <img src="/files/uknow.png" class="picture" >
                             <button class="upload-btn" (click)=" downloadFile()"> 下载
                             </button>

@@ -68,6 +68,9 @@
   cursor: pointer;
 
 }
+.item:hover{
+  background-color: #8a8a8a;
+}
 /* nz-list-item{
   color: white;
 } */
