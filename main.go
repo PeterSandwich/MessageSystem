@@ -55,9 +55,9 @@ func main() {
 	fs := http.FileServer(http.Dir(uploadPath))
 	http.Handle("/files/", http.StripPrefix("/files", fs))
 
-	log.Info("* IM Server Start at 9988")
+	log.Info("* IM Server Start")
 	go Run()
 	if err := http.ListenAndServe(":9876", nil); err != nil {
 		log.Panic("* IM Server " + err.Error())
-	}
+}
 }
