@@ -1,7 +1,7 @@
 package main
 
 import (
-	"MessageSystem/feedback"
+	"./feedback"
 	"crypto/md5"
 	"encoding/hex"
 	"errors"
@@ -81,7 +81,9 @@ func uploadFileHandler() http.HandlerFunc {
 		switch filetype {
 		case "image/jpeg", "image/jpg":returnp.Filetype=1
 		case "image/gif", "image/png":returnp.Filetype=1
-		case "application/pdf":returnp.Filetype=2
+		case "application/pdf":
+
+			returnp.Filetype=2
 		case "application/octet-stream":
 			filetype="application/x-zip-compressed"
 			returnp.Filetype=2
@@ -101,8 +103,11 @@ func uploadFileHandler() http.HandlerFunc {
 			fb.Code(feedbcak.ERROR_FILESERVER).Msg("CANT_READ_FILE_TYPE").Response()
 			return
 		}
-		if fileEndings[0]==".asm"{
+		if fileEndings[0]==".asm"||fileEndings[0]==".asc"{
 			fileEndings[0]=".txt"
+		}
+		if fileEndings[0]==".pot"{
+			fileEndings[0]=".ppt"
 		}
 		fmt.Println("123+",fileEndings)
 		//划分文件类型
