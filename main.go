@@ -3,32 +3,23 @@ package main
 import (
 	"database/sql"
 	"github.com/go-redis/redis"
-	log "github.com/sirupsen/logrus"
+	"go.uber.org/zap"
 	"net/http"
-	"os"
 )
 
 var (
 	DB_conn    *sql.DB
 	Redis_conn *redis.Client
 	Clients    map[int64]*Client
+	Logger 	   *zap.Logger
 )
 
 func init() {
-	customFormatter := new(log.TextFormatter)
-	customFormatter.FullTimestamp = true                    // 显示完整时间
-	customFormatter.TimestampFormat = "2006-01-02 15:04:05" // 时间格式
-	customFormatter.DisableTimestamp = false                // 禁止显示时间
-	customFormatter.DisableColors = false                   // 禁止颜色显示
-	log.SetFormatter(customFormatter)
-	log.SetOutput(os.Stdout)
-	log.SetLevel(log.DebugLevel)
-
-	// 全局变量初始化
+	Logger, _ = zap.NewDevelopment()
 	connStr := "postgres://dbuser:319079@139.199.196.31/imdb"
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
-		panic("sql can't open :" + err.Error())
+		Logger.Panic("can't open database:" + err.Error())
 	}
 	DB_conn = db
 	Redis_conn = redis.NewClient(&redis.Options{Addr: "localhost:6379", Password: "", DB: 0})
@@ -36,7 +27,6 @@ func init() {
 }
 
 func main() {
-
 	http.HandleFunc("/api/signup", signUpHandle)
 	http.HandleFunc("/api/login", loginHandle)
 	http.HandleFunc("/api/quit", quitHandle)
@@ -50,14 +40,12 @@ func main() {
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
 		ServeWs(w, r)
 	})
-	//fileserver
 	http.HandleFunc("/upload", uploadFileHandler())
 	fs := http.FileServer(http.Dir(uploadPath))
 	http.Handle("/files/", http.StripPrefix("/files", fs))
-
-	log.Info("* IM Server Start at 9988")
+	Logger.Info("IM Server Start at 9988")
 	go Run()
 	if err := http.ListenAndServe(":9988", nil); err != nil {
-		log.Panic("* IM Server " + err.Error())
+		Logger.Panic("IM Server " + err.Error())
 	}
 }

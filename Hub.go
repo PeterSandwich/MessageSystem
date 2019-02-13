@@ -13,16 +13,14 @@ func Run() {
 	subscribe := Redis_conn.Subscribe("rawmessage")
 	for {
 		result, err := subscribe.Receive()
-		log.Debug("* subscribe.ReceiveTimeout(0)", result)
 		if err != nil {
 			log.Panic(err.Error())
 		}
 		switch msg := result.(type) {
 		case *redis.Message:
-			log.Debug("* Received", msg.Payload, "on channel", msg.Channel)
 			PraseMessage([]byte(msg.Payload))
 		default:
-			log.Debug("* Got control message", msg)
+			log.Debug("Got redis control message ：", msg)
 		}
 	}
 }
@@ -31,7 +29,7 @@ func PraseMessage(data []byte) {
 	msg := &pb.Message{}
 	err := proto.Unmarshal(data, msg)
 	if err != nil {
-		log.Error("* proto Unmarshal the data wrong: " + err.Error())
+		Logger.Error("Unmarshal protocol data : " + err.Error())
 		return
 	}
 	if msg.GetType() == pb.Message_REQUEST {
@@ -60,10 +58,12 @@ func PraseMessage(data []byte) {
 		// todo 把counter表的信息更新,
 		err := UpdateCounterTable(msg.GetMsgid(), msg.GetFrom(), msg.GetTo(), msg.GetIsgroup())
 		if err != nil {
-			log.Error("* update counter table wrong", err.Error())
+			Logger.Error("update counter table："+err.Error())
 		}
 	}
 }
+
+
 
 func C2C_SendRequest(in *pb.Message) {
 	//存储数据
