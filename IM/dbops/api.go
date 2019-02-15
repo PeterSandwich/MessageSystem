@@ -1,0 +1,300 @@
+package dbops
+
+import (
+	"MessageSystem/IM/defs"
+	"database/sql"
+	"errors"
+	"go.uber.org/zap"
+	"strconv"
+	"strings"
+)
+
+// 通过姓名，获取用户个人信息
+func GetUserInfoByName(name string) (*defs.UserInfo, error) {
+
+	name = strings.TrimSpace(name)
+	if name == "" {
+		logger.Warn("Illegal parameter 'name', Make sure it is not empty")
+		return &defs.UserInfo{},errors.New("Illegal parameter 'name', Make sure it is not empty")
+	}
+
+	var info defs.UserInfo
+	info.HeadImg = ""
+	info.Name = name
+
+	var HeadURL sql.NullString
+	err := dbConn.QueryRow(`select id,pw,headimg from users where name=$1 `, name).Scan(&info.Id, &info.PassWord, &HeadURL)
+	if err == sql.ErrNoRows {
+		return &defs.UserInfo{},sql.ErrNoRows
+	}
+	if err != nil {
+		logger.Warn("database query row in GetUserInfoByName() :"+err.Error())
+		return &defs.UserInfo{},err
+	}
+	if HeadURL.Valid {
+		info.HeadImg = HeadURL.String
+	}
+	return &info, nil
+}
+
+// 通过id，获取用户个人信息
+func GetUserInfoById(id int64)(defs.UserInfo,error){
+
+	if id < 1 {
+		logger.Warn("Illegal parameter 'id',Make sure it is an integer")
+		return defs.UserInfo{},errors.New("Illegal parameter 'id',Make sure it is an integer")
+	}
+
+	var info defs.UserInfo
+	info.Id = id
+	info.HeadImg = ""
+
+	var HeadURL sql.NullString
+	err := dbConn.QueryRow(`select id,name,pw,headimg from users where id=$1 `, id).Scan(&info.Id,&info.Name, &info.PassWord, &HeadURL)
+	if err != nil {
+		logger.Warn("database query row in GetUserInfoById() :"+err.Error())
+		return defs.UserInfo{},err
+	}
+	if HeadURL.Valid {
+		info.HeadImg = HeadURL.String
+	}
+	return info, nil
+}
+
+// 创建用户
+func CreateUser(name, encryptedPasswd,headImg string) (int64, error) {
+
+	name = strings.TrimSpace(name)
+	encryptedPasswd = strings.TrimSpace(encryptedPasswd)
+	headImg = strings.TrimSpace(headImg)
+
+	if name == "" || encryptedPasswd == "" {
+		logger.Warn("Illegal username and password",zap.String("name","empty"),zap.String("encrypted PassWord","empty"))
+		return 0, errors.New("Illegal username and password")
+	}
+
+	var userid int64
+	err := dbConn.QueryRow(`insert into users(name,pw,headimg) values ($1,$2,$3) RETURNING id`, name, encryptedPasswd,headImg).Scan(&userid)
+	if err != nil {
+		logger.Warn(" Error while registering  in CreateUser() :"+err.Error())
+		return 0,err
+	}
+	return userid, nil
+}
+
+// 获取通讯录
+func GetAddressBook(uid int64) (*defs.AddressBook,error) {
+	if uid <=0 {
+		logger.Warn("Illegal parameter 'uid'")
+		return nil,errors.New("Illegal parameter 'uid' ")
+	}
+
+	AddressBook := &defs.AddressBook{}
+	AddressBook.FriendsList = make([]defs.AddressBookItem,0)
+	table := "im_message_counter_"+strconv.FormatInt(uid,10)
+
+	// user
+	rows, err := dbConn.Query("select id,name,headimg,isgroup from " + table + ",users where sender = users.id and isgroup=false order by name")
+	if err != nil && err != sql.ErrNoRows {
+		logger.Warn(err.Error())
+		return nil,err
+	}
+	for rows.Next() {
+		var item defs.AddressBookItem
+		err := rows.Scan(&item.Id, &item.Name, &item.HeadImg, &item.IsGroup)
+		if err != nil {
+			logger.Warn(err.Error())
+		}
+		AddressBook.FriendsList = append(AddressBook.FriendsList,item)
+	}
+
+	// groups
+	rows2, err := dbConn.Query("select id,name,headimg,isgroup from "+table+",groups where sender = groups.id and isgroup=true order by name")
+	if err != nil && err != sql.ErrNoRows {
+		logger.Warn(err.Error())
+		return nil,err
+	}
+	for rows2.Next() {
+		var item defs.AddressBookItem
+		err := rows2.Scan(&item.Id, &item.Name, &item.HeadImg, &item.IsGroup)
+		if err != nil {
+			logger.Warn(err.Error())
+		}
+		AddressBook.FriendsList = append(AddressBook.FriendsList,item)
+	}
+
+	return AddressBook,nil
+}
+
+
+// 获取最近联系人
+func GetRecentContactList(uid int64)(*defs.NearestContact,error){
+	if uid <=0 {
+		logger.Warn("Illegal parameter 'uid'")
+		return nil,errors.New("Illegal parameter 'uid' ")
+	}
+
+	NearestContact := &defs.NearestContact{}
+	NearestContact.ContactList = make([]defs.NearestContactItem,0)
+	table := "im_message_counter_"+strconv.FormatInt(uid,10)
+
+	// user
+	rows, err := dbConn.Query("select id,name,headimg,counter,isgroup from "+table+",users where sender = users.id and isgroup=false  order by counter;")
+	if err != nil && err != sql.ErrNoRows {
+		logger.Warn(err.Error())
+		return nil,err
+	}
+	for rows.Next() {
+		var item defs.NearestContactItem
+		err := rows.Scan(&item.Id, &item.Name, &item.HeadImg,&item.Count, &item.IsGroup)
+		if err != nil {
+			logger.Warn(err.Error())
+		}
+		NearestContact.ContactList = append(NearestContact.ContactList,item)
+	}
+
+	//groups
+	rows2, err := dbConn.Query("select id,name,headimg,counter,isgroup from "+table+",groups where sender = groups.id and isgroup=true order by counter;")
+	if err != nil && err != sql.ErrNoRows {
+		logger.Warn(err.Error())
+		return nil,err
+	}
+	for rows2.Next() {
+		var item defs.NearestContactItem
+		err := rows2.Scan(&item.Id, &item.Name, &item.HeadImg,&item.Count, &item.IsGroup)
+		if err != nil {
+			logger.Warn(err.Error())
+		}
+		NearestContact.ContactList = append(NearestContact.ContactList,item)
+	}
+	return NearestContact, nil
+}
+
+// 获取单个会话的聊天记录
+func GetHistoryMessage(from,to int64,isgroup bool)(*defs.HistoryMessage,error){
+
+	if from <=0 || to <= 0 {
+		logger.Warn("Illegal parameter 'from'or 'to'")
+		return nil,errors.New("Illegal parameter 'from'or'to' ")
+	}
+	table := ""
+	var rows *sql.Rows
+	var stmt *sql.Stmt
+	var err error
+	HistoryMessage := &defs.HistoryMessage{}
+	HistoryMessage.MessageList = make([]defs.HistoryMessageItem,0)
+	if isgroup {
+		table = "im_message_recieve_"+strconv.FormatInt(to%4,10)
+		stmt,err=dbConn.Prepare("select id,msg_from,msg_to,content,content_type,arrive_time,isgroup from "+table+" where msg_to=$1 and isgroup=$2")
+		rows,err = stmt.Query(to,isgroup)
+	}else{
+		table = "im_message_recieve_"+strconv.FormatInt((from+to)%4,10)
+		stmt,err=dbConn.Prepare("select id,msg_from,msg_to,content,content_type,arrive_time,isgroup from "+table+" where ((msg_from=$1 and msg_to=$2) or (msg_from=$2 and msg_to=$1)) and isgroup=$3")
+		rows,err=stmt.Query(from,to,isgroup)
+	}
+	if err != nil && err != sql.ErrNoRows {
+		logger.Warn(err.Error())
+		return nil,err
+	}
+
+	for rows.Next() {
+		var item defs.HistoryMessageItem
+		err := rows.Scan(&item.Id, &item.From, &item.To, &item.Content, &item.ContentType, &item.ArriveTime, &item.IsGroup)
+		if err != nil {
+			logger.Warn(err.Error())
+			continue
+		}
+		HistoryMessage.MessageList = append(HistoryMessage.MessageList,item)
+	}
+
+	return HistoryMessage,nil
+
+}
+
+// 获取群组成员id
+func GetGroupAllMemberId(gid int64) ([]int64, error) {
+
+	if gid <= 0 {
+		logger.Warn("Illegal param 'gid'")
+		return nil, errors.New("Illegal param 'gid'")
+	}
+
+	var id int64
+	IdList := make([]int64,0)
+
+	stmtOut,err := dbConn.Prepare(`select uid from membership where gid = $1`)
+	if err != nil {
+		logger.Warn(err.Error())
+		return nil,err
+	}
+
+	rows, err := stmtOut.Query(gid)
+	if err != nil {
+		logger.Warn(err.Error())
+		return nil,err
+	}
+
+	for rows.Next() {
+		err := rows.Scan(&id)
+		if err != nil {
+			logger.Warn(err.Error())
+			continue
+		}
+		IdList = append(IdList, id)
+	}
+
+	return IdList, nil
+}
+
+// 获取组全部成员信息
+func GetGroupAllMemberInfo(gid int64) ([]defs.UserInfo, error) {
+	if gid <= 0 {
+		logger.Warn("Illegal param 'gid'")
+		return nil, errors.New("Illegal param 'gid'")
+	}
+
+	infoList := make([]defs.UserInfo,0)
+	stmtOut,err := dbConn.Prepare(`select id,name,headimg from membership,users where id = uid and gid = $1;`)
+	if err != nil {
+		logger.Warn(err.Error())
+		return nil,err
+	}
+
+	rows, err := stmtOut.Query(gid)
+	if err != nil {
+		logger.Warn(err.Error())
+		return nil,err
+	}
+
+	var Img sql.NullString
+	for rows.Next() {
+		var info defs.UserInfo
+		err := rows.Scan(&info.Id, &info.Name, &Img)
+		if err != nil {
+			logger.Warn(err.Error())
+			continue
+		}
+		if Img.Valid {
+			info.HeadImg = Img.String
+		}
+		info.PassWord = "*****"
+		infoList = append(infoList,info)
+	}
+
+	return infoList,nil
+}
+
+
+func GetGroupById(gid int64)(*defs.GroupInfo,error){
+	if gid <= 0 {
+		logger.Warn("Illegal param 'gid'")
+		return nil, errors.New("Illegal param 'gid'")
+	}
+	group := &defs.GroupInfo{}
+	err := dbConn.QueryRow("select id,name,headimg,creater,owner from groups where id=$1", gid).Scan(&group.Id, &group.Name, &group.HeadImg,&group.Creator,&group.Owner)
+	if err != nil {
+		logger.Warn(err.Error())
+		return nil,err
+	}
+	return group,nil
+}
