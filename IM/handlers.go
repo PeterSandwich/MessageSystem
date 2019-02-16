@@ -117,8 +117,11 @@ func getAddressBook(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 
 	list, err := dbops.GetAddressBook(uid)
 	if err != nil {
-		Logger.Warn(err.Error())
-		sendErrorResponse(w,defs.ErrorDBError)
+		DealWithDbReturnErr(w,err)
+		return
+	}
+	if len(list.FriendsList) == 0 {
+		sendNormalResponse(w,"",204)
 		return
 	}
 	data, _ := json.Marshal(list)
@@ -189,11 +192,10 @@ func getUserInfo(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	}
 	item, err := dbops.GetUserInfoById(uid)
 	if err!= nil {
-		Logger.Warn(err.Error())
-		sendErrorResponse(w,defs.ErrorDBError)
+		DealWithDbReturnErr(w,err)
 		return
 	}
-	item.PassWord = "*************"
+	item.PassWord = "*"
 	data, _ := json.Marshal(item)
 	sendNormalResponse(w,string(data),200)
 }
@@ -207,10 +209,19 @@ func getGroupInfo(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	}
 	item, err := dbops.GetGroupById(gid)
 	if err!= nil {
-		Logger.Warn(err.Error())
-		sendErrorResponse(w,defs.ErrorDBError)
+		DealWithDbReturnErr(w,err)
 		return
 	}
 	data, _ := json.Marshal(item)
 	sendNormalResponse(w,string(data),200)
+}
+
+
+func DealWithDbReturnErr(w http.ResponseWriter,err error){
+	if err != sql.ErrNoRows {
+		Logger.Warn(err.Error())
+		sendErrorResponse(w,defs.ErrorDBError)
+	}else{
+		sendNormalResponse(w,"",204) // 204代表无内容
+	}
 }

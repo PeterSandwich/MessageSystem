@@ -38,11 +38,11 @@ func GetUserInfoByName(name string) (*defs.UserInfo, error) {
 }
 
 // 通过id，获取用户个人信息
-func GetUserInfoById(id int64)(defs.UserInfo,error){
+func GetUserInfoById(id int64)(*defs.UserInfo,error){
 
 	if id < 1 {
 		logger.Warn("Illegal parameter 'id',Make sure it is an integer")
-		return defs.UserInfo{},errors.New("Illegal parameter 'id',Make sure it is an integer")
+		return nil,errors.New("Illegal parameter 'id',Make sure it is an integer")
 	}
 
 	var info defs.UserInfo
@@ -51,14 +51,17 @@ func GetUserInfoById(id int64)(defs.UserInfo,error){
 
 	var HeadURL sql.NullString
 	err := dbConn.QueryRow(`select id,name,pw,headimg from users where id=$1 `, id).Scan(&info.Id,&info.Name, &info.PassWord, &HeadURL)
-	if err != nil {
-		logger.Warn("database query row in GetUserInfoById() :"+err.Error())
-		return defs.UserInfo{},err
+	if err != nil  {
+		if err != sql.ErrNoRows {
+			logger.Warn("database query row in GetUserInfoById() :"+err.Error())
+		}
+		return nil,err
 	}
+
 	if HeadURL.Valid {
 		info.HeadImg = HeadURL.String
 	}
-	return info, nil
+	return &info, nil
 }
 
 // 创建用户
@@ -91,10 +94,11 @@ func GetAddressBook(uid int64) (*defs.AddressBook,error) {
 
 	AddressBook := &defs.AddressBook{}
 	AddressBook.FriendsList = make([]defs.AddressBookItem,0)
-	table := "im_message_counter_"+strconv.FormatInt(uid,10)
+	table := "im_message_counter_"+strconv.FormatInt(uid%4,10)
 
 	// user
-	rows, err := dbConn.Query("select id,name,headimg,isgroup from " + table + ",users where sender = users.id and isgroup=false order by name")
+	stmt, _ := dbConn.Prepare("select id,name,headimg,isgroup from " + table + ",users where sender = users.id and isgroup=false and master=$1 order by name")
+	rows,err := stmt.Query(uid)
 	if err != nil && err != sql.ErrNoRows {
 		logger.Warn(err.Error())
 		return nil,err
@@ -109,7 +113,8 @@ func GetAddressBook(uid int64) (*defs.AddressBook,error) {
 	}
 
 	// groups
-	rows2, err := dbConn.Query("select id,name,headimg,isgroup from "+table+",groups where sender = groups.id and isgroup=true order by name")
+	stmt2, _ := dbConn.Prepare("select id,name,headimg,isgroup from "+table+",groups where sender = groups.id and isgroup=true and master=$1 order by name")
+	rows2,err := stmt2.Query(uid)
 	if err != nil && err != sql.ErrNoRows {
 		logger.Warn(err.Error())
 		return nil,err
@@ -293,7 +298,9 @@ func GetGroupById(gid int64)(*defs.GroupInfo,error){
 	group := &defs.GroupInfo{}
 	err := dbConn.QueryRow("select id,name,headimg,creater,owner from groups where id=$1", gid).Scan(&group.Id, &group.Name, &group.HeadImg,&group.Creator,&group.Owner)
 	if err != nil {
-		logger.Warn(err.Error())
+		if err != sql.ErrNoRows {
+			logger.Warn(err.Error())
+		}
 		return nil,err
 	}
 	return group,nil

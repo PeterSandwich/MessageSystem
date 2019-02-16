@@ -18,6 +18,7 @@ var (
 	ErrorAccountExist = ErrResponse{HttpSC: 406, Error: Err{Error: "Account already exists", ErrorCode: "005"}}
 	ErrorAccountOrPassWord = ErrResponse{HttpSC: 406, Error: Err{Error: "Wrong account or password", ErrorCode: "006"}}
 	ErrorParamsFaults = ErrResponse{HttpSC: 406, Error: Err{Error: "Wrong params of URL", ErrorCode: "007"}}
+
 )
 
 
