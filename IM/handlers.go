@@ -3,6 +3,7 @@ package main
 import (
 	"MessageSystem/IM/dbops"
 	"MessageSystem/IM/defs"
+	"MessageSystem/IM/hub"
 	"MessageSystem/IM/session"
 	"database/sql"
 	"encoding/json"
@@ -14,19 +15,20 @@ import (
 	"strconv"
 )
 
-
-
 func RegisterRouterHandlers() *httprouter.Router {
 	router := httprouter.New()
 	router.POST("/api/register", registerHandle)
 	router.POST("/api/login", loginHandle)
 	router.POST("/api/quit", quitHandle)
+	router.POST("/api/upload", uploadFileHandler)
+	router.GET("/ws",func(w http.ResponseWriter, r *http.Request,p httprouter.Params) {hub.ServeWs(w, r)})
 	router.GET("/api/user-info/:id", getUserInfo)
 	router.GET("/api/group-info/:gid", getGroupInfo)
 	router.GET("/api/address-book",getAddressBook)
 	router.GET("/api/recent-contact",getNearestContact)
 	router.GET("/api/history-message/:type/:id",getHistoryMessage)
 	router.ServeFiles("/static/*filepath",http.Dir("../frontend/dist/frontend"))
+	router.ServeFiles("/files/*filepath",http.Dir("/tmp/files/"))
 	router.GET("/",indexFileServer)
 
 	return router
@@ -35,10 +37,6 @@ func RegisterRouterHandlers() *httprouter.Router {
 func indexFileServer(w http.ResponseWriter, r *http.Request,p httprouter.Params) {
 	http.ServeFile(w, r, "../frontend/dist/frontend/index.html")
 }
-func staticFileHandler() http.Handler {
-	return http.StripPrefix("/static", http.FileServer(http.Dir("../frontend/dist/frontend")))
-}
-
 // 注册
 func registerHandle(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 

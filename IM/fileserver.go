@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
+	"github.com/julienschmidt/httprouter"
 	"github.com/nfnt/resize"
 	"image"
 	"image/jpeg"
@@ -45,8 +46,7 @@ type ReturnPath struct {
 
 var inputArgs InputArgs
 
-func uploadFileHandler() http.HandlerFunc {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Params) {
 		returnp := ReturnPath{}
 		//fb := feedbcak.NewFeedBack(w)
 
@@ -179,8 +179,8 @@ func uploadFileHandler() http.HandlerFunc {
 			fmt.Println(returnp)
 			//fb.Code(feedbcak.SUCCESS).Data(returnp).Response()
 		}
-	})
-}
+	}
+
 
 //获取可执行文件的绝对路径
 func exepath(ftype string) (string, error) {
