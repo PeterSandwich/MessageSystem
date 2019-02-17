@@ -18,6 +18,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"MessageSystem/IM/defs"
 )
 
 
@@ -30,53 +31,33 @@ const maxUploadSize = 10 * 1024 * 1024 // 10 mb
 const uploadPath = "/tmp/files/"
 //const uploadPath = "C:/Users/User/Desktop/GoProject/files/"
 
-type InputArgs struct {
-	OutputPath string /** 输出目录 */
-	LocalPath  string /** 输入的目录或文件路径 */
-	Quality    int    /** 质量 */
-	Width      int    /** 宽度尺寸，像素单位 */
-	Format     string /** 格式 */
-}
-
-type ReturnPath struct {
-	OriginalFile   string `json:"originalfile"`
-	Thumbnail      string `json:"thumbnail"`
-	Filetype       int64  `json:"filetype"`
-}
-
-var inputArgs InputArgs
+var inputArgs defs.InputArgs
 
 func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Params) {
-		returnp := ReturnPath{}
-		//fb := feedbcak.NewFeedBack(w)
-
+		//返回内容
+		returnp := defs.ReturnPath{}
 		// 检查文件大小
 		r.Body = http.MaxBytesReader(w, r.Body, maxUploadSize)
 		if err := r.ParseMultipartForm(maxUploadSize); err != nil {
-			//fb.Code(feedbcak.ERROR_FILESERVER).Msg("FILE_TOO_BIG").Response()
+			sendErrorResponse(w,defs.ErrorFileSize)
 			return
 		}
-
 		// 解析文件
 		fileType := r.PostFormValue("type")
-		fmt.Println(len(fileType))
 		file, _, err := r.FormFile("uploadFile")
 		if err != nil {
-			//fb.Code(feedbcak.ERROR_FILESERVER).Msg("INVALID_FILE").Response()
+			sendErrorResponse(w,defs.ErrorFileInvalid)
 			return
 		}
 		defer file.Close()
 		fileBytes, err := ioutil.ReadAll(file)
 		if err != nil {
-			//fb.Code(feedbcak.ERROR_FILESERVER).Msg("READ_FILE_ERROR").Response()
+			sendErrorResponse(w,defs.ErrorReadFile)
 			return
 		}
-
 		// 获取文件类型，只需读取文件前512位
 		filetype := http.DetectContentType(fileBytes)
-		fmt.Println(fileType)
-		fmt.Println(filetype)
-
+		//判断文件类型
 		switch filetype {
 		case "image/jpeg", "image/jpg":returnp.Filetype=1
 		case "image/gif", "image/png":returnp.Filetype=1
@@ -88,65 +69,50 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 			returnp.Filetype=2
 			filetype = "text/plain"
 		default:
-			//fb.Code(feedbcak.ERROR_FILESERVER).Msg("INVALID_FILE_TYPE").Response()
+			sendErrorResponse(w,defs.ErrorIinvaidType)
 			return
 		}
-		fmt.Println("after:" + filetype)
-		//获取文件类型
+		//读文件类型
 		fileEndings, err := mime.ExtensionsByType(fileType)
-
 		if err != nil {
-			fmt.Println(err)
-			//fb.Code(feedbcak.ERROR_FILESERVER).Msg("CANT_READ_FILE_TYPE").Response()
+			sendErrorResponse(w,defs.ErrorReadFileType)
 			return
 		}
-		if fileEndings[0]==".asm"{
+		if fileEndings[0]==".asm"/*||fileEndings[0]=="."*/{
 			fileEndings[0]=".txt"
 		}
-		fmt.Println("123+",fileEndings)
-		//划分文件类型
 		typew := strings.Split(fileEndings[0], ".")
 		//生成文件名
 		fileName, err := GetFileMD5(fileBytes)
 		if err != nil {
-			//fb.Code(feedbcak.ERROR_FILESERVER).Msg("GETFILEMD5_ERROR").Response()
+			sendErrorResponse(w,defs.ErrorGetFileName)
 			return
 		}
-		//规定文件表示长度
+		//规定文件标识长度
 		CreateFileName, err := Substr(fileName, 0, 12)
 		if err != nil {
-			//fb.Code(feedbcak.ERROR_FILESERVER).Msg("SUBSTRFILENAME_ERROR").Response()
+			sendErrorResponse(w,defs.ErrorSubstrFileName)
 			return
 		}
-		////获取可执行文件绝对路径(改为自定义)
-		//PATH, err := exepath(typew[1])
-		//if err != nil {
-		//	fb.Code(feedbcak.ERROR_FILESERVER).Msg("GETEXEPATH_ERROR").Response()
-		//	return
-		//}
-		//fmt.Println(PATH)
 		PATH:=uploadPath
 		//创建存放文件的文件夹
 		err = Mkdir(PATH)
 		if err != nil {
-			//fb.Code(feedbcak.ERROR_FILESERVER).Msg("Mkdir_ERROR").Response()
+			sendErrorResponse(w,defs.ErrorMkdir)
 			return
 		}
 		//创建文件
 		newPath := PATH + CreateFileName + fileEndings[0]
 		err = createfile(newPath, fileBytes)
 		if err != nil {
-			//fb.Code(feedbcak.ERROR_FILESERVER).Msg("CERATEFILE_ERROR").Response()
+			sendErrorResponse(w,defs.ErrorCreateFile)
 			fmt.Println("CERATEFILE_ERROR")
 			return
 		}
 		if fileEndings[0] == ".jpg" || fileEndings[0] == ".jpeg" || fileEndings[0] == ".png" {
-			fmt.Println(newPath)
 			inputArgs.LocalPath = newPath
 			inputArgs.Quality = 70
 			inputArgs.Width = 200
-			fmt.Println("开始压缩...") //C:\Users\lzq\Desktop\Apk.jpg 75 200
-			fmt.Println(typew, typew[1])
 			fname := CreateFileName + "_compress" + fileEndings[0]
 			inputArgs.OutputPath = PATH + fname
 			if !imageCompress(
@@ -171,12 +137,10 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 
 			returnp.OriginalFile = "files/"+CreateFileName+fileEndings[0]
 			returnp.Thumbnail = "files/"+fname
-			fmt.Println(returnp)
 			//fb.Code(feedbcak.SUCCESS).Data(returnp).Response()
 		} else{
 			returnp.OriginalFile = "files/"+CreateFileName+fileEndings[0]
 			returnp.Thumbnail = ""
-			fmt.Println(returnp)
 			//fb.Code(feedbcak.SUCCESS).Data(returnp).Response()
 		}
 	}
