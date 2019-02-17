@@ -16,20 +16,8 @@ export class LoginComponent {
   password = ''
   submit(){
       let body = {name:this.name,password:this.password}
-      this.us.postLoginData(body).subscribe(data =>{
-        if(data['Ok']){
-          this.us.isLogin=true;
-          this.router.navigate(['']);
-          console.log(data['Uid']);
-          this.us.MyUserId = data['Uid'];
-          this.us.myName = data['Name'];
-          this.us.myImg = data['Headimg'];
-          this.ws.createSocket(environment.websocketUrl);
-          this.ws.InitChatList();
-        }else{
-          alert(data['Errmsg']);
-        }
-
+      this.us.postLoginData(body).subscribe(data => {
+        console.log(data)
       })
   }
 }

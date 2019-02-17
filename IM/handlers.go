@@ -66,9 +66,11 @@ func registerHandle(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 // 登录处理
 func loginHandle(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
+
 	var user defs.LoginReq
 	body, _ := ioutil.ReadAll(r.Body)
 	err := json.Unmarshal(body, &user)
+	Logger.Debug("user login:"+user.Name)
 	if err != nil {
 		Logger.Warn("Request body is not correct in loginHandle : "+err.Error())
 		sendErrorResponse(w,defs.ErrorRequestBodyParseFailed)
@@ -91,6 +93,7 @@ func loginHandle(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	//登录成功
 	sess := session.GenerateNewSessionId(info.Id)
 	resp, _ := json.Marshal(&defs.LoginResp{Id:info.Id,Name:info.Name,HeadImg:info.HeadImg,SessionId:sess})
+	Logger.Debug("user login success:"+string(resp))
 	sendNormalResponse(w,string(resp),200)
 }
 
