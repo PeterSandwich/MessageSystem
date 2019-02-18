@@ -17,24 +17,30 @@ import (
 
 func RegisterRouterHandlers() *httprouter.Router {
 	router := httprouter.New()
-	router.POST("/api/register", registerHandle)
-	router.POST("/api/login", loginHandle)
-	router.POST("/api/quit", quitHandle)
-	router.POST("/api/upload", uploadFileHandler)
+	router.POST("/api/register", registerHandle)//注册
+	router.POST("/api/login", loginHandle)//登录
+	router.POST("/api/quit", quitHandle)//退出
+	router.POST("/api/upload", uploadFileHandler)//上传文件
 	router.GET("/ws",func(w http.ResponseWriter, r *http.Request,p httprouter.Params) {hub.ServeWs(w, r)})
-	router.GET("/api/user-info/:id", getUserInfo)
-	router.GET("/api/group-info/:gid", getGroupInfo)
-	router.GET("/api/address-book",getAddressBook)
-	router.GET("/api/recent-contact",getNearestContact)
-	router.GET("/api/history-message/:type/:id",getHistoryMessage)
+	router.GET("/api/user-info/:id", getUserInfo)// 获取个人信息
+	router.GET("/api/group-info/:gid", getGroupInfo)// 获取群的信息
+	router.GET("/api/address-book",getAddressBook)//获取通讯录
+	router.GET("/api/recent-contact",getNearestContact)	//获取最近联系人
+	router.GET("/api/history-message/:type/:id",getHistoryMessage)//获取历史消息
 	router.ServeFiles("/static/*filepath",http.Dir("../frontend/dist/frontend"))
 	router.ServeFiles("/files/*filepath",http.Dir("/tmp/files/"))
 	router.GET("/",indexFileServer)
-
+	notFoundServerHandler:= &NotFoundServerHandler{}
+	router.NotFound = notFoundServerHandler
 	return router
 }
 
 func indexFileServer(w http.ResponseWriter, r *http.Request,p httprouter.Params) {
+	http.ServeFile(w, r, "../frontend/dist/frontend/index.html")
+}
+
+type NotFoundServerHandler struct{}
+func (*NotFoundServerHandler)ServeHTTP(w http.ResponseWriter,r *http.Request){
 	http.ServeFile(w, r, "../frontend/dist/frontend/index.html")
 }
 // 注册

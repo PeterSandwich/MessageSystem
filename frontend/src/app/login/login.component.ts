@@ -17,7 +17,9 @@ export class LoginComponent {
   submit(){
       let body = {name:this.name,password:this.password}
       this.us.postLoginData(body).subscribe(data => {
-        console.log(data)
+        console.log(data.status)
+          console.log(data.body)
+        
       })
   }
 }

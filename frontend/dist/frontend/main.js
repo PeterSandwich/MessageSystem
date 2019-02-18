@@ -772,7 +772,8 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.submit = function () {
         var body = { name: this.name, password: this.password };
         this.us.postLoginData(body).subscribe(function (data) {
-            console.log(data);
+            console.log(data.status);
+            console.log(data.body);
         });
     };
     LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1517,7 +1518,7 @@ var UserService = /** @class */ (function () {
         this.quitUrl = this.configUrl + '/quit';
     }
     UserService.prototype.postLoginData = function (data) {
-        return this.http.post(this.loginUrl, data);
+        return this.http.post(this.loginUrl, data, { observe: 'response' });
     };
     UserService.prototype.postSignupData = function (data) {
         return this.http.post(this.signupUrl, data);
