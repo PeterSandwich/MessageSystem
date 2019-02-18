@@ -32,7 +32,7 @@ export class LoginComponent {
           console.log("data=", data, this.us.MyUserId, this.us.myName);
           this.ws.createSocket(environment.websocketUrl+"?session_id="+this.us.session_id);
           this.ws.getNearestList();
-          
+          this.ws.getAddress();
         }
         else{
           alert("登录失败")
