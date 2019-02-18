@@ -137,7 +137,7 @@
                          <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.Content+ ')'}"></div>
                       </div>
                       <div *ngIf="item.ContentType == 2">
-                          <img src="/files/uknow.png" class="picture" >
+                          <img src="/src/app/chat/icon/uknow.png" class="picture" >
                           <button class="upload-btn" (click)=" downloadFile()"> 下载
                           </button>
                       </div>
@@ -148,7 +148,7 @@
                            <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.Content+ ')'}"></div>
                         </div>
                         <div *ngIf="item.ContentType == 2"  (mouseup)="he($event)" (contextmenu)="his($event)">
-                            <img src="/files/uknow.png" class="picture" >
+                            <img src="/src/app/chat/icon/uknow.png" class="picture" >
                             <button class="upload-btn" (click)=" downloadFile()"> 下载
                             </button>
                         </div>
