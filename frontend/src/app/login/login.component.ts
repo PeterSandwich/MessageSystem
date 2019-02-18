@@ -30,8 +30,9 @@ export class LoginComponent {
           this.us.session_id=respond['session_id'];
           this.router.navigate(['chat']);
           console.log("data=", data, this.us.MyUserId, this.us.myName);
-          // this.ws.createSocket(environment.websocketUrl);
+          this.ws.createSocket(environment.websocketUrl);
           this.ws.getNearestList();
+          this.ws.getAddress();
         }
         else{
           alert("登录失败")

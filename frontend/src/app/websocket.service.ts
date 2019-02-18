@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 import { Long } from 'protobufjs';
 import { UserService } from './user.service';
 import * as com from './common/im';
+// import { FriendItem } from './chat/data';
 
 @Injectable()
 export class WebsocketService {
@@ -16,8 +17,9 @@ export class WebsocketService {
 
   global_message: com.GlobalMessage;  //全局全部消息
   nearest_contact:com.NearestContact; // 最近联系人
-  address_book: com.AddressBook; // 通讯录
+  address_book: com.NearestContact; // 通讯录
   message_list : com.AllChatRoom; //全部聊天室
+  FriItem: com.NearestContactItem;
 
 
   collection: Protocol.Message = new(Protocol.Message);
@@ -29,8 +31,11 @@ export class WebsocketService {
     this.nearest_contact = new(com.NearestContact);
     this.nearest_contact.contact_list = [];
 
-    this.address_book = new(com.AddressBook)
-    this.address_book.friends_list = [];
+    this.address_book = new(com.NearestContact)
+    this.address_book.contact_list = [];
+
+    this.FriItem = new(com.NearestContactItem);
+
   }
 
 
@@ -78,18 +83,11 @@ export class WebsocketService {
     return this.http.get(url, {headers:this.createSessionHeader(),observe:'response'})
   }
   
-  getNearestList(){//获取最近联系人
+  //获取最近联系人
+  getNearestList(){
       this.getNearestContactMessage().subscribe((data) => {
         console.log("最近联系人de消息",data);
-        // if(data.contact_list.length == 0){
-        //   data.contact_list = [];
-        // }
-        // let HL =  new(com.NearestContact);
         this.nearest_contact.contact_list = [];
-        // this.nearest_contact.contact_list = data.contact_list;
-        // console.log("contact_list = ", this.nearest_contact.contact_list)
-
-        // return data
         for(let i=0;i<data.body['chat_room_list'].length;i++){
           let FriItem:com.NearestContactItem = new(com.NearestContactItem);
           FriItem.id=data.body['chat_room_list'][i].id;
@@ -103,6 +101,25 @@ export class WebsocketService {
         console.log("contact_list = ", this.nearest_contact.contact_list)
         // this.getNearestMessage();
       })
+  }
+  //获取通讯录
+  getAddress(){
+    this.getAddressBook().subscribe((data) => {
+      // console.log("通讯录", data['friends_list']);
+      this.address_book.contact_list = [];
+      // this.address_book.contact_list = data.friends_list;
+      for(let i = 0; i < data.friends_list.length; i++){
+          let  FriItem:com.NearestContactItem = new(com.NearestContactItem);
+          FriItem.id=data['friends_list'].id;
+          FriItem.name=data['friends_list'][i].name;
+          FriItem.head_img=data['friends_list'][i].head_img;
+          FriItem.is_group=data['friends_list'].is_group;
+          FriItem.count= 0;
+          FriItem.message_list = [];
+          this.address_book.contact_list.push(FriItem)
+      }
+      console.log("this.address_book=", this.address_book)
+    })
   }
 
   // //分析消息
@@ -205,44 +222,44 @@ export class WebsocketService {
   // }
   
 
-  // // 发送信息，不在这里构造消息体
-  // sendMessage(message: Protocol.Message){
-  //   message.time = Date.now()
-  //   // console.log("mes.contentype=",message.contentType);
-  //   if (message.type ==  Protocol.Message.Type.REQUEST) {
-  //     if(message.cmd == Protocol.Message.CtrlType.NONE){  // 单聊或群聊
-  //       for(let i=0;i<this.wsMessageList.List.length;i++){
-  //         if(message.isgroup == this.wsMessageList.List[i].Isgroup&&message.to==this.wsMessageList.List[i].ID){
-  //           let item = new(MessageItem);
-  //           item.Mid = 0;
-  //           item.From = message.from;
-  //           item.To = message.to;
-  //           item.Content = message.content;
-  //           item.ContentType =message.contentType;
-  //           item.Time = message.time;
-  //           this.wsMessageList.List[i].MList.push(item);
-  //           break;
-  //         }
-  //       }
-  //     }
-  //   }else if(message.cmd == Protocol.Message.CtrlType.MSG_BACK){   // 撤回消息
-  //     if(message.msgid == 0){
-  //       alert("消息ＩＤ不存在，无法撤回");
-  //     }
-  //     for(let i=0;i<this.wsMessageList.List.length;i++){
-  //       if (message.to==this.wsMessageList.List[i].ID && message.isgroup == this.wsMessageList.List[i].Isgroup){
-  //         for(let j=0;j<this.wsMessageList.List[i].MList.length;j++){
-  //           if (this.wsMessageList.List[i].MList[j].Mid == message.msgid){
-  //             this.wsMessageList.List[i].MList.slice(j,1);
-  //             break;
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  //   console.log("发送前的数据",message)
-  //   this.ws.send(Protocol.Message.encode(message).finish());
-  // }
+  // 发送信息，不在这里构造消息体
+  sendMessage(message: Protocol.Message){
+    message.time = Date.now()
+    // console.log("mes.contentype=",message.contentType);
+    if (message.type ==  Protocol.Message.Type.REQUEST) {
+      if(message.cmd == Protocol.Message.CtrlType.NONE){  // 单聊或群聊
+        for(let i=0;i<this.nearest_contact.contact_list[i].message_list.length;i++){
+          if(message.isgroup == this.nearest_contact.contact_list[i].is_group&&message.to==this.nearest_contact.contact_list[i].id){
+            let item = new(com.MessageItem);
+            item.id = 0;
+            item.from = message.from;
+            item.to = message.to;
+            item.content = message.content;
+            item.content_type =message.contentType;
+            item.arrive_time = message.time;
+            this.nearest_contact.contact_list[i].message_list.push(item);
+            break;
+          }
+        }
+      }
+    }else if(message.cmd == Protocol.Message.CtrlType.MSG_BACK){   // 撤回消息
+      if(message.msgid == 0){
+        alert("消息ＩＤ不存在，无法撤回");
+      }
+      for(let i=0;i<this.nearest_contact.contact_list[i].message_list.length;i++){
+        if (message.to==this.nearest_contact.contact_list[i].id && message.isgroup == this.nearest_contact.contact_list[i].is_group){
+          for(let j=0;j<this.nearest_contact.contact_list[i].message_list.length;j++){
+            if (this.nearest_contact.contact_list[i].message_list[j].id == message.msgid){
+              this.nearest_contact.contact_list[i].message_list.slice(j,1);
+              break;
+            }
+          }
+        }
+      }
+    }
+    console.log("发送前的数据",message)
+    this.ws.send(Protocol.Message.encode(message).finish());
+  }
 
   // delectMessage(id: number){//撤回消息
 

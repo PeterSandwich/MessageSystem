@@ -25,7 +25,6 @@ export class AddressBookItem{
     name: string
     head_img: string
     is_group: boolean
-
 }
 export class AddressBook{
     friends_list: AddressBookItem[]
