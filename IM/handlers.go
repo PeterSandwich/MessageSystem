@@ -7,12 +7,14 @@ import (
 	"MessageSystem/IM/session"
 	"database/sql"
 	"encoding/json"
+	"github.com/gpmgo/gopm/modules/log"
 	"github.com/julienschmidt/httprouter"
 	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
 	"net/http"
 	"sort"
 	"strconv"
+	"time"
 )
 
 func RegisterRouterHandlers() *httprouter.Router {
@@ -139,19 +141,11 @@ func getAddressBook(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 }
 
 
-// 获取最近联系人
-func getNearestContact(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	param := r.Header.Get(defs.HEADER_FIELD_UID)
-	uid ,err := strconv.ParseInt(param,10,64)
-	if len(param)==0 || err !=nil {
-		sendErrorResponse(w,defs.ErrorNotAuthUser)
-		return
-	}
-
-	contact, err := dbops.GetRecentContactList(uid)
+func ComputeNearestContact(uid int64)(data []byte,err error){
+	var contact *defs.NearestContact
+	contact, err = dbops.GetRecentContactList(uid)
 	if err != nil {
 		Logger.Error(err.Error())
-		sendErrorResponse(w,defs.ErrorDBError)
 		return
 	}
 	sort.Sort(contact.ContactList)
@@ -161,19 +155,75 @@ func getNearestContact(w http.ResponseWriter, r *http.Request, p httprouter.Para
 		limitLen = len(contact.ContactList)
 	}
 	contact.ContactList = contact.ContactList[:limitLen]
-	data, _ := json.Marshal(contact)
+	data, err = json.Marshal(contact)
+	if err != nil {
+		Logger.Warn(err.Error())
+	}
+	return
+}
+
+
+
+// 获取最近联系人
+func getNearestContact(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	param := r.Header.Get(defs.HEADER_FIELD_UID)
+	uid ,err := strconv.ParseInt(param,10,64)
+	if len(param)==0 || err !=nil {
+		sendErrorResponse(w,defs.ErrorNotAuthUser)
+		return
+	}
+	data, err :=ComputeNearestContact(uid)
+	if err != nil {
+		sendErrorResponse(w,defs.ErrorDBError)
+		return
+	}
+	redisConn.Set(strconv.FormatInt(uid,10),string(data),time.Minute)
 	sendNormalResponse(w,string(data),200)
 }
 
 //获取最近联系人的最近聊天信息
 func getNearestContactMessage(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	var (
+		err error
+		bytes string
+		contact *defs.NearestContact
+		room *defs.AllChatRoom
+		data []byte
+	)
+
 	param := r.Header.Get(defs.HEADER_FIELD_UID)
 	myId ,err := strconv.ParseInt(param,10,64)
 	if len(param)==0 || err !=nil {
 		sendErrorResponse(w,defs.ErrorNotAuthUser)
 		return
 	}
+	stringCmd := redisConn.Get(strconv.FormatInt(myId, 10))
+	if bytes, err = stringCmd.Result();err!= nil {
+		Logger.Warn(err.Error())
+		if data ,err = ComputeNearestContact(myId); err != nil {
+			Logger.Warn(err.Error())
+			goto ERR
+		}
+		bytes = string(data)
+	}
+	log.Debug(bytes)
+	if err = json.Unmarshal([]byte(bytes), contact); err != nil {
+		Logger.Warn(err.Error())
+		goto ERR
+	}
+	if room, err = dbops.GetNearestContactHistoryMessage(myId, contact);err!= nil{
+		Logger.Warn(err.Error())
+		goto ERR
+	}
 
+	if data, err = json.Marshal(room);err!=nil{
+		Logger.Warn(err.Error())
+		goto ERR
+	}
+	sendNormalResponse(w,string(data),http.StatusOK)
+	return
+ERR:
+	sendErrorResponse(w,defs.ErrorInternalFaults)
 
 }
 

@@ -141,7 +141,7 @@ func GetRecentContactList(uid int64)(*defs.NearestContact,error){
 
 	NearestContact := &defs.NearestContact{}
 	NearestContact.ContactList = make([]defs.NearestContactItem,0)
-	table := "im_message_counter_"+strconv.FormatInt(uid,10)
+	table := "im_message_counter_"+strconv.FormatInt(uid%4,10)
 
 	// user
 	rows, err := dbConn.Query("select id,name,headimg,counter,isgroup from "+table+",users where sender = users.id and isgroup=false  order by counter;")
@@ -173,6 +173,67 @@ func GetRecentContactList(uid int64)(*defs.NearestContact,error){
 		NearestContact.ContactList = append(NearestContact.ContactList,item)
 	}
 	return NearestContact, nil
+}
+
+func GetNearestContactHistoryMessage(myId int64, contact *defs.NearestContact)(room *defs.AllChatRoom,err error){
+	var (
+		limitCount int64 = 10
+		table_name string ="im_message_recieve_"
+		stmtOut *sql.Stmt
+		stmtOutGroup *sql.Stmt
+		rows *sql.Rows
+	)
+
+	room = &defs.AllChatRoom{
+		Size:0,
+		ChatRoomList:make([]defs.ChatRoom,0),
+	}
+
+	if stmtOutGroup ,err = dbConn.Prepare("SELECT id,msg_from,msg_to,content,content_type,arrive_time,isgroup FROM (SELECT * FROM im_message_recieve_0 where msg_to=$1 and isgroup=$2 order by id DESC LIMIT %3) aa  order by id");err!= nil {
+		logger.Error(err.Error())
+		return
+	}
+	if stmtOut,err =  dbConn.Prepare("SELECT id,msg_from,msg_to,content,content_type,arrive_time,isgroup FROM (SELECT * FROM im_message_recieve_0 where  ((msg_from=$1 and msg_to=$2) or (msg_from=$2 and msg_to=$1)) and isgroup=$3  order by id DESC LIMIT %4) aa  order by id");err!=nil{
+		logger.Error(err.Error())
+		return
+	}
+
+	for _,per:=range contact.ContactList{
+		if per.Count > limitCount {
+			limitCount = per.Count
+		}
+		if per.IsGroup {
+			table_name = table_name+strconv.FormatInt(per.Id%4,10)
+			rows,err = stmtOutGroup.Query(per.Id,per.IsGroup,limitCount)
+		}else {
+			table_name = table_name+strconv.FormatInt((per.Id+myId)%4,10)
+			rows, err = stmtOut.Query(myId,per.Id,per.IsGroup,limitCount)
+		}
+		if err != nil {
+			logger.Warn(err.Error())
+			err = nil
+			continue
+		}
+		chatroom := &defs.ChatRoom{
+			Id:per.Id,
+			Name:per.Name,
+			IsGroup:per.IsGroup,
+			MessageList: make([]defs.HistoryMessageItem,0),
+		}
+		for rows.Next() {
+			var item defs.HistoryMessageItem
+			err := rows.Scan(&item.Id, &item.From, &item.To, &item.Content, &item.ContentType, &item.ArriveTime, &item.IsGroup)
+			if err != nil {
+				err = nil
+				logger.Warn(err.Error())
+				continue
+			}
+			chatroom.MessageList = append(chatroom.MessageList,item)
+		}
+		room.ChatRoomList = append(room.ChatRoomList,*chatroom)
+		room.Size++
+	}
+	return
 }
 
 // 获取单个会话的聊天记录

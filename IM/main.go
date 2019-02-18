@@ -2,15 +2,21 @@ package main
 
 import (
 	"MessageSystem/IM/hub"
+	"github.com/go-redis/redis"
 	"go.uber.org/zap"
 	"net/http"
 )
 
-var Logger *zap.Logger
+var (
+	redisConn *redis.Client
+	Logger *zap.Logger
+
+)
 
 
 func init() {
 	Logger, _ = zap.NewDevelopment()
+	redisConn = redis.NewClient(&redis.Options{Addr: "localhost:6379", Password: "", DB: 0})
 }
 
 func main() {
