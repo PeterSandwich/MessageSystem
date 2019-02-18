@@ -81,7 +81,7 @@ export class WebsocketService {
   getNearestList(){//获取最近联系人
       this.getNearestContact().subscribe((data) => {
         console.log("最近联系人",data);
-        if(data.contact_list.length == 0){
+        if(data.contact_list == null){
           data.contact_list = [];
         }
         // let HL =  new(com.NearestContact);
