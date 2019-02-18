@@ -6,25 +6,28 @@ import (
 )
 
 type Configuration struct {
-	Port    string`json:"port"`
+	Port    int`json:"port"`
 	StaticFilePath string `json:"static_file_path"`
 	ServerFilePath string `json:"server_file_path"`
 }
 
 var configuration *Configuration
-func init(){
-	file,err := os.Open("./im.config")
+
+func InitConfig(filename string){
+	file,err := os.Open(filename)
 	if err != nil {
 		panic("config file error： "+err.Error())
 	}
 	decoder:=json.NewDecoder(file)
-	err = decoder.Decode(configuration)
+	temp := &Configuration{}
+	err = decoder.Decode(temp)
 	if err != nil {
 		panic("config file error： "+err.Error())
 	}
+	configuration = temp
 }
 
-func Port()string{
+func Port()int{
 	return configuration.Port
 }
 func StaticFilePath()string{

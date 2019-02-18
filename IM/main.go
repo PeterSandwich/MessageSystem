@@ -1,15 +1,19 @@
 package main
 
 import (
+	"MessageSystem/IM/config"
 	"MessageSystem/IM/hub"
+	"flag"
 	"github.com/go-redis/redis"
 	"go.uber.org/zap"
 	"net/http"
+	"strconv"
 )
 
 var (
 	redisConn *redis.Client
 	Logger *zap.Logger
+	configFile string
 
 )
 
@@ -17,6 +21,9 @@ var (
 func init() {
 	Logger, _ = zap.NewDevelopment()
 	redisConn = redis.NewClient(&redis.Options{Addr: "localhost:6379", Password: "", DB: 0})
+	flag.StringVar(&configFile,"config","./config/im.config","config file")
+	flag.Parse()
+	config.InitConfig(configFile)
 }
 
 func main() {
@@ -30,8 +37,8 @@ func main() {
 	go hub.Run(Logger)
 
 	// http监听服务开始
-	Logger.Info("IM Server Start at 9988")
-	if err := http.ListenAndServe(":9988", handler); err != nil {
+	Logger.Info("IM Server Start at "+strconv.Itoa(config.Port()))
+	if err := http.ListenAndServe(":"+strconv.Itoa(config.Port()), handler); err != nil {
 		Logger.Panic("IM Server " + err.Error())
 	}
 }

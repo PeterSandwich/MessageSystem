@@ -217,6 +217,8 @@ func GetNearestContactHistoryMessage(myId int64, contact *defs.NearestContact)(r
 		chatroom := &defs.ChatRoom{
 			Id:per.Id,
 			Name:per.Name,
+			HeadImg:per.HeadImg,
+			Count:per.Count,
 			IsGroup:per.IsGroup,
 			MessageList: make([]defs.HistoryMessageItem,0),
 		}

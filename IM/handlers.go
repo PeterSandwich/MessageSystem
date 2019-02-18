@@ -1,6 +1,7 @@
 package main
 
 import (
+	"MessageSystem/IM/config"
 	"MessageSystem/IM/dbops"
 	"MessageSystem/IM/defs"
 	"MessageSystem/IM/hub"
@@ -30,21 +31,20 @@ func RegisterRouterHandlers() *httprouter.Router {
 	router.GET("/api/recent-contact",getNearestContact)	//获取最近联系人y
 	router.GET("/api/recent-contact-message",getNearestContactMessage)//获取最近联系人的最近聊天信息
 	router.GET("/api/history-message/:type/:id",getHistoryMessage)//获取历史消息
-	router.ServeFiles("/static/*filepath",http.Dir("../frontend/dist/frontend"))
-	router.ServeFiles("/files/*filepath",http.Dir("/tmp/files/"))
+	router.ServeFiles("/static/*filepath",http.Dir(config.StaticFilePath()))
+	router.ServeFiles("/files/*filepath",http.Dir(config.ServerFilePath()))
 	router.GET("/",indexFileServer)
-	notFoundServerHandler:= &NotFoundServerHandler{}
-	router.NotFound = notFoundServerHandler
+	router.NotFound = &NotFoundServerHandler{}
 	return router
 }
 
 func indexFileServer(w http.ResponseWriter, r *http.Request,p httprouter.Params) {
-	http.ServeFile(w, r, "../frontend/dist/frontend/index.html")
+	http.ServeFile(w, r, config.StaticFilePath()+"/index.html")
 }
 
 type NotFoundServerHandler struct{}
 func (*NotFoundServerHandler)ServeHTTP(w http.ResponseWriter,r *http.Request){
-	http.ServeFile(w, r, "../frontend/dist/frontend/index.html")
+	http.ServeFile(w, r, config.StaticFilePath()+"/index.html")
 }
 // 注册
 func registerHandle(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
@@ -197,16 +197,12 @@ func getNearestContactMessage(w http.ResponseWriter, r *http.Request, p httprout
 		sendErrorResponse(w,defs.ErrorNotAuthUser)
 		return
 	}
-	stringCmd := redisConn.Get(strconv.FormatInt(myId, 10))
-	if bytes, err = stringCmd.Result();err!= nil {
-		Logger.Debug(err.Error())
-		err = nil
-		if data ,err = ComputeNearestContact(myId); err != nil {
-			Logger.Warn(err.Error())
-			goto ERR
-		}
-		bytes = string(data)
+
+	if data ,err = ComputeNearestContact(myId); err != nil {
+		Logger.Warn(err.Error())
+		goto ERR
 	}
+	bytes = string(data)
 	if err = json.Unmarshal([]byte(bytes), contact); err != nil {
 		Logger.Warn(err.Error())
 		goto ERR

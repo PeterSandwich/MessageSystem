@@ -111,6 +111,8 @@ type HistoryMessage struct {
 type ChatRoom struct{
 	Id int64`json:"id"`
 	Name string`json:"name"`
+	HeadImg string`json:"head_img"`
+	Count int64`json:"count"`
 	IsGroup bool`json:"is_group"`
 	MessageList []HistoryMessageItem `json:"message_list"`
 }
