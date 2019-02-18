@@ -17,6 +17,7 @@ export class WebsocketService {
   global_message: com.GlobalMessage;  //全局全部消息
   nearest_contact:com.NearestContact; // 最近联系人
   address_book: com.AddressBook; // 通讯录
+  message_list : com.AllChatRoom; //全部聊天室
 
 
   collection: Protocol.Message = new(Protocol.Message);
@@ -54,32 +55,55 @@ export class WebsocketService {
   // 请求头部设置x-session-id
   createSessionHeader():HttpHeaders {
     let headers = new HttpHeaders();
-    headers = headers.set('"X-Session-Id', this.us.session_id);
+    headers = headers.set('X-Session-Id', this.us.session_id);
+    console.log("session=", this.us.session_id)
     return headers
   }
 
   // 获取通讯录
   getAddressBook():Observable<any>{
-    let url  = environment.apiUrl+"/api/address-book"
+    let url  = environment.apiUrl+"/address-book"
     return this.http.get(url, {headers:this.createSessionHeader()})
   }
 
   // 获取最近联系人
   getNearestContact():Observable<any>{
-    let url  = environment.apiUrl+"/api/recent-contact"
+    let url  = environment.apiUrl+"/recent-contact"
     return this.http.get(url, {headers:this.createSessionHeader()})
   }
 
   //获取最近联系人的最近聊天信息
   getNearestContactMessage(){
-    let url  = environment.apiUrl+"/api/recent-contact-message"
+    let url  = environment.apiUrl+"/recent-contact-message"
     return this.http.get(url, {headers:this.createSessionHeader(),observe:'response'})
   }
   
+  getNearestList(){//获取最近联系人
+      this.getNearestContactMessage().subscribe((data) => {
+        console.log("最近联系人de消息",data);
+        // if(data.contact_list.length == 0){
+        //   data.contact_list = [];
+        // }
+        // let HL =  new(com.NearestContact);
+        this.nearest_contact.contact_list = [];
+        // this.nearest_contact.contact_list = data.contact_list;
+        // console.log("contact_list = ", this.nearest_contact.contact_list)
 
-
-
-
+        // return data
+        for(let i=0;i<data.body['chat_room_list'].length;i++){
+          let FriItem:com.NearestContactItem = new(com.NearestContactItem);
+          FriItem.id=data.body['chat_room_list'][i].id;
+          FriItem.name=data.body['chat_room_list'][i].name;
+          FriItem.head_img=data.body['chat_room_list'][i].head_img;
+          FriItem.is_group=data.body['chat_room_list'][i].is_group;
+          FriItem.count=data.body['chat_room_list'][i].count;
+          FriItem.message_list = data.body['chat_room_list'][i].message_list;
+          this.nearest_contact.contact_list.push(FriItem)
+        }
+        console.log("contact_list = ", this.nearest_contact.contact_list)
+        // this.getNearestMessage();
+      })
+  }
 
   // //分析消息
   // parseNotification(conn:Protocol.Message){
@@ -265,25 +289,25 @@ export class WebsocketService {
   //   })
   // }
   // InitChatList(){
-  //   this.getChatList().subscribe((data: ChatList) => {
-  //     console.log("聊天列表",data);
-  //     let HL =  new(HistList);
-  //     HL.List = [];
-  //     for(let i=0;i<data.List.length;i++){
-  //       let FriItem:FriendItem = new(FriendItem);
-  //       FriItem.ID=data.List[i].Id;
-  //       FriItem.Name=data.List[i].Name;
-  //       FriItem.Headimg=data.List[i].Headimg;
-  //       FriItem.Isgroup=data.List[i].Isgroup;
-  //       FriItem.Counter=data.List[i].Counter;
-  //       this.wsFriendList.List.push(FriItem)
+  //   this.getAddressBook().subscribe((data) => {
+  //     console.log("通讯录",data);
+  //     let HL =  new(com.AddressBook);
+  //     HL.friends_list = [];
+    //   for(let i=0;i<data.List.length;i++){
+    //     let FriItem:FriendItem = new(FriendItem);
+    //     FriItem.ID=data.List[i].Id;
+    //     FriItem.Name=data.List[i].Name;
+    //     FriItem.Headimg=data.List[i].Headimg;
+    //     FriItem.Isgroup=data.List[i].Isgroup;
+    //     FriItem.Counter=data.List[i].Counter;
+    //     this.wsFriendList.List.push(FriItem)
 
-  //       let Ht = new(Hist);
-  //       Ht.ID = data.List[i].Id;
-  //       Ht.Isgroup = data.List[i].Isgroup;
-  //       HL.List.push(Ht)
-  //     }
-  //     this.HistoryMessage(HL)
+    //     let Ht = new(Hist);
+    //     Ht.ID = data.List[i].Id;
+    //     Ht.Isgroup = data.List[i].Isgroup;
+    //     HL.List.push(Ht)
+    //   }
+    //   this.HistoryMessage(HL)
   //   })
   // }
 }

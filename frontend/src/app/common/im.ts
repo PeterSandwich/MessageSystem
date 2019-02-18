@@ -38,6 +38,7 @@ export class NearestContactItem{
     head_img: string
     count: number|Long
     is_group: boolean
+    message_list: MessageItem[];
 }
 
 export class NearestContact{
@@ -56,4 +57,9 @@ export class ChatRoom{
     name: string
     is_group: boolean
     message_list: MessageItem[]
+}
+
+export class AllChatRoom {
+    size : number;
+    message_list : MessageItem[];
 }

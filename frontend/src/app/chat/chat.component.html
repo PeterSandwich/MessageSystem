@@ -1,214 +1,225 @@
-<!-- 创建群聊 -->
-<nz-modal [(nzVisible)]="isAddGroupVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleAddGroupCancel()">
-  <ng-template #modalTitle>
-    创建群
-  </ng-template>
-  <ng-template #modalContent>
-    <!-- <div class = "list" > -->
-      <div class = "item" *ngFor="let item of addGroupUserList.AGlist" >
-        <label nz-checkbox [(ngModel)]="item.Check">
-            <img src = "{{item.Headimg}}" class = "img">
-          {{item.Name}}
-          </label>
-      </div>
-    <!-- </div> -->
-  </ng-template>
-  <ng-template #modalFooter>
-    <input nz-input placeholder="群名字"[(ngModel)]="GroupName">
-    <button nz-button nzType="default" (click)="handleAddGroupCancel()">取消</button>
-    <button nz-button nzType="primary" (click)="handleAddGroupOk()" [nzLoading]="isConfirmLoading">创建</button>
-  </ng-template>
-</nz-modal>
 
 
-<!-- 添加好友 -->
-<nz-modal [(nzVisible)]="isAddFriendVisible" [nzTitle]="modalTitle1" [nzContent]="modalContent1"  (nzOnCancel)="handleAddFriendCancel()">
-    <ng-template #modalTitle1>
-      添加好友
-      <nz-input-group [nzSuffix]="suffixIconSearch"> 
-          <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索的用户名" 
-           id = "search" (keyup) = "keyUpSearch($event)">
-        </nz-input-group> 
-
-        <ng-template #suffixIconSearch>
-          <i nz-icon type="search" class = "icon" (click) = "search()"></i>
-        </ng-template>
-    </ng-template>
-  
-    <ng-template #modalContent1>
-            <div *ngIf="!searchContent">
-              正在搜索内容
-            </div>
-            <div *ngIf="searchContent">
-                <div *ngIf="flag;else Show">查无此人</div>
-              <ng-template #Show>
-                  <div *ngFor="let item of userlist">
-                      <img src = "{{item.Img_url}}" class = "img">
-                      {{item.Name}}
-                    <button (click) = "addfriend(item.ID)">添加好友</button>
-                </div>
-              </ng-template>
-
-            </div>
-    </ng-template>
-  </nz-modal>
-
-
-
-<div class="container">
-  <table >
-    <tr>
-      <th class = "avatar" rowspan="2">
-        <div>
-            <img src = {{my_img_url}} style = "height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;">
-            <div>
-                <div style = "left: 90px; top:30px; position: absolute">{{my_name}}</div>
-                <div style = "left:90px; top:55px; position: absolute; color:#999999">个性签名</div>
-            </div>
-            
-
-           
-        </div>
-
-
-        <div class = "search">
-          <nz-input-group [nzSuffix]="suffixIconSearch1"> 
-            <input type="text" [(ngModel)]="searchFriend" nz-input placeholder="输入搜索内容" 
-              id = "search">
-          </nz-input-group> 
-
-          <ng-template #suffixIconSearch1>
-            <i nz-icon type="search" class = "icon"></i>
-          </ng-template>
-
-          <div class = "smallContainer">
-            <div *ngIf="isVisible">
-              <div *ngIf="!searchFriend">
-                正在搜索内容
-              </div>
-              <div *ngIf="searchFriend">
-                  <div *ngIf="flag;else Show">查无此人</div>
-                <ng-template #Show>
-                    <div *ngFor="let item of userlist">
-                        <img src = "{{item.Img_url}}" class = "img">
-                        {{item.Name}}
-                  </div>
-                </ng-template>
-
-              </div>
-            </div>
-          </div>
+<div class="container" (mouseup) = "his($event)" >
+    <!--聊天窗口-->
+    <table class = "table">
+      <tr>
+        <th class = "avatar" rowspan="2" colspan="3">
+          <!-- 1 -->
           <div>
-  
+              <!--个人信息-->
+                <img src = {{my_img_url}} style = "height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;">
+                <div>
+                    <div style = "left: 90px; top:30px; position: absolute">{{my_name}}</div>
+                    <div style = "left:90px; top:55px; position: absolute; color:#999999">个性签名</div>
+                </div>
             </div>
-            <button class = "grad">聊天</button>|<button class = "grad">通讯录</button>| 
-            <!-- <div> -->
-              <nz-dropdown class = "dropdown" >
-                  <a nz-dropdown>
-                      添加 <i nz-icon type="down"></i>
-                  </a>
-                  <ul nz-menu nzSelectable>
-                    <li nz-menu-item (click)="showAddFriendModal()">
-                      <a>添加好友</a>
-                    </li>
-                    <li nz-menu-item (click) = "showAddGroupModal()">
-                      <a>创建群聊</a>
-                    </li>
-                  </ul>
-                </nz-dropdown>
-  
-              <!-- </div> -->
-          </div>  
-
-
-      </th>
-      <th class = "him">{{to_name}}</th>
-    </tr>
-    <tr class = "avatar2" >
-      <td rowspan="2" class = "message" >
-        <div *ngIf="!isslect" class = "tips">
-          暂无新消息
-        </div>
-        <div class = "message1" id="scrolldIV" >
-          <div *ngFor="let item of showmsg" >
-                    <div *ngIf="item.From != my_id" id="box"><!--接受的消息-->
-                      <div *ngIf="item.ContentType == 0">{{item.Content}}</div>
-                      <div *ngIf="item.ContentType == 1">     
-                         <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.Content+ ')'}"></div>
-                      </div>
-                      <div *ngIf="item.ContentType == 2">
-                          <img src="/files/uknow.png" class="picture" >
-                          <button class="upload-btn" (click)=" downloadFile()"> 下载
-                          </button>
-                      </div>
-                    </div>
-                    <div *ngIf="item.From == my_id" id="box1"><!--发送的消息-->
-                        <div *ngIf="item.ContentType != 1 && item.ContentType != 2"  (mouseup)="he($event)" (contextmenu)="his($event)">{{item.Content}}</div>
-                        <div *ngIf="item.ContentType == 1"  (mouseup)="he($event)" (contextmenu)="his($event)">     
-                           <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.Content+ ')'}"></div>
+        </th>
+        <th class = "him"  >
+          <!-- 2 -->
+          {{to_name}}
+          <nz-dropdown class = "dropdown" *ngIf="isgroup">
+            <a nz-dropdown>
+              <i nz-icon type="down"></i>
+            </a>
+          </nz-dropdown>
+        </th>
+      </tr>
+      <tr class = "avatar2" >
+          <td rowspan="4"  >
+            <!-- 3 -->
+            <div class = "message1" id="scrolldIV" >
+                <div *ngFor="let item of showmsg; let i = index; let last = last" >
+                    <div *ngIf="item.from != my_id" id = "box"><!--接受的消息-->
+                        <div *ngIf="item.content_type == 0">{{item.content}}</div>
+                        <div *ngIf="item.content_type == 1">     
+                            <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.content+ ')'}"></div>
                         </div>
-                        <div *ngIf="item.ContentType == 2"  (mouseup)="he($event)" (contextmenu)="his($event)">
+                        <div *ngIf="item.content_type == 2"  (mouseup)="he($event)" (contextmenu)="his($event)">
                             <img src="/files/uknow.png" class="picture" >
                             <button class="upload-btn" (click)=" downloadFile()"> 下载
                             </button>
                         </div>
                     </div>
-                <!-- </div> -->
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td rowspan="2">
-        <div class = "list" >
-          <div class = "item" *ngFor="let item of friendlist.List" (click) = "test2(item.ID,item.Name, item.Headimg, item.Isgroup)">
-            <nz-badge [nzCount]="item.Counter" *ngIf="list!=NULL" class = "point">
-              <img src = "{{item.Headimg}}" class = "img">
-            </nz-badge>
-            {{item.Name}}
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr class = "inputmes">
-      <!-- <td > -->
-      <div></div>
-        <div  *ngIf="isslect">
-        <div class = "tool">
-          <!-- <i nz-icon type="folder" theme="outline" style="font-size: 25px" class = "icon"></i>            
-          <i nz-icon type="picture" theme="outline" style="font-size: 25px" class = "icon"></i>        -->
-          <input id="upfile" type="file" style="display: none;" (change)="selectFile($event)" accept=".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt">
-          <div class="action-box">
-            <button class="upload-btn" (click)="upfile.click()"> 点击上传
-            </button>
-          </div>
-        </div>
-        <textarea class = "textarea" [(ngModel)] = "content"></textarea>
-        <button class = "send" nz-button nzType="primary" (click) = "sendMsg()" >发送</button>
+                    <div *ngIf="item.from == my_id" id="box1"><!--发送的消息-->
+                        <div *ngIf="item.content_type != 1 && item.content_type != 2"  (contextmenu)="his($event)" (mouseup)="he($event, item, i)" >{{item.content}}</div>
+                        <div *ngIf="item.content_type == 1"  (mouseup)="he($event, item.content)" (contextmenu)="his($event)">     
+                            <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.content+ ')'}"></div>
+                        </div>
+                        <div *ngIf="item.content_type == 2"  (mouseup)="he($event)" (contextmenu)="his($event)">
+                            <img src="/files/uknow.png" class="picture" >
+                            <button class="upload-btn" (click)=" downloadFile()"> 下载
+                            </button>
+                        </div>
+                    </div>
+                    <span *ngIf="last">{{scollbuttom()}}</span>
+                  </div>
+              </div>
+          </td>
+      </tr>
+      <tr >
+          <td colspan="3" class = "search" colspan="3">
+            <!-- 7 -->
+              <div>
+                  <nz-input-group [nzSuffix]="suffixIconSearch1"> 
+                      <input type="text" [(ngModel)]="searchFriend" nz-input placeholder="输入搜索内容" id = "search">
+                  </nz-input-group> 
         
-<!-- <br>
-<br> -->
-<div>
-
-  <div *ngIf="show">
-    <div style="display: -webkit-box;">
-      <div class="hint">
-        {{filename}}
-      </div>
-      <div class="action-box">
-        <button class="upload-btn" (click)=" downloadFile()"> 下载
-        </button>
-      </div>
-    </div>
+                  <ng-template #suffixIconSearch1>
+                      <i nz-icon type="search" class = "icon"></i>
+                  </ng-template>
+        
+                  <div>
+                      <div *ngIf="isVisible">
+                          <div *ngIf="!searchFriend">
+                            正在搜索内容
+                          </div>
+                          <div *ngIf="searchFriend">
+                              <div *ngIf="flag;else Show">查无此人</div>
+                              <ng-template #Show>
+                                  <!-- <div *ngFor="let item of userlist">
+                                      <img src = "{{item.Img_url}}" class = "img">
+                                      {{item.Name}}
+                                  </div> -->
+                              </ng-template>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </td>
+      </tr>
+      <tr class = "bar">
+        <td class = "bartool">
+            <button class = "grad">聊天</button>|
+        </td>
+        <td class = "bartool">
+            <button class = "grad">通讯录</button>|
+        </td>
+        <td class = "bartool">
+            <nz-dropdown class = "dropdown">
+                <a nz-dropdown>
+                    &nbsp; &nbsp;添加 <i nz-icon type="down"></i>
+                </a>
+                <ul nz-menu nzSelectable>
+                    <li nz-menu-item (click)="showAddFriendModal()">
+                        <a>添加好友</a>
+                    </li>
+                    <li nz-menu-item (click) = "showAddGroupModal()">
+                        <a>创建群聊</a>
+                    </li>
+                </ul>
+            </nz-dropdown>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="3" colspan="3">
+            <!-- 4 -->
+            <div class = "list" >
+                <li  class = "item" [class.selected]="item == friend" *ngFor="let item of friendlist.contact_list; let i = index" (click) = "test2(i, item.id,item.name, item.head_img, item.is_group)">
+                    <nz-badge [nzCount]="item.count" *ngIf="list!=NULL">
+                        <img src = "{{item.head_img}}" class = "img">
+                    </nz-badge>
+                 {{item.name}}
+                </li>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td class = "tool">
+          <!-- 6 -->
+          <div  *ngIf="isselect">
+              <div >
+                <!-- <i nz-icon type="folder" theme="outline" style="font-size: 25px" class = "icon"></i>            
+                <i nz-icon type="picture" theme="outline" style="font-size: 25px" class = "icon"></i>        -->
+                <input id="upfile" type="file" style="display: none;" (change)="selectFile($event)" accept=".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt">
+                <div class="action-box">
+                  <button class="upload-btn" nz-button nzType="primary" (click) = "upfile.click()" >点击上传</button>
+                </div>
+              </div>
+            </div>
+        </td>
+      </tr>
+      <tr class = "inputmes">
+    <!-- 输入框 -->
+        <td>
+        <!-- 5 -->
+          <div  *ngIf="isselect">
+            <textarea class = "textarea" [(ngModel)] = "content"></textarea>
+            <button class = "send" nz-button nzType="primary" (click) = "sendMsg()" >发送</button>
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
-</div>
-<!-- <br>
-<br> -->
-
-
-
-
+    
+  
+  <!-- 创建群聊 -->
+  <nz-modal [(nzVisible)]="isAddGroupVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleAddGroupCancel()">
+      <ng-template #modalTitle>
+        创建群
+      </ng-template>
+      <ng-template #modalContent>
+        <!-- <div class = "list" > -->
+          <div class = "item" *ngFor="let item of addGroupUserList.AGlist" >
+              <label nz-checkbox [(ngModel)]="item.Check">
+                  <img src = "{{item.Headimg}}" class = "img">
+                  {{item.Name}}
+              </label>
+          </div>
+        <!-- </div> -->
+      </ng-template>
+      <ng-template #modalFooter>
+          <input nz-input placeholder="群名字"[(ngModel)]="GroupName">
+          <button nz-button nzType="default" (click)="handleAddGroupCancel()">取消</button>
+          <button nz-button nzType="primary" (click)="handleAddGroupOk()" [nzLoading]="isConfirmLoading">创建</button>
+      </ng-template>
+  </nz-modal>
+    
+    
+    <!-- 添加好友 -->
+  <nz-modal [(nzVisible)]="isAddFriendVisible" [nzTitle]="modalTitle1" [nzContent]="modalContent1"  (nzOnCancel)="handleAddFriendCancel()">
+      <ng-template #modalTitle1>
+          添加好友
+          <nz-input-group [nzSuffix]="suffixIconSearch"> 
+              <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索的用户名" 
+              id = "search" (keyup) = "keyUpSearch($event)">
+          </nz-input-group> 
+  
+          <ng-template #suffixIconSearch>
+              <i nz-icon type="search" class = "icon" (click) = "search()"></i>
+          </ng-template>
+      </ng-template>
+    
+      <ng-template #modalContent1>
+          <div *ngIf="!searchContent">
+              正在搜索内容
+          </div>
+            <div *ngIf="searchContent">
+                <div *ngIf="flag;else Show">查无此人</div>
+                <ng-template #Show>
+                <div *ngFor="let item of userlist">
+                    <img src = "{{item.Img_url}}" class = "img">
+                      {{item.Name}}
+                    <button (click) = "addfriend(item.ID)">添加好友</button>
+                </div>
+              </ng-template>
+    
+            </div>
+      </ng-template>
+  </nz-modal>
+  
+  <div *ngIf="show">
+      <div style="display: -webkit-box;">
+          <div class="hint">
+              {{filename}}
+          </div>
+          <div class="action-box">
+              <button class="upload-btn" (click)=" downloadFile()"> 下载
+              </button>
+          </div>
       </div>
-    </tr>
-  </table>
-
+  </div>
+  
+  <div  id = "mesback1"  *ngIf="pressBoolean">
+      <input type = button value="撤回" class = "mesback" (click) = "backdata()" [ngStyle]="{'left': px, 'top':py, 'z-index':'400', 'background-color':'red'}" >
+  </div>
