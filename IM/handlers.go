@@ -24,8 +24,9 @@ func RegisterRouterHandlers() *httprouter.Router {
 	router.GET("/ws",func(w http.ResponseWriter, r *http.Request,p httprouter.Params) {hub.ServeWs(w, r)})
 	router.GET("/api/user-info/:id", getUserInfo)// 获取个人信息
 	router.GET("/api/group-info/:gid", getGroupInfo)// 获取群的信息
-	router.GET("/api/address-book",getAddressBook)//获取通讯录
-	router.GET("/api/recent-contact",getNearestContact)	//获取最近联系人
+	router.GET("/api/address-book",getAddressBook)//获取通讯录y
+	router.GET("/api/recent-contact",getNearestContact)	//获取最近联系人y
+	router.GET("/api/recent-contact-message",getNearestContactMessage)//获取最近联系人的最近聊天信息
 	router.GET("/api/history-message/:type/:id",getHistoryMessage)//获取历史消息
 	router.ServeFiles("/static/*filepath",http.Dir("../frontend/dist/frontend"))
 	router.ServeFiles("/files/*filepath",http.Dir("/tmp/files/"))
@@ -153,11 +154,29 @@ func getNearestContact(w http.ResponseWriter, r *http.Request, p httprouter.Para
 		sendErrorResponse(w,defs.ErrorDBError)
 		return
 	}
-
 	sort.Sort(contact.ContactList)
+
+	limitLen := 20
+	if limitLen > len(contact.ContactList) {
+		limitLen = len(contact.ContactList)
+	}
+	contact.ContactList = contact.ContactList[:limitLen]
 	data, _ := json.Marshal(contact)
 	sendNormalResponse(w,string(data),200)
 }
+
+//获取最近联系人的最近聊天信息
+func getNearestContactMessage(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	param := r.Header.Get(defs.HEADER_FIELD_UID)
+	myId ,err := strconv.ParseInt(param,10,64)
+	if len(param)==0 || err !=nil {
+		sendErrorResponse(w,defs.ErrorNotAuthUser)
+		return
+	}
+
+
+}
+
 
 // 获取历史消息
 func getHistoryMessage(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
@@ -170,7 +189,7 @@ func getHistoryMessage(w http.ResponseWriter, r *http.Request, p httprouter.Para
 	}
 	what :=p.ByName("type")
 	id :=p.ByName("id")
-	if len(id)==0 || bool(what!="group") || bool(what!="single"){
+	if len(id)==0 || (bool(what!="group") && bool(what!="single")){
 		sendErrorResponse(w,defs.ErrorParamsFaults)
 		return
 	}

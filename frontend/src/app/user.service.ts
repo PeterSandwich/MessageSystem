@@ -4,7 +4,7 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class UserService {
   constructor(private http: HttpClient) { }
-
+  public session_id = '';
   public isLogin = false;
   public MyUserId = -1;
   public myImg = "";
