@@ -55,6 +55,7 @@ export class ChatComponent implements OnInit {
   isgroup: boolean = false;
 
   friendlist : com.NearestContact;
+  addressbook : com.AddressBook;
   friend : com.NearestContactItem;
   // userlist : Userlist[];
   messagelist : com.MessageItem[];
@@ -100,6 +101,15 @@ export class ChatComponent implements OnInit {
       this.show=false
       this.pressBoolean = false;
       this.isPress = false;
+    }
+
+    getNear(){
+      this.friendlist = this.ws.nearest_contact;
+      console.log("getNear", this.friendlist);
+    }
+    getAddress(){
+      this.friendlist = this.ws.address_book;
+      console.log("getAddreses", this.friendlist);
     }
 
     his(event){//防止右键点击是弹出默认面板
@@ -194,7 +204,7 @@ export class ChatComponent implements OnInit {
       this.contentType = msg.contentType;
       msg.isgroup = false;                       //是不是群组消息
       // console.log("this.msg && this.to_id = ", msg, this.to_id);
-      // this.ws.sendMessage(msg);
+      this.ws.sendMessage(msg);
       this.content = "";
   }
  
@@ -209,7 +219,7 @@ export class ChatComponent implements OnInit {
       this.contentType = msg.contentType;
       // console.log("type=", msg.contentType)
       msg.isgroup = true;
-      // this.ws.sendMessage(msg);
+      this.ws.sendMessage(msg);
       this.content = "";
 
     }
