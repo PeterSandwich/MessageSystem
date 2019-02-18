@@ -327,7 +327,7 @@ var ChatComponent = /** @class */ (function () {
     ChatComponent.prototype.ngOnInit = function () {
         // this.friendlist = data.nearContractList;
         this.addressList = _data__WEBPACK_IMPORTED_MODULE_6__["addressList"];
-        this.messagelist = _data__WEBPACK_IMPORTED_MODULE_6__["chatRoom"];
+        // this.messagelist = data.chatRoom;
         this.friendlist = this.ws.nearest_contact;
         console.log("friendlist = ", this.friendlist);
         this.my_id = this.us.MyUserId;
@@ -383,18 +383,21 @@ var ChatComponent = /** @class */ (function () {
         this.isgroup = isgroup;
         var flag = false;
         this.friend = this.friendlist.contact_list[index];
-        for (var i_1 = 0; i_1 < this.friendlist.contact_list.length; i_1++) {
-            if (id == this.friendlist.contact_list[i_1].id) {
-                this.friendlist.contact_list[i_1].count = 0;
-            }
-        }
-        for (var i = 0; i < this.messagelist.length; i++) {
-            if (id == this.messagelist[i].id) {
-                this.showmsg = this.messagelist[i].message_list;
-                this.isgroup = this.messagelist[i].is_group;
+        for (var i = 0; i < this.friendlist.contact_list.length; i++) {
+            if (id == this.friendlist.contact_list[i].id) {
+                this.friendlist.contact_list[i].count = 0;
+                this.showmsg = this.friendlist.contact_list[i].message_list;
+                this.isgroup = this.friendlist.contact_list[i].is_group;
                 flag = true;
             }
         }
+        // for(var i = 0; i < this.messagelist.length; i++){
+        //   if(id == this.messagelist[i].id){
+        //     this.showmsg = this.messagelist;
+        //     this.isgroup = this.messagelist[i].is_group;
+        //     flag = true;
+        //   }
+        // }
         if (!flag) {
             this.showmsg = [];
         }
@@ -663,13 +666,12 @@ var AddGroupUserlist = /** @class */ (function () {
 /*!******************************!*\
   !*** ./src/app/chat/data.ts ***!
   \******************************/
-/*! exports provided: addressList, nearContractList, id_1_message, id_2_message, id_3_message, chatRoom, chatroom */
+/*! exports provided: addressList, id_1_message, id_2_message, id_3_message, chatRoom, chatroom */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addressList", function() { return addressList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nearContractList", function() { return nearContractList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "id_1_message", function() { return id_1_message; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "id_2_message", function() { return id_2_message; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "id_3_message", function() { return id_3_message; });
@@ -690,15 +692,15 @@ var addressList = [
     { id: 5, name: "efg", head_img: "aaa", is_group: true },
     { id: 6, name: "fgh", head_img: "aaa", is_group: true },
 ];
-var nearContractList = [
-    { id: 100021, name: "mmm", head_img: "aaa", count: 5, is_group: false },
-    { id: 100017, name: "pjw", head_img: "aaa", count: 1, is_group: false },
-    { id: 1008, name: "你有一条新的消息", head_img: "aaa", count: 12, is_group: false },
-    { id: 1009, name: "testGGG", head_img: "aaa", count: 6, is_group: true },
-    { id: 1010, name: "GGGGGGGGGGGG", head_img: "aaa", count: 2, is_group: true },
-    { id: 100019, name: "hql", head_img: "aaa", count: 2, is_group: true },
-    { id: 100018, name: "gct", head_img: "aaa", count: 2, is_group: true },
-];
+// export const nearContractList : com.NearestContactItem[] = [
+//     {id: 100021, name: "mmm", head_img: "aaa", count: 5, is_group: false},
+//     {id: 100017, name: "pjw", head_img: "aaa", count: 1, is_group: false},
+//     {id: 1008, name: "你有一条新的消息", head_img: "aaa", count: 12, is_group: false},
+//     {id: 1009, name: "testGGG", head_img: "aaa", count: 6, is_group: true},
+//     {id: 1010, name: "GGGGGGGGGGGG", head_img: "aaa", count: 2, is_group: true},
+//     {id: 100019, name: "hql", head_img: "aaa", count: 2, is_group: true},
+//     {id: 100018, name: "gct", head_img: "aaa", count: 2, is_group: true},
+// ]
 var id_1_message = [
     { id: 1001, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000001, is_group: false },
     { id: 1002, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000002, is_group: false },
@@ -744,7 +746,7 @@ var chatRoom = [
 ];
 var chatroom = {
     size: 7,
-    chatroomList: chatRoom
+    message_list: id_3_message
 };
 
 
@@ -1854,8 +1856,8 @@ var WebsocketService = /** @class */ (function () {
     };
     WebsocketService.prototype.getNearestList = function () {
         var _this = this;
-        this.getNearestContact().subscribe(function (data) {
-            console.log("最近联系人", data);
+        this.getNearestContactMessage().subscribe(function (data) {
+            console.log("最近联系人de消息", data);
             // if(data.contact_list.length == 0){
             //   data.contact_list = [];
             // }
@@ -1864,32 +1866,32 @@ var WebsocketService = /** @class */ (function () {
             // this.nearest_contact.contact_list = data.contact_list;
             // console.log("contact_list = ", this.nearest_contact.contact_list)
             // return data
-            for (var i = 0; i < data.contact_list.length; i++) {
+            for (var i = 0; i < data.body['chat_room_list'].length; i++) {
                 var FriItem = new (_common_im__WEBPACK_IMPORTED_MODULE_6__["NearestContactItem"]);
-                FriItem.id = data.contact_list[i].id;
-                FriItem.name = data.contact_list[i].name;
-                FriItem.head_img = data.contact_list[i].head_img;
-                FriItem.is_group = data.contact_list[i].is_group;
-                FriItem.count = data.contact_list[i].count;
+                FriItem.id = data.body['chat_room_list'][i].id;
+                FriItem.name = data.body['chat_room_list'][i].name;
+                FriItem.head_img = data.body['chat_room_list'][i].head_img;
+                FriItem.is_group = data.body['chat_room_list'][i].is_group;
+                FriItem.count = data.body['chat_room_list'][i].count;
+                FriItem.message_list = data.body['chat_room_list'][i].message_list;
                 _this.nearest_contact.contact_list.push(FriItem);
             }
             console.log("contact_list = ", _this.nearest_contact.contact_list);
-            _this.getNearestMessage();
+            // this.getNearestMessage();
         });
     };
-    WebsocketService.prototype.getNearestMessage = function () {
-        var _this = this;
-        this.getNearestContactMessage().subscribe(function (data) {
-            console.log("最近联系人的消息", data);
-            var allChatRoom = new (_common_im__WEBPACK_IMPORTED_MODULE_6__["AllChatRoom"]);
-            allChatRoom.chatroomList = [];
-            allChatRoom.size = 0;
-            allChatRoom.chatroomList = data.body['chat_room_list'];
-            allChatRoom.size = data.body['size'];
-            console.log("allChatRoom = ", allChatRoom);
-            _this.all_chat_room = allChatRoom;
-        });
-    };
+    // getNearestMessage(){
+    //   this.getNearestContactMessage().subscribe(data =>{
+    //     console.log("最近联系人的消息", data);
+    //     let allChatRoom = new(com.AllChatRoom);
+    //     allChatRoom.message_list = [];
+    //     allChatRoom.size = 0;
+    //     allChatRoom.message_list = data.body['chat_room_list'];
+    //     allChatRoom.size = data.body['size'];
+    //     // console.log("allChatRoom = ", allChatRoom) 
+    //     this.all_chat_room = allChatRoom
+    //   })
+    // }
     // //分析消息
     // parseNotification(conn:Protocol.Message){
     //   if (conn.type==Protocol.Message.Type.NOTIFICATION){

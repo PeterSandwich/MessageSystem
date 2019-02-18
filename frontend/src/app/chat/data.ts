@@ -47,16 +47,16 @@ export const addressList : com.AddressBookItem[] = [
     {id: 6, name: "fgh", head_img: "aaa", is_group: true},
 ]
 
-export const nearContractList : com.NearestContactItem[] = [
-    {id: 100021, name: "mmm", head_img: "aaa", count: 5, is_group: false},
-    {id: 100017, name: "pjw", head_img: "aaa", count: 1, is_group: false},
-    {id: 1008, name: "你有一条新的消息", head_img: "aaa", count: 12, is_group: false},
-    {id: 1009, name: "testGGG", head_img: "aaa", count: 6, is_group: true},
-    {id: 1010, name: "GGGGGGGGGGGG", head_img: "aaa", count: 2, is_group: true},
-    {id: 100019, name: "hql", head_img: "aaa", count: 2, is_group: true},
-    {id: 100018, name: "gct", head_img: "aaa", count: 2, is_group: true},
+// export const nearContractList : com.NearestContactItem[] = [
+//     {id: 100021, name: "mmm", head_img: "aaa", count: 5, is_group: false},
+//     {id: 100017, name: "pjw", head_img: "aaa", count: 1, is_group: false},
+//     {id: 1008, name: "你有一条新的消息", head_img: "aaa", count: 12, is_group: false},
+//     {id: 1009, name: "testGGG", head_img: "aaa", count: 6, is_group: true},
+//     {id: 1010, name: "GGGGGGGGGGGG", head_img: "aaa", count: 2, is_group: true},
+//     {id: 100019, name: "hql", head_img: "aaa", count: 2, is_group: true},
+//     {id: 100018, name: "gct", head_img: "aaa", count: 2, is_group: true},
 
-]
+// ]
 
 export const id_1_message : com.MessageItem[] = [
     {id: 1001, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000001, is_group: false},
@@ -107,5 +107,5 @@ export const chatRoom : com.ChatRoom[] = [
 
 export const chatroom : com.AllChatRoom = {
     size:7, 
-    chatroomList: chatRoom
+    message_list: id_3_message
 }

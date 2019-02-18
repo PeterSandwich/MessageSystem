@@ -17,7 +17,7 @@ export class WebsocketService {
   global_message: com.GlobalMessage;  //全局全部消息
   nearest_contact:com.NearestContact; // 最近联系人
   address_book: com.AddressBook; // 通讯录
-  all_chat_room : com.AllChatRoom; //全部聊天室
+  message_list : com.AllChatRoom; //全部聊天室
 
 
   collection: Protocol.Message = new(Protocol.Message);
@@ -79,8 +79,8 @@ export class WebsocketService {
   }
   
   getNearestList(){//获取最近联系人
-      this.getNearestContact().subscribe((data) => {
-        console.log("最近联系人",data);
+      this.getNearestContactMessage().subscribe((data) => {
+        console.log("最近联系人de消息",data);
         // if(data.contact_list.length == 0){
         //   data.contact_list = [];
         // }
@@ -90,33 +90,20 @@ export class WebsocketService {
         // console.log("contact_list = ", this.nearest_contact.contact_list)
 
         // return data
-        for(let i=0;i<data.contact_list.length;i++){
+        for(let i=0;i<data.body['chat_room_list'].length;i++){
           let FriItem:com.NearestContactItem = new(com.NearestContactItem);
-          FriItem.id=data.contact_list[i].id;
-          FriItem.name=data.contact_list[i].name;
-          FriItem.head_img=data.contact_list[i].head_img;
-          FriItem.is_group=data.contact_list[i].is_group;
-          FriItem.count=data.contact_list[i].count;
+          FriItem.id=data.body['chat_room_list'][i].id;
+          FriItem.name=data.body['chat_room_list'][i].name;
+          FriItem.head_img=data.body['chat_room_list'][i].head_img;
+          FriItem.is_group=data.body['chat_room_list'][i].is_group;
+          FriItem.count=data.body['chat_room_list'][i].count;
+          FriItem.message_list = data.body['chat_room_list'][i].message_list;
           this.nearest_contact.contact_list.push(FriItem)
         }
         console.log("contact_list = ", this.nearest_contact.contact_list)
-        this.getNearestMessage();
+        // this.getNearestMessage();
       })
   }
-    getNearestMessage(){
-      this.getNearestContactMessage().subscribe(data =>{
-        console.log("最近联系人的消息", data);
-        let allChatRoom = new(com.AllChatRoom);
-        allChatRoom.chatroomList = [];
-        allChatRoom.size = 0;
-        allChatRoom.chatroomList = data.body['chat_room_list'];
-        allChatRoom.size = data.body['size'];
-        console.log("allChatRoom = ", allChatRoom) 
-        this.all_chat_room = allChatRoom
-      })
-      
-    }
-
 
   // //分析消息
   // parseNotification(conn:Protocol.Message){
@@ -301,11 +288,11 @@ export class WebsocketService {
   //     console.log("历史消息",this.wsMessageList.List)
   //   })
   // }
-  InitChatList(){
-    this.getAddressBook().subscribe((data) => {
-      console.log("通讯录",data);
-      let HL =  new(com.AddressBook);
-      HL.friends_list = [];
+  // InitChatList(){
+  //   this.getAddressBook().subscribe((data) => {
+  //     console.log("通讯录",data);
+  //     let HL =  new(com.AddressBook);
+  //     HL.friends_list = [];
     //   for(let i=0;i<data.List.length;i++){
     //     let FriItem:FriendItem = new(FriendItem);
     //     FriItem.ID=data.List[i].Id;
@@ -321,6 +308,6 @@ export class WebsocketService {
     //     HL.List.push(Ht)
     //   }
     //   this.HistoryMessage(HL)
-    })
-  }
+  //   })
+  // }
 }

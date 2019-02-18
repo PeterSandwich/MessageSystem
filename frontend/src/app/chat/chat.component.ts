@@ -57,7 +57,7 @@ export class ChatComponent implements OnInit {
   friendlist : com.NearestContact;
   friend : com.NearestContactItem;
   // userlist : Userlist[];
-  messagelist : com.ChatRoom[];
+  messagelist : com.MessageItem[];
   addGroupUserList:AddGroupUserlist;
 
   pressBoolean : boolean = false;
@@ -88,7 +88,7 @@ export class ChatComponent implements OnInit {
     ngOnInit(){
       // this.friendlist = data.nearContractList;
       this.addressList = data.addressList;
-      this.messagelist = data.chatRoom;
+      // this.messagelist = data.chatRoom;
       this.friendlist = this.ws.nearest_contact;
       console.log("friendlist = ", this.friendlist)
       this.my_id = this.us.MyUserId;
@@ -150,12 +150,8 @@ export class ChatComponent implements OnInit {
       for(let i = 0; i < this.friendlist.contact_list.length; i++){
         if(id == this.friendlist.contact_list[i].id){
           this.friendlist.contact_list[i].count = 0;
-        }
-      }
-      for(var i = 0; i < this.messagelist.length; i++){
-        if(id == this.messagelist[i].id){
-          this.showmsg = this.messagelist[i].message_list;
-          this.isgroup = this.messagelist[i].is_group;
+          this.showmsg = this.friendlist.contact_list[i].message_list;
+          this.isgroup = this.friendlist.contact_list[i].is_group;
           flag = true;
         }
       }
