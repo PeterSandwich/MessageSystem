@@ -106,3 +106,20 @@ type HistoryMessageItem struct {
 type HistoryMessage struct {
 	MessageList []HistoryMessageItem `json:"message_list"`
 }
+
+
+
+
+type InputArgs struct {
+	OutputPath string /** 输出目录 */
+	LocalPath  string /** 输入的目录或文件路径 */
+	Quality    int    /** 质量 */
+	Width      int    /** 宽度尺寸，像素单位 */
+	Format     string /** 格式 */
+}
+
+type ReturnPath struct {
+	OriginalFile   string `json:"originalfile"`
+	Thumbnail      string `json:"thumbnail"`
+	Filetype       int64  `json:"filetype"`
+}
