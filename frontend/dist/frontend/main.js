@@ -85,7 +85,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -229,7 +229,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".container{\n  background-color: #DDDDDD;\n  width: 1024px;\n  height: 675px;\n  position: absolute;\n  margin: auto;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 1;\n}\n.avatar{\n  /* 1 */\n  background-color: rgb(198, 228, 98);\n  height: 40px;\n  width: 240px;\n  height: 30px;\n}\n.him{\n  /* 2 */\n  background-color: rgb(101, 216, 206);\n  width: 790px;\n  height: 60px;\n  color: #444444;\n  padding-left: 20px;\n}\n.avatar2{\n  /* 3 */\n  background-color: rgb(121, 202, 128);\n  height: 35px;\n  width: 790px;\n}\n.inputmes{\n  /* 5 */\n  background-color: rgb(240, 244, 255);\n  vertical-align: top;\n  width: 790px;\n  height: 190px;\n  /* background-color: white; */\n}\n.tool{\n  /* 6 */\n  width: 790px;\n  height: 35px;\n  background-color: rgb(233, 173, 168);\n\n}\n.list{\n  /* 4 */\n  background-color: rgb(229, 155, 226);\n\n  width: 240px;\n  height: 550px;\n  overflow-x: none;\n  overflow-y: auto;\n  vertical-align: top;\n\n}\n.list li{\n    height: 65px;\n    list-style-type: none;\n    vertical-align: middle;\n    padding: 15px;\n}\n.item{\n    color: white;\n    border-bottom:1px solid #EEE;\n    height: 65px;\n    font-size: 12px;\n    /* font-display: center; */\n    vertical-align: middle;\n    /* text-align: center; */\n    position: relative;\n    cursor: pointer;\n}\n.list li:hover{\n  background-color: bisque;\n}\n.list li.selected:hover{\n  background-color: aquamarine !important\n}\n.selected{\n  background-color: aqua !important\n}\n.search{\n  background-color: rgb(46, 64, 230);\n  height: 35px;\n  width: 240px;\n}\n.bar{\n  background-color: rgb(133, 91, 78);\n  height: 35px;\n  width: 240px;\n}\n.bartool{\n  width: 70px;\n}\n.dropdown{\n  z-index: 100;\n}\n.grad{\n  width: 70px;\n  background-color:transparent;\n  border: 0px;\n  outline: none;\n  cursor: pointer;\n  height: 25px;\n}\n.img{\n  /* margin: 5px; */\n  /* margin-top: 10px; */\n  height:40px; \n  width:40px; \n  position: relative;\n  /* border-radius:50%;  */\n  overflow:hidden;\n}\n.send{\n  position: absolute;\n  margin-left: 720px;\n  margin-top: 155px;\n  z-index: 100;\n}\n.textarea{\n  background-color: white;\n  resize: none;\n  width: 790px;\n  height: 150px;\n  position: absolute;\n  padding: 15px;\n  border: none;\n  outline: none;\n  /* margin-top: 30px; */\n}\n#box{\n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-left: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n\n    position: relative;\n    left:30px; \n    width: 140px;\n    min-height: 30px;\n    line-height: 20px;\n    margin-left: 10px;\n    word-wrap: 5px;\n    background: #088cb7;\n    border-radius: 4px;\n    padding: 10px;\n    margin-top:10px;\n    vertical-align: middle;\n    text-align: center;\n}\n/*左方说话*/\n#box:before{\n    position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    right: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-right: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n/*右方说话*/\n#box1{          \n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-right: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n  position: relative;\n  left:560px; \n  width: 140px;\n  /* height: 30px; */\n  background: #088cb7;\n  border-radius: 4px;\n  /* padding: 10px; */\n  margin-top:10px;\n  vertical-align: middle;\n  text-align: center;\n}\n#box1:before{\n  position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    left: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-left: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n.message1{\n  width: 790px;\n  height: 430px;\n  background-color: #F9F9F9;\n  padding: 10px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n.mesback{\n  cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNoYXQvY2hhdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQXlCO0VBQ3pCLGFBQWE7RUFDYixhQUFhO0VBQ2Isa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixNQUFNO0VBQ04sT0FBTztFQUNQLFFBQVE7RUFDUixTQUFTO0VBQ1QsVUFBVTtBQUNaO0FBQ0E7RUFDRSxNQUFNO0VBQ04sbUNBQW1DO0VBQ25DLFlBQVk7RUFDWixZQUFZO0VBQ1osWUFBWTtBQUNkO0FBQ0E7RUFDRSxNQUFNO0VBQ04sb0NBQW9DO0VBQ3BDLFlBQVk7RUFDWixZQUFZO0VBQ1osY0FBYztFQUNkLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsTUFBTTtFQUNOLG9DQUFvQztFQUNwQyxZQUFZO0VBQ1osWUFBWTtBQUNkO0FBRUE7RUFDRSxNQUFNO0VBQ04sb0NBQW9DO0VBQ3BDLG1CQUFtQjtFQUNuQixZQUFZO0VBQ1osYUFBYTtFQUNiLDZCQUE2QjtBQUMvQjtBQUNBO0VBQ0UsTUFBTTtFQUNOLFlBQVk7RUFDWixZQUFZO0VBQ1osb0NBQW9DOztBQUV0QztBQUNBO0VBQ0UsTUFBTTtFQUNOLG9DQUFvQzs7RUFFcEMsWUFBWTtFQUNaLGFBQWE7RUFDYixnQkFBZ0I7RUFDaEIsZ0JBQWdCO0VBQ2hCLG1CQUFtQjs7QUFFckI7QUFDQTtJQUNJLFlBQVk7SUFDWixxQkFBcUI7SUFDckIsc0JBQXNCO0lBQ3RCLGFBQWE7QUFDakI7QUFDQTtJQUNJLFlBQVk7SUFDWiw0QkFBNEI7SUFDNUIsWUFBWTtJQUNaLGVBQWU7SUFDZiwwQkFBMEI7SUFDMUIsc0JBQXNCO0lBQ3RCLHdCQUF3QjtJQUN4QixrQkFBa0I7SUFDbEIsZUFBZTtBQUNuQjtBQUNBO0VBQ0Usd0JBQXdCO0FBQzFCO0FBQ0E7RUFDRTtBQUNGO0FBQ0E7RUFDRTtBQUNGO0FBQ0E7RUFDRSxrQ0FBa0M7RUFDbEMsWUFBWTtFQUNaLFlBQVk7QUFDZDtBQUNBO0VBQ0Usa0NBQWtDO0VBQ2xDLFlBQVk7RUFDWixZQUFZO0FBQ2Q7QUFDQTtFQUNFLFdBQVc7QUFDYjtBQUNBO0VBQ0UsWUFBWTtBQUNkO0FBQ0E7RUFDRSxXQUFXO0VBQ1gsNEJBQTRCO0VBQzVCLFdBQVc7RUFDWCxhQUFhO0VBQ2IsZUFBZTtFQUNmLFlBQVk7QUFDZDtBQUNBO0VBQ0UsaUJBQWlCO0VBQ2pCLHNCQUFzQjtFQUN0QixXQUFXO0VBQ1gsVUFBVTtFQUNWLGtCQUFrQjtFQUNsQix3QkFBd0I7RUFDeEIsZUFBZTtBQUNqQjtBQUNBO0VBQ0Usa0JBQWtCO0VBQ2xCLGtCQUFrQjtFQUNsQixpQkFBaUI7RUFDakIsWUFBWTtBQUNkO0FBQ0E7RUFDRSx1QkFBdUI7RUFDdkIsWUFBWTtFQUNaLFlBQVk7RUFDWixhQUFhO0VBQ2Isa0JBQWtCO0VBQ2xCLGFBQWE7RUFDYixZQUFZO0VBQ1osYUFBYTtFQUNiLHNCQUFzQjtBQUN4QjtBQUNBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtFQUNsQiwrQkFBK0I7RUFDL0IsaUJBQWlCO0VBQ2pCLHNCQUFzQjtFQUN0QixZQUFZO0VBQ1osWUFBWTtFQUNaLGlCQUFpQjs7O0lBR2Ysa0JBQWtCO0lBQ2xCLFNBQVM7SUFDVCxZQUFZO0lBQ1osZ0JBQWdCO0lBQ2hCLGlCQUFpQjtJQUNqQixpQkFBaUI7SUFDakIsY0FBYztJQUNkLG1CQUFtQjtJQUduQixrQkFBa0I7SUFDbEIsYUFBYTtJQUNiLGVBQWU7SUFDZixzQkFBc0I7SUFDdEIsa0JBQWtCO0FBQ3RCO0FBQ0EsT0FBTztBQUNQO0lBQ0ksa0JBQWtCO0lBQ2xCLFdBQVc7SUFDWCxRQUFRO0lBQ1IsU0FBUztJQUNULFdBQVc7SUFDWCxRQUFRO0lBQ1IsaUNBQWlDO0lBQ2pDLGdDQUFnQztJQUNoQyxvQ0FBb0M7QUFDeEM7QUFDQSxPQUFPO0FBQ1A7RUFDRSxnQkFBZ0I7RUFDaEIsa0JBQWtCO0VBQ2xCLCtCQUErQjtFQUMvQixrQkFBa0I7RUFDbEIsc0JBQXNCO0VBQ3RCLFlBQVk7RUFDWixZQUFZO0VBQ1osaUJBQWlCOztFQUVqQixrQkFBa0I7RUFDbEIsVUFBVTtFQUNWLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsbUJBQW1CO0VBR25CLGtCQUFrQjtFQUNsQixtQkFBbUI7RUFDbkIsZUFBZTtFQUNmLHNCQUFzQjtFQUN0QixrQkFBa0I7QUFDcEI7QUFDQTtFQUNFLGtCQUFrQjtJQUNoQixXQUFXO0lBQ1gsUUFBUTtJQUNSLFNBQVM7SUFDVCxVQUFVO0lBQ1YsUUFBUTtJQUNSLGlDQUFpQztJQUNqQywrQkFBK0I7SUFDL0Isb0NBQW9DO0FBQ3hDO0FBQ0E7RUFDRSxZQUFZO0VBQ1osYUFBYTtFQUNiLHlCQUF5QjtFQUN6QixhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixtQkFBbUI7QUFDckI7QUFDQTtFQUNFLGVBQWU7QUFDakIiLCJmaWxlIjoiY2hhdC9jaGF0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGFpbmVye1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjREREREREO1xuICB3aWR0aDogMTAyNHB4O1xuICBoZWlnaHQ6IDY3NXB4O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIG1hcmdpbjogYXV0bztcbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcbiAgYm90dG9tOiAwO1xuICB6LWluZGV4OiAxO1xufVxuLmF2YXRhcntcbiAgLyogMSAqL1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTk4LCAyMjgsIDk4KTtcbiAgaGVpZ2h0OiA0MHB4O1xuICB3aWR0aDogMjQwcHg7XG4gIGhlaWdodDogMzBweDtcbn1cbi5oaW17XG4gIC8qIDIgKi9cbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDEwMSwgMjE2LCAyMDYpO1xuICB3aWR0aDogNzkwcHg7XG4gIGhlaWdodDogNjBweDtcbiAgY29sb3I6ICM0NDQ0NDQ7XG4gIHBhZGRpbmctbGVmdDogMjBweDtcbn1cbi5hdmF0YXIye1xuICAvKiAzICovXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigxMjEsIDIwMiwgMTI4KTtcbiAgaGVpZ2h0OiAzNXB4O1xuICB3aWR0aDogNzkwcHg7XG59XG5cbi5pbnB1dG1lc3tcbiAgLyogNSAqL1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjQwLCAyNDQsIDI1NSk7XG4gIHZlcnRpY2FsLWFsaWduOiB0b3A7XG4gIHdpZHRoOiA3OTBweDtcbiAgaGVpZ2h0OiAxOTBweDtcbiAgLyogYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7ICovXG59XG4udG9vbHtcbiAgLyogNiAqL1xuICB3aWR0aDogNzkwcHg7XG4gIGhlaWdodDogMzVweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDIzMywgMTczLCAxNjgpO1xuXG59XG4ubGlzdHtcbiAgLyogNCAqL1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjI5LCAxNTUsIDIyNik7XG5cbiAgd2lkdGg6IDI0MHB4O1xuICBoZWlnaHQ6IDU1MHB4O1xuICBvdmVyZmxvdy14OiBub25lO1xuICBvdmVyZmxvdy15OiBhdXRvO1xuICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xuXG59XG4ubGlzdCBsaXtcbiAgICBoZWlnaHQ6IDY1cHg7XG4gICAgbGlzdC1zdHlsZS10eXBlOiBub25lO1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gICAgcGFkZGluZzogMTVweDtcbn1cbi5pdGVte1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBib3JkZXItYm90dG9tOjFweCBzb2xpZCAjRUVFO1xuICAgIGhlaWdodDogNjVweDtcbiAgICBmb250LXNpemU6IDEycHg7XG4gICAgLyogZm9udC1kaXNwbGF5OiBjZW50ZXI7ICovXG4gICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgICAvKiB0ZXh0LWFsaWduOiBjZW50ZXI7ICovXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cbi5saXN0IGxpOmhvdmVye1xuICBiYWNrZ3JvdW5kLWNvbG9yOiBiaXNxdWU7XG59XG4ubGlzdCBsaS5zZWxlY3RlZDpob3ZlcntcbiAgYmFja2dyb3VuZC1jb2xvcjogYXF1YW1hcmluZSAhaW1wb3J0YW50XG59XG4uc2VsZWN0ZWR7XG4gIGJhY2tncm91bmQtY29sb3I6IGFxdWEgIWltcG9ydGFudFxufVxuLnNlYXJjaHtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDQ2LCA2NCwgMjMwKTtcbiAgaGVpZ2h0OiAzNXB4O1xuICB3aWR0aDogMjQwcHg7XG59XG4uYmFye1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTMzLCA5MSwgNzgpO1xuICBoZWlnaHQ6IDM1cHg7XG4gIHdpZHRoOiAyNDBweDtcbn1cbi5iYXJ0b29se1xuICB3aWR0aDogNzBweDtcbn1cbi5kcm9wZG93bntcbiAgei1pbmRleDogMTAwO1xufVxuLmdyYWR7XG4gIHdpZHRoOiA3MHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOnRyYW5zcGFyZW50O1xuICBib3JkZXI6IDBweDtcbiAgb3V0bGluZTogbm9uZTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBoZWlnaHQ6IDI1cHg7XG59XG4uaW1ne1xuICAvKiBtYXJnaW46IDVweDsgKi9cbiAgLyogbWFyZ2luLXRvcDogMTBweDsgKi9cbiAgaGVpZ2h0OjQwcHg7IFxuICB3aWR0aDo0MHB4OyBcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAvKiBib3JkZXItcmFkaXVzOjUwJTsgICovXG4gIG92ZXJmbG93OmhpZGRlbjtcbn1cbi5zZW5ke1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIG1hcmdpbi1sZWZ0OiA3MjBweDtcbiAgbWFyZ2luLXRvcDogMTU1cHg7XG4gIHotaW5kZXg6IDEwMDtcbn1cbi50ZXh0YXJlYXtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gIHJlc2l6ZTogbm9uZTtcbiAgd2lkdGg6IDc5MHB4O1xuICBoZWlnaHQ6IDE1MHB4O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHBhZGRpbmc6IDE1cHg7XG4gIGJvcmRlcjogbm9uZTtcbiAgb3V0bGluZTogbm9uZTtcbiAgLyogbWFyZ2luLXRvcDogMzBweDsgKi9cbn1cbiNib3h7XG4gIG1pbi1oZWlnaHQ6IDMwcHg7ICAgICAgICAgIFxuICBib3JkZXItcmFkaXVzOiA1cHg7ICAgICAgICBcbiAgLyogbGluZS1oZWlnaHQ6IDUwcHg7ICAgICAgICAgKi9cbiAgbWFyZ2luLWxlZnQ6IDEwcHg7ICAgICAgICBcbiAgd29yZC1icmVhazogYnJlYWstd29yZDsgICAgICAgIFxuICBjb2xvcjogd2hpdGU7ICAgICAgICBcbiAgcGFkZGluZzogNXB4OyAgICAgICAgXG4gIGxpbmUtaGVpZ2h0OiAxOHB4O1xuXG5cbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbGVmdDozMHB4OyBcbiAgICB3aWR0aDogMTQwcHg7XG4gICAgbWluLWhlaWdodDogMzBweDtcbiAgICBsaW5lLWhlaWdodDogMjBweDtcbiAgICBtYXJnaW4tbGVmdDogMTBweDtcbiAgICB3b3JkLXdyYXA6IDVweDtcbiAgICBiYWNrZ3JvdW5kOiAjMDg4Y2I3O1xuICAgIC1tb3otYm9yZGVyLXJhZGl1czogNHB4O1xuICAgIC13ZWJraXQtYm9yZGVyLXJhZGl1czogNHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICBwYWRkaW5nOiAxMHB4O1xuICAgIG1hcmdpbi10b3A6MTBweDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi8q5bem5pa56K+06K+dKi9cbiNib3g6YmVmb3Jle1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIHdpZHRoOiAwO1xuICAgIGhlaWdodDogMDtcbiAgICByaWdodDogMTAwJTtcbiAgICB0b3A6IDlweDtcbiAgICBib3JkZXItdG9wOiA1cHggc29saWQgdHJhbnNwYXJlbnQ7XG4gICAgYm9yZGVyLXJpZ2h0OiAxM3B4IHNvbGlkICMwODhjYjc7XG4gICAgYm9yZGVyLWJvdHRvbTogNnB4IHNvbGlkIHRyYW5zcGFyZW50O1xufVxuLyrlj7Pmlrnor7Tor50qL1xuI2JveDF7ICAgICAgICAgIFxuICBtaW4taGVpZ2h0OiAzMHB4OyAgICAgICAgICBcbiAgYm9yZGVyLXJhZGl1czogNXB4OyAgICAgICAgXG4gIC8qIGxpbmUtaGVpZ2h0OiA1MHB4OyAgICAgICAgICovXG4gIG1hcmdpbi1yaWdodDogMTBweDsgICAgICAgIFxuICB3b3JkLWJyZWFrOiBicmVhay13b3JkOyAgICAgICAgXG4gIGNvbG9yOiB3aGl0ZTsgICAgICAgIFxuICBwYWRkaW5nOiA1cHg7ICAgICAgICBcbiAgbGluZS1oZWlnaHQ6IDE4cHg7XG5cbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBsZWZ0OjU2MHB4OyBcbiAgd2lkdGg6IDE0MHB4O1xuICAvKiBoZWlnaHQ6IDMwcHg7ICovXG4gIGJhY2tncm91bmQ6ICMwODhjYjc7XG4gIC1tb3otYm9yZGVyLXJhZGl1czogNHB4O1xuICAtd2Via2l0LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAvKiBwYWRkaW5nOiAxMHB4OyAqL1xuICBtYXJnaW4tdG9wOjEwcHg7XG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbiNib3gxOmJlZm9yZXtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGNvbnRlbnQ6IFwiXCI7XG4gICAgd2lkdGg6IDA7XG4gICAgaGVpZ2h0OiAwO1xuICAgIGxlZnQ6IDEwMCU7XG4gICAgdG9wOiA5cHg7XG4gICAgYm9yZGVyLXRvcDogNXB4IHNvbGlkIHRyYW5zcGFyZW50O1xuICAgIGJvcmRlci1sZWZ0OiAxM3B4IHNvbGlkICMwODhjYjc7XG4gICAgYm9yZGVyLWJvdHRvbTogNnB4IHNvbGlkIHRyYW5zcGFyZW50O1xufVxuLm1lc3NhZ2Uxe1xuICB3aWR0aDogNzkwcHg7XG4gIGhlaWdodDogNDMwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICNGOUY5Rjk7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIG92ZXJmbG93LXk6IGF1dG87XG4gIG92ZXJmbG93LXg6IG5vbmU7XG4gIHZlcnRpY2FsLWFsaWduOiB0b3A7XG59XG4ubWVzYmFja3tcbiAgY3Vyc29yOiBwb2ludGVyO1xufSJdfQ== */"
+module.exports = ".container{\n  background-color: #DDDDDD;\n  width: 1024px;\n  height: 675px;\n  position: absolute;\n  margin: auto;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 1;\n}\n.avatar{\n  /* 1 */\n  background-color: rgb(198, 228, 98);\n  height: 40px;\n  width: 240px;\n  height: 30px;\n}\n.him{\n  /* 2 */\n  background-color: rgb(101, 216, 206);\n  width: 790px;\n  height: 60px;\n  color: #444444;\n  padding-left: 20px;\n}\n.avatar2{\n  /* 3 */\n  background-color: rgb(121, 202, 128);\n  height: 35px;\n  width: 790px;\n}\n.inputmes{\n  /* 5 */\n  background-color: rgb(240, 244, 255);\n  vertical-align: top;\n  width: 790px;\n  height: 190px;\n  /* background-color: white; */\n}\n.tool{\n  /* 6 */\n  width: 790px;\n  height: 35px;\n  background-color: rgb(233, 173, 168);\n\n}\n.list{\n  /* 4 */\n  background-color: rgb(229, 155, 226);\n\n  width: 240px;\n  height: 550px;\n  overflow-x: none;\n  overflow-y: auto;\n  vertical-align: top;\n\n}\n.list li{\n    height: 65px;\n    list-style-type: none;\n    vertical-align: middle;\n    padding: 15px;\n}\n.item{\n    color: white;\n    border-bottom:1px solid #EEE;\n    height: 65px;\n    font-size: 12px;\n    /* font-display: center; */\n    vertical-align: middle;\n    /* text-align: center; */\n    position: relative;\n    cursor: pointer;\n}\n.list li:hover{\n  background-color: bisque;\n}\n.list li.selected:hover{\n  background-color: aquamarine !important\n}\n.selected{\n  background-color: aqua !important\n}\n.search{\n  background-color: rgb(46, 64, 230);\n  height: 35px;\n  width: 240px;\n}\n.bar{\n  background-color: rgb(133, 91, 78);\n  height: 35px;\n  width: 240px;\n}\n.bartool{\n  width: 70px;\n}\n.dropdown{\n  z-index: 100;\n}\n.grad{\n  width: 70px;\n  background-color:transparent;\n  border: 0px;\n  outline: none;\n  cursor: pointer;\n  height: 25px;\n}\n.img{\n  /* margin: 5px; */\n  /* margin-top: 10px; */\n  height:40px; \n  width:40px; \n  position: relative;\n  /* border-radius:50%;  */\n  overflow:hidden;\n}\n.send{\n  position: absolute;\n  margin-left: 720px;\n  margin-top: 155px;\n  z-index: 100;\n}\n.textarea{\n  background-color: white;\n  resize: none;\n  width: 790px;\n  height: 150px;\n  position: absolute;\n  padding: 15px;\n  border: none;\n  outline: none;\n  /* margin-top: 30px; */\n}\n#box{\n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-left: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n\n    position: relative;\n    left:30px; \n    width: 140px;\n    min-height: 30px;\n    line-height: 20px;\n    margin-left: 10px;\n    word-wrap: 5px;\n    background: #088cb7;\n    border-radius: 4px;\n    padding: 10px;\n    margin-top:10px;\n    vertical-align: middle;\n    text-align: center;\n}\n/*左方说话*/\n#box:before{\n    position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    right: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-right: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n/*右方说话*/\n#box1{          \n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-right: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n  position: relative;\n  left:560px; \n  width: 140px;\n  /* height: 30px; */\n  background: #088cb7;\n  border-radius: 4px;\n  /* padding: 10px; */\n  margin-top:10px;\n  vertical-align: middle;\n  text-align: center;\n}\n#box1:before{\n  position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    left: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-left: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n.message1{\n  width: 790px;\n  height: 430px;\n  background-color: #F9F9F9;\n  padding: 10px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n.mesback{\n  cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2hhdC9jaGF0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx5QkFBeUI7RUFDekIsYUFBYTtFQUNiLGFBQWE7RUFDYixrQkFBa0I7RUFDbEIsWUFBWTtFQUNaLE1BQU07RUFDTixPQUFPO0VBQ1AsUUFBUTtFQUNSLFNBQVM7RUFDVCxVQUFVO0FBQ1o7QUFDQTtFQUNFLE1BQU07RUFDTixtQ0FBbUM7RUFDbkMsWUFBWTtFQUNaLFlBQVk7RUFDWixZQUFZO0FBQ2Q7QUFDQTtFQUNFLE1BQU07RUFDTixvQ0FBb0M7RUFDcEMsWUFBWTtFQUNaLFlBQVk7RUFDWixjQUFjO0VBQ2Qsa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxNQUFNO0VBQ04sb0NBQW9DO0VBQ3BDLFlBQVk7RUFDWixZQUFZO0FBQ2Q7QUFFQTtFQUNFLE1BQU07RUFDTixvQ0FBb0M7RUFDcEMsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWixhQUFhO0VBQ2IsNkJBQTZCO0FBQy9CO0FBQ0E7RUFDRSxNQUFNO0VBQ04sWUFBWTtFQUNaLFlBQVk7RUFDWixvQ0FBb0M7O0FBRXRDO0FBQ0E7RUFDRSxNQUFNO0VBQ04sb0NBQW9DOztFQUVwQyxZQUFZO0VBQ1osYUFBYTtFQUNiLGdCQUFnQjtFQUNoQixnQkFBZ0I7RUFDaEIsbUJBQW1COztBQUVyQjtBQUNBO0lBQ0ksWUFBWTtJQUNaLHFCQUFxQjtJQUNyQixzQkFBc0I7SUFDdEIsYUFBYTtBQUNqQjtBQUNBO0lBQ0ksWUFBWTtJQUNaLDRCQUE0QjtJQUM1QixZQUFZO0lBQ1osZUFBZTtJQUNmLDBCQUEwQjtJQUMxQixzQkFBc0I7SUFDdEIsd0JBQXdCO0lBQ3hCLGtCQUFrQjtJQUNsQixlQUFlO0FBQ25CO0FBQ0E7RUFDRSx3QkFBd0I7QUFDMUI7QUFDQTtFQUNFO0FBQ0Y7QUFDQTtFQUNFO0FBQ0Y7QUFDQTtFQUNFLGtDQUFrQztFQUNsQyxZQUFZO0VBQ1osWUFBWTtBQUNkO0FBQ0E7RUFDRSxrQ0FBa0M7RUFDbEMsWUFBWTtFQUNaLFlBQVk7QUFDZDtBQUNBO0VBQ0UsV0FBVztBQUNiO0FBQ0E7RUFDRSxZQUFZO0FBQ2Q7QUFDQTtFQUNFLFdBQVc7RUFDWCw0QkFBNEI7RUFDNUIsV0FBVztFQUNYLGFBQWE7RUFDYixlQUFlO0VBQ2YsWUFBWTtBQUNkO0FBQ0E7RUFDRSxpQkFBaUI7RUFDakIsc0JBQXNCO0VBQ3RCLFdBQVc7RUFDWCxVQUFVO0VBQ1Ysa0JBQWtCO0VBQ2xCLHdCQUF3QjtFQUN4QixlQUFlO0FBQ2pCO0FBQ0E7RUFDRSxrQkFBa0I7RUFDbEIsa0JBQWtCO0VBQ2xCLGlCQUFpQjtFQUNqQixZQUFZO0FBQ2Q7QUFDQTtFQUNFLHVCQUF1QjtFQUN2QixZQUFZO0VBQ1osWUFBWTtFQUNaLGFBQWE7RUFDYixrQkFBa0I7RUFDbEIsYUFBYTtFQUNiLFlBQVk7RUFDWixhQUFhO0VBQ2Isc0JBQXNCO0FBQ3hCO0FBQ0E7RUFDRSxnQkFBZ0I7RUFDaEIsa0JBQWtCO0VBQ2xCLCtCQUErQjtFQUMvQixpQkFBaUI7RUFDakIsc0JBQXNCO0VBQ3RCLFlBQVk7RUFDWixZQUFZO0VBQ1osaUJBQWlCOzs7SUFHZixrQkFBa0I7SUFDbEIsU0FBUztJQUNULFlBQVk7SUFDWixnQkFBZ0I7SUFDaEIsaUJBQWlCO0lBQ2pCLGlCQUFpQjtJQUNqQixjQUFjO0lBQ2QsbUJBQW1CO0lBR25CLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2IsZUFBZTtJQUNmLHNCQUFzQjtJQUN0QixrQkFBa0I7QUFDdEI7QUFDQSxPQUFPO0FBQ1A7SUFDSSxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFFBQVE7SUFDUixTQUFTO0lBQ1QsV0FBVztJQUNYLFFBQVE7SUFDUixpQ0FBaUM7SUFDakMsZ0NBQWdDO0lBQ2hDLG9DQUFvQztBQUN4QztBQUNBLE9BQU87QUFDUDtFQUNFLGdCQUFnQjtFQUNoQixrQkFBa0I7RUFDbEIsK0JBQStCO0VBQy9CLGtCQUFrQjtFQUNsQixzQkFBc0I7RUFDdEIsWUFBWTtFQUNaLFlBQVk7RUFDWixpQkFBaUI7O0VBRWpCLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsWUFBWTtFQUNaLGtCQUFrQjtFQUNsQixtQkFBbUI7RUFHbkIsa0JBQWtCO0VBQ2xCLG1CQUFtQjtFQUNuQixlQUFlO0VBQ2Ysc0JBQXNCO0VBQ3RCLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0Usa0JBQWtCO0lBQ2hCLFdBQVc7SUFDWCxRQUFRO0lBQ1IsU0FBUztJQUNULFVBQVU7SUFDVixRQUFRO0lBQ1IsaUNBQWlDO0lBQ2pDLCtCQUErQjtJQUMvQixvQ0FBb0M7QUFDeEM7QUFDQTtFQUNFLFlBQVk7RUFDWixhQUFhO0VBQ2IseUJBQXlCO0VBQ3pCLGFBQWE7RUFDYixnQkFBZ0I7RUFDaEIsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtBQUNyQjtBQUNBO0VBQ0UsZUFBZTtBQUNqQiIsImZpbGUiOiJzcmMvYXBwL2NoYXQvY2hhdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRhaW5lcntcbiAgYmFja2dyb3VuZC1jb2xvcjogI0RERERERDtcbiAgd2lkdGg6IDEwMjRweDtcbiAgaGVpZ2h0OiA2NzVweDtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBtYXJnaW46IGF1dG87XG4gIHRvcDogMDtcbiAgbGVmdDogMDtcbiAgcmlnaHQ6IDA7XG4gIGJvdHRvbTogMDtcbiAgei1pbmRleDogMTtcbn1cbi5hdmF0YXJ7XG4gIC8qIDEgKi9cbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDE5OCwgMjI4LCA5OCk7XG4gIGhlaWdodDogNDBweDtcbiAgd2lkdGg6IDI0MHB4O1xuICBoZWlnaHQ6IDMwcHg7XG59XG4uaGlte1xuICAvKiAyICovXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigxMDEsIDIxNiwgMjA2KTtcbiAgd2lkdGg6IDc5MHB4O1xuICBoZWlnaHQ6IDYwcHg7XG4gIGNvbG9yOiAjNDQ0NDQ0O1xuICBwYWRkaW5nLWxlZnQ6IDIwcHg7XG59XG4uYXZhdGFyMntcbiAgLyogMyAqL1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTIxLCAyMDIsIDEyOCk7XG4gIGhlaWdodDogMzVweDtcbiAgd2lkdGg6IDc5MHB4O1xufVxuXG4uaW5wdXRtZXN7XG4gIC8qIDUgKi9cbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDI0MCwgMjQ0LCAyNTUpO1xuICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xuICB3aWR0aDogNzkwcHg7XG4gIGhlaWdodDogMTkwcHg7XG4gIC8qIGJhY2tncm91bmQtY29sb3I6IHdoaXRlOyAqL1xufVxuLnRvb2x7XG4gIC8qIDYgKi9cbiAgd2lkdGg6IDc5MHB4O1xuICBoZWlnaHQ6IDM1cHg7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigyMzMsIDE3MywgMTY4KTtcblxufVxuLmxpc3R7XG4gIC8qIDQgKi9cbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDIyOSwgMTU1LCAyMjYpO1xuXG4gIHdpZHRoOiAyNDBweDtcbiAgaGVpZ2h0OiA1NTBweDtcbiAgb3ZlcmZsb3cteDogbm9uZTtcbiAgb3ZlcmZsb3cteTogYXV0bztcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcblxufVxuLmxpc3QgbGl7XG4gICAgaGVpZ2h0OiA2NXB4O1xuICAgIGxpc3Qtc3R5bGUtdHlwZTogbm9uZTtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICAgIHBhZGRpbmc6IDE1cHg7XG59XG4uaXRlbXtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgYm9yZGVyLWJvdHRvbToxcHggc29saWQgI0VFRTtcbiAgICBoZWlnaHQ6IDY1cHg7XG4gICAgZm9udC1zaXplOiAxMnB4O1xuICAgIC8qIGZvbnQtZGlzcGxheTogY2VudGVyOyAqL1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gICAgLyogdGV4dC1hbGlnbjogY2VudGVyOyAqL1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG4ubGlzdCBsaTpob3ZlcntcbiAgYmFja2dyb3VuZC1jb2xvcjogYmlzcXVlO1xufVxuLmxpc3QgbGkuc2VsZWN0ZWQ6aG92ZXJ7XG4gIGJhY2tncm91bmQtY29sb3I6IGFxdWFtYXJpbmUgIWltcG9ydGFudFxufVxuLnNlbGVjdGVke1xuICBiYWNrZ3JvdW5kLWNvbG9yOiBhcXVhICFpbXBvcnRhbnRcbn1cbi5zZWFyY2h7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYig0NiwgNjQsIDIzMCk7XG4gIGhlaWdodDogMzVweDtcbiAgd2lkdGg6IDI0MHB4O1xufVxuLmJhcntcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDEzMywgOTEsIDc4KTtcbiAgaGVpZ2h0OiAzNXB4O1xuICB3aWR0aDogMjQwcHg7XG59XG4uYmFydG9vbHtcbiAgd2lkdGg6IDcwcHg7XG59XG4uZHJvcGRvd257XG4gIHotaW5kZXg6IDEwMDtcbn1cbi5ncmFke1xuICB3aWR0aDogNzBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtcbiAgYm9yZGVyOiAwcHg7XG4gIG91dGxpbmU6IG5vbmU7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgaGVpZ2h0OiAyNXB4O1xufVxuLmltZ3tcbiAgLyogbWFyZ2luOiA1cHg7ICovXG4gIC8qIG1hcmdpbi10b3A6IDEwcHg7ICovXG4gIGhlaWdodDo0MHB4OyBcbiAgd2lkdGg6NDBweDsgXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgLyogYm9yZGVyLXJhZGl1czo1MCU7ICAqL1xuICBvdmVyZmxvdzpoaWRkZW47XG59XG4uc2VuZHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBtYXJnaW4tbGVmdDogNzIwcHg7XG4gIG1hcmdpbi10b3A6IDE1NXB4O1xuICB6LWluZGV4OiAxMDA7XG59XG4udGV4dGFyZWF7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICByZXNpemU6IG5vbmU7XG4gIHdpZHRoOiA3OTBweDtcbiAgaGVpZ2h0OiAxNTBweDtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBwYWRkaW5nOiAxNXB4O1xuICBib3JkZXI6IG5vbmU7XG4gIG91dGxpbmU6IG5vbmU7XG4gIC8qIG1hcmdpbi10b3A6IDMwcHg7ICovXG59XG4jYm94e1xuICBtaW4taGVpZ2h0OiAzMHB4OyAgICAgICAgICBcbiAgYm9yZGVyLXJhZGl1czogNXB4OyAgICAgICAgXG4gIC8qIGxpbmUtaGVpZ2h0OiA1MHB4OyAgICAgICAgICovXG4gIG1hcmdpbi1sZWZ0OiAxMHB4OyAgICAgICAgXG4gIHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQ7ICAgICAgICBcbiAgY29sb3I6IHdoaXRlOyAgICAgICAgXG4gIHBhZGRpbmc6IDVweDsgICAgICAgIFxuICBsaW5lLWhlaWdodDogMThweDtcblxuXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIGxlZnQ6MzBweDsgXG4gICAgd2lkdGg6IDE0MHB4O1xuICAgIG1pbi1oZWlnaHQ6IDMwcHg7XG4gICAgbGluZS1oZWlnaHQ6IDIwcHg7XG4gICAgbWFyZ2luLWxlZnQ6IDEwcHg7XG4gICAgd29yZC13cmFwOiA1cHg7XG4gICAgYmFja2dyb3VuZDogIzA4OGNiNztcbiAgICAtbW96LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgICAtd2Via2l0LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgcGFkZGluZzogMTBweDtcbiAgICBtYXJnaW4tdG9wOjEwcHg7XG4gICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4vKuW3puaWueivtOivnSovXG4jYm94OmJlZm9yZXtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgY29udGVudDogXCJcIjtcbiAgICB3aWR0aDogMDtcbiAgICBoZWlnaHQ6IDA7XG4gICAgcmlnaHQ6IDEwMCU7XG4gICAgdG9wOiA5cHg7XG4gICAgYm9yZGVyLXRvcDogNXB4IHNvbGlkIHRyYW5zcGFyZW50O1xuICAgIGJvcmRlci1yaWdodDogMTNweCBzb2xpZCAjMDg4Y2I3O1xuICAgIGJvcmRlci1ib3R0b206IDZweCBzb2xpZCB0cmFuc3BhcmVudDtcbn1cbi8q5Y+z5pa56K+06K+dKi9cbiNib3gxeyAgICAgICAgICBcbiAgbWluLWhlaWdodDogMzBweDsgICAgICAgICAgXG4gIGJvcmRlci1yYWRpdXM6IDVweDsgICAgICAgIFxuICAvKiBsaW5lLWhlaWdodDogNTBweDsgICAgICAgICAqL1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7ICAgICAgICBcbiAgd29yZC1icmVhazogYnJlYWstd29yZDsgICAgICAgIFxuICBjb2xvcjogd2hpdGU7ICAgICAgICBcbiAgcGFkZGluZzogNXB4OyAgICAgICAgXG4gIGxpbmUtaGVpZ2h0OiAxOHB4O1xuXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgbGVmdDo1NjBweDsgXG4gIHdpZHRoOiAxNDBweDtcbiAgLyogaGVpZ2h0OiAzMHB4OyAqL1xuICBiYWNrZ3JvdW5kOiAjMDg4Y2I3O1xuICAtbW96LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgLXdlYmtpdC1ib3JkZXItcmFkaXVzOiA0cHg7XG4gIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgLyogcGFkZGluZzogMTBweDsgKi9cbiAgbWFyZ2luLXRvcDoxMHB4O1xuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4jYm94MTpiZWZvcmV7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIHdpZHRoOiAwO1xuICAgIGhlaWdodDogMDtcbiAgICBsZWZ0OiAxMDAlO1xuICAgIHRvcDogOXB4O1xuICAgIGJvcmRlci10b3A6IDVweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICBib3JkZXItbGVmdDogMTNweCBzb2xpZCAjMDg4Y2I3O1xuICAgIGJvcmRlci1ib3R0b206IDZweCBzb2xpZCB0cmFuc3BhcmVudDtcbn1cbi5tZXNzYWdlMXtcbiAgd2lkdGg6IDc5MHB4O1xuICBoZWlnaHQ6IDQzMHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjRjlGOUY5O1xuICBwYWRkaW5nOiAxMHB4O1xuICBvdmVyZmxvdy15OiBhdXRvO1xuICBvdmVyZmxvdy14OiBub25lO1xuICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xufVxuLm1lc2JhY2t7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn0iXX0= */"
 
 /***/ }),
 
@@ -391,13 +391,6 @@ var ChatComponent = /** @class */ (function () {
                 flag = true;
             }
         }
-        // for(var i = 0; i < this.messagelist.length; i++){
-        //   if(id == this.messagelist[i].id){
-        //     this.showmsg = this.messagelist;
-        //     this.isgroup = this.messagelist[i].is_group;
-        //     flag = true;
-        //   }
-        // }
         if (!flag) {
             this.showmsg = [];
         }
@@ -886,7 +879,7 @@ var UploadService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJob21lL2hvbWUuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hvbWUvaG9tZS5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -942,7 +935,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJsb2dpbi9sb2dpbi5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -972,6 +965,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user.service */ "./src/app/user.service.ts");
 /* harmony import */ var _websocket_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../websocket.service */ "./src/app/websocket.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+
 
 
 
@@ -992,7 +987,7 @@ var LoginComponent = /** @class */ (function () {
             console.log("data.status=", data.status);
             if (data.status == 200) {
                 var respond = data["body"];
-                alert("登录成功");
+                console.log("登录成功");
                 _this.us.isLogin = true;
                 _this.us.MyUserId = respond['id'];
                 _this.us.myImg = respond['head_img'];
@@ -1000,7 +995,7 @@ var LoginComponent = /** @class */ (function () {
                 _this.us.session_id = respond['session_id'];
                 _this.router.navigate(['chat']);
                 console.log("data=", data, _this.us.MyUserId, _this.us.myName);
-                // this.ws.createSocket(environment.websocketUrl);
+                _this.ws.createSocket(_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].websocketUrl + "?session_id=" + _this.us.session_id);
                 _this.ws.getNearestList();
             }
             else {
@@ -1034,7 +1029,7 @@ var LoginComponent = /** @class */ (function () {
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 
 
-var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "./node_modules/protobufjs/minimal.js");
+var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "../../../../node_modules/protobufjs/minimal.js");
 
 // Common aliases
 var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
@@ -1067,6 +1062,7 @@ $root.Protocol = (function() {
          * @property {number|Long|null} [msgid] Message msgid
          * @property {number|Long|null} [time] Message time
          * @property {Array.<number|Long>|null} [userlist] Message userlist
+         * @property {Protocol.Message.ErrorCode|null} [errcode] Message errcode
          */
 
         /**
@@ -1166,6 +1162,14 @@ $root.Protocol = (function() {
         Message.prototype.userlist = $util.emptyArray;
 
         /**
+         * Message errcode.
+         * @member {Protocol.Message.ErrorCode} errcode
+         * @memberof Protocol.Message
+         * @instance
+         */
+        Message.prototype.errcode = 0;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof Protocol.Message
@@ -1213,6 +1217,8 @@ $root.Protocol = (function() {
                     writer.int64(message.userlist[i]);
                 writer.ldelim();
             }
+            if (message.errcode != null && message.hasOwnProperty("errcode"))
+                writer.uint32(/* id 11, wireType 0 =*/88).int32(message.errcode);
             return writer;
         };
 
@@ -1284,6 +1290,9 @@ $root.Protocol = (function() {
                     } else
                         message.userlist.push(reader.int64());
                     break;
+                case 11:
+                    message.errcode = reader.int32();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -1326,6 +1335,7 @@ $root.Protocol = (function() {
                 case 0:
                 case 1:
                 case 2:
+                case 4:
                     break;
                 }
             if (message.cmd != null && message.hasOwnProperty("cmd"))
@@ -1373,6 +1383,16 @@ $root.Protocol = (function() {
                     if (!$util.isInteger(message.userlist[i]) && !(message.userlist[i] && $util.isInteger(message.userlist[i].low) && $util.isInteger(message.userlist[i].high)))
                         return "userlist: integer|Long[] expected";
             }
+            if (message.errcode != null && message.hasOwnProperty("errcode"))
+                switch (message.errcode) {
+                default:
+                    return "errcode: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                }
             return null;
         };
 
@@ -1400,6 +1420,10 @@ $root.Protocol = (function() {
             case "NOTIFICATION":
             case 2:
                 message.type = 2;
+                break;
+            case "ERROR":
+            case 4:
+                message.type = 4;
                 break;
             }
             switch (object.cmd) {
@@ -1492,6 +1516,24 @@ $root.Protocol = (function() {
                     else if (typeof object.userlist[i] === "object")
                         message.userlist[i] = new $util.LongBits(object.userlist[i].low >>> 0, object.userlist[i].high >>> 0).toNumber();
             }
+            switch (object.errcode) {
+            case "REQUEST_BODY_PARAMS_ERROR":
+            case 0:
+                message.errcode = 0;
+                break;
+            case "GROUP_CREATION_FAILED":
+            case 1:
+                message.errcode = 1;
+                break;
+            case "WITHDRAW_MESSAGE_FAILED":
+            case 2:
+                message.errcode = 2;
+                break;
+            case "CHAT_SESSION_CREATION_FAILED":
+            case 3:
+                message.errcode = 3;
+                break;
+            }
             return message;
         };
 
@@ -1536,6 +1578,7 @@ $root.Protocol = (function() {
                     object.time = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.time = options.longs === String ? "0" : 0;
+                object.errcode = options.enums === String ? "REQUEST_BODY_PARAMS_ERROR" : 0;
             }
             if (message.type != null && message.hasOwnProperty("type"))
                 object.type = options.enums === String ? $root.Protocol.Message.Type[message.type] : message.type;
@@ -1575,6 +1618,8 @@ $root.Protocol = (function() {
                     else
                         object.userlist[j] = options.longs === String ? $util.Long.prototype.toString.call(message.userlist[j]) : options.longs === Number ? new $util.LongBits(message.userlist[j].low >>> 0, message.userlist[j].high >>> 0).toNumber() : message.userlist[j];
             }
+            if (message.errcode != null && message.hasOwnProperty("errcode"))
+                object.errcode = options.enums === String ? $root.Protocol.Message.ErrorCode[message.errcode] : message.errcode;
             return object;
         };
 
@@ -1596,12 +1641,14 @@ $root.Protocol = (function() {
          * @property {number} ACK=0 ACK value
          * @property {number} REQUEST=1 REQUEST value
          * @property {number} NOTIFICATION=2 NOTIFICATION value
+         * @property {number} ERROR=4 ERROR value
          */
         Message.Type = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "ACK"] = 0;
             values[valuesById[1] = "REQUEST"] = 1;
             values[valuesById[2] = "NOTIFICATION"] = 2;
+            values[valuesById[4] = "ERROR"] = 4;
             return values;
         })();
 
@@ -1641,6 +1688,24 @@ $root.Protocol = (function() {
             return values;
         })();
 
+        /**
+         * ErrorCode enum.
+         * @name Protocol.Message.ErrorCode
+         * @enum {string}
+         * @property {number} REQUEST_BODY_PARAMS_ERROR=0 REQUEST_BODY_PARAMS_ERROR value
+         * @property {number} GROUP_CREATION_FAILED=1 GROUP_CREATION_FAILED value
+         * @property {number} WITHDRAW_MESSAGE_FAILED=2 WITHDRAW_MESSAGE_FAILED value
+         * @property {number} CHAT_SESSION_CREATION_FAILED=3 CHAT_SESSION_CREATION_FAILED value
+         */
+        Message.ErrorCode = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "REQUEST_BODY_PARAMS_ERROR"] = 0;
+            values[valuesById[1] = "GROUP_CREATION_FAILED"] = 1;
+            values[valuesById[2] = "WITHDRAW_MESSAGE_FAILED"] = 2;
+            values[valuesById[3] = "CHAT_SESSION_CREATION_FAILED"] = 3;
+            return values;
+        })();
+
         return Message;
     })();
 
@@ -1659,7 +1724,7 @@ module.exports = $root;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzaWdudXAvc2lnbnVwLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpZ251cC9zaWdudXAuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -1827,7 +1892,8 @@ var WebsocketService = /** @class */ (function () {
             reader.onload = function (e) {
                 var buf = new Uint8Array(reader.result);
                 var conn = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.decode(buf);
-                //that.parseNotification(conn)    //收到消息解析后分析消息
+                console.log(conn);
+                that.parseNotification(conn); //收到消息解析后分析消息
             };
         };
         this.ws.onclose = function () { console.log("WebSocket关闭"); };
@@ -1880,213 +1946,53 @@ var WebsocketService = /** @class */ (function () {
             // this.getNearestMessage();
         });
     };
-    // getNearestMessage(){
-    //   this.getNearestContactMessage().subscribe(data =>{
-    //     console.log("最近联系人的消息", data);
-    //     let allChatRoom = new(com.AllChatRoom);
-    //     allChatRoom.message_list = [];
-    //     allChatRoom.size = 0;
-    //     allChatRoom.message_list = data.body['chat_room_list'];
-    //     allChatRoom.size = data.body['size'];
-    //     // console.log("allChatRoom = ", allChatRoom) 
-    //     this.all_chat_room = allChatRoom
-    //   })
-    // }
-    // //分析消息
-    // parseNotification(conn:Protocol.Message){
-    //   if (conn.type==Protocol.Message.Type.NOTIFICATION){
-    //     console.log("NOTIFICATION");
-    //     if (conn.cmd == Protocol.Message.CtrlType.NONE){
-    //       console.log("COMMOM",conn);
-    //       for(let i=0;i<this.wsMessageList.List.length;i++){
-    //           if(conn.isgroup == this.wsMessageList.List[i].Isgroup&&
-    //             ((conn.isgroup &&conn.to==this.wsMessageList.List[i].ID)||(!conn.isgroup &&conn.from==this.wsMessageList.List[i].ID))){
-    //             let item = new(MessageItem);
-    //             item.Mid = conn.msgid;
-    //             item.From = conn.from;
-    //             item.To = conn.from;
-    //             if(conn.isgroup){
-    //               item.To = conn.to;
-    //             }
-    //             item.Content = conn.content;
-    //             item.ContentType =conn.contentType;
-    //             item.Time = conn.time;
-    //             this.wsMessageList.List[i].MList.push(item);
-    //             console.log(this.wsMessageList.List[i]);
-    //             break;
-    //           }
-    //       }
-    //     }else if(conn.cmd == Protocol.Message.CtrlType.CREATE_SESSION){ //添加好友请求
-    //       this.createSessById(conn,conn.from)
-    //     }else if (conn.cmd == Protocol.Message.CtrlType.CREATE_GROUP || conn.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
-    //       this.createGroupById(conn,conn.to)
-    //     }else if(conn.cmd == Protocol.Message.CtrlType.MSG_BACK){
-    //       for(let i=0;i<this.wsMessageList.List.length;i++){
-    //         if(conn.isgroup == this.wsMessageList.List[i].Isgroup&&
-    //           ((conn.isgroup &&conn.to==this.wsMessageList.List[i].ID)||(!conn.isgroup &&conn.from==this.wsMessageList.List[i].ID))){
-    //            for(let j=0;j<this.wsMessageList.List[i].MList.length;j++){
-    //             if (this.wsMessageList.List[i].MList[j].Mid == conn.msgid){
-    //               this.wsMessageList.List[i].MList.slice(j,1);
-    //               break;
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }else if(conn.type==Protocol.Message.Type.ACK){
-    //     if (conn.cmd == Protocol.Message.CtrlType.NONE){
-    //       for(let i=0;i<this.wsMessageList.List.length;i++){
-    //         if (conn.from==this.wsMessageList.List[i].ID && conn.isgroup == this.wsMessageList.List[i].Isgroup){
-    //           for(let j=0;j<this.wsMessageList.List[i].MList.length;j++){
-    //             if (this.wsMessageList.List[i].MList[j].Time == conn.time){
-    //               this.wsMessageList.List[i].MList[j].Mid = conn.msgid;
-    //               break;
-    //             }
-    //           }
-    //           break;
-    //         }
-    //       }
-    //     }else if(conn.cmd == Protocol.Message.CtrlType.CREATE_SESSION){//添加好友请求确认信息
-    //      this.createSessById(conn,conn.to)
-    //     }else if (conn.cmd == Protocol.Message.CtrlType.CREATE_GROUP || conn.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
-    //       this.createGroupById(conn,conn.to)
-    //     }
-    //   }
-    // }
-    // createSessById(conn: Protocol.Message,uid: number|Long){
-    //       let item = new(FriendItem);
-    //       item.ID = uid;
-    //       this.us.getUserbyId(item.ID).subscribe((data)=>{
-    //         console.log("data=", data)
-    //         item.Name = data["Name"];
-    //         item.Headimg = data["Img_url"];
-    //       });
-    //       item.Counter = 1;
-    //       item.Isgroup = false;
-    //       this.wsFriendList.List.push(item);
-    //       let sess = new(Session)
-    //       sess.ID = item.ID
-    //       sess.Isgroup = false;
-    //       sess.MList = [];
-    //       this.wsMessageList.List.push(sess);
-    // }
-    //  createGroupById(conn: Protocol.Message,gid: number|Long){
-    //   let item = new(FriendItem);
-    //   item.ID = gid;
-    //   this.us.getGroupById(item.ID).subscribe((data)=>{
-    //     item.Name = data["Name"];
-    //     item.Headimg = data["Headimg"];
-    //   });
-    //   item.Counter = 1;
-    //   item.Isgroup = true;
-    //   this.wsFriendList.List.push(item);
-    //   let sess = new(Session)
-    //   sess.ID = item.ID
-    //   sess.Isgroup = true;
-    //   sess.MList = [];
-    //   this.wsMessageList.List.push(sess);
-    // }
-    // // 发送信息，不在这里构造消息体
-    // sendMessage(message: Protocol.Message){
-    //   message.time = Date.now()
-    //   // console.log("mes.contentype=",message.contentType);
-    //   if (message.type ==  Protocol.Message.Type.REQUEST) {
-    //     if(message.cmd == Protocol.Message.CtrlType.NONE){  // 单聊或群聊
-    //       for(let i=0;i<this.wsMessageList.List.length;i++){
-    //         if(message.isgroup == this.wsMessageList.List[i].Isgroup&&message.to==this.wsMessageList.List[i].ID){
-    //           let item = new(MessageItem);
-    //           item.Mid = 0;
-    //           item.From = message.from;
-    //           item.To = message.to;
-    //           item.Content = message.content;
-    //           item.ContentType =message.contentType;
-    //           item.Time = message.time;
-    //           this.wsMessageList.List[i].MList.push(item);
-    //           break;
-    //         }
-    //       }
-    //     }
-    //   }else if(message.cmd == Protocol.Message.CtrlType.MSG_BACK){   // 撤回消息
-    //     if(message.msgid == 0){
-    //       alert("消息ＩＤ不存在，无法撤回");
-    //     }
-    //     for(let i=0;i<this.wsMessageList.List.length;i++){
-    //       if (message.to==this.wsMessageList.List[i].ID && message.isgroup == this.wsMessageList.List[i].Isgroup){
-    //         for(let j=0;j<this.wsMessageList.List[i].MList.length;j++){
-    //           if (this.wsMessageList.List[i].MList[j].Mid == message.msgid){
-    //             this.wsMessageList.List[i].MList.slice(j,1);
-    //             break;
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    //   console.log("发送前的数据",message)
-    //   this.ws.send(Protocol.Message.encode(message).finish());
-    // }
-    // delectMessage(id: number){//撤回消息
-    // }
-    // //  下面函数是登录的时候初始数据 
-    // //
-    // // 获取聊天列表，或者是好友聊天列表
-    // getChatList(){
-    //   let url  = environment.apiUrl+"/chatlist"
-    //   return this.http.get(url)
-    // }
-    // HistoryMessage(info){
-    //   this.getChatMessageList(info).subscribe((data:MsgList) => {
-    //     console.log("历史消息原数据",data)
-    //     this.wsMessageList.List =[];
-    //     if (data.List == null) {
-    //       data.List = [];
-    //     }
-    //     for(let i=0;i<data.List.length;i++){
-    //         let session = new(Session);
-    //         session.MList = [];
-    //         if (data.List[i].length>0){
-    //           session.ID = data.List[i][0].From;
-    //           if (data.List[i][0].Isgroup ||session.ID == this.us.MyUserId) {
-    //             session.ID = data.List[i][0].To;
-    //           }
-    //           session.Isgroup = data.List[i][0].Isgroup;
-    //         }else{continue;}
-    //         // console.log("session.ID",session.ID, data.List[i][0].To,data.List[i][0].From)
-    //        for(let j=0;j<data.List[i].length;j++){
-    //         let Item = new(MessageItem);
-    //         Item.Mid = data.List[i][j].Mid;
-    //         Item.From = data.List[i][j].From;
-    //         Item.To = data.List[i][j].To;
-    //         Item.Content = data.List[i][j].Content;
-    //         Item.ContentType = data.List[i][j].ContentType;
-    //         Item.Time = data.List[i][j].Time;
-    //         session.MList.push(Item);
-    //       }
-    //       this.wsMessageList.List.push(session)
-    //       // console.log("ContenType = ", session.MList);
-    //     }
-    //     console.log("历史消息",this.wsMessageList.List)
-    //   })
-    // }
-    WebsocketService.prototype.InitChatList = function () {
-        this.getAddressBook().subscribe(function (data) {
-            console.log("通讯录", data);
-            var HL = new (_common_im__WEBPACK_IMPORTED_MODULE_6__["AddressBook"]);
-            HL.friends_list = [];
-            //   for(let i=0;i<data.List.length;i++){
-            //     let FriItem:FriendItem = new(FriendItem);
-            //     FriItem.ID=data.List[i].Id;
-            //     FriItem.Name=data.List[i].Name;
-            //     FriItem.Headimg=data.List[i].Headimg;
-            //     FriItem.Isgroup=data.List[i].Isgroup;
-            //     FriItem.Counter=data.List[i].Counter;
-            //     this.wsFriendList.List.push(FriItem)
-            //     let Ht = new(Hist);
-            //     Ht.ID = data.List[i].Id;
-            //     Ht.Isgroup = data.List[i].Isgroup;
-            //     HL.List.push(Ht)
-            //   }
-            //   this.HistoryMessage(HL)
-        });
+    // 发送信息，不在这里构造消息体
+    WebsocketService.prototype.sendMessage = function (message) {
+        // console.log("mes.contentype=",message.contentType);
+        //先发送出数据
+        console.log("websocket发送前的数据:", message);
+        this.ws.send(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(message).finish());
+        if (message.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST) {
+            if (message.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
+                // TODO 单聊或群聊发送消息 在本地显示
+            }
+        }
+        else if (message.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
+            if (message.msgid == 0) {
+                alert("消息ＩＤ不存在，无法撤回");
+            }
+            else {
+            }
+            // 撤回消息
+            // TODO 单聊或群聊发送消息 消息在本地消失
+        }
+    };
+    //分析消息
+    WebsocketService.prototype.parseNotification = function (conn) {
+        if (conn.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.NOTIFICATION) {
+            console.log("NOTIFICATION");
+            if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
+                // 说明是一条 单发或群发消息，在本地显示
+            }
+            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) {
+                // 说明是陌生人主动找你聊天,需要在本地创建和他聊天的chatroom
+            }
+            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_GROUP || conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS) {
+                // 需要在本地创建和群聊天的chatroom
+            }
+            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
+                // 消息撤回 需要删除本地消息,以示撤回
+            }
+        }
+        else if (conn.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.ACK) {
+            if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
+                // 发送的消息已经确认，把回送的 message id加入到那条信息 
+            }
+            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) {
+            }
+            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_GROUP || conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS) {
+            }
+        }
     };
     WebsocketService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -2165,7 +2071,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/goworks/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/pjw/GoProject/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
 
 
 /***/ })

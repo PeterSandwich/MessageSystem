@@ -8,6 +8,7 @@ enum Type {
 ACK 		 = 0;
 REQUEST 	 = 1;
 NOTIFICATION = 2;
+ERROR		 = 4;
 }
 
 enum CtrlType {
@@ -22,6 +23,12 @@ TEXT = 0;
 IMG  = 1;
 FILE = 2;
 }
+enum ErrorCode {
+	REQUEST_BODY_PARAMS_ERROR=0;
+	GROUP_CREATION_FAILED = 1;
+	WITHDRAW_MESSAGE_FAILED = 2;
+	CHAT_SESSION_CREATION_FAILED = 3;
+}
 
 Type type   			= 1;
 CtrlType cmd			= 2;
@@ -33,4 +40,5 @@ ContentType content_type= 7;
 int64 msgid             = 8; //消息服务器对消息的编号
 int64  time		        = 9; //发包时间戳
 repeated int64 userlist = 10;
+ErrorCode errcode		= 11;
 }
