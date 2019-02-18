@@ -1856,9 +1856,9 @@ var WebsocketService = /** @class */ (function () {
         var _this = this;
         this.getNearestContact().subscribe(function (data) {
             console.log("最近联系人", data);
-            if (data.contact_list == null) {
-                data.contact_list = [];
-            }
+            // if(data.contact_list.length == 0){
+            //   data.contact_list = [];
+            // }
             // let HL =  new(com.NearestContact);
             _this.nearest_contact.contact_list = [];
             // this.nearest_contact.contact_list = data.contact_list;

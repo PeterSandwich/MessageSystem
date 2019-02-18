@@ -81,9 +81,9 @@ export class WebsocketService {
   getNearestList(){//获取最近联系人
       this.getNearestContact().subscribe((data) => {
         console.log("最近联系人",data);
-        if(data.contact_list == null){
-          data.contact_list = [];
-        }
+        // if(data.contact_list.length == 0){
+        //   data.contact_list = [];
+        // }
         // let HL =  new(com.NearestContact);
         this.nearest_contact.contact_list = [];
         // this.nearest_contact.contact_list = data.contact_list;
@@ -112,7 +112,7 @@ export class WebsocketService {
         allChatRoom.chatroomList = data.body['chat_room_list'];
         allChatRoom.size = data.body['size'];
         console.log("allChatRoom = ", allChatRoom) 
-        this.all_chat_room = allChatRoom;
+        this.all_chat_room = allChatRoom
       })
       
     }
