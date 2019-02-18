@@ -10,15 +10,15 @@ type RegisterReq struct {
 }
 
 type LoginReq struct {
-	Name string
-	PassWord string
+	Name string `json:"name"`
+	PassWord string	`json:"password"`
 }
 
 type LoginResp struct {
-	Id int64
-	Name string
-	HeadImg	string
-	SessionId string
+	Id int64 `json:"id"`
+	Name string`json:"name"`
+	HeadImg	string`json:"head_img"`
+	SessionId string`json:"session_id"`
 }
 
 type UserInfo struct {

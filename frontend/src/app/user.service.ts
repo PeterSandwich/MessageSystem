@@ -14,7 +14,7 @@ export class UserService {
   signupUrl = this.configUrl+'/signup'
   quitUrl = this.configUrl+'/quit'
   postLoginData(data) {
-    return this.http.post(this.loginUrl, data);
+    return this.http.post(this.loginUrl, data,{observe:'response'});
   }
   postSignupData(data) {
     return this.http.post(this.signupUrl, data);

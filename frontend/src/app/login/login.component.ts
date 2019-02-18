@@ -9,27 +9,26 @@ import { environment } from '../../environments/environment';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent {
 
   constructor(private us: UserService,private ws: WebsocketService,private router: Router) { }
   name =''
   password = ''
+  
   submit(){
       let body = {name:this.name,password:this.password}
-      this.us.postLoginData(body).subscribe(data =>{
-        if(data['Ok']){
+      this.us.postLoginData(body).subscribe(data => {
+        console.log(data.status)
+        if(data.status==200){
+          let respond:any = data["body"];
+          alert("登录成功");
           this.us.isLogin=true;
-          this.router.navigate(['']);
-          console.log(data['Uid']);
-          this.us.MyUserId = data['Uid'];
-          this.us.myName = data['Name'];
-          this.us.myImg = data['Headimg'];
-          this.ws.createSocket(environment.websocketUrl);
-          this.ws.InitChatList();
-        }else{
-          alert(data['Errmsg']);
+          this.router.navigate(['chat']);
         }
-
+        else{
+          alert("登录失败")
+        }
       })
   }
 }
