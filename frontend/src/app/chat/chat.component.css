@@ -1,30 +1,7 @@
-/* :host ::ng-deep .demo-infinite-container {
-    height: 300px;
-    border: 1px solid #e8e8e8;
-    border-radius: 4px;
-  } */
-
-:host ::ng-deep .demo-infinite-container {
-  height: 300px;
-  border: 1px solid #e8e8e8;
-  border-radius: 4px;
-}
-.avatar{
-  height: 80px;
-  width: 200px;
-
-}
-.avatar2{
-  overflow-y: auto;
-  overflow-x:none;
-  height: 80px;
-  width: 200px;
-}
 .container{
-  /* background-color:rgb(223, 219, 219); */
   background-color: #DDDDDD;
-  width: 1002px;
-  height: 740px;
+  width: 1024px;
+  height: 675px;
   position: absolute;
   margin: auto;
   top: 0;
@@ -32,48 +9,105 @@
   right: 0;
   bottom: 0;
   z-index: 1;
-  border-color: #616060;
-  /* border: 2px;
-  color: #000000 */
 }
-.search{
-  position:absolute;
-  margin-top: 15px;
-  margin-left: 5px;
+.avatar{
+  /* 1 */
+  background-color: rgb(198, 228, 98);
+  height: 40px;
   width: 240px;
   height: 30px;
 }
-.icon{
-  cursor: pointer;
+.him{
+  /* 2 */
+  background-color: rgb(101, 216, 206);
+  width: 790px;
+  height: 60px;
+  color: #444444;
+  padding-left: 20px;
+}
+.avatar2{
+  /* 3 */
+  background-color: rgb(121, 202, 128);
+  height: 35px;
+  width: 790px;
+}
+
+.inputmes{
+  /* 5 */
+  background-color: rgb(240, 244, 255);
+  vertical-align: top;
+  width: 790px;
+  height: 190px;
+  /* background-color: white; */
+}
+.tool{
+  /* 6 */
+  width: 790px;
+  height: 35px;
+  background-color: rgb(233, 173, 168);
+
 }
 .list{
-  background-color: #7a7a7a;
-  width: 250px;
-  height: 590px;
-  /* color: white; */
+  /* 4 */
+  background-color: rgb(229, 155, 226);
 
-  /* overflow-y:scroll;  纵向滚动条始终显示 */
+  width: 240px;
+  height: 550px;
+  overflow-x: none;
   overflow-y: auto;
-  overflow-x:none;
+  vertical-align: top;
+
+}
+.list li{
+    height: 65px;
+    list-style-type: none;
+    vertical-align: middle;
+    padding: 15px;
 }
 .item{
-  color: white;
-  border-bottom:1px solid #EEE;
-  height: 65px;
-  font-size: 12px;
-  /* font-display: center; */
-  vertical-align: middle;
-  /* text-align: center; */
-  position: relative;
+    color: white;
+    border-bottom:1px solid #EEE;
+    height: 65px;
+    font-size: 12px;
+    /* font-display: center; */
+    vertical-align: middle;
+    /* text-align: center; */
+    position: relative;
+    cursor: pointer;
+}
+.list li:hover{
+  background-color: bisque;
+}
+.list li.selected:hover{
+  background-color: aquamarine !important
+}
+.selected{
+  background-color: aqua !important
+}
+.search{
+  background-color: rgb(46, 64, 230);
+  height: 35px;
+  width: 240px;
+}
+.bar{
+  background-color: rgb(133, 91, 78);
+  height: 35px;
+  width: 240px;
+}
+.bartool{
+  width: 70px;
+}
+.dropdown{
+  z-index: 100;
+}
+.grad{
+  width: 70px;
+  background-color:transparent;
+  border: 0px;
+  outline: none;
   cursor: pointer;
-
+  height: 25px;
 }
-.item:hover{
-  background-color: #8a8a8a;
-}
-/* nz-list-item{
-  color: white;
-} */
 .img{
   /* margin: 5px; */
   /* margin-top: 10px; */
@@ -83,72 +117,23 @@
   /* border-radius:50%;  */
   overflow:hidden;
 }
-.message{
-  width: 750px;
-  height: 480px;
-  background-color: #F9F9F9;
-  padding: 0px;
-  overflow-y: auto;
-  overflow-x: none;
-  vertical-align: top;
+.send{
+  position: absolute;
+  margin-left: 720px;
+  margin-top: 155px;
+  z-index: 100;
 }
-.message1{
-  width: 750px;
-  height: 480px;
-  background-color: #F9F9F9;
-  padding: 10px;
-  overflow-y: auto;
-  overflow-x: none;
-  vertical-align: top;
-}
-.inputmes{
-  width: 749px;
-  height: 200px;
-  background-color: white;
-}
-.him{
-  height: 60px;
-  color: #444444;
-}
-
 .textarea{
   background-color: white;
   resize: none;
-  width: 750px;
-  height: 140px;
+  width: 790px;
+  height: 150px;
   position: absolute;
-  padding: 10px;
+  padding: 15px;
   border: none;
   outline: none;
   /* margin-top: 30px; */
 }
-.tool{
-  width: 750px;
-  background-color: #EEEEEE;
-  height: 30px;
-  cursor: pointer;
-
-}
-.icon{
-  margin-left: 15px;
-  margin-top: 3px;
-  color: #777777;
-}
-.send{
-  position: absolute;
-  margin-left: 680px;
-  margin-top: 130px;
-}
-/* .arrow {
-  vertical-align: middle;
-  width:200px;
-  height:25px;
-  font-size:16px;
-  background-color: #AABBCC ;
-  margin: 15px;
-  overflow-wrap: normal;
-} */
-
 #box{
   min-height: 30px;          
   border-radius: 5px;        
@@ -223,90 +208,15 @@
     border-left: 13px solid #088cb7;
     border-bottom: 6px solid transparent;
 }
-.tips{
-  position: relative; 
-  text-align: center;
-  vertical-align: middle;;
+.message1{
+  width: 790px;
+  height: 430px;
+  background-color: #F9F9F9;
+  padding: 10px;
+  overflow-y: auto;
+  overflow-x: none;
+  vertical-align: top;
 }
-.grad{
-  width: 80px;
-  background-color:transparent;
-  border: 0px;
-  outline: none;
+.mesback{
   cursor: pointer;
-  height: 25px;
-}
-.point{
-  /* width: 2px; */
-  /* left: 60px; */
-  margin:5px;
-}
-
-.smallContainer{
-  width: 240px;
-  background-color: #FFFFFF;
-  position:absolute;
-  text-align: center;
-  z-index: 50;
-}
-.headportrait{
-  position: relative;
-  width:230px;
-  height:230px;
-  bottom: -26px;
-  margin-left:26px;
-  cursor:pointer;
-}
-
-:host ::ng-deep .headportrait img{
-  width:100%;height:100%;
-
-}
-
-.mask  {    
-  position: absolute;    
-  width: 100%;    
-  height: 100%;      
-  background: #868c89;    
-  opacity: 0;	
-  color: black;
-  text-align: center;
-  line-height:230px;
-  margin-top: -230px;
-}/*hover状态（按你的需求）控制显示。opacity/display/z-index都可以*/	
-.headportrait:hover .mask {    opacity: .5;	}
-
-.upload-btn {
-background-color: #337ab7;
-color: #fff;
-border-radius: 2px;
-border: none;
-/* padding: .5rem 1.3rem; */
-cursor: pointer;
-height: 30px;
-}
-
-.picture {
-width: 7rem;
-/* height: 7rem; */
-margin-right: 1rem;
-background-size: cover;
-}
-
-.action-box {
-margin-left: 1rem;
-}
-.hint {
-color: #909090;
-font-size: 1.7rem;
-margin-bottom: 1.5rem;
-}
-
-.dropdown{
-  z-index: 100;
-  position:absolute;
-  margin-left: 16px;
-  background-position-y: 230px;  
-  width: 80px;
-  height: 25px;
 }

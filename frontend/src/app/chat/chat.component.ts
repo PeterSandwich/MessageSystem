@@ -2,13 +2,17 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@ang
 // import { MesList, FriendList, FriendItem, MessageList } from './data';
 
 
-import { WebsocketService,FriendList, Userlist, MessageList, MessageItem} from '../websocket.service';
+import { WebsocketService } from '../websocket.service';
+// import { NearestContact, NearestContactItem, AddressBookItem, AddressBook } from '../common/im'
 // import { WebsocketService,FriendItem,Session,MessageItem } from '../websocket.service';
 import { timer, Observable, fromEvent} from 'rxjs';
 import { UserService } from '../user.service';
 import { Injectable } from '@angular/core';
 import { UploadService } from '../file.service';
 import { Protocol } from '../protocol/Protocol';
+import { fromBytes } from 'long';
+import * as data from './data'
+import * as com from '../common/im'
 @Injectable()
 @Component({
   selector: 'app-chat',
@@ -23,9 +27,15 @@ export class ChatComponent implements OnInit {
   from_id = 1;
   to_id = 0;
 
-  my_id = this.us.MyUserId;
-  my_img_url = this.us.myImg;
-  my_name = this.us.myName;
+  my_id : number;
+  my_img_url : string;
+  my_name : string;
+
+  addressList : com.AddressBookItem[];
+  addressItem : com.AddressBookItem;
+
+
+
 
   to_name = ""
   to_img = "";
@@ -34,21 +44,29 @@ export class ChatComponent implements OnInit {
   content = "";
   // group_name = '';
   list = [];
-  showmsg : MessageItem[];
-  searchContent : string = "";
-  searchFriend : string = "";
-  groupName : string = "";
+  showmsg : com.MessageItem[];
 
-  idList : number[] = null;
+  // searchContent : string = "";
+  // searchFriend : string = "";
+  // groupName : string = "";
+
   isVisible : boolean = false;
-  isslect: boolean;
+  isselect: boolean;
   isgroup: boolean = false;
 
-  friendlist : FriendList;
-  userlist : Userlist[];
-  messagelist : MessageList;
+  friendlist : com.NearestContact;
+  friend : com.NearestContactItem;
+  // userlist : Userlist[];
+  messagelist : com.ChatRoom[];
   addGroupUserList:AddGroupUserlist;
 
+  pressBoolean : boolean = false;
+  px : string = "";
+  py : string = "";
+  // mesItem = MessageItem;
+  contentType : number = 0;
+  backMes : string = "";
+  isPress : boolean = false;
 
   constructor(
     public ws:WebsocketService, 
@@ -58,7 +76,7 @@ export class ChatComponent implements OnInit {
     ) {
       this.addGroupUserList=new(AddGroupUserlist);
       this.addGroupUserList.AGlist = [];
-      this.userlist = [];
+      // this.userlist = [];
      }
 
 
@@ -68,60 +86,85 @@ export class ChatComponent implements OnInit {
     }
     
     ngOnInit(){
-      this.friendlist = this.ws.wsFriendList;
-      // console.log("friendList=", this.friendlist);
-      this.friendlist = this.ws.wsFriendList;
-      
-      // console.log("friendList=", this.friendlist);
-      // console.log("wsfriendlist=", this.ws.wsFriendList);
-      this.messagelist = this.ws.wsMessageList;
+      // this.friendlist = data.nearContractList;
+      this.addressList = data.addressList;
+      this.messagelist = data.chatRoom;
+      this.friendlist = this.ws.nearest_contact;
+      console.log("friendlist = ", this.friendlist)
+      this.my_id = this.us.MyUserId;
+      this.my_img_url = this.us.myImg;
+      this.my_name = this.us.myName;
+      // console.log("id, name = ", this.my_id, this.my_name)
 
-      // console.log("messagelist = ", this.messagelist);
-      // console.log("my=", this.us);
-      // console.log("from_id=", this.my_id);
-      var now = new Date(); //设置滚动条保持在最底部
-      var div = document.getElementById('scrolldIV');
-      now.getTime();
-      div.scrollTop = div.scrollHeight;
+      this.scollbuttom();
       this.show=false
+      this.pressBoolean = false;
+      this.isPress = false;
     }
 
     his(event){//防止右键点击是弹出默认面板
       event.preventDefault();
+      if(event.button != 2 || !this.isPress){
+        this.pressBoolean = false;
+        this.isPress= false;
+        return;
+      }
     }
-    he(event){//可自定义右键事件
-      if(event.button == 2)
-        console.log("点击右键")
-      else if(event.button == 1){
-        console.log("点击了中键")
+    he(event, content: string){//可自定义右键事件
+      if(event.button != 2){
+        this.pressBoolean = false;
+        this.isPress = false;
+        return ;
       }
-      else if(event.button == 0){
-        console.log("点击了左键")
-      }
+      this.isPress = true;
+      this.backMes = content;
+      this.pressBoolean = true;
+      var px = event.clientX;
+      var py = event.clientY;
+      this.px = String(px) + 'px';
+      this.py = String(py) + 'px';
+      console.log("style=", this.px, this.py)
+    }
+    backdata(){
+      let msg = new(Protocol.Message)
+      msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
+      msg.cmd = Protocol.Message.CtrlType.MSG_BACK;// 消息的功
+      msg.from = this.us.MyUserId;              // 消息发送方
+      msg.to = this.to_id;                   //消息接收方
+      msg.content = this.backMes;             //消息内容
+      msg.contentType = this.contentType;　  //消息类型
+      msg.isgroup = this.isgroup;                       //是不是群组消息
+      // console.log("this.msg && this.to_id = ", msg, this.to_id);
+      // this.ws.sendMessage(msg);
+      this.backMes = "";
     }
 
-    test2(id: number,name : string, img: string, isgroup: boolean){
-      this.isslect = true;
+    test2(index: number, id: number,name : string, img: string, isgroup: boolean){
+      this.isselect = true;
       this.to_id = id;
       this.to_name = name;
       this.to_img = img;
       this.isgroup = isgroup;
       var flag : boolean = false;
-      for(let i = 0; i < this.friendlist.List.length; i++){
-        if(id == this.friendlist.List[i].ID){
-          this.friendlist.List[i].Counter = 0;
+      this.friend = this.friendlist.contact_list[index];
+      for(let i = 0; i < this.friendlist.contact_list.length; i++){
+        if(id == this.friendlist.contact_list[i].id){
+          this.friendlist.contact_list[i].count = 0;
         }
       }
-      for(var i = 0; i < this.messagelist.List.length; i++){
-        if(id == this.messagelist.List[i].ID){
-          this.showmsg = this.messagelist.List[i].MList;
-          this.isgroup = this.messagelist.List[i].Isgroup;
+      for(var i = 0; i < this.messagelist.length; i++){
+        if(id == this.messagelist[i].id){
+          this.showmsg = this.messagelist[i].message_list;
+          this.isgroup = this.messagelist[i].is_group;
           flag = true;
         }
       }
       if(!flag){
           this.showmsg = [];
       }
+      console.log("showmsg=", this.showmsg);
+      this.scollbuttom();
+
     }
     sendMsg() {
       this.content = this.content.replace(/^\s*/,'');//去除左边空格
@@ -139,8 +182,8 @@ export class ChatComponent implements OnInit {
       now.getTime();
       div.scrollTop = div.scrollHeight;
       switch(this.isgroup){
-        case false: this.sendC2C();break;
-        case true: this.sendToGoup();break;
+        case false: this.sendC2C();this.scollbuttom();break;
+        case true: this.sendToGoup();this.scollbuttom();break;
         default: console.log("default");break;
       }
     }
@@ -152,9 +195,10 @@ export class ChatComponent implements OnInit {
       msg.to = this.to_id;                   //消息接收方
       msg.content = this.content;             //消息内容
       msg.contentType = Protocol.Message.ContentType.TEXT;　  //消息类型
+      this.contentType = msg.contentType;
       msg.isgroup = false;                       //是不是群组消息
       // console.log("this.msg && this.to_id = ", msg, this.to_id);
-      this.ws.sendMessage(msg);
+      // this.ws.sendMessage(msg);
       this.content = "";
   }
  
@@ -166,9 +210,10 @@ export class ChatComponent implements OnInit {
       msg.to = this.to_id;
       msg.content = this.content;
       msg.contentType = Protocol.Message.ContentType.TEXT;
+      this.contentType = msg.contentType;
       // console.log("type=", msg.contentType)
       msg.isgroup = true;
-      this.ws.sendMessage(msg);
+      // this.ws.sendMessage(msg);
       this.content = "";
 
     }
@@ -179,13 +224,13 @@ export class ChatComponent implements OnInit {
         var btn = document.getElementById("search");
         btn.focus();
         this.isVisible = document.hasFocus();
-        this.userlist = [];
+        // this.userlist = [];
     }
     outMe(){
       var btn = document.getElementById("search");
       btn.blur();
       this.isVisible = document.hasFocus();
-      this.userlist = [];
+      // this.userlist = [];
     }
     cancelEditingTodo(){
       this.isVisible = false;
@@ -199,16 +244,16 @@ export class ChatComponent implements OnInit {
     }
     search(){
       // console.log("search=", this.searchContent);
-      this.ws.getUserList(this.searchContent).subscribe(data => {
-        this.userlist = data.Ulist;
-        this.flag = false;
-      })
-      if(this.searchContent == ""){
-        return;
-      }
-      if(this.userlist.length == 0) {
-        this.flag = true;
-      }
+      // this.ws.getUserList(this.searchContent).subscribe(data => {
+      //   this.userlist = data.Ulist;
+      //   this.flag = false;
+      // })
+      // if(this.searchContent == ""){
+      //   return;
+      // }
+      // if(this.userlist.length == 0) {
+      //   this.flag = true;
+      // }
     }
     addfriend(to: number){
       let msg = new(Protocol.Message)
@@ -217,7 +262,7 @@ export class ChatComponent implements OnInit {
       msg.from = this.us.MyUserId;
       msg.to = to;
       msg.time = Date.now();
-      this.ws.sendMessage(msg)
+      // this.ws.sendMessage(msg)
     }
 
 
@@ -269,8 +314,9 @@ export class ChatComponent implements OnInit {
              msg.to = this.to_id;
              msg.content = this.dfileurl;
              msg.contentType = filetype; 
+             this.contentType = msg.contentType;
              msg.isgroup = false;
-             this.ws.sendMessage(msg);
+            //  this.ws.sendMessage(msg);
              this.content = "";
           }
          
@@ -311,15 +357,15 @@ export class ChatComponent implements OnInit {
     isAddGroupVisible = false;
     isAddGroupConfirmLoading = false;
     showAddGroupModal(): void {
-      for(let i=0;i<this.ws.wsFriendList.List.length;i++){
-        if(this.ws.wsFriendList.List[i].Isgroup){continue;}
-        let item = new(AddGroupUserItem);
-        item.ID=Number(this.ws.wsFriendList.List[i].ID);
-        item.Name=this.ws.wsFriendList.List[i].Name;
-        item.Headimg=this.ws.wsFriendList.List[i].Headimg;
-        item.Check = false;
-        this.addGroupUserList.AGlist.push(item);
-      }
+      // for(let i=0;i<this.ws.wsFriendList.List.length;i++){
+      //   if(this.ws.wsFriendList.List[i].Isgroup){continue;}
+      //   let item = new(AddGroupUserItem);
+      //   item.ID=Number(this.ws.wsFriendList.List[i].ID);
+      //   item.Name=this.ws.wsFriendList.List[i].Name;
+      //   item.Headimg=this.ws.wsFriendList.List[i].Headimg;
+      //   item.Check = false;
+      //   this.addGroupUserList.AGlist.push(item);
+      // }
       this.isAddGroupVisible = true;
     }
     handleAddGroupCancel(): void {
@@ -349,7 +395,7 @@ export class ChatComponent implements OnInit {
         }
       }
       msg.userlist.push(this.us.MyUserId);
-      this.ws.sendMessage(msg);
+      // this.ws.sendMessage(msg);
       this.addGroupUserList.AGlist = [];
       this.GroupName = '';
       this.isAddGroupVisible = false;
@@ -371,7 +417,14 @@ export class ChatComponent implements OnInit {
     handleAddFriendOk(){
 
     }
-
+    scollbuttom(){
+      var dis = document.getElementById('scrolldIV');
+      // var now = new Date(); //设置滚动条保持在最底部
+      // now.getTime();
+      try {
+        dis.scrollTop = dis.scrollHeight;
+    } catch(err) { }   
+  }
 }
   
 export class AddGroupUserItem{
