@@ -85,7 +85,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -96,7 +96,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nz-layout class=\"layout\">\n  <nz-header>\n    <ul nz-menu [nzTheme]=\"'dark'\" [nzMode]=\"'horizontal'\" style=\"line-height: 64px;\">\n      <li nz-menu-item routerLink=\"\" routerLinkActive=\"active\" >首页</li>\n      <li nz-menu-item routerLink=\"/login\" routerLinkActive=\"active\" [hidden]=\"login.isLogin\">登录</li>\n      <li nz-menu-item routerLink=\"/signup\" routerLinkActive=\"active\" [hidden]=\"login.isLogin\">注册</li>\n      <li nz-menu-item routerLink=\"/chat\" routerLinkActive=\"active\" [hidden]=\"!login.isLogin\"> <nz-badge nzDot style=\"color:white\"><a>消息</a></nz-badge></li>\n      <li nz-menu-item  (click)=\"quit()\" [hidden]=\"!login.isLogin\">退出</li>\n    </ul>\n  </nz-header>\n  <nz-content style=\"padding:0 50px;\">\n    <div style=\"background:#AAAAAA; padding: 24px; min-height: 800px;\">\n      <router-outlet></router-outlet>\n    </div>\n  </nz-content>\n</nz-layout>"
+module.exports = "<nz-layout class=\"layout\">\r\n  <nz-header>\r\n    <ul nz-menu [nzTheme]=\"'dark'\" [nzMode]=\"'horizontal'\" style=\"line-height: 64px;\">\r\n      <li nz-menu-item routerLink=\"\" routerLinkActive=\"active\" >首页</li>\r\n      <li nz-menu-item routerLink=\"/login\" routerLinkActive=\"active\" [hidden]=\"login.isLogin\">登录</li>\r\n      <li nz-menu-item routerLink=\"/signup\" routerLinkActive=\"active\" [hidden]=\"login.isLogin\">注册</li>\r\n      <li nz-menu-item routerLink=\"/chat\" routerLinkActive=\"active\" [hidden]=\"!login.isLogin\"> <nz-badge nzDot style=\"color:white\"><a>消息</a></nz-badge></li>\r\n      <li nz-menu-item  (click)=\"quit()\" [hidden]=\"!login.isLogin\">退出</li>\r\n    </ul>\r\n  </nz-header>\r\n  <nz-content style=\"padding:0 50px;\">\r\n    <div style=\"background:#AAAAAA; padding: 24px; min-height: 800px;\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n  </nz-content>\r\n</nz-layout>"
 
 /***/ }),
 
@@ -229,7 +229,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* :host ::ng-deep .demo-infinite-container {\n    height: 300px;\n    border: 1px solid #e8e8e8;\n    border-radius: 4px;\n  } */\n\n:host ::ng-deep .demo-infinite-container {\n  height: 300px;\n  border: 1px solid #e8e8e8;\n  border-radius: 4px;\n}\n\n.avatar{\n  height: 80px;\n  width: 200px;\n\n}\n\n.avatar2{\n  overflow-y: auto;\n  overflow-x:none;\n  height: 80px;\n  width: 200px;\n}\n\n.container{\n  /* background-color:rgb(223, 219, 219); */\n  background-color: #DDDDDD;\n  width: 1002px;\n  height: 740px;\n  position: absolute;\n  margin: auto;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 1;\n  border-color: #616060;\n  /* border: 2px;\n  color: #000000 */\n}\n\n.search{\n  position:absolute;\n  margin-top: 15px;\n  margin-left: 5px;\n  width: 240px;\n  height: 30px;\n}\n\n.icon{\n  cursor: pointer;\n}\n\n.list{\n  background-color: #7a7a7a;\n  width: 250px;\n  height: 590px;\n  /* color: white; */\n\n  /* overflow-y:scroll;  纵向滚动条始终显示 */\n  overflow-y: auto;\n  overflow-x:none;\n}\n\n.item{\n  color: white;\n  border-bottom:1px solid #EEE;\n  height: 65px;\n  font-size: 12px;\n  /* font-display: center; */\n  vertical-align: middle;\n  /* text-align: center; */\n  position: relative;\n  cursor: pointer;\n\n}\n\n.item:hover{\n  background-color: #8a8a8a;\n}\n\n/* nz-list-item{\n  color: white;\n} */\n\n.img{\n  /* margin: 5px; */\n  /* margin-top: 10px; */\n  height:40px; \n  width:40px; \n  position: relative;\n  /* border-radius:50%;  */\n  overflow:hidden;\n}\n\n.message{\n  width: 750px;\n  height: 480px;\n  background-color: #F9F9F9;\n  padding: 0px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n\n.message1{\n  width: 750px;\n  height: 480px;\n  background-color: #F9F9F9;\n  padding: 10px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n\n.inputmes{\n  width: 749px;\n  height: 200px;\n  background-color: white;\n}\n\n.him{\n  height: 60px;\n  color: #444444;\n}\n\n.textarea{\n  background-color: white;\n  resize: none;\n  width: 750px;\n  height: 140px;\n  position: absolute;\n  padding: 10px;\n  border: none;\n  outline: none;\n  /* margin-top: 30px; */\n}\n\n.tool{\n  width: 750px;\n  background-color: #EEEEEE;\n  height: 30px;\n  cursor: pointer;\n\n}\n\n.icon{\n  margin-left: 15px;\n  margin-top: 3px;\n  color: #777777;\n}\n\n.send{\n  position: absolute;\n  margin-left: 680px;\n  margin-top: 130px;\n}\n\n/* .arrow {\n  vertical-align: middle;\n  width:200px;\n  height:25px;\n  font-size:16px;\n  background-color: #AABBCC ;\n  margin: 15px;\n  overflow-wrap: normal;\n} */\n\n#box{\n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-left: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n\n    position: relative;\n    left:30px; \n    width: 140px;\n    min-height: 30px;\n    line-height: 20px;\n    margin-left: 10px;\n    word-wrap: 5px;\n    background: #088cb7;\n    border-radius: 4px;\n    padding: 10px;\n    margin-top:10px;\n    vertical-align: middle;\n    text-align: center;\n}\n\n/*左方说话*/\n\n#box:before{\n    position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    right: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-right: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n\n/*右方说话*/\n\n#box1{          \n  min-height: 30px;          \n  border-radius: 5px;        \n  /* line-height: 50px;         */\n  margin-right: 10px;        \n  word-break: break-word;        \n  color: white;        \n  padding: 5px;        \n  line-height: 18px;\n\n  position: relative;\n  left:560px; \n  width: 140px;\n  /* height: 30px; */\n  background: #088cb7;\n  border-radius: 4px;\n  /* padding: 10px; */\n  margin-top:10px;\n  vertical-align: middle;\n  text-align: center;\n}\n\n#box1:before{\n  position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    left: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-left: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n\n.tips{\n  position: relative; \n  text-align: center;\n  vertical-align: middle;;\n}\n\n.grad{\n  width: 80px;\n  background-color:transparent;\n  border: 0px;\n  outline: none;\n  cursor: pointer;\n  height: 25px;\n}\n\n.point{\n  /* width: 2px; */\n  /* left: 60px; */\n  margin:5px;\n}\n\n.smallContainer{\n  width: 240px;\n  background-color: #FFFFFF;\n  position:absolute;\n  text-align: center;\n  z-index: 50;\n}\n\n.headportrait{\n  position: relative;\n  width:230px;\n  height:230px;\n  bottom: -26px;\n  margin-left:26px;\n  cursor:pointer;\n}\n\n:host ::ng-deep .headportrait img{\n  width:100%;height:100%;\n\n}\n\n.mask  {    \n  position: absolute;    \n  width: 100%;    \n  height: 100%;      \n  background: #868c89;    \n  opacity: 0;\t\n  color: black;\n  text-align: center;\n  line-height:230px;\n  margin-top: -230px;\n}\n\n/*hover状态（按你的需求）控制显示。opacity/display/z-index都可以*/\n\n.headportrait:hover .mask {    opacity: .5;\t}\n\n.upload-btn {\nbackground-color: #337ab7;\ncolor: #fff;\nborder-radius: 2px;\nborder: none;\n/* padding: .5rem 1.3rem; */\ncursor: pointer;\nheight: 30px;\n}\n\n.picture {\nwidth: 7rem;\n/* height: 7rem; */\nmargin-right: 1rem;\nbackground-size: cover;\n}\n\n.action-box {\nmargin-left: 1rem;\n}\n\n.hint {\ncolor: #909090;\nfont-size: 1.7rem;\nmargin-bottom: 1.5rem;\n}\n\n.dropdown{\n  z-index: 100;\n  position:absolute;\n  margin-left: 16px;\n  background-position-y: 230px;  \n  width: 80px;\n  height: 25px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2hhdC9jaGF0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7S0FJSzs7QUFFTDtFQUNFLGFBQWE7RUFDYix5QkFBeUI7RUFDekIsa0JBQWtCO0FBQ3BCOztBQUNBO0VBQ0UsWUFBWTtFQUNaLFlBQVk7O0FBRWQ7O0FBQ0E7RUFDRSxnQkFBZ0I7RUFDaEIsZUFBZTtFQUNmLFlBQVk7RUFDWixZQUFZO0FBQ2Q7O0FBQ0E7RUFDRSx5Q0FBeUM7RUFDekMseUJBQXlCO0VBQ3pCLGFBQWE7RUFDYixhQUFhO0VBQ2Isa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixNQUFNO0VBQ04sT0FBTztFQUNQLFFBQVE7RUFDUixTQUFTO0VBQ1QsVUFBVTtFQUNWLHFCQUFxQjtFQUNyQjtrQkFDZ0I7QUFDbEI7O0FBQ0E7RUFDRSxpQkFBaUI7RUFDakIsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixZQUFZO0VBQ1osWUFBWTtBQUNkOztBQUNBO0VBQ0UsZUFBZTtBQUNqQjs7QUFDQTtFQUNFLHlCQUF5QjtFQUN6QixZQUFZO0VBQ1osYUFBYTtFQUNiLGtCQUFrQjs7RUFFbEIsa0NBQWtDO0VBQ2xDLGdCQUFnQjtFQUNoQixlQUFlO0FBQ2pCOztBQUNBO0VBQ0UsWUFBWTtFQUNaLDRCQUE0QjtFQUM1QixZQUFZO0VBQ1osZUFBZTtFQUNmLDBCQUEwQjtFQUMxQixzQkFBc0I7RUFDdEIsd0JBQXdCO0VBQ3hCLGtCQUFrQjtFQUNsQixlQUFlOztBQUVqQjs7QUFDQTtFQUNFLHlCQUF5QjtBQUMzQjs7QUFDQTs7R0FFRzs7QUFDSDtFQUNFLGlCQUFpQjtFQUNqQixzQkFBc0I7RUFDdEIsV0FBVztFQUNYLFVBQVU7RUFDVixrQkFBa0I7RUFDbEIsd0JBQXdCO0VBQ3hCLGVBQWU7QUFDakI7O0FBQ0E7RUFDRSxZQUFZO0VBQ1osYUFBYTtFQUNiLHlCQUF5QjtFQUN6QixZQUFZO0VBQ1osZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixtQkFBbUI7QUFDckI7O0FBQ0E7RUFDRSxZQUFZO0VBQ1osYUFBYTtFQUNiLHlCQUF5QjtFQUN6QixhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixtQkFBbUI7QUFDckI7O0FBQ0E7RUFDRSxZQUFZO0VBQ1osYUFBYTtFQUNiLHVCQUF1QjtBQUN6Qjs7QUFDQTtFQUNFLFlBQVk7RUFDWixjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsdUJBQXVCO0VBQ3ZCLFlBQVk7RUFDWixZQUFZO0VBQ1osYUFBYTtFQUNiLGtCQUFrQjtFQUNsQixhQUFhO0VBQ2IsWUFBWTtFQUNaLGFBQWE7RUFDYixzQkFBc0I7QUFDeEI7O0FBQ0E7RUFDRSxZQUFZO0VBQ1oseUJBQXlCO0VBQ3pCLFlBQVk7RUFDWixlQUFlOztBQUVqQjs7QUFDQTtFQUNFLGlCQUFpQjtFQUNqQixlQUFlO0VBQ2YsY0FBYztBQUNoQjs7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixrQkFBa0I7RUFDbEIsaUJBQWlCO0FBQ25COztBQUNBOzs7Ozs7OztHQVFHOztBQUVIO0VBQ0UsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtFQUNsQiwrQkFBK0I7RUFDL0IsaUJBQWlCO0VBQ2pCLHNCQUFzQjtFQUN0QixZQUFZO0VBQ1osWUFBWTtFQUNaLGlCQUFpQjs7O0lBR2Ysa0JBQWtCO0lBQ2xCLFNBQVM7SUFDVCxZQUFZO0lBQ1osZ0JBQWdCO0lBQ2hCLGlCQUFpQjtJQUNqQixpQkFBaUI7SUFDakIsY0FBYztJQUNkLG1CQUFtQjtJQUduQixrQkFBa0I7SUFDbEIsYUFBYTtJQUNiLGVBQWU7SUFDZixzQkFBc0I7SUFDdEIsa0JBQWtCO0FBQ3RCOztBQUNBLE9BQU87O0FBQ1A7SUFDSSxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFFBQVE7SUFDUixTQUFTO0lBQ1QsV0FBVztJQUNYLFFBQVE7SUFDUixpQ0FBaUM7SUFDakMsZ0NBQWdDO0lBQ2hDLG9DQUFvQztBQUN4Qzs7QUFDQSxPQUFPOztBQUNQO0VBQ0UsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtFQUNsQiwrQkFBK0I7RUFDL0Isa0JBQWtCO0VBQ2xCLHNCQUFzQjtFQUN0QixZQUFZO0VBQ1osWUFBWTtFQUNaLGlCQUFpQjs7RUFFakIsa0JBQWtCO0VBQ2xCLFVBQVU7RUFDVixZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLG1CQUFtQjtFQUduQixrQkFBa0I7RUFDbEIsbUJBQW1CO0VBQ25CLGVBQWU7RUFDZixzQkFBc0I7RUFDdEIsa0JBQWtCO0FBQ3BCOztBQUNBO0VBQ0Usa0JBQWtCO0lBQ2hCLFdBQVc7SUFDWCxRQUFRO0lBQ1IsU0FBUztJQUNULFVBQVU7SUFDVixRQUFRO0lBQ1IsaUNBQWlDO0lBQ2pDLCtCQUErQjtJQUMvQixvQ0FBb0M7QUFDeEM7O0FBQ0E7RUFDRSxrQkFBa0I7RUFDbEIsa0JBQWtCO0VBQ2xCLHNCQUFzQjtBQUN4Qjs7QUFDQTtFQUNFLFdBQVc7RUFDWCw0QkFBNEI7RUFDNUIsV0FBVztFQUNYLGFBQWE7RUFDYixlQUFlO0VBQ2YsWUFBWTtBQUNkOztBQUNBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixVQUFVO0FBQ1o7O0FBRUE7RUFDRSxZQUFZO0VBQ1oseUJBQXlCO0VBQ3pCLGlCQUFpQjtFQUNqQixrQkFBa0I7RUFDbEIsV0FBVztBQUNiOztBQUNBO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxZQUFZO0VBQ1osYUFBYTtFQUNiLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsVUFBVSxDQUFDLFdBQVc7O0FBRXhCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxZQUFZO0VBQ1osbUJBQW1CO0VBQ25CLFVBQVU7RUFDVixZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLGlCQUFpQjtFQUNqQixrQkFBa0I7QUFDcEI7O0FBQUMsZ0RBQWdEOztBQUNqRCwrQkFBK0IsV0FBVyxFQUFFOztBQUU1QztBQUNBLHlCQUF5QjtBQUN6QixXQUFXO0FBQ1gsa0JBQWtCO0FBQ2xCLFlBQVk7QUFDWiwyQkFBMkI7QUFDM0IsZUFBZTtBQUNmLFlBQVk7QUFDWjs7QUFFQTtBQUNBLFdBQVc7QUFDWCxrQkFBa0I7QUFDbEIsa0JBQWtCO0FBQ2xCLHNCQUFzQjtBQUN0Qjs7QUFFQTtBQUNBLGlCQUFpQjtBQUNqQjs7QUFDQTtBQUNBLGNBQWM7QUFDZCxpQkFBaUI7QUFDakIscUJBQXFCO0FBQ3JCOztBQUVBO0VBQ0UsWUFBWTtFQUNaLGlCQUFpQjtFQUNqQixpQkFBaUI7RUFDakIsNEJBQTRCO0VBQzVCLFdBQVc7RUFDWCxZQUFZO0FBQ2QiLCJmaWxlIjoic3JjL2FwcC9jaGF0L2NoYXQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIDpob3N0IDo6bmctZGVlcCAuZGVtby1pbmZpbml0ZS1jb250YWluZXIge1xuICAgIGhlaWdodDogMzAwcHg7XG4gICAgYm9yZGVyOiAxcHggc29saWQgI2U4ZThlODtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIH0gKi9cblxuOmhvc3QgOjpuZy1kZWVwIC5kZW1vLWluZmluaXRlLWNvbnRhaW5lciB7XG4gIGhlaWdodDogMzAwcHg7XG4gIGJvcmRlcjogMXB4IHNvbGlkICNlOGU4ZTg7XG4gIGJvcmRlci1yYWRpdXM6IDRweDtcbn1cbi5hdmF0YXJ7XG4gIGhlaWdodDogODBweDtcbiAgd2lkdGg6IDIwMHB4O1xuXG59XG4uYXZhdGFyMntcbiAgb3ZlcmZsb3cteTogYXV0bztcbiAgb3ZlcmZsb3cteDpub25lO1xuICBoZWlnaHQ6IDgwcHg7XG4gIHdpZHRoOiAyMDBweDtcbn1cbi5jb250YWluZXJ7XG4gIC8qIGJhY2tncm91bmQtY29sb3I6cmdiKDIyMywgMjE5LCAyMTkpOyAqL1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjREREREREO1xuICB3aWR0aDogMTAwMnB4O1xuICBoZWlnaHQ6IDc0MHB4O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIG1hcmdpbjogYXV0bztcbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcbiAgYm90dG9tOiAwO1xuICB6LWluZGV4OiAxO1xuICBib3JkZXItY29sb3I6ICM2MTYwNjA7XG4gIC8qIGJvcmRlcjogMnB4O1xuICBjb2xvcjogIzAwMDAwMCAqL1xufVxuLnNlYXJjaHtcbiAgcG9zaXRpb246YWJzb2x1dGU7XG4gIG1hcmdpbi10b3A6IDE1cHg7XG4gIG1hcmdpbi1sZWZ0OiA1cHg7XG4gIHdpZHRoOiAyNDBweDtcbiAgaGVpZ2h0OiAzMHB4O1xufVxuLmljb257XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cbi5saXN0e1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjN2E3YTdhO1xuICB3aWR0aDogMjUwcHg7XG4gIGhlaWdodDogNTkwcHg7XG4gIC8qIGNvbG9yOiB3aGl0ZTsgKi9cblxuICAvKiBvdmVyZmxvdy15OnNjcm9sbDsgIOe6teWQkea7muWKqOadoeWni+e7iOaYvuekuiAqL1xuICBvdmVyZmxvdy15OiBhdXRvO1xuICBvdmVyZmxvdy14Om5vbmU7XG59XG4uaXRlbXtcbiAgY29sb3I6IHdoaXRlO1xuICBib3JkZXItYm90dG9tOjFweCBzb2xpZCAjRUVFO1xuICBoZWlnaHQ6IDY1cHg7XG4gIGZvbnQtc2l6ZTogMTJweDtcbiAgLyogZm9udC1kaXNwbGF5OiBjZW50ZXI7ICovXG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gIC8qIHRleHQtYWxpZ246IGNlbnRlcjsgKi9cbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBjdXJzb3I6IHBvaW50ZXI7XG5cbn1cbi5pdGVtOmhvdmVye1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjOGE4YThhO1xufVxuLyogbnotbGlzdC1pdGVte1xuICBjb2xvcjogd2hpdGU7XG59ICovXG4uaW1ne1xuICAvKiBtYXJnaW46IDVweDsgKi9cbiAgLyogbWFyZ2luLXRvcDogMTBweDsgKi9cbiAgaGVpZ2h0OjQwcHg7IFxuICB3aWR0aDo0MHB4OyBcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAvKiBib3JkZXItcmFkaXVzOjUwJTsgICovXG4gIG92ZXJmbG93OmhpZGRlbjtcbn1cbi5tZXNzYWdle1xuICB3aWR0aDogNzUwcHg7XG4gIGhlaWdodDogNDgwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICNGOUY5Rjk7XG4gIHBhZGRpbmc6IDBweDtcbiAgb3ZlcmZsb3cteTogYXV0bztcbiAgb3ZlcmZsb3cteDogbm9uZTtcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcbn1cbi5tZXNzYWdlMXtcbiAgd2lkdGg6IDc1MHB4O1xuICBoZWlnaHQ6IDQ4MHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjRjlGOUY5O1xuICBwYWRkaW5nOiAxMHB4O1xuICBvdmVyZmxvdy15OiBhdXRvO1xuICBvdmVyZmxvdy14OiBub25lO1xuICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xufVxuLmlucHV0bWVze1xuICB3aWR0aDogNzQ5cHg7XG4gIGhlaWdodDogMjAwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xufVxuLmhpbXtcbiAgaGVpZ2h0OiA2MHB4O1xuICBjb2xvcjogIzQ0NDQ0NDtcbn1cblxuLnRleHRhcmVhe1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgcmVzaXplOiBub25lO1xuICB3aWR0aDogNzUwcHg7XG4gIGhlaWdodDogMTQwcHg7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgcGFkZGluZzogMTBweDtcbiAgYm9yZGVyOiBub25lO1xuICBvdXRsaW5lOiBub25lO1xuICAvKiBtYXJnaW4tdG9wOiAzMHB4OyAqL1xufVxuLnRvb2x7XG4gIHdpZHRoOiA3NTBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI0VFRUVFRTtcbiAgaGVpZ2h0OiAzMHB4O1xuICBjdXJzb3I6IHBvaW50ZXI7XG5cbn1cbi5pY29ue1xuICBtYXJnaW4tbGVmdDogMTVweDtcbiAgbWFyZ2luLXRvcDogM3B4O1xuICBjb2xvcjogIzc3Nzc3Nztcbn1cbi5zZW5ke1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIG1hcmdpbi1sZWZ0OiA2ODBweDtcbiAgbWFyZ2luLXRvcDogMTMwcHg7XG59XG4vKiAuYXJyb3cge1xuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICB3aWR0aDoyMDBweDtcbiAgaGVpZ2h0OjI1cHg7XG4gIGZvbnQtc2l6ZToxNnB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjQUFCQkNDIDtcbiAgbWFyZ2luOiAxNXB4O1xuICBvdmVyZmxvdy13cmFwOiBub3JtYWw7XG59ICovXG5cbiNib3h7XG4gIG1pbi1oZWlnaHQ6IDMwcHg7ICAgICAgICAgIFxuICBib3JkZXItcmFkaXVzOiA1cHg7ICAgICAgICBcbiAgLyogbGluZS1oZWlnaHQ6IDUwcHg7ICAgICAgICAgKi9cbiAgbWFyZ2luLWxlZnQ6IDEwcHg7ICAgICAgICBcbiAgd29yZC1icmVhazogYnJlYWstd29yZDsgICAgICAgIFxuICBjb2xvcjogd2hpdGU7ICAgICAgICBcbiAgcGFkZGluZzogNXB4OyAgICAgICAgXG4gIGxpbmUtaGVpZ2h0OiAxOHB4O1xuXG5cbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbGVmdDozMHB4OyBcbiAgICB3aWR0aDogMTQwcHg7XG4gICAgbWluLWhlaWdodDogMzBweDtcbiAgICBsaW5lLWhlaWdodDogMjBweDtcbiAgICBtYXJnaW4tbGVmdDogMTBweDtcbiAgICB3b3JkLXdyYXA6IDVweDtcbiAgICBiYWNrZ3JvdW5kOiAjMDg4Y2I3O1xuICAgIC1tb3otYm9yZGVyLXJhZGl1czogNHB4O1xuICAgIC13ZWJraXQtYm9yZGVyLXJhZGl1czogNHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICBwYWRkaW5nOiAxMHB4O1xuICAgIG1hcmdpbi10b3A6MTBweDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi8q5bem5pa56K+06K+dKi9cbiNib3g6YmVmb3Jle1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIHdpZHRoOiAwO1xuICAgIGhlaWdodDogMDtcbiAgICByaWdodDogMTAwJTtcbiAgICB0b3A6IDlweDtcbiAgICBib3JkZXItdG9wOiA1cHggc29saWQgdHJhbnNwYXJlbnQ7XG4gICAgYm9yZGVyLXJpZ2h0OiAxM3B4IHNvbGlkICMwODhjYjc7XG4gICAgYm9yZGVyLWJvdHRvbTogNnB4IHNvbGlkIHRyYW5zcGFyZW50O1xufVxuLyrlj7Pmlrnor7Tor50qL1xuI2JveDF7ICAgICAgICAgIFxuICBtaW4taGVpZ2h0OiAzMHB4OyAgICAgICAgICBcbiAgYm9yZGVyLXJhZGl1czogNXB4OyAgICAgICAgXG4gIC8qIGxpbmUtaGVpZ2h0OiA1MHB4OyAgICAgICAgICovXG4gIG1hcmdpbi1yaWdodDogMTBweDsgICAgICAgIFxuICB3b3JkLWJyZWFrOiBicmVhay13b3JkOyAgICAgICAgXG4gIGNvbG9yOiB3aGl0ZTsgICAgICAgIFxuICBwYWRkaW5nOiA1cHg7ICAgICAgICBcbiAgbGluZS1oZWlnaHQ6IDE4cHg7XG5cbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBsZWZ0OjU2MHB4OyBcbiAgd2lkdGg6IDE0MHB4O1xuICAvKiBoZWlnaHQ6IDMwcHg7ICovXG4gIGJhY2tncm91bmQ6ICMwODhjYjc7XG4gIC1tb3otYm9yZGVyLXJhZGl1czogNHB4O1xuICAtd2Via2l0LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAvKiBwYWRkaW5nOiAxMHB4OyAqL1xuICBtYXJnaW4tdG9wOjEwcHg7XG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbiNib3gxOmJlZm9yZXtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGNvbnRlbnQ6IFwiXCI7XG4gICAgd2lkdGg6IDA7XG4gICAgaGVpZ2h0OiAwO1xuICAgIGxlZnQ6IDEwMCU7XG4gICAgdG9wOiA5cHg7XG4gICAgYm9yZGVyLXRvcDogNXB4IHNvbGlkIHRyYW5zcGFyZW50O1xuICAgIGJvcmRlci1sZWZ0OiAxM3B4IHNvbGlkICMwODhjYjc7XG4gICAgYm9yZGVyLWJvdHRvbTogNnB4IHNvbGlkIHRyYW5zcGFyZW50O1xufVxuLnRpcHN7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTsgXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTs7XG59XG4uZ3JhZHtcbiAgd2lkdGg6IDgwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7XG4gIGJvcmRlcjogMHB4O1xuICBvdXRsaW5lOiBub25lO1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIGhlaWdodDogMjVweDtcbn1cbi5wb2ludHtcbiAgLyogd2lkdGg6IDJweDsgKi9cbiAgLyogbGVmdDogNjBweDsgKi9cbiAgbWFyZ2luOjVweDtcbn1cblxuLnNtYWxsQ29udGFpbmVye1xuICB3aWR0aDogMjQwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICNGRkZGRkY7XG4gIHBvc2l0aW9uOmFic29sdXRlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIHotaW5kZXg6IDUwO1xufVxuLmhlYWRwb3J0cmFpdHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICB3aWR0aDoyMzBweDtcbiAgaGVpZ2h0OjIzMHB4O1xuICBib3R0b206IC0yNnB4O1xuICBtYXJnaW4tbGVmdDoyNnB4O1xuICBjdXJzb3I6cG9pbnRlcjtcbn1cblxuOmhvc3QgOjpuZy1kZWVwIC5oZWFkcG9ydHJhaXQgaW1ne1xuICB3aWR0aDoxMDAlO2hlaWdodDoxMDAlO1xuXG59XG5cbi5tYXNrICB7ICAgIFxuICBwb3NpdGlvbjogYWJzb2x1dGU7ICAgIFxuICB3aWR0aDogMTAwJTsgICAgXG4gIGhlaWdodDogMTAwJTsgICAgICBcbiAgYmFja2dyb3VuZDogIzg2OGM4OTsgICAgXG4gIG9wYWNpdHk6IDA7XHRcbiAgY29sb3I6IGJsYWNrO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGxpbmUtaGVpZ2h0OjIzMHB4O1xuICBtYXJnaW4tdG9wOiAtMjMwcHg7XG59Lypob3ZlcueKtuaAge+8iOaMieS9oOeahOmcgOaxgu+8ieaOp+WItuaYvuekuuOAgm9wYWNpdHkvZGlzcGxheS96LWluZGV46YO95Y+v5LulKi9cdFxuLmhlYWRwb3J0cmFpdDpob3ZlciAubWFzayB7ICAgIG9wYWNpdHk6IC41O1x0fVxuXG4udXBsb2FkLWJ0biB7XG5iYWNrZ3JvdW5kLWNvbG9yOiAjMzM3YWI3O1xuY29sb3I6ICNmZmY7XG5ib3JkZXItcmFkaXVzOiAycHg7XG5ib3JkZXI6IG5vbmU7XG4vKiBwYWRkaW5nOiAuNXJlbSAxLjNyZW07ICovXG5jdXJzb3I6IHBvaW50ZXI7XG5oZWlnaHQ6IDMwcHg7XG59XG5cbi5waWN0dXJlIHtcbndpZHRoOiA3cmVtO1xuLyogaGVpZ2h0OiA3cmVtOyAqL1xubWFyZ2luLXJpZ2h0OiAxcmVtO1xuYmFja2dyb3VuZC1zaXplOiBjb3Zlcjtcbn1cblxuLmFjdGlvbi1ib3gge1xubWFyZ2luLWxlZnQ6IDFyZW07XG59XG4uaGludCB7XG5jb2xvcjogIzkwOTA5MDtcbmZvbnQtc2l6ZTogMS43cmVtO1xubWFyZ2luLWJvdHRvbTogMS41cmVtO1xufVxuXG4uZHJvcGRvd257XG4gIHotaW5kZXg6IDEwMDtcbiAgcG9zaXRpb246YWJzb2x1dGU7XG4gIG1hcmdpbi1sZWZ0OiAxNnB4O1xuICBiYWNrZ3JvdW5kLXBvc2l0aW9uLXk6IDIzMHB4OyAgXG4gIHdpZHRoOiA4MHB4O1xuICBoZWlnaHQ6IDI1cHg7XG59Il19 */"
+module.exports = ".container{\r\n  background-color: #DDDDDD;\r\n  width: 1024px;\r\n  height: 675px;\r\n  position: absolute;\r\n  margin: auto;\r\n  top: 0;\r\n  left: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  z-index: 1;\r\n}\r\n.avatar{\r\n  /* 1 */\r\n  background-color: rgb(198, 228, 98);\r\n  height: 40px;\r\n  width: 240px;\r\n  height: 30px;\r\n}\r\n.him{\r\n  /* 2 */\r\n  background-color: rgb(101, 216, 206);\r\n  width: 790px;\r\n  height: 60px;\r\n  color: #444444;\r\n  padding-left: 20px;\r\n}\r\n.avatar2{\r\n  /* 3 */\r\n  background-color: rgb(121, 202, 128);\r\n  height: 35px;\r\n  width: 790px;\r\n}\r\n.inputmes{\r\n  /* 5 */\r\n  background-color: rgb(240, 244, 255);\r\n  vertical-align: top;\r\n  width: 790px;\r\n  height: 190px;\r\n  /* background-color: white; */\r\n}\r\n.tool{\r\n  /* 6 */\r\n  width: 790px;\r\n  height: 35px;\r\n  background-color: rgb(233, 173, 168);\r\n\r\n}\r\n.list{\r\n  /* 4 */\r\n  background-color: rgb(229, 155, 226);\r\n\r\n  width: 240px;\r\n  height: 550px;\r\n  overflow-x: none;\r\n  overflow-y: auto;\r\n  vertical-align: top;\r\n\r\n}\r\n.list li{\r\n    height: 65px;\r\n    list-style-type: none;\r\n    vertical-align: middle;\r\n    padding: 15px;\r\n}\r\n.item{\r\n    color: white;\r\n    border-bottom:1px solid #EEE;\r\n    height: 65px;\r\n    font-size: 12px;\r\n    /* font-display: center; */\r\n    vertical-align: middle;\r\n    /* text-align: center; */\r\n    position: relative;\r\n    cursor: pointer;\r\n}\r\n.list li:hover{\r\n  background-color: bisque;\r\n}\r\n.list li.selected:hover{\r\n  background-color: aquamarine !important\r\n}\r\n.selected{\r\n  background-color: aqua !important\r\n}\r\n.search{\r\n  background-color: rgb(46, 64, 230);\r\n  height: 35px;\r\n  width: 240px;\r\n}\r\n.bar{\r\n  background-color: rgb(133, 91, 78);\r\n  height: 35px;\r\n  width: 240px;\r\n}\r\n.bartool{\r\n  width: 70px;\r\n}\r\n.dropdown{\r\n  z-index: 100;\r\n}\r\n.grad{\r\n  width: 70px;\r\n  background-color:transparent;\r\n  border: 0px;\r\n  outline: none;\r\n  cursor: pointer;\r\n  height: 25px;\r\n}\r\n.img{\r\n  /* margin: 5px; */\r\n  /* margin-top: 10px; */\r\n  height:40px; \r\n  width:40px; \r\n  position: relative;\r\n  /* border-radius:50%;  */\r\n  overflow:hidden;\r\n}\r\n.send{\r\n  position: absolute;\r\n  margin-left: 720px;\r\n  margin-top: 155px;\r\n  z-index: 100;\r\n}\r\n.textarea{\r\n  background-color: white;\r\n  resize: none;\r\n  width: 790px;\r\n  height: 150px;\r\n  position: absolute;\r\n  padding: 15px;\r\n  border: none;\r\n  outline: none;\r\n  /* margin-top: 30px; */\r\n}\r\n#box{\r\n  min-height: 30px;          \r\n  border-radius: 5px;        \r\n  /* line-height: 50px;         */\r\n  margin-left: 10px;        \r\n  word-break: break-word;        \r\n  color: white;        \r\n  padding: 5px;        \r\n  line-height: 18px;\r\n\r\n\r\n    position: relative;\r\n    left:30px; \r\n    width: 140px;\r\n    min-height: 30px;\r\n    line-height: 20px;\r\n    margin-left: 10px;\r\n    word-wrap: 5px;\r\n    background: #088cb7;\r\n    border-radius: 4px;\r\n    padding: 10px;\r\n    margin-top:10px;\r\n    vertical-align: middle;\r\n    text-align: center;\r\n}\r\n/*左方说话*/\r\n#box:before{\r\n    position: absolute;\r\n    content: \"\";\r\n    width: 0;\r\n    height: 0;\r\n    right: 100%;\r\n    top: 9px;\r\n    border-top: 5px solid transparent;\r\n    border-right: 13px solid #088cb7;\r\n    border-bottom: 6px solid transparent;\r\n}\r\n/*右方说话*/\r\n#box1{          \r\n  min-height: 30px;          \r\n  border-radius: 5px;        \r\n  /* line-height: 50px;         */\r\n  margin-right: 10px;        \r\n  word-break: break-word;        \r\n  color: white;        \r\n  padding: 5px;        \r\n  line-height: 18px;\r\n\r\n  position: relative;\r\n  left:560px; \r\n  width: 140px;\r\n  /* height: 30px; */\r\n  background: #088cb7;\r\n  border-radius: 4px;\r\n  /* padding: 10px; */\r\n  margin-top:10px;\r\n  vertical-align: middle;\r\n  text-align: center;\r\n}\r\n#box1:before{\r\n  position: absolute;\r\n    content: \"\";\r\n    width: 0;\r\n    height: 0;\r\n    left: 100%;\r\n    top: 9px;\r\n    border-top: 5px solid transparent;\r\n    border-left: 13px solid #088cb7;\r\n    border-bottom: 6px solid transparent;\r\n}\r\n.message1{\r\n  width: 790px;\r\n  height: 430px;\r\n  background-color: #F9F9F9;\r\n  padding: 10px;\r\n  overflow-y: auto;\r\n  overflow-x: none;\r\n  vertical-align: top;\r\n}\r\n.mesback{\r\n  cursor: pointer;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNoYXQvY2hhdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQXlCO0VBQ3pCLGFBQWE7RUFDYixhQUFhO0VBQ2Isa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixNQUFNO0VBQ04sT0FBTztFQUNQLFFBQVE7RUFDUixTQUFTO0VBQ1QsVUFBVTtBQUNaO0FBQ0E7RUFDRSxNQUFNO0VBQ04sbUNBQW1DO0VBQ25DLFlBQVk7RUFDWixZQUFZO0VBQ1osWUFBWTtBQUNkO0FBQ0E7RUFDRSxNQUFNO0VBQ04sb0NBQW9DO0VBQ3BDLFlBQVk7RUFDWixZQUFZO0VBQ1osY0FBYztFQUNkLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsTUFBTTtFQUNOLG9DQUFvQztFQUNwQyxZQUFZO0VBQ1osWUFBWTtBQUNkO0FBRUE7RUFDRSxNQUFNO0VBQ04sb0NBQW9DO0VBQ3BDLG1CQUFtQjtFQUNuQixZQUFZO0VBQ1osYUFBYTtFQUNiLDZCQUE2QjtBQUMvQjtBQUNBO0VBQ0UsTUFBTTtFQUNOLFlBQVk7RUFDWixZQUFZO0VBQ1osb0NBQW9DOztBQUV0QztBQUNBO0VBQ0UsTUFBTTtFQUNOLG9DQUFvQzs7RUFFcEMsWUFBWTtFQUNaLGFBQWE7RUFDYixnQkFBZ0I7RUFDaEIsZ0JBQWdCO0VBQ2hCLG1CQUFtQjs7QUFFckI7QUFDQTtJQUNJLFlBQVk7SUFDWixxQkFBcUI7SUFDckIsc0JBQXNCO0lBQ3RCLGFBQWE7QUFDakI7QUFDQTtJQUNJLFlBQVk7SUFDWiw0QkFBNEI7SUFDNUIsWUFBWTtJQUNaLGVBQWU7SUFDZiwwQkFBMEI7SUFDMUIsc0JBQXNCO0lBQ3RCLHdCQUF3QjtJQUN4QixrQkFBa0I7SUFDbEIsZUFBZTtBQUNuQjtBQUNBO0VBQ0Usd0JBQXdCO0FBQzFCO0FBQ0E7RUFDRTtBQUNGO0FBQ0E7RUFDRTtBQUNGO0FBQ0E7RUFDRSxrQ0FBa0M7RUFDbEMsWUFBWTtFQUNaLFlBQVk7QUFDZDtBQUNBO0VBQ0Usa0NBQWtDO0VBQ2xDLFlBQVk7RUFDWixZQUFZO0FBQ2Q7QUFDQTtFQUNFLFdBQVc7QUFDYjtBQUNBO0VBQ0UsWUFBWTtBQUNkO0FBQ0E7RUFDRSxXQUFXO0VBQ1gsNEJBQTRCO0VBQzVCLFdBQVc7RUFDWCxhQUFhO0VBQ2IsZUFBZTtFQUNmLFlBQVk7QUFDZDtBQUNBO0VBQ0UsaUJBQWlCO0VBQ2pCLHNCQUFzQjtFQUN0QixXQUFXO0VBQ1gsVUFBVTtFQUNWLGtCQUFrQjtFQUNsQix3QkFBd0I7RUFDeEIsZUFBZTtBQUNqQjtBQUNBO0VBQ0Usa0JBQWtCO0VBQ2xCLGtCQUFrQjtFQUNsQixpQkFBaUI7RUFDakIsWUFBWTtBQUNkO0FBQ0E7RUFDRSx1QkFBdUI7RUFDdkIsWUFBWTtFQUNaLFlBQVk7RUFDWixhQUFhO0VBQ2Isa0JBQWtCO0VBQ2xCLGFBQWE7RUFDYixZQUFZO0VBQ1osYUFBYTtFQUNiLHNCQUFzQjtBQUN4QjtBQUNBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtFQUNsQiwrQkFBK0I7RUFDL0IsaUJBQWlCO0VBQ2pCLHNCQUFzQjtFQUN0QixZQUFZO0VBQ1osWUFBWTtFQUNaLGlCQUFpQjs7O0lBR2Ysa0JBQWtCO0lBQ2xCLFNBQVM7SUFDVCxZQUFZO0lBQ1osZ0JBQWdCO0lBQ2hCLGlCQUFpQjtJQUNqQixpQkFBaUI7SUFDakIsY0FBYztJQUNkLG1CQUFtQjtJQUduQixrQkFBa0I7SUFDbEIsYUFBYTtJQUNiLGVBQWU7SUFDZixzQkFBc0I7SUFDdEIsa0JBQWtCO0FBQ3RCO0FBQ0EsT0FBTztBQUNQO0lBQ0ksa0JBQWtCO0lBQ2xCLFdBQVc7SUFDWCxRQUFRO0lBQ1IsU0FBUztJQUNULFdBQVc7SUFDWCxRQUFRO0lBQ1IsaUNBQWlDO0lBQ2pDLGdDQUFnQztJQUNoQyxvQ0FBb0M7QUFDeEM7QUFDQSxPQUFPO0FBQ1A7RUFDRSxnQkFBZ0I7RUFDaEIsa0JBQWtCO0VBQ2xCLCtCQUErQjtFQUMvQixrQkFBa0I7RUFDbEIsc0JBQXNCO0VBQ3RCLFlBQVk7RUFDWixZQUFZO0VBQ1osaUJBQWlCOztFQUVqQixrQkFBa0I7RUFDbEIsVUFBVTtFQUNWLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsbUJBQW1CO0VBR25CLGtCQUFrQjtFQUNsQixtQkFBbUI7RUFDbkIsZUFBZTtFQUNmLHNCQUFzQjtFQUN0QixrQkFBa0I7QUFDcEI7QUFDQTtFQUNFLGtCQUFrQjtJQUNoQixXQUFXO0lBQ1gsUUFBUTtJQUNSLFNBQVM7SUFDVCxVQUFVO0lBQ1YsUUFBUTtJQUNSLGlDQUFpQztJQUNqQywrQkFBK0I7SUFDL0Isb0NBQW9DO0FBQ3hDO0FBQ0E7RUFDRSxZQUFZO0VBQ1osYUFBYTtFQUNiLHlCQUF5QjtFQUN6QixhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixtQkFBbUI7QUFDckI7QUFDQTtFQUNFLGVBQWU7QUFDakIiLCJmaWxlIjoiY2hhdC9jaGF0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGFpbmVye1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNEREREREQ7XHJcbiAgd2lkdGg6IDEwMjRweDtcclxuICBoZWlnaHQ6IDY3NXB4O1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICBtYXJnaW46IGF1dG87XHJcbiAgdG9wOiAwO1xyXG4gIGxlZnQ6IDA7XHJcbiAgcmlnaHQ6IDA7XHJcbiAgYm90dG9tOiAwO1xyXG4gIHotaW5kZXg6IDE7XHJcbn1cclxuLmF2YXRhcntcclxuICAvKiAxICovXHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDE5OCwgMjI4LCA5OCk7XHJcbiAgaGVpZ2h0OiA0MHB4O1xyXG4gIHdpZHRoOiAyNDBweDtcclxuICBoZWlnaHQ6IDMwcHg7XHJcbn1cclxuLmhpbXtcclxuICAvKiAyICovXHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDEwMSwgMjE2LCAyMDYpO1xyXG4gIHdpZHRoOiA3OTBweDtcclxuICBoZWlnaHQ6IDYwcHg7XHJcbiAgY29sb3I6ICM0NDQ0NDQ7XHJcbiAgcGFkZGluZy1sZWZ0OiAyMHB4O1xyXG59XHJcbi5hdmF0YXIye1xyXG4gIC8qIDMgKi9cclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTIxLCAyMDIsIDEyOCk7XHJcbiAgaGVpZ2h0OiAzNXB4O1xyXG4gIHdpZHRoOiA3OTBweDtcclxufVxyXG5cclxuLmlucHV0bWVze1xyXG4gIC8qIDUgKi9cclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjQwLCAyNDQsIDI1NSk7XHJcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcclxuICB3aWR0aDogNzkwcHg7XHJcbiAgaGVpZ2h0OiAxOTBweDtcclxuICAvKiBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTsgKi9cclxufVxyXG4udG9vbHtcclxuICAvKiA2ICovXHJcbiAgd2lkdGg6IDc5MHB4O1xyXG4gIGhlaWdodDogMzVweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjMzLCAxNzMsIDE2OCk7XHJcblxyXG59XHJcbi5saXN0e1xyXG4gIC8qIDQgKi9cclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjI5LCAxNTUsIDIyNik7XHJcblxyXG4gIHdpZHRoOiAyNDBweDtcclxuICBoZWlnaHQ6IDU1MHB4O1xyXG4gIG92ZXJmbG93LXg6IG5vbmU7XHJcbiAgb3ZlcmZsb3cteTogYXV0bztcclxuICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xyXG5cclxufVxyXG4ubGlzdCBsaXtcclxuICAgIGhlaWdodDogNjVweDtcclxuICAgIGxpc3Qtc3R5bGUtdHlwZTogbm9uZTtcclxuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XHJcbiAgICBwYWRkaW5nOiAxNXB4O1xyXG59XHJcbi5pdGVte1xyXG4gICAgY29sb3I6IHdoaXRlO1xyXG4gICAgYm9yZGVyLWJvdHRvbToxcHggc29saWQgI0VFRTtcclxuICAgIGhlaWdodDogNjVweDtcclxuICAgIGZvbnQtc2l6ZTogMTJweDtcclxuICAgIC8qIGZvbnQtZGlzcGxheTogY2VudGVyOyAqL1xyXG4gICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcclxuICAgIC8qIHRleHQtYWxpZ246IGNlbnRlcjsgKi9cclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG4ubGlzdCBsaTpob3ZlcntcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiBiaXNxdWU7XHJcbn1cclxuLmxpc3QgbGkuc2VsZWN0ZWQ6aG92ZXJ7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogYXF1YW1hcmluZSAhaW1wb3J0YW50XHJcbn1cclxuLnNlbGVjdGVke1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGFxdWEgIWltcG9ydGFudFxyXG59XHJcbi5zZWFyY2h7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDQ2LCA2NCwgMjMwKTtcclxuICBoZWlnaHQ6IDM1cHg7XHJcbiAgd2lkdGg6IDI0MHB4O1xyXG59XHJcbi5iYXJ7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDEzMywgOTEsIDc4KTtcclxuICBoZWlnaHQ6IDM1cHg7XHJcbiAgd2lkdGg6IDI0MHB4O1xyXG59XHJcbi5iYXJ0b29se1xyXG4gIHdpZHRoOiA3MHB4O1xyXG59XHJcbi5kcm9wZG93bntcclxuICB6LWluZGV4OiAxMDA7XHJcbn1cclxuLmdyYWR7XHJcbiAgd2lkdGg6IDcwcHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtcclxuICBib3JkZXI6IDBweDtcclxuICBvdXRsaW5lOiBub25lO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICBoZWlnaHQ6IDI1cHg7XHJcbn1cclxuLmltZ3tcclxuICAvKiBtYXJnaW46IDVweDsgKi9cclxuICAvKiBtYXJnaW4tdG9wOiAxMHB4OyAqL1xyXG4gIGhlaWdodDo0MHB4OyBcclxuICB3aWR0aDo0MHB4OyBcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgLyogYm9yZGVyLXJhZGl1czo1MCU7ICAqL1xyXG4gIG92ZXJmbG93OmhpZGRlbjtcclxufVxyXG4uc2VuZHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgbWFyZ2luLWxlZnQ6IDcyMHB4O1xyXG4gIG1hcmdpbi10b3A6IDE1NXB4O1xyXG4gIHotaW5kZXg6IDEwMDtcclxufVxyXG4udGV4dGFyZWF7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XHJcbiAgcmVzaXplOiBub25lO1xyXG4gIHdpZHRoOiA3OTBweDtcclxuICBoZWlnaHQ6IDE1MHB4O1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICBwYWRkaW5nOiAxNXB4O1xyXG4gIGJvcmRlcjogbm9uZTtcclxuICBvdXRsaW5lOiBub25lO1xyXG4gIC8qIG1hcmdpbi10b3A6IDMwcHg7ICovXHJcbn1cclxuI2JveHtcclxuICBtaW4taGVpZ2h0OiAzMHB4OyAgICAgICAgICBcclxuICBib3JkZXItcmFkaXVzOiA1cHg7ICAgICAgICBcclxuICAvKiBsaW5lLWhlaWdodDogNTBweDsgICAgICAgICAqL1xyXG4gIG1hcmdpbi1sZWZ0OiAxMHB4OyAgICAgICAgXHJcbiAgd29yZC1icmVhazogYnJlYWstd29yZDsgICAgICAgIFxyXG4gIGNvbG9yOiB3aGl0ZTsgICAgICAgIFxyXG4gIHBhZGRpbmc6IDVweDsgICAgICAgIFxyXG4gIGxpbmUtaGVpZ2h0OiAxOHB4O1xyXG5cclxuXHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBsZWZ0OjMwcHg7IFxyXG4gICAgd2lkdGg6IDE0MHB4O1xyXG4gICAgbWluLWhlaWdodDogMzBweDtcclxuICAgIGxpbmUtaGVpZ2h0OiAyMHB4O1xyXG4gICAgbWFyZ2luLWxlZnQ6IDEwcHg7XHJcbiAgICB3b3JkLXdyYXA6IDVweDtcclxuICAgIGJhY2tncm91bmQ6ICMwODhjYjc7XHJcbiAgICAtbW96LWJvcmRlci1yYWRpdXM6IDRweDtcclxuICAgIC13ZWJraXQtYm9yZGVyLXJhZGl1czogNHB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogNHB4O1xyXG4gICAgcGFkZGluZzogMTBweDtcclxuICAgIG1hcmdpbi10b3A6MTBweDtcclxuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuLyrlt6bmlrnor7Tor50qL1xyXG4jYm94OmJlZm9yZXtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIGNvbnRlbnQ6IFwiXCI7XHJcbiAgICB3aWR0aDogMDtcclxuICAgIGhlaWdodDogMDtcclxuICAgIHJpZ2h0OiAxMDAlO1xyXG4gICAgdG9wOiA5cHg7XHJcbiAgICBib3JkZXItdG9wOiA1cHggc29saWQgdHJhbnNwYXJlbnQ7XHJcbiAgICBib3JkZXItcmlnaHQ6IDEzcHggc29saWQgIzA4OGNiNztcclxuICAgIGJvcmRlci1ib3R0b206IDZweCBzb2xpZCB0cmFuc3BhcmVudDtcclxufVxyXG4vKuWPs+aWueivtOivnSovXHJcbiNib3gxeyAgICAgICAgICBcclxuICBtaW4taGVpZ2h0OiAzMHB4OyAgICAgICAgICBcclxuICBib3JkZXItcmFkaXVzOiA1cHg7ICAgICAgICBcclxuICAvKiBsaW5lLWhlaWdodDogNTBweDsgICAgICAgICAqL1xyXG4gIG1hcmdpbi1yaWdodDogMTBweDsgICAgICAgIFxyXG4gIHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQ7ICAgICAgICBcclxuICBjb2xvcjogd2hpdGU7ICAgICAgICBcclxuICBwYWRkaW5nOiA1cHg7ICAgICAgICBcclxuICBsaW5lLWhlaWdodDogMThweDtcclxuXHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGxlZnQ6NTYwcHg7IFxyXG4gIHdpZHRoOiAxNDBweDtcclxuICAvKiBoZWlnaHQ6IDMwcHg7ICovXHJcbiAgYmFja2dyb3VuZDogIzA4OGNiNztcclxuICAtbW96LWJvcmRlci1yYWRpdXM6IDRweDtcclxuICAtd2Via2l0LWJvcmRlci1yYWRpdXM6IDRweDtcclxuICBib3JkZXItcmFkaXVzOiA0cHg7XHJcbiAgLyogcGFkZGluZzogMTBweDsgKi9cclxuICBtYXJnaW4tdG9wOjEwcHg7XHJcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuI2JveDE6YmVmb3Jle1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIGNvbnRlbnQ6IFwiXCI7XHJcbiAgICB3aWR0aDogMDtcclxuICAgIGhlaWdodDogMDtcclxuICAgIGxlZnQ6IDEwMCU7XHJcbiAgICB0b3A6IDlweDtcclxuICAgIGJvcmRlci10b3A6IDVweCBzb2xpZCB0cmFuc3BhcmVudDtcclxuICAgIGJvcmRlci1sZWZ0OiAxM3B4IHNvbGlkICMwODhjYjc7XHJcbiAgICBib3JkZXItYm90dG9tOiA2cHggc29saWQgdHJhbnNwYXJlbnQ7XHJcbn1cclxuLm1lc3NhZ2Uxe1xyXG4gIHdpZHRoOiA3OTBweDtcclxuICBoZWlnaHQ6IDQzMHB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNGOUY5Rjk7XHJcbiAgcGFkZGluZzogMTBweDtcclxuICBvdmVyZmxvdy15OiBhdXRvO1xyXG4gIG92ZXJmbG93LXg6IG5vbmU7XHJcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcclxufVxyXG4ubWVzYmFja3tcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -240,7 +240,7 @@ module.exports = "/* :host ::ng-deep .demo-infinite-container {\n    height: 300
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- 创建群聊 -->\n<nz-modal [(nzVisible)]=\"isAddGroupVisible\" [nzTitle]=\"modalTitle\" [nzContent]=\"modalContent\" [nzFooter]=\"modalFooter\" (nzOnCancel)=\"handleAddGroupCancel()\">\n  <ng-template #modalTitle>\n    创建群\n  </ng-template>\n  <ng-template #modalContent>\n    <!-- <div class = \"list\" > -->\n      <div class = \"item\" *ngFor=\"let item of addGroupUserList.AGlist\" >\n        <label nz-checkbox [(ngModel)]=\"item.Check\">\n            <img src = \"{{item.Headimg}}\" class = \"img\">\n          {{item.Name}}\n          </label>\n      </div>\n    <!-- </div> -->\n  </ng-template>\n  <ng-template #modalFooter>\n    <input nz-input placeholder=\"群名字\"[(ngModel)]=\"GroupName\">\n    <button nz-button nzType=\"default\" (click)=\"handleAddGroupCancel()\">取消</button>\n    <button nz-button nzType=\"primary\" (click)=\"handleAddGroupOk()\" [nzLoading]=\"isConfirmLoading\">创建</button>\n  </ng-template>\n</nz-modal>\n\n\n<!-- 添加好友 -->\n<nz-modal [(nzVisible)]=\"isAddFriendVisible\" [nzTitle]=\"modalTitle1\" [nzContent]=\"modalContent1\"  (nzOnCancel)=\"handleAddFriendCancel()\">\n    <ng-template #modalTitle1>\n      添加好友\n      <nz-input-group [nzSuffix]=\"suffixIconSearch\"> \n          <input type=\"text\" [(ngModel)]=\"searchContent\" nz-input placeholder=\"输入搜索的用户名\" \n           id = \"search\" (keyup) = \"keyUpSearch($event)\">\n        </nz-input-group> \n\n        <ng-template #suffixIconSearch>\n          <i nz-icon type=\"search\" class = \"icon\" (click) = \"search()\"></i>\n        </ng-template>\n    </ng-template>\n  \n    <ng-template #modalContent1>\n            <div *ngIf=\"!searchContent\">\n              正在搜索内容\n            </div>\n            <div *ngIf=\"searchContent\">\n                <div *ngIf=\"flag;else Show\">查无此人</div>\n              <ng-template #Show>\n                  <div *ngFor=\"let item of userlist\">\n                      <img src = \"{{item.Img_url}}\" class = \"img\">\n                      {{item.Name}}\n                    <button (click) = \"addfriend(item.ID)\">添加好友</button>\n                </div>\n              </ng-template>\n\n            </div>\n    </ng-template>\n  </nz-modal>\n\n\n\n<div class=\"container\">\n  <table >\n    <tr>\n      <th class = \"avatar\" rowspan=\"2\">\n        <div>\n            <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n            <div>\n                <div style = \"left: 90px; top:30px; position: absolute\">{{my_name}}</div>\n                <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n            </div>\n            \n\n           \n        </div>\n\n\n        <div class = \"search\">\n          <nz-input-group [nzSuffix]=\"suffixIconSearch1\"> \n            <input type=\"text\" [(ngModel)]=\"searchFriend\" nz-input placeholder=\"输入搜索内容\" \n              id = \"search\">\n          </nz-input-group> \n\n          <ng-template #suffixIconSearch1>\n            <i nz-icon type=\"search\" class = \"icon\"></i>\n          </ng-template>\n\n          <div class = \"smallContainer\">\n            <div *ngIf=\"isVisible\">\n              <div *ngIf=\"!searchFriend\">\n                正在搜索内容\n              </div>\n              <div *ngIf=\"searchFriend\">\n                  <div *ngIf=\"flag;else Show\">查无此人</div>\n                <ng-template #Show>\n                    <div *ngFor=\"let item of userlist\">\n                        <img src = \"{{item.Img_url}}\" class = \"img\">\n                        {{item.Name}}\n                  </div>\n                </ng-template>\n\n              </div>\n            </div>\n          </div>\n          <div>\n  \n            </div>\n            <button class = \"grad\">聊天</button>|<button class = \"grad\">通讯录</button>| \n            <!-- <div> -->\n              <nz-dropdown class = \"dropdown\" >\n                  <a nz-dropdown>\n                      添加 <i nz-icon type=\"down\"></i>\n                  </a>\n                  <ul nz-menu nzSelectable>\n                    <li nz-menu-item (click)=\"showAddFriendModal()\">\n                      <a>添加好友</a>\n                    </li>\n                    <li nz-menu-item (click) = \"showAddGroupModal()\">\n                      <a>创建群聊</a>\n                    </li>\n                  </ul>\n                </nz-dropdown>\n  \n              <!-- </div> -->\n          </div>  \n\n\n      </th>\n      <th class = \"him\">{{to_name}}</th>\n    </tr>\n    <tr class = \"avatar2\" >\n      <td rowspan=\"2\" class = \"message\" >\n        <div *ngIf=\"!isslect\" class = \"tips\">\n          暂无新消息\n        </div>\n        <div class = \"message1\" id=\"scrolldIV\" >\n          <div *ngFor=\"let item of showmsg\" >\n                    <div *ngIf=\"item.From != my_id\" id=\"box\"><!--接受的消息-->\n                      <div *ngIf=\"item.ContentType == 0\">{{item.Content}}</div>\n                      <div *ngIf=\"item.ContentType == 1\">     \n                         <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.Content+ ')'}\"></div>\n                      </div>\n                      <div *ngIf=\"item.ContentType == 2\">\n                          <img src=\"/files/uknow.png\" class=\"picture\" >\n                          <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                          </button>\n                      </div>\n                    </div>\n                    <div *ngIf=\"item.From == my_id\" id=\"box1\"><!--发送的消息-->\n                        <div *ngIf=\"item.ContentType != 1 && item.ContentType != 2\"  (mouseup)=\"he($event)\" (contextmenu)=\"his($event)\">{{item.Content}}</div>\n                        <div *ngIf=\"item.ContentType == 1\"  (mouseup)=\"he($event)\" (contextmenu)=\"his($event)\">     \n                           <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.Content+ ')'}\"></div>\n                        </div>\n                        <div *ngIf=\"item.ContentType == 2\"  (mouseup)=\"he($event)\" (contextmenu)=\"his($event)\">\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\n                            <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                            </button>\n                        </div>\n                    </div>\n                <!-- </div> -->\n          </div>\n        </div>\n      </td>\n    </tr>\n    <tr>\n      <td rowspan=\"2\">\n        <div class = \"list\" >\n          <div class = \"item\" *ngFor=\"let item of friendlist.List\" (click) = \"test2(item.ID,item.Name, item.Headimg, item.Isgroup)\">\n            <nz-badge [nzCount]=\"item.Counter\" *ngIf=\"list!=NULL\" class = \"point\">\n              <img src = \"{{item.Headimg}}\" class = \"img\">\n            </nz-badge>\n            {{item.Name}}\n          </div>\n        </div>\n      </td>\n    </tr>\n    <tr class = \"inputmes\">\n      <!-- <td > -->\n      <div></div>\n        <div  *ngIf=\"isslect\">\n        <div class = \"tool\">\n          <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n          <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\n          <input id=\"upfile\" type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\" accept=\".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt\">\n          <div class=\"action-box\">\n            <button class=\"upload-btn\" (click)=\"upfile.click()\"> 点击上传\n            </button>\n          </div>\n        </div>\n        <textarea class = \"textarea\" [(ngModel)] = \"content\"></textarea>\n        <button class = \"send\" nz-button nzType=\"primary\" (click) = \"sendMsg()\" >发送</button>\n        \n<!-- <br>\n<br> -->\n<div>\n\n  <div *ngIf=\"show\">\n    <div style=\"display: -webkit-box;\">\n      <div class=\"hint\">\n        {{filename}}\n      </div>\n      <div class=\"action-box\">\n        <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- <br>\n<br> -->\n\n\n\n\n      </div>\n    </tr>\n  </table>\n\n"
+module.exports = "\r\n\r\n<div class=\"container\" (mouseup) = \"his($event)\" >\r\n    <!--聊天窗口-->\r\n    <table class = \"table\">\r\n      <tr>\r\n        <th class = \"avatar\" rowspan=\"2\" colspan=\"3\">\r\n          <!-- 1 -->\r\n          <div>\r\n              <!--个人信息-->\r\n                <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\r\n                <div>\r\n                    <div style = \"left: 90px; top:30px; position: absolute\">{{my_name}}</div>\r\n                    <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\r\n                </div>\r\n            </div>\r\n        </th>\r\n        <th class = \"him\"  >\r\n          <!-- 2 -->\r\n          {{to_name}}\r\n          <nz-dropdown class = \"dropdown\" *ngIf=\"isgroup\">\r\n            <a nz-dropdown>\r\n              <i nz-icon type=\"down\"></i>\r\n            </a>\r\n          </nz-dropdown>\r\n        </th>\r\n      </tr>\r\n      <tr class = \"avatar2\" >\r\n          <td rowspan=\"4\"  >\r\n            <!-- 3 -->\r\n            <div class = \"message1\" id=\"scrolldIV\" >\r\n                <div *ngFor=\"let item of showmsg; let i = index; let last = last\" >\r\n                    <div *ngIf=\"item.from != my_id\" id = \"box\"><!--接受的消息-->\r\n                        <div *ngIf=\"item.content_type == 0\">{{item.content}}</div>\r\n                        <div *ngIf=\"item.content_type == 1\">     \r\n                            <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.content+ ')'}\"></div>\r\n                        </div>\r\n                        <div *ngIf=\"item.content_type == 2\"  (mouseup)=\"he($event)\" (contextmenu)=\"his($event)\">\r\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\r\n                            <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\r\n                            </button>\r\n                        </div>\r\n                    </div>\r\n                    <div *ngIf=\"item.from == my_id\" id=\"box1\"><!--发送的消息-->\r\n                        <div *ngIf=\"item.content_type != 1 && item.content_type != 2\"  (contextmenu)=\"his($event)\" (mouseup)=\"he($event, item, i)\" >{{item.content}}</div>\r\n                        <div *ngIf=\"item.content_type == 1\"  (mouseup)=\"he($event, item.content)\" (contextmenu)=\"his($event)\">     \r\n                            <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.content+ ')'}\"></div>\r\n                        </div>\r\n                        <div *ngIf=\"item.content_type == 2\"  (mouseup)=\"he($event)\" (contextmenu)=\"his($event)\">\r\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\r\n                            <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\r\n                            </button>\r\n                        </div>\r\n                    </div>\r\n                    <span *ngIf=\"last\">{{scollbuttom()}}</span>\r\n                  </div>\r\n              </div>\r\n          </td>\r\n      </tr>\r\n      <tr >\r\n          <td colspan=\"3\" class = \"search\" colspan=\"3\">\r\n            <!-- 7 -->\r\n              <div>\r\n                  <nz-input-group [nzSuffix]=\"suffixIconSearch1\"> \r\n                      <input type=\"text\" [(ngModel)]=\"searchFriend\" nz-input placeholder=\"输入搜索内容\" id = \"search\">\r\n                  </nz-input-group> \r\n        \r\n                  <ng-template #suffixIconSearch1>\r\n                      <i nz-icon type=\"search\" class = \"icon\"></i>\r\n                  </ng-template>\r\n        \r\n                  <div>\r\n                      <div *ngIf=\"isVisible\">\r\n                          <div *ngIf=\"!searchFriend\">\r\n                            正在搜索内容\r\n                          </div>\r\n                          <div *ngIf=\"searchFriend\">\r\n                              <div *ngIf=\"flag;else Show\">查无此人</div>\r\n                              <ng-template #Show>\r\n                                  <!-- <div *ngFor=\"let item of userlist\">\r\n                                      <img src = \"{{item.Img_url}}\" class = \"img\">\r\n                                      {{item.Name}}\r\n                                  </div> -->\r\n                              </ng-template>\r\n                          </div>\r\n                      </div>\r\n                  </div>\r\n              </div>\r\n          </td>\r\n      </tr>\r\n      <tr class = \"bar\">\r\n        <td class = \"bartool\">\r\n            <button class = \"grad\">聊天</button>|\r\n        </td>\r\n        <td class = \"bartool\">\r\n            <button class = \"grad\">通讯录</button>|\r\n        </td>\r\n        <td class = \"bartool\">\r\n            <nz-dropdown class = \"dropdown\">\r\n                <a nz-dropdown>\r\n                    &nbsp; &nbsp;添加 <i nz-icon type=\"down\"></i>\r\n                </a>\r\n                <ul nz-menu nzSelectable>\r\n                    <li nz-menu-item (click)=\"showAddFriendModal()\">\r\n                        <a>添加好友</a>\r\n                    </li>\r\n                    <li nz-menu-item (click) = \"showAddGroupModal()\">\r\n                        <a>创建群聊</a>\r\n                    </li>\r\n                </ul>\r\n            </nz-dropdown>\r\n        </td>\r\n      </tr>\r\n      <tr>\r\n        <td rowspan=\"3\" colspan=\"3\">\r\n            <!-- 4 -->\r\n            <div class = \"list\" >\r\n                <li  class = \"item\" [class.selected]=\"item == friend\" *ngFor=\"let item of friendlist.contact_list; let i = index\" (click) = \"test2(i, item.id,item.name, item.head_img, item.is_group)\">\r\n                    <nz-badge [nzCount]=\"item.count\" *ngIf=\"list!=NULL\">\r\n                        <img src = \"{{item.head_img}}\" class = \"img\">\r\n                    </nz-badge>\r\n                 {{item.name}}\r\n                </li>\r\n            </div>\r\n        </td>\r\n      </tr>\r\n      <tr>\r\n        <td class = \"tool\">\r\n          <!-- 6 -->\r\n          <div  *ngIf=\"isselect\">\r\n              <div >\r\n                <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \r\n                <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\r\n                <input id=\"upfile\" type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\" accept=\".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt\">\r\n                <div class=\"action-box\">\r\n                  <button class=\"upload-btn\" nz-button nzType=\"primary\" (click) = \"upfile.click()\" >点击上传</button>\r\n                </div>\r\n              </div>\r\n            </div>\r\n        </td>\r\n      </tr>\r\n      <tr class = \"inputmes\">\r\n    <!-- 输入框 -->\r\n        <td>\r\n        <!-- 5 -->\r\n          <div  *ngIf=\"isselect\">\r\n            <textarea class = \"textarea\" [(ngModel)] = \"content\"></textarea>\r\n            <button class = \"send\" nz-button nzType=\"primary\" (click) = \"sendMsg()\" >发送</button>\r\n          </div>\r\n        </td>\r\n      </tr>\r\n    </table>\r\n  </div>\r\n    \r\n  \r\n  <!-- 创建群聊 -->\r\n  <nz-modal [(nzVisible)]=\"isAddGroupVisible\" [nzTitle]=\"modalTitle\" [nzContent]=\"modalContent\" [nzFooter]=\"modalFooter\" (nzOnCancel)=\"handleAddGroupCancel()\">\r\n      <ng-template #modalTitle>\r\n        创建群\r\n      </ng-template>\r\n      <ng-template #modalContent>\r\n        <!-- <div class = \"list\" > -->\r\n          <div class = \"item\" *ngFor=\"let item of addGroupUserList.AGlist\" >\r\n              <label nz-checkbox [(ngModel)]=\"item.Check\">\r\n                  <img src = \"{{item.Headimg}}\" class = \"img\">\r\n                  {{item.Name}}\r\n              </label>\r\n          </div>\r\n        <!-- </div> -->\r\n      </ng-template>\r\n      <ng-template #modalFooter>\r\n          <input nz-input placeholder=\"群名字\"[(ngModel)]=\"GroupName\">\r\n          <button nz-button nzType=\"default\" (click)=\"handleAddGroupCancel()\">取消</button>\r\n          <button nz-button nzType=\"primary\" (click)=\"handleAddGroupOk()\" [nzLoading]=\"isConfirmLoading\">创建</button>\r\n      </ng-template>\r\n  </nz-modal>\r\n    \r\n    \r\n    <!-- 添加好友 -->\r\n  <nz-modal [(nzVisible)]=\"isAddFriendVisible\" [nzTitle]=\"modalTitle1\" [nzContent]=\"modalContent1\"  (nzOnCancel)=\"handleAddFriendCancel()\">\r\n      <ng-template #modalTitle1>\r\n          添加好友\r\n          <nz-input-group [nzSuffix]=\"suffixIconSearch\"> \r\n              <input type=\"text\" [(ngModel)]=\"searchContent\" nz-input placeholder=\"输入搜索的用户名\" \r\n              id = \"search\" (keyup) = \"keyUpSearch($event)\">\r\n          </nz-input-group> \r\n  \r\n          <ng-template #suffixIconSearch>\r\n              <i nz-icon type=\"search\" class = \"icon\" (click) = \"search()\"></i>\r\n          </ng-template>\r\n      </ng-template>\r\n    \r\n      <ng-template #modalContent1>\r\n          <div *ngIf=\"!searchContent\">\r\n              正在搜索内容\r\n          </div>\r\n            <div *ngIf=\"searchContent\">\r\n                <div *ngIf=\"flag;else Show\">查无此人</div>\r\n                <ng-template #Show>\r\n                <div *ngFor=\"let item of userlist\">\r\n                    <img src = \"{{item.Img_url}}\" class = \"img\">\r\n                      {{item.Name}}\r\n                    <button (click) = \"addfriend(item.ID)\">添加好友</button>\r\n                </div>\r\n              </ng-template>\r\n    \r\n            </div>\r\n      </ng-template>\r\n  </nz-modal>\r\n  \r\n  <div *ngIf=\"show\">\r\n      <div style=\"display: -webkit-box;\">\r\n          <div class=\"hint\">\r\n              {{filename}}\r\n          </div>\r\n          <div class=\"action-box\">\r\n              <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\r\n              </button>\r\n          </div>\r\n      </div>\r\n  </div>\r\n  \r\n  <div  id = \"mesback1\"  *ngIf=\"pressBoolean\">\r\n      <input type = button value=\"撤回\" class = \"mesback\" (click) = \"backdata()\" [ngStyle]=\"{'left': px, 'top':py, 'z-index':'400', 'background-color':'red'}\" >\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -263,9 +263,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _file_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../file.service */ "./src/app/file.service.ts");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../protocol/Protocol */ "./src/app/protocol/Protocol.js");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./data */ "./src/app/chat/data.ts");
 
 
 // import { MesList, FriendList, FriendItem, MessageList } from './data';
+
 
 
 
@@ -281,9 +283,6 @@ var ChatComponent = /** @class */ (function () {
         // @ViewChild('scrollMe') private myScrollContainer: ElementRef;
         this.from_id = 1;
         this.to_id = 0;
-        this.my_id = this.us.MyUserId;
-        this.my_img_url = this.us.myImg;
-        this.my_name = this.us.myName;
         this.to_name = "";
         this.to_img = "";
         // group = 0;
@@ -291,12 +290,18 @@ var ChatComponent = /** @class */ (function () {
         this.content = "";
         // group_name = '';
         this.list = [];
-        this.searchContent = "";
-        this.searchFriend = "";
-        this.groupName = "";
-        this.idList = null;
+        // searchContent : string = "";
+        // searchFriend : string = "";
+        // groupName : string = "";
         this.isVisible = false;
         this.isgroup = false;
+        this.pressBoolean = false;
+        this.px = "";
+        this.py = "";
+        // mesItem = MessageItem;
+        this.contentType = 0;
+        this.backMes = "";
+        this.isPress = false;
         this.fileurl = 'http://localhost:9988/upload';
         this.dfileurl = "http://localhost:9988/upload/c4fb3e1e6b7e.jpg";
         this.filep = "";
@@ -313,63 +318,84 @@ var ChatComponent = /** @class */ (function () {
         this.isAddFriendConfirmLoading = false;
         this.addGroupUserList = new (AddGroupUserlist);
         this.addGroupUserList.AGlist = [];
-        this.userlist = [];
+        // this.userlist = [];
     }
     ChatComponent.prototype.ngAfterViewInit = function () {
         // this.elementRef.nativeElement.focus();
         this.el.nativeElement.focus();
     };
     ChatComponent.prototype.ngOnInit = function () {
-        this.friendlist = this.ws.wsFriendList;
-        // console.log("friendList=", this.friendlist);
-        this.friendlist = this.ws.wsFriendList;
-        // console.log("friendList=", this.friendlist);
-        // console.log("wsfriendlist=", this.ws.wsFriendList);
-        this.messagelist = this.ws.wsMessageList;
-        // console.log("messagelist = ", this.messagelist);
-        // console.log("my=", this.us);
-        // console.log("from_id=", this.my_id);
-        var now = new Date(); //设置滚动条保持在最底部
-        var div = document.getElementById('scrolldIV');
-        now.getTime();
-        div.scrollTop = div.scrollHeight;
+        // this.friendlist = data.nearContractList;
+        this.addressList = _data__WEBPACK_IMPORTED_MODULE_6__["addressList"];
+        // this.messagelist = data.chatRoom;
+        this.friendlist = this.ws.nearest_contact;
+        console.log("friendlist = ", this.friendlist);
+        this.my_id = this.us.MyUserId;
+        this.my_img_url = this.us.myImg;
+        this.my_name = this.us.myName;
+        // console.log("id, name = ", this.my_id, this.my_name)
+        this.scollbuttom();
         this.show = false;
+        this.pressBoolean = false;
+        this.isPress = false;
     };
     ChatComponent.prototype.his = function (event) {
         event.preventDefault();
-    };
-    ChatComponent.prototype.he = function (event) {
-        if (event.button == 2)
-            console.log("点击右键");
-        else if (event.button == 1) {
-            console.log("点击了中键");
-        }
-        else if (event.button == 0) {
-            console.log("点击了左键");
+        if (event.button != 2 || !this.isPress) {
+            this.pressBoolean = false;
+            this.isPress = false;
+            return;
         }
     };
-    ChatComponent.prototype.test2 = function (id, name, img, isgroup) {
-        this.isslect = true;
+    ChatComponent.prototype.he = function (event, content) {
+        if (event.button != 2) {
+            this.pressBoolean = false;
+            this.isPress = false;
+            return;
+        }
+        this.isPress = true;
+        this.backMes = content;
+        this.pressBoolean = true;
+        var px = event.clientX;
+        var py = event.clientY;
+        this.px = String(px) + 'px';
+        this.py = String(py) + 'px';
+        console.log("style=", this.px, this.py);
+    };
+    ChatComponent.prototype.backdata = function () {
+        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message);
+        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.Type.REQUEST; //消息的类型的请求类型
+        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.CtrlType.MSG_BACK; // 消息的功
+        msg.from = this.us.MyUserId; // 消息发送方
+        msg.to = this.to_id; //消息接收方
+        msg.content = this.backMes; //消息内容
+        msg.contentType = this.contentType; //消息类型
+        msg.isgroup = this.isgroup; //是不是群组消息
+        // console.log("this.msg && this.to_id = ", msg, this.to_id);
+        // this.ws.sendMessage(msg);
+        this.backMes = "";
+    };
+    ChatComponent.prototype.test2 = function (index, id, name, img, isgroup) {
+        this.isselect = true;
         this.to_id = id;
         this.to_name = name;
         this.to_img = img;
         this.isgroup = isgroup;
         var flag = false;
-        for (var i_1 = 0; i_1 < this.friendlist.List.length; i_1++) {
-            if (id == this.friendlist.List[i_1].ID) {
-                this.friendlist.List[i_1].Counter = 0;
-            }
-        }
-        for (var i = 0; i < this.messagelist.List.length; i++) {
-            if (id == this.messagelist.List[i].ID) {
-                this.showmsg = this.messagelist.List[i].MList;
-                this.isgroup = this.messagelist.List[i].Isgroup;
+        this.friend = this.friendlist.contact_list[index];
+        for (var i = 0; i < this.friendlist.contact_list.length; i++) {
+            if (id == this.friendlist.contact_list[i].id) {
+                this.friendlist.contact_list[i].count = 0;
+                this.showmsg = this.friendlist.contact_list[i].message_list;
+                this.isgroup = this.friendlist.contact_list[i].is_group;
                 flag = true;
             }
         }
         if (!flag) {
             this.showmsg = [];
         }
+        console.log("showmsg=", this.showmsg);
+        this.scollbuttom();
     };
     ChatComponent.prototype.sendMsg = function () {
         this.content = this.content.replace(/^\s*/, ''); //去除左边空格
@@ -388,9 +414,11 @@ var ChatComponent = /** @class */ (function () {
         switch (this.isgroup) {
             case false:
                 this.sendC2C();
+                this.scollbuttom();
                 break;
             case true:
                 this.sendToGoup();
+                this.scollbuttom();
                 break;
             default:
                 console.log("default");
@@ -405,9 +433,10 @@ var ChatComponent = /** @class */ (function () {
         msg.to = this.to_id; //消息接收方
         msg.content = this.content; //消息内容
         msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.ContentType.TEXT; //消息类型
+        this.contentType = msg.contentType;
         msg.isgroup = false; //是不是群组消息
         // console.log("this.msg && this.to_id = ", msg, this.to_id);
-        this.ws.sendMessage(msg);
+        // this.ws.sendMessage(msg);
         this.content = "";
     };
     ChatComponent.prototype.sendToGoup = function () {
@@ -418,22 +447,23 @@ var ChatComponent = /** @class */ (function () {
         msg.to = this.to_id;
         msg.content = this.content;
         msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message.ContentType.TEXT;
+        this.contentType = msg.contentType;
         // console.log("type=", msg.contentType)
         msg.isgroup = true;
-        this.ws.sendMessage(msg);
+        // this.ws.sendMessage(msg);
         this.content = "";
     };
     ChatComponent.prototype.clickMe = function () {
         var btn = document.getElementById("search");
         btn.focus();
         this.isVisible = document.hasFocus();
-        this.userlist = [];
+        // this.userlist = [];
     };
     ChatComponent.prototype.outMe = function () {
         var btn = document.getElementById("search");
         btn.blur();
         this.isVisible = document.hasFocus();
-        this.userlist = [];
+        // this.userlist = [];
     };
     ChatComponent.prototype.cancelEditingTodo = function () {
         this.isVisible = false;
@@ -445,18 +475,17 @@ var ChatComponent = /** @class */ (function () {
         // })
     };
     ChatComponent.prototype.search = function () {
-        var _this = this;
         // console.log("search=", this.searchContent);
-        this.ws.getUserList(this.searchContent).subscribe(function (data) {
-            _this.userlist = data.Ulist;
-            _this.flag = false;
-        });
-        if (this.searchContent == "") {
-            return;
-        }
-        if (this.userlist.length == 0) {
-            this.flag = true;
-        }
+        // this.ws.getUserList(this.searchContent).subscribe(data => {
+        //   this.userlist = data.Ulist;
+        //   this.flag = false;
+        // })
+        // if(this.searchContent == ""){
+        //   return;
+        // }
+        // if(this.userlist.length == 0) {
+        //   this.flag = true;
+        // }
     };
     ChatComponent.prototype.addfriend = function (to) {
         var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_5__["Protocol"].Message);
@@ -465,7 +494,7 @@ var ChatComponent = /** @class */ (function () {
         msg.from = this.us.MyUserId;
         msg.to = to;
         msg.time = Date.now();
-        this.ws.sendMessage(msg);
+        // this.ws.sendMessage(msg)
     };
     ChatComponent.prototype.selectFile = function (event) {
         var fileList = event.target.files;
@@ -505,8 +534,9 @@ var ChatComponent = /** @class */ (function () {
                 msg.to = _this.to_id;
                 msg.content = _this.dfileurl;
                 msg.contentType = filetype;
+                _this.contentType = msg.contentType;
                 msg.isgroup = false;
-                _this.ws.sendMessage(msg);
+                //  this.ws.sendMessage(msg);
                 _this.content = "";
             }
         }, function (err) {
@@ -534,17 +564,15 @@ var ChatComponent = /** @class */ (function () {
         // console.log('download:' + a.href);
     };
     ChatComponent.prototype.showAddGroupModal = function () {
-        for (var i = 0; i < this.ws.wsFriendList.List.length; i++) {
-            if (this.ws.wsFriendList.List[i].Isgroup) {
-                continue;
-            }
-            var item = new (AddGroupUserItem);
-            item.ID = Number(this.ws.wsFriendList.List[i].ID);
-            item.Name = this.ws.wsFriendList.List[i].Name;
-            item.Headimg = this.ws.wsFriendList.List[i].Headimg;
-            item.Check = false;
-            this.addGroupUserList.AGlist.push(item);
-        }
+        // for(let i=0;i<this.ws.wsFriendList.List.length;i++){
+        //   if(this.ws.wsFriendList.List[i].Isgroup){continue;}
+        //   let item = new(AddGroupUserItem);
+        //   item.ID=Number(this.ws.wsFriendList.List[i].ID);
+        //   item.Name=this.ws.wsFriendList.List[i].Name;
+        //   item.Headimg=this.ws.wsFriendList.List[i].Headimg;
+        //   item.Check = false;
+        //   this.addGroupUserList.AGlist.push(item);
+        // }
         this.isAddGroupVisible = true;
     };
     ChatComponent.prototype.handleAddGroupCancel = function () {
@@ -574,7 +602,7 @@ var ChatComponent = /** @class */ (function () {
             }
         }
         msg.userlist.push(this.us.MyUserId);
-        this.ws.sendMessage(msg);
+        // this.ws.sendMessage(msg);
         this.addGroupUserList.AGlist = [];
         this.GroupName = '';
         this.isAddGroupVisible = false;
@@ -586,6 +614,15 @@ var ChatComponent = /** @class */ (function () {
         this.isAddFriendVisible = false;
     };
     ChatComponent.prototype.handleAddFriendOk = function () {
+    };
+    ChatComponent.prototype.scollbuttom = function () {
+        var dis = document.getElementById('scrolldIV');
+        // var now = new Date(); //设置滚动条保持在最底部
+        // now.getTime();
+        try {
+            dis.scrollTop = dis.scrollHeight;
+        }
+        catch (err) { }
     };
     ChatComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -612,6 +649,178 @@ var AddGroupUserlist = /** @class */ (function () {
     function AddGroupUserlist() {
     }
     return AddGroupUserlist;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/chat/data.ts":
+/*!******************************!*\
+  !*** ./src/app/chat/data.ts ***!
+  \******************************/
+/*! exports provided: addressList, id_1_message, id_2_message, id_3_message, chatRoom, chatroom */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addressList", function() { return addressList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "id_1_message", function() { return id_1_message; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "id_2_message", function() { return id_2_message; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "id_3_message", function() { return id_3_message; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "chatRoom", function() { return chatRoom; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "chatroom", function() { return chatroom; });
+// export class MesList {
+//     from: number = 0;
+//     to: number = 0;
+//     msgid: number = 0;
+//     content: string = "";
+//     img_url: string = "";
+//   }
+var addressList = [
+    { id: 1, name: "abc", head_img: "aaa", is_group: false },
+    { id: 2, name: "bcd", head_img: "aaa", is_group: false },
+    { id: 3, name: "cde", head_img: "aaa", is_group: false },
+    { id: 4, name: "def", head_img: "aaa", is_group: true },
+    { id: 5, name: "efg", head_img: "aaa", is_group: true },
+    { id: 6, name: "fgh", head_img: "aaa", is_group: true },
+];
+// export const nearContractList : com.NearestContactItem[] = [
+//     {id: 100021, name: "mmm", head_img: "aaa", count: 5, is_group: false},
+//     {id: 100017, name: "pjw", head_img: "aaa", count: 1, is_group: false},
+//     {id: 1008, name: "你有一条新的消息", head_img: "aaa", count: 12, is_group: false},
+//     {id: 1009, name: "testGGG", head_img: "aaa", count: 6, is_group: true},
+//     {id: 1010, name: "GGGGGGGGGGGG", head_img: "aaa", count: 2, is_group: true},
+//     {id: 100019, name: "hql", head_img: "aaa", count: 2, is_group: true},
+//     {id: 100018, name: "gct", head_img: "aaa", count: 2, is_group: true},
+// ]
+var id_1_message = [
+    { id: 1001, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000001, is_group: false },
+    { id: 1002, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000002, is_group: false },
+    { id: 1003, from: 1, to: 100018, content: "测试", content_type: 0, arrive_time: 1000003, is_group: false },
+    { id: 1004, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000004, is_group: false },
+    { id: 1005, from: 1, to: 100018, content: "测试", content_type: 0, arrive_time: 1000005, is_group: false },
+    { id: 1006, from: 1, to: 100018, content: "测试", content_type: 0, arrive_time: 1000006, is_group: false },
+    { id: 1007, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000007, is_group: false },
+    { id: 1008, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000008, is_group: false },
+];
+var id_2_message = [
+    { id: 501, from: 100019, to: 100017, content: "dasdasdasd", content_type: 0, arrive_time: 1550047381671, is_group: false },
+    { id: 505, from: 100019, to: 100017, content: "fsafasfa", content_type: 0, arrive_time: 1550047384788, is_group: false },
+    { id: 509, from: 100017, to: 100019, content: "dasdasdas", content_type: 0, arrive_time: 1550047388021, is_group: false },
+    { id: 513, from: 100017, to: 100019, content: "dasdasda", content_type: 0, arrive_time: 1550047392531, is_group: false },
+    { id: 517, from: 100019, to: 100017, content: "files/4b06426a7a8e_compress.jpg", content_type: 1, arrive_time: 1550047406461, is_group: false },
+    { id: 521, from: 100017, to: 100019, content: "files/4b06426a7a8e_compress.jpg", content_type: 1, arrive_time: 1550047414312, is_group: false },
+    { id: 525, from: 100017, to: 100019, content: "777777", content_type: 0, arrive_time: 1550047437582, is_group: false },
+    { id: 529, from: 100017, to: 100019, content: "", content_type: 0, arrive_time: 1550047451365, is_group: false },
+    { id: 549, from: 100019, to: 100017, content: "files/9edbe55433e4_compress.jpg", content_type: 1, arrive_time: 1550047514194, is_group: false },
+    { id: 553, from: 100019, to: 100017, content: "files/9edbe55433e4_compress.jpg", content_type: 1, arrive_time: 1550047517339, is_group: false }
+];
+var id_3_message = [
+    { id: 565, from: 100018, to: 1008, content: "11111", content_type: 0, arrive_time: 1550294670186, is_group: true },
+    { id: 569, from: 100018, to: 1008, content: "111111", content_type: 0, arrive_time: 1550294671863, is_group: true },
+    { id: 573, from: 100018, to: 1008, content: "222222222", content_type: 0, arrive_time: 1550294673907, is_group: true },
+    { id: 577, from: 100018, to: 1008, content: "3333333333", content_type: 0, arrive_time: 1550294675796, is_group: true },
+    { id: 581, from: 100018, to: 1008, content: "aaaaaa", content_type: 0, arrive_time: 1550294678035, is_group: true },
+    { id: 585, from: 100018, to: 1008, content: "hhhhhhhhhhh", content_type: 0, arrive_time: 1550294683810, is_group: true },
+    { id: 589, from: 100018, to: 1008, content: "ffffffff", content_type: 0, arrive_time: 1550294686338, is_group: true },
+    { id: 593, from: 100018, to: 1008, content: "qwr", content_type: 0, arrive_time: 1550294688195, is_group: true },
+    { id: 597, from: 100018, to: 1008, content: "adf", content_type: 0, arrive_time: 1550294690621, is_group: true },
+    { id: 601, from: 100018, to: 1008, content: "hello", content_type: 0, arrive_time: 1550309859874, is_group: true },
+];
+var chatRoom = [
+    { id: 100021, name: "mmm", is_group: false, message_list: [] },
+    { id: 100017, name: "pjw", is_group: false, message_list: [] },
+    { id: 1008, name: "你有一条新的消息", is_group: true, message_list: id_3_message },
+    { id: 1009, name: "testGGG", is_group: true, "message_list": [] },
+    { id: 1010, name: "GGGGGGGGGGGG", is_group: true, "message_list": [] },
+    { id: 100019, name: "hql", is_group: false, "message_list": id_2_message },
+    { id: 100018, name: "gct", is_group: false, "message_list": [] }
+];
+var chatroom = {
+    size: 7,
+    message_list: id_3_message
+};
+
+
+/***/ }),
+
+/***/ "./src/app/common/im.ts":
+/*!******************************!*\
+  !*** ./src/app/common/im.ts ***!
+  \******************************/
+/*! exports provided: MessageItem, HistoryMessage, AddressBookItem, AddressBook, NearestContactItem, NearestContact, GlobalMessage, ChatRoom, AllChatRoom */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageItem", function() { return MessageItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HistoryMessage", function() { return HistoryMessage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddressBookItem", function() { return AddressBookItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddressBook", function() { return AddressBook; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NearestContactItem", function() { return NearestContactItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NearestContact", function() { return NearestContact; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlobalMessage", function() { return GlobalMessage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatRoom", function() { return ChatRoom; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AllChatRoom", function() { return AllChatRoom; });
+//一条消息的消息体
+var MessageItem = /** @class */ (function () {
+    function MessageItem() {
+    }
+    return MessageItem;
+}());
+
+// 单个会话的历史消息
+var HistoryMessage = /** @class */ (function () {
+    function HistoryMessage() {
+    }
+    return HistoryMessage;
+}());
+
+// 通讯录相关
+var AddressBookItem = /** @class */ (function () {
+    function AddressBookItem() {
+    }
+    return AddressBookItem;
+}());
+
+var AddressBook = /** @class */ (function () {
+    function AddressBook() {
+    }
+    return AddressBook;
+}());
+
+// 最近联系人
+var NearestContactItem = /** @class */ (function () {
+    function NearestContactItem() {
+    }
+    return NearestContactItem;
+}());
+
+var NearestContact = /** @class */ (function () {
+    function NearestContact() {
+    }
+    return NearestContact;
+}());
+
+//全局显示消息集合
+var GlobalMessage = /** @class */ (function () {
+    function GlobalMessage() {
+    }
+    return GlobalMessage;
+}());
+
+//聊天室
+var ChatRoom = /** @class */ (function () {
+    function ChatRoom() {
+    }
+    return ChatRoom;
+}());
+
+var AllChatRoom = /** @class */ (function () {
+    function AllChatRoom() {
+    }
+    return AllChatRoom;
 }());
 
 
@@ -670,7 +879,7 @@ var UploadService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hvbWUvaG9tZS5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJob21lL2hvbWUuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -681,7 +890,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nz-skeleton></nz-skeleton>\n<nz-skeleton></nz-skeleton>\n<nz-skeleton></nz-skeleton>\n<nz-skeleton></nz-skeleton>\n<nz-skeleton></nz-skeleton>"
+module.exports = "<nz-skeleton></nz-skeleton>\r\n<nz-skeleton></nz-skeleton>\r\n<nz-skeleton></nz-skeleton>\r\n<nz-skeleton></nz-skeleton>\r\n<nz-skeleton></nz-skeleton>"
 
 /***/ }),
 
@@ -726,7 +935,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJsb2dpbi9sb2dpbi5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -737,7 +946,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div style=\"margin-left:100px\">\n  <h1>登录</h1>\n  <div>.</div>\nUsername:<input nz-input placeholder=\"default size\" [(ngModel)]=\"name\" style=\"width: 200px\">\n<div>.</div>\nPassword:<input nz-input placeholder=\"default size\" [(ngModel)]=\"password\" style=\"width: 200px\">\n<div>.</div>\n<button (click)=\"submit()\" nz-button nzType=\"primary\">提交</button>\n</div>\n\n"
+module.exports = "\r\n<div style=\"margin-left:100px\">\r\n  <h1>登录</h1>\r\n  <div>.</div>\r\nUsername:<input nz-input placeholder=\"Please input username\" [(ngModel)]=\"name\" style=\"width: 200px\">\r\n<div>.</div>\r\nPassword:<input nz-input placeholder=\"Please input password\" [(ngModel)]=\"password\" style=\"width: 200px\">\r\n<div>.</div>\r\n<button (click)=\"submit()\" nz-button nzType=\"primary\">提交</button>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -770,10 +979,26 @@ var LoginComponent = /** @class */ (function () {
         this.password = '';
     }
     LoginComponent.prototype.submit = function () {
+        var _this = this;
         var body = { name: this.name, password: this.password };
         this.us.postLoginData(body).subscribe(function (data) {
-            console.log(data.status);
-            console.log(data.body);
+            console.log("data.status=", data.status);
+            if (data.status == 200) {
+                var respond = data["body"];
+                alert("登录成功");
+                _this.us.isLogin = true;
+                _this.us.MyUserId = respond['id'];
+                _this.us.myImg = respond['head_img'];
+                _this.us.myName = respond['name'];
+                _this.us.session_id = respond['session_id'];
+                _this.router.navigate(['chat']);
+                console.log("data=", data, _this.us.MyUserId, _this.us.myName);
+                // this.ws.createSocket(environment.websocketUrl);
+                _this.ws.getNearestList();
+            }
+            else {
+                alert("登录失败");
+            }
         });
     };
     LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -802,7 +1027,7 @@ var LoginComponent = /** @class */ (function () {
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 
 
-var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "../../../../node_modules/protobufjs/minimal.js");
+var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "./node_modules/protobufjs/minimal.js");
 
 // Common aliases
 var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
@@ -1427,7 +1652,7 @@ module.exports = $root;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpZ251cC9zaWdudXAuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzaWdudXAvc2lnbnVwLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -1438,7 +1663,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"margin-left:100px\">\n  <h1>注册</h1>\n  <div>.</div>\nUsername:<input nz-input placeholder=\"default size\" [(ngModel)]=\"name\" style=\"width: 200px\">\n<div>.</div>\nPassword:<input nz-input placeholder=\"default size\" [(ngModel)]=\"password\" style=\"width: 200px\">\n<div>.</div>\n<button (click)=\"signup()\" nz-button nzType=\"primary\">提交</button>\n</div>\n"
+module.exports = "<div style=\"margin-left:100px\">\r\n  <h1>注册</h1>\r\n  <div>.</div>\r\nUsername:<input nz-input placeholder=\"Please input username\" [(ngModel)]=\"name\" style=\"width: 200px\">\r\n<div>.</div>\r\nPassword:<input nz-input placeholder=\"Please input password\" [(ngModel)]=\"password\" style=\"width: 200px\">\r\n<div>.</div>\r\n<button (click)=\"signup()\" nz-button nzType=\"primary\">提交</button>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1455,21 +1680,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user.service */ "./src/app/user.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
 var SignupComponent = /** @class */ (function () {
-    function SignupComponent(login) {
+    function SignupComponent(login, router) {
         this.login = login;
+        this.router = router;
         this.name = '';
         this.password = '';
     }
     SignupComponent.prototype.ngOnInit = function () {
     };
     SignupComponent.prototype.signup = function () {
+        var _this = this;
         var body = { name: this.name, password: this.password };
         this.login.postSignupData(body).subscribe(function (data) {
-            console.log("data=", data);
+            console.log(data);
+            if (data.status == 200)
+                alert("注册成功");
+            _this.router.navigate(['login']);
         });
     };
     SignupComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1478,7 +1710,7 @@ var SignupComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./signup.component.html */ "./src/app/signup/signup.component.html"),
             styles: [__webpack_require__(/*! ./signup.component.css */ "./src/app/signup/signup.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], SignupComponent);
     return SignupComponent;
 }());
@@ -1505,26 +1737,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
+        this.session_id = '';
         this.isLogin = false;
         this.MyUserId = -1;
         this.myImg = "";
         this.myName = "";
         this.configUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl;
         this.loginUrl = this.configUrl + "/login";
-        this.signupUrl = this.configUrl + '/signup';
+        this.signupUrl = this.configUrl + '/register';
         this.quitUrl = this.configUrl + '/quit';
     }
     UserService.prototype.postLoginData = function (data) {
         return this.http.post(this.loginUrl, data, { observe: 'response' });
     };
     UserService.prototype.postSignupData = function (data) {
-        return this.http.post(this.signupUrl, data);
+        return this.http.post(this.signupUrl, data, { observe: 'response' });
     };
     UserService.prototype.quit = function () {
-        return this.http.get(this.quitUrl);
+        return this.http.get(this.quitUrl, { headers: this.createSessionHeader() });
     };
     UserService.prototype.getUserbyId = function (id) {
         var url = this.configUrl + '/user?id=' + id;
@@ -1532,7 +1766,23 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.getGroupById = function (id) {
         var url = this.configUrl + '/group?id=' + id;
+        var headers = new Headers();
+        //headers.append('X-Session-Id','')
         return this.http.get(url);
+    };
+    UserService.prototype.getuserinfo = function (id) {
+        var url = this.configUrl + '/user-info/' + id;
+        return this.http.get(url);
+    };
+    UserService.prototype.getgroupinfo = function (id) {
+        var url = this.configUrl + '/group-info/' + id;
+        return this.http.get(url);
+    };
+    UserService.prototype.createSessionHeader = function () {
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
+        headers = headers.set('X-Session-Id', this.session_id);
+        console.log("session=", this.session_id);
+        return headers;
     };
     UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -1549,25 +1799,12 @@ var UserService = /** @class */ (function () {
 /*!**************************************!*\
   !*** ./src/app/websocket.service.ts ***!
   \**************************************/
-/*! exports provided: WebsocketService, FriendItem, FriendList, MessageItem, Session, MessageList, Hist, HistList, ChatItem, ChatList, MsgItem, MsgList, UserItem, Userlist */
+/*! exports provided: WebsocketService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WebsocketService", function() { return WebsocketService; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FriendItem", function() { return FriendItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FriendList", function() { return FriendList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageItem", function() { return MessageItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Session", function() { return Session; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageList", function() { return MessageList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Hist", function() { return Hist; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HistList", function() { return HistList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatItem", function() { return ChatItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatList", function() { return ChatList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgItem", function() { return MsgItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MsgList", function() { return MsgList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserItem", function() { return UserItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Userlist", function() { return Userlist; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./protocol/Protocol */ "./src/app/protocol/Protocol.js");
@@ -1575,6 +1812,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./user.service */ "./src/app/user.service.ts");
+/* harmony import */ var _common_im__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./common/im */ "./src/app/common/im.ts");
+
+
 
 
 
@@ -1586,250 +1826,75 @@ var WebsocketService = /** @class */ (function () {
         this.http = http;
         this.us = us;
         this.collection = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message);
-        this.wsFriendList = new (FriendList);
-        this.wsFriendList.List = [];
-        this.wsMessageList = new (MessageList);
-        this.wsMessageList.List = [];
-        this.wsUserList = new (Userlist);
-        this.wsUserList.Ulist = [];
+        this.global_message = new (_common_im__WEBPACK_IMPORTED_MODULE_6__["GlobalMessage"]);
+        this.global_message.chat_room_list = new Map();
+        this.nearest_contact = new (_common_im__WEBPACK_IMPORTED_MODULE_6__["NearestContact"]);
+        this.nearest_contact.contact_list = [];
+        this.address_book = new (_common_im__WEBPACK_IMPORTED_MODULE_6__["AddressBook"]);
+        this.address_book.friends_list = [];
     }
     // 建立websocket链接
     WebsocketService.prototype.createSocket = function (url) {
         var that = this;
         this.ws = new WebSocket(url);
-        this.ws.onopen = function () {
-            console.log("WebSocket打开");
-        };
+        this.ws.onopen = function () { console.log("WebSocket打开"); };
         this.ws.onmessage = function (evt) {
             var reader = new FileReader();
             reader.readAsArrayBuffer(evt.data);
             reader.onload = function (e) {
                 var buf = new Uint8Array(reader.result);
                 var conn = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.decode(buf);
-                that.parseNotification(conn); //收到消息解析后分析消息
+                //that.parseNotification(conn)    //收到消息解析后分析消息
             };
         };
-        this.ws.onclose = function () {
-            console.log("WebSocket结束");
-        };
+        this.ws.onclose = function () { console.log("WebSocket关闭"); };
     };
-    //分析消息
-    WebsocketService.prototype.parseNotification = function (conn) {
-        if (conn.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.NOTIFICATION) {
-            console.log("NOTIFICATION");
-            if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
-                console.log("COMMOM", conn);
-                for (var i = 0; i < this.wsMessageList.List.length; i++) {
-                    if (conn.isgroup == this.wsMessageList.List[i].Isgroup &&
-                        ((conn.isgroup && conn.to == this.wsMessageList.List[i].ID) || (!conn.isgroup && conn.from == this.wsMessageList.List[i].ID))) {
-                        var item = new (MessageItem);
-                        item.Mid = conn.msgid;
-                        item.From = conn.from;
-                        item.To = conn.from;
-                        if (conn.isgroup) {
-                            item.To = conn.to;
-                        }
-                        item.Content = conn.content;
-                        item.ContentType = conn.contentType;
-                        item.Time = conn.time;
-                        this.wsMessageList.List[i].MList.push(item);
-                        console.log(this.wsMessageList.List[i]);
-                        break;
-                    }
-                }
-            }
-            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) { //添加好友请求
-                this.createSessById(conn, conn.from);
-            }
-            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_GROUP || conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS) {
-                this.createGroupById(conn, conn.to);
-            }
-            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
-                for (var i = 0; i < this.wsMessageList.List.length; i++) {
-                    if (conn.isgroup == this.wsMessageList.List[i].Isgroup &&
-                        ((conn.isgroup && conn.to == this.wsMessageList.List[i].ID) || (!conn.isgroup && conn.from == this.wsMessageList.List[i].ID))) {
-                        for (var j = 0; j < this.wsMessageList.List[i].MList.length; j++) {
-                            if (this.wsMessageList.List[i].MList[j].Mid == conn.msgid) {
-                                this.wsMessageList.List[i].MList.slice(j, 1);
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else if (conn.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.ACK) {
-            if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
-                for (var i = 0; i < this.wsMessageList.List.length; i++) {
-                    if (conn.from == this.wsMessageList.List[i].ID && conn.isgroup == this.wsMessageList.List[i].Isgroup) {
-                        for (var j = 0; j < this.wsMessageList.List[i].MList.length; j++) {
-                            if (this.wsMessageList.List[i].MList[j].Time == conn.time) {
-                                this.wsMessageList.List[i].MList[j].Mid = conn.msgid;
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) { //添加好友请求确认信息
-                this.createSessById(conn, conn.to);
-            }
-            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_GROUP || conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS) {
-                this.createGroupById(conn, conn.to);
-            }
-        }
+    // 请求头部设置x-session-id
+    WebsocketService.prototype.createSessionHeader = function () {
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]();
+        headers = headers.set('X-Session-Id', this.us.session_id);
+        console.log("session=", this.us.session_id);
+        return headers;
     };
-    WebsocketService.prototype.createSessById = function (conn, uid) {
-        var item = new (FriendItem);
-        item.ID = uid;
-        this.us.getUserbyId(item.ID).subscribe(function (data) {
-            console.log("data=", data);
-            item.Name = data["Name"];
-            item.Headimg = data["Img_url"];
-        });
-        item.Counter = 1;
-        item.Isgroup = false;
-        this.wsFriendList.List.push(item);
-        var sess = new (Session);
-        sess.ID = item.ID;
-        sess.Isgroup = false;
-        sess.MList = [];
-        this.wsMessageList.List.push(sess);
+    // 获取通讯录
+    WebsocketService.prototype.getAddressBook = function () {
+        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/address-book";
+        return this.http.get(url, { headers: this.createSessionHeader() });
     };
-    WebsocketService.prototype.createGroupById = function (conn, gid) {
-        var item = new (FriendItem);
-        item.ID = gid;
-        this.us.getGroupById(item.ID).subscribe(function (data) {
-            item.Name = data["Name"];
-            item.Headimg = data["Headimg"];
-        });
-        item.Counter = 1;
-        item.Isgroup = true;
-        this.wsFriendList.List.push(item);
-        var sess = new (Session);
-        sess.ID = item.ID;
-        sess.Isgroup = true;
-        sess.MList = [];
-        this.wsMessageList.List.push(sess);
+    // 获取最近联系人
+    WebsocketService.prototype.getNearestContact = function () {
+        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/recent-contact";
+        return this.http.get(url, { headers: this.createSessionHeader() });
     };
-    // 发送信息，不在这里构造消息体
-    WebsocketService.prototype.sendMessage = function (message) {
-        message.time = Date.now();
-        // console.log("mes.contentype=",message.contentType);
-        if (message.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST) {
-            if (message.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) { // 单聊或群聊
-                for (var i = 0; i < this.wsMessageList.List.length; i++) {
-                    if (message.isgroup == this.wsMessageList.List[i].Isgroup && message.to == this.wsMessageList.List[i].ID) {
-                        var item = new (MessageItem);
-                        item.Mid = 0;
-                        item.From = message.from;
-                        item.To = message.to;
-                        item.Content = message.content;
-                        item.ContentType = message.contentType;
-                        item.Time = message.time;
-                        this.wsMessageList.List[i].MList.push(item);
-                        break;
-                    }
-                }
-            }
-        }
-        else if (message.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) { // 撤回消息
-            if (message.msgid == 0) {
-                alert("消息ＩＤ不存在，无法撤回");
-            }
-            for (var i = 0; i < this.wsMessageList.List.length; i++) {
-                if (message.to == this.wsMessageList.List[i].ID && message.isgroup == this.wsMessageList.List[i].Isgroup) {
-                    for (var j = 0; j < this.wsMessageList.List[i].MList.length; j++) {
-                        if (this.wsMessageList.List[i].MList[j].Mid == message.msgid) {
-                            this.wsMessageList.List[i].MList.slice(j, 1);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        console.log("发送前的数据", message);
-        this.ws.send(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(message).finish());
+    //获取最近联系人的最近聊天信息
+    WebsocketService.prototype.getNearestContactMessage = function () {
+        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/recent-contact-message";
+        return this.http.get(url, { headers: this.createSessionHeader(), observe: 'response' });
     };
-    WebsocketService.prototype.delectMessage = function (id) {
-    };
-    // 按名字取得用户列表
-    WebsocketService.prototype.getUserList = function (name) {
-        if (name === void 0) { name = ""; }
-        // console.log("name = " ,name);
-        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/userlist?name=" + name;
-        return this.http.get(url);
-    };
-    WebsocketService.prototype.getChatMessageList = function (data) {
-        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/histchat";
-        return this.http.post(url, JSON.stringify(data));
-    };
-    //  下面函数是登录的时候初始数据 
-    //
-    // 获取聊天列表，或者是好友聊天列表
-    WebsocketService.prototype.getChatList = function () {
-        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/chatlist";
-        return this.http.get(url);
-    };
-    WebsocketService.prototype.HistoryMessage = function (info) {
+    WebsocketService.prototype.getNearestList = function () {
         var _this = this;
-        this.getChatMessageList(info).subscribe(function (data) {
-            console.log("历史消息原数据", data);
-            _this.wsMessageList.List = [];
-            if (data.List == null) {
-                data.List = [];
+        this.getNearestContactMessage().subscribe(function (data) {
+            console.log("最近联系人de消息", data);
+            // if(data.contact_list.length == 0){
+            //   data.contact_list = [];
+            // }
+            // let HL =  new(com.NearestContact);
+            _this.nearest_contact.contact_list = [];
+            // this.nearest_contact.contact_list = data.contact_list;
+            // console.log("contact_list = ", this.nearest_contact.contact_list)
+            // return data
+            for (var i = 0; i < data.body['chat_room_list'].length; i++) {
+                var FriItem = new (_common_im__WEBPACK_IMPORTED_MODULE_6__["NearestContactItem"]);
+                FriItem.id = data.body['chat_room_list'][i].id;
+                FriItem.name = data.body['chat_room_list'][i].name;
+                FriItem.head_img = data.body['chat_room_list'][i].head_img;
+                FriItem.is_group = data.body['chat_room_list'][i].is_group;
+                FriItem.count = data.body['chat_room_list'][i].count;
+                FriItem.message_list = data.body['chat_room_list'][i].message_list;
+                _this.nearest_contact.contact_list.push(FriItem);
             }
-            for (var i = 0; i < data.List.length; i++) {
-                var session = new (Session);
-                session.MList = [];
-                if (data.List[i].length > 0) {
-                    session.ID = data.List[i][0].From;
-                    if (data.List[i][0].Isgroup || session.ID == _this.us.MyUserId) {
-                        session.ID = data.List[i][0].To;
-                    }
-                    session.Isgroup = data.List[i][0].Isgroup;
-                }
-                else {
-                    continue;
-                }
-                // console.log("session.ID",session.ID, data.List[i][0].To,data.List[i][0].From)
-                for (var j = 0; j < data.List[i].length; j++) {
-                    var Item = new (MessageItem);
-                    Item.Mid = data.List[i][j].Mid;
-                    Item.From = data.List[i][j].From;
-                    Item.To = data.List[i][j].To;
-                    Item.Content = data.List[i][j].Content;
-                    Item.ContentType = data.List[i][j].ContentType;
-                    Item.Time = data.List[i][j].Time;
-                    session.MList.push(Item);
-                }
-                _this.wsMessageList.List.push(session);
-                // console.log("ContenType = ", session.MList);
-            }
-            console.log("历史消息", _this.wsMessageList.List);
-        });
-    };
-    WebsocketService.prototype.InitChatList = function () {
-        var _this = this;
-        this.getChatList().subscribe(function (data) {
-            console.log("聊天列表", data);
-            var HL = new (HistList);
-            HL.List = [];
-            for (var i = 0; i < data.List.length; i++) {
-                var FriItem = new (FriendItem);
-                FriItem.ID = data.List[i].Id;
-                FriItem.Name = data.List[i].Name;
-                FriItem.Headimg = data.List[i].Headimg;
-                FriItem.Isgroup = data.List[i].Isgroup;
-                FriItem.Counter = data.List[i].Counter;
-                _this.wsFriendList.List.push(FriItem);
-                var Ht = new (Hist);
-                Ht.ID = data.List[i].Id;
-                Ht.Isgroup = data.List[i].Isgroup;
-                HL.List.push(Ht);
-            }
-            _this.HistoryMessage(HL);
+            console.log("contact_list = ", _this.nearest_contact.contact_list);
+            // this.getNearestMessage();
         });
     };
     WebsocketService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1839,114 +1904,6 @@ var WebsocketService = /** @class */ (function () {
     return WebsocketService;
 }());
 
-var FriendItem = /** @class */ (function () {
-    function FriendItem() {
-    }
-    return FriendItem;
-}());
-
-var FriendList = /** @class */ (function () {
-    function FriendList() {
-    }
-    return FriendList;
-}());
-
-var MessageItem = /** @class */ (function () {
-    function MessageItem() {
-    }
-    return MessageItem;
-}());
-
-var Session = /** @class */ (function () {
-    function Session() {
-    }
-    return Session;
-}());
-
-var MessageList = /** @class */ (function () {
-    function MessageList() {
-    }
-    return MessageList;
-}());
-
-// 发送请求漫游消息的结构体
-var Hist = /** @class */ (function () {
-    function Hist() {
-    }
-    return Hist;
-}());
-
-var HistList = /** @class */ (function () {
-    function HistList() {
-    }
-    return HistList;
-}());
-
-//接收 好友列表的结构体
-var ChatItem = /** @class */ (function () {
-    function ChatItem() {
-    }
-    return ChatItem;
-}());
-
-var ChatList = /** @class */ (function () {
-    function ChatList() {
-    }
-    return ChatList;
-}());
-
-// 接收 漫游信息的结构体
-var MsgItem = /** @class */ (function () {
-    function MsgItem() {
-    }
-    return MsgItem;
-}());
-
-var MsgList = /** @class */ (function () {
-    function MsgList() {
-    }
-    return MsgList;
-}());
-
-var UserItem = /** @class */ (function () {
-    function UserItem() {
-    }
-    return UserItem;
-}());
-
-var Userlist = /** @class */ (function () {
-    function Userlist() {
-    }
-    return Userlist;
-}());
-
-/////////////////////////////////////////////////////////////////
-// FriendList = [
-//   {ID:1000021,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 1},
-//   {ID:1000022,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 9},
-//   {ID:1000023,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 0},
-//   {ID:1000024,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 4},
-//   {ID:1000025,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 5},
-//   {ID:1000026,NAME:"用户/群名",HEADIMG:"http://xxxxxxxxxx.jpg",ISGROUP: false,Counter: 3},
-// ];
-// MessageList = [
-//   {ID:1000021,ISGROUP: false,Message: [
-//     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-//     {Mid: 1,From: 1000021,To:1, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-//     {Mid: 1,From: 1,To: 1000021, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
-//   ]},
-//   {ID:1000022,ISGROUP: false,Message: [
-//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
-//   ]},
-//   {ID:100001,ISGROUP: false,Message: [
-//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-//     {Mid: 1,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844},
-//     {Mid: 0,From: 1,To: 2, Gid: 0, Content: "hello",ContentType: 0,Time: 1585484844}
-//   ]}
-// ]
 
 
 /***/ }),
@@ -2017,7 +1974,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/pjw/GoProject/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\User\Desktop\GoProject\src\MessageSystem\frontend\src\main.ts */"./src/main.ts");
 
 
 /***/ })

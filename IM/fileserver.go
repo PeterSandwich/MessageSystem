@@ -61,7 +61,9 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 		switch filetype {
 		case "image/jpeg", "image/jpg":returnp.Filetype=1
 		case "image/gif", "image/png":returnp.Filetype=1
-		case "application/pdf":returnp.Filetype=2
+		case "application/pdf":
+
+			returnp.Filetype=2
 		case "application/octet-stream":
 			filetype="application/x-zip-compressed"
 			returnp.Filetype=2

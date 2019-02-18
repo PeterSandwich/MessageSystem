@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { HttpHeaders }from '@angular/common/http';
 
 @Injectable()
 export class UserService {
   constructor(private http: HttpClient) { }
-
+  public session_id = '';
   public isLogin = false;
   public MyUserId = -1;
   public myImg = "";
@@ -21,7 +22,8 @@ export class UserService {
     return this.http.post(this.signupUrl, data,{observe:'response'});
   }
   quit(){
-    return this.http.get(this.quitUrl);
+
+    return this.http.get(this.quitUrl,{headers:this.createSessionHeader()});
   }
   getUserbyId(id){
     let url = this.configUrl+'/user?id='+id
@@ -40,5 +42,11 @@ export class UserService {
   getgroupinfo(id){
     let url = this.configUrl+'/group-info/'+id
     return this.http.get(url)
+  }
+  createSessionHeader():HttpHeaders {
+    let headers = new HttpHeaders();
+    headers = headers.set('X-Session-Id', this.session_id);
+    console.log("session=", this.session_id)
+    return headers
   }
 }

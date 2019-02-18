@@ -20,10 +20,7 @@ func NewMiddleWareHandler(r *httprouter.Router) http.Handler {
 func (m middleWareHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	//check session
 	//var ok bool
-	//if r,ok = validateUserSession(r);!ok{
-	//	w.WriteHeader(http.StatusNonAuthoritativeInfo)
-	//	return
-	//}
+	r,_ = validateUserSession(r)
 	m.r.ServeHTTP(w, r)
 }
 

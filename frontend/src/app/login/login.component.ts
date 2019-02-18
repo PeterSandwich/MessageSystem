@@ -19,12 +19,19 @@ export class LoginComponent {
   submit(){
       let body = {name:this.name,password:this.password}
       this.us.postLoginData(body).subscribe(data => {
-        console.log(data.status)
+        console.log("data.status=", data.status)
         if(data.status==200){
           let respond:any = data["body"];
           alert("登录成功");
           this.us.isLogin=true;
+          this.us.MyUserId = respond['id'];
+          this.us.myImg = respond['head_img'];
+          this.us.myName = respond['name']
+          this.us.session_id=respond['session_id'];
           this.router.navigate(['chat']);
+          console.log("data=", data, this.us.MyUserId, this.us.myName);
+          // this.ws.createSocket(environment.websocketUrl);
+          this.ws.getNearestList();
         }
         else{
           alert("登录失败")

@@ -1,18 +1,21 @@
 package main
 
 import (
+	"MessageSystem/IM/config"
 	"MessageSystem/IM/dbops"
 	"MessageSystem/IM/defs"
 	"MessageSystem/IM/hub"
 	"MessageSystem/IM/session"
 	"database/sql"
 	"encoding/json"
+
 	"github.com/julienschmidt/httprouter"
 	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
 	"net/http"
 	"sort"
 	"strconv"
+	"time"
 )
 
 func RegisterRouterHandlers() *httprouter.Router {
@@ -22,26 +25,26 @@ func RegisterRouterHandlers() *httprouter.Router {
 	router.POST("/api/quit", quitHandle)//退出*
 	router.POST("/api/upload", uploadFileHandler)//上传文件*
 	router.GET("/ws",func(w http.ResponseWriter, r *http.Request,p httprouter.Params) {hub.ServeWs(w, r)})
-	router.GET("/api/user-info/:id", getUserInfo)// 获取个人信息*
-	router.GET("/api/group-info/:gid", getGroupInfo)// 获取群的信息*
-	router.GET("/api/address-book",getAddressBook)//获取通讯录
-	router.GET("/api/recent-contact",getNearestContact)	//获取最近联系人
+	router.GET("/api/user-info/:id", getUserInfo)// 获取个人信息
+	router.GET("/api/group-info/:gid", getGroupInfo)// 获取群的信息
+	router.GET("/api/address-book",getAddressBook)//获取通讯录y
+	router.GET("/api/recent-contact",getNearestContact)	//获取最近联系人y
+	router.GET("/api/recent-contact-message",getNearestContactMessage)//获取最近联系人的最近聊天信息
 	router.GET("/api/history-message/:type/:id",getHistoryMessage)//获取历史消息
-	router.ServeFiles("/static/*filepath",http.Dir("../frontend/dist/frontend"))
-	router.ServeFiles("/files/*filepath",http.Dir("/tmp/files/"))
+	router.ServeFiles("/static/*filepath",http.Dir(config.StaticFilePath()))
+	router.ServeFiles("/files/*filepath",http.Dir(config.ServerFilePath()))
 	router.GET("/",indexFileServer)
-	notFoundServerHandler:= &NotFoundServerHandler{}
-	router.NotFound = notFoundServerHandler
+	router.NotFound = &NotFoundServerHandler{}
 	return router
 }
 
 func indexFileServer(w http.ResponseWriter, r *http.Request,p httprouter.Params) {
-	http.ServeFile(w, r, "../frontend/dist/frontend/index.html")
+	http.ServeFile(w, r, config.StaticFilePath()+"/index.html")
 }
 
 type NotFoundServerHandler struct{}
 func (*NotFoundServerHandler)ServeHTTP(w http.ResponseWriter,r *http.Request){
-	http.ServeFile(w, r, "../frontend/dist/frontend/index.html")
+	http.ServeFile(w, r, config.StaticFilePath()+"/index.html")
 }
 // 注册
 func registerHandle(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
@@ -140,6 +143,29 @@ func getAddressBook(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 }
 
 
+func ComputeNearestContact(uid int64)(data []byte,err error){
+	var contact *defs.NearestContact
+	contact, err = dbops.GetRecentContactList(uid)
+	if err != nil {
+		Logger.Error(err.Error())
+		return
+	}
+	sort.Sort(contact.ContactList)
+
+	limitLen := 20
+	if limitLen > len(contact.ContactList) {
+		limitLen = len(contact.ContactList)
+	}
+	contact.ContactList = contact.ContactList[:limitLen]
+	data, err = json.Marshal(contact)
+	if err != nil {
+		Logger.Warn(err.Error())
+	}
+	return
+}
+
+
+
 // 获取最近联系人
 func getNearestContact(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	param := r.Header.Get(defs.HEADER_FIELD_UID)
@@ -148,18 +174,57 @@ func getNearestContact(w http.ResponseWriter, r *http.Request, p httprouter.Para
 		sendErrorResponse(w,defs.ErrorNotAuthUser)
 		return
 	}
-
-	contact, err := dbops.GetRecentContactList(uid)
+	data, err :=ComputeNearestContact(uid)
 	if err != nil {
-		Logger.Error(err.Error())
 		sendErrorResponse(w,defs.ErrorDBError)
 		return
 	}
-
-	sort.Sort(contact.ContactList)
-	data, _ := json.Marshal(contact)
+	redisConn.Set(strconv.FormatInt(uid,10),string(data),time.Minute)
 	sendNormalResponse(w,string(data),200)
 }
+
+//获取最近联系人的最近聊天信息
+func getNearestContactMessage(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	var (
+		err error
+		bytes string
+		room *defs.AllChatRoom
+		data []byte
+	)
+	contact := &defs.NearestContact{}
+
+	param := r.Header.Get(defs.HEADER_FIELD_UID)
+	myId ,err := strconv.ParseInt(param,10,64)
+	if len(param)==0 || err !=nil {
+		sendErrorResponse(w,defs.ErrorNotAuthUser)
+		return
+	}
+
+	if data ,err = ComputeNearestContact(myId); err != nil {
+		Logger.Warn(err.Error())
+		goto ERR
+	}
+	bytes = string(data)
+	if err = json.Unmarshal([]byte(bytes), contact); err != nil {
+		Logger.Warn(err.Error())
+		goto ERR
+	}
+	if room, err = dbops.GetNearestContactHistoryMessage(myId, contact);err!= nil{
+		Logger.Warn(err.Error())
+		goto ERR
+	}
+
+	if data, err = json.Marshal(room);err!=nil{
+		Logger.Warn(err.Error())
+		goto ERR
+	}
+	sendNormalResponse(w,string(data),http.StatusOK)
+	return
+ERR:
+	sendErrorResponse(w,defs.ErrorInternalFaults)
+
+}
+
 
 // 获取历史消息
 func getHistoryMessage(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
@@ -172,7 +237,7 @@ func getHistoryMessage(w http.ResponseWriter, r *http.Request, p httprouter.Para
 	}
 	what :=p.ByName("type")
 	id :=p.ByName("id")
-	if len(id)==0 || bool(what!="group") || bool(what!="single"){
+	if len(id)==0 || (bool(what!="group") && bool(what!="single")){
 		sendErrorResponse(w,defs.ErrorParamsFaults)
 		return
 	}

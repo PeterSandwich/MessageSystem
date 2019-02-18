@@ -92,6 +92,7 @@ func (c ContactList) Less(i, j int) bool {
 	return c[i].Count < c[j].Count
 }
 
+
 // 历史消息
 type HistoryMessageItem struct {
 	Id int64`json:"id"`
@@ -106,6 +107,21 @@ type HistoryMessageItem struct {
 type HistoryMessage struct {
 	MessageList []HistoryMessageItem `json:"message_list"`
 }
+
+type ChatRoom struct{
+	Id int64`json:"id"`
+	Name string`json:"name"`
+	HeadImg string`json:"head_img"`
+	Count int64`json:"count"`
+	IsGroup bool`json:"is_group"`
+	MessageList []HistoryMessageItem `json:"message_list"`
+}
+
+type AllChatRoom struct{
+	Size int `json:"size"`
+	ChatRoomList []ChatRoom `json:"chat_room_list"`
+}
+
 
 
 
