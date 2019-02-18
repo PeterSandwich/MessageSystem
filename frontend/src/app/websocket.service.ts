@@ -71,9 +71,9 @@ export class WebsocketService {
   }
 
   //获取最近联系人的最近聊天信息
-  getNearestContactMessage():Observable<any>{
+  getNearestContactMessage(){
     let url  = environment.apiUrl+"/api/recent-contact-message"
-    return this.http.get(url, {headers:this.createSessionHeader()})
+    return this.http.get(url, {headers:this.createSessionHeader(),observe:'response'})
   }
   
 

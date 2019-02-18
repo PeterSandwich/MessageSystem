@@ -7,7 +7,7 @@ import (
 	"MessageSystem/IM/session"
 	"database/sql"
 	"encoding/json"
-	"github.com/gpmgo/gopm/modules/log"
+
 	"github.com/julienschmidt/httprouter"
 	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
@@ -186,10 +186,10 @@ func getNearestContactMessage(w http.ResponseWriter, r *http.Request, p httprout
 	var (
 		err error
 		bytes string
-		contact *defs.NearestContact
 		room *defs.AllChatRoom
 		data []byte
 	)
+	contact := &defs.NearestContact{}
 
 	param := r.Header.Get(defs.HEADER_FIELD_UID)
 	myId ,err := strconv.ParseInt(param,10,64)
@@ -199,14 +199,14 @@ func getNearestContactMessage(w http.ResponseWriter, r *http.Request, p httprout
 	}
 	stringCmd := redisConn.Get(strconv.FormatInt(myId, 10))
 	if bytes, err = stringCmd.Result();err!= nil {
-		Logger.Warn(err.Error())
+		Logger.Debug(err.Error())
+		err = nil
 		if data ,err = ComputeNearestContact(myId); err != nil {
 			Logger.Warn(err.Error())
 			goto ERR
 		}
 		bytes = string(data)
 	}
-	log.Debug(bytes)
 	if err = json.Unmarshal([]byte(bytes), contact); err != nil {
 		Logger.Warn(err.Error())
 		goto ERR

@@ -189,11 +189,11 @@ func GetNearestContactHistoryMessage(myId int64, contact *defs.NearestContact)(r
 		ChatRoomList:make([]defs.ChatRoom,0),
 	}
 
-	if stmtOutGroup ,err = dbConn.Prepare("SELECT id,msg_from,msg_to,content,content_type,arrive_time,isgroup FROM (SELECT * FROM im_message_recieve_0 where msg_to=$1 and isgroup=$2 order by id DESC LIMIT %3) aa  order by id");err!= nil {
+	if stmtOutGroup ,err = dbConn.Prepare("SELECT id,msg_from,msg_to,content,content_type,arrive_time,isgroup FROM (SELECT * FROM im_message_recieve_0 where msg_to=$1 and isgroup=$2 order by id DESC LIMIT $3) aa  order by id");err!= nil {
 		logger.Error(err.Error())
 		return
 	}
-	if stmtOut,err =  dbConn.Prepare("SELECT id,msg_from,msg_to,content,content_type,arrive_time,isgroup FROM (SELECT * FROM im_message_recieve_0 where  ((msg_from=$1 and msg_to=$2) or (msg_from=$2 and msg_to=$1)) and isgroup=$3  order by id DESC LIMIT %4) aa  order by id");err!=nil{
+	if stmtOut,err =  dbConn.Prepare("SELECT id,msg_from,msg_to,content,content_type,arrive_time,isgroup FROM (SELECT * FROM im_message_recieve_0 where  ((msg_from=$1 and msg_to=$2) or (msg_from=$2 and msg_to=$1)) and isgroup=$3  order by id DESC LIMIT $4) aa  order by id");err!=nil{
 		logger.Error(err.Error())
 		return
 	}
