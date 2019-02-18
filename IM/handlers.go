@@ -17,13 +17,13 @@ import (
 
 func RegisterRouterHandlers() *httprouter.Router {
 	router := httprouter.New()
-	router.POST("/api/register", registerHandle)//注册
-	router.POST("/api/login", loginHandle)//登录
-	router.POST("/api/quit", quitHandle)//退出
-	router.POST("/api/upload", uploadFileHandler)//上传文件
+	router.POST("/api/register", registerHandle)//注册*
+	router.POST("/api/login", loginHandle)//登录*
+	router.POST("/api/quit", quitHandle)//退出*
+	router.POST("/api/upload", uploadFileHandler)//上传文件*
 	router.GET("/ws",func(w http.ResponseWriter, r *http.Request,p httprouter.Params) {hub.ServeWs(w, r)})
-	router.GET("/api/user-info/:id", getUserInfo)// 获取个人信息
-	router.GET("/api/group-info/:gid", getGroupInfo)// 获取群的信息
+	router.GET("/api/user-info/:id", getUserInfo)// 获取个人信息*
+	router.GET("/api/group-info/:gid", getGroupInfo)// 获取群的信息*
 	router.GET("/api/address-book",getAddressBook)//获取通讯录
 	router.GET("/api/recent-contact",getNearestContact)	//获取最近联系人
 	router.GET("/api/history-message/:type/:id",getHistoryMessage)//获取历史消息
@@ -64,7 +64,9 @@ func registerHandle(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 			sendErrorResponse(w,defs.ErrorDBError)
 			return
 		}
-		sendNormalResponse(w,"register success! your id is "+strconv.FormatInt(uid,10),200)
+		resp,_:= json.Marshal("register success! your id is "+strconv.FormatInt(uid,10))
+		sendNormalResponse(w,string(resp),200)
+		return
 	}
 	sendErrorResponse(w,defs.ErrorAccountExist)
 }
