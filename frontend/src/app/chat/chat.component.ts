@@ -173,7 +173,7 @@ export class ChatComponent implements OnInit {
       this.isgroup = isgroup;
       var flag : boolean = false;
       this.friend = this.friendlist.contact_list[index];
-
+      console.log("friendlist", this.friendlist.contact_list)
       for(let i = 0; i < this.friendlist.contact_list.length; i++){
         if(id == this.friendlist.contact_list[i].id){
           this.friendlist.contact_list[i].count = 0;
@@ -198,7 +198,10 @@ export class ChatComponent implements OnInit {
       this.scollbuttom();
 
     }
-    sendMsg() {
+    sendMsg(event: KeyboardEvent) {
+      if(event.keyCode != (13 || 108)){
+        return ;
+      }
       this.content = this.content.replace(/^\s*/,'');//去除左边空格
       // 去除所有空格: str = str.replace(/\s+/g,""); 
       // 去除两头空格: str = str.replace(/^\s+|\s+$/g,""); 
@@ -296,35 +299,7 @@ export class ChatComponent implements OnInit {
       // }
     }
     
-/////////////////////////////////////////////////////////////////////
-    public uploader:FileUploader = new FileUploader({
-      url: "http://localhost:9988/ng2/uploadFile",
-      method: "POST",
-      itemAlias: "uploadedfile"
-    });
-    selectedFileOnChanged(event:any) {
-      // 打印文件选择名称
-
-      console.log("event.value=", event);
-    }
-    // D: 定义事件，上传文件
-    uploadFile2() {
-        // 上传
-        this.uploader.queue[0].onSuccess = function (response, status, headers) {
-            // 上传文件成功
-            if (status == 200) {
-                // 上传文件后获取服务器返回的数据
-                let tempRes = JSON.parse(response);
-            } else {
-                // 上传文件后获取服务器返回的数据错误
-                alert("");
-            }
-        };
-        this.uploader.queue[0].upload(); // 开始上传
-    }
-
-
-///////////////////////////////////////////////////////////////////
+    
   picpath: string
   picurl: string
   fileurl = 'http://localhost:9988/api/upload'
@@ -336,8 +311,8 @@ export class ChatComponent implements OnInit {
   show:boolean
   selectFile(event: any) {
     let fileList: FileList = event.target.files;
-    console.log("fileList=", fileList)
-    console.log("event.target", event.target)
+    // console.log("fileList=", fileList)
+    // console.log("event.target", event.target)
     this.uploadFile(fileList);
   }
 
@@ -358,7 +333,7 @@ export class ChatComponent implements OnInit {
           //.log(response);
           let filetype = -1;
           if (response["body"] != null) {
-            console.log(response)
+            // console.log(response)
             if (response["body"] != null) {
               console.log(response["body"]);
               this.filep = response["body"]["originalfile"];
@@ -405,7 +380,7 @@ export class ChatComponent implements OnInit {
     this.aaa = aaaa.split(".");
     this.aa = this.aaa[0].split("_");
     this.a = this.aa[0]+"."+this.aaa[1];
-    console.log(this.a)
+    console.log("this.a=",this.a)
     this.isshowpicVisible = true;
   }
   handleshowpicCancel(): void {

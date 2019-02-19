@@ -46,7 +46,7 @@ export class UserService {
   createSessionHeader():HttpHeaders {
     let headers = new HttpHeaders();
     headers = headers.set('X-Session-Id', this.session_id);
-    console.log("session=", this.session_id)
+    // console.log("session=", this.session_id)
     return headers
   }
 }

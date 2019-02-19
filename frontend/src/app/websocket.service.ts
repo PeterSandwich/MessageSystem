@@ -52,7 +52,7 @@ export class WebsocketService {
       reader.onload = function (e) {
       let buf = new Uint8Array(reader.result as ArrayBuffer);
       let conn = Protocol.Message.decode(buf);
-      console.log(conn)
+      // console.log(conn)
       that.parseNotification(conn)    //收到消息解析后分析消息
     }};
     this.ws.onclose = function() {console.log("WebSocket关闭")};
@@ -62,7 +62,7 @@ export class WebsocketService {
   createSessionHeader():HttpHeaders {
     let headers = new HttpHeaders();
     headers = headers.set('X-Session-Id', this.us.session_id);
-    console.log("session=", this.us.session_id)
+    // console.log("session=", this.us.session_id)
     return headers
   }
 
@@ -113,8 +113,8 @@ export class WebsocketService {
            this.global_message.chat_room_list.set(FriItem.id,chat_room)
 
         }
-        console.log("contact_list = ", this.nearest_contact.contact_list)
-        console.log("global_messgae = ", this.global_message.chat_room_list)
+        // console.log("contact_list = ", this.nearest_contact.contact_list)
+        // console.log("global_messgae = ", this.global_message.chat_room_list)
         // this.getNearestMessage();
        
         
@@ -217,7 +217,7 @@ export class WebsocketService {
     newMsg.arrive_time = m.time;
 
     chat_room.message_list.push(newMsg);
-    console.log(chat_room);
-    console.log(this.global_message.chat_room_list.get(room_id));
+    // console.log(chat_room);
+    // console.log(this.global_message.chat_room_list.get(room_id));
   }
 }

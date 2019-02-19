@@ -154,8 +154,8 @@
         <td>
         <!-- 5 -->
           <div  *ngIf="isselect">
-            <textarea class = "textarea" [(ngModel)] = "content"></textarea>
-            <button class = "send" nz-button nzType="primary" (click) = "sendMsg()" >发送</button>
+            <textarea class = "textarea" [(ngModel)] = "content" (keyup) = "sendMsg($event)"></textarea>
+            <button class = "send" nz-button nzType="primary" (click) = "sendMsg($event)"  >发送</button>
           </div>
         </td>
       </tr>
