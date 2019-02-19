@@ -1962,7 +1962,7 @@ var WebsocketService = /** @class */ (function () {
             reader.onload = function (e) {
                 var buf = new Uint8Array(reader.result);
                 var conn = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.decode(buf);
-                // console.log(conn)
+                console.log(conn);
                 that.parseNotification(conn); //收到消息解析后分析消息
             };
         };
@@ -1972,7 +1972,7 @@ var WebsocketService = /** @class */ (function () {
     WebsocketService.prototype.createSessionHeader = function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]();
         headers = headers.set('X-Session-Id', this.us.session_id);
-        // console.log("session=", this.us.session_id)
+        console.log("session=", this.us.session_id);
         return headers;
     };
     // 获取通讯录
@@ -1989,9 +1989,6 @@ var WebsocketService = /** @class */ (function () {
     WebsocketService.prototype.getNearestContactMessage = function () {
         var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/recent-contact-message";
         return this.http.get(url, { headers: this.createSessionHeader(), observe: 'response' });
-    };
-    WebsocketService.prototype.addUserList = function () {
-        var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/user-info/:";
     };
     //获取最近联系人
     WebsocketService.prototype.getNearestList = function () {
@@ -2016,8 +2013,8 @@ var WebsocketService = /** @class */ (function () {
                 chat_room.message_list = data.body['chat_room_list'][i].message_list;
                 _this.global_message.chat_room_list.set(FriItem.id, chat_room);
             }
-            // console.log("contact_list = ", this.nearest_contact.contact_list)
-            // console.log("global_messgae = ", this.global_message.chat_room_list)
+            console.log("contact_list = ", _this.nearest_contact.contact_list);
+            console.log("global_messgae = ", _this.global_message.chat_room_list);
             // this.getNearestMessage();
         });
     };
@@ -2051,17 +2048,16 @@ var WebsocketService = /** @class */ (function () {
             if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
                 this.DisplayMessagesLocally(m, m.to); // 说明是一条 单发或群发消息，在本地显示
             }
-            else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
-                if (m.msgid == 0) {
-                    alert("消息ＩＤ不存在，无法撤回");
-                }
-                else {
-                    console.log("撤回消息处理");
-                    this.BackMessagesLocally(m, m.to);
-                }
-                // 撤回消息
-                // TODO 单聊或群聊发送消息 消息在本地消失
+        }
+        else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
+            if (m.msgid == 0) {
+                alert("消息ＩＤ不存在，无法撤回");
             }
+            else {
+                this.DisplayMessagesLocally;
+            }
+            // 撤回消息
+            // TODO 单聊或群聊发送消息 消息在本地消失
         }
     };
     //分析消息
@@ -2084,7 +2080,6 @@ var WebsocketService = /** @class */ (function () {
             }
             else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
                 // 消息撤回 需要删除本地消息,以示撤回
-                this.BackMessagesLocally(m, m.to);
             }
         }
         else if (m.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.ACK) {
@@ -2120,43 +2115,8 @@ var WebsocketService = /** @class */ (function () {
         newMsg.is_group = m.isgroup;
         newMsg.arrive_time = m.time;
         chat_room.message_list.push(newMsg);
-    };
-    WebsocketService.prototype.BackMessagesLocally = function (m, room_id) {
-        if (!this.global_message.chat_room_list.has(room_id)) {
-            console.log("没有这个会话，无法插入消息");
-            return;
-        }
-        var chat_room = this.global_message.chat_room_list.get(room_id);
-        if (!(chat_room.id == room_id && chat_room.is_group == m.isgroup)) {
-            console.log("消息与会话的信息不符合");
-            return;
-        }
-        if (chat_room.message_list == null) {
-            chat_room.message_list = [];
-        }
-        var newMsg = new (_common_im__WEBPACK_IMPORTED_MODULE_6__["MessageItem"]);
-        newMsg.id = m.msgid;
-        newMsg.from = m.from;
-        newMsg.to = m.to;
-        newMsg.content = m.content;
-        newMsg.content_type = m.contentType;
-        newMsg.is_group = m.isgroup;
-        newMsg.arrive_time = m.time;
-        var back_message = new (_common_im__WEBPACK_IMPORTED_MODULE_6__["ChatRoom"]);
-        back_message.message_list = [];
-        for (var i = 0, j = 0; i < chat_room.message_list.length; i++) {
-            if (newMsg.id == m.msgid) {
-                chat_room.message_list.pop();
-            }
-            else {
-                back_message.message_list.push(chat_room.message_list[i]);
-                chat_room.message_list.pop();
-            }
-        }
-        console.log("back_message=", back_message.message_list);
-        for (var i = 0; back_message.message_list[i]; i++) {
-            chat_room.message_list.push(back_message.message_list[i]);
-        }
+        console.log(chat_room);
+        console.log(this.global_message.chat_room_list.get(room_id));
     };
     WebsocketService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),

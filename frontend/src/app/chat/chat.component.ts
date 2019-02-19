@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 // import { MesList, FriendList, FriendItem, MessageList } from './data';
 import { DomSanitizer } from '@angular/platform-browser'
-import { FileUploader } from 'ng2-file-upload';
 import { WebsocketService } from '../websocket.service';
 // import { NearestContact, NearestContactItem, AddressBookItem, AddressBook } from '../common/im'
 // import { WebsocketService,FriendItem,Session,MessageItem } from '../websocket.service';
