@@ -20,11 +20,10 @@ import (
 
 func RegisterRouterHandlers() *httprouter.Router {
 	router := httprouter.New()
-	router.POST("/api/register", registerHandle)//注册*
-	router.POST("/api/login", loginHandle)//登录*
-	router.POST("/api/quit", quitHandle)//退出*
-	router.POST("/api/upload", uploadFileHandler)//上传文件*
-	router.GET("/ws",func(w http.ResponseWriter, r *http.Request,p httprouter.Params) {hub.ServeWs(w, r)})
+	router.POST("/api/register", registerHandle)//注册
+	router.POST("/api/login", loginHandle)//登录
+	router.POST("/api/quit", quitHandle)//退出
+	router.POST("/api/upload", uploadFileHandler)//上传文件
 	router.GET("/api/user-info/:id", getUserInfo)// 获取个人信息
 	router.GET("/api/group-info/:gid", getGroupInfo)// 获取群的信息
 	router.GET("/api/address-book",getAddressBook)//获取通讯录y
@@ -34,6 +33,7 @@ func RegisterRouterHandlers() *httprouter.Router {
 	router.ServeFiles("/static/*filepath",http.Dir(config.StaticFilePath()))
 	router.ServeFiles("/files/*filepath",http.Dir(config.ServerFilePath()))
 	router.GET("/",indexFileServer)
+	router.GET("/ws",func(w http.ResponseWriter, r *http.Request,p httprouter.Params) {hub.ServeWs(w, r)})
 	router.NotFound = &NotFoundServerHandler{}
 	return router
 }
@@ -67,8 +67,10 @@ func registerHandle(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 			sendErrorResponse(w,defs.ErrorDBError)
 			return
 		}
+
 		resp,_:= json.Marshal("register success! your id is "+strconv.FormatInt(uid,10))
 		sendNormalResponse(w,string(resp),200)
+
 		return
 	}
 	sendErrorResponse(w,defs.ErrorAccountExist)

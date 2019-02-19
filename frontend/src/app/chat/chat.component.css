@@ -220,3 +220,70 @@
 .mesback{
   cursor: pointer;
 }
+
+
+.upload-btn {
+  background-color: #337ab7;
+  color: #fff;
+  border-radius: 2px;
+  border: none;
+  /* padding: .5rem 1.3rem; */
+  cursor: pointer;
+  height: 30px;
+  }
+  
+  .picture {
+  width: 7rem;
+  height: 7rem;
+  margin-right: 1rem;
+  background-size: cover;
+  }
+  .picture2 {
+    width: 490px;
+    height: 500px;
+    margin-right: 1rem;
+    background-size: cover;
+    }
+  .action-box {
+  margin-left: 1rem;
+  }
+  .hint {
+  color: #909090;
+  font-size: 1.7rem;
+  margin-bottom: 1.5rem;
+  }
+  
+  .dropdown{
+    z-index: 100;
+    position:absolute;
+    margin-left: 16px;
+    background-position-y: 7rem;  
+    width: 80px;
+    height: 25px;
+  }
+
+  .headportrait{
+    position: relative;
+    width:7rem;
+    height:7rem;
+    cursor:pointer;
+}
+
+:host ::ng-deep .headportrait img{
+    width:100%;height:100%;
+
+}
+
+.mask  {    
+    position: absolute;    
+    width: 100%;    
+    height: 100%;      
+    background: #868c89;    
+    opacity: 0;	
+    color: black;
+    text-align: center;
+    line-height:7rem;
+    margin-top: -7rem;
+}/*hover状态（按你的需求）控制显示。opacity/display/z-index都可以*/	
+.headportrait:hover .mask {    opacity: .5;	}
+

@@ -52,7 +52,8 @@ export class WebsocketService {
       reader.onload = function (e) {
       let buf = new Uint8Array(reader.result as ArrayBuffer);
       let conn = Protocol.Message.decode(buf);
-      //that.parseNotification(conn)    //收到消息解析后分析消息
+      console.log(conn)
+      that.parseNotification(conn)    //收到消息解析后分析消息
     }};
     this.ws.onclose = function() {console.log("WebSocket关闭")};
   }
@@ -122,67 +123,51 @@ export class WebsocketService {
     })
   }
 
-  // //分析消息
-  // parseNotification(conn:Protocol.Message){
-  //   if (conn.type==Protocol.Message.Type.NOTIFICATION){
-  //     console.log("NOTIFICATION");
-  //     if (conn.cmd == Protocol.Message.CtrlType.NONE){
-  //       console.log("COMMOM",conn);
-  //       for(let i=0;i<this.wsMessageList.List.length;i++){
-  //           if(conn.isgroup == this.wsMessageList.List[i].Isgroup&&
-  //             ((conn.isgroup &&conn.to==this.wsMessageList.List[i].ID)||(!conn.isgroup &&conn.from==this.wsMessageList.List[i].ID))){
-  //             let item = new(MessageItem);
-  //             item.Mid = conn.msgid;
-  //             item.From = conn.from;
-  //             item.To = conn.from;
-  //             if(conn.isgroup){
-  //               item.To = conn.to;
-  //             }
-  //             item.Content = conn.content;
-  //             item.ContentType =conn.contentType;
-  //             item.Time = conn.time;
-  //             this.wsMessageList.List[i].MList.push(item);
-  //             console.log(this.wsMessageList.List[i]);
-  //             break;
-  //           }
-  //       }
-  //     }else if(conn.cmd == Protocol.Message.CtrlType.CREATE_SESSION){ //添加好友请求
-  //       this.createSessById(conn,conn.from)
-  //     }else if (conn.cmd == Protocol.Message.CtrlType.CREATE_GROUP || conn.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
-  //       this.createGroupById(conn,conn.to)
-  //     }else if(conn.cmd == Protocol.Message.CtrlType.MSG_BACK){
-  //       for(let i=0;i<this.wsMessageList.List.length;i++){
-  //         if(conn.isgroup == this.wsMessageList.List[i].Isgroup&&
-  //           ((conn.isgroup &&conn.to==this.wsMessageList.List[i].ID)||(!conn.isgroup &&conn.from==this.wsMessageList.List[i].ID))){
-  //            for(let j=0;j<this.wsMessageList.List[i].MList.length;j++){
-  //             if (this.wsMessageList.List[i].MList[j].Mid == conn.msgid){
-  //               this.wsMessageList.List[i].MList.slice(j,1);
-  //               break;
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }else if(conn.type==Protocol.Message.Type.ACK){
-  //     if (conn.cmd == Protocol.Message.CtrlType.NONE){
-  //       for(let i=0;i<this.wsMessageList.List.length;i++){
-  //         if (conn.from==this.wsMessageList.List[i].ID && conn.isgroup == this.wsMessageList.List[i].Isgroup){
-  //           for(let j=0;j<this.wsMessageList.List[i].MList.length;j++){
-  //             if (this.wsMessageList.List[i].MList[j].Time == conn.time){
-  //               this.wsMessageList.List[i].MList[j].Mid = conn.msgid;
-  //               break;
-  //             }
-  //           }
-  //           break;
-  //         }
-  //       }
-  //     }else if(conn.cmd == Protocol.Message.CtrlType.CREATE_SESSION){//添加好友请求确认信息
-  //      this.createSessById(conn,conn.to)
-  //     }else if (conn.cmd == Protocol.Message.CtrlType.CREATE_GROUP || conn.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
-  //       this.createGroupById(conn,conn.to)
-  //     }
-  //   }
-  // }
+  // 发送信息，不在这里构造消息体
+  sendMessage(message: Protocol.Message){
+    // console.log("mes.contentype=",message.contentType);
+    //先发送出数据
+    console.log("websocket发送前的数据:",message)
+    this.ws.send(Protocol.Message.encode(message).finish());
+
+    if (message.type ==  Protocol.Message.Type.REQUEST) {
+      if(message.cmd == Protocol.Message.CtrlType.NONE){  
+        // TODO 单聊或群聊发送消息 在本地显示
+      }
+    }else if(message.cmd == Protocol.Message.CtrlType.MSG_BACK){  
+      if(message.msgid == 0){
+        alert("消息ＩＤ不存在，无法撤回");
+      }else{
+
+      }
+        // 撤回消息
+        // TODO 单聊或群聊发送消息 消息在本地消失
+    }
+    
+  }
+
+
+  //分析消息
+  parseNotification(conn:Protocol.Message){
+    if (conn.type==Protocol.Message.Type.NOTIFICATION){
+      console.log("NOTIFICATION");
+      if (conn.cmd == Protocol.Message.CtrlType.NONE){
+        // 说明是一条 单发或群发消息，在本地显示
+      }else if(conn.cmd == Protocol.Message.CtrlType.CREATE_SESSION){ 
+        // 说明是陌生人主动找你聊天,需要在本地创建和他聊天的chatroom
+      }else if (conn.cmd == Protocol.Message.CtrlType.CREATE_GROUP || conn.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
+       // 需要在本地创建和群聊天的chatroom
+      }else if(conn.cmd == Protocol.Message.CtrlType.MSG_BACK){
+        // 消息撤回 需要删除本地消息,以示撤回
+      }
+    }else if(conn.type==Protocol.Message.Type.ACK){
+      if (conn.cmd == Protocol.Message.CtrlType.NONE){
+        // 发送的消息已经确认，把回送的 message id加入到那条信息 
+      }else if(conn.cmd == Protocol.Message.CtrlType.CREATE_SESSION){
+      }else if (conn.cmd == Protocol.Message.CtrlType.CREATE_GROUP || conn.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
+      }
+    }
+  }
 
 
   // createSessById(conn: Protocol.Message,uid: number|Long){
@@ -222,44 +207,44 @@ export class WebsocketService {
   // }
   
 
-  // 发送信息，不在这里构造消息体
-  sendMessage(message: Protocol.Message){
-    message.time = Date.now()
-    // console.log("mes.contentype=",message.contentType);
-    if (message.type ==  Protocol.Message.Type.REQUEST) {
-      if(message.cmd == Protocol.Message.CtrlType.NONE){  // 单聊或群聊
-        for(let i=0;i<this.nearest_contact.contact_list[i].message_list.length;i++){
-          if(message.isgroup == this.nearest_contact.contact_list[i].is_group&&message.to==this.nearest_contact.contact_list[i].id){
-            let item = new(com.MessageItem);
-            item.id = 0;
-            item.from = message.from;
-            item.to = message.to;
-            item.content = message.content;
-            item.content_type =message.contentType;
-            item.arrive_time = message.time;
-            this.nearest_contact.contact_list[i].message_list.push(item);
-            break;
-          }
-        }
-      }
-    }else if(message.cmd == Protocol.Message.CtrlType.MSG_BACK){   // 撤回消息
-      if(message.msgid == 0){
-        alert("消息ＩＤ不存在，无法撤回");
-      }
-      for(let i=0;i<this.nearest_contact.contact_list[i].message_list.length;i++){
-        if (message.to==this.nearest_contact.contact_list[i].id && message.isgroup == this.nearest_contact.contact_list[i].is_group){
-          for(let j=0;j<this.nearest_contact.contact_list[i].message_list.length;j++){
-            if (this.nearest_contact.contact_list[i].message_list[j].id == message.msgid){
-              this.nearest_contact.contact_list[i].message_list.slice(j,1);
-              break;
-            }
-          }
-        }
-      }
-    }
-    console.log("发送前的数据",message)
-    this.ws.send(Protocol.Message.encode(message).finish());
-  }
+  // // 发送信息，不在这里构造消息体
+  // sendMessage(message: Protocol.Message){
+  //   message.time = Date.now()
+  //   // console.log("mes.contentype=",message.contentType);
+  //   if (message.type ==  Protocol.Message.Type.REQUEST) {
+  //     if(message.cmd == Protocol.Message.CtrlType.NONE){  // 单聊或群聊
+  //       for(let i=0;i<this.nearest_contact.contact_list[i].message_list.length;i++){
+  //         if(message.isgroup == this.nearest_contact.contact_list[i].is_group&&message.to==this.nearest_contact.contact_list[i].id){
+  //           let item = new(com.MessageItem);
+  //           item.id = 0;
+  //           item.from = message.from;
+  //           item.to = message.to;
+  //           item.content = message.content;
+  //           item.content_type =message.contentType;
+  //           item.arrive_time = message.time;
+  //           this.nearest_contact.contact_list[i].message_list.push(item);
+  //           break;
+  //         }
+  //       }
+  //     }
+  //   }else if(message.cmd == Protocol.Message.CtrlType.MSG_BACK){   // 撤回消息
+  //     if(message.msgid == 0){
+  //       alert("消息ＩＤ不存在，无法撤回");
+  //     }
+  //     for(let i=0;i<this.nearest_contact.contact_list[i].message_list.length;i++){
+  //       if (message.to==this.nearest_contact.contact_list[i].id && message.isgroup == this.nearest_contact.contact_list[i].is_group){
+  //         for(let j=0;j<this.nearest_contact.contact_list[i].message_list.length;j++){
+  //           if (this.nearest_contact.contact_list[i].message_list[j].id == message.msgid){
+  //             this.nearest_contact.contact_list[i].message_list.slice(j,1);
+  //             break;
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  //   console.log("发送前的数据",message)
+  //   this.ws.send(Protocol.Message.encode(message).finish());
+  // }
 
   // delectMessage(id: number){//撤回消息
 

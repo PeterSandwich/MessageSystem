@@ -19,6 +19,8 @@ import (
 	"path/filepath"
 	"strings"
 	"MessageSystem/IM/defs"
+
+	"encoding/json"
 )
 
 
@@ -139,11 +141,14 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 
 			returnp.OriginalFile = "files/"+CreateFileName+fileEndings[0]
 			returnp.Thumbnail = "files/"+fname
-			//fb.Code(feedbcak.SUCCESS).Data(returnp).Response()
+			resp, _ := json.Marshal(returnp)
+			sendNormalResponse(w,string(resp),200)
 		} else{
 			returnp.OriginalFile = "files/"+CreateFileName+fileEndings[0]
 			returnp.Thumbnail = ""
-			//fb.Code(feedbcak.SUCCESS).Data(returnp).Response()
+			fmt.Println(returnp)
+			resp, _ := json.Marshal(returnp)
+			sendNormalResponse(w,string(resp),200)
 		}
 	}
 

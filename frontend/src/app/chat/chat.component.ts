@@ -13,6 +13,7 @@ import { Protocol } from '../protocol/Protocol';
 import { fromBytes } from 'long';
 import * as data from './data'
 import * as com from '../common/im'
+import { addAllToArray } from '@angular/core/src/render3/util';
 @Injectable()
 @Component({
   selector: 'app-chat',
@@ -275,9 +276,11 @@ export class ChatComponent implements OnInit {
 ///////////////////////////////////////////////////////////////////
   picpath: string
   picurl: string
-  fileurl = 'http://localhost:9988/upload'
-  dfileurl="http://localhost:9988/upload/c4fb3e1e6b7e.jpg"
+  fileurl = 'http://localhost:9988/api/upload'
+  dfileurl='http://localhost:9988/files/9edbe55433e4_compress.jpg'
   filep = ""
+  aaaa="9edbe55433e4_compress.jpg"
+  
   filename: string
   show:boolean
   selectFile(event: any) {
@@ -303,14 +306,14 @@ export class ChatComponent implements OnInit {
           //.log(response);
           let filetype = -1;
           if (response["body"] != null) {
-            if (response["body"]["code"] != 1) {
-              console.log(response["body"]["data"]);
-              this.filep = response["body"]["data"]["originalfile"];
-              this.dfileurl=response["body"]["data"]["thumbnail"];
-              filetype = response["body"]["data"]["filetype"];
+            console.log(response)
+            if (response["body"] != null) {
+              console.log(response["body"]);
+              this.filep = response["body"]["originalfile"];
+              this.dfileurl=response["body"]["thumbnail"];
+              filetype = response["body"]["filetype"];
               console.log(this.dfileurl)
               this.show = true;
-
             }
             console.log("####",this.us.MyUserId,this.to_id,this.filep,this.dfileurl,filetype)
              let msg = new(Protocol.Message)
@@ -319,10 +322,13 @@ export class ChatComponent implements OnInit {
              msg.from =  this.us.MyUserId;
              msg.to = this.to_id;
              msg.content = this.dfileurl;
+             if(filetype == 2){
+              msg.content = this.filep;
+             }
              msg.contentType = filetype; 
              this.contentType = msg.contentType;
              msg.isgroup = false;
-            //  this.ws.sendMessage(msg);
+             this.ws.sendMessage(msg);
              this.content = "";
           }
          
@@ -337,6 +343,22 @@ export class ChatComponent implements OnInit {
     //this.getpath();
 
   }
+
+
+  isshowpicVisible = false;
+  aaa:string[]
+  aa:string[]
+  a:string
+  showpicModal(aaaa:string): void {
+    this.aaa = aaaa.split(".");
+    this.aa = this.aaa[0].split("_");
+    this.a = this.aa[0]+"."+this.aaa[1];
+    console.log(this.a)
+    this.isshowpicVisible = true;
+  }
+  handleshowpicCancel(): void {
+    this.isshowpicVisible = false;
+  }
   getpath() {
     this.filep = "getpic/3ea62ac5fb0758efadb15e36_compress.jpg"
     // console.log(this.filep);
@@ -346,10 +368,13 @@ export class ChatComponent implements OnInit {
     return;
   }
     // 调用浏览器的下载
-    downloadFile() {
+    downloadFile(filepath:string) {
       const a: HTMLAnchorElement = document.createElement('a');
-      a.href = this.filep;
-      a.download = 'download';
+      a.href = filepath;
+      let Removesuffix:string[] = filepath.split(".");
+      let Removeprefix:string[] = Removesuffix[0].split("/");
+      let name:string = Removeprefix[1];
+      a.download = name;
       a.click();
       a.remove();
       // console.log('download:' + a.href);

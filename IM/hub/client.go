@@ -1,6 +1,7 @@
 package hub
 
 import (
+	"MessageSystem/IM/defs"
 	"MessageSystem/IM/session"
 	"github.com/gorilla/websocket"
 	"net/http"
@@ -88,6 +89,7 @@ func ServeWs(w http.ResponseWriter, r *http.Request) {
 			return true
 		},
 	}
+	r.Header.Set(defs.HEADER_FIELD_SESSION, r.URL.Query().Get("session_id"))
 	rawId, Expired := session.IsSessionExpired(r)
 	uid, err := strconv.ParseInt(rawId, 20, 64)
 	if Expired || err != nil {
