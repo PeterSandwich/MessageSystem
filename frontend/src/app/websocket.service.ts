@@ -82,6 +82,10 @@ export class WebsocketService {
     let url  = environment.apiUrl+"/recent-contact-message"
     return this.http.get(url, {headers:this.createSessionHeader(),observe:'response'})
   }
+
+  addUserList(){
+    let url = environment.apiUrl+"/user-info/:"
+  }
   
   //获取最近联系人
   getNearestList(){

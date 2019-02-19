@@ -133,7 +133,8 @@
                 <i nz-icon type="picture" theme="outline" style="font-size: 25px" class = "icon"></i>        -->
                 <input id="upfile" type="file" style="display: none;" (change)="selectFile($event)" accept=".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt">
                 <div class="action-box">
-                  <button class="upload-btn" nz-button nzType="primary" (click) = "upfile.click()" >点击上传</button>
+                  <!-- <button class="upload-btn" id="avatar" nz-button nzType="primary" (click) = "selectFile($event)" >点击上传</button> -->
+                  <input type = "file"  ng2FileSelect [uploader]="uploader" (change)="selectFile($event)" multiple accept="image/*">
                 </div>
               </div>
             </div>
@@ -182,7 +183,7 @@
           添加好友
           <nz-input-group [nzSuffix]="suffixIconSearch"> 
               <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索的用户名" 
-              id = "search" (keyup) = "keyUpSearch($event)">
+              id = "search" (keyup) = "keyUpSearch(name)">
           </nz-input-group> 
   
           <ng-template #suffixIconSearch>

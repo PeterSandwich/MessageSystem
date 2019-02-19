@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 // import { MesList, FriendList, FriendItem, MessageList } from './data';
-
-
+import { DomSanitizer } from '@angular/platform-browser'
+import { FileUploader } from 'ng2-file-upload';
 import { WebsocketService } from '../websocket.service';
 // import { NearestContact, NearestContactItem, AddressBookItem, AddressBook } from '../common/im'
 // import { WebsocketService,FriendItem,Session,MessageItem } from '../websocket.service';
@@ -73,7 +73,8 @@ export class ChatComponent implements OnInit {
     public ws:WebsocketService, 
     private us:UserService,    // 里面有 我的Id: this.us.MyUserId
     private upload: UploadService ,
-    private el: ElementRef
+    private el: ElementRef,
+    public _d: DomSanitizer
     ) {
       this.addGroupUserList=new(AddGroupUserlist);
       this.addGroupUserList.AGlist = [];
@@ -91,7 +92,7 @@ export class ChatComponent implements OnInit {
       this.addressList = data.addressList;
       // this.messagelist = data.chatRoom;
       this.friendlist = this.ws.nearest_contact;
-      console.log("friendlist = ", this.friendlist)
+      // console.log("friendlist = ", this.friendlist)
       this.my_id = this.us.MyUserId;
       this.my_img_url = this.us.myImg;
       this.my_name = this.us.myName;
@@ -105,11 +106,11 @@ export class ChatComponent implements OnInit {
 
     getNear(){
       this.friendlist = this.ws.nearest_contact;
-      console.log("getNear", this.friendlist);
+      // console.log("getNear", this.friendlist);
     }
     getAddress(){
       this.friendlist = this.ws.address_book;
-      console.log("getAddreses", this.friendlist);
+      // console.log("getAddreses", this.friendlist);
     }
 
     his(event){//防止右键点击是弹出默认面板
@@ -168,7 +169,7 @@ export class ChatComponent implements OnInit {
       if(!flag){
           this.showmsg = [];
       }
-      console.log("showmsg=", this.showmsg);
+      // console.log("showmsg=", this.showmsg);
       this.scollbuttom();
 
     }
@@ -223,31 +224,40 @@ export class ChatComponent implements OnInit {
       this.content = "";
 
     }
-
-    
-
-    clickMe(){
-        var btn = document.getElementById("search");
-        btn.focus();
-        this.isVisible = document.hasFocus();
-        // this.userlist = [];
+    addfriend(to: number){
+      let msg = new(Protocol.Message)
+      msg.type = Protocol.Message.Type.REQUEST;
+      msg.cmd = Protocol.Message.CtrlType.CREATE_SESSION;
+      msg.from = this.us.MyUserId;
+      msg.to = to;
+      msg.time = Date.now();
+      // this.ws.sendMessage(msg)
     }
-    outMe(){
-      var btn = document.getElementById("search");
-      btn.blur();
-      this.isVisible = document.hasFocus();
-      // this.userlist = [];
-    }
-    cancelEditingTodo(){
-      this.isVisible = false;
-    }
-    flag : boolean;
-    keyUpSearch(content: string){
+    keyUpSearch(name: string){ //搜索添加好友
+      // this.ws.
       // this.ws.getUserList(this.searchContent).subscribe(data => {
       //   console.log("data2 = ", data.Ulist);
       //   this.userlist = data.Ulist;
       // })
     }
+
+    // clickMe(){
+    //     var btn = document.getElementById("search");
+    //     btn.focus();
+    //     this.isVisible = document.hasFocus();
+    //     // this.userlist = [];
+    // }
+    // outMe(){
+    //   var btn = document.getElementById("search");
+    //   btn.blur();
+    //   this.isVisible = document.hasFocus();
+    //   // this.userlist = [];
+    // }
+    // cancelEditingTodo(){
+    //   this.isVisible = false;
+    // }
+    flag : boolean;
+    
     search(){
       // console.log("search=", this.searchContent);
       // this.ws.getUserList(this.searchContent).subscribe(data => {
@@ -261,14 +271,32 @@ export class ChatComponent implements OnInit {
       //   this.flag = true;
       // }
     }
-    addfriend(to: number){
-      let msg = new(Protocol.Message)
-      msg.type = Protocol.Message.Type.REQUEST;
-      msg.cmd = Protocol.Message.CtrlType.CREATE_SESSION;
-      msg.from = this.us.MyUserId;
-      msg.to = to;
-      msg.time = Date.now();
-      // this.ws.sendMessage(msg)
+    
+/////////////////////////////////////////////////////////////////////
+    public uploader:FileUploader = new FileUploader({
+      url: "http://localhost:9988/ng2/uploadFile",
+      method: "POST",
+      itemAlias: "uploadedfile"
+    });
+    selectedFileOnChanged(event:any) {
+      // 打印文件选择名称
+
+      console.log("event.value=", event);
+    }
+    // D: 定义事件，上传文件
+    uploadFile2() {
+        // 上传
+        this.uploader.queue[0].onSuccess = function (response, status, headers) {
+            // 上传文件成功
+            if (status == 200) {
+                // 上传文件后获取服务器返回的数据
+                let tempRes = JSON.parse(response);
+            } else {
+                // 上传文件后获取服务器返回的数据错误
+                alert("");
+            }
+        };
+        this.uploader.queue[0].upload(); // 开始上传
     }
 
 
@@ -282,8 +310,9 @@ export class ChatComponent implements OnInit {
   show:boolean
   selectFile(event: any) {
     let fileList: FileList = event.target.files;
-    
-    this.uploadFile(fileList);
+    console.log("fileList=", fileList)
+    console.log("event.target", event.target)
+    // this.uploadFile(fileList);
   }
 
   uploadFile(files: FileList) {
