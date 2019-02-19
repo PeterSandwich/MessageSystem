@@ -322,7 +322,7 @@ export class ChatComponent implements OnInit {
              msg.contentType = filetype; 
              this.contentType = msg.contentType;
              msg.isgroup = false;
-            //  this.ws.sendMessage(msg);
+            this.ws.sendMessage(msg);
              this.content = "";
           }
          

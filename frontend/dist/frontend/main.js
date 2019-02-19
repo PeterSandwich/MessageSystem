@@ -544,7 +544,7 @@ var ChatComponent = /** @class */ (function () {
                 msg.contentType = filetype;
                 _this.contentType = msg.contentType;
                 msg.isgroup = false;
-                //  this.ws.sendMessage(msg);
+                _this.ws.sendMessage(msg);
                 _this.content = "";
             }
         }, function (err) {
@@ -1972,18 +1972,18 @@ var WebsocketService = /** @class */ (function () {
         });
     };
     // 发送信息，不在这里构造消息体
-    WebsocketService.prototype.sendMessage = function (message) {
+    WebsocketService.prototype.sendMessage = function (m) {
         // console.log("mes.contentype=",message.contentType);
         //先发送出数据
-        console.log("websocket发送前的数据:", message);
-        this.ws.send(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(message).finish());
-        if (message.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST) {
-            if (message.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
-                // TODO 单聊或群聊发送消息 在本地显示
+        console.log("websocket发送前的数据:", m);
+        this.ws.send(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.encode(m).finish());
+        if (m.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.REQUEST) {
+            if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
+                this.DisplayMessagesLocally(m, m.to); // 说明是一条 单发或群发消息，在本地显示
             }
         }
-        else if (message.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
-            if (message.msgid == 0) {
+        else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
+            if (m.msgid == 0) {
                 alert("消息ＩＤ不存在，无法撤回");
             }
             else {
@@ -1993,31 +1993,57 @@ var WebsocketService = /** @class */ (function () {
         }
     };
     //分析消息
-    WebsocketService.prototype.parseNotification = function (conn) {
-        if (conn.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.NOTIFICATION) {
+    WebsocketService.prototype.parseNotification = function (m) {
+        if (m.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.NOTIFICATION) {
             console.log("NOTIFICATION");
-            if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
-                // 说明是一条 单发或群发消息，在本地显示
+            if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
+                this.DisplayMessagesLocally(m, m.from); // 说明是一条 单发或群发消息，在本地显示
             }
-            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) {
+            else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) {
                 // 说明是陌生人主动找你聊天,需要在本地创建和他聊天的chatroom
             }
-            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_GROUP || conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS) {
+            else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_GROUP || m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS) {
                 // 需要在本地创建和群聊天的chatroom
             }
-            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
+            else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
                 // 消息撤回 需要删除本地消息,以示撤回
             }
         }
-        else if (conn.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.ACK) {
-            if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
+        else if (m.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.ACK) {
+            if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
                 // 发送的消息已经确认，把回送的 message id加入到那条信息 
             }
-            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) {
+            else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) {
             }
-            else if (conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_GROUP || conn.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS) {
+            else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_GROUP || m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS) {
             }
         }
+    };
+    //下面是处理消息的
+    WebsocketService.prototype.DisplayMessagesLocally = function (m, room_id) {
+        if (!this.global_message.chat_room_list.has(room_id)) {
+            console.log("没有这个会话，无法插入消息");
+            return;
+        }
+        var chat_room = this.global_message.chat_room_list.get(room_id);
+        if (!(chat_room.id == room_id && chat_room.is_group == m.isgroup)) {
+            console.log("消息与会话的信息不符合");
+            return;
+        }
+        if (chat_room.message_list == null) {
+            chat_room.message_list = [];
+        }
+        var newMsg = new (_common_im__WEBPACK_IMPORTED_MODULE_6__["MessageItem"]);
+        newMsg.id = m.msgid;
+        newMsg.from = m.from;
+        newMsg.to = m.to;
+        newMsg.content = m.content;
+        newMsg.content_type = m.contentType;
+        newMsg.is_group = m.isgroup;
+        newMsg.arrive_time = m.time;
+        chat_room.message_list.push(newMsg);
+        console.log(chat_room);
+        console.log(this.global_message.chat_room_list.get(room_id));
     };
     WebsocketService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
