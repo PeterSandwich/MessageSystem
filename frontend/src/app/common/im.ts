@@ -47,7 +47,7 @@ export class NearestContact{
 
 //全局显示消息集合
 export class GlobalMessage {
-    chat_room_list: Map<number|Long,ChatRoom[]>
+    chat_room_list: Map<number|Long,ChatRoom>
 }
 
 //聊天室

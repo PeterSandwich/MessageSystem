@@ -34,6 +34,7 @@ $root.Protocol = (function() {
          * @property {number|Long|null} [msgid] Message msgid
          * @property {number|Long|null} [time] Message time
          * @property {Array.<number|Long>|null} [userlist] Message userlist
+         * @property {Protocol.Message.ErrorCode|null} [errcode] Message errcode
          */
 
         /**
@@ -133,6 +134,14 @@ $root.Protocol = (function() {
         Message.prototype.userlist = $util.emptyArray;
 
         /**
+         * Message errcode.
+         * @member {Protocol.Message.ErrorCode} errcode
+         * @memberof Protocol.Message
+         * @instance
+         */
+        Message.prototype.errcode = 0;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof Protocol.Message
@@ -180,6 +189,8 @@ $root.Protocol = (function() {
                     writer.int64(message.userlist[i]);
                 writer.ldelim();
             }
+            if (message.errcode != null && message.hasOwnProperty("errcode"))
+                writer.uint32(/* id 11, wireType 0 =*/88).int32(message.errcode);
             return writer;
         };
 
@@ -251,6 +262,9 @@ $root.Protocol = (function() {
                     } else
                         message.userlist.push(reader.int64());
                     break;
+                case 11:
+                    message.errcode = reader.int32();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -293,6 +307,7 @@ $root.Protocol = (function() {
                 case 0:
                 case 1:
                 case 2:
+                case 4:
                     break;
                 }
             if (message.cmd != null && message.hasOwnProperty("cmd"))
@@ -340,6 +355,16 @@ $root.Protocol = (function() {
                     if (!$util.isInteger(message.userlist[i]) && !(message.userlist[i] && $util.isInteger(message.userlist[i].low) && $util.isInteger(message.userlist[i].high)))
                         return "userlist: integer|Long[] expected";
             }
+            if (message.errcode != null && message.hasOwnProperty("errcode"))
+                switch (message.errcode) {
+                default:
+                    return "errcode: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                }
             return null;
         };
 
@@ -367,6 +392,10 @@ $root.Protocol = (function() {
             case "NOTIFICATION":
             case 2:
                 message.type = 2;
+                break;
+            case "ERROR":
+            case 4:
+                message.type = 4;
                 break;
             }
             switch (object.cmd) {
@@ -459,6 +488,24 @@ $root.Protocol = (function() {
                     else if (typeof object.userlist[i] === "object")
                         message.userlist[i] = new $util.LongBits(object.userlist[i].low >>> 0, object.userlist[i].high >>> 0).toNumber();
             }
+            switch (object.errcode) {
+            case "REQUEST_BODY_PARAMS_ERROR":
+            case 0:
+                message.errcode = 0;
+                break;
+            case "GROUP_CREATION_FAILED":
+            case 1:
+                message.errcode = 1;
+                break;
+            case "WITHDRAW_MESSAGE_FAILED":
+            case 2:
+                message.errcode = 2;
+                break;
+            case "CHAT_SESSION_CREATION_FAILED":
+            case 3:
+                message.errcode = 3;
+                break;
+            }
             return message;
         };
 
@@ -503,6 +550,7 @@ $root.Protocol = (function() {
                     object.time = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.time = options.longs === String ? "0" : 0;
+                object.errcode = options.enums === String ? "REQUEST_BODY_PARAMS_ERROR" : 0;
             }
             if (message.type != null && message.hasOwnProperty("type"))
                 object.type = options.enums === String ? $root.Protocol.Message.Type[message.type] : message.type;
@@ -542,6 +590,8 @@ $root.Protocol = (function() {
                     else
                         object.userlist[j] = options.longs === String ? $util.Long.prototype.toString.call(message.userlist[j]) : options.longs === Number ? new $util.LongBits(message.userlist[j].low >>> 0, message.userlist[j].high >>> 0).toNumber() : message.userlist[j];
             }
+            if (message.errcode != null && message.hasOwnProperty("errcode"))
+                object.errcode = options.enums === String ? $root.Protocol.Message.ErrorCode[message.errcode] : message.errcode;
             return object;
         };
 
@@ -563,12 +613,14 @@ $root.Protocol = (function() {
          * @property {number} ACK=0 ACK value
          * @property {number} REQUEST=1 REQUEST value
          * @property {number} NOTIFICATION=2 NOTIFICATION value
+         * @property {number} ERROR=4 ERROR value
          */
         Message.Type = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "ACK"] = 0;
             values[valuesById[1] = "REQUEST"] = 1;
             values[valuesById[2] = "NOTIFICATION"] = 2;
+            values[valuesById[4] = "ERROR"] = 4;
             return values;
         })();
 
@@ -605,6 +657,24 @@ $root.Protocol = (function() {
             values[valuesById[0] = "TEXT"] = 0;
             values[valuesById[1] = "IMG"] = 1;
             values[valuesById[2] = "FILE"] = 2;
+            return values;
+        })();
+
+        /**
+         * ErrorCode enum.
+         * @name Protocol.Message.ErrorCode
+         * @enum {string}
+         * @property {number} REQUEST_BODY_PARAMS_ERROR=0 REQUEST_BODY_PARAMS_ERROR value
+         * @property {number} GROUP_CREATION_FAILED=1 GROUP_CREATION_FAILED value
+         * @property {number} WITHDRAW_MESSAGE_FAILED=2 WITHDRAW_MESSAGE_FAILED value
+         * @property {number} CHAT_SESSION_CREATION_FAILED=3 CHAT_SESSION_CREATION_FAILED value
+         */
+        Message.ErrorCode = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "REQUEST_BODY_PARAMS_ERROR"] = 0;
+            values[valuesById[1] = "GROUP_CREATION_FAILED"] = 1;
+            values[valuesById[2] = "WITHDRAW_MESSAGE_FAILED"] = 2;
+            values[valuesById[3] = "CHAT_SESSION_CREATION_FAILED"] = 3;
             return values;
         })();
 

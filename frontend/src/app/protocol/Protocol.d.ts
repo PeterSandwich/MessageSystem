@@ -1,5 +1,5 @@
 import * as $protobuf from "protobufjs";
-import {Long} from "protobufjs";
+import { Long } from "protobufjs";
 /** Namespace Protocol. */
 export namespace Protocol {
 
@@ -35,6 +35,9 @@ export namespace Protocol {
 
         /** Message userlist */
         userlist?: ((number|Long)[]|null);
+
+        /** Message errcode */
+        errcode?: (Protocol.Message.ErrorCode|null);
     }
 
     /** Represents a Message. */
@@ -75,6 +78,9 @@ export namespace Protocol {
 
         /** Message userlist. */
         public userlist: (number|Long)[];
+
+        /** Message errcode. */
+        public errcode: Protocol.Message.ErrorCode;
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -153,7 +159,8 @@ export namespace Protocol {
         enum Type {
             ACK = 0,
             REQUEST = 1,
-            NOTIFICATION = 2
+            NOTIFICATION = 2,
+            ERROR = 4
         }
 
         /** CtrlType enum. */
@@ -170,6 +177,14 @@ export namespace Protocol {
             TEXT = 0,
             IMG = 1,
             FILE = 2
+        }
+
+        /** ErrorCode enum. */
+        enum ErrorCode {
+            REQUEST_BODY_PARAMS_ERROR = 0,
+            GROUP_CREATION_FAILED = 1,
+            WITHDRAW_MESSAGE_FAILED = 2,
+            CHAT_SESSION_CREATION_FAILED = 3
         }
     }
 }

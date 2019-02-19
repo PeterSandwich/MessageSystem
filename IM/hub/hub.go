@@ -1,8 +1,8 @@
 package hub
 
 import (
-	pb "MessageSystem/IM/protoc"
 	"MessageSystem/IM/dbops"
+	pb "MessageSystem/IM/protoc"
 	"github.com/go-redis/redis"
 	"github.com/golang/protobuf/proto"
 	"go.uber.org/zap"
@@ -124,6 +124,7 @@ func sendRequestDispose(in *pb.Message){
 				To:      in.GetTo(),
 				From:    in.GetFrom(),
 				Time:    ctime,
+				Content:in.Content,
 				ContentType:in.ContentType,
 				Isgroup: in.GetIsgroup(),
 			}
@@ -138,6 +139,7 @@ func sendRequestDispose(in *pb.Message){
 					To:      in.GetTo(),
 					From:    in.GetFrom(),
 					Time:    ctime,
+					Content: in.Content,
 					ContentType:in.ContentType,
 					Isgroup: in.GetIsgroup(),
 				}
@@ -161,6 +163,7 @@ func sendRequestDispose(in *pb.Message){
 				To:      in.GetTo(),
 				From:    in.GetFrom(),
 				Time:    ctime,
+				Content:in.Content,
 				ContentType:in.ContentType,
 				Isgroup: in.GetIsgroup(),
 			}
@@ -172,6 +175,7 @@ func sendRequestDispose(in *pb.Message){
 				To:      in.GetTo(),
 				From:    in.GetFrom(),
 				Time:    ctime,
+				Content:in.Content,
 				ContentType:in.ContentType,
 				Isgroup: in.GetIsgroup(),
 			}
@@ -322,6 +326,7 @@ func createChatSession(in *pb.Message) {
 
 // 收到消息确认
 func messageAckUpdate(in *pb.Message){
+	Logger.Debug("ACK",zap.Int64("from",in.GetFrom()),zap.Int64("from",in.GetTo()))
 	err := dbops.UpdateCounterTable(in.GetFrom(), in.GetTo(), in.GetIsgroup())
 	if err != nil {
 		Logger.Warn(err.Error())
