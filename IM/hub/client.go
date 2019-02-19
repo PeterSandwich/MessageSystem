@@ -91,7 +91,7 @@ func ServeWs(w http.ResponseWriter, r *http.Request) {
 	}
 	r.Header.Set(defs.HEADER_FIELD_SESSION, r.URL.Query().Get("session_id"))
 	rawId, Expired := session.IsSessionExpired(r)
-	uid, err := strconv.ParseInt(rawId, 20, 64)
+	uid, err := strconv.ParseInt(rawId, 10, 64)
 	if Expired || err != nil {
 		Logger.Warn("session Expired")
 		return
