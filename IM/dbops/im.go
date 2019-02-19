@@ -111,7 +111,7 @@ func UpdateCounterTable( from, to int64, isgroup bool) error {
 
 	table := "im_message_counter_"+strconv.Itoa(int(from % 4))
 	_, err := dbConn.Exec("update "+table+" set counter=0 where master=$1 and sender = $2 and isgroup=$3",
-		 from, to, isgroup)
+		  from,to, isgroup)
 	if err != nil {
 		logger.Warn("database control in DeleteMsgById(): "+err.Error())
 	}

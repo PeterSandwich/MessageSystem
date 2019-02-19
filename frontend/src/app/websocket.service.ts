@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
 import { Long } from 'protobufjs';
 import { UserService } from './user.service';
 import * as com from './common/im';
-// import { FriendItem } from './chat/data';
+// import { FriendItem, chatRoom } from './chat/data';
 
 @Injectable()
 export class WebsocketService {
@@ -98,9 +98,23 @@ export class WebsocketService {
           FriItem.count=data.body['chat_room_list'][i].count;
           FriItem.message_list = data.body['chat_room_list'][i].message_list;
           this.nearest_contact.contact_list.push(FriItem)
+
+           //pjw我的代码
+           let chat_room:com.ChatRoom = new(com.ChatRoom);
+           chat_room.id = data.body['chat_room_list'][i].id;
+           chat_room.name = data.body['chat_room_list'][i].name;
+           chat_room.is_group = data.body['chat_room_list'][i].is_group;
+
+           chat_room.message_list=data.body['chat_room_list'][i].message_list;
+           this.global_message.chat_room_list.set(FriItem.id,chat_room)
+
         }
         console.log("contact_list = ", this.nearest_contact.contact_list)
+        console.log("global_messgae = ", this.global_message.chat_room_list)
         // this.getNearestMessage();
+       
+        
+      
       })
   }
   //获取通讯录
@@ -151,7 +165,12 @@ export class WebsocketService {
     if (m.type==Protocol.Message.Type.NOTIFICATION){
       console.log("NOTIFICATION");
       if (m.cmd == Protocol.Message.CtrlType.NONE){
-        this.DisplayMessagesLocally(m,m.from) // 说明是一条 单发或群发消息，在本地显示
+        if(m.isgroup){
+          this.DisplayMessagesLocally(m,m.to)
+        }else{
+          this.DisplayMessagesLocally(m,m.from) // 说明是一条 单发或群发消息，在本地显示
+        }
+       
       }else if(m.cmd == Protocol.Message.CtrlType.CREATE_SESSION){ 
         // 说明是陌生人主动找你聊天,需要在本地创建和他聊天的chatroom
       }else if (m.cmd == Protocol.Message.CtrlType.CREATE_GROUP || m.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){

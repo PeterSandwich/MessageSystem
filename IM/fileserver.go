@@ -82,7 +82,7 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 			sendErrorResponse(w,defs.ErrorReadFileType)
 			return
 		}
-		if fileEndings[0]==".asm"/*||fileEndings[0]=="."*/{
+		if fileEndings[0]==".asm"||fileEndings[0]==".asc"{
 			fileEndings[0]=".txt"
 		}
 		typew := strings.Split(fileEndings[0], ".")

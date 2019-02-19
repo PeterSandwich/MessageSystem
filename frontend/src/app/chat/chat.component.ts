@@ -78,6 +78,7 @@ export class ChatComponent implements OnInit {
     ) {
       this.addGroupUserList=new(AddGroupUserlist);
       this.addGroupUserList.AGlist = [];
+      
       // this.userlist = [];
      }
 
@@ -151,6 +152,19 @@ export class ChatComponent implements OnInit {
     }
 
     test2(index: number, id: number,name : string, img: string, isgroup: boolean){
+      //////////////////////////////////////////
+      let msg = new(Protocol.Message)
+      msg.type = Protocol.Message.Type.ACK;
+      msg.cmd = Protocol.Message.CtrlType.NONE;
+      msg.from =  this.us.MyUserId;
+      msg.to = id;
+      msg.content = this.content;
+      msg.contentType = Protocol.Message.ContentType.TEXT;
+      this.contentType = msg.contentType;
+      // console.log("type=", msg.contentType)
+      msg.isgroup = isgroup;
+      this.ws.sendMessage(msg);
+      ///////////////////////////////////
       this.isselect = true;
       this.to_id = id;
       this.to_name = name;
@@ -158,14 +172,24 @@ export class ChatComponent implements OnInit {
       this.isgroup = isgroup;
       var flag : boolean = false;
       this.friend = this.friendlist.contact_list[index];
+
       for(let i = 0; i < this.friendlist.contact_list.length; i++){
         if(id == this.friendlist.contact_list[i].id){
           this.friendlist.contact_list[i].count = 0;
-          this.showmsg = this.friendlist.contact_list[i].message_list;
-          this.isgroup = this.friendlist.contact_list[i].is_group;
-          flag = true;
+          // this.showmsg = this.friendlist.contact_list[i].message_list;
+          // this.isgroup = this.friendlist.contact_list[i].is_group;
+          // flag = true;
         }
       }
+
+      if(this.ws.global_message.chat_room_list.has(id)){
+        this.showmsg = this.ws.global_message.chat_room_list.get(id).message_list;
+        this.isgroup = this.ws.global_message.chat_room_list.get(id).is_group;
+          flag = true;
+      }
+      
+
+
       if(!flag){
           this.showmsg = [];
       }
@@ -184,16 +208,15 @@ export class ChatComponent implements OnInit {
         console.log("输入内容为空")
         return;
       }
-      var now = new Date();
-      var div = document.getElementById('scrolldIV');
-      now.getTime();
-      div.scrollTop = div.scrollHeight;
-      switch(this.isgroup){
-        case false: this.sendC2C();this.scollbuttom();break;
-        case true: this.sendToGoup();this.scollbuttom();break;
-        default: console.log("default");break;
+      if(this.isgroup){
+        this.sendToGoup();
+      }else{
+        this.sendC2C();
       }
+      this.scollbuttom();
     }
+
+
     sendC2C(){
       let msg = new(Protocol.Message)
       msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
