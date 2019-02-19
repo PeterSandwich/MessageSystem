@@ -40,15 +40,15 @@
                             </div>
                           </div>                          
                         </div>
-                        <div *ngIf="item.content_type == 2"  (mouseup)="he($event)" (contextmenu)="his($event)">
+                        <div *ngIf="item.content_type == 2"  (mouseup)="he($event, item, i, item.msgid)" (contextmenu)="his($event)">
                             <img src="/files/uknow.png" class="picture" >
                             <button class="upload-btn" (click)=" downloadFile()"> 下载
                             </button>
                         </div>
                     </div>
                     <div *ngIf="item.from == my_id" id="box1"><!--发送的消息-->
-                        <div *ngIf="item.content_type != 1 && item.content_type != 2"  (contextmenu)="his($event)" (mouseup)="he($event, item, i)" >{{item.content}}</div>
-                        <div *ngIf="item.content_type == 1"  (mouseup)="he($event, item.content)" (contextmenu)="his($event)">     
+                        <div *ngIf="item.content_type != 1 && item.content_type != 2"  (contextmenu)="his($event)" (mouseup)="he($event, item, i, item.msgid)" >{{item.content}}</div>
+                        <div *ngIf="item.content_type == 1"  (mouseup)="he($event, item, i, item.msgid)" (contextmenu)="his($event)">     
                           <div class="headportrait">
                             <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.content+')'}"></div>
                             <div class="mask">
@@ -56,7 +56,7 @@
                             </div>
                           </div>
                         </div>
-                        <div *ngIf="item.content_type == 2"  (mouseup)="he($event)" (contextmenu)="his($event)">
+                        <div *ngIf="item.content_type == 2"  (mouseup)="he($event, item, i, item.msgid)" (contextmenu)="his($event)">
                             <img src="/files/uknow.png" class="picture" >
                             <button class="upload-btn" (click)=" downloadFile(item.content)"> 下载
                             </button>
@@ -154,8 +154,8 @@
         <td>
         <!-- 5 -->
           <div  *ngIf="isselect">
-            <textarea class = "textarea" [(ngModel)] = "content" (keyup) = "sendMsg($event)"></textarea>
-            <button class = "send" nz-button nzType="primary" (click) = "sendMsg($event)"  >发送</button>
+            <textarea class = "textarea" [(ngModel)] = "content" (keyup) = "sendMsgKey($event)"></textarea>
+            <button class = "send" nz-button nzType="primary" (click) = "sendMsg()"  >发送</button>
           </div>
         </td>
       </tr>
@@ -231,7 +231,7 @@
   </div> -->
   
   <div  id = "mesback1"  *ngIf="pressBoolean">
-      <input type = button value="撤回" class = "mesback" (click) = "backdata()" [ngStyle]="{'left': px, 'top':py, 'z-index':'400', 'background-color':'red'}" >
+      <input type = button value="撤回" class = "mesback" (click) = "backdata(id)" [ngStyle]="{'left': px, 'top':py, 'z-index':'400', 'background-color':'red'}" >
   </div>
 
 

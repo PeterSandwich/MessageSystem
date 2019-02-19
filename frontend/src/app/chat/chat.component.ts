@@ -37,7 +37,7 @@ export class ChatComponent implements OnInit {
 
 
 
-
+  id: number = 0;
   to_name = ""
   to_img = "";
   // group = 0;
@@ -47,7 +47,7 @@ export class ChatComponent implements OnInit {
   list = [];
   showmsg : com.MessageItem[];
 
-  // searchContent : string = "";
+  searchContent : string = "";
   // searchFriend : string = "";
   // groupName : string = "";
 
@@ -69,7 +69,7 @@ export class ChatComponent implements OnInit {
   contentType : number = 0;
   backMes : string = "";
   isPress : boolean = false;
-
+  index : number = 0;
   constructor(
     public ws:WebsocketService, 
     private us:UserService,    // 里面有 我的Id: this.us.MyUserId
@@ -123,7 +123,7 @@ export class ChatComponent implements OnInit {
         return;
       }
     }
-    he(event, content: string){//可自定义右键事件
+    he(event, content: string, id: number){//可自定义右键事件
       if(event.button != 2){
         this.pressBoolean = false;
         this.isPress = false;
@@ -131,6 +131,7 @@ export class ChatComponent implements OnInit {
       }
       this.isPress = true;
       this.backMes = content;
+      this.id = id;
       this.pressBoolean = true;
       var px = event.clientX;
       var py = event.clientY;
@@ -139,16 +140,20 @@ export class ChatComponent implements OnInit {
       console.log("style=", this.px, this.py)
     }
     backdata(){
+      console.log("撤回")
       let msg = new(Protocol.Message)
       msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
-      msg.cmd = Protocol.Message.CtrlType.MSG_BACK;// 消息的功
+      msg.cmd = Protocol.Message.CtrlType.MSG_BACK;// 消息撤回
       msg.from = this.us.MyUserId;              // 消息发送方
       msg.to = this.to_id;                   //消息接收方
       msg.content = this.backMes;             //消息内容
       msg.contentType = this.contentType;　  //消息类型
       msg.isgroup = this.isgroup;                       //是不是群组消息
+      msg.msgid = this.id;
       // console.log("this.msg && this.to_id = ", msg, this.to_id);
-      // this.ws.sendMessage(msg);
+      this.ws.sendMessage(msg);
+      
+      // this.test2(this.index, this.to_id, this.to_name, this.to_img, this.isgroup)
       this.backMes = "";
     }
 
@@ -166,6 +171,7 @@ export class ChatComponent implements OnInit {
       msg.isgroup = isgroup;
       this.ws.sendMessage(msg);
       ///////////////////////////////////
+      this.index = index;
       this.isselect = true;
       this.to_id = id;
       this.to_name = name;
@@ -198,10 +204,7 @@ export class ChatComponent implements OnInit {
       this.scollbuttom();
 
     }
-    sendMsg(event: KeyboardEvent) {
-      if(event.keyCode != (13 || 108)){
-        return ;
-      }
+    sendMsg(){
       this.content = this.content.replace(/^\s*/,'');//去除左边空格
       // 去除所有空格: str = str.replace(/\s+/g,""); 
       // 去除两头空格: str = str.replace(/^\s+|\s+$/g,""); 
@@ -218,6 +221,13 @@ export class ChatComponent implements OnInit {
         this.sendC2C();
       }
       this.scollbuttom();
+    }
+    sendMsgKey(event: KeyboardEvent) {
+      if(event.keyCode != (13 || 108)){
+        return ;
+      }else{
+        this.sendMsg();
+      }
     }
 
 
@@ -258,7 +268,7 @@ export class ChatComponent implements OnInit {
       msg.from = this.us.MyUserId;
       msg.to = to;
       msg.time = Date.now();
-      // this.ws.sendMessage(msg)
+      this.ws.sendMessage(msg)
     }
     keyUpSearch(name: string){ //搜索添加好友
       // this.ws.
@@ -287,7 +297,7 @@ export class ChatComponent implements OnInit {
     
     search(){
       // console.log("search=", this.searchContent);
-      // this.ws.getUserList(this.searchContent).subscribe(data => {
+      // this.ws.getAddress(this.searchContent).subscribe(data => {
       //   this.userlist = data.Ulist;
       //   this.flag = false;
       // })
@@ -415,7 +425,7 @@ export class ChatComponent implements OnInit {
     isAddGroupVisible = false;
     isAddGroupConfirmLoading = false;
     showAddGroupModal(): void {
-      // for(let i=0;i<this.ws.wsFriendList.List.length;i++){
+      // for(let i=0;i<this.ws.global_message.chat_room_list[i];i++){
       //   if(this.ws.wsFriendList.List[i].Isgroup){continue;}
       //   let item = new(AddGroupUserItem);
       //   item.ID=Number(this.ws.wsFriendList.List[i].ID);

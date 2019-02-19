@@ -155,7 +155,7 @@ export class WebsocketService {
       if(m.msgid == 0){
         alert("消息ＩＤ不存在，无法撤回");
       }else{
-
+        this.DisplayMessagesLocally
       }
         // 撤回消息
         // TODO 单聊或群聊发送消息 消息在本地消失
