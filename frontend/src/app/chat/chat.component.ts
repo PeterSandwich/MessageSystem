@@ -338,7 +338,7 @@ export class ChatComponent implements OnInit {
     let fileList: FileList = event.target.files;
     console.log("fileList=", fileList)
     console.log("event.target", event.target)
-    // this.uploadFile(fileList);
+    this.uploadFile(fileList);
   }
 
   uploadFile(files: FileList) {
