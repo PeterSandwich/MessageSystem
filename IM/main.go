@@ -29,7 +29,6 @@ func init() {
 func main() {
 	// API 注册
 	r := RegisterRouterHandlers()
-
 	//中间件
 	handler:=NewMiddleWareHandler(r)
 

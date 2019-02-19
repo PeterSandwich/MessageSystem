@@ -32,6 +32,17 @@ type UserInfo struct {
 	HeadImg	string`json:"head_img"`
 }
 
+type UserInfoItem struct {
+	Id int64`json:"id"`
+	Name string`json:"name"`
+	HeadImg	string`json:"head_img"`
+}
+
+type Users struct{
+	UserList []UserInfoItem `json:"user_list"`
+}
+
+
 type GroupInfo struct {
 	Id int64`json:"id"`
 	Name string`json:"name"`

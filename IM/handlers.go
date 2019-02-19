@@ -26,6 +26,7 @@ func RegisterRouterHandlers() *httprouter.Router {
 	router.POST("/api/upload", uploadFileHandler)//上传文件
 	router.GET("/api/user-info/:id", getUserInfo)// 获取个人信息
 	router.GET("/api/group-info/:gid", getGroupInfo)// 获取群的信息
+	router.GET("/api/users/:name", getUsers)// 获取用户列表
 	router.GET("/api/address-book",getAddressBook)//获取通讯录y
 	router.GET("/api/recent-contact",getNearestContact)	//获取最近联系人y
 	router.GET("/api/recent-contact-message",getNearestContactMessage)//获取最近联系人的最近聊天信息
@@ -275,6 +276,25 @@ func getUserInfo(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	}
 	item.PassWord = "*"
 	data, _ := json.Marshal(item)
+	sendNormalResponse(w,string(data),200)
+}
+
+func getUsers(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+
+	var (
+		list *defs.Users
+		err error
+	)
+
+	user_name :=p.ByName("name")
+
+	if list, err = dbops.GetAllUsersByName(user_name);err!=nil{
+		Logger.Warn(err.Error())
+		sendErrorResponse(w,defs.ErrorDBError)
+		return
+	}
+
+	data, _ := json.Marshal(list)
 	sendNormalResponse(w,string(data),200)
 }
 

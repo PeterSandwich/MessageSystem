@@ -63,7 +63,31 @@ func GetUserInfoById(id int64)(*defs.UserInfo,error){
 	}
 	return &info, nil
 }
+func GetAllUsersByName(name string)(list *defs.Users,err error){
 
+	name = "%"+name+"%"
+    var stmt *sql.Stmt
+	if stmt, err = dbConn.Prepare("select id,name,headimg from users where name like $1 ");err!=nil{
+		return
+	}
+	rows, err := stmt.Query(name)
+	if err!= nil && err!=sql.ErrNoRows {
+		return
+	}
+	list  = &defs.Users{
+		UserList:make([]defs.UserInfoItem,0),
+	}
+
+	for rows.Next() {
+		var user defs.UserInfoItem
+		if err := rows.Scan(&user.Id, &user.Name, &user.HeadImg);err!=nil{
+			logger.Warn(err.Error())
+			continue
+		}
+		list.UserList = append(list.UserList,user)
+	}
+	return
+}
 // 创建用户
 func CreateUser(name, encryptedPasswd,headImg string) (int64, error) {
 
