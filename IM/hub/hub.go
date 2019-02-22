@@ -69,7 +69,8 @@ func errorRequestResponse(in *pb.Message, who int64,code pb.Message_ErrorCode){
 		Msgid:   -1,
 		To:      in.GetTo(),
 		From:    in.GetFrom(),
-		Time:    time.Now().Unix(),
+		ArriveTime:    time.Now().Unix(),
+		SendTime:in.GetSendTime(),
 		ContentType:in.ContentType,
 		Isgroup: in.GetIsgroup(),
 	}
@@ -123,7 +124,8 @@ func sendRequestDispose(in *pb.Message){
 				Msgid:   messageId,
 				To:      in.GetTo(),
 				From:    in.GetFrom(),
-				Time:    ctime,
+				ArriveTime:    ctime,
+				SendTime:in.GetSendTime(),
 				Content:in.Content,
 				ContentType:in.ContentType,
 				Isgroup: in.GetIsgroup(),
@@ -138,7 +140,8 @@ func sendRequestDispose(in *pb.Message){
 					Msgid:   messageId,
 					To:      in.GetTo(),
 					From:    in.GetFrom(),
-					Time:    ctime,
+					ArriveTime:    ctime,
+					SendTime:in.GetSendTime(),
 					Content: in.Content,
 					ContentType:in.ContentType,
 					Isgroup: in.GetIsgroup(),
@@ -162,7 +165,8 @@ func sendRequestDispose(in *pb.Message){
 				Msgid:   messageId,
 				To:      in.GetTo(),
 				From:    in.GetFrom(),
-				Time:    ctime,
+				ArriveTime:    ctime,
+				SendTime:in.GetSendTime(),
 				Content:in.Content,
 				ContentType:in.ContentType,
 				Isgroup: in.GetIsgroup(),
@@ -174,7 +178,8 @@ func sendRequestDispose(in *pb.Message){
 				Msgid:   messageId,
 				To:      in.GetTo(),
 				From:    in.GetFrom(),
-				Time:    ctime,
+				ArriveTime: ctime,
+				SendTime:in.GetSendTime(),
 				Content:in.Content,
 				ContentType:in.ContentType,
 				Isgroup: in.GetIsgroup(),
@@ -206,7 +211,8 @@ func createGroupRequest(in *pb.Message) {
 			Type:    pb.Message_NOTIFICATION,
 			Cmd:     pb.Message_CREATE_GROUP,
 			From:    in.GetFrom(),
-			Time:    in.GetTime(),
+			ArriveTime:    time.Now().Unix(),
+			SendTime:in.GetSendTime(),
 			To:      gid,
 			Isgroup: true,
 			Content: gname,
@@ -229,7 +235,8 @@ func groupAddMemRequest(in *pb.Message) {
 			Type:    pb.Message_NOTIFICATION,
 			Cmd:     pb.Message_GROUP_ADDMEMBERS,
 			From:    in.GetFrom(),
-			Time:    in.GetTime(),
+			ArriveTime:    time.Now().Unix(),
+			SendTime:in.GetSendTime(),
 			Isgroup: true,
 			Content: "新的群组",
 			To:in.GetTo(),
@@ -240,13 +247,20 @@ func groupAddMemRequest(in *pb.Message) {
 
 // 消息撤回
 func withdrawMessage(in *pb.Message){
+
+
 	if in.GetMsgid() < 1 {
 		errorRequestResponse(in,in.GetFrom(),pb.Message_REQUEST_BODY_PARAMS_ERROR)
 		return
 	}
-
-	err := dbops.DeleteMsgById(in.GetMsgid())
+	t,err:=dbops.GetMessageArriveTime(in.Msgid)
+	if err!=nil ||time.Now().Sub(time.Unix(t,0))>time.Minute*2{
+		errorRequestResponse(in,in.GetFrom(),pb.Message_WITHDRAW_MESSAGE_FAILED)
+		return
+	}
+	err = dbops.DeleteMsgById(in.GetMsgid())
 	if err != nil {
+		Logger.Warn(err.Error())
 		errorRequestResponse(in,in.GetFrom(),pb.Message_WITHDRAW_MESSAGE_FAILED)
 		return
 	}
@@ -266,7 +280,8 @@ func withdrawMessage(in *pb.Message){
 				Msgid:       in.GetMsgid(),
 				To:          in.GetTo(),
 				From:        in.GetFrom(),
-				Time:        time.Now().Unix(),
+				ArriveTime:    time.Now().Unix(),
+				SendTime:in.GetSendTime(),
 				ContentType: in.ContentType,
 				Isgroup:     in.GetIsgroup(),
 			}
@@ -275,11 +290,12 @@ func withdrawMessage(in *pb.Message){
 	}else{
 		resp := &pb.Message{
 			Type:    pb.Message_NOTIFICATION,
-			Cmd:     pb.Message_NONE,
+			Cmd:     pb.Message_MSG_BACK,
 			Msgid:   in.GetMsgid(),
 			To:      in.GetTo(),
 			From:    in.GetFrom(),
-			Time:    time.Now().Unix(),
+			ArriveTime: time.Now().Unix(),
+			SendTime:in.GetSendTime(),
 			ContentType:in.ContentType,
 			Isgroup: in.GetIsgroup(),
 		}
@@ -307,7 +323,8 @@ func createChatSession(in *pb.Message) {
 		Cmd:     pb.Message_CREATE_SESSION,
 		To:      in.GetTo(),
 		From:    in.GetFrom(),
-		Time:    in.GetTime(),
+		ArriveTime:    time.Now().Unix(),
+		SendTime:in.GetSendTime(),
 		Isgroup: false,
 	}
 	messageForward(ack,in.GetFrom())
@@ -318,7 +335,8 @@ func createChatSession(in *pb.Message) {
 		Cmd:     pb.Message_CREATE_SESSION,
 		To:      in.GetTo(),
 		From:    in.GetFrom(),
-		Time:    in.GetTime(),
+		ArriveTime:    time.Now().Unix(),
+		SendTime:in.GetSendTime(),
 		Isgroup: false,
 	}
 	messageForward(send,in.GetTo())

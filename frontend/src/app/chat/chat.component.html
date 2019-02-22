@@ -40,15 +40,15 @@
                             </div>
                           </div>                          
                         </div>
-                        <div *ngIf="item.content_type == 2"  (mouseup)="he($event)" (contextmenu)="his($event)">
+                        <div *ngIf="item.content_type == 2"  (mouseup)="he($event, item, i, item.msgid)" (contextmenu)="his($event)">
                             <img src="/files/uknow.png" class="picture" >
                             <button class="upload-btn" (click)=" downloadFile()"> 下载
                             </button>
                         </div>
                     </div>
-                    <div *ngIf="item.from == my_id" id="box1"><!--发送的消息-->
-                        <div *ngIf="item.content_type != 1 && item.content_type != 2"  (contextmenu)="his($event)" (mouseup)="he($event, item, i)" >{{item.content}}</div>
-                        <div *ngIf="item.content_type == 1"  (mouseup)="he($event, item.content)" (contextmenu)="his($event)">     
+                    <div *ngIf="item.from == my_id && item.content != ''" id="box1"><!--发送的消息-->
+                        <div *ngIf="item.content_type != 1 && item.content_type != 2"  (contextmenu)="his($event)" (mouseup)="he($event, item)" >{{item.content}}</div>
+                        <div *ngIf="item.content_type == 1"  (mouseup)="he($event, item)" (contextmenu)="his($event)">     
                           <div class="headportrait">
                             <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.content+')'}"></div>
                             <div class="mask">
@@ -56,7 +56,7 @@
                             </div>
                           </div>
                         </div>
-                        <div *ngIf="item.content_type == 2"  (mouseup)="he($event)" (contextmenu)="his($event)">
+                        <div *ngIf="item.content_type == 2"  (mouseup)="he($event, item)" (contextmenu)="his($event)">
                             <img src="/files/uknow.png" class="picture" >
                             <button class="upload-btn" (click)=" downloadFile(item.content)"> 下载
                             </button>
@@ -192,7 +192,7 @@
           添加好友
           <nz-input-group [nzSuffix]="suffixIconSearch"> 
               <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索的用户名" 
-              id = "search" (keyup) = "keyUpSearch(name)">
+              id = "search" (keyup) = "keyUpSearch(searchContent)">
           </nz-input-group> 
   
           <ng-template #suffixIconSearch>
@@ -208,9 +208,9 @@
                 <div *ngIf="flag;else Show">查无此人</div>
                 <ng-template #Show>
                 <div *ngFor="let item of userlist">
-                    <img src = "{{item.Img_url}}" class = "img">
-                      {{item.Name}}
-                    <button (click) = "addfriend(item.ID)">添加好友</button>
+                    <img src = "{{item.head_img}}" class = "img">
+                      {{item.name}}
+                    <button (click) = "addfriend(item.id)">添加好友</button>
                 </div>
               </ng-template>
     
@@ -231,7 +231,7 @@
   </div> -->
   
   <div  id = "mesback1"  *ngIf="pressBoolean">
-      <input type = button value="撤回" class = "mesback" (click) = "backdata()" [ngStyle]="{'left': px, 'top':py, 'z-index':'400', 'background-color':'red'}" >
+      <input type = button value="撤回" class = "mesback" (click) = "backdata(id)" [ngStyle]="{'left': px, 'top':py, 'z-index':'400', 'background-color':'red'}" >
   </div>
 
 

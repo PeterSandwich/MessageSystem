@@ -9,6 +9,7 @@ export class MessageItem{
     content: string
     content_type: number
     arrive_time: number|Long
+    send_time: number|Long
     is_group: boolean
 }
 

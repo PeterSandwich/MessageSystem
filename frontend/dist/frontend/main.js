@@ -240,7 +240,7 @@ module.exports = ".container{\n  background-color: #DDDDDD;\n  width: 1024px;\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<div class=\"container\" (mouseup) = \"his($event)\" >\n    <!--聊天窗口-->\n    <table class = \"table\">\n      <tr>\n        <th class = \"avatar\" rowspan=\"2\" colspan=\"3\">\n          <!-- 1 -->\n          <div>\n              <!--个人信息-->\n                <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n                <div>\n                    <div style = \"left: 90px; top:30px; position: absolute\">{{my_name}}</div>\n                    <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n                </div>\n            </div>\n        </th>\n        <th class = \"him\"  >\n          <!-- 2 -->\n          {{to_name}}\n          <nz-dropdown class = \"dropdown\" *ngIf=\"isgroup\">\n            <a nz-dropdown>\n              <i nz-icon type=\"down\"></i>\n            </a>\n          </nz-dropdown>\n        </th>\n      </tr>\n      <tr class = \"avatar2\" >\n          <td rowspan=\"4\"  >\n            <!-- 3 -->\n            <div class = \"message1\" id=\"scrolldIV\" >\n                <div *ngFor=\"let item of showmsg; let i = index; let last = last\" >\n                    <div *ngIf=\"item.from != my_id\" id = \"box\"><!--接受的消息-->\n                        <div *ngIf=\"item.content_type == 0\">{{item.content}}</div>\n                        <div *ngIf=\"item.content_type == 1\">     \n                          <div class=\"headportrait\">\n                            <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.content+')'}\"></div>\n                            <div class=\"mask\">\n                                <p (click)=\"showpicModal(item.content)\">查看原图</p>\n                            </div>\n                          </div>                          \n                        </div>\n                        <div *ngIf=\"item.content_type == 2\"  (mouseup)=\"he($event)\" (contextmenu)=\"his($event)\">\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\n                            <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                            </button>\n                        </div>\n                    </div>\n                    <div *ngIf=\"item.from == my_id\" id=\"box1\"><!--发送的消息-->\n                        <div *ngIf=\"item.content_type != 1 && item.content_type != 2\"  (contextmenu)=\"his($event)\" (mouseup)=\"he($event, item, i)\" >{{item.content}}</div>\n                        <div *ngIf=\"item.content_type == 1\"  (mouseup)=\"he($event, item.content)\" (contextmenu)=\"his($event)\">     \n                          <div class=\"headportrait\">\n                            <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.content+')'}\"></div>\n                            <div class=\"mask\">\n                                <p (click)=\"showpicModal(item.content)\">查看原图</p>\n                            </div>\n                          </div>\n                        </div>\n                        <div *ngIf=\"item.content_type == 2\"  (mouseup)=\"he($event)\" (contextmenu)=\"his($event)\">\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\n                            <button class=\"upload-btn\" (click)=\" downloadFile(item.content)\"> 下载\n                            </button>\n                        </div>\n                    </div>\n                    <span *ngIf=\"last\">{{scollbuttom()}}</span>\n                  </div>\n              </div>\n          </td>\n      </tr>\n      <tr >\n          <td colspan=\"3\" class = \"search\" colspan=\"3\">\n            <!-- 7 -->\n              <div>\n                  <nz-input-group [nzSuffix]=\"suffixIconSearch1\"> \n                      <input type=\"text\" [(ngModel)]=\"searchFriend\" nz-input placeholder=\"输入搜索内容\" id = \"search\">\n                  </nz-input-group> \n        \n                  <ng-template #suffixIconSearch1>\n                      <i nz-icon type=\"search\" class = \"icon\"></i>\n                  </ng-template>\n        \n                  <div>\n                      <div *ngIf=\"isVisible\">\n                          <div *ngIf=\"!searchFriend\">\n                            正在搜索内容\n                          </div>\n                          <div *ngIf=\"searchFriend\">\n                              <div *ngIf=\"flag;else Show\">查无此人</div>\n                              <ng-template #Show>\n                                  <!-- <div *ngFor=\"let item of userlist\">\n                                      <img src = \"{{item.Img_url}}\" class = \"img\">\n                                      {{item.Name}}\n                                  </div> -->\n                              </ng-template>\n                          </div>\n                      </div>\n                  </div>\n              </div>\n          </td>\n      </tr>\n      <tr class = \"bar\">\n        <td class = \"bartool\">\n            <button class = \"grad\" (click) = \"getNear()\">聊天</button>|\n        </td>\n        <td class = \"bartool\">\n            <button class = \"grad\" (click) = \"getAddress()\">通讯录</button>|\n        </td>\n        <td class = \"bartool\">\n            <nz-dropdown class = \"dropdown\">\n                <a nz-dropdown>\n                    &nbsp; &nbsp;添加 <i nz-icon type=\"down\"></i>\n                </a>\n                <ul nz-menu nzSelectable>\n                    <li nz-menu-item (click)=\"showAddFriendModal()\">\n                        <a>添加好友</a>\n                    </li>\n                    <li nz-menu-item (click) = \"showAddGroupModal()\">\n                        <a>创建群聊</a>\n                    </li>\n                </ul>\n            </nz-dropdown>\n        </td>\n      </tr>\n      <tr>\n        <td rowspan=\"3\" colspan=\"3\">\n            <!-- 4 -->\n            <div class = \"list\" >\n                <li  class = \"item\" [class.selected]=\"item == friend\" *ngFor=\"let item of  this.ws.nearest_contact.contact_list; let i = index\" (click) = \"test2(i, item.id,item.name, item.head_img, item.is_group)\">\n                    <nz-badge [nzCount]=\"item.count\" *ngIf=\"list!=NULL\">\n                        <img src = \"{{item.head_img}}\" class = \"img\">\n                    </nz-badge>\n                 {{item.name}}\n                </li>\n            </div>\n        </td>\n      </tr>\n      <tr>\n        <td class = \"tool\">\n          <!-- 6 -->\n          <div  *ngIf=\"isselect\">\n              <div >\n                <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n                <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\n                <input id=\"upfile\" type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\" accept=\".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt\">\n                <div class=\"action-box\">\n                  <button  nz-button nzType=\"primary\" onclick = \"upfile.click()\" >点击上传</button>\n                </div>\n              </div>\n            </div>\n        </td>\n      </tr>\n      <tr class = \"inputmes\">\n    <!-- 输入框 -->\n        <td>\n        <!-- 5 -->\n          <div  *ngIf=\"isselect\">\n            <textarea class = \"textarea\" [(ngModel)] = \"content\" (keyup) = \"enterToSendMsg($event)\"></textarea>\n            <button class = \"send\" nz-button nzType=\"primary\" (click) = \"clickToSendMsg()\"  >发送</button>\n          </div>\n        </td>\n      </tr>\n    </table>\n  </div>\n    \n  \n  <!-- 创建群聊 -->\n  <nz-modal [(nzVisible)]=\"isAddGroupVisible\" [nzTitle]=\"modalTitle\" [nzContent]=\"modalContent\" [nzFooter]=\"modalFooter\" (nzOnCancel)=\"handleAddGroupCancel()\">\n      <ng-template #modalTitle>\n        创建群\n      </ng-template>\n      <ng-template #modalContent>\n        <!-- <div class = \"list\" > -->\n          <div class = \"item\" *ngFor=\"let item of addGroupUserList.AGlist\" >\n              <label nz-checkbox [(ngModel)]=\"item.Check\">\n                  <img src = \"{{item.Headimg}}\" class = \"img\">\n                  {{item.Name}}\n              </label>\n          </div>\n        <!-- </div> -->\n      </ng-template>\n      <ng-template #modalFooter>\n          <input nz-input placeholder=\"群名字\"[(ngModel)]=\"GroupName\">\n          <button nz-button nzType=\"default\" (click)=\"handleAddGroupCancel()\">取消</button>\n          <button nz-button nzType=\"primary\" (click)=\"handleAddGroupOk()\" [nzLoading]=\"isConfirmLoading\">创建</button>\n      </ng-template>\n  </nz-modal>\n    \n    \n    <!-- 添加好友 -->\n  <nz-modal [(nzVisible)]=\"isAddFriendVisible\" [nzTitle]=\"modalTitle1\" [nzContent]=\"modalContent1\"  (nzOnCancel)=\"handleAddFriendCancel()\">\n      <ng-template #modalTitle1>\n          添加好友\n          <nz-input-group [nzSuffix]=\"suffixIconSearch\"> \n              <input type=\"text\" [(ngModel)]=\"searchContent\" nz-input placeholder=\"输入搜索的用户名\" \n              id = \"search\" (keyup) = \"keyUpSearch(name)\">\n          </nz-input-group> \n  \n          <ng-template #suffixIconSearch>\n              <i nz-icon type=\"search\" class = \"icon\" (click) = \"search()\"></i>\n          </ng-template>\n      </ng-template>\n    \n      <ng-template #modalContent1>\n          <div *ngIf=\"!searchContent\">\n              正在搜索内容\n          </div>\n            <div *ngIf=\"searchContent\">\n                <div *ngIf=\"flag;else Show\">查无此人</div>\n                <ng-template #Show>\n                <div *ngFor=\"let item of userlist\">\n                    <img src = \"{{item.Img_url}}\" class = \"img\">\n                      {{item.Name}}\n                    <button (click) = \"addfriend(item.ID)\">添加好友</button>\n                </div>\n              </ng-template>\n    \n            </div>\n      </ng-template>\n  </nz-modal>\n  \n  <!-- <div *ngIf=\"show\">\n      <div style=\"display: -webkit-box;\">\n          <div class=\"hint\">\n              {{filename}}\n          </div>\n          <div class=\"action-box\">\n              <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n              </button>\n          </div>\n      </div>\n  </div> -->\n  \n  <div  id = \"mesback1\"  *ngIf=\"pressBoolean\">\n      <input type = button value=\"撤回\" class = \"mesback\" (click) = \"backdata()\" [ngStyle]=\"{'left': px, 'top':py, 'z-index':'400', 'background-color':'red'}\" >\n  </div>\n\n\n\n<nz-modal [(nzVisible)]=\"isshowpicVisible\"   (nzOnCancel)=\"handleshowpicCancel()\" (nzOnOk)=\"handleshowpicCancel()\">\n  <div class=\"picture2\" [ngStyle]=\"{ 'background-image': 'url('+a+')'}\"></div>\n</nz-modal>\n\n"
+module.exports = "\n\n<div class=\"container\" (mouseup) = \"his($event)\" >\n    <!--聊天窗口-->\n    <table class = \"table\">\n      <tr>\n        <th class = \"avatar\" rowspan=\"2\" colspan=\"3\">\n          <!-- 1 -->\n          <div>\n              <!--个人信息-->\n                <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n                <div>\n                    <div style = \"left: 90px; top:30px; position: absolute\">{{my_name}}</div>\n                    <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n                </div>\n            </div>\n        </th>\n        <th class = \"him\"  >\n          <!-- 2 -->\n          {{to_name}}\n          <nz-dropdown class = \"dropdown\" *ngIf=\"isgroup\">\n            <a nz-dropdown>\n              <i nz-icon type=\"down\"></i>\n            </a>\n          </nz-dropdown>\n        </th>\n      </tr>\n      <tr class = \"avatar2\" >\n          <td rowspan=\"4\"  >\n            <!-- 3 -->\n            <div class = \"message1\" id=\"scrolldIV\" >\n                <div *ngFor=\"let item of showmsg; let i = index; let last = last\" >\n                    <div *ngIf=\"item.from != my_id\" id = \"box\"><!--接受的消息-->\n                        <div *ngIf=\"item.content_type == 0\">{{item.content}}</div>\n                        <div *ngIf=\"item.content_type == 1\">     \n                          <div class=\"headportrait\">\n                            <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.content+')'}\"></div>\n                            <div class=\"mask\">\n                                <p (click)=\"showpicModal(item.content)\">查看原图</p>\n                            </div>\n                          </div>                          \n                        </div>\n                        <div *ngIf=\"item.content_type == 2\"  (mouseup)=\"he($event, item, i, item.msgid)\" (contextmenu)=\"his($event)\">\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\n                            <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                            </button>\n                        </div>\n                    </div>\n                    <div *ngIf=\"item.from == my_id && item.content != ''\" id=\"box1\"><!--发送的消息-->\n                        <div *ngIf=\"item.content_type != 1 && item.content_type != 2\"  (contextmenu)=\"his($event)\" (mouseup)=\"he($event, item)\" >{{item.content}}</div>\n                        <div *ngIf=\"item.content_type == 1\"  (mouseup)=\"he($event, item)\" (contextmenu)=\"his($event)\">     \n                          <div class=\"headportrait\">\n                            <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.content+')'}\"></div>\n                            <div class=\"mask\">\n                                <p (click)=\"showpicModal(item.content)\">查看原图</p>\n                            </div>\n                          </div>\n                        </div>\n                        <div *ngIf=\"item.content_type == 2\"  (mouseup)=\"he($event, item)\" (contextmenu)=\"his($event)\">\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\n                            <button class=\"upload-btn\" (click)=\" downloadFile(item.content)\"> 下载\n                            </button>\n                        </div>\n                    </div>\n                    <span *ngIf=\"last\">{{scollbuttom()}}</span>\n                  </div>\n              </div>\n          </td>\n      </tr>\n      <tr >\n          <td colspan=\"3\" class = \"search\" colspan=\"3\">\n            <!-- 7 -->\n              <div>\n                  <nz-input-group [nzSuffix]=\"suffixIconSearch1\"> \n                      <input type=\"text\" [(ngModel)]=\"searchFriend\" nz-input placeholder=\"输入搜索内容\" id = \"search\">\n                  </nz-input-group> \n        \n                  <ng-template #suffixIconSearch1>\n                      <i nz-icon type=\"search\" class = \"icon\"></i>\n                  </ng-template>\n        \n                  <div>\n                      <div *ngIf=\"isVisible\">\n                          <div *ngIf=\"!searchFriend\">\n                            正在搜索内容\n                          </div>\n                          <div *ngIf=\"searchFriend\">\n                              <div *ngIf=\"flag;else Show\">查无此人</div>\n                              <ng-template #Show>\n                                  <!-- <div *ngFor=\"let item of userlist\">\n                                      <img src = \"{{item.Img_url}}\" class = \"img\">\n                                      {{item.Name}}\n                                  </div> -->\n                              </ng-template>\n                          </div>\n                      </div>\n                  </div>\n              </div>\n          </td>\n      </tr>\n      <tr class = \"bar\">\n        <td class = \"bartool\">\n            <button class = \"grad\" (click) = \"getNear()\">聊天</button>|\n        </td>\n        <td class = \"bartool\">\n            <button class = \"grad\" (click) = \"getAddress()\">通讯录</button>|\n        </td>\n        <td class = \"bartool\">\n            <nz-dropdown class = \"dropdown\">\n                <a nz-dropdown>\n                    &nbsp; &nbsp;添加 <i nz-icon type=\"down\"></i>\n                </a>\n                <ul nz-menu nzSelectable>\n                    <li nz-menu-item (click)=\"showAddFriendModal()\">\n                        <a>添加好友</a>\n                    </li>\n                    <li nz-menu-item (click) = \"showAddGroupModal()\">\n                        <a>创建群聊</a>\n                    </li>\n                </ul>\n            </nz-dropdown>\n        </td>\n      </tr>\n      <tr>\n        <td rowspan=\"3\" colspan=\"3\">\n            <!-- 4 -->\n            <div class = \"list\" >\n                <li  class = \"item\" [class.selected]=\"item == friend\" *ngFor=\"let item of  this.ws.nearest_contact.contact_list; let i = index\" (click) = \"test2(i, item.id,item.name, item.head_img, item.is_group)\">\n                    <nz-badge [nzCount]=\"item.count\" *ngIf=\"list!=NULL\">\n                        <img src = \"{{item.head_img}}\" class = \"img\">\n                    </nz-badge>\n                 {{item.name}}\n                </li>\n            </div>\n        </td>\n      </tr>\n      <tr>\n        <td class = \"tool\">\n          <!-- 6 -->\n          <div  *ngIf=\"isselect\">\n              <div >\n                <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n                <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\n                <input id=\"upfile\" type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\" accept=\".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt\">\n                <div class=\"action-box\">\n                  <button  nz-button nzType=\"primary\" onclick = \"upfile.click()\" >点击上传</button>\n                </div>\n              </div>\n            </div>\n        </td>\n      </tr>\n      <tr class = \"inputmes\">\n    <!-- 输入框 -->\n        <td>\n        <!-- 5 -->\n          <div  *ngIf=\"isselect\">\n            <textarea class = \"textarea\" [(ngModel)] = \"content\" (keyup) = \"enterToSendMsg($event)\"></textarea>\n            <button class = \"send\" nz-button nzType=\"primary\" (click) = \"clickToSendMsg()\"  >发送</button>\n          </div>\n        </td>\n      </tr>\n    </table>\n  </div>\n    \n  \n  <!-- 创建群聊 -->\n  <nz-modal [(nzVisible)]=\"isAddGroupVisible\" [nzTitle]=\"modalTitle\" [nzContent]=\"modalContent\" [nzFooter]=\"modalFooter\" (nzOnCancel)=\"handleAddGroupCancel()\">\n      <ng-template #modalTitle>\n        创建群\n      </ng-template>\n      <ng-template #modalContent>\n        <!-- <div class = \"list\" > -->\n          <div class = \"item\" *ngFor=\"let item of addGroupUserList.AGlist\" >\n              <label nz-checkbox [(ngModel)]=\"item.Check\">\n                  <img src = \"{{item.Headimg}}\" class = \"img\">\n                  {{item.Name}}\n              </label>\n          </div>\n        <!-- </div> -->\n      </ng-template>\n      <ng-template #modalFooter>\n          <input nz-input placeholder=\"群名字\"[(ngModel)]=\"GroupName\">\n          <button nz-button nzType=\"default\" (click)=\"handleAddGroupCancel()\">取消</button>\n          <button nz-button nzType=\"primary\" (click)=\"handleAddGroupOk()\" [nzLoading]=\"isConfirmLoading\">创建</button>\n      </ng-template>\n  </nz-modal>\n    \n    \n    <!-- 添加好友 -->\n  <nz-modal [(nzVisible)]=\"isAddFriendVisible\" [nzTitle]=\"modalTitle1\" [nzContent]=\"modalContent1\"  (nzOnCancel)=\"handleAddFriendCancel()\">\n      <ng-template #modalTitle1>\n          添加好友\n          <nz-input-group [nzSuffix]=\"suffixIconSearch\"> \n              <input type=\"text\" [(ngModel)]=\"searchContent\" nz-input placeholder=\"输入搜索的用户名\" \n              id = \"search\" (keyup) = \"keyUpSearch(searchContent)\">\n          </nz-input-group> \n  \n          <ng-template #suffixIconSearch>\n              <i nz-icon type=\"search\" class = \"icon\" (click) = \"search()\"></i>\n          </ng-template>\n      </ng-template>\n    \n      <ng-template #modalContent1>\n          <div *ngIf=\"!searchContent\">\n              正在搜索内容\n          </div>\n            <div *ngIf=\"searchContent\">\n                <div *ngIf=\"flag;else Show\">查无此人</div>\n                <ng-template #Show>\n                <div *ngFor=\"let item of userlist\">\n                    <img src = \"{{item.head_img}}\" class = \"img\">\n                      {{item.name}}\n                    <button (click) = \"addfriend(item.id)\">添加好友</button>\n                </div>\n              </ng-template>\n    \n            </div>\n      </ng-template>\n  </nz-modal>\n  \n  <!-- <div *ngIf=\"show\">\n      <div style=\"display: -webkit-box;\">\n          <div class=\"hint\">\n              {{filename}}\n          </div>\n          <div class=\"action-box\">\n              <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n              </button>\n          </div>\n      </div>\n  </div> -->\n  \n  <div  id = \"mesback1\"  *ngIf=\"pressBoolean\">\n      <input type = button value=\"撤回\" class = \"mesback\" (click) = \"backdata(id)\" [ngStyle]=\"{'left': px, 'top':py, 'z-index':'400', 'background-color':'red'}\" >\n  </div>\n\n\n\n<nz-modal [(nzVisible)]=\"isshowpicVisible\"   (nzOnCancel)=\"handleshowpicCancel()\" (nzOnOk)=\"handleshowpicCancel()\">\n  <div class=\"picture2\" [ngStyle]=\"{ 'background-image': 'url('+a+')'}\"></div>\n</nz-modal>\n\n"
 
 /***/ }),
 
@@ -264,11 +264,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _file_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../file.service */ "./src/app/file.service.ts");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../protocol/Protocol */ "./src/app/protocol/Protocol.js");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./data */ "./src/app/chat/data.ts");
-/* harmony import */ var _common_im__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../common/im */ "./src/app/common/im.ts");
+/* harmony import */ var _common_im__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../common/im */ "./src/app/common/im.ts");
 
-
-// import { MesList, FriendList, FriendItem, MessageList } from './data';
 
 
 
@@ -288,6 +285,7 @@ var ChatComponent = /** @class */ (function () {
         // @ViewChild('scrollMe') private myScrollContainer: ElementRef;
         this.from_id = 1;
         this.to_id = 0;
+        this.id = 0;
         this.to_name = "";
         this.to_img = "";
         // group = 0;
@@ -295,7 +293,7 @@ var ChatComponent = /** @class */ (function () {
         this.content = "";
         // group_name = '';
         this.list = [];
-        // searchContent : string = "";
+        this.searchContent = "";
         // searchFriend : string = "";
         // groupName : string = "";
         this.isVisible = false;
@@ -305,8 +303,9 @@ var ChatComponent = /** @class */ (function () {
         this.py = "";
         // mesItem = MessageItem;
         this.contentType = 0;
-        this.backMes = "";
         this.isPress = false;
+        this.index = 0;
+        this.flag = false;
         this.fileurl = 'http://localhost:9988/api/upload';
         this.dfileurl = 'http://localhost:9988/files/9edbe55433e4_compress.jpg';
         this.filep = "";
@@ -327,6 +326,7 @@ var ChatComponent = /** @class */ (function () {
         this.addGroupUserList.AGlist = [];
         // this.userlist = [];
     }
+    ;
     ChatComponent.prototype.ngAfterViewInit = function () {
         // this.elementRef.nativeElement.focus();
         this.el.nativeElement.focus();
@@ -335,7 +335,7 @@ var ChatComponent = /** @class */ (function () {
         // 初始化最近聊天列表及其聊天历史消息
         this.getNearestListAndMessage();
         // this.friendlist = data.nearContractList;
-        this.addressList = _data__WEBPACK_IMPORTED_MODULE_7__["addressList"];
+        //this.addressList = data.addressList;
         // this.messagelist = data.chatRoom;
         this.friendlist = this.ws.nearest_contact;
         // console.log("friendlist = ", this.friendlist)
@@ -364,33 +364,42 @@ var ChatComponent = /** @class */ (function () {
             return;
         }
     };
-    ChatComponent.prototype.he = function (event, content) {
+    ChatComponent.prototype.he = function (event, item, id) {
         if (event.button != 2) {
             this.pressBoolean = false;
             this.isPress = false;
             return;
         }
         this.isPress = true;
-        this.backMes = content;
+        this.backMes = item;
+        this.id = Number(item.id);
+        // console.log("this.id", item)
         this.pressBoolean = true;
         var px = event.clientX;
         var py = event.clientY;
         this.px = String(px) + 'px';
         this.py = String(py) + 'px';
-        console.log("style=", this.px, this.py);
+        // console.log("style=", this.px, this.py)
     };
     ChatComponent.prototype.backdata = function () {
+        ///////////////////////////////////////////////////////////
+        //有一个bug需解决，撤回消息后聊天框仍存在，以后再改23333333333333//
+        ///////////////////////////////////////////////////////////
+        console.log("撤回");
         var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message);
         msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.Type.REQUEST; //消息的类型的请求类型
-        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.CtrlType.MSG_BACK; // 消息的功
+        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.CtrlType.MSG_BACK; // 消息撤回
         msg.from = this.us.MyUserId; // 消息发送方
-        msg.to = this.to_id; //消息接收方
-        msg.content = this.backMes; //消息内容
-        msg.contentType = this.contentType; //消息类型
-        msg.isgroup = this.isgroup; //是不是群组消息
+        msg.to = this.backMes.to; //消息接收方
+        msg.content = this.backMes.content; //消息内容
+        msg.contentType = this.backMes.content_type; //消息类型
+        msg.isgroup = this.backMes.is_group; //是不是群组消息
+        msg.msgid = this.backMes.id;
+        msg.sendTime = Date.now();
         // console.log("this.msg && this.to_id = ", msg, this.to_id);
-        // this.ws.sendMessage(msg);
-        this.backMes = "";
+        this.ws.sendMessage(msg);
+        // this.test2(this.index, this.to_id, this.to_name, this.to_img, this.isgroup)
+        // window.onload
     };
     ChatComponent.prototype.test2 = function (index, id, name, img, isgroup) {
         // 发送ACK消息回后端，让后端知道这消息已读，徽标数清零
@@ -404,10 +413,13 @@ var ChatComponent = /** @class */ (function () {
         msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.ContentType.TEXT;
         this.contentType = msg.contentType;
         msg.isgroup = isgroup;
+        msg.sendTime = Date.now();
         this.ws.sendMessage(msg);
         ///////////////////////////////////
-        this.isselect = true;
         this.to_id = id;
+        this.index = index;
+        this.isselect = true;
+        console.log("this.id", id);
         this.to_name = name;
         this.to_img = img;
         this.isgroup = isgroup;
@@ -415,6 +427,7 @@ var ChatComponent = /** @class */ (function () {
         if (this.ws.global_message.chat_room_list.has(id)) {
             this.showmsg = this.ws.global_message.chat_room_list.get(id).message_list;
             this.isgroup = this.ws.global_message.chat_room_list.get(id).is_group;
+            console.log("showmsg = ", this.showmsg);
             flag = true;
         }
         if (!flag) {
@@ -449,6 +462,7 @@ var ChatComponent = /** @class */ (function () {
         msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.ContentType.TEXT;
         this.contentType = msg.contentType;
         msg.isgroup = this.isgroup;
+        msg.sendTime = Date.now();
         this.ws.sendMessage(msg);
         this.content = "";
         this.scollbuttom();
@@ -459,19 +473,47 @@ var ChatComponent = /** @class */ (function () {
         msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.CtrlType.CREATE_SESSION;
         msg.from = this.us.MyUserId;
         msg.to = to;
-        msg.time = Date.now();
-        // this.ws.sendMessage(msg)
+        msg.sendTime = Date.now();
+        this.ws.sendMessage(msg);
+        // this.ws.getNearestList();
+        // this.ws.getAddress();
+        this.ngOnInit();
     };
     ChatComponent.prototype.keyUpSearch = function (name) {
+        var _this = this;
         // this.ws.
         // this.ws.getUserList(this.searchContent).subscribe(data => {
         //   console.log("data2 = ", data.Ulist);
         //   this.userlist = data.Ulist;
         // })
+        this.us.getuserlist(this.searchContent).subscribe(function (data) {
+            // this.userlist = data
+            console.log("userlist=", data);
+            if (data['user_list'].length == 0) {
+                _this.flag = true;
+            }
+            _this.userlist = data['user_list'];
+            _this.flag = false;
+        });
     };
+    // clickMe(){
+    //     var btn = document.getElementById("search");
+    //     btn.focus();
+    //     this.isVisible = document.hasFocus();
+    //     // this.userlist = [];
+    // }
+    // outMe(){
+    //   var btn = document.getElementById("search");
+    //   btn.blur();
+    //   this.isVisible = document.hasFocus();
+    //   // this.userlist = [];
+    // }
+    // cancelEditingTodo(){
+    //   this.isVisible = false;
+    // }
     ChatComponent.prototype.search = function () {
         // console.log("search=", this.searchContent);
-        // this.ws.getUserList(this.searchContent).subscribe(data => {
+        // this.ws.getAddress(this.searchContent).subscribe(data => {
         //   this.userlist = data.Ulist;
         //   this.flag = false;
         // })
@@ -578,7 +620,7 @@ var ChatComponent = /** @class */ (function () {
             console.log("一登录获取最近联系人及其历史消息", data);
             for (var i = 0; i < data.body['chat_room_list'].length; i++) {
                 //最近联系人的（相当与一个chat room）
-                var FriItem = new (_common_im__WEBPACK_IMPORTED_MODULE_8__["NearestContactItem"]);
+                var FriItem = new (_common_im__WEBPACK_IMPORTED_MODULE_7__["NearestContactItem"]);
                 FriItem.id = data.body['chat_room_list'][i].id;
                 FriItem.name = data.body['chat_room_list'][i].name;
                 FriItem.head_img = data.body['chat_room_list'][i].head_img;
@@ -586,7 +628,7 @@ var ChatComponent = /** @class */ (function () {
                 FriItem.count = data.body['chat_room_list'][i].count;
                 _this.ws.nearest_contact.contact_list.push(FriItem);
                 //历史消息 使用 this.global_message.chat_room_list[人或群的ID]获取历史消息
-                var chat_room = new (_common_im__WEBPACK_IMPORTED_MODULE_8__["ChatRoom"]);
+                var chat_room = new (_common_im__WEBPACK_IMPORTED_MODULE_7__["ChatRoom"]);
                 chat_room.id = data.body['chat_room_list'][i].id;
                 chat_room.name = data.body['chat_room_list'][i].name;
                 chat_room.is_group = data.body['chat_room_list'][i].is_group;
@@ -602,7 +644,7 @@ var ChatComponent = /** @class */ (function () {
         var _this = this;
         this.ws.getAddressBook().subscribe(function (data) {
             for (var i = 0; i < data.friends_list.length; i++) {
-                var FriItem = new (_common_im__WEBPACK_IMPORTED_MODULE_8__["NearestContactItem"]);
+                var FriItem = new (_common_im__WEBPACK_IMPORTED_MODULE_7__["NearestContactItem"]);
                 FriItem.id = data['friends_list'].id;
                 FriItem.name = data['friends_list'][i].name;
                 FriItem.head_img = data['friends_list'][i].head_img;
@@ -614,7 +656,7 @@ var ChatComponent = /** @class */ (function () {
         });
     };
     ChatComponent.prototype.showAddGroupModal = function () {
-        // for(let i=0;i<this.ws.wsFriendList.List.length;i++){
+        // for(let i=0;i<this.ws.global_message.chat_room_list[i];i++){
         //   if(this.ws.wsFriendList.List[i].Isgroup){continue;}
         //   let item = new(AddGroupUserItem);
         //   item.ID=Number(this.ws.wsFriendList.List[i].ID);
@@ -702,96 +744,6 @@ var AddGroupUserlist = /** @class */ (function () {
     return AddGroupUserlist;
 }());
 
-
-
-/***/ }),
-
-/***/ "./src/app/chat/data.ts":
-/*!******************************!*\
-  !*** ./src/app/chat/data.ts ***!
-  \******************************/
-/*! exports provided: addressList, id_1_message, id_2_message, id_3_message, chatRoom, chatroom */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addressList", function() { return addressList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "id_1_message", function() { return id_1_message; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "id_2_message", function() { return id_2_message; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "id_3_message", function() { return id_3_message; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "chatRoom", function() { return chatRoom; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "chatroom", function() { return chatroom; });
-// export class MesList {
-//     from: number = 0;
-//     to: number = 0;
-//     msgid: number = 0;
-//     content: string = "";
-//     img_url: string = "";
-//   }
-var addressList = [
-    { id: 1, name: "abc", head_img: "aaa", is_group: false },
-    { id: 2, name: "bcd", head_img: "aaa", is_group: false },
-    { id: 3, name: "cde", head_img: "aaa", is_group: false },
-    { id: 4, name: "def", head_img: "aaa", is_group: true },
-    { id: 5, name: "efg", head_img: "aaa", is_group: true },
-    { id: 6, name: "fgh", head_img: "aaa", is_group: true },
-];
-// export const nearContractList : com.NearestContactItem[] = [
-//     {id: 100021, name: "mmm", head_img: "aaa", count: 5, is_group: false},
-//     {id: 100017, name: "pjw", head_img: "aaa", count: 1, is_group: false},
-//     {id: 1008, name: "你有一条新的消息", head_img: "aaa", count: 12, is_group: false},
-//     {id: 1009, name: "testGGG", head_img: "aaa", count: 6, is_group: true},
-//     {id: 1010, name: "GGGGGGGGGGGG", head_img: "aaa", count: 2, is_group: true},
-//     {id: 100019, name: "hql", head_img: "aaa", count: 2, is_group: true},
-//     {id: 100018, name: "gct", head_img: "aaa", count: 2, is_group: true},
-// ]
-var id_1_message = [
-    { id: 1001, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000001, is_group: false },
-    { id: 1002, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000002, is_group: false },
-    { id: 1003, from: 1, to: 100018, content: "测试", content_type: 0, arrive_time: 1000003, is_group: false },
-    { id: 1004, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000004, is_group: false },
-    { id: 1005, from: 1, to: 100018, content: "测试", content_type: 0, arrive_time: 1000005, is_group: false },
-    { id: 1006, from: 1, to: 100018, content: "测试", content_type: 0, arrive_time: 1000006, is_group: false },
-    { id: 1007, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000007, is_group: false },
-    { id: 1008, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000008, is_group: false },
-];
-var id_2_message = [
-    { id: 501, from: 100019, to: 100017, content: "dasdasdasd", content_type: 0, arrive_time: 1550047381671, is_group: false },
-    { id: 505, from: 100019, to: 100017, content: "fsafasfa", content_type: 0, arrive_time: 1550047384788, is_group: false },
-    { id: 509, from: 100017, to: 100019, content: "dasdasdas", content_type: 0, arrive_time: 1550047388021, is_group: false },
-    { id: 513, from: 100017, to: 100019, content: "dasdasda", content_type: 0, arrive_time: 1550047392531, is_group: false },
-    { id: 517, from: 100019, to: 100017, content: "files/4b06426a7a8e_compress.jpg", content_type: 1, arrive_time: 1550047406461, is_group: false },
-    { id: 521, from: 100017, to: 100019, content: "files/4b06426a7a8e_compress.jpg", content_type: 1, arrive_time: 1550047414312, is_group: false },
-    { id: 525, from: 100017, to: 100019, content: "777777", content_type: 0, arrive_time: 1550047437582, is_group: false },
-    { id: 529, from: 100017, to: 100019, content: "", content_type: 0, arrive_time: 1550047451365, is_group: false },
-    { id: 549, from: 100019, to: 100017, content: "files/9edbe55433e4_compress.jpg", content_type: 1, arrive_time: 1550047514194, is_group: false },
-    { id: 553, from: 100019, to: 100017, content: "files/9edbe55433e4_compress.jpg", content_type: 1, arrive_time: 1550047517339, is_group: false }
-];
-var id_3_message = [
-    { id: 565, from: 100018, to: 1008, content: "11111", content_type: 0, arrive_time: 1550294670186, is_group: true },
-    { id: 569, from: 100018, to: 1008, content: "111111", content_type: 0, arrive_time: 1550294671863, is_group: true },
-    { id: 573, from: 100018, to: 1008, content: "222222222", content_type: 0, arrive_time: 1550294673907, is_group: true },
-    { id: 577, from: 100018, to: 1008, content: "3333333333", content_type: 0, arrive_time: 1550294675796, is_group: true },
-    { id: 581, from: 100018, to: 1008, content: "aaaaaa", content_type: 0, arrive_time: 1550294678035, is_group: true },
-    { id: 585, from: 100018, to: 1008, content: "hhhhhhhhhhh", content_type: 0, arrive_time: 1550294683810, is_group: true },
-    { id: 589, from: 100018, to: 1008, content: "ffffffff", content_type: 0, arrive_time: 1550294686338, is_group: true },
-    { id: 593, from: 100018, to: 1008, content: "qwr", content_type: 0, arrive_time: 1550294688195, is_group: true },
-    { id: 597, from: 100018, to: 1008, content: "adf", content_type: 0, arrive_time: 1550294690621, is_group: true },
-    { id: 601, from: 100018, to: 1008, content: "hello", content_type: 0, arrive_time: 1550309859874, is_group: true },
-];
-var chatRoom = [
-    { id: 100021, name: "mmm", is_group: false, message_list: [] },
-    { id: 100017, name: "pjw", is_group: false, message_list: [] },
-    { id: 1008, name: "你有一条新的消息", is_group: true, message_list: id_3_message },
-    { id: 1009, name: "testGGG", is_group: true, "message_list": [] },
-    { id: 1010, name: "GGGGGGGGGGGG", is_group: true, "message_list": [] },
-    { id: 100019, name: "hql", is_group: false, "message_list": id_2_message },
-    { id: 100018, name: "gct", is_group: false, "message_list": [] }
-];
-var chatroom = {
-    size: 7,
-    message_list: id_3_message
-};
 
 
 /***/ }),
@@ -1035,7 +987,7 @@ var LoginComponent = /** @class */ (function () {
         var _this = this;
         var body = { name: this.name, password: this.password };
         this.us.postLoginData(body).subscribe(function (data) {
-            console.log("data.status=", data.status);
+            // console.log("data.status=", data.status)
             if (data.status == 200) {
                 var respond = data["body"];
                 console.log("登录成功");
@@ -1106,11 +1058,12 @@ $root.Protocol = (function() {
          * @property {Protocol.Message.CtrlType|null} [cmd] Message cmd
          * @property {number|Long|null} [from] Message from
          * @property {number|Long|null} [to] Message to
-         * @property {boolean|null} [isgroup] Message isgroup
          * @property {string|null} [content] Message content
          * @property {Protocol.Message.ContentType|null} [contentType] Message contentType
+         * @property {boolean|null} [isgroup] Message isgroup
          * @property {number|Long|null} [msgid] Message msgid
-         * @property {number|Long|null} [time] Message time
+         * @property {number|Long|null} [arriveTime] Message arriveTime
+         * @property {number|Long|null} [sendTime] Message sendTime
          * @property {Array.<number|Long>|null} [userlist] Message userlist
          * @property {Protocol.Message.ErrorCode|null} [errcode] Message errcode
          */
@@ -1164,14 +1117,6 @@ $root.Protocol = (function() {
         Message.prototype.to = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
-         * Message isgroup.
-         * @member {boolean} isgroup
-         * @memberof Protocol.Message
-         * @instance
-         */
-        Message.prototype.isgroup = false;
-
-        /**
          * Message content.
          * @member {string} content
          * @memberof Protocol.Message
@@ -1188,6 +1133,14 @@ $root.Protocol = (function() {
         Message.prototype.contentType = 0;
 
         /**
+         * Message isgroup.
+         * @member {boolean} isgroup
+         * @memberof Protocol.Message
+         * @instance
+         */
+        Message.prototype.isgroup = false;
+
+        /**
          * Message msgid.
          * @member {number|Long} msgid
          * @memberof Protocol.Message
@@ -1196,12 +1149,20 @@ $root.Protocol = (function() {
         Message.prototype.msgid = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
-         * Message time.
-         * @member {number|Long} time
+         * Message arriveTime.
+         * @member {number|Long} arriveTime
          * @memberof Protocol.Message
          * @instance
          */
-        Message.prototype.time = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+        Message.prototype.arriveTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Message sendTime.
+         * @member {number|Long} sendTime
+         * @memberof Protocol.Message
+         * @instance
+         */
+        Message.prototype.sendTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
          * Message userlist.
@@ -1251,24 +1212,26 @@ $root.Protocol = (function() {
                 writer.uint32(/* id 3, wireType 0 =*/24).int64(message.from);
             if (message.to != null && message.hasOwnProperty("to"))
                 writer.uint32(/* id 4, wireType 0 =*/32).int64(message.to);
-            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
-                writer.uint32(/* id 5, wireType 0 =*/40).bool(message.isgroup);
             if (message.content != null && message.hasOwnProperty("content"))
-                writer.uint32(/* id 6, wireType 2 =*/50).string(message.content);
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.content);
             if (message.contentType != null && message.hasOwnProperty("contentType"))
-                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.contentType);
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.contentType);
+            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
+                writer.uint32(/* id 7, wireType 0 =*/56).bool(message.isgroup);
             if (message.msgid != null && message.hasOwnProperty("msgid"))
                 writer.uint32(/* id 8, wireType 0 =*/64).int64(message.msgid);
-            if (message.time != null && message.hasOwnProperty("time"))
-                writer.uint32(/* id 9, wireType 0 =*/72).int64(message.time);
+            if (message.arriveTime != null && message.hasOwnProperty("arriveTime"))
+                writer.uint32(/* id 9, wireType 0 =*/72).int64(message.arriveTime);
+            if (message.sendTime != null && message.hasOwnProperty("sendTime"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.sendTime);
             if (message.userlist != null && message.userlist.length) {
-                writer.uint32(/* id 10, wireType 2 =*/82).fork();
+                writer.uint32(/* id 11, wireType 2 =*/90).fork();
                 for (var i = 0; i < message.userlist.length; ++i)
                     writer.int64(message.userlist[i]);
                 writer.ldelim();
             }
             if (message.errcode != null && message.hasOwnProperty("errcode"))
-                writer.uint32(/* id 11, wireType 0 =*/88).int32(message.errcode);
+                writer.uint32(/* id 12, wireType 0 =*/96).int32(message.errcode);
             return writer;
         };
 
@@ -1316,21 +1279,24 @@ $root.Protocol = (function() {
                     message.to = reader.int64();
                     break;
                 case 5:
-                    message.isgroup = reader.bool();
-                    break;
-                case 6:
                     message.content = reader.string();
                     break;
-                case 7:
+                case 6:
                     message.contentType = reader.int32();
+                    break;
+                case 7:
+                    message.isgroup = reader.bool();
                     break;
                 case 8:
                     message.msgid = reader.int64();
                     break;
                 case 9:
-                    message.time = reader.int64();
+                    message.arriveTime = reader.int64();
                     break;
                 case 10:
+                    message.sendTime = reader.int64();
+                    break;
+                case 11:
                     if (!(message.userlist && message.userlist.length))
                         message.userlist = [];
                     if ((tag & 7) === 2) {
@@ -1340,7 +1306,7 @@ $root.Protocol = (function() {
                     } else
                         message.userlist.push(reader.int64());
                     break;
-                case 11:
+                case 12:
                     message.errcode = reader.int32();
                     break;
                 default:
@@ -1405,9 +1371,6 @@ $root.Protocol = (function() {
             if (message.to != null && message.hasOwnProperty("to"))
                 if (!$util.isInteger(message.to) && !(message.to && $util.isInteger(message.to.low) && $util.isInteger(message.to.high)))
                     return "to: integer|Long expected";
-            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
-                if (typeof message.isgroup !== "boolean")
-                    return "isgroup: boolean expected";
             if (message.content != null && message.hasOwnProperty("content"))
                 if (!$util.isString(message.content))
                     return "content: string expected";
@@ -1420,12 +1383,18 @@ $root.Protocol = (function() {
                 case 2:
                     break;
                 }
+            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
+                if (typeof message.isgroup !== "boolean")
+                    return "isgroup: boolean expected";
             if (message.msgid != null && message.hasOwnProperty("msgid"))
                 if (!$util.isInteger(message.msgid) && !(message.msgid && $util.isInteger(message.msgid.low) && $util.isInteger(message.msgid.high)))
                     return "msgid: integer|Long expected";
-            if (message.time != null && message.hasOwnProperty("time"))
-                if (!$util.isInteger(message.time) && !(message.time && $util.isInteger(message.time.low) && $util.isInteger(message.time.high)))
-                    return "time: integer|Long expected";
+            if (message.arriveTime != null && message.hasOwnProperty("arriveTime"))
+                if (!$util.isInteger(message.arriveTime) && !(message.arriveTime && $util.isInteger(message.arriveTime.low) && $util.isInteger(message.arriveTime.high)))
+                    return "arriveTime: integer|Long expected";
+            if (message.sendTime != null && message.hasOwnProperty("sendTime"))
+                if (!$util.isInteger(message.sendTime) && !(message.sendTime && $util.isInteger(message.sendTime.low) && $util.isInteger(message.sendTime.high)))
+                    return "sendTime: integer|Long expected";
             if (message.userlist != null && message.hasOwnProperty("userlist")) {
                 if (!Array.isArray(message.userlist))
                     return "userlist: array expected";
@@ -1516,8 +1485,6 @@ $root.Protocol = (function() {
                     message.to = object.to;
                 else if (typeof object.to === "object")
                     message.to = new $util.LongBits(object.to.low >>> 0, object.to.high >>> 0).toNumber();
-            if (object.isgroup != null)
-                message.isgroup = Boolean(object.isgroup);
             if (object.content != null)
                 message.content = String(object.content);
             switch (object.contentType) {
@@ -1534,6 +1501,8 @@ $root.Protocol = (function() {
                 message.contentType = 2;
                 break;
             }
+            if (object.isgroup != null)
+                message.isgroup = Boolean(object.isgroup);
             if (object.msgid != null)
                 if ($util.Long)
                     (message.msgid = $util.Long.fromValue(object.msgid)).unsigned = false;
@@ -1543,15 +1512,24 @@ $root.Protocol = (function() {
                     message.msgid = object.msgid;
                 else if (typeof object.msgid === "object")
                     message.msgid = new $util.LongBits(object.msgid.low >>> 0, object.msgid.high >>> 0).toNumber();
-            if (object.time != null)
+            if (object.arriveTime != null)
                 if ($util.Long)
-                    (message.time = $util.Long.fromValue(object.time)).unsigned = false;
-                else if (typeof object.time === "string")
-                    message.time = parseInt(object.time, 10);
-                else if (typeof object.time === "number")
-                    message.time = object.time;
-                else if (typeof object.time === "object")
-                    message.time = new $util.LongBits(object.time.low >>> 0, object.time.high >>> 0).toNumber();
+                    (message.arriveTime = $util.Long.fromValue(object.arriveTime)).unsigned = false;
+                else if (typeof object.arriveTime === "string")
+                    message.arriveTime = parseInt(object.arriveTime, 10);
+                else if (typeof object.arriveTime === "number")
+                    message.arriveTime = object.arriveTime;
+                else if (typeof object.arriveTime === "object")
+                    message.arriveTime = new $util.LongBits(object.arriveTime.low >>> 0, object.arriveTime.high >>> 0).toNumber();
+            if (object.sendTime != null)
+                if ($util.Long)
+                    (message.sendTime = $util.Long.fromValue(object.sendTime)).unsigned = false;
+                else if (typeof object.sendTime === "string")
+                    message.sendTime = parseInt(object.sendTime, 10);
+                else if (typeof object.sendTime === "number")
+                    message.sendTime = object.sendTime;
+                else if (typeof object.sendTime === "object")
+                    message.sendTime = new $util.LongBits(object.sendTime.low >>> 0, object.sendTime.high >>> 0).toNumber();
             if (object.userlist) {
                 if (!Array.isArray(object.userlist))
                     throw TypeError(".Protocol.Message.userlist: array expected");
@@ -1615,9 +1593,9 @@ $root.Protocol = (function() {
                     object.to = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.to = options.longs === String ? "0" : 0;
-                object.isgroup = false;
                 object.content = "";
                 object.contentType = options.enums === String ? "TEXT" : 0;
+                object.isgroup = false;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
                     object.msgid = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
@@ -1625,9 +1603,14 @@ $root.Protocol = (function() {
                     object.msgid = options.longs === String ? "0" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.time = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.arriveTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
-                    object.time = options.longs === String ? "0" : 0;
+                    object.arriveTime = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.sendTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.sendTime = options.longs === String ? "0" : 0;
                 object.errcode = options.enums === String ? "REQUEST_BODY_PARAMS_ERROR" : 0;
             }
             if (message.type != null && message.hasOwnProperty("type"))
@@ -1644,22 +1627,27 @@ $root.Protocol = (function() {
                     object.to = options.longs === String ? String(message.to) : message.to;
                 else
                     object.to = options.longs === String ? $util.Long.prototype.toString.call(message.to) : options.longs === Number ? new $util.LongBits(message.to.low >>> 0, message.to.high >>> 0).toNumber() : message.to;
-            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
-                object.isgroup = message.isgroup;
             if (message.content != null && message.hasOwnProperty("content"))
                 object.content = message.content;
             if (message.contentType != null && message.hasOwnProperty("contentType"))
                 object.contentType = options.enums === String ? $root.Protocol.Message.ContentType[message.contentType] : message.contentType;
+            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
+                object.isgroup = message.isgroup;
             if (message.msgid != null && message.hasOwnProperty("msgid"))
                 if (typeof message.msgid === "number")
                     object.msgid = options.longs === String ? String(message.msgid) : message.msgid;
                 else
                     object.msgid = options.longs === String ? $util.Long.prototype.toString.call(message.msgid) : options.longs === Number ? new $util.LongBits(message.msgid.low >>> 0, message.msgid.high >>> 0).toNumber() : message.msgid;
-            if (message.time != null && message.hasOwnProperty("time"))
-                if (typeof message.time === "number")
-                    object.time = options.longs === String ? String(message.time) : message.time;
+            if (message.arriveTime != null && message.hasOwnProperty("arriveTime"))
+                if (typeof message.arriveTime === "number")
+                    object.arriveTime = options.longs === String ? String(message.arriveTime) : message.arriveTime;
                 else
-                    object.time = options.longs === String ? $util.Long.prototype.toString.call(message.time) : options.longs === Number ? new $util.LongBits(message.time.low >>> 0, message.time.high >>> 0).toNumber() : message.time;
+                    object.arriveTime = options.longs === String ? $util.Long.prototype.toString.call(message.arriveTime) : options.longs === Number ? new $util.LongBits(message.arriveTime.low >>> 0, message.arriveTime.high >>> 0).toNumber() : message.arriveTime;
+            if (message.sendTime != null && message.hasOwnProperty("sendTime"))
+                if (typeof message.sendTime === "number")
+                    object.sendTime = options.longs === String ? String(message.sendTime) : message.sendTime;
+                else
+                    object.sendTime = options.longs === String ? $util.Long.prototype.toString.call(message.sendTime) : options.longs === Number ? new $util.LongBits(message.sendTime.low >>> 0, message.sendTime.high >>> 0).toNumber() : message.sendTime;
             if (message.userlist && message.userlist.length) {
                 object.userlist = [];
                 for (var j = 0; j < message.userlist.length; ++j)
@@ -1896,6 +1884,10 @@ var UserService = /** @class */ (function () {
         var url = this.configUrl + '/user-info/' + id;
         return this.http.get(url);
     };
+    UserService.prototype.getuserlist = function (name) {
+        var url = this.configUrl + '/users/' + name;
+        return this.http.get(url);
+    };
     UserService.prototype.getgroupinfo = function (id) {
         var url = this.configUrl + '/group-info/' + id;
         return this.http.get(url);
@@ -1905,6 +1897,11 @@ var UserService = /** @class */ (function () {
         headers = headers.set('X-Session-Id', this.session_id);
         // console.log("session=", this.session_id)
         return headers;
+    };
+    UserService.prototype.userList = function (name) {
+        this.getuserlist(name).subscribe(function (data) {
+            console.log("getuserlist=", data);
+        });
     };
     UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -1968,7 +1965,7 @@ var WebsocketService = /** @class */ (function () {
             reader.onload = function (e) {
                 var buf = new Uint8Array(reader.result);
                 var conn = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.decode(buf);
-                console.log(conn);
+                // console.log(conn)
                 that.parseNotification(conn); //收到消息解析后分析消息
             };
         };
@@ -1978,7 +1975,7 @@ var WebsocketService = /** @class */ (function () {
     WebsocketService.prototype.createSessionHeader = function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]();
         headers = headers.set('X-Session-Id', this.us.session_id);
-        console.log("session=", this.us.session_id);
+        // console.log("session=", this.us.session_id)
         return headers;
     };
     // 获取通讯录
@@ -2006,19 +2003,22 @@ var WebsocketService = /** @class */ (function () {
             if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
                 this.DisplayMessagesLocally(m, m.to); // 说明是一条 单发或群发消息，在本地显示
             }
-        }
-        else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
-            if (m.msgid == 0) {
-                alert("消息ＩＤ不存在，无法撤回");
+            else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
+                if (m.msgid == 0) {
+                    alert("消息ＩＤ不存在，无法撤回");
+                }
+                else {
+                    //this.getNearestList();
+                    console.log("撤回消息");
+                }
+                // 撤回消息
+                // TODO 单聊或群聊发送消息 消息在本地消失
             }
-            else {
-            }
-            // 撤回消息
-            // TODO 单聊或群聊发送消息 消息在本地消失
         }
     };
     //分析消息
     WebsocketService.prototype.parseNotification = function (m) {
+        console.log("收到一条消息", m);
         if (m.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.NOTIFICATION) {
             console.log("NOTIFICATION");
             if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
@@ -2037,11 +2037,31 @@ var WebsocketService = /** @class */ (function () {
             }
             else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
                 // 消息撤回 需要删除本地消息,以示撤回
+                if (this.global_message.chat_room_list.has(m.to)) {
+                    var list = this.global_message.chat_room_list.get(m.to).message_list;
+                    var index = list.findIndex(function (e) { return e.id == m.msgid; });
+                    if (index < 0) {
+                        console.log("撤回失败");
+                        return;
+                    }
+                    ;
+                    list.splice(index, 1);
+                    this.global_message.chat_room_list.get(m.to).message_list = list;
+                }
             }
         }
         else if (m.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.ACK) {
             if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
                 // 发送的消息已经确认，把回送的 message id加入到那条信息 
+                if (this.global_message.chat_room_list.has(m.to)) {
+                    var index = this.global_message.chat_room_list.get(m.to).message_list.findIndex(function (e) { return e.send_time == m.sendTime; });
+                    if (index < 0) {
+                        console.log("找不到那条消息记录", this.global_message.chat_room_list.get(m.to).message_list);
+                        return;
+                    }
+                    this.global_message.chat_room_list.get(m.to).message_list[index].id = m.msgid;
+                    console.log("收到自己发消息的确认", this.global_message.chat_room_list.get(m.to).message_list);
+                }
             }
             else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) {
             }
@@ -2070,10 +2090,10 @@ var WebsocketService = /** @class */ (function () {
         newMsg.content = m.content;
         newMsg.content_type = m.contentType;
         newMsg.is_group = m.isgroup;
-        newMsg.arrive_time = m.time;
+        newMsg.send_time = m.sendTime;
         chat_room.message_list.push(newMsg);
-        console.log(chat_room);
-        console.log(this.global_message.chat_room_list.get(room_id));
+        // console.log(chat_room);
+        // console.log(this.global_message.chat_room_list.get(room_id));
     };
     WebsocketService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),

@@ -8,6 +8,7 @@ import (
 	"MessageSystem/IM/session"
 	"database/sql"
 	"encoding/json"
+	"fmt"
 
 	"github.com/julienschmidt/httprouter"
 	"golang.org/x/crypto/bcrypt"
@@ -207,6 +208,7 @@ func getNearestContactMessage(w http.ResponseWriter, r *http.Request, p httprout
 		Logger.Warn(err.Error())
 		goto ERR
 	}
+	fmt.Println(string(data))
 	bytes = string(data)
 	if err = json.Unmarshal([]byte(bytes), contact); err != nil {
 		Logger.Warn(err.Error())

@@ -1,18 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
-// import { MesList, FriendList, FriendItem, MessageList } from './data';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser'
 import { WebsocketService } from '../websocket.service';
-// import { NearestContact, NearestContactItem, AddressBookItem, AddressBook } from '../common/im'
-// import { WebsocketService,FriendItem,Session,MessageItem } from '../websocket.service';
-import { timer, Observable, fromEvent} from 'rxjs';
 import { UserService } from '../user.service';
 import { Injectable } from '@angular/core';
 import { UploadService } from '../file.service';
 import { Protocol } from '../protocol/Protocol';
-import { fromBytes } from 'long';
-import * as data from './data'
 import * as com from '../common/im'
-import { addAllToArray } from '@angular/core/src/render3/util';
+
 @Injectable()
 @Component({
   selector: 'app-chat',
@@ -33,7 +27,8 @@ export class ChatComponent implements OnInit {
 
   addressList : com.AddressBookItem[];
   addressItem : com.AddressBookItem;
-  
+
+  id: number  = 0;
   to_name = ""
   to_img = "";
   // group = 0;
@@ -43,7 +38,7 @@ export class ChatComponent implements OnInit {
   list = [];
   showmsg : com.MessageItem[];
 
-  // searchContent : string = "";
+  searchContent : string = "";
   // searchFriend : string = "";
   // groupName : string = "";
 
@@ -54,7 +49,7 @@ export class ChatComponent implements OnInit {
   friendlist : com.NearestContact;
   addressbook : com.AddressBook;
   friend : com.NearestContactItem;
-  // userlist : Userlist[];
+  userlist : com.NearestContact;;
   messagelist : com.MessageItem[];
   addGroupUserList:AddGroupUserlist;
 
@@ -63,8 +58,11 @@ export class ChatComponent implements OnInit {
   py : string = "";
   // mesItem = MessageItem;
   contentType : number = 0;
-  backMes : string = "";
+  backMes : com.MessageItem ;
   isPress : boolean = false;
+  index : number = 0;
+
+  flag : boolean = false;
 
   constructor(
     public ws:WebsocketService, 
@@ -92,7 +90,7 @@ export class ChatComponent implements OnInit {
 
 
       // this.friendlist = data.nearContractList;
-      this.addressList = data.addressList;
+      //this.addressList = data.addressList;
       // this.messagelist = data.chatRoom;
       this.friendlist = this.ws.nearest_contact;
       // console.log("friendlist = ", this.friendlist)
@@ -124,33 +122,42 @@ export class ChatComponent implements OnInit {
         return;
       }
     }
-    he(event, content: string){//可自定义右键事件
+    he(event, item: com.MessageItem, id: number){//可自定义右键事件
       if(event.button != 2){
         this.pressBoolean = false;
         this.isPress = false;
         return ;
       }
       this.isPress = true;
-      this.backMes = content;
+      this.backMes = item;
+      this.id = Number(item.id);
+      // console.log("this.id", item)
       this.pressBoolean = true;
       var px = event.clientX;
       var py = event.clientY;
       this.px = String(px) + 'px';
       this.py = String(py) + 'px';
-      console.log("style=", this.px, this.py)
+      // console.log("style=", this.px, this.py)
     }
     backdata(){
+      ///////////////////////////////////////////////////////////
+      //有一个bug需解决，撤回消息后聊天框仍存在，以后再改23333333333333//
+      ///////////////////////////////////////////////////////////
+      console.log("撤回")
       let msg = new(Protocol.Message)
       msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
-      msg.cmd = Protocol.Message.CtrlType.MSG_BACK;// 消息的功
+      msg.cmd = Protocol.Message.CtrlType.MSG_BACK;// 消息撤回
       msg.from = this.us.MyUserId;              // 消息发送方
-      msg.to = this.to_id;                   //消息接收方
-      msg.content = this.backMes;             //消息内容
-      msg.contentType = this.contentType;　  //消息类型
-      msg.isgroup = this.isgroup;                       //是不是群组消息
+      msg.to = this.backMes.to;                   //消息接收方
+      msg.content = this.backMes.content;             //消息内容
+      msg.contentType = this.backMes.content_type;　  //消息类型
+      msg.isgroup = this.backMes.is_group;                       //是不是群组消息
+      msg.msgid = this.backMes.id;
+      msg.sendTime = Date.now();
       // console.log("this.msg && this.to_id = ", msg, this.to_id);
-      // this.ws.sendMessage(msg);
-      this.backMes = "";
+      this.ws.sendMessage(msg);
+      // this.test2(this.index, this.to_id, this.to_name, this.to_img, this.isgroup)
+      // window.onload
     }
 
     test2(index: number, id: number,name : string, img: string, isgroup: boolean){
@@ -166,10 +173,13 @@ export class ChatComponent implements OnInit {
       msg.contentType = Protocol.Message.ContentType.TEXT;
       this.contentType = msg.contentType;
       msg.isgroup = isgroup;
+      msg.sendTime = Date.now();
       this.ws.sendMessage(msg);
       ///////////////////////////////////
-      this.isselect = true;
       this.to_id = id;
+      this.index = index;
+      this.isselect = true;
+      console.log("this.id", id)
       this.to_name = name;
       this.to_img = img;
       this.isgroup = isgroup;
@@ -178,6 +188,7 @@ export class ChatComponent implements OnInit {
       if(this.ws.global_message.chat_room_list.has(id)){
         this.showmsg = this.ws.global_message.chat_room_list.get(id).message_list;
         this.isgroup = this.ws.global_message.chat_room_list.get(id).is_group;
+        console.log("showmsg = ", this.showmsg);
           flag = true;
       }
 
@@ -218,6 +229,7 @@ export class ChatComponent implements OnInit {
       msg.contentType = Protocol.Message.ContentType.TEXT;
       this.contentType = msg.contentType;
       msg.isgroup = this.isgroup;
+      msg.sendTime = Date.now();
       this.ws.sendMessage(msg);
       this.content = "";
       this.scollbuttom();
@@ -230,8 +242,13 @@ export class ChatComponent implements OnInit {
       msg.cmd = Protocol.Message.CtrlType.CREATE_SESSION;
       msg.from = this.us.MyUserId;
       msg.to = to;
-      msg.time = Date.now();
-      // this.ws.sendMessage(msg)
+      msg.sendTime = Date.now();
+
+
+      this.ws.sendMessage(msg)
+      // this.ws.getNearestList();
+      // this.ws.getAddress();
+      this.ngOnInit()
     }
     keyUpSearch(name: string){ //搜索添加好友
       // this.ws.
@@ -239,6 +256,15 @@ export class ChatComponent implements OnInit {
       //   console.log("data2 = ", data.Ulist);
       //   this.userlist = data.Ulist;
       // })
+      this.us.getuserlist(this.searchContent).subscribe(data => {
+        // this.userlist = data
+        console.log("userlist=", data);
+        if(data['user_list'].length == 0){
+          this.flag = true;
+        }
+        this.userlist = data['user_list'];
+        this.flag = false;
+      })
     }
 
     // clickMe(){
@@ -256,11 +282,10 @@ export class ChatComponent implements OnInit {
     // cancelEditingTodo(){
     //   this.isVisible = false;
     // }
-    flag : boolean;
     
     search(){
       // console.log("search=", this.searchContent);
-      // this.ws.getUserList(this.searchContent).subscribe(data => {
+      // this.ws.getAddress(this.searchContent).subscribe(data => {
       //   this.userlist = data.Ulist;
       //   this.flag = false;
       // })
@@ -446,7 +471,7 @@ export class ChatComponent implements OnInit {
     isAddGroupVisible = false;
     isAddGroupConfirmLoading = false;
     showAddGroupModal(): void {
-      // for(let i=0;i<this.ws.wsFriendList.List.length;i++){
+      // for(let i=0;i<this.ws.global_message.chat_room_list[i];i++){
       //   if(this.ws.wsFriendList.List[i].Isgroup){continue;}
       //   let item = new(AddGroupUserItem);
       //   item.ID=Number(this.ws.wsFriendList.List[i].ID);

@@ -28,11 +28,12 @@ $root.Protocol = (function() {
          * @property {Protocol.Message.CtrlType|null} [cmd] Message cmd
          * @property {number|Long|null} [from] Message from
          * @property {number|Long|null} [to] Message to
-         * @property {boolean|null} [isgroup] Message isgroup
          * @property {string|null} [content] Message content
          * @property {Protocol.Message.ContentType|null} [contentType] Message contentType
+         * @property {boolean|null} [isgroup] Message isgroup
          * @property {number|Long|null} [msgid] Message msgid
-         * @property {number|Long|null} [time] Message time
+         * @property {number|Long|null} [arriveTime] Message arriveTime
+         * @property {number|Long|null} [sendTime] Message sendTime
          * @property {Array.<number|Long>|null} [userlist] Message userlist
          * @property {Protocol.Message.ErrorCode|null} [errcode] Message errcode
          */
@@ -86,14 +87,6 @@ $root.Protocol = (function() {
         Message.prototype.to = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
-         * Message isgroup.
-         * @member {boolean} isgroup
-         * @memberof Protocol.Message
-         * @instance
-         */
-        Message.prototype.isgroup = false;
-
-        /**
          * Message content.
          * @member {string} content
          * @memberof Protocol.Message
@@ -110,6 +103,14 @@ $root.Protocol = (function() {
         Message.prototype.contentType = 0;
 
         /**
+         * Message isgroup.
+         * @member {boolean} isgroup
+         * @memberof Protocol.Message
+         * @instance
+         */
+        Message.prototype.isgroup = false;
+
+        /**
          * Message msgid.
          * @member {number|Long} msgid
          * @memberof Protocol.Message
@@ -118,12 +119,20 @@ $root.Protocol = (function() {
         Message.prototype.msgid = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
-         * Message time.
-         * @member {number|Long} time
+         * Message arriveTime.
+         * @member {number|Long} arriveTime
          * @memberof Protocol.Message
          * @instance
          */
-        Message.prototype.time = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+        Message.prototype.arriveTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Message sendTime.
+         * @member {number|Long} sendTime
+         * @memberof Protocol.Message
+         * @instance
+         */
+        Message.prototype.sendTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
          * Message userlist.
@@ -173,24 +182,26 @@ $root.Protocol = (function() {
                 writer.uint32(/* id 3, wireType 0 =*/24).int64(message.from);
             if (message.to != null && message.hasOwnProperty("to"))
                 writer.uint32(/* id 4, wireType 0 =*/32).int64(message.to);
-            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
-                writer.uint32(/* id 5, wireType 0 =*/40).bool(message.isgroup);
             if (message.content != null && message.hasOwnProperty("content"))
-                writer.uint32(/* id 6, wireType 2 =*/50).string(message.content);
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.content);
             if (message.contentType != null && message.hasOwnProperty("contentType"))
-                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.contentType);
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.contentType);
+            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
+                writer.uint32(/* id 7, wireType 0 =*/56).bool(message.isgroup);
             if (message.msgid != null && message.hasOwnProperty("msgid"))
                 writer.uint32(/* id 8, wireType 0 =*/64).int64(message.msgid);
-            if (message.time != null && message.hasOwnProperty("time"))
-                writer.uint32(/* id 9, wireType 0 =*/72).int64(message.time);
+            if (message.arriveTime != null && message.hasOwnProperty("arriveTime"))
+                writer.uint32(/* id 9, wireType 0 =*/72).int64(message.arriveTime);
+            if (message.sendTime != null && message.hasOwnProperty("sendTime"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.sendTime);
             if (message.userlist != null && message.userlist.length) {
-                writer.uint32(/* id 10, wireType 2 =*/82).fork();
+                writer.uint32(/* id 11, wireType 2 =*/90).fork();
                 for (var i = 0; i < message.userlist.length; ++i)
                     writer.int64(message.userlist[i]);
                 writer.ldelim();
             }
             if (message.errcode != null && message.hasOwnProperty("errcode"))
-                writer.uint32(/* id 11, wireType 0 =*/88).int32(message.errcode);
+                writer.uint32(/* id 12, wireType 0 =*/96).int32(message.errcode);
             return writer;
         };
 
@@ -238,21 +249,24 @@ $root.Protocol = (function() {
                     message.to = reader.int64();
                     break;
                 case 5:
-                    message.isgroup = reader.bool();
-                    break;
-                case 6:
                     message.content = reader.string();
                     break;
-                case 7:
+                case 6:
                     message.contentType = reader.int32();
+                    break;
+                case 7:
+                    message.isgroup = reader.bool();
                     break;
                 case 8:
                     message.msgid = reader.int64();
                     break;
                 case 9:
-                    message.time = reader.int64();
+                    message.arriveTime = reader.int64();
                     break;
                 case 10:
+                    message.sendTime = reader.int64();
+                    break;
+                case 11:
                     if (!(message.userlist && message.userlist.length))
                         message.userlist = [];
                     if ((tag & 7) === 2) {
@@ -262,7 +276,7 @@ $root.Protocol = (function() {
                     } else
                         message.userlist.push(reader.int64());
                     break;
-                case 11:
+                case 12:
                     message.errcode = reader.int32();
                     break;
                 default:
@@ -327,9 +341,6 @@ $root.Protocol = (function() {
             if (message.to != null && message.hasOwnProperty("to"))
                 if (!$util.isInteger(message.to) && !(message.to && $util.isInteger(message.to.low) && $util.isInteger(message.to.high)))
                     return "to: integer|Long expected";
-            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
-                if (typeof message.isgroup !== "boolean")
-                    return "isgroup: boolean expected";
             if (message.content != null && message.hasOwnProperty("content"))
                 if (!$util.isString(message.content))
                     return "content: string expected";
@@ -342,12 +353,18 @@ $root.Protocol = (function() {
                 case 2:
                     break;
                 }
+            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
+                if (typeof message.isgroup !== "boolean")
+                    return "isgroup: boolean expected";
             if (message.msgid != null && message.hasOwnProperty("msgid"))
                 if (!$util.isInteger(message.msgid) && !(message.msgid && $util.isInteger(message.msgid.low) && $util.isInteger(message.msgid.high)))
                     return "msgid: integer|Long expected";
-            if (message.time != null && message.hasOwnProperty("time"))
-                if (!$util.isInteger(message.time) && !(message.time && $util.isInteger(message.time.low) && $util.isInteger(message.time.high)))
-                    return "time: integer|Long expected";
+            if (message.arriveTime != null && message.hasOwnProperty("arriveTime"))
+                if (!$util.isInteger(message.arriveTime) && !(message.arriveTime && $util.isInteger(message.arriveTime.low) && $util.isInteger(message.arriveTime.high)))
+                    return "arriveTime: integer|Long expected";
+            if (message.sendTime != null && message.hasOwnProperty("sendTime"))
+                if (!$util.isInteger(message.sendTime) && !(message.sendTime && $util.isInteger(message.sendTime.low) && $util.isInteger(message.sendTime.high)))
+                    return "sendTime: integer|Long expected";
             if (message.userlist != null && message.hasOwnProperty("userlist")) {
                 if (!Array.isArray(message.userlist))
                     return "userlist: array expected";
@@ -438,8 +455,6 @@ $root.Protocol = (function() {
                     message.to = object.to;
                 else if (typeof object.to === "object")
                     message.to = new $util.LongBits(object.to.low >>> 0, object.to.high >>> 0).toNumber();
-            if (object.isgroup != null)
-                message.isgroup = Boolean(object.isgroup);
             if (object.content != null)
                 message.content = String(object.content);
             switch (object.contentType) {
@@ -456,6 +471,8 @@ $root.Protocol = (function() {
                 message.contentType = 2;
                 break;
             }
+            if (object.isgroup != null)
+                message.isgroup = Boolean(object.isgroup);
             if (object.msgid != null)
                 if ($util.Long)
                     (message.msgid = $util.Long.fromValue(object.msgid)).unsigned = false;
@@ -465,15 +482,24 @@ $root.Protocol = (function() {
                     message.msgid = object.msgid;
                 else if (typeof object.msgid === "object")
                     message.msgid = new $util.LongBits(object.msgid.low >>> 0, object.msgid.high >>> 0).toNumber();
-            if (object.time != null)
+            if (object.arriveTime != null)
                 if ($util.Long)
-                    (message.time = $util.Long.fromValue(object.time)).unsigned = false;
-                else if (typeof object.time === "string")
-                    message.time = parseInt(object.time, 10);
-                else if (typeof object.time === "number")
-                    message.time = object.time;
-                else if (typeof object.time === "object")
-                    message.time = new $util.LongBits(object.time.low >>> 0, object.time.high >>> 0).toNumber();
+                    (message.arriveTime = $util.Long.fromValue(object.arriveTime)).unsigned = false;
+                else if (typeof object.arriveTime === "string")
+                    message.arriveTime = parseInt(object.arriveTime, 10);
+                else if (typeof object.arriveTime === "number")
+                    message.arriveTime = object.arriveTime;
+                else if (typeof object.arriveTime === "object")
+                    message.arriveTime = new $util.LongBits(object.arriveTime.low >>> 0, object.arriveTime.high >>> 0).toNumber();
+            if (object.sendTime != null)
+                if ($util.Long)
+                    (message.sendTime = $util.Long.fromValue(object.sendTime)).unsigned = false;
+                else if (typeof object.sendTime === "string")
+                    message.sendTime = parseInt(object.sendTime, 10);
+                else if (typeof object.sendTime === "number")
+                    message.sendTime = object.sendTime;
+                else if (typeof object.sendTime === "object")
+                    message.sendTime = new $util.LongBits(object.sendTime.low >>> 0, object.sendTime.high >>> 0).toNumber();
             if (object.userlist) {
                 if (!Array.isArray(object.userlist))
                     throw TypeError(".Protocol.Message.userlist: array expected");
@@ -537,9 +563,9 @@ $root.Protocol = (function() {
                     object.to = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.to = options.longs === String ? "0" : 0;
-                object.isgroup = false;
                 object.content = "";
                 object.contentType = options.enums === String ? "TEXT" : 0;
+                object.isgroup = false;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
                     object.msgid = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
@@ -547,9 +573,14 @@ $root.Protocol = (function() {
                     object.msgid = options.longs === String ? "0" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.time = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.arriveTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
-                    object.time = options.longs === String ? "0" : 0;
+                    object.arriveTime = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.sendTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.sendTime = options.longs === String ? "0" : 0;
                 object.errcode = options.enums === String ? "REQUEST_BODY_PARAMS_ERROR" : 0;
             }
             if (message.type != null && message.hasOwnProperty("type"))
@@ -566,22 +597,27 @@ $root.Protocol = (function() {
                     object.to = options.longs === String ? String(message.to) : message.to;
                 else
                     object.to = options.longs === String ? $util.Long.prototype.toString.call(message.to) : options.longs === Number ? new $util.LongBits(message.to.low >>> 0, message.to.high >>> 0).toNumber() : message.to;
-            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
-                object.isgroup = message.isgroup;
             if (message.content != null && message.hasOwnProperty("content"))
                 object.content = message.content;
             if (message.contentType != null && message.hasOwnProperty("contentType"))
                 object.contentType = options.enums === String ? $root.Protocol.Message.ContentType[message.contentType] : message.contentType;
+            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
+                object.isgroup = message.isgroup;
             if (message.msgid != null && message.hasOwnProperty("msgid"))
                 if (typeof message.msgid === "number")
                     object.msgid = options.longs === String ? String(message.msgid) : message.msgid;
                 else
                     object.msgid = options.longs === String ? $util.Long.prototype.toString.call(message.msgid) : options.longs === Number ? new $util.LongBits(message.msgid.low >>> 0, message.msgid.high >>> 0).toNumber() : message.msgid;
-            if (message.time != null && message.hasOwnProperty("time"))
-                if (typeof message.time === "number")
-                    object.time = options.longs === String ? String(message.time) : message.time;
+            if (message.arriveTime != null && message.hasOwnProperty("arriveTime"))
+                if (typeof message.arriveTime === "number")
+                    object.arriveTime = options.longs === String ? String(message.arriveTime) : message.arriveTime;
                 else
-                    object.time = options.longs === String ? $util.Long.prototype.toString.call(message.time) : options.longs === Number ? new $util.LongBits(message.time.low >>> 0, message.time.high >>> 0).toNumber() : message.time;
+                    object.arriveTime = options.longs === String ? $util.Long.prototype.toString.call(message.arriveTime) : options.longs === Number ? new $util.LongBits(message.arriveTime.low >>> 0, message.arriveTime.high >>> 0).toNumber() : message.arriveTime;
+            if (message.sendTime != null && message.hasOwnProperty("sendTime"))
+                if (typeof message.sendTime === "number")
+                    object.sendTime = options.longs === String ? String(message.sendTime) : message.sendTime;
+                else
+                    object.sendTime = options.longs === String ? $util.Long.prototype.toString.call(message.sendTime) : options.longs === Number ? new $util.LongBits(message.sendTime.low >>> 0, message.sendTime.high >>> 0).toNumber() : message.sendTime;
             if (message.userlist && message.userlist.length) {
                 object.userlist = [];
                 for (var j = 0; j < message.userlist.length; ++j)

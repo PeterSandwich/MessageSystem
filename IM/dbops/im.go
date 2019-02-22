@@ -144,3 +144,10 @@ func NewChatSession(from, to int64) error {
 	}
 	return nil
 }
+
+func GetMessageArriveTime(mid int64)(time int64,err error){
+
+	table_name := "im_message_recieve_" + strconv.Itoa((int)(mid-1)%4)
+	err = dbConn.QueryRow("select arrive_time from "+table_name+" where id=$1", mid).Scan(&time)
+	return
+}

@@ -1,5 +1,5 @@
 import * as $protobuf from "protobufjs";
-import { Long } from "protobufjs";
+import {Long} from "protobufjs";
 /** Namespace Protocol. */
 export namespace Protocol {
 
@@ -18,20 +18,23 @@ export namespace Protocol {
         /** Message to */
         to?: (number|Long|null);
 
-        /** Message isgroup */
-        isgroup?: (boolean|null);
-
         /** Message content */
         content?: (string|null);
 
         /** Message contentType */
         contentType?: (Protocol.Message.ContentType|null);
 
+        /** Message isgroup */
+        isgroup?: (boolean|null);
+
         /** Message msgid */
         msgid?: (number|Long|null);
 
-        /** Message time */
-        time?: (number|Long|null);
+        /** Message arriveTime */
+        arriveTime?: (number|Long|null);
+
+        /** Message sendTime */
+        sendTime?: (number|Long|null);
 
         /** Message userlist */
         userlist?: ((number|Long)[]|null);
@@ -61,20 +64,23 @@ export namespace Protocol {
         /** Message to. */
         public to: (number|Long);
 
-        /** Message isgroup. */
-        public isgroup: boolean;
-
         /** Message content. */
         public content: string;
 
         /** Message contentType. */
         public contentType: Protocol.Message.ContentType;
 
+        /** Message isgroup. */
+        public isgroup: boolean;
+
         /** Message msgid. */
         public msgid: (number|Long);
 
-        /** Message time. */
-        public time: (number|Long);
+        /** Message arriveTime. */
+        public arriveTime: (number|Long);
+
+        /** Message sendTime. */
+        public sendTime: (number|Long);
 
         /** Message userlist. */
         public userlist: (number|Long)[];

@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 import { Long } from 'protobufjs';
 import { UserService } from './user.service';
 import * as com from './common/im';
+import { M } from 'ng-zorro-antd';
 // import { FriendItem, chatRoom } from './chat/data';
 
 @Injectable()
@@ -52,7 +53,7 @@ export class WebsocketService {
       reader.onload = function (e) {
       let buf = new Uint8Array(reader.result as ArrayBuffer);
       let conn = Protocol.Message.decode(buf);
-      console.log(conn)
+      // console.log(conn)
       that.parseNotification(conn)    //收到消息解析后分析消息
     }};
     this.ws.onclose = function() {console.log("WebSocket关闭")};
@@ -62,7 +63,7 @@ export class WebsocketService {
   createSessionHeader():HttpHeaders {
     let headers = new HttpHeaders();
     headers = headers.set('X-Session-Id', this.us.session_id);
-    console.log("session=", this.us.session_id)
+    // console.log("session=", this.us.session_id)
     return headers
   }
 
@@ -94,22 +95,23 @@ export class WebsocketService {
     if (m.type ==  Protocol.Message.Type.REQUEST) {
       if(m.cmd == Protocol.Message.CtrlType.NONE){  
         this.DisplayMessagesLocally(m,m.to) // 说明是一条 单发或群发消息，在本地显示
+      }else if(m.cmd == Protocol.Message.CtrlType.MSG_BACK){  
+        if(m.msgid == 0){
+          alert("消息ＩＤ不存在，无法撤回");
+        }else{
+          //this.getNearestList();
+          console.log("撤回消息")
+        }
+          // 撤回消息
+          // TODO 单聊或群聊发送消息 消息在本地消失
       }
-    }else if(m.cmd == Protocol.Message.CtrlType.MSG_BACK){  
-      if(m.msgid == 0){
-        alert("消息ＩＤ不存在，无法撤回");
-      }else{
-
-      }
-        // 撤回消息
-        // TODO 单聊或群聊发送消息 消息在本地消失
     }
-    
   }
 
 
   //分析消息
   parseNotification(m:Protocol.Message){
+    console.log("收到一条消息",m)
     if (m.type==Protocol.Message.Type.NOTIFICATION){
       console.log("NOTIFICATION");
       if (m.cmd == Protocol.Message.CtrlType.NONE){
@@ -118,17 +120,29 @@ export class WebsocketService {
         }else{
           this.DisplayMessagesLocally(m,m.from) // 说明是一条 单发或群发消息，在本地显示
         }
-       
       }else if(m.cmd == Protocol.Message.CtrlType.CREATE_SESSION){ 
         // 说明是陌生人主动找你聊天,需要在本地创建和他聊天的chatroom
       }else if (m.cmd == Protocol.Message.CtrlType.CREATE_GROUP || m.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
        // 需要在本地创建和群聊天的chatroom
       }else if(m.cmd == Protocol.Message.CtrlType.MSG_BACK){
         // 消息撤回 需要删除本地消息,以示撤回
+        if (this.global_message.chat_room_list.has(m.to)){
+          let list = this.global_message.chat_room_list.get(m.to).message_list;
+          let index = list.findIndex(e =>e.id==m.msgid);
+          if(index<0){console.log("撤回失败");return;};
+          list.splice(index,1);
+          this.global_message.chat_room_list.get(m.to).message_list = list;
+        }
       }
     }else if(m.type==Protocol.Message.Type.ACK){
       if (m.cmd == Protocol.Message.CtrlType.NONE){
         // 发送的消息已经确认，把回送的 message id加入到那条信息 
+        if (this.global_message.chat_room_list.has(m.to)){
+          let index = this.global_message.chat_room_list.get(m.to).message_list.findIndex((e)=>{return e.send_time==m.sendTime})
+          if(index<0){console.log("找不到那条消息记录",this.global_message.chat_room_list.get(m.to).message_list);return;}
+          this.global_message.chat_room_list.get(m.to).message_list[index].id = m.msgid;
+          console.log("收到自己发消息的确认",this.global_message.chat_room_list.get(m.to).message_list)
+        }
       }else if(m.cmd == Protocol.Message.CtrlType.CREATE_SESSION){
       }else if (m.cmd == Protocol.Message.CtrlType.CREATE_GROUP || m.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
       }
@@ -158,10 +172,10 @@ export class WebsocketService {
     newMsg.content = m.content;
     newMsg.content_type = m.contentType;
     newMsg.is_group = m.isgroup;
-    newMsg.arrive_time = m.time;
+    newMsg.send_time = m.sendTime;
 
     chat_room.message_list.push(newMsg);
-    console.log(chat_room);
-    console.log(this.global_message.chat_room_list.get(room_id));
+    // console.log(chat_room);
+    // console.log(this.global_message.chat_room_list.get(room_id));
   }
 }
