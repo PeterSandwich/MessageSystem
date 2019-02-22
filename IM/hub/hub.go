@@ -326,7 +326,7 @@ func createChatSession(in *pb.Message) {
 
 // 收到消息确认
 func messageAckUpdate(in *pb.Message){
-	Logger.Debug("ACK",zap.Int64("from",in.GetFrom()),zap.Int64("from",in.GetTo()))
+	Logger.Debug("ACK",zap.Int64("from",in.GetFrom()),zap.Int64("to",in.GetTo()),zap.Bool("isGroup",in.GetIsgroup()))
 	err := dbops.UpdateCounterTable(in.GetFrom(), in.GetTo(), in.GetIsgroup())
 	if err != nil {
 		Logger.Warn(err.Error())

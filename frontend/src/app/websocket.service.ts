@@ -18,7 +18,6 @@ export class WebsocketService {
   global_message: com.GlobalMessage;  //全局全部消息
   nearest_contact:com.NearestContact; // 最近联系人
   address_book: com.NearestContact; // 通讯录
-  //message_list : com.AllChatRoom; //全部聊天室
   FriItem: com.NearestContactItem;
 
 
@@ -37,6 +36,7 @@ export class WebsocketService {
     this.FriItem = new(com.NearestContactItem);
 
   }
+
 
 
   // 建立websocket链接
@@ -79,63 +79,11 @@ export class WebsocketService {
   }
 
   //获取最近联系人的最近聊天信息
-  getNearestContactMessage(){
+  getNearestContactAndMessage(){
     let url  = environment.apiUrl+"/recent-contact-message"
     return this.http.get(url, {headers:this.createSessionHeader(),observe:'response'})
   }
   
-  //获取最近联系人
-  getNearestList(){
-      this.getNearestContactMessage().subscribe((data) => {
-        console.log("最近联系人de消息",data);
-        this.nearest_contact.contact_list = [];
-        for(let i=0;i<data.body['chat_room_list'].length;i++){
-          let FriItem:com.NearestContactItem = new(com.NearestContactItem);
-          FriItem.id=data.body['chat_room_list'][i].id;
-          FriItem.name=data.body['chat_room_list'][i].name;
-          FriItem.head_img=data.body['chat_room_list'][i].head_img;
-          FriItem.is_group=data.body['chat_room_list'][i].is_group;
-          FriItem.count=data.body['chat_room_list'][i].count;
-          FriItem.message_list = data.body['chat_room_list'][i].message_list;
-          this.nearest_contact.contact_list.push(FriItem)
-
-           //pjw我的代码
-           let chat_room:com.ChatRoom = new(com.ChatRoom);
-           chat_room.id = data.body['chat_room_list'][i].id;
-           chat_room.name = data.body['chat_room_list'][i].name;
-           chat_room.is_group = data.body['chat_room_list'][i].is_group;
-
-           chat_room.message_list=data.body['chat_room_list'][i].message_list;
-           this.global_message.chat_room_list.set(FriItem.id,chat_room)
-
-        }
-        console.log("contact_list = ", this.nearest_contact.contact_list)
-        console.log("global_messgae = ", this.global_message.chat_room_list)
-        // this.getNearestMessage();
-       
-        
-      
-      })
-  }
-  //获取通讯录
-  getAddress(){
-    this.getAddressBook().subscribe((data) => {
-      // console.log("通讯录", data['friends_list']);
-      this.address_book.contact_list = [];
-      // this.address_book.contact_list = data.friends_list;
-      for(let i = 0; i < data.friends_list.length; i++){
-          let  FriItem:com.NearestContactItem = new(com.NearestContactItem);
-          FriItem.id=data['friends_list'].id;
-          FriItem.name=data['friends_list'][i].name;
-          FriItem.head_img=data['friends_list'][i].head_img;
-          FriItem.is_group=data['friends_list'].is_group;
-          FriItem.count= 0;
-          FriItem.message_list = [];
-          this.address_book.contact_list.push(FriItem)
-      }
-      console.log("this.address_book=", this.address_book)
-    })
-  }
 
   // 发送信息，不在这里构造消息体
   sendMessage(m: Protocol.Message){

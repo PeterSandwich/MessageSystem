@@ -125,7 +125,7 @@
         <td rowspan="3" colspan="3">
             <!-- 4 -->
             <div class = "list" >
-                <li  class = "item" [class.selected]="item == friend" *ngFor="let item of friendlist.contact_list; let i = index" (click) = "test2(i, item.id,item.name, item.head_img, item.is_group)">
+                <li  class = "item" [class.selected]="item == friend" *ngFor="let item of  this.ws.nearest_contact.contact_list; let i = index" (click) = "test2(i, item.id,item.name, item.head_img, item.is_group)">
                     <nz-badge [nzCount]="item.count" *ngIf="list!=NULL">
                         <img src = "{{item.head_img}}" class = "img">
                     </nz-badge>
@@ -154,8 +154,8 @@
         <td>
         <!-- 5 -->
           <div  *ngIf="isselect">
-            <textarea class = "textarea" [(ngModel)] = "content" (keyup) = "sendMsg($event)"></textarea>
-            <button class = "send" nz-button nzType="primary" (click) = "sendMsg($event)"  >发送</button>
+            <textarea class = "textarea" [(ngModel)] = "content" (keyup) = "enterToSendMsg($event)"></textarea>
+            <button class = "send" nz-button nzType="primary" (click) = "clickToSendMsg()"  >发送</button>
           </div>
         </td>
       </tr>

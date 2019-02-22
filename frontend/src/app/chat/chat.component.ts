@@ -33,10 +33,7 @@ export class ChatComponent implements OnInit {
 
   addressList : com.AddressBookItem[];
   addressItem : com.AddressBookItem;
-
-
-
-
+  
   to_name = ""
   to_img = "";
   // group = 0;
@@ -89,6 +86,11 @@ export class ChatComponent implements OnInit {
     }
     
     ngOnInit(){
+
+      // 初始化最近聊天列表及其聊天历史消息
+      this.getNearestListAndMessage()
+
+
       // this.friendlist = data.nearContractList;
       this.addressList = data.addressList;
       // this.messagelist = data.chatRoom;
@@ -109,10 +111,10 @@ export class ChatComponent implements OnInit {
       this.friendlist = this.ws.nearest_contact;
       // console.log("getNear", this.friendlist);
     }
-    getAddress(){
-      this.friendlist = this.ws.address_book;
-      // console.log("getAddreses", this.friendlist);
-    }
+    // getAddress(){
+    //   this.friendlist = this.ws.address_book;
+    //   // console.log("getAddreses", this.friendlist);
+    // }
 
     his(event){//防止右键点击是弹出默认面板
       event.preventDefault();
@@ -152,6 +154,8 @@ export class ChatComponent implements OnInit {
     }
 
     test2(index: number, id: number,name : string, img: string, isgroup: boolean){
+      
+      // 发送ACK消息回后端，让后端知道这消息已读，徽标数清零
       //////////////////////////////////////////
       let msg = new(Protocol.Message)
       msg.type = Protocol.Message.Type.ACK;
@@ -161,7 +165,6 @@ export class ChatComponent implements OnInit {
       msg.content = this.content;
       msg.contentType = Protocol.Message.ContentType.TEXT;
       this.contentType = msg.contentType;
-      // console.log("type=", msg.contentType)
       msg.isgroup = isgroup;
       this.ws.sendMessage(msg);
       ///////////////////////////////////
@@ -171,85 +174,56 @@ export class ChatComponent implements OnInit {
       this.to_img = img;
       this.isgroup = isgroup;
       var flag : boolean = false;
-      this.friend = this.friendlist.contact_list[index];
-      console.log("friendlist", this.friendlist.contact_list)
-      for(let i = 0; i < this.friendlist.contact_list.length; i++){
-        if(id == this.friendlist.contact_list[i].id){
-          this.friendlist.contact_list[i].count = 0;
-          // this.showmsg = this.friendlist.contact_list[i].message_list;
-          // this.isgroup = this.friendlist.contact_list[i].is_group;
-          // flag = true;
-        }
-      }
 
       if(this.ws.global_message.chat_room_list.has(id)){
         this.showmsg = this.ws.global_message.chat_room_list.get(id).message_list;
         this.isgroup = this.ws.global_message.chat_room_list.get(id).is_group;
           flag = true;
       }
-      
-
 
       if(!flag){
           this.showmsg = [];
       }
-      // console.log("showmsg=", this.showmsg);
       this.scollbuttom();
 
     }
-    sendMsg(event: KeyboardEvent) {
-      if(event.keyCode != (13 || 108)){
-        return ;
-      }
-      this.content = this.content.replace(/^\s*/,'');//去除左边空格
-      // 去除所有空格: str = str.replace(/\s+/g,""); 
-      // 去除两头空格: str = str.replace(/^\s+|\s+$/g,""); 
-      // 去除左空格： str=str.replace( /^\s*/, ''); 
-      // 去除右空格： str=str.replace(/(\s*$)/g, "");
 
+    //在输入框回车发送消息
+    enterToSendMsg(event: KeyboardEvent) {
+      if(event.keyCode != (13 || 108)){
+          return;
+      }
+      this.sendTextMessage()
+    }
+
+    //点击 发送 按钮发送消息
+    clickToSendMsg(){
+      this.sendTextMessage()
+    }
+
+  
+    //发送文本消息
+    sendTextMessage(){
+      this.content = this.content.replace(/^\s*/,'');//去除左边空格
       if(this.content == ""){
-        console.log("输入内容为空")
+        console.log("内容不能为空")
         return;
       }
-      if(this.isgroup){
-        this.sendToGoup();
-      }else{
-        this.sendC2C();
-      }
-      this.scollbuttom();
-    }
-
-
-    sendC2C(){
-      let msg = new(Protocol.Message)
-      msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
-      msg.cmd = Protocol.Message.CtrlType.NONE;// 消息的功
-      msg.from = this.us.MyUserId;              // 消息发送方
-      msg.to = this.to_id;                   //消息接收方
-      msg.content = this.content;             //消息内容
-      msg.contentType = Protocol.Message.ContentType.TEXT;　  //消息类型
-      this.contentType = msg.contentType;
-      msg.isgroup = false;                       //是不是群组消息
-      // console.log("this.msg && this.to_id = ", msg, this.to_id);
-      this.ws.sendMessage(msg);
-      this.content = "";
-  }
- 
-  sendToGoup() {
       let msg = new(Protocol.Message)
       msg.type = Protocol.Message.Type.REQUEST;
       msg.cmd = Protocol.Message.CtrlType.NONE;
-      msg.from =  this.us.MyUserId;
+      msg.from = this.us.MyUserId;
       msg.to = this.to_id;
       msg.content = this.content;
       msg.contentType = Protocol.Message.ContentType.TEXT;
       this.contentType = msg.contentType;
-      // console.log("type=", msg.contentType)
-      msg.isgroup = true;
+      msg.isgroup = this.isgroup;
       this.ws.sendMessage(msg);
       this.content = "";
-
+      this.scollbuttom();
     }
+    
+
     addfriend(to: number){
       let msg = new(Protocol.Message)
       msg.type = Protocol.Message.Type.REQUEST;
@@ -405,6 +379,64 @@ export class ChatComponent implements OnInit {
       a.remove();
       // console.log('download:' + a.href);
     }
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                                  //  by: pjw    
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  //获取最近联系人及其历史消息
+  getNearestListAndMessage(){
+    this.ws.getNearestContactAndMessage().subscribe((data) => {
+
+      console.log("一登录获取最近联系人及其历史消息",data);
+
+      for(let i=0;i<data.body['chat_room_list'].length;i++){
+
+        //最近联系人的（相当与一个chat room）
+        let FriItem:com.NearestContactItem = new(com.NearestContactItem);
+        FriItem.id=data.body['chat_room_list'][i].id;
+        FriItem.name=data.body['chat_room_list'][i].name;
+        FriItem.head_img=data.body['chat_room_list'][i].head_img;
+        FriItem.is_group=data.body['chat_room_list'][i].is_group;
+        FriItem.count=data.body['chat_room_list'][i].count;
+        this.ws.nearest_contact.contact_list.push(FriItem);
+
+         //历史消息 使用 this.global_message.chat_room_list[人或群的ID]获取历史消息
+         let chat_room:com.ChatRoom = new(com.ChatRoom);
+         chat_room.id = data.body['chat_room_list'][i].id;
+         chat_room.name = data.body['chat_room_list'][i].name;
+         chat_room.is_group = data.body['chat_room_list'][i].is_group;
+         chat_room.message_list=data.body['chat_room_list'][i].message_list;
+         this.ws.global_message.chat_room_list.set(chat_room.id,chat_room);
+
+      }
+      console.log("contact_list = ", this.ws.nearest_contact.contact_list);
+      console.log("global_messgae = ", this.ws.global_message.chat_room_list);
+    })
+  }
+
+  //获取通讯录
+  getAddress(){
+    this.ws.getAddressBook().subscribe((data) => {
+
+      for(let i = 0; i < data.friends_list.length; i++){
+          let  FriItem:com.NearestContactItem = new(com.NearestContactItem);
+          FriItem.id=data['friends_list'].id;
+          FriItem.name=data['friends_list'][i].name;
+          FriItem.head_img=data['friends_list'][i].head_img;
+          FriItem.is_group=data['friends_list'].is_group;
+          FriItem.count= 0;
+          this.ws.address_book.contact_list.push(FriItem)
+      }
+      console.log("this.address_book=", this.ws.address_book)
+    })
+  }
+
 
     /////////////////////////////////////////
     //// 创建群//////////////////////////////
