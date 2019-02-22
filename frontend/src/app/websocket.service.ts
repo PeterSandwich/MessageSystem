@@ -52,7 +52,7 @@ export class WebsocketService {
       reader.onload = function (e) {
       let buf = new Uint8Array(reader.result as ArrayBuffer);
       let conn = Protocol.Message.decode(buf);
-      console.log(conn)
+      // console.log(conn)
       that.parseNotification(conn)    //收到消息解析后分析消息
     }};
     this.ws.onclose = function() {console.log("WebSocket关闭")};
@@ -62,7 +62,7 @@ export class WebsocketService {
   createSessionHeader():HttpHeaders {
     let headers = new HttpHeaders();
     headers = headers.set('X-Session-Id', this.us.session_id);
-    console.log("session=", this.us.session_id)
+    // console.log("session=", this.us.session_id)
     return headers
   }
 
@@ -109,8 +109,8 @@ export class WebsocketService {
            this.global_message.chat_room_list.set(FriItem.id,chat_room)
 
         }
-        console.log("contact_list = ", this.nearest_contact.contact_list)
-        console.log("global_messgae = ", this.global_message.chat_room_list)
+        // console.log("contact_list = ", this.nearest_contact.contact_list)
+        // console.log("global_messgae = ", this.global_message.chat_room_list)
         // this.getNearestMessage();
        
         
@@ -120,20 +120,20 @@ export class WebsocketService {
   //获取通讯录
   getAddress(){
     this.getAddressBook().subscribe((data) => {
-      // console.log("通讯录", data['friends_list']);
+      console.log("通讯录", data['friends_list']);
       this.address_book.contact_list = [];
       // this.address_book.contact_list = data.friends_list;
       for(let i = 0; i < data.friends_list.length; i++){
           let  FriItem:com.NearestContactItem = new(com.NearestContactItem);
-          FriItem.id=data['friends_list'].id;
+          FriItem.id=data['friends_list'][i].id;
           FriItem.name=data['friends_list'][i].name;
           FriItem.head_img=data['friends_list'][i].head_img;
-          FriItem.is_group=data['friends_list'].is_group;
+          FriItem.is_group=data['friends_list'][i].is_group;
           FriItem.count= 0;
           FriItem.message_list = [];
           this.address_book.contact_list.push(FriItem)
       }
-      console.log("this.address_book=", this.address_book)
+      // console.log("this.address_book=", this.address_book)
     })
   }
 
@@ -146,17 +146,17 @@ export class WebsocketService {
     if (m.type ==  Protocol.Message.Type.REQUEST) {
       if(m.cmd == Protocol.Message.CtrlType.NONE){  
         this.DisplayMessagesLocally(m,m.to) // 说明是一条 单发或群发消息，在本地显示
+      }else if(m.cmd == Protocol.Message.CtrlType.MSG_BACK){  
+        if(m.msgid == 0){
+          alert("消息ＩＤ不存在，无法撤回");
+        }else{
+          this.getNearestList();
+          console.log("撤回消息")
+        }
+          // 撤回消息
+          // TODO 单聊或群聊发送消息 消息在本地消失
       }
-    }else if(m.cmd == Protocol.Message.CtrlType.MSG_BACK){  
-      if(m.msgid == 0){
-        alert("消息ＩＤ不存在，无法撤回");
-      }else{
-        this.DisplayMessagesLocally
-      }
-        // 撤回消息
-        // TODO 单聊或群聊发送消息 消息在本地消失
     }
-    
   }
 
 
@@ -213,7 +213,7 @@ export class WebsocketService {
     newMsg.arrive_time = m.time;
 
     chat_room.message_list.push(newMsg);
-    console.log(chat_room);
-    console.log(this.global_message.chat_room_list.get(room_id));
+    // console.log(chat_room);
+    // console.log(this.global_message.chat_room_list.get(room_id));
   }
 }

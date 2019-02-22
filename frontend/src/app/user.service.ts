@@ -39,6 +39,10 @@ export class UserService {
     let url = this.configUrl+'/user-info/'+id
     return this.http.get(url)
   }
+  getuserlist(name){
+    let url = this.configUrl + '/users/'+ name
+    return this.http.get(url);
+  }
   getgroupinfo(id){
     let url = this.configUrl+'/group-info/'+id
     return this.http.get(url)
@@ -48,5 +52,10 @@ export class UserService {
     headers = headers.set('X-Session-Id', this.session_id);
     // console.log("session=", this.session_id)
     return headers
+  }
+  userList(name){
+    this.getuserlist(name).subscribe((data) => {
+      console.log("getuserlist=", data)
+    })
   }
 }

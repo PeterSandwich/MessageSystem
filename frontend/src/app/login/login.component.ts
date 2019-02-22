@@ -19,7 +19,7 @@ export class LoginComponent {
   submit(){
       let body = {name:this.name,password:this.password}
       this.us.postLoginData(body).subscribe(data => {
-        console.log("data.status=", data.status)
+        // console.log("data.status=", data.status)
         if(data.status==200){
           let respond:any = data["body"];
           console.log("登录成功");
