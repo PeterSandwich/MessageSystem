@@ -297,6 +297,19 @@ func withdrawMessage(in *pb.Message){
 		return
 	}
 
+	ack := &pb.Message{
+		Type:        pb.Message_ACK,
+		Cmd:         pb.Message_MSG_BACK,
+		Msgid:       in.GetMsgid(),
+		To:          in.GetTo(),
+		From:        in.GetFrom(),
+		ArriveTime:    time.Now().Unix(),
+		SendTime:in.GetSendTime(),
+		ContentType: in.ContentType,
+		Isgroup:     in.GetIsgroup(),
+	}
+	messageForward(ack, in.GetFrom())
+
 	if in.Isgroup { // 群聊
 		gid := in.GetTo()
 		groupIdList, err := dbops.GetGroupAllMemberId(gid)
@@ -306,12 +319,13 @@ func withdrawMessage(in *pb.Message){
 			return
 		}
 		for _, uid := range groupIdList {
+			if uid == in.GetFrom() {continue}
 			resp := &pb.Message{
 				Type:        pb.Message_NOTIFICATION,
 				Cmd:         pb.Message_MSG_BACK,
 				Msgid:       in.GetMsgid(),
-				To:          in.GetTo(),
 				From:        in.GetFrom(),
+				To:          in.GetTo(),
 				ArriveTime:    time.Now().Unix(),
 				SendTime:in.GetSendTime(),
 				ContentType: in.ContentType,
@@ -331,7 +345,6 @@ func withdrawMessage(in *pb.Message){
 			ContentType:in.ContentType,
 			Isgroup: in.GetIsgroup(),
 		}
-		messageForward(resp,in.GetFrom())
 		messageForward(resp,in.GetTo())
 	}
 }

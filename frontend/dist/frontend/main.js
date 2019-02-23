@@ -2162,18 +2162,12 @@ var WebsocketService = /** @class */ (function () {
                 }
                 this.newGroupChatRoom(m.to);
             }
-            else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
-                // 消息撤回 需要删除本地消息,以示撤回
-                if (this.global_message.chat_room_list.has(m.to)) {
-                    var list = this.global_message.chat_room_list.get(m.to).message_list;
-                    var index = list.findIndex(function (e) { return e.id == m.msgid; });
-                    if (index < 0) {
-                        console.log("撤回失败");
-                        return;
-                    }
-                    ;
-                    list.splice(index, 1);
-                    this.global_message.chat_room_list.get(m.to).message_list = list;
+            else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) { // 消息撤回 需要删除本地消息,以示撤回
+                if (m.isgroup) {
+                    this.callBackMessage(m.to, m.msgid);
+                }
+                else {
+                    this.callBackMessage(m.from, m.msgid);
                 }
             }
         }
@@ -2204,6 +2198,9 @@ var WebsocketService = /** @class */ (function () {
                 }
                 this.newGroupChatRoom(m.to);
             }
+            else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) { // 消息撤回 需要删除本地消息,以示撤回
+                this.callBackMessage(m.to, m.msgid);
+            }
         }
     };
     //下面是处理消息的
@@ -2231,6 +2228,19 @@ var WebsocketService = /** @class */ (function () {
         chat_room.message_list.push(newMsg);
         // console.log(chat_room);
         // console.log(this.global_message.chat_room_list.get(room_id));
+    };
+    WebsocketService.prototype.callBackMessage = function (who, mid) {
+        if (this.global_message.chat_room_list.has(who)) {
+            var list = this.global_message.chat_room_list.get(who).message_list;
+            var index = list.findIndex(function (e) { return e.id == mid; });
+            if (index < 0) {
+                console.log("撤回失败");
+                return;
+            }
+            ;
+            list.splice(index, 1);
+            this.global_message.chat_room_list.get(who).message_list = list;
+        }
     };
     WebsocketService.prototype.countInc = function (id) {
         var i = this.nearest_contact.contact_list.findIndex(function (e) { return e.id == id; });
