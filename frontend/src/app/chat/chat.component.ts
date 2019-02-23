@@ -331,14 +331,11 @@ export class ChatComponent implements OnInit {
           if (response["body"] != null) {
             // console.log(response)
             if (response["body"] != null) {
-              console.log(response["body"]);
               this.filep = response["body"]["originalfile"];
               this.dfileurl=response["body"]["thumbnail"];
               filetype = response["body"]["filetype"];
-              console.log(this.dfileurl)
               this.show = true;
             }
-            console.log("####",this.us.MyUserId,this.to_id,this.filep,this.dfileurl,filetype)
              let msg = new(Protocol.Message)
              msg.type = Protocol.Message.Type.REQUEST;
              msg.cmd = Protocol.Message.CtrlType.NONE;
@@ -350,7 +347,8 @@ export class ChatComponent implements OnInit {
              }
              msg.contentType = filetype; 
              this.contentType = msg.contentType;
-             msg.isgroup = false;
+             msg.isgroup = this.isgroup;
+             console.log("isgroup=",this.isgroup);
             this.ws.sendMessage(msg);
              this.content = "";
           }
