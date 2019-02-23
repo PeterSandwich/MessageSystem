@@ -34,11 +34,13 @@ Type type   			= 1;
 CtrlType cmd			= 2;
 int64 from              = 3; //发送者
 int64 to                = 4;//接受着
-bool isgroup			= 5;
-string content          = 6;//消息内容
-ContentType content_type= 7;
+string content          = 5;//消息内容
+ContentType content_type= 6;
+bool isgroup			= 7;
 int64 msgid             = 8; //消息服务器对消息的编号
-int64  time		        = 9; //发包时间戳
-repeated int64 userlist = 10;
-ErrorCode errcode		= 11;
+int64  arrive_time		= 9; //到达服务器时间
+int64  send_time        = 10;
+repeated int64 userlist = 11;
+ErrorCode errcode		= 12;
+
 }

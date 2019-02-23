@@ -46,9 +46,9 @@
                             </button>
                         </div>
                     </div>
-                    <div *ngIf="item.from == my_id" id="box1"><!--发送的消息-->
-                        <div *ngIf="item.content_type != 1 && item.content_type != 2"  (contextmenu)="his($event)" (mouseup)="he($event, item, i, item.msgid)" >{{item.content}}</div>
-                        <div *ngIf="item.content_type == 1"  (mouseup)="he($event, item, i, item.msgid)" (contextmenu)="his($event)">     
+                    <div *ngIf="item.from == my_id && item.content != ''" id="box1"><!--发送的消息-->
+                        <div *ngIf="item.content_type != 1 && item.content_type != 2"  (contextmenu)="his($event)" (mouseup)="he($event, item)" >{{item.content}}</div>
+                        <div *ngIf="item.content_type == 1"  (mouseup)="he($event, item)" (contextmenu)="his($event)">     
                           <div class="headportrait">
                             <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.content+')'}"></div>
                             <div class="mask">
@@ -56,7 +56,7 @@
                             </div>
                           </div>
                         </div>
-                        <div *ngIf="item.content_type == 2"  (mouseup)="he($event, item, i, item.msgid)" (contextmenu)="his($event)">
+                        <div *ngIf="item.content_type == 2"  (mouseup)="he($event, item)" (contextmenu)="his($event)">
                             <img src="/files/uknow.png" class="picture" >
                             <button class="upload-btn" (click)=" downloadFile(item.content)"> 下载
                             </button>
@@ -125,7 +125,7 @@
         <td rowspan="3" colspan="3">
             <!-- 4 -->
             <div class = "list" >
-                <li  class = "item" [class.selected]="item == friend" *ngFor="let item of friendlist.contact_list; let i = index" (click) = "test2(i, item.id,item.name, item.head_img, item.is_group)">
+                <li  class = "item" [class.selected]="item == friend" *ngFor="let item of  this.ws.nearest_contact.contact_list; let i = index" (click) = "test2(i, item.id,item.name, item.head_img, item.is_group)">
                     <nz-badge [nzCount]="item.count" *ngIf="list!=NULL">
                         <img src = "{{item.head_img}}" class = "img">
                     </nz-badge>
@@ -154,8 +154,8 @@
         <td>
         <!-- 5 -->
           <div  *ngIf="isselect">
-            <textarea class = "textarea" [(ngModel)] = "content" (keyup) = "sendMsgKey($event)"></textarea>
-            <button class = "send" nz-button nzType="primary" (click) = "sendMsg()"  >发送</button>
+            <textarea class = "textarea" [(ngModel)] = "content" (keyup) = "enterToSendMsg($event)"></textarea>
+            <button class = "send" nz-button nzType="primary" (click) = "clickToSendMsg()"  >发送</button>
           </div>
         </td>
       </tr>
@@ -192,7 +192,7 @@
           添加好友
           <nz-input-group [nzSuffix]="suffixIconSearch"> 
               <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索的用户名" 
-              id = "search" (keyup) = "keyUpSearch(name)">
+              id = "search" (keyup) = "keyUpSearch(searchContent)">
           </nz-input-group> 
   
           <ng-template #suffixIconSearch>
@@ -208,9 +208,9 @@
                 <div *ngIf="flag;else Show">查无此人</div>
                 <ng-template #Show>
                 <div *ngFor="let item of userlist">
-                    <img src = "{{item.Img_url}}" class = "img">
-                      {{item.Name}}
-                    <button (click) = "addfriend(item.ID)">添加好友</button>
+                    <img src = "{{item.head_img}}" class = "img">
+                      {{item.name}}
+                    <button (click) = "addfriend(item.id)">添加好友</button>
                 </div>
               </ng-template>
     

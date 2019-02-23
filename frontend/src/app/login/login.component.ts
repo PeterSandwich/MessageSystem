@@ -19,7 +19,7 @@ export class LoginComponent {
   submit(){
       let body = {name:this.name,password:this.password}
       this.us.postLoginData(body).subscribe(data => {
-        console.log("data.status=", data.status)
+        // console.log("data.status=", data.status)
         if(data.status==200){
           let respond:any = data["body"];
           console.log("登录成功");
@@ -31,8 +31,6 @@ export class LoginComponent {
           this.router.navigate(['chat']);
           // console.log("data=", data, this.us.MyUserId, this.us.myName);
           this.ws.createSocket(environment.websocketUrl+"?session_id="+this.us.session_id);
-          this.ws.getNearestList();
-          this.ws.getAddress();
         }
         else{
           alert("登录失败")

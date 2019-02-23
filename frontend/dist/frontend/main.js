@@ -85,7 +85,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -229,7 +229,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".container{\n  background-color: #DDDDDD;\n  width: 1024px;\n  height: 675px;\n  position: absolute;\n  margin: auto;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 1;\n}\n.avatar{\n  /* 1 */\n  background-color: rgb(198, 228, 98);\n  height: 40px;\n  width: 240px;\n  height: 30px;\n}\n.him{\n  /* 2 */\n  background-color: rgb(101, 216, 206);\n  width: 790px;\n  height: 60px;\n  color: #444444;\n  padding-left: 20px;\n}\n.avatar2{\n  /* 3 */\n  background-color: rgb(121, 202, 128);\n  height: 35px;\n  width: 790px;\n}\n.inputmes{\n  /* 5 */\n  background-color: rgb(240, 244, 255);\n  vertical-align: top;\n  width: 790px;\n  height: 190px;\n  /* background-color: white; */\n}\n.tool{\n  /* 6 */\n  width: 790px;\n  height: 35px;\n  background-color: rgb(233, 173, 168);\n\n}\n.list{\n  /* 4 */\n  background-color: rgb(229, 155, 226);\n\n  width: 240px;\n  height: 550px;\n  overflow-x: none;\n  overflow-y: auto;\n  vertical-align: top;\n\n}\n.list li{\n    height: 65px;\n    list-style-type: none;\n    vertical-align: middle;\n    padding: 15px;\n}\n.item{\n    color: white;\n    border-bottom:1px solid #EEE;\n    height: 65px;\n    font-size: 12px;\n    /* font-display: center; */\n    vertical-align: middle;\n    /* text-align: center; */\n    position: relative;\n    cursor: pointer;\n}\n.list li:hover{\n  background-color: bisque;\n}\n.list li.selected:hover{\n  background-color: aquamarine !important\n}\n.selected{\n  background-color: aqua !important\n}\n.search{\n  background-color: rgb(46, 64, 230);\n  height: 35px;\n  width: 240px;\n}\n.bar{\n  background-color: rgb(133, 91, 78);\n  height: 35px;\n  width: 240px;\n}\n.bartool{\n  width: 70px;\n}\n.dropdown{\n  z-index: 100;\n}\n.grad{\n  width: 70px;\n  background-color:transparent;\n  border: 0px;\n  outline: none;\n  cursor: pointer;\n  height: 25px;\n}\n.img{\n  /* margin: 5px; */\n  /* margin-top: 10px; */\n  height:40px; \n  width:40px; \n  position: relative;\n  /* border-radius:50%;  */\n  overflow:hidden;\n}\n.send{\n  position: absolute;\n  margin-left: 720px;\n  margin-top: 155px;\n  z-index: 100;\n}\n.textarea{\n  background-color: white;\n  resize: none;\n  width: 790px;\n  height: 150px;\n  position: absolute;\n  padding: 15px;\n  border: none;\n  outline: none;\n  /* margin-top: 30px; */\n}\n#box{          \n  /* line-height: 50px;         */     \n  word-break: break-word;        \n  color: white;        \n\n\n    position: relative;\n    left:30px; \n    /* width: 140px; */\n    min-height: 30px;\n    max-width: 300px;\n    width: -webkit-fit-content;\n    width: -moz-fit-content;\n    width: fit-content;\n    min-width: 30px;\n    line-height: 20px;\n    margin-left: 10px;\n    word-wrap: 5px;\n    background: #088cb7;\n    border-radius: 4px;\n    padding: 10px;\n    margin-top:15px;\n    vertical-align: middle;\n    text-align: left;\n}\n/*左方说话*/\n#box:before{\n    position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    right: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-right: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n/*右方说话*/\n#box1{          \n  min-height: 30px;           \n  /* line-height: 50px;         */\n  /* margin-right: 10px;         */\n  /* right: 10px; */\n  /* float: right; */\n  right: 30px;\n  margin: 0 0 0 auto;\n  word-break: break-word;        \n  color: white;        \n  padding: 10px;        \n  line-height: 18px;\n\n  position: relative;\n  /* left:780px;  */\n  /* width: 140px; */\n  max-width: 300px;\n  min-width: 30px;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n\n  /* height: 30px; */\n  background: #088cb7;\n  border-radius: 4px;\n  /* padding: 10px; */\n  margin-top:15px;\n  vertical-align: middle;\n  text-align: left;\n}\n#box1:before{\n  position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    left: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-left: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n.message1{\n  width: 790px;\n  height: 430px;\n  background-color: #F9F9F9;\n  padding: 10px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n.mesback{\n  cursor: pointer;\n}\n.upload-btn {\n  background-color: #337ab7;\n  color: #fff;\n  border-radius: 2px;\n  border: none;\n  /* padding: .5rem 1.3rem; */\n  cursor: pointer;\n  height: 30px;\n  }\n.picture {\n  width: 7rem;\n  height: 7rem;\n  margin-right: 1rem;\n  background-size: cover;\n  }\n.picture2 {\n    width: 490px;\n    height: 500px;\n    margin-right: 1rem;\n    background-size: cover;\n    }\n.action-box {\n  margin-left: 1rem;\n  }\n.hint {\n  color: #909090;\n  font-size: 1.7rem;\n  margin-bottom: 1.5rem;\n  }\n.dropdown{\n    z-index: 2;\n    position:absolute;\n    margin-left: 16px;\n    /* background-position-y: 7rem;   */\n    width: 80px;\n    height: 25px;\n  }\n.headportrait{\n    position: relative;\n    width:7rem;\n    height:7rem;\n    cursor:pointer;\n}\n:host ::ng-deep .headportrait img{\n    width:100%;height:100%;\n\n}\n.mask  {    \n    position: absolute;    \n    width: 100%;    \n    height: 100%;      \n    background: #868c89;    \n    opacity: 0;\t\n    color: black;\n    text-align: center;\n    line-height:7rem;\n    margin-top: -7rem;\n}\n/*hover状态（按你的需求）控制显示。opacity/display/z-index都可以*/\n.headportrait:hover .mask {    opacity: .5;\t}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNoYXQvY2hhdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQXlCO0VBQ3pCLGFBQWE7RUFDYixhQUFhO0VBQ2Isa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixNQUFNO0VBQ04sT0FBTztFQUNQLFFBQVE7RUFDUixTQUFTO0VBQ1QsVUFBVTtBQUNaO0FBQ0E7RUFDRSxNQUFNO0VBQ04sbUNBQW1DO0VBQ25DLFlBQVk7RUFDWixZQUFZO0VBQ1osWUFBWTtBQUNkO0FBQ0E7RUFDRSxNQUFNO0VBQ04sb0NBQW9DO0VBQ3BDLFlBQVk7RUFDWixZQUFZO0VBQ1osY0FBYztFQUNkLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsTUFBTTtFQUNOLG9DQUFvQztFQUNwQyxZQUFZO0VBQ1osWUFBWTtBQUNkO0FBRUE7RUFDRSxNQUFNO0VBQ04sb0NBQW9DO0VBQ3BDLG1CQUFtQjtFQUNuQixZQUFZO0VBQ1osYUFBYTtFQUNiLDZCQUE2QjtBQUMvQjtBQUNBO0VBQ0UsTUFBTTtFQUNOLFlBQVk7RUFDWixZQUFZO0VBQ1osb0NBQW9DOztBQUV0QztBQUNBO0VBQ0UsTUFBTTtFQUNOLG9DQUFvQzs7RUFFcEMsWUFBWTtFQUNaLGFBQWE7RUFDYixnQkFBZ0I7RUFDaEIsZ0JBQWdCO0VBQ2hCLG1CQUFtQjs7QUFFckI7QUFDQTtJQUNJLFlBQVk7SUFDWixxQkFBcUI7SUFDckIsc0JBQXNCO0lBQ3RCLGFBQWE7QUFDakI7QUFDQTtJQUNJLFlBQVk7SUFDWiw0QkFBNEI7SUFDNUIsWUFBWTtJQUNaLGVBQWU7SUFDZiwwQkFBMEI7SUFDMUIsc0JBQXNCO0lBQ3RCLHdCQUF3QjtJQUN4QixrQkFBa0I7SUFDbEIsZUFBZTtBQUNuQjtBQUNBO0VBQ0Usd0JBQXdCO0FBQzFCO0FBQ0E7RUFDRTtBQUNGO0FBQ0E7RUFDRTtBQUNGO0FBQ0E7RUFDRSxrQ0FBa0M7RUFDbEMsWUFBWTtFQUNaLFlBQVk7QUFDZDtBQUNBO0VBQ0Usa0NBQWtDO0VBQ2xD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QkFBa0I7SUFDbEIsV0FBVztJQUNYLFlBQVk7SUFDWixtQkFBbUI7SUFDbkIsVUFBVTtJQUNWLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIsZ0JBQWdCO0lBQ2hCLGlCQUFpQjtBQUNyQjtBQUFDLGdEQUFnRDtBQUNqRCwrQkFBK0IsV0FBVyxFQUFFIiwiZmlsZSI6ImNoYXQvY2hhdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRhaW5lcntcbiAgYmFja2dyb3VuZC1jb2xvcjogI0RERERERDtcbiAgd2lkdGg6IDEwMjRweDtcbiAgaGVpZ2h0OiA2NzVweDtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBtYXJnaW46IGF1dG87XG4gIHRvcDogMDtcbiAgbGVmdDogMDtcbiAgcmlnaHQ6IDA7XG4gIGJvdHRvbTogMDtcbiAgei1pbmRleDogMTtcbn1cbi5hdmF0YXJ7XG4gIC8qIDEgKi9cbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDE5OCwgMjI4LCA5OCk7XG4gIGhlaWdodDogNDBweDtcbiAgd2lkdGg6IDI0MHB4O1xuICBoZWlnaHQ6IDMwcHg7XG59XG4uaGlte1xuICAvKiAyICovXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigxMDEsIDIxNiwgMjA2KTtcbiAgd2lkdGg6IDc5MHB4O1xuICBoZWlnaHQ6IDYwcHg7XG4gIGNvbG9yOiAjNDQ0NDQ0O1xuICBwYWRkaW5nLWxlZnQ6IDIwcHg7XG59XG4uYXZhdGFyMntcbiAgLyogMyAqL1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTIxLCAyMDIsIDEyOCk7XG4gIGhlaWdodDogMzVweDtcbiAgd2lkdGg6IDc5MHB4O1xufVxuXG4uaW5wdXRtZXN7XG4gIC8qIDUgKi9cbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDI0MCwgMjQ0LCAyNTUpO1xuICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xuICB3aWR0aDogNzkwcHg7XG4gIGhlaWdodDogMTkwcHg7XG4gIC8qIGJhY2tncm91bmQtY29sb3I6IHdoaXRlOyAqL1xufVxuLnRvb2x7XG4gIC8qIDYgKi9cbiAgd2lkdGg6IDc5MHB4O1xuICBoZWlnaHQ6IDM1cHg7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigyMzMsIDE3MywgMTY4KTtcblxufVxuLmxpc3R7XG4gIC8qIDQgKi9cbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDIyOSwgMTU1LCAyMjYpO1xuXG4gIHdpZHRoOiAyNDBweDtcbiAgaGVpZ2h0OiA1NTBweDtcbiAgb3ZlcmZsb3cteDogbm9uZTtcbiAgb3ZlcmZsb3cteTogYXV0bztcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcblxufVxuLmxpc3QgbGl7XG4gICAgaGVpZ2h0OiA2NXB4O1xuICAgIGxpc3Qtc3R5bGUtdHlwZTogbm9uZTtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICAgIHBhZGRpbmc6IDE1cHg7XG59XG4uaXRlbXtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgYm9yZGVyLWJvdHRvbToxcHggc29saWQgI0VFRTtcbiAgICBoZWlnaHQ6IDY1cHg7XG4gICAgZm9udC1zaXplOiAxMnB4O1xuICAgIC8qIGZvbnQtZGlzcGxheTogY2VudGVyOyAqL1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gICAgLyogdGV4dC1hbGlnbjogY2VudGVyOyAqL1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG4ubGlzdCBsaTpob3ZlcntcbiAgYmFja2dyb3VuZC1jb2xvcjogYmlzcXVlO1xufVxuLmxpc3QgbGkuc2VsZWN0ZWQ6aG92ZXJ7XG4gIGJhY2tncm91bmQtY29sb3I6IGFxdWFtYXJpbmUgIWltcG9ydGFudFxufVxuLnNlbGVjdGVke1xuICBiYWNrZ3JvdW5kLWNvbG9yOiBhcXVhICFpbXBvcnRhbnRcbn1cbi5zZWFyY2h7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYig0NiwgNjQsIDIzMCk7XG4gIGhlaWdodDogMzVweDtcbiAgd2lkdGg6IDI0MHB4O1xufVxuLmJhcntcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDEzMywgOTEsIDc4KTtcbiAgaGVpZ2h0OiAzNXB4O1xuICB3aWR0aDogMjQwcHg7XG59XG4uYmFydG9vbHtcbiAgd2lkdGg6IDcwcHg7XG59XG4uZHJvcGRvd257XG4gIHotaW5kZXg6IDEwMDtcbn1cbi5ncmFke1xuICB3aWR0aDogNzBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtcbiAgYm9yZGVyOiAwcHg7XG4gIG91dGxpbmU6IG5vbmU7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgaGVpZ2h0OiAyNXB4O1xufVxuLmltZ3tcbiAgLyogbWFyZ2luOiA1cHg7ICovXG4gIC8qIG1hcmdpbi10b3A6IDEwcHg7ICovXG4gIGhlaWdodDo0MHB4OyBcbiAgd2lkdGg6NDBweDsgXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgLyogYm9yZGVyLXJhZGl1czo1MCU7ICAqL1xuICBvdmVyZmxvdzpoaWRkZW47XG59XG4uc2VuZHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBtYXJnaW4tbGVmdDogNzIwcHg7XG4gIG1hcmdpbi10b3A6IDE1NXB4O1xuICB6LWluZGV4OiAxMDA7XG59XG4udGV4dGFyZWF7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICByZXNpemU6IG5vbmU7XG4gIHdpZHRoOiA3OTBweDtcbiAgaGVpZ2h0OiAxNTBweDtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBwYWRkaW5nOiAxNXB4O1xuICBib3JkZXI6IG5vbmU7XG4gIG91dGxpbmU6IG5vbmU7XG4gIC8qIG1hcmdpbi10b3A6IDMwcHg7ICovXG59XG4jYm94eyAgICAgICAgICBcbiAgLyogbGluZS1oZWlnaHQ6IDUwcHg7ICAgICAgICAgKi8gICAgIFxuICB3b3JkLWJyZWFrOiBicmVhay13b3JkOyAgICAgICAgXG4gIGNvbG9yOiB3aGl0ZTsgICAgICAgIFxuXG5cbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbGVmdDozMHB4OyBcbiAgICAvKiB3aWR0aDogMTQwcHg7ICovXG4gICAgbWluLWhlaWdodDogMzBweDtcbiAgICBtYXgtd2lkdGg6IDMwMHB4O1xuICAgIHdpZHRoOiBmaXQtY29udGVudDtcbiAgICBtaW4td2lkdGg6IDMwcHg7XG4gICAgbGluZS1oZWlnaHQ6IDIwcHg7XG4gICAgbWFyZ2luLWxlZnQ6IDEwcHg7XG4gICAgd29yZC13cmFwOiA1cHg7XG4gICAgYmFja2dyb3VuZDogIzA4OGNiNztcbiAgICAtbW96LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgICAtd2Via2l0LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgcGFkZGluZzogMTBweDtcbiAgICBtYXJnaW4tdG9wOjE1cHg7XG4gICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgICB0ZXh0LWFsaWduOiBsZWZ0O1xufVxuLyrlt6bmlrnor7Tor50qL1xuI2JveDpiZWZvcmV7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGNvbnRlbnQ6IFwiXCI7XG4gICAgd2lkdGg6IDA7XG4gICAgaGVpZ2h0OiAwO1xuICAgIHJpZ2h0OiAxMDAlO1xuICAgIHRvcDogOXB4O1xuICAgIGJvcmRlci10b3A6IDVweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICBib3JkZXItcmlnaHQ6IDEzcHggc29saWQgIzA4OGNiNztcbiAgICBib3JkZXItYm90dG9tOiA2cHggc29saWQgdHJhbnNwYXJlbnQ7XG59XG4vKuWPs+aWueivtOivnSovXG4jYm94MXsgICAgICAgICAgXG4gIG1pbi1oZWlnaHQ6IDMwcHg7ICAgICAgICAgICBcbiAgLyogbGluZS1oZWlnaHQ6IDUwcHg7ICAgICAgICAgKi9cbiAgLyogbWFyZ2luLXJpZ2h0OiAxMHB4OyAgICAgICAgICovXG4gIC8qIHJpZ2h0OiAxMHB4OyAqL1xuICAvKiBmbG9hdDogcmlnaHQ7ICovXG4gIHJpZ2h0OiAzMHB4O1xuICBtYXJnaW46IDAgMCAwIGF1dG87XG4gIHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQ7ICAgICAgICBcbiAgY29sb3I6IHdoaXRlOyAgICAgICAgXG4gIHBhZGRpbmc6IDEwcHg7ICAgICAgICBcbiAgbGluZS1oZWlnaHQ6IDE4cHg7XG5cbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAvKiBsZWZ0Ojc4MHB4OyAgKi9cbiAgLyogd2lkdGg6IDE0MHB4OyAqL1xuICBtYXgtd2lkdGg6IDMwMHB4O1xuICBtaW4td2lkdGg6IDMwcHg7XG4gIHdpZHRoOiBmaXQtY29udGVudDtcblxuICAvKiBoZWlnaHQ6IDMwcHg7ICovXG4gIGJhY2tncm91bmQ6ICMwODhjYjc7XG4gIC1tb3otYm9yZGVyLXJhZGl1czogNHB4O1xuICAtd2Via2l0LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAvKiBwYWRkaW5nOiAxMHB4OyAqL1xuICBtYXJnaW4tdG9wOjE1cHg7XG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gIHRleHQtYWxpZ246IGxlZnQ7XG59XG4jYm94MTpiZWZvcmV7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIHdpZHRoOiAwO1xuICAgIGhlaWdodDogMDtcbiAgICBsZWZ0OiAxMDAlO1xuICAgIHRvcDogOXB4O1xuICAgIGJvcmRlci10b3A6IDVweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICBib3JkZXItbGVmdDogMTNweCBzb2xpZCAjMDg4Y2I3O1xuICAgIGJvcmRlci1ib3R0b206IDZweCBzb2xpZCB0cmFuc3BhcmVudDtcbn1cbi5tZXNzYWdlMXtcbiAgd2lkdGg6IDc5MHB4O1xuICBoZWlnaHQ6IDQzMHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjRjlGOUY5O1xuICBwYWRkaW5nOiAxMHB4O1xuICBvdmVyZmxvdy15OiBhdXRvO1xuICBvdmVyZmxvdy14OiBub25lO1xuICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xufVxuLm1lc2JhY2t7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuXG4udXBsb2FkLWJ0biB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMzMzdhYjc7XG4gIGNvbG9yOiAjZmZmO1xuICBib3JkZXItcmFkaXVzOiAycHg7XG4gIGJvcmRlcjogbm9uZTtcbiAgLyogcGFkZGluZzogLjVyZW0gMS4zcmVtOyAqL1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIGhlaWdodDogMzBweDtcbiAgfVxuICBcbiAgLnBpY3R1cmUge1xuICB3aWR0aDogN3JlbTtcbiAgaGVpZ2h0OiA3cmVtO1xuICBtYXJnaW4tcmlnaHQ6IDFyZW07XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIH1cbiAgLnBpY3R1cmUyIHtcbiAgICB3aWR0aDogNDkwcHg7XG4gICAgaGVpZ2h0OiA1MDBweDtcbiAgICBtYXJnaW4tcmlnaHQ6IDFyZW07XG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICB9XG4gIC5hY3Rpb24tYm94IHtcbiAgbWFyZ2luLWxlZnQ6IDFyZW07XG4gIH1cbiAgLmhpbnQge1xuICBjb2xvcjogIzkwOTA5MDtcbiAgZm9udC1zaXplOiAxLjdyZW07XG4gIG1hcmdpbi1ib3R0b206IDEuNXJlbTtcbiAgfVxuICBcbiAgLmRyb3Bkb3due1xuICAgIHotaW5kZXg6IDI7XG4gICAgcG9zaXRpb246YWJzb2x1dGU7XG4gICAgbWFyZ2luLWxlZnQ6IDE2cHg7XG4gICAgLyogYmFja2dyb3VuZC1wb3NpdGlvbi15OiA3cmVtOyAgICovXG4gICAgd2lkdGg6IDgwcHg7XG4gICAgaGVpZ2h0OiAyNXB4O1xuICB9XG5cbiAgLmhlYWRwb3J0cmFpdHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgd2lkdGg6N3JlbTtcbiAgICBoZWlnaHQ6N3JlbTtcbiAgICBjdXJzb3I6cG9pbnRlcjtcbn1cblxuOmhvc3QgOjpuZy1kZWVwIC5oZWFkcG9ydHJhaXQgaW1ne1xuICAgIHdpZHRoOjEwMCU7aGVpZ2h0OjEwMCU7XG5cbn1cblxuLm1hc2sgIHsgICAgXG4gICAgcG9zaXRpb246IGFic29sdXRlOyAgICBcbiAgICB3aWR0aDogMTAwJTsgICAgXG4gICAgaGVpZ2h0OiAxMDAlOyAgICAgIFxuICAgIGJhY2tncm91bmQ6ICM4NjhjODk7ICAgIFxuICAgIG9wYWNpdHk6IDA7XHRcbiAgICBjb2xvcjogYmxhY2s7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGxpbmUtaGVpZ2h0OjdyZW07XG4gICAgbWFyZ2luLXRvcDogLTdyZW07XG59Lypob3ZlcueKtuaAge+8iOaMieS9oOeahOmcgOaxgu+8ieaOp+WItuaYvuekuuOAgm9wYWNpdHkvZGlzcGxheS96LWluZGV46YO95Y+v5LulKi9cdFxuLmhlYWRwb3J0cmFpdDpob3ZlciAubWFzayB7ICAgIG9wYWNpdHk6IC41O1x0fVxuXG4iXX0= */"
+module.exports = ".container{\n  background-color: #DDDDDD;\n  width: 1024px;\n  height: 675px;\n  position: absolute;\n  margin: auto;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 1;\n}\n.avatar{\n  /* 1 */\n  background-color: rgb(198, 228, 98);\n  height: 40px;\n  width: 240px;\n  height: 30px;\n}\n.him{\n  /* 2 */\n  background-color: rgb(101, 216, 206);\n  width: 790px;\n  height: 60px;\n  color: #444444;\n  padding-left: 20px;\n}\n.avatar2{\n  /* 3 */\n  background-color: rgb(121, 202, 128);\n  height: 35px;\n  width: 790px;\n}\n.inputmes{\n  /* 5 */\n  background-color: rgb(240, 244, 255);\n  vertical-align: top;\n  width: 790px;\n  height: 190px;\n  /* background-color: white; */\n}\n.tool{\n  /* 6 */\n  width: 790px;\n  height: 35px;\n  background-color: rgb(233, 173, 168);\n\n}\n.list{\n  /* 4 */\n  background-color: rgb(229, 155, 226);\n\n  width: 240px;\n  height: 550px;\n  overflow-x: none;\n  overflow-y: auto;\n  vertical-align: top;\n\n}\n.list li{\n    height: 65px;\n    list-style-type: none;\n    vertical-align: middle;\n    padding: 15px;\n}\n.item{\n    color: white;\n    border-bottom:1px solid #EEE;\n    height: 65px;\n    font-size: 12px;\n    /* font-display: center; */\n    vertical-align: middle;\n    /* text-align: center; */\n    position: relative;\n    cursor: pointer;\n}\n.list li:hover{\n  background-color: bisque;\n}\n.list li.selected:hover{\n  background-color: aquamarine !important\n}\n.selected{\n  background-color: aqua !important\n}\n.search{\n  background-color: rgb(46, 64, 230);\n  height: 35px;\n  width: 240px;\n}\n.bar{\n  background-color: rgb(133, 91, 78);\n  height: 35px;\n  width: 240px;\n}\n.bartool{\n  width: 70px;\n}\n.dropdown{\n  z-index: 100;\n}\n.grad{\n  width: 70px;\n  background-color:transparent;\n  border: 0px;\n  outline: none;\n  cursor: pointer;\n  height: 25px;\n}\n.img{\n  /* margin: 5px; */\n  /* margin-top: 10px; */\n  height:40px; \n  width:40px; \n  position: relative;\n  /* border-radius:50%;  */\n  overflow:hidden;\n}\n.send{\n  position: absolute;\n  margin-left: 720px;\n  margin-top: 155px;\n  z-index: 100;\n}\n.textarea{\n  background-color: white;\n  resize: none;\n  width: 790px;\n  height: 150px;\n  position: absolute;\n  padding: 15px;\n  border: none;\n  outline: none;\n  /* margin-top: 30px; */\n}\n#box{          \n  /* line-height: 50px;         */     \n  word-break: break-word;        \n  color: white;        \n\n\n    position: relative;\n    left:30px; \n    /* width: 140px; */\n    min-height: 30px;\n    max-width: 300px;\n    width: -webkit-fit-content;\n    width: -moz-fit-content;\n    width: fit-content;\n    min-width: 30px;\n    line-height: 20px;\n    margin-left: 10px;\n    word-wrap: 5px;\n    background: #088cb7;\n    border-radius: 4px;\n    padding: 10px;\n    margin-top:15px;\n    vertical-align: middle;\n    text-align: left;\n}\n/*左方说话*/\n#box:before{\n    position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    right: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-right: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n/*右方说话*/\n#box1{          \n  min-height: 30px;           \n  /* line-height: 50px;         */\n  /* margin-right: 10px;         */\n  /* right: 10px; */\n  /* float: right; */\n  right: 30px;\n  margin: 0 0 0 auto;\n  word-break: break-word;        \n  color: white;        \n  padding: 10px;        \n  line-height: 18px;\n\n  position: relative;\n  /* left:780px;  */\n  /* width: 140px; */\n  max-width: 300px;\n  min-width: 30px;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n\n  /* height: 30px; */\n  background: #088cb7;\n  border-radius: 4px;\n  /* padding: 10px; */\n  margin-top:15px;\n  vertical-align: middle;\n  text-align: left;\n}\n#box1:before{\n  position: absolute;\n    content: \"\";\n    width: 0;\n    height: 0;\n    left: 100%;\n    top: 9px;\n    border-top: 5px solid transparent;\n    border-left: 13px solid #088cb7;\n    border-bottom: 6px solid transparent;\n}\n.message1{\n  width: 790px;\n  height: 430px;\n  background-color: #F9F9F9;\n  padding: 10px;\n  overflow-y: auto;\n  overflow-x: none;\n  vertical-align: top;\n}\n.mesback{\n  cursor: pointer;\n}\n.upload-btn {\n  background-color: #337ab7;\n  color: #fff;\n  border-radius: 2px;\n  border: none;\n  /* padding: .5rem 1.3rem; */\n  cursor: pointer;\n  height: 30px;\n  }\n.picture {\n  width: 7rem;\n  height: 7rem;\n  margin-right: 1rem;\n  background-size: cover;\n  }\n.picture2 {\n    width: 490px;\n    height: 500px;\n    margin-right: 1rem;\n    background-size: cover;\n    }\n.action-box {\n  margin-left: 1rem;\n  }\n.hint {\n  color: #909090;\n  font-size: 1.7rem;\n  margin-bottom: 1.5rem;\n  }\n.dropdown{\n    z-index: 2;\n    position:absolute;\n    margin-left: 16px;\n    /* background-position-y: 7rem;   */\n    width: 80px;\n    height: 25px;\n  }\n.headportrait{\n    position: relative;\n    width:7rem;\n    height:7rem;\n    cursor:pointer;\n}\n:host ::ng-deep .headportrait img{\n    width:100%;height:100%;\n\n}\n.mask  {    \n    position: absolute;    \n    width: 100%;    \n    height: 100%;      \n    background: #868c89;    \n    opacity: 0;\t\n    color: black;\n    text-align: center;\n    line-height:7rem;\n    margin-top: -7rem;\n}\n/*hover状态（按你的需求）控制显示。opacity/display/z-index都可以*/\n.headportrait:hover .mask {    opacity: .5;\t}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2hhdC9jaGF0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx5QkFBeUI7RUFDekIsYUFBYTtFQUNiLGFBQWE7RUFDYixrQkFBa0I7RUFDbEIsWUFBWTtFQUNaLE1BQU07RUFDTixPQUFPO0VBQ1AsUUFBUTtFQUNSLFNBQVM7RUFDVCxVQUFVO0FBQ1o7QUFDQTtFQUNFLE1BQU07RUFDTixtQ0FBbUM7RUFDbkMsWUFBWTtFQUNaLFlBQVk7RUFDWixZQUFZO0FBQ2Q7QUFDQTtFQUNFLE1BQU07RUFDTixvQ0FBb0M7RUFDcEMsWUFBWTtFQUNaLFlBQVk7RUFDWixjQUFjO0VBQ2Qsa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxNQUFNO0VBQ04sb0NBQW9DO0VBQ3BDLFlBQVk7RUFDWixZQUFZO0FBQ2Q7QUFFQTtFQUNFLE1BQU07RUFDTixvQ0FBb0M7RUFDcEMsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWixhQUFhO0VBQ2IsNkJBQTZCO0FBQy9CO0FBQ0E7RUFDRSxNQUFNO0VBQ04sWUFBWTtFQUNaLFlBQVk7RUFDWixvQ0FBb0M7O0FBRXRDO0FBQ0E7RUFDRSxNQUFNO0VBQ04sb0NBQW9DOztFQUVwQyxZQUFZO0VBQ1osYUFBYTtFQUNiLGdCQUFnQjtFQUNoQixnQkFBZ0I7RUFDaEIsbUJBQW1COztBQUVyQjtBQUNBO0lBQ0ksWUFBWTtJQUNaLHFCQUFxQjtJQUNyQixzQkFBc0I7SUFDdEIsYUFBYTtBQUNqQjtBQUNBO0lBQ0ksWUFBWTtJQUNaLDRCQUE0QjtJQUM1QixZQUFZO0lBQ1osZUFBZTtJQUNmLDBCQUEwQjtJQUMxQixzQkFBc0I7SUFDdEIsd0JBQXdCO0lBQ3hCLGtCQUFrQjtJQUNsQixlQUFlO0FBQ25CO0FBQ0E7RUFDRSx3QkFBd0I7QUFDMUI7QUFDQTtFQUNFO0FBQ0Y7QUFDQTtFQUNFO0FBQ0Y7QUFDQTtFQUNFLGtDQUFrQztFQUNsQyxZQUFZO0VBQ1osWUFBWTtBQUNkO0FBQ0E7RUFDRSxrQ0FB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QTtJQUNJLGtCQUFrQjtJQUNsQixXQUFXO0lBQ1gsWUFBWTtJQUNaLG1CQUFtQjtJQUNuQixVQUFVO0lBQ1YsWUFBWTtJQUNaLGtCQUFrQjtJQUNsQixnQkFBZ0I7SUFDaEIsaUJBQWlCO0FBQ3JCO0FBQUMsZ0RBQWdEO0FBQ2pELCtCQUErQixXQUFXLEVBQUUiLCJmaWxlIjoic3JjL2FwcC9jaGF0L2NoYXQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb250YWluZXJ7XG4gIGJhY2tncm91bmQtY29sb3I6ICNEREREREQ7XG4gIHdpZHRoOiAxMDI0cHg7XG4gIGhlaWdodDogNjc1cHg7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgbWFyZ2luOiBhdXRvO1xuICB0b3A6IDA7XG4gIGxlZnQ6IDA7XG4gIHJpZ2h0OiAwO1xuICBib3R0b206IDA7XG4gIHotaW5kZXg6IDE7XG59XG4uYXZhdGFye1xuICAvKiAxICovXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigxOTgsIDIyOCwgOTgpO1xuICBoZWlnaHQ6IDQwcHg7XG4gIHdpZHRoOiAyNDBweDtcbiAgaGVpZ2h0OiAzMHB4O1xufVxuLmhpbXtcbiAgLyogMiAqL1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTAxLCAyMTYsIDIwNik7XG4gIHdpZHRoOiA3OTBweDtcbiAgaGVpZ2h0OiA2MHB4O1xuICBjb2xvcjogIzQ0NDQ0NDtcbiAgcGFkZGluZy1sZWZ0OiAyMHB4O1xufVxuLmF2YXRhcjJ7XG4gIC8qIDMgKi9cbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDEyMSwgMjAyLCAxMjgpO1xuICBoZWlnaHQ6IDM1cHg7XG4gIHdpZHRoOiA3OTBweDtcbn1cblxuLmlucHV0bWVze1xuICAvKiA1ICovXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigyNDAsIDI0NCwgMjU1KTtcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcbiAgd2lkdGg6IDc5MHB4O1xuICBoZWlnaHQ6IDE5MHB4O1xuICAvKiBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTsgKi9cbn1cbi50b29se1xuICAvKiA2ICovXG4gIHdpZHRoOiA3OTBweDtcbiAgaGVpZ2h0OiAzNXB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjMzLCAxNzMsIDE2OCk7XG5cbn1cbi5saXN0e1xuICAvKiA0ICovXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigyMjksIDE1NSwgMjI2KTtcblxuICB3aWR0aDogMjQwcHg7XG4gIGhlaWdodDogNTUwcHg7XG4gIG92ZXJmbG93LXg6IG5vbmU7XG4gIG92ZXJmbG93LXk6IGF1dG87XG4gIHZlcnRpY2FsLWFsaWduOiB0b3A7XG5cbn1cbi5saXN0IGxpe1xuICAgIGhlaWdodDogNjVweDtcbiAgICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7XG4gICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgICBwYWRkaW5nOiAxNXB4O1xufVxuLml0ZW17XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIGJvcmRlci1ib3R0b206MXB4IHNvbGlkICNFRUU7XG4gICAgaGVpZ2h0OiA2NXB4O1xuICAgIGZvbnQtc2l6ZTogMTJweDtcbiAgICAvKiBmb250LWRpc3BsYXk6IGNlbnRlcjsgKi9cbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICAgIC8qIHRleHQtYWxpZ246IGNlbnRlcjsgKi9cbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuLmxpc3QgbGk6aG92ZXJ7XG4gIGJhY2tncm91bmQtY29sb3I6IGJpc3F1ZTtcbn1cbi5saXN0IGxpLnNlbGVjdGVkOmhvdmVye1xuICBiYWNrZ3JvdW5kLWNvbG9yOiBhcXVhbWFyaW5lICFpbXBvcnRhbnRcbn1cbi5zZWxlY3RlZHtcbiAgYmFja2dyb3VuZC1jb2xvcjogYXF1YSAhaW1wb3J0YW50XG59XG4uc2VhcmNoe1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoNDYsIDY0LCAyMzApO1xuICBoZWlnaHQ6IDM1cHg7XG4gIHdpZHRoOiAyNDBweDtcbn1cbi5iYXJ7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigxMzMsIDkxLCA3OCk7XG4gIGhlaWdodDogMzVweDtcbiAgd2lkdGg6IDI0MHB4O1xufVxuLmJhcnRvb2x7XG4gIHdpZHRoOiA3MHB4O1xufVxuLmRyb3Bkb3due1xuICB6LWluZGV4OiAxMDA7XG59XG4uZ3JhZHtcbiAgd2lkdGg6IDcwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7XG4gIGJvcmRlcjogMHB4O1xuICBvdXRsaW5lOiBub25lO1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIGhlaWdodDogMjVweDtcbn1cbi5pbWd7XG4gIC8qIG1hcmdpbjogNXB4OyAqL1xuICAvKiBtYXJnaW4tdG9wOiAxMHB4OyAqL1xuICBoZWlnaHQ6NDBweDsgXG4gIHdpZHRoOjQwcHg7IFxuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIC8qIGJvcmRlci1yYWRpdXM6NTAlOyAgKi9cbiAgb3ZlcmZsb3c6aGlkZGVuO1xufVxuLnNlbmR7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgbWFyZ2luLWxlZnQ6IDcyMHB4O1xuICBtYXJnaW4tdG9wOiAxNTVweDtcbiAgei1pbmRleDogMTAwO1xufVxuLnRleHRhcmVhe1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgcmVzaXplOiBub25lO1xuICB3aWR0aDogNzkwcHg7XG4gIGhlaWdodDogMTUwcHg7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgcGFkZGluZzogMTVweDtcbiAgYm9yZGVyOiBub25lO1xuICBvdXRsaW5lOiBub25lO1xuICAvKiBtYXJnaW4tdG9wOiAzMHB4OyAqL1xufVxuI2JveHsgICAgICAgICAgXG4gIC8qIGxpbmUtaGVpZ2h0OiA1MHB4OyAgICAgICAgICovICAgICBcbiAgd29yZC1icmVhazogYnJlYWstd29yZDsgICAgICAgIFxuICBjb2xvcjogd2hpdGU7ICAgICAgICBcblxuXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIGxlZnQ6MzBweDsgXG4gICAgLyogd2lkdGg6IDE0MHB4OyAqL1xuICAgIG1pbi1oZWlnaHQ6IDMwcHg7XG4gICAgbWF4LXdpZHRoOiAzMDBweDtcbiAgICB3aWR0aDogZml0LWNvbnRlbnQ7XG4gICAgbWluLXdpZHRoOiAzMHB4O1xuICAgIGxpbmUtaGVpZ2h0OiAyMHB4O1xuICAgIG1hcmdpbi1sZWZ0OiAxMHB4O1xuICAgIHdvcmQtd3JhcDogNXB4O1xuICAgIGJhY2tncm91bmQ6ICMwODhjYjc7XG4gICAgLW1vei1ib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgLXdlYmtpdC1ib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgbWFyZ2luLXRvcDoxNXB4O1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gICAgdGV4dC1hbGlnbjogbGVmdDtcbn1cbi8q5bem5pa56K+06K+dKi9cbiNib3g6YmVmb3Jle1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIHdpZHRoOiAwO1xuICAgIGhlaWdodDogMDtcbiAgICByaWdodDogMTAwJTtcbiAgICB0b3A6IDlweDtcbiAgICBib3JkZXItdG9wOiA1cHggc29saWQgdHJhbnNwYXJlbnQ7XG4gICAgYm9yZGVyLXJpZ2h0OiAxM3B4IHNvbGlkICMwODhjYjc7XG4gICAgYm9yZGVyLWJvdHRvbTogNnB4IHNvbGlkIHRyYW5zcGFyZW50O1xufVxuLyrlj7Pmlrnor7Tor50qL1xuI2JveDF7ICAgICAgICAgIFxuICBtaW4taGVpZ2h0OiAzMHB4OyAgICAgICAgICAgXG4gIC8qIGxpbmUtaGVpZ2h0OiA1MHB4OyAgICAgICAgICovXG4gIC8qIG1hcmdpbi1yaWdodDogMTBweDsgICAgICAgICAqL1xuICAvKiByaWdodDogMTBweDsgKi9cbiAgLyogZmxvYXQ6IHJpZ2h0OyAqL1xuICByaWdodDogMzBweDtcbiAgbWFyZ2luOiAwIDAgMCBhdXRvO1xuICB3b3JkLWJyZWFrOiBicmVhay13b3JkOyAgICAgICAgXG4gIGNvbG9yOiB3aGl0ZTsgICAgICAgIFxuICBwYWRkaW5nOiAxMHB4OyAgICAgICAgXG4gIGxpbmUtaGVpZ2h0OiAxOHB4O1xuXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgLyogbGVmdDo3ODBweDsgICovXG4gIC8qIHdpZHRoOiAxNDBweDsgKi9cbiAgbWF4LXdpZHRoOiAzMDBweDtcbiAgbWluLXdpZHRoOiAzMHB4O1xuICB3aWR0aDogZml0LWNvbnRlbnQ7XG5cbiAgLyogaGVpZ2h0OiAzMHB4OyAqL1xuICBiYWNrZ3JvdW5kOiAjMDg4Y2I3O1xuICAtbW96LWJvcmRlci1yYWRpdXM6IDRweDtcbiAgLXdlYmtpdC1ib3JkZXItcmFkaXVzOiA0cHg7XG4gIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgLyogcGFkZGluZzogMTBweDsgKi9cbiAgbWFyZ2luLXRvcDoxNXB4O1xuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICB0ZXh0LWFsaWduOiBsZWZ0O1xufVxuI2JveDE6YmVmb3Jle1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgY29udGVudDogXCJcIjtcbiAgICB3aWR0aDogMDtcbiAgICBoZWlnaHQ6IDA7XG4gICAgbGVmdDogMTAwJTtcbiAgICB0b3A6IDlweDtcbiAgICBib3JkZXItdG9wOiA1cHggc29saWQgdHJhbnNwYXJlbnQ7XG4gICAgYm9yZGVyLWxlZnQ6IDEzcHggc29saWQgIzA4OGNiNztcbiAgICBib3JkZXItYm90dG9tOiA2cHggc29saWQgdHJhbnNwYXJlbnQ7XG59XG4ubWVzc2FnZTF7XG4gIHdpZHRoOiA3OTBweDtcbiAgaGVpZ2h0OiA0MzBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI0Y5RjlGOTtcbiAgcGFkZGluZzogMTBweDtcbiAgb3ZlcmZsb3cteTogYXV0bztcbiAgb3ZlcmZsb3cteDogbm9uZTtcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcbn1cbi5tZXNiYWNre1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cblxuLnVwbG9hZC1idG4ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzM3YWI3O1xuICBjb2xvcjogI2ZmZjtcbiAgYm9yZGVyLXJhZGl1czogMnB4O1xuICBib3JkZXI6IG5vbmU7XG4gIC8qIHBhZGRpbmc6IC41cmVtIDEuM3JlbTsgKi9cbiAgY3Vyc29yOiBwb2ludGVyO1xuICBoZWlnaHQ6IDMwcHg7XG4gIH1cbiAgXG4gIC5waWN0dXJlIHtcbiAgd2lkdGg6IDdyZW07XG4gIGhlaWdodDogN3JlbTtcbiAgbWFyZ2luLXJpZ2h0OiAxcmVtO1xuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICB9XG4gIC5waWN0dXJlMiB7XG4gICAgd2lkdGg6IDQ5MHB4O1xuICAgIGhlaWdodDogNTAwcHg7XG4gICAgbWFyZ2luLXJpZ2h0OiAxcmVtO1xuICAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gICAgfVxuICAuYWN0aW9uLWJveCB7XG4gIG1hcmdpbi1sZWZ0OiAxcmVtO1xuICB9XG4gIC5oaW50IHtcbiAgY29sb3I6ICM5MDkwOTA7XG4gIGZvbnQtc2l6ZTogMS43cmVtO1xuICBtYXJnaW4tYm90dG9tOiAxLjVyZW07XG4gIH1cbiAgXG4gIC5kcm9wZG93bntcbiAgICB6LWluZGV4OiAyO1xuICAgIHBvc2l0aW9uOmFic29sdXRlO1xuICAgIG1hcmdpbi1sZWZ0OiAxNnB4O1xuICAgIC8qIGJhY2tncm91bmQtcG9zaXRpb24teTogN3JlbTsgICAqL1xuICAgIHdpZHRoOiA4MHB4O1xuICAgIGhlaWdodDogMjVweDtcbiAgfVxuXG4gIC5oZWFkcG9ydHJhaXR7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIHdpZHRoOjdyZW07XG4gICAgaGVpZ2h0OjdyZW07XG4gICAgY3Vyc29yOnBvaW50ZXI7XG59XG5cbjpob3N0IDo6bmctZGVlcCAuaGVhZHBvcnRyYWl0IGltZ3tcbiAgICB3aWR0aDoxMDAlO2hlaWdodDoxMDAlO1xuXG59XG5cbi5tYXNrICB7ICAgIFxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTsgICAgXG4gICAgd2lkdGg6IDEwMCU7ICAgIFxuICAgIGhlaWdodDogMTAwJTsgICAgICBcbiAgICBiYWNrZ3JvdW5kOiAjODY4Yzg5OyAgICBcbiAgICBvcGFjaXR5OiAwO1x0XG4gICAgY29sb3I6IGJsYWNrO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBsaW5lLWhlaWdodDo3cmVtO1xuICAgIG1hcmdpbi10b3A6IC03cmVtO1xufS8qaG92ZXLnirbmgIHvvIjmjInkvaDnmoTpnIDmsYLvvInmjqfliLbmmL7npLrjgIJvcGFjaXR5L2Rpc3BsYXkvei1pbmRleOmDveWPr+S7pSovXHRcbi5oZWFkcG9ydHJhaXQ6aG92ZXIgLm1hc2sgeyAgICBvcGFjaXR5OiAuNTtcdH1cblxuIl19 */"
 
 /***/ }),
 
@@ -240,7 +240,7 @@ module.exports = ".container{\n  background-color: #DDDDDD;\n  width: 1024px;\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<div class=\"container\" (mouseup) = \"his($event)\" >\n    <!--聊天窗口-->\n    <table class = \"table\">\n      <tr>\n        <th class = \"avatar\" rowspan=\"2\" colspan=\"3\">\n          <!-- 1 -->\n          <div>\n              <!--个人信息-->\n                <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n                <div>\n                    <div style = \"left: 90px; top:30px; position: absolute\">{{my_name}}</div>\n                    <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n                </div>\n            </div>\n        </th>\n        <th class = \"him\"  >\n          <!-- 2 -->\n          {{to_name}}\n          <nz-dropdown class = \"dropdown\" *ngIf=\"isgroup\">\n            <a nz-dropdown>\n              <i nz-icon type=\"down\"></i>\n            </a>\n          </nz-dropdown>\n        </th>\n      </tr>\n      <tr class = \"avatar2\" >\n          <td rowspan=\"4\"  >\n            <!-- 3 -->\n            <div class = \"message1\" id=\"scrolldIV\" >\n                <div *ngFor=\"let item of showmsg; let i = index; let last = last\" >\n                    <div *ngIf=\"item.from != my_id\" id = \"box\"><!--接受的消息-->\n                        <div *ngIf=\"item.content_type == 0\">{{item.content}}</div>\n                        <div *ngIf=\"item.content_type == 1\">     \n                          <div class=\"headportrait\">\n                            <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.content+')'}\"></div>\n                            <div class=\"mask\">\n                                <p (click)=\"showpicModal(item.content)\">查看原图</p>\n                            </div>\n                          </div>                          \n                        </div>\n                        <div *ngIf=\"item.content_type == 2\"  (mouseup)=\"he($event, item, i, item.msgid)\" (contextmenu)=\"his($event)\">\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\n                            <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                            </button>\n                        </div>\n                    </div>\n                    <div *ngIf=\"item.from == my_id\" id=\"box1\"><!--发送的消息-->\n                        <div *ngIf=\"item.content_type != 1 && item.content_type != 2\"  (contextmenu)=\"his($event)\" (mouseup)=\"he($event, item, i, item.msgid)\" >{{item.content}}</div>\n                        <div *ngIf=\"item.content_type == 1\"  (mouseup)=\"he($event, item, i, item.msgid)\" (contextmenu)=\"his($event)\">     \n                          <div class=\"headportrait\">\n                            <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.content+')'}\"></div>\n                            <div class=\"mask\">\n                                <p (click)=\"showpicModal(item.content)\">查看原图</p>\n                            </div>\n                          </div>\n                        </div>\n                        <div *ngIf=\"item.content_type == 2\"  (mouseup)=\"he($event, item, i, item.msgid)\" (contextmenu)=\"his($event)\">\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\n                            <button class=\"upload-btn\" (click)=\" downloadFile(item.content)\"> 下载\n                            </button>\n                        </div>\n                    </div>\n                    <span *ngIf=\"last\">{{scollbuttom()}}</span>\n                  </div>\n              </div>\n          </td>\n      </tr>\n      <tr >\n          <td colspan=\"3\" class = \"search\" colspan=\"3\">\n            <!-- 7 -->\n              <div>\n                  <nz-input-group [nzSuffix]=\"suffixIconSearch1\"> \n                      <input type=\"text\" [(ngModel)]=\"searchFriend\" nz-input placeholder=\"输入搜索内容\" id = \"search\">\n                  </nz-input-group> \n        \n                  <ng-template #suffixIconSearch1>\n                      <i nz-icon type=\"search\" class = \"icon\"></i>\n                  </ng-template>\n        \n                  <div>\n                      <div *ngIf=\"isVisible\">\n                          <div *ngIf=\"!searchFriend\">\n                            正在搜索内容\n                          </div>\n                          <div *ngIf=\"searchFriend\">\n                              <div *ngIf=\"flag;else Show\">查无此人</div>\n                              <ng-template #Show>\n                                  <!-- <div *ngFor=\"let item of userlist\">\n                                      <img src = \"{{item.Img_url}}\" class = \"img\">\n                                      {{item.Name}}\n                                  </div> -->\n                              </ng-template>\n                          </div>\n                      </div>\n                  </div>\n              </div>\n          </td>\n      </tr>\n      <tr class = \"bar\">\n        <td class = \"bartool\">\n            <button class = \"grad\" (click) = \"getNear()\">聊天</button>|\n        </td>\n        <td class = \"bartool\">\n            <button class = \"grad\" (click) = \"getAddress()\">通讯录</button>|\n        </td>\n        <td class = \"bartool\">\n            <nz-dropdown class = \"dropdown\">\n                <a nz-dropdown>\n                    &nbsp; &nbsp;添加 <i nz-icon type=\"down\"></i>\n                </a>\n                <ul nz-menu nzSelectable>\n                    <li nz-menu-item (click)=\"showAddFriendModal()\">\n                        <a>添加好友</a>\n                    </li>\n                    <li nz-menu-item (click) = \"showAddGroupModal()\">\n                        <a>创建群聊</a>\n                    </li>\n                </ul>\n            </nz-dropdown>\n        </td>\n      </tr>\n      <tr>\n        <td rowspan=\"3\" colspan=\"3\">\n            <!-- 4 -->\n            <div class = \"list\" >\n                <li  class = \"item\" [class.selected]=\"item == friend\" *ngFor=\"let item of friendlist.contact_list; let i = index\" (click) = \"test2(i, item.id,item.name, item.head_img, item.is_group)\">\n                    <nz-badge [nzCount]=\"item.count\" *ngIf=\"list!=NULL\">\n                        <img src = \"{{item.head_img}}\" class = \"img\">\n                    </nz-badge>\n                 {{item.name}}\n                </li>\n            </div>\n        </td>\n      </tr>\n      <tr>\n        <td class = \"tool\">\n          <!-- 6 -->\n          <div  *ngIf=\"isselect\">\n              <div >\n                <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n                <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\n                <input id=\"upfile\" type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\" accept=\".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt\">\n                <div class=\"action-box\">\n                  <button  nz-button nzType=\"primary\" onclick = \"upfile.click()\" >点击上传</button>\n                </div>\n              </div>\n            </div>\n        </td>\n      </tr>\n      <tr class = \"inputmes\">\n    <!-- 输入框 -->\n        <td>\n        <!-- 5 -->\n          <div  *ngIf=\"isselect\">\n            <textarea class = \"textarea\" [(ngModel)] = \"content\" (keyup) = \"sendMsgKey($event)\"></textarea>\n            <button class = \"send\" nz-button nzType=\"primary\" (click) = \"sendMsg()\"  >发送</button>\n          </div>\n        </td>\n      </tr>\n    </table>\n  </div>\n    \n  \n  <!-- 创建群聊 -->\n  <nz-modal [(nzVisible)]=\"isAddGroupVisible\" [nzTitle]=\"modalTitle\" [nzContent]=\"modalContent\" [nzFooter]=\"modalFooter\" (nzOnCancel)=\"handleAddGroupCancel()\">\n      <ng-template #modalTitle>\n        创建群\n      </ng-template>\n      <ng-template #modalContent>\n        <!-- <div class = \"list\" > -->\n          <div class = \"item\" *ngFor=\"let item of addGroupUserList.AGlist\" >\n              <label nz-checkbox [(ngModel)]=\"item.Check\">\n                  <img src = \"{{item.Headimg}}\" class = \"img\">\n                  {{item.Name}}\n              </label>\n          </div>\n        <!-- </div> -->\n      </ng-template>\n      <ng-template #modalFooter>\n          <input nz-input placeholder=\"群名字\"[(ngModel)]=\"GroupName\">\n          <button nz-button nzType=\"default\" (click)=\"handleAddGroupCancel()\">取消</button>\n          <button nz-button nzType=\"primary\" (click)=\"handleAddGroupOk()\" [nzLoading]=\"isConfirmLoading\">创建</button>\n      </ng-template>\n  </nz-modal>\n    \n    \n    <!-- 添加好友 -->\n  <nz-modal [(nzVisible)]=\"isAddFriendVisible\" [nzTitle]=\"modalTitle1\" [nzContent]=\"modalContent1\"  (nzOnCancel)=\"handleAddFriendCancel()\">\n      <ng-template #modalTitle1>\n          添加好友\n          <nz-input-group [nzSuffix]=\"suffixIconSearch\"> \n              <input type=\"text\" [(ngModel)]=\"searchContent\" nz-input placeholder=\"输入搜索的用户名\" \n              id = \"search\" (keyup) = \"keyUpSearch(name)\">\n          </nz-input-group> \n  \n          <ng-template #suffixIconSearch>\n              <i nz-icon type=\"search\" class = \"icon\" (click) = \"search()\"></i>\n          </ng-template>\n      </ng-template>\n    \n      <ng-template #modalContent1>\n          <div *ngIf=\"!searchContent\">\n              正在搜索内容\n          </div>\n            <div *ngIf=\"searchContent\">\n                <div *ngIf=\"flag;else Show\">查无此人</div>\n                <ng-template #Show>\n                <div *ngFor=\"let item of userlist\">\n                    <img src = \"{{item.Img_url}}\" class = \"img\">\n                      {{item.Name}}\n                    <button (click) = \"addfriend(item.ID)\">添加好友</button>\n                </div>\n              </ng-template>\n    \n            </div>\n      </ng-template>\n  </nz-modal>\n  \n  <!-- <div *ngIf=\"show\">\n      <div style=\"display: -webkit-box;\">\n          <div class=\"hint\">\n              {{filename}}\n          </div>\n          <div class=\"action-box\">\n              <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n              </button>\n          </div>\n      </div>\n  </div> -->\n  \n  <div  id = \"mesback1\"  *ngIf=\"pressBoolean\">\n      <input type = button value=\"撤回\" class = \"mesback\" (click) = \"backdata(id)\" [ngStyle]=\"{'left': px, 'top':py, 'z-index':'400', 'background-color':'red'}\" >\n  </div>\n\n\n\n<nz-modal [(nzVisible)]=\"isshowpicVisible\"   (nzOnCancel)=\"handleshowpicCancel()\" (nzOnOk)=\"handleshowpicCancel()\">\n  <div class=\"picture2\" [ngStyle]=\"{ 'background-image': 'url('+a+')'}\"></div>\n</nz-modal>\n\n"
+module.exports = "\n\n<div class=\"container\" (mouseup) = \"his($event)\" >\n    <!--聊天窗口-->\n    <table class = \"table\">\n      <tr>\n        <th class = \"avatar\" rowspan=\"2\" colspan=\"3\">\n          <!-- 1 -->\n          <div>\n              <!--个人信息-->\n                <img src = {{my_img_url}} style = \"height:60px; width:60px; border-radius:50%; overflow:hidden; position:absolute;left:15px; top:20px;\">\n                <div>\n                    <div style = \"left: 90px; top:30px; position: absolute\">{{my_name}}</div>\n                    <div style = \"left:90px; top:55px; position: absolute; color:#999999\">个性签名</div>\n                </div>\n            </div>\n        </th>\n        <th class = \"him\"  >\n          <!-- 2 -->\n          {{to_name}}\n          <nz-dropdown class = \"dropdown\" *ngIf=\"isgroup\">\n            <a nz-dropdown>\n              <i nz-icon type=\"down\"></i>\n            </a>\n          </nz-dropdown>\n        </th>\n      </tr>\n      <tr class = \"avatar2\" >\n          <td rowspan=\"4\"  >\n            <!-- 3 -->\n            <div class = \"message1\" id=\"scrolldIV\" >\n                <div *ngFor=\"let item of showmsg; let i = index; let last = last\" >\n                    <div *ngIf=\"item.from != my_id\" id = \"box\"><!--接受的消息-->\n                        <div *ngIf=\"item.content_type == 0\">{{item.content}}</div>\n                        <div *ngIf=\"item.content_type == 1\">     \n                          <div class=\"headportrait\">\n                            <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.content+')'}\"></div>\n                            <div class=\"mask\">\n                                <p (click)=\"showpicModal(item.content)\">查看原图</p>\n                            </div>\n                          </div>                          \n                        </div>\n                        <div *ngIf=\"item.content_type == 2\"  (mouseup)=\"he($event, item, i, item.msgid)\" (contextmenu)=\"his($event)\">\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\n                            <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n                            </button>\n                        </div>\n                    </div>\n                    <div *ngIf=\"item.from == my_id && item.content != ''\" id=\"box1\"><!--发送的消息-->\n                        <div *ngIf=\"item.content_type != 1 && item.content_type != 2\"  (contextmenu)=\"his($event)\" (mouseup)=\"he($event, item)\" >{{item.content}}</div>\n                        <div *ngIf=\"item.content_type == 1\"  (mouseup)=\"he($event, item)\" (contextmenu)=\"his($event)\">     \n                          <div class=\"headportrait\">\n                            <div class=\"picture\" [ngStyle]=\"{ 'background-image': 'url('+item.content+')'}\"></div>\n                            <div class=\"mask\">\n                                <p (click)=\"showpicModal(item.content)\">查看原图</p>\n                            </div>\n                          </div>\n                        </div>\n                        <div *ngIf=\"item.content_type == 2\"  (mouseup)=\"he($event, item)\" (contextmenu)=\"his($event)\">\n                            <img src=\"/files/uknow.png\" class=\"picture\" >\n                            <button class=\"upload-btn\" (click)=\" downloadFile(item.content)\"> 下载\n                            </button>\n                        </div>\n                    </div>\n                    <span *ngIf=\"last\">{{scollbuttom()}}</span>\n                  </div>\n              </div>\n          </td>\n      </tr>\n      <tr >\n          <td colspan=\"3\" class = \"search\" colspan=\"3\">\n            <!-- 7 -->\n              <div>\n                  <nz-input-group [nzSuffix]=\"suffixIconSearch1\"> \n                      <input type=\"text\" [(ngModel)]=\"searchFriend\" nz-input placeholder=\"输入搜索内容\" id = \"search\">\n                  </nz-input-group> \n        \n                  <ng-template #suffixIconSearch1>\n                      <i nz-icon type=\"search\" class = \"icon\"></i>\n                  </ng-template>\n        \n                  <div>\n                      <div *ngIf=\"isVisible\">\n                          <div *ngIf=\"!searchFriend\">\n                            正在搜索内容\n                          </div>\n                          <div *ngIf=\"searchFriend\">\n                              <div *ngIf=\"flag;else Show\">查无此人</div>\n                              <ng-template #Show>\n                                  <!-- <div *ngFor=\"let item of userlist\">\n                                      <img src = \"{{item.Img_url}}\" class = \"img\">\n                                      {{item.Name}}\n                                  </div> -->\n                              </ng-template>\n                          </div>\n                      </div>\n                  </div>\n              </div>\n          </td>\n      </tr>\n      <tr class = \"bar\">\n        <td class = \"bartool\">\n            <button class = \"grad\" (click) = \"getNear()\">聊天</button>|\n        </td>\n        <td class = \"bartool\">\n            <button class = \"grad\" (click) = \"getAddress()\">通讯录</button>|\n        </td>\n        <td class = \"bartool\">\n            <nz-dropdown class = \"dropdown\">\n                <a nz-dropdown>\n                    &nbsp; &nbsp;添加 <i nz-icon type=\"down\"></i>\n                </a>\n                <ul nz-menu nzSelectable>\n                    <li nz-menu-item (click)=\"showAddFriendModal()\">\n                        <a>添加好友</a>\n                    </li>\n                    <li nz-menu-item (click) = \"showAddGroupModal()\">\n                        <a>创建群聊</a>\n                    </li>\n                </ul>\n            </nz-dropdown>\n        </td>\n      </tr>\n      <tr>\n        <td rowspan=\"3\" colspan=\"3\">\n            <!-- 4 -->\n            <div class = \"list\" >\n                <li  class = \"item\" [class.selected]=\"item == friend\" *ngFor=\"let item of  this.ws.nearest_contact.contact_list; let i = index\" (click) = \"test2(i, item.id,item.name, item.head_img, item.is_group)\">\n                    <nz-badge [nzCount]=\"item.count\" *ngIf=\"list!=NULL\">\n                        <img src = \"{{item.head_img}}\" class = \"img\">\n                    </nz-badge>\n                 {{item.name}}\n                </li>\n            </div>\n        </td>\n      </tr>\n      <tr>\n        <td class = \"tool\">\n          <!-- 6 -->\n          <div  *ngIf=\"isselect\">\n              <div >\n                <!-- <i nz-icon type=\"folder\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>            \n                <i nz-icon type=\"picture\" theme=\"outline\" style=\"font-size: 25px\" class = \"icon\"></i>        -->\n                <input id=\"upfile\" type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\" accept=\".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt\">\n                <div class=\"action-box\">\n                  <button  nz-button nzType=\"primary\" onclick = \"upfile.click()\" >点击上传</button>\n                </div>\n              </div>\n            </div>\n        </td>\n      </tr>\n      <tr class = \"inputmes\">\n    <!-- 输入框 -->\n        <td>\n        <!-- 5 -->\n          <div  *ngIf=\"isselect\">\n            <textarea class = \"textarea\" [(ngModel)] = \"content\" (keyup) = \"enterToSendMsg($event)\"></textarea>\n            <button class = \"send\" nz-button nzType=\"primary\" (click) = \"clickToSendMsg()\"  >发送</button>\n          </div>\n        </td>\n      </tr>\n    </table>\n  </div>\n    \n  \n  <!-- 创建群聊 -->\n  <nz-modal [(nzVisible)]=\"isAddGroupVisible\" [nzTitle]=\"modalTitle\" [nzContent]=\"modalContent\" [nzFooter]=\"modalFooter\" (nzOnCancel)=\"handleAddGroupCancel()\">\n      <ng-template #modalTitle>\n        创建群\n      </ng-template>\n      <ng-template #modalContent>\n        <!-- <div class = \"list\" > -->\n          <div class = \"item\" *ngFor=\"let item of addGroupUserList.AGlist\" >\n              <label nz-checkbox [(ngModel)]=\"item.Check\">\n                  <img src = \"{{item.Headimg}}\" class = \"img\">\n                  {{item.Name}}\n              </label>\n          </div>\n        <!-- </div> -->\n      </ng-template>\n      <ng-template #modalFooter>\n          <input nz-input placeholder=\"群名字\"[(ngModel)]=\"GroupName\">\n          <button nz-button nzType=\"default\" (click)=\"handleAddGroupCancel()\">取消</button>\n          <button nz-button nzType=\"primary\" (click)=\"handleAddGroupOk()\" [nzLoading]=\"isConfirmLoading\">创建</button>\n      </ng-template>\n  </nz-modal>\n    \n    \n    <!-- 添加好友 -->\n  <nz-modal [(nzVisible)]=\"isAddFriendVisible\" [nzTitle]=\"modalTitle1\" [nzContent]=\"modalContent1\"  (nzOnCancel)=\"handleAddFriendCancel()\">\n      <ng-template #modalTitle1>\n          添加好友\n          <nz-input-group [nzSuffix]=\"suffixIconSearch\"> \n              <input type=\"text\" [(ngModel)]=\"searchContent\" nz-input placeholder=\"输入搜索的用户名\" \n              id = \"search\" (keyup) = \"keyUpSearch(searchContent)\">\n          </nz-input-group> \n  \n          <ng-template #suffixIconSearch>\n              <i nz-icon type=\"search\" class = \"icon\" (click) = \"search()\"></i>\n          </ng-template>\n      </ng-template>\n    \n      <ng-template #modalContent1>\n          <div *ngIf=\"!searchContent\">\n              正在搜索内容\n          </div>\n            <div *ngIf=\"searchContent\">\n                <div *ngIf=\"flag;else Show\">查无此人</div>\n                <ng-template #Show>\n                <div *ngFor=\"let item of userlist\">\n                    <img src = \"{{item.head_img}}\" class = \"img\">\n                      {{item.name}}\n                    <button (click) = \"addfriend(item.id)\">添加好友</button>\n                </div>\n              </ng-template>\n    \n            </div>\n      </ng-template>\n  </nz-modal>\n  \n  <!-- <div *ngIf=\"show\">\n      <div style=\"display: -webkit-box;\">\n          <div class=\"hint\">\n              {{filename}}\n          </div>\n          <div class=\"action-box\">\n              <button class=\"upload-btn\" (click)=\" downloadFile()\"> 下载\n              </button>\n          </div>\n      </div>\n  </div> -->\n  \n  <div  id = \"mesback1\"  *ngIf=\"pressBoolean\">\n      <input type = button value=\"撤回\" class = \"mesback\" (click) = \"backdata(id)\" [ngStyle]=\"{'left': px, 'top':py, 'z-index':'400', 'background-color':'red'}\" >\n  </div>\n\n\n\n<nz-modal [(nzVisible)]=\"isshowpicVisible\"   (nzOnCancel)=\"handleshowpicCancel()\" (nzOnOk)=\"handleshowpicCancel()\">\n  <div class=\"picture2\" [ngStyle]=\"{ 'background-image': 'url('+a+')'}\"></div>\n</nz-modal>\n\n"
 
 /***/ }),
 
@@ -264,10 +264,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _file_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../file.service */ "./src/app/file.service.ts");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../protocol/Protocol */ "./src/app/protocol/Protocol.js");
 /* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./data */ "./src/app/chat/data.ts");
+/* harmony import */ var _common_im__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../common/im */ "./src/app/common/im.ts");
 
 
-// import { MesList, FriendList, FriendItem, MessageList } from './data';
 
 
 
@@ -304,9 +303,9 @@ var ChatComponent = /** @class */ (function () {
         this.py = "";
         // mesItem = MessageItem;
         this.contentType = 0;
-        this.backMes = "";
         this.isPress = false;
         this.index = 0;
+        this.flag = false;
         this.fileurl = 'http://localhost:9988/api/upload';
         this.dfileurl = 'http://localhost:9988/files/9edbe55433e4_compress.jpg';
         this.filep = "";
@@ -327,13 +326,16 @@ var ChatComponent = /** @class */ (function () {
         this.addGroupUserList.AGlist = [];
         // this.userlist = [];
     }
+    ;
     ChatComponent.prototype.ngAfterViewInit = function () {
         // this.elementRef.nativeElement.focus();
         this.el.nativeElement.focus();
     };
     ChatComponent.prototype.ngOnInit = function () {
+        // 初始化最近聊天列表及其聊天历史消息
+        this.getNearestListAndMessage();
         // this.friendlist = data.nearContractList;
-        this.addressList = _data__WEBPACK_IMPORTED_MODULE_7__["addressList"];
+        //this.addressList = data.addressList;
         // this.messagelist = data.chatRoom;
         this.friendlist = this.ws.nearest_contact;
         // console.log("friendlist = ", this.friendlist)
@@ -350,10 +352,10 @@ var ChatComponent = /** @class */ (function () {
         this.friendlist = this.ws.nearest_contact;
         // console.log("getNear", this.friendlist);
     };
-    ChatComponent.prototype.getAddress = function () {
-        this.friendlist = this.ws.address_book;
-        // console.log("getAddreses", this.friendlist);
-    };
+    // getAddress(){
+    //   this.friendlist = this.ws.address_book;
+    //   // console.log("getAddreses", this.friendlist);
+    // }
     ChatComponent.prototype.his = function (event) {
         event.preventDefault();
         if (event.button != 2 || !this.isPress) {
@@ -362,39 +364,45 @@ var ChatComponent = /** @class */ (function () {
             return;
         }
     };
-    ChatComponent.prototype.he = function (event, content, id) {
+    ChatComponent.prototype.he = function (event, item, id) {
         if (event.button != 2) {
             this.pressBoolean = false;
             this.isPress = false;
             return;
         }
         this.isPress = true;
-        this.backMes = content;
-        this.id = id;
+        this.backMes = item;
+        this.id = Number(item.id);
+        // console.log("this.id", item)
         this.pressBoolean = true;
         var px = event.clientX;
         var py = event.clientY;
         this.px = String(px) + 'px';
         this.py = String(py) + 'px';
-        console.log("style=", this.px, this.py);
+        // console.log("style=", this.px, this.py)
     };
     ChatComponent.prototype.backdata = function () {
+        ///////////////////////////////////////////////////////////
+        //有一个bug需解决，撤回消息后聊天框仍存在，以后再改23333333333333//
+        ///////////////////////////////////////////////////////////
         console.log("撤回");
         var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message);
         msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.Type.REQUEST; //消息的类型的请求类型
         msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.CtrlType.MSG_BACK; // 消息撤回
         msg.from = this.us.MyUserId; // 消息发送方
-        msg.to = this.to_id; //消息接收方
-        msg.content = this.backMes; //消息内容
-        msg.contentType = this.contentType; //消息类型
-        msg.isgroup = this.isgroup; //是不是群组消息
-        msg.msgid = this.id;
+        msg.to = this.backMes.to; //消息接收方
+        msg.content = this.backMes.content; //消息内容
+        msg.contentType = this.backMes.content_type; //消息类型
+        msg.isgroup = this.backMes.is_group; //是不是群组消息
+        msg.msgid = this.backMes.id;
+        msg.sendTime = Date.now();
         // console.log("this.msg && this.to_id = ", msg, this.to_id);
         this.ws.sendMessage(msg);
         // this.test2(this.index, this.to_id, this.to_name, this.to_img, this.isgroup)
-        this.backMes = "";
+        // window.onload
     };
     ChatComponent.prototype.test2 = function (index, id, name, img, isgroup) {
+        // 发送ACK消息回后端，让后端知道这消息已读，徽标数清零
         //////////////////////////////////////////
         var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message);
         msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.Type.ACK;
@@ -404,79 +412,47 @@ var ChatComponent = /** @class */ (function () {
         msg.content = this.content;
         msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.ContentType.TEXT;
         this.contentType = msg.contentType;
-        // console.log("type=", msg.contentType)
         msg.isgroup = isgroup;
+        msg.sendTime = Date.now();
         this.ws.sendMessage(msg);
         ///////////////////////////////////
+        this.to_id = id;
         this.index = index;
         this.isselect = true;
-        this.to_id = id;
+        console.log("this.id", id);
         this.to_name = name;
         this.to_img = img;
         this.isgroup = isgroup;
         var flag = false;
-        this.friend = this.friendlist.contact_list[index];
-        console.log("friendlist", this.friendlist.contact_list);
-        for (var i = 0; i < this.friendlist.contact_list.length; i++) {
-            if (id == this.friendlist.contact_list[i].id) {
-                this.friendlist.contact_list[i].count = 0;
-                // this.showmsg = this.friendlist.contact_list[i].message_list;
-                // this.isgroup = this.friendlist.contact_list[i].is_group;
-                // flag = true;
-            }
-        }
         if (this.ws.global_message.chat_room_list.has(id)) {
             this.showmsg = this.ws.global_message.chat_room_list.get(id).message_list;
             this.isgroup = this.ws.global_message.chat_room_list.get(id).is_group;
+            console.log("showmsg = ", this.showmsg);
             flag = true;
         }
         if (!flag) {
             this.showmsg = [];
         }
-        // console.log("showmsg=", this.showmsg);
         this.scollbuttom();
     };
-    ChatComponent.prototype.sendMsg = function () {
-        this.content = this.content.replace(/^\s*/, ''); //去除左边空格
-        // 去除所有空格: str = str.replace(/\s+/g,""); 
-        // 去除两头空格: str = str.replace(/^\s+|\s+$/g,""); 
-        // 去除左空格： str=str.replace( /^\s*/, ''); 
-        // 去除右空格： str=str.replace(/(\s*$)/g, "");
-        if (this.content == "") {
-            console.log("输入内容为空");
-            return;
-        }
-        if (this.isgroup) {
-            this.sendToGoup();
-        }
-        else {
-            this.sendC2C();
-        }
-        this.scollbuttom();
-    };
-    ChatComponent.prototype.sendMsgKey = function (event) {
+    //在输入框回车发送消息
+    ChatComponent.prototype.enterToSendMsg = function (event) {
         if (event.keyCode != (13 || false)) {
             return;
         }
-        else {
-            this.sendMsg();
+        this.sendTextMessage();
+    };
+    //点击 发送 按钮发送消息
+    ChatComponent.prototype.clickToSendMsg = function () {
+        this.sendTextMessage();
+    };
+    //发送文本消息
+    ChatComponent.prototype.sendTextMessage = function () {
+        this.content = this.content.replace(/^\s*/, ''); //去除左边空格
+        if (this.content == "") {
+            console.log("内容不能为空");
+            return;
         }
-    };
-    ChatComponent.prototype.sendC2C = function () {
-        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message);
-        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.Type.REQUEST; //消息的类型的请求类型
-        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.CtrlType.NONE; // 消息的功
-        msg.from = this.us.MyUserId; // 消息发送方
-        msg.to = this.to_id; //消息接收方
-        msg.content = this.content; //消息内容
-        msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.ContentType.TEXT; //消息类型
-        this.contentType = msg.contentType;
-        msg.isgroup = false; //是不是群组消息
-        // console.log("this.msg && this.to_id = ", msg, this.to_id);
-        this.ws.sendMessage(msg);
-        this.content = "";
-    };
-    ChatComponent.prototype.sendToGoup = function () {
         var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message);
         msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.Type.REQUEST;
         msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.CtrlType.NONE;
@@ -485,10 +461,11 @@ var ChatComponent = /** @class */ (function () {
         msg.content = this.content;
         msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.ContentType.TEXT;
         this.contentType = msg.contentType;
-        // console.log("type=", msg.contentType)
-        msg.isgroup = true;
+        msg.isgroup = this.isgroup;
+        msg.sendTime = Date.now();
         this.ws.sendMessage(msg);
         this.content = "";
+        this.scollbuttom();
     };
     ChatComponent.prototype.addfriend = function (to) {
         var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message);
@@ -496,16 +473,44 @@ var ChatComponent = /** @class */ (function () {
         msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.CtrlType.CREATE_SESSION;
         msg.from = this.us.MyUserId;
         msg.to = to;
-        msg.time = Date.now();
+        msg.sendTime = Date.now();
         this.ws.sendMessage(msg);
+        // this.ws.getNearestList();
+        // this.ws.getAddress();
+        this.ngOnInit();
     };
     ChatComponent.prototype.keyUpSearch = function (name) {
+        var _this = this;
         // this.ws.
         // this.ws.getUserList(this.searchContent).subscribe(data => {
         //   console.log("data2 = ", data.Ulist);
         //   this.userlist = data.Ulist;
         // })
+        this.us.getuserlist(this.searchContent).subscribe(function (data) {
+            // this.userlist = data
+            console.log("userlist=", data);
+            if (data['user_list'].length == 0) {
+                _this.flag = true;
+            }
+            _this.userlist = data['user_list'];
+            _this.flag = false;
+        });
     };
+    // clickMe(){
+    //     var btn = document.getElementById("search");
+    //     btn.focus();
+    //     this.isVisible = document.hasFocus();
+    //     // this.userlist = [];
+    // }
+    // outMe(){
+    //   var btn = document.getElementById("search");
+    //   btn.blur();
+    //   this.isVisible = document.hasFocus();
+    //   // this.userlist = [];
+    // }
+    // cancelEditingTodo(){
+    //   this.isVisible = false;
+    // }
     ChatComponent.prototype.search = function () {
         // console.log("search=", this.searchContent);
         // this.ws.getAddress(this.searchContent).subscribe(data => {
@@ -605,6 +610,51 @@ var ChatComponent = /** @class */ (function () {
         a.remove();
         // console.log('download:' + a.href);
     };
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //  by: pjw    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //获取最近联系人及其历史消息
+    ChatComponent.prototype.getNearestListAndMessage = function () {
+        var _this = this;
+        this.ws.getNearestContactAndMessage().subscribe(function (data) {
+            console.log("一登录获取最近联系人及其历史消息", data);
+            for (var i = 0; i < data.body['chat_room_list'].length; i++) {
+                //最近联系人的（相当与一个chat room）
+                var FriItem = new (_common_im__WEBPACK_IMPORTED_MODULE_7__["NearestContactItem"]);
+                FriItem.id = data.body['chat_room_list'][i].id;
+                FriItem.name = data.body['chat_room_list'][i].name;
+                FriItem.head_img = data.body['chat_room_list'][i].head_img;
+                FriItem.is_group = data.body['chat_room_list'][i].is_group;
+                FriItem.count = data.body['chat_room_list'][i].count;
+                _this.ws.nearest_contact.contact_list.push(FriItem);
+                //历史消息 使用 this.global_message.chat_room_list[人或群的ID]获取历史消息
+                var chat_room = new (_common_im__WEBPACK_IMPORTED_MODULE_7__["ChatRoom"]);
+                chat_room.id = data.body['chat_room_list'][i].id;
+                chat_room.name = data.body['chat_room_list'][i].name;
+                chat_room.is_group = data.body['chat_room_list'][i].is_group;
+                chat_room.message_list = data.body['chat_room_list'][i].message_list;
+                _this.ws.global_message.chat_room_list.set(chat_room.id, chat_room);
+            }
+            console.log("contact_list = ", _this.ws.nearest_contact.contact_list);
+            console.log("global_messgae = ", _this.ws.global_message.chat_room_list);
+        });
+    };
+    //获取通讯录
+    ChatComponent.prototype.getAddress = function () {
+        var _this = this;
+        this.ws.getAddressBook().subscribe(function (data) {
+            for (var i = 0; i < data.friends_list.length; i++) {
+                var FriItem = new (_common_im__WEBPACK_IMPORTED_MODULE_7__["NearestContactItem"]);
+                FriItem.id = data['friends_list'].id;
+                FriItem.name = data['friends_list'][i].name;
+                FriItem.head_img = data['friends_list'][i].head_img;
+                FriItem.is_group = data['friends_list'].is_group;
+                FriItem.count = 0;
+                _this.ws.address_book.contact_list.push(FriItem);
+            }
+            console.log("this.address_book=", _this.ws.address_book);
+        });
+    };
     ChatComponent.prototype.showAddGroupModal = function () {
         // for(let i=0;i<this.ws.global_message.chat_room_list[i];i++){
         //   if(this.ws.wsFriendList.List[i].Isgroup){continue;}
@@ -694,96 +744,6 @@ var AddGroupUserlist = /** @class */ (function () {
     return AddGroupUserlist;
 }());
 
-
-
-/***/ }),
-
-/***/ "./src/app/chat/data.ts":
-/*!******************************!*\
-  !*** ./src/app/chat/data.ts ***!
-  \******************************/
-/*! exports provided: addressList, id_1_message, id_2_message, id_3_message, chatRoom, chatroom */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addressList", function() { return addressList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "id_1_message", function() { return id_1_message; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "id_2_message", function() { return id_2_message; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "id_3_message", function() { return id_3_message; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "chatRoom", function() { return chatRoom; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "chatroom", function() { return chatroom; });
-// export class MesList {
-//     from: number = 0;
-//     to: number = 0;
-//     msgid: number = 0;
-//     content: string = "";
-//     img_url: string = "";
-//   }
-var addressList = [
-    { id: 1, name: "abc", head_img: "aaa", is_group: false },
-    { id: 2, name: "bcd", head_img: "aaa", is_group: false },
-    { id: 3, name: "cde", head_img: "aaa", is_group: false },
-    { id: 4, name: "def", head_img: "aaa", is_group: true },
-    { id: 5, name: "efg", head_img: "aaa", is_group: true },
-    { id: 6, name: "fgh", head_img: "aaa", is_group: true },
-];
-// export const nearContractList : com.NearestContactItem[] = [
-//     {id: 100021, name: "mmm", head_img: "aaa", count: 5, is_group: false},
-//     {id: 100017, name: "pjw", head_img: "aaa", count: 1, is_group: false},
-//     {id: 1008, name: "你有一条新的消息", head_img: "aaa", count: 12, is_group: false},
-//     {id: 1009, name: "testGGG", head_img: "aaa", count: 6, is_group: true},
-//     {id: 1010, name: "GGGGGGGGGGGG", head_img: "aaa", count: 2, is_group: true},
-//     {id: 100019, name: "hql", head_img: "aaa", count: 2, is_group: true},
-//     {id: 100018, name: "gct", head_img: "aaa", count: 2, is_group: true},
-// ]
-var id_1_message = [
-    { id: 1001, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000001, is_group: false },
-    { id: 1002, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000002, is_group: false },
-    { id: 1003, from: 1, to: 100018, content: "测试", content_type: 0, arrive_time: 1000003, is_group: false },
-    { id: 1004, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000004, is_group: false },
-    { id: 1005, from: 1, to: 100018, content: "测试", content_type: 0, arrive_time: 1000005, is_group: false },
-    { id: 1006, from: 1, to: 100018, content: "测试", content_type: 0, arrive_time: 1000006, is_group: false },
-    { id: 1007, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000007, is_group: false },
-    { id: 1008, from: 100018, to: 1, content: "测试", content_type: 0, arrive_time: 1000008, is_group: false },
-];
-var id_2_message = [
-    { id: 501, from: 100019, to: 100017, content: "dasdasdasd", content_type: 0, arrive_time: 1550047381671, is_group: false },
-    { id: 505, from: 100019, to: 100017, content: "fsafasfa", content_type: 0, arrive_time: 1550047384788, is_group: false },
-    { id: 509, from: 100017, to: 100019, content: "dasdasdas", content_type: 0, arrive_time: 1550047388021, is_group: false },
-    { id: 513, from: 100017, to: 100019, content: "dasdasda", content_type: 0, arrive_time: 1550047392531, is_group: false },
-    { id: 517, from: 100019, to: 100017, content: "files/4b06426a7a8e_compress.jpg", content_type: 1, arrive_time: 1550047406461, is_group: false },
-    { id: 521, from: 100017, to: 100019, content: "files/4b06426a7a8e_compress.jpg", content_type: 1, arrive_time: 1550047414312, is_group: false },
-    { id: 525, from: 100017, to: 100019, content: "777777", content_type: 0, arrive_time: 1550047437582, is_group: false },
-    { id: 529, from: 100017, to: 100019, content: "", content_type: 0, arrive_time: 1550047451365, is_group: false },
-    { id: 549, from: 100019, to: 100017, content: "files/9edbe55433e4_compress.jpg", content_type: 1, arrive_time: 1550047514194, is_group: false },
-    { id: 553, from: 100019, to: 100017, content: "files/9edbe55433e4_compress.jpg", content_type: 1, arrive_time: 1550047517339, is_group: false }
-];
-var id_3_message = [
-    { id: 565, from: 100018, to: 1008, content: "11111", content_type: 0, arrive_time: 1550294670186, is_group: true },
-    { id: 569, from: 100018, to: 1008, content: "111111", content_type: 0, arrive_time: 1550294671863, is_group: true },
-    { id: 573, from: 100018, to: 1008, content: "222222222", content_type: 0, arrive_time: 1550294673907, is_group: true },
-    { id: 577, from: 100018, to: 1008, content: "3333333333", content_type: 0, arrive_time: 1550294675796, is_group: true },
-    { id: 581, from: 100018, to: 1008, content: "aaaaaa", content_type: 0, arrive_time: 1550294678035, is_group: true },
-    { id: 585, from: 100018, to: 1008, content: "hhhhhhhhhhh", content_type: 0, arrive_time: 1550294683810, is_group: true },
-    { id: 589, from: 100018, to: 1008, content: "ffffffff", content_type: 0, arrive_time: 1550294686338, is_group: true },
-    { id: 593, from: 100018, to: 1008, content: "qwr", content_type: 0, arrive_time: 1550294688195, is_group: true },
-    { id: 597, from: 100018, to: 1008, content: "adf", content_type: 0, arrive_time: 1550294690621, is_group: true },
-    { id: 601, from: 100018, to: 1008, content: "hello", content_type: 0, arrive_time: 1550309859874, is_group: true },
-];
-var chatRoom = [
-    { id: 100021, name: "mmm", is_group: false, message_list: [] },
-    { id: 100017, name: "pjw", is_group: false, message_list: [] },
-    { id: 1008, name: "你有一条新的消息", is_group: true, message_list: id_3_message },
-    { id: 1009, name: "testGGG", is_group: true, "message_list": [] },
-    { id: 1010, name: "GGGGGGGGGGGG", is_group: true, "message_list": [] },
-    { id: 100019, name: "hql", is_group: false, "message_list": id_2_message },
-    { id: 100018, name: "gct", is_group: false, "message_list": [] }
-];
-var chatroom = {
-    size: 7,
-    message_list: id_3_message
-};
 
 
 /***/ }),
@@ -922,7 +882,7 @@ var UploadService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJob21lL2hvbWUuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hvbWUvaG9tZS5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -978,7 +938,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJsb2dpbi9sb2dpbi5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -1027,7 +987,7 @@ var LoginComponent = /** @class */ (function () {
         var _this = this;
         var body = { name: this.name, password: this.password };
         this.us.postLoginData(body).subscribe(function (data) {
-            console.log("data.status=", data.status);
+            // console.log("data.status=", data.status)
             if (data.status == 200) {
                 var respond = data["body"];
                 console.log("登录成功");
@@ -1039,8 +999,6 @@ var LoginComponent = /** @class */ (function () {
                 _this.router.navigate(['chat']);
                 // console.log("data=", data, this.us.MyUserId, this.us.myName);
                 _this.ws.createSocket(_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].websocketUrl + "?session_id=" + _this.us.session_id);
-                _this.ws.getNearestList();
-                _this.ws.getAddress();
             }
             else {
                 alert("登录失败");
@@ -1073,7 +1031,7 @@ var LoginComponent = /** @class */ (function () {
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 
 
-var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "./node_modules/protobufjs/minimal.js");
+var $protobuf = __webpack_require__(/*! protobufjs/minimal */ "../../../../node_modules/protobufjs/minimal.js");
 
 // Common aliases
 var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
@@ -1100,11 +1058,12 @@ $root.Protocol = (function() {
          * @property {Protocol.Message.CtrlType|null} [cmd] Message cmd
          * @property {number|Long|null} [from] Message from
          * @property {number|Long|null} [to] Message to
-         * @property {boolean|null} [isgroup] Message isgroup
          * @property {string|null} [content] Message content
          * @property {Protocol.Message.ContentType|null} [contentType] Message contentType
+         * @property {boolean|null} [isgroup] Message isgroup
          * @property {number|Long|null} [msgid] Message msgid
-         * @property {number|Long|null} [time] Message time
+         * @property {number|Long|null} [arriveTime] Message arriveTime
+         * @property {number|Long|null} [sendTime] Message sendTime
          * @property {Array.<number|Long>|null} [userlist] Message userlist
          * @property {Protocol.Message.ErrorCode|null} [errcode] Message errcode
          */
@@ -1158,14 +1117,6 @@ $root.Protocol = (function() {
         Message.prototype.to = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
-         * Message isgroup.
-         * @member {boolean} isgroup
-         * @memberof Protocol.Message
-         * @instance
-         */
-        Message.prototype.isgroup = false;
-
-        /**
          * Message content.
          * @member {string} content
          * @memberof Protocol.Message
@@ -1182,6 +1133,14 @@ $root.Protocol = (function() {
         Message.prototype.contentType = 0;
 
         /**
+         * Message isgroup.
+         * @member {boolean} isgroup
+         * @memberof Protocol.Message
+         * @instance
+         */
+        Message.prototype.isgroup = false;
+
+        /**
          * Message msgid.
          * @member {number|Long} msgid
          * @memberof Protocol.Message
@@ -1190,12 +1149,20 @@ $root.Protocol = (function() {
         Message.prototype.msgid = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
-         * Message time.
-         * @member {number|Long} time
+         * Message arriveTime.
+         * @member {number|Long} arriveTime
          * @memberof Protocol.Message
          * @instance
          */
-        Message.prototype.time = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+        Message.prototype.arriveTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Message sendTime.
+         * @member {number|Long} sendTime
+         * @memberof Protocol.Message
+         * @instance
+         */
+        Message.prototype.sendTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
          * Message userlist.
@@ -1245,24 +1212,26 @@ $root.Protocol = (function() {
                 writer.uint32(/* id 3, wireType 0 =*/24).int64(message.from);
             if (message.to != null && message.hasOwnProperty("to"))
                 writer.uint32(/* id 4, wireType 0 =*/32).int64(message.to);
-            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
-                writer.uint32(/* id 5, wireType 0 =*/40).bool(message.isgroup);
             if (message.content != null && message.hasOwnProperty("content"))
-                writer.uint32(/* id 6, wireType 2 =*/50).string(message.content);
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.content);
             if (message.contentType != null && message.hasOwnProperty("contentType"))
-                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.contentType);
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.contentType);
+            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
+                writer.uint32(/* id 7, wireType 0 =*/56).bool(message.isgroup);
             if (message.msgid != null && message.hasOwnProperty("msgid"))
                 writer.uint32(/* id 8, wireType 0 =*/64).int64(message.msgid);
-            if (message.time != null && message.hasOwnProperty("time"))
-                writer.uint32(/* id 9, wireType 0 =*/72).int64(message.time);
+            if (message.arriveTime != null && message.hasOwnProperty("arriveTime"))
+                writer.uint32(/* id 9, wireType 0 =*/72).int64(message.arriveTime);
+            if (message.sendTime != null && message.hasOwnProperty("sendTime"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int64(message.sendTime);
             if (message.userlist != null && message.userlist.length) {
-                writer.uint32(/* id 10, wireType 2 =*/82).fork();
+                writer.uint32(/* id 11, wireType 2 =*/90).fork();
                 for (var i = 0; i < message.userlist.length; ++i)
                     writer.int64(message.userlist[i]);
                 writer.ldelim();
             }
             if (message.errcode != null && message.hasOwnProperty("errcode"))
-                writer.uint32(/* id 11, wireType 0 =*/88).int32(message.errcode);
+                writer.uint32(/* id 12, wireType 0 =*/96).int32(message.errcode);
             return writer;
         };
 
@@ -1310,21 +1279,24 @@ $root.Protocol = (function() {
                     message.to = reader.int64();
                     break;
                 case 5:
-                    message.isgroup = reader.bool();
-                    break;
-                case 6:
                     message.content = reader.string();
                     break;
-                case 7:
+                case 6:
                     message.contentType = reader.int32();
+                    break;
+                case 7:
+                    message.isgroup = reader.bool();
                     break;
                 case 8:
                     message.msgid = reader.int64();
                     break;
                 case 9:
-                    message.time = reader.int64();
+                    message.arriveTime = reader.int64();
                     break;
                 case 10:
+                    message.sendTime = reader.int64();
+                    break;
+                case 11:
                     if (!(message.userlist && message.userlist.length))
                         message.userlist = [];
                     if ((tag & 7) === 2) {
@@ -1334,7 +1306,7 @@ $root.Protocol = (function() {
                     } else
                         message.userlist.push(reader.int64());
                     break;
-                case 11:
+                case 12:
                     message.errcode = reader.int32();
                     break;
                 default:
@@ -1399,9 +1371,6 @@ $root.Protocol = (function() {
             if (message.to != null && message.hasOwnProperty("to"))
                 if (!$util.isInteger(message.to) && !(message.to && $util.isInteger(message.to.low) && $util.isInteger(message.to.high)))
                     return "to: integer|Long expected";
-            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
-                if (typeof message.isgroup !== "boolean")
-                    return "isgroup: boolean expected";
             if (message.content != null && message.hasOwnProperty("content"))
                 if (!$util.isString(message.content))
                     return "content: string expected";
@@ -1414,12 +1383,18 @@ $root.Protocol = (function() {
                 case 2:
                     break;
                 }
+            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
+                if (typeof message.isgroup !== "boolean")
+                    return "isgroup: boolean expected";
             if (message.msgid != null && message.hasOwnProperty("msgid"))
                 if (!$util.isInteger(message.msgid) && !(message.msgid && $util.isInteger(message.msgid.low) && $util.isInteger(message.msgid.high)))
                     return "msgid: integer|Long expected";
-            if (message.time != null && message.hasOwnProperty("time"))
-                if (!$util.isInteger(message.time) && !(message.time && $util.isInteger(message.time.low) && $util.isInteger(message.time.high)))
-                    return "time: integer|Long expected";
+            if (message.arriveTime != null && message.hasOwnProperty("arriveTime"))
+                if (!$util.isInteger(message.arriveTime) && !(message.arriveTime && $util.isInteger(message.arriveTime.low) && $util.isInteger(message.arriveTime.high)))
+                    return "arriveTime: integer|Long expected";
+            if (message.sendTime != null && message.hasOwnProperty("sendTime"))
+                if (!$util.isInteger(message.sendTime) && !(message.sendTime && $util.isInteger(message.sendTime.low) && $util.isInteger(message.sendTime.high)))
+                    return "sendTime: integer|Long expected";
             if (message.userlist != null && message.hasOwnProperty("userlist")) {
                 if (!Array.isArray(message.userlist))
                     return "userlist: array expected";
@@ -1510,8 +1485,6 @@ $root.Protocol = (function() {
                     message.to = object.to;
                 else if (typeof object.to === "object")
                     message.to = new $util.LongBits(object.to.low >>> 0, object.to.high >>> 0).toNumber();
-            if (object.isgroup != null)
-                message.isgroup = Boolean(object.isgroup);
             if (object.content != null)
                 message.content = String(object.content);
             switch (object.contentType) {
@@ -1528,6 +1501,8 @@ $root.Protocol = (function() {
                 message.contentType = 2;
                 break;
             }
+            if (object.isgroup != null)
+                message.isgroup = Boolean(object.isgroup);
             if (object.msgid != null)
                 if ($util.Long)
                     (message.msgid = $util.Long.fromValue(object.msgid)).unsigned = false;
@@ -1537,15 +1512,24 @@ $root.Protocol = (function() {
                     message.msgid = object.msgid;
                 else if (typeof object.msgid === "object")
                     message.msgid = new $util.LongBits(object.msgid.low >>> 0, object.msgid.high >>> 0).toNumber();
-            if (object.time != null)
+            if (object.arriveTime != null)
                 if ($util.Long)
-                    (message.time = $util.Long.fromValue(object.time)).unsigned = false;
-                else if (typeof object.time === "string")
-                    message.time = parseInt(object.time, 10);
-                else if (typeof object.time === "number")
-                    message.time = object.time;
-                else if (typeof object.time === "object")
-                    message.time = new $util.LongBits(object.time.low >>> 0, object.time.high >>> 0).toNumber();
+                    (message.arriveTime = $util.Long.fromValue(object.arriveTime)).unsigned = false;
+                else if (typeof object.arriveTime === "string")
+                    message.arriveTime = parseInt(object.arriveTime, 10);
+                else if (typeof object.arriveTime === "number")
+                    message.arriveTime = object.arriveTime;
+                else if (typeof object.arriveTime === "object")
+                    message.arriveTime = new $util.LongBits(object.arriveTime.low >>> 0, object.arriveTime.high >>> 0).toNumber();
+            if (object.sendTime != null)
+                if ($util.Long)
+                    (message.sendTime = $util.Long.fromValue(object.sendTime)).unsigned = false;
+                else if (typeof object.sendTime === "string")
+                    message.sendTime = parseInt(object.sendTime, 10);
+                else if (typeof object.sendTime === "number")
+                    message.sendTime = object.sendTime;
+                else if (typeof object.sendTime === "object")
+                    message.sendTime = new $util.LongBits(object.sendTime.low >>> 0, object.sendTime.high >>> 0).toNumber();
             if (object.userlist) {
                 if (!Array.isArray(object.userlist))
                     throw TypeError(".Protocol.Message.userlist: array expected");
@@ -1609,9 +1593,9 @@ $root.Protocol = (function() {
                     object.to = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.to = options.longs === String ? "0" : 0;
-                object.isgroup = false;
                 object.content = "";
                 object.contentType = options.enums === String ? "TEXT" : 0;
+                object.isgroup = false;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
                     object.msgid = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
@@ -1619,9 +1603,14 @@ $root.Protocol = (function() {
                     object.msgid = options.longs === String ? "0" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.time = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.arriveTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
-                    object.time = options.longs === String ? "0" : 0;
+                    object.arriveTime = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.sendTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.sendTime = options.longs === String ? "0" : 0;
                 object.errcode = options.enums === String ? "REQUEST_BODY_PARAMS_ERROR" : 0;
             }
             if (message.type != null && message.hasOwnProperty("type"))
@@ -1638,22 +1627,27 @@ $root.Protocol = (function() {
                     object.to = options.longs === String ? String(message.to) : message.to;
                 else
                     object.to = options.longs === String ? $util.Long.prototype.toString.call(message.to) : options.longs === Number ? new $util.LongBits(message.to.low >>> 0, message.to.high >>> 0).toNumber() : message.to;
-            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
-                object.isgroup = message.isgroup;
             if (message.content != null && message.hasOwnProperty("content"))
                 object.content = message.content;
             if (message.contentType != null && message.hasOwnProperty("contentType"))
                 object.contentType = options.enums === String ? $root.Protocol.Message.ContentType[message.contentType] : message.contentType;
+            if (message.isgroup != null && message.hasOwnProperty("isgroup"))
+                object.isgroup = message.isgroup;
             if (message.msgid != null && message.hasOwnProperty("msgid"))
                 if (typeof message.msgid === "number")
                     object.msgid = options.longs === String ? String(message.msgid) : message.msgid;
                 else
                     object.msgid = options.longs === String ? $util.Long.prototype.toString.call(message.msgid) : options.longs === Number ? new $util.LongBits(message.msgid.low >>> 0, message.msgid.high >>> 0).toNumber() : message.msgid;
-            if (message.time != null && message.hasOwnProperty("time"))
-                if (typeof message.time === "number")
-                    object.time = options.longs === String ? String(message.time) : message.time;
+            if (message.arriveTime != null && message.hasOwnProperty("arriveTime"))
+                if (typeof message.arriveTime === "number")
+                    object.arriveTime = options.longs === String ? String(message.arriveTime) : message.arriveTime;
                 else
-                    object.time = options.longs === String ? $util.Long.prototype.toString.call(message.time) : options.longs === Number ? new $util.LongBits(message.time.low >>> 0, message.time.high >>> 0).toNumber() : message.time;
+                    object.arriveTime = options.longs === String ? $util.Long.prototype.toString.call(message.arriveTime) : options.longs === Number ? new $util.LongBits(message.arriveTime.low >>> 0, message.arriveTime.high >>> 0).toNumber() : message.arriveTime;
+            if (message.sendTime != null && message.hasOwnProperty("sendTime"))
+                if (typeof message.sendTime === "number")
+                    object.sendTime = options.longs === String ? String(message.sendTime) : message.sendTime;
+                else
+                    object.sendTime = options.longs === String ? $util.Long.prototype.toString.call(message.sendTime) : options.longs === Number ? new $util.LongBits(message.sendTime.low >>> 0, message.sendTime.high >>> 0).toNumber() : message.sendTime;
             if (message.userlist && message.userlist.length) {
                 object.userlist = [];
                 for (var j = 0; j < message.userlist.length; ++j)
@@ -1768,7 +1762,7 @@ module.exports = $root;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzaWdudXAvc2lnbnVwLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpZ251cC9zaWdudXAuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -1890,6 +1884,10 @@ var UserService = /** @class */ (function () {
         var url = this.configUrl + '/user-info/' + id;
         return this.http.get(url);
     };
+    UserService.prototype.getuserlist = function (name) {
+        var url = this.configUrl + '/users/' + name;
+        return this.http.get(url);
+    };
     UserService.prototype.getgroupinfo = function (id) {
         var url = this.configUrl + '/group-info/' + id;
         return this.http.get(url);
@@ -1899,6 +1897,11 @@ var UserService = /** @class */ (function () {
         headers = headers.set('X-Session-Id', this.session_id);
         // console.log("session=", this.session_id)
         return headers;
+    };
+    UserService.prototype.userList = function (name) {
+        this.getuserlist(name).subscribe(function (data) {
+            console.log("getuserlist=", data);
+        });
     };
     UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -1962,7 +1965,7 @@ var WebsocketService = /** @class */ (function () {
             reader.onload = function (e) {
                 var buf = new Uint8Array(reader.result);
                 var conn = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.decode(buf);
-                console.log(conn);
+                // console.log(conn)
                 that.parseNotification(conn); //收到消息解析后分析消息
             };
         };
@@ -1972,7 +1975,7 @@ var WebsocketService = /** @class */ (function () {
     WebsocketService.prototype.createSessionHeader = function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]();
         headers = headers.set('X-Session-Id', this.us.session_id);
-        console.log("session=", this.us.session_id);
+        // console.log("session=", this.us.session_id)
         return headers;
     };
     // 获取通讯录
@@ -1986,57 +1989,9 @@ var WebsocketService = /** @class */ (function () {
         return this.http.get(url, { headers: this.createSessionHeader() });
     };
     //获取最近联系人的最近聊天信息
-    WebsocketService.prototype.getNearestContactMessage = function () {
+    WebsocketService.prototype.getNearestContactAndMessage = function () {
         var url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl + "/recent-contact-message";
         return this.http.get(url, { headers: this.createSessionHeader(), observe: 'response' });
-    };
-    //获取最近联系人
-    WebsocketService.prototype.getNearestList = function () {
-        var _this = this;
-        this.getNearestContactMessage().subscribe(function (data) {
-            console.log("最近联系人de消息", data);
-            _this.nearest_contact.contact_list = [];
-            for (var i = 0; i < data.body['chat_room_list'].length; i++) {
-                var FriItem = new (_common_im__WEBPACK_IMPORTED_MODULE_6__["NearestContactItem"]);
-                FriItem.id = data.body['chat_room_list'][i].id;
-                FriItem.name = data.body['chat_room_list'][i].name;
-                FriItem.head_img = data.body['chat_room_list'][i].head_img;
-                FriItem.is_group = data.body['chat_room_list'][i].is_group;
-                FriItem.count = data.body['chat_room_list'][i].count;
-                FriItem.message_list = data.body['chat_room_list'][i].message_list;
-                _this.nearest_contact.contact_list.push(FriItem);
-                //pjw我的代码
-                var chat_room = new (_common_im__WEBPACK_IMPORTED_MODULE_6__["ChatRoom"]);
-                chat_room.id = data.body['chat_room_list'][i].id;
-                chat_room.name = data.body['chat_room_list'][i].name;
-                chat_room.is_group = data.body['chat_room_list'][i].is_group;
-                chat_room.message_list = data.body['chat_room_list'][i].message_list;
-                _this.global_message.chat_room_list.set(FriItem.id, chat_room);
-            }
-            console.log("contact_list = ", _this.nearest_contact.contact_list);
-            console.log("global_messgae = ", _this.global_message.chat_room_list);
-            // this.getNearestMessage();
-        });
-    };
-    //获取通讯录
-    WebsocketService.prototype.getAddress = function () {
-        var _this = this;
-        this.getAddressBook().subscribe(function (data) {
-            // console.log("通讯录", data['friends_list']);
-            _this.address_book.contact_list = [];
-            // this.address_book.contact_list = data.friends_list;
-            for (var i = 0; i < data.friends_list.length; i++) {
-                var FriItem = new (_common_im__WEBPACK_IMPORTED_MODULE_6__["NearestContactItem"]);
-                FriItem.id = data['friends_list'].id;
-                FriItem.name = data['friends_list'][i].name;
-                FriItem.head_img = data['friends_list'][i].head_img;
-                FriItem.is_group = data['friends_list'].is_group;
-                FriItem.count = 0;
-                FriItem.message_list = [];
-                _this.address_book.contact_list.push(FriItem);
-            }
-            console.log("this.address_book=", _this.address_book);
-        });
     };
     // 发送信息，不在这里构造消息体
     WebsocketService.prototype.sendMessage = function (m) {
@@ -2048,20 +2003,22 @@ var WebsocketService = /** @class */ (function () {
             if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
                 this.DisplayMessagesLocally(m, m.to); // 说明是一条 单发或群发消息，在本地显示
             }
-        }
-        else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
-            if (m.msgid == 0) {
-                alert("消息ＩＤ不存在，无法撤回");
+            else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
+                if (m.msgid == 0) {
+                    alert("消息ＩＤ不存在，无法撤回");
+                }
+                else {
+                    //this.getNearestList();
+                    console.log("撤回消息");
+                }
+                // 撤回消息
+                // TODO 单聊或群聊发送消息 消息在本地消失
             }
-            else {
-                this.DisplayMessagesLocally;
-            }
-            // 撤回消息
-            // TODO 单聊或群聊发送消息 消息在本地消失
         }
     };
     //分析消息
     WebsocketService.prototype.parseNotification = function (m) {
+        console.log("收到一条消息", m);
         if (m.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.NOTIFICATION) {
             console.log("NOTIFICATION");
             if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
@@ -2080,11 +2037,31 @@ var WebsocketService = /** @class */ (function () {
             }
             else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.MSG_BACK) {
                 // 消息撤回 需要删除本地消息,以示撤回
+                if (this.global_message.chat_room_list.has(m.to)) {
+                    var list = this.global_message.chat_room_list.get(m.to).message_list;
+                    var index = list.findIndex(function (e) { return e.id == m.msgid; });
+                    if (index < 0) {
+                        console.log("撤回失败");
+                        return;
+                    }
+                    ;
+                    list.splice(index, 1);
+                    this.global_message.chat_room_list.get(m.to).message_list = list;
+                }
             }
         }
         else if (m.type == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.Type.ACK) {
             if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.NONE) {
                 // 发送的消息已经确认，把回送的 message id加入到那条信息 
+                if (this.global_message.chat_room_list.has(m.to)) {
+                    var index = this.global_message.chat_room_list.get(m.to).message_list.findIndex(function (e) { return e.send_time == m.sendTime; });
+                    if (index < 0) {
+                        console.log("找不到那条消息记录", this.global_message.chat_room_list.get(m.to).message_list);
+                        return;
+                    }
+                    this.global_message.chat_room_list.get(m.to).message_list[index].id = m.msgid;
+                    console.log("收到自己发消息的确认", this.global_message.chat_room_list.get(m.to).message_list);
+                }
             }
             else if (m.cmd == _protocol_Protocol__WEBPACK_IMPORTED_MODULE_2__["Protocol"].Message.CtrlType.CREATE_SESSION) {
             }
@@ -2113,10 +2090,10 @@ var WebsocketService = /** @class */ (function () {
         newMsg.content = m.content;
         newMsg.content_type = m.contentType;
         newMsg.is_group = m.isgroup;
-        newMsg.arrive_time = m.time;
+        newMsg.send_time = m.sendTime;
         chat_room.message_list.push(newMsg);
-        console.log(chat_room);
-        console.log(this.global_message.chat_room_list.get(room_id));
+        // console.log(chat_room);
+        // console.log(this.global_message.chat_room_list.get(room_id));
     };
     WebsocketService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -2195,7 +2172,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/goworks/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/pjw/GoProject/src/MessageSystem/frontend/src/main.ts */"./src/main.ts");
 
 
 /***/ })

@@ -168,7 +168,7 @@ func GetRecentContactList(uid int64)(*defs.NearestContact,error){
 	table := "im_message_counter_"+strconv.FormatInt(uid%4,10)
 
 	// user
-	rows, err := dbConn.Query("select id,name,headimg,counter,isgroup from "+table+",users where sender = users.id and isgroup=false  order by counter;")
+	rows, err := dbConn.Query("select id,name,headimg,counter,isgroup from "+table+",users where master = $1 and sender = users.id and isgroup=false  order by counter;",uid)
 	if err != nil && err != sql.ErrNoRows {
 		logger.Warn(err.Error())
 		return nil,err
@@ -183,7 +183,7 @@ func GetRecentContactList(uid int64)(*defs.NearestContact,error){
 	}
 
 	//groups
-	rows2, err := dbConn.Query("select id,name,headimg,counter,isgroup from "+table+",groups where sender = groups.id and isgroup=true order by counter;")
+	rows2, err := dbConn.Query("select id,name,headimg,counter,isgroup from "+table+",groups where master = $1 and sender = groups.id and isgroup=true order by counter;",uid)
 	if err != nil && err != sql.ErrNoRows {
 		logger.Warn(err.Error())
 		return nil,err

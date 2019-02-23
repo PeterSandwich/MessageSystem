@@ -100,7 +100,7 @@ func (c ContactList) Swap(i, j int) {
 	c[i], c[j] = c[j], c[i]
 }
 func (c ContactList) Less(i, j int) bool {
-	return c[i].Count < c[j].Count
+	return c[i].Count > c[j].Count
 }
 
 
