@@ -18,11 +18,18 @@
         <th class = "him"  >
           <!-- 2 -->
           {{to_name}}
-          <nz-dropdown class = "dropdown" *ngIf="isgroup">
-            <a nz-dropdown>
-              <i nz-icon type="down"></i>
-            </a>
+          <nz-dropdown class = "dropdown" *ngIf="isgroup" [nzTrigger]="'click'">
+              <button nz-button nz-dropdown nzType="primary"  (click)="showGroupMember()">成员</button>
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item *ngFor="let item of groupMemberList">
+                <img src = "{{item.head_img}}" class = "img">
+                <a>{{item.name}}</a>
+              </li>
+            </ul>
           </nz-dropdown>
+          <div>
+          <button nz-button nzType="primary" *ngIf="isgroup" nzShape="circle" (click)="showAddMemberModal()">加</button>
+        </div>
         </th>
       </tr>
       <tr class = "avatar2" >
@@ -164,31 +171,31 @@
     
   
   <!-- 创建群聊 -->
-  <nz-modal [(nzVisible)]="isAddGroupVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleAddGroupCancel()">
-      <ng-template #modalTitle>
+  <nz-modal [(nzVisible)]="isAddGroupVisible" [nzTitle]="modalTitle1" [nzContent]="modalContent1" [nzFooter]="modalFooter1" (nzOnCancel)="handleAddGroupCancel()">
+      <ng-template #modalTitle1>
         创建群
       </ng-template>
-      <ng-template #modalContent>
+      <ng-template #modalContent1>
         <!-- <div class = "list" > -->
-          <div class = "item" *ngFor="let item of addGroupUserList.AGlist" >
-              <label nz-checkbox [(ngModel)]="item.Check">
-                  <img src = "{{item.Headimg}}" class = "img">
-                  {{item.Name}}
+          <div class = "item" *ngFor="let item of createGroupList.contact_list" >
+              <label nz-checkbox [(ngModel)]="item.selected">
+                  <img src = "{{item.head_img}}" class = "img">
+                  {{item.name}}
               </label>
           </div>
         <!-- </div> -->
       </ng-template>
-      <ng-template #modalFooter>
+      <ng-template #modalFooter1>
           <input nz-input placeholder="群名字"[(ngModel)]="GroupName">
           <button nz-button nzType="default" (click)="handleAddGroupCancel()">取消</button>
-          <button nz-button nzType="primary" (click)="handleAddGroupOk()" [nzLoading]="isConfirmLoading">创建</button>
+          <button nz-button nzType="primary" (click)="handleAddGroupOk()" >创建</button>
       </ng-template>
   </nz-modal>
     
     
     <!-- 添加好友 -->
-  <nz-modal [(nzVisible)]="isAddFriendVisible" [nzTitle]="modalTitle1" [nzContent]="modalContent1"  (nzOnCancel)="handleAddFriendCancel()">
-      <ng-template #modalTitle1>
+  <nz-modal [(nzVisible)]="isAddFriendVisible" [nzTitle]="modalTitle2" [nzContent]="modalContent2"   [nzFooter]="modalFooter2" (nzOnCancel)="handleAddFriendCancel()">
+      <ng-template #modalTitle2>
           添加好友
           <nz-input-group [nzSuffix]="suffixIconSearch"> 
               <input type="text" [(ngModel)]="searchContent" nz-input placeholder="输入搜索的用户名" 
@@ -200,9 +207,9 @@
           </ng-template>
       </ng-template>
     
-      <ng-template #modalContent1>
+      <ng-template #modalContent2>
           <div *ngIf="!searchContent">
-              正在搜索内容
+              请输入进行查找
           </div>
             <div *ngIf="searchContent">
                 <div *ngIf="flag;else Show">查无此人</div>
@@ -213,11 +220,36 @@
                     <button (click) = "addfriend(item.id)">添加好友</button>
                 </div>
               </ng-template>
-    
             </div>
+      </ng-template>
+      <ng-template #modalFooter2>
+          <button nz-button nzType="primary" (click)="handleAddFriendCancel()">完成</button>
       </ng-template>
   </nz-modal>
   
+
+
+   <!-- 群添加成员 -->
+   <nz-modal [(nzVisible)]="isAddMemberVisible" [nzTitle]="modalTitle3" [nzContent]="modalContent3" [nzFooter]="modalFooter3" (nzOnCancel)="handleAddMemberCancel()">
+      <ng-template #modalTitle3>
+        添加成员
+      </ng-template>
+      <ng-template #modalContent3>
+        <!-- <div class = "list" > -->
+          <div class = "item" *ngFor="let item of addMemberList" >
+              <label nz-checkbox [(ngModel)]="item.selected" [nzDisabled]="item.existed">
+                  <img src = "{{item.head_img}}" class = "img">
+                  {{item.name}}
+              </label>
+          </div>
+      </ng-template>
+      <ng-template #modalFooter3>
+          <button nz-button nzType="default" (click)="handleAddMemberCancel()">取消</button>
+          <button nz-button nzType="primary" (click)="handleAddMemberOK()">添加</button>
+      </ng-template>
+  </nz-modal>
+
+
   <!-- <div *ngIf="show">
       <div style="display: -webkit-box;">
           <div class="hint">

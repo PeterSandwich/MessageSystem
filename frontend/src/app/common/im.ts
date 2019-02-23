@@ -62,3 +62,22 @@ export class AllChatRoom {
     size : number;
     message_list : MessageItem[];
 }
+
+
+export class CreateGroupItem{
+    id: number|Long
+    name: string
+    head_img: string
+    selected: boolean
+}
+export class CreateGroup{
+    contact_list: CreateGroupItem[];
+}
+
+export class AddMemberItem{
+    id: number|Long
+    name: string
+    head_img: string
+    selected: boolean
+    existed: boolean
+}

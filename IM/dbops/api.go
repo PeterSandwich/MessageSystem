@@ -368,7 +368,7 @@ func GetGroupAllMemberInfo(gid int64) ([]defs.UserInfo, error) {
 		if Img.Valid {
 			info.HeadImg = Img.String
 		}
-		info.PassWord = "*****"
+		info.PassWord = "*"
 		infoList = append(infoList,info)
 	}
 

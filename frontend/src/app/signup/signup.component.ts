@@ -13,9 +13,10 @@ export class SignupComponent implements OnInit {
   }
   name =''
   password = ''
+  head_img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMPDSqHLwSCvXoVaKQSai926DXs5MufxblRa_yZf0tFYN6ks-_'
 
   signup(){
-      let body = {name:this.name,password:this.password}
+      let body = {name:this.name,password:this.password,head_img:this.head_img}
       this.login.postSignupData(body).subscribe(data =>{
         // console.log(data);
        if(data.status==200)
