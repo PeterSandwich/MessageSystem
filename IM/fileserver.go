@@ -30,8 +30,8 @@ import (
 
 
 const maxUploadSize = 10 * 1024 * 1024 // 10 mb
-const uploadPath = "/tmp/files/"
-//const uploadPath = "C:/Users/User/Desktop/GoProject/files/"
+//const uploadPath = "/tmp/files/"
+const uploadPath = "C:/Users/User/Desktop/GoProject/files/"
 
 var inputArgs defs.InputArgs
 

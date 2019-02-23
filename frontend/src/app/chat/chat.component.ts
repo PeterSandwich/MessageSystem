@@ -320,8 +320,6 @@ export class ChatComponent implements OnInit {
   show:boolean
   selectFile(event: any) {
     let fileList: FileList = event.target.files;
-    // console.log("fileList=", fileList)
-    // console.log("event.target", event.target)
     this.uploadFile(fileList);
   }
 
@@ -376,8 +374,6 @@ export class ChatComponent implements OnInit {
           console.log("Upload done");
         }
       )
-    //this.getpath();
-
   }
 
 
@@ -394,10 +390,6 @@ export class ChatComponent implements OnInit {
   }
   handleshowpicCancel(): void {
     this.isshowpicVisible = false;
-  }
-  getpath() {
-    this.filep = "getpic/3ea62ac5fb0758efadb15e36_compress.jpg"
-    // console.log(this.filep);
   }
   download() {
     window.open(this.fileurl, '_blank');
