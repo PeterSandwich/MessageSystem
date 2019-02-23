@@ -59,6 +59,13 @@ export class WebsocketService {
     this.ws.onclose = function() {console.log("WebSocket关闭")};
   }
 
+  // 断开websocket连接
+  closeSocket(){
+    if(!(this.ws.CLOSED&&this.ws.CLOSING)){
+      this.ws.close()
+    }
+  }
+
   // 请求头部设置x-session-id
   createSessionHeader():HttpHeaders {
     let headers = new HttpHeaders();
@@ -88,7 +95,7 @@ export class WebsocketService {
 
   // 发送信息，不在这里构造消息体
   sendMessage(m: Protocol.Message){
-    // console.log("mes.contentype=",message.contentType);
+    
     //先发送出数据
     console.log("websocket发送前的数据:",m)
     this.ws.send(Protocol.Message.encode(m).finish());
@@ -98,12 +105,7 @@ export class WebsocketService {
       }else if(m.cmd == Protocol.Message.CtrlType.MSG_BACK){  
         if(m.msgid == 0){
           alert("消息ＩＤ不存在，无法撤回");
-        }else{
-          //this.getNearestList();
-          console.log("撤回消息")
         }
-          // 撤回消息
-          // TODO 单聊或群聊发送消息 消息在本地消失
       }
     }
   }
@@ -117,13 +119,20 @@ export class WebsocketService {
       if (m.cmd == Protocol.Message.CtrlType.NONE){
         if(m.isgroup){
           this.DisplayMessagesLocally(m,m.to)
+          this.countInc(m.to)
         }else{
           this.DisplayMessagesLocally(m,m.from) // 说明是一条 单发或群发消息，在本地显示
+          this.countInc(m.from)
         }
       }else if(m.cmd == Protocol.Message.CtrlType.CREATE_SESSION){ 
         // 说明是陌生人主动找你聊天,需要在本地创建和他聊天的chatroom
-      }else if (m.cmd == Protocol.Message.CtrlType.CREATE_GROUP || m.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
+        if(m.isgroup){alert("出现错误：创建会话（添加好友）时，isgroup应为false");return;}
+        this.newC2cChatRoom(m.from)
+      }else if (m.cmd == Protocol.Message.CtrlType.CREATE_GROUP||m.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
        // 需要在本地创建和群聊天的chatroom
+       if(!m.isgroup){alert("出现错误：创建会话（创建群组）时，isgroup应为true");return;}
+       this.newGroupChatRoom(m.to)
+
       }else if(m.cmd == Protocol.Message.CtrlType.MSG_BACK){
         // 消息撤回 需要删除本地消息,以示撤回
         if (this.global_message.chat_room_list.has(m.to)){
@@ -144,14 +153,17 @@ export class WebsocketService {
           console.log("收到自己发消息的确认",this.global_message.chat_room_list.get(m.to).message_list)
         }
       }else if(m.cmd == Protocol.Message.CtrlType.CREATE_SESSION){
-      }else if (m.cmd == Protocol.Message.CtrlType.CREATE_GROUP || m.cmd == Protocol.Message.CtrlType.GROUP_ADDMEMBERS){
+        if(m.isgroup){alert("出现错误：创建会话（添加好友）时，isgroup应为false");return;}
+        this.newC2cChatRoom(m.to);
+      }else if (m.cmd == Protocol.Message.CtrlType.CREATE_GROUP ){
+        if(!m.isgroup){alert("出现错误：创建会话（创建群组）时，isgroup应为true");return;}
+        this.newGroupChatRoom(m.to)
       }
     }
   }
 
 
   //下面是处理消息的
-  
   DisplayMessagesLocally(m: Protocol.Message,room_id: number|Long){
     if (!this.global_message.chat_room_list.has(room_id)){
       console.log("没有这个会话，无法插入消息");
@@ -165,6 +177,7 @@ export class WebsocketService {
     if(chat_room.message_list==null){
       chat_room.message_list = [];
     }
+
     let newMsg = new(com.MessageItem);
     newMsg.id = m.msgid;
     newMsg.from = m.from;
@@ -177,5 +190,66 @@ export class WebsocketService {
     chat_room.message_list.push(newMsg);
     // console.log(chat_room);
     // console.log(this.global_message.chat_room_list.get(room_id));
+  }
+
+
+  countInc(id){
+    let i = this.nearest_contact.contact_list.findIndex(e => e.id == id)
+    let newCount = Number(this.nearest_contact.contact_list[i].count);
+    newCount+=1;
+    this.nearest_contact.contact_list[i].count=newCount;
+    console.log("一次上移")
+    let top = this.nearest_contact.contact_list.splice(i,1)
+    this.nearest_contact.contact_list.unshift(top[0]);
+  }
+
+  newC2cChatRoom(room_id: number|Long){
+    let i = this.nearest_contact.contact_list.findIndex(e => e.id == room_id);
+    if(i>=0||this.global_message.chat_room_list.has(room_id)){
+      console.log("会话已存在，不创建会话");return;}
+    
+    let item = new com.NearestContactItem
+    this.us.getUserbyId(room_id).subscribe(data =>{
+      console.log("创建会话时",data);
+      item.id = room_id;
+      item.name= data['name'];
+      item.head_img=data['head_img'];
+      item.count=1;
+      item.is_group = false;
+
+      this.nearest_contact.contact_list.unshift(item);
+      let chat_room = new com.ChatRoom;
+      chat_room.id = room_id;
+      chat_room.name = item.name;
+      chat_room.is_group = false;
+      chat_room.message_list = [];
+      this.global_message.chat_room_list.set(room_id,chat_room)
+      console.log("会话（添加好友）完成");
+    })
+  }
+
+  newGroupChatRoom(room_id: number|Long){
+    let i = this.nearest_contact.contact_list.findIndex(e => e.id == room_id);
+    if(i>=0||this.global_message.chat_room_list.has(room_id)){
+      console.log("会话已存在，不创建会话");return;}
+    
+    let item = new com.NearestContactItem
+    this.us.getGroupById(room_id).subscribe(data =>{
+      console.log("创建群会话时",data);
+      item.id = room_id;
+      item.name= data['name'];
+      item.head_img=data['head_img'];
+      item.count=1;
+      item.is_group = true;
+
+      this.nearest_contact.contact_list.unshift(item);
+      let chat_room = new com.ChatRoom;
+      chat_room.id = room_id;
+      chat_room.name = item.name;
+      chat_room.is_group = true;
+      chat_room.message_list = [];
+      this.global_message.chat_room_list.set(room_id,chat_room)
+      console.log("会话（创建群）完成");
+    })
   }
 }

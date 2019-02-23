@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { UploadService } from '../file.service';
 import { Protocol } from '../protocol/Protocol';
 import * as com from '../common/im'
+import { Observable } from 'rxjs';
 
 @Injectable()
 @Component({
@@ -51,7 +52,9 @@ export class ChatComponent implements OnInit {
   friend : com.NearestContactItem;
   userlist : com.NearestContact;;
   messagelist : com.MessageItem[];
-  addGroupUserList:AddGroupUserlist;
+  createGroupList:com.CreateGroup;
+  groupMemberList:com.AddressBookItem[];
+  addMemberList:com.AddMemberItem[];
 
   pressBoolean : boolean = false;
   px : string = "";
@@ -71,9 +74,10 @@ export class ChatComponent implements OnInit {
     private el: ElementRef,
     public _d: DomSanitizer
     ) {
-      this.addGroupUserList=new(AddGroupUserlist);
-      this.addGroupUserList.AGlist = [];
-      
+      this.createGroupList=new(com.CreateGroup);
+      this.createGroupList.contact_list = [];
+      this.groupMemberList = [];
+      this.addMemberList = [];
       // this.userlist = [];
      }
 
@@ -87,7 +91,7 @@ export class ChatComponent implements OnInit {
 
       // 初始化最近聊天列表及其聊天历史消息
       this.getNearestListAndMessage()
-
+      this.getAddress()
 
       // this.friendlist = data.nearContractList;
       //this.addressList = data.addressList;
@@ -192,6 +196,10 @@ export class ChatComponent implements OnInit {
           flag = true;
       }
 
+      // 徽标数清零
+      let i = this.ws.nearest_contact.contact_list.findIndex(e => e.id == id)
+      this.ws.nearest_contact.contact_list[i].count = 0;
+
       if(!flag){
           this.showmsg = [];
       }
@@ -237,19 +245,24 @@ export class ChatComponent implements OnInit {
     
 
     addfriend(to: number){
+      
+      if(to == this.us.MyUserId){alert("不能添加自己为好友");return;}
+      for(let i=0;i<this.ws.nearest_contact.contact_list.length;i++){
+        if(this.ws.nearest_contact.contact_list[i].id == to){
+          alert("已是好友");
+          return;
+        }
+      }
+
       let msg = new(Protocol.Message)
       msg.type = Protocol.Message.Type.REQUEST;
       msg.cmd = Protocol.Message.CtrlType.CREATE_SESSION;
       msg.from = this.us.MyUserId;
       msg.to = to;
       msg.sendTime = Date.now();
-
-
       this.ws.sendMessage(msg)
-      // this.ws.getNearestList();
-      // this.ws.getAddress();
-      this.ngOnInit()
     }
+
     keyUpSearch(name: string){ //搜索添加好友
       // this.ws.
       // this.ws.getUserList(this.searchContent).subscribe(data => {
@@ -348,8 +361,7 @@ export class ChatComponent implements OnInit {
              msg.contentType = filetype; 
              this.contentType = msg.contentType;
              msg.isgroup = this.isgroup;
-             console.log("isgroup=",this.isgroup);
-            this.ws.sendMessage(msg);
+              this.ws.sendMessage(msg);
              this.content = "";
           }
          
@@ -438,13 +450,14 @@ export class ChatComponent implements OnInit {
   //获取通讯录
   getAddress(){
     this.ws.getAddressBook().subscribe((data) => {
-
+      if(this.ws.address_book.contact_list.length>0){this.ws.address_book.contact_list = [];}
+      if(data==null){console.log("通讯录为空");return;}
       for(let i = 0; i < data.friends_list.length; i++){
           let  FriItem:com.NearestContactItem = new(com.NearestContactItem);
-          FriItem.id=data['friends_list'].id;
+          FriItem.id=data['friends_list'][i].id;
           FriItem.name=data['friends_list'][i].name;
           FriItem.head_img=data['friends_list'][i].head_img;
-          FriItem.is_group=data['friends_list'].is_group;
+          FriItem.is_group=data['friends_list'][i].is_group;
           FriItem.count= 0;
           this.ws.address_book.contact_list.push(FriItem)
       }
@@ -459,31 +472,40 @@ export class ChatComponent implements OnInit {
     
     GroupName = ''
     isAddGroupVisible = false;
-    isAddGroupConfirmLoading = false;
-    showAddGroupModal(): void {
-      // for(let i=0;i<this.ws.global_message.chat_room_list[i];i++){
-      //   if(this.ws.wsFriendList.List[i].Isgroup){continue;}
-      //   let item = new(AddGroupUserItem);
-      //   item.ID=Number(this.ws.wsFriendList.List[i].ID);
-      //   item.Name=this.ws.wsFriendList.List[i].Name;
-      //   item.Headimg=this.ws.wsFriendList.List[i].Headimg;
-      //   item.Check = false;
-      //   this.addGroupUserList.AGlist.push(item);
-      // }
-      this.isAddGroupVisible = true;
+    showAddGroupModal() {
+
+      let list = this.ws.address_book.contact_list;
+      if(list.length==0){alert("列表无联系人，不可创建群");return;}
+
+      console.log("list:",this.ws.address_book.contact_list)
+      for(let i=0;i<list.length;i++){
+        if(list[i].is_group==false){
+          let item = new com.CreateGroupItem;
+          item.id = list[i].id;
+          item.name = list[i].name;
+          item.head_img =list[i].head_img;
+          item.selected = false;
+          this.createGroupList.contact_list.push(item);
+        }
+     }
+     this.isAddGroupVisible = true;
+     console.log("创建群组显示列表：",this.createGroupList.contact_list);
     }
+
+
     handleAddGroupCancel(): void {
       this.isAddGroupVisible = false;
-      this.addGroupUserList.AGlist = [];
+      this.createGroupList.contact_list = [];
       this.GroupName = '';
     }
     handleAddGroupOk(){
-      if(this.GroupName=='' || this.addGroupUserList.AGlist.length==0){
-        alert("注意：群名不能为空并且至少选中一人");
+      if(this.GroupName=='' ){
+        alert("注意：群名不能为空");
         this.GroupName='';
-        this.addGroupUserList.AGlist = [];
+        this.createGroupList.contact_list = [];
         return;
       }
+
       let msg = new(Protocol.Message)
       msg.type = Protocol.Message.Type.REQUEST;
       msg.cmd = Protocol.Message.CtrlType.CREATE_GROUP;
@@ -492,17 +514,21 @@ export class ChatComponent implements OnInit {
       msg.contentType = Protocol.Message.ContentType.TEXT; 
       msg.isgroup = true;
       msg.userlist = [];
-      for(let i=0;i<this.addGroupUserList.AGlist.length;i++){
-        if(this.addGroupUserList.AGlist[i].Check){
-          // console.log(this.addGroupUserList.AGlist[i].ID);
-          msg.userlist.push(this.addGroupUserList.AGlist[i].ID);
+      for(let i=0;i<this.createGroupList.contact_list.length;i++){
+        if(this.createGroupList.contact_list[i].selected){
+          msg.userlist.push(this.createGroupList.contact_list[i].id);
         }
       }
-      msg.userlist.push(this.us.MyUserId);
-      // this.ws.sendMessage(msg);
-      this.addGroupUserList.AGlist = [];
+      if(msg.userlist.length == 0){
+        alert("注意：至少选择一个人");
+        return;
+      }
+
+      this.createGroupList.contact_list = [];
       this.GroupName = '';
       this.isAddGroupVisible = false;
+
+      this.ws.sendMessage(msg)
     }
 
 
@@ -529,15 +555,84 @@ export class ChatComponent implements OnInit {
         dis.scrollTop = dis.scrollHeight;
     } catch(err) { }   
   }
+
+
+  showGroupMember(){
+    this.us.getGroupMember(this.to_id).subscribe(data => {
+      this.groupMemberList = [];
+      console.log(data)
+      for(let i=0;i<data['length'];i++){
+        let item = new com.AddressBookItem;
+        item.id = data[i]['id'];
+        item.name = data[i]['name'];
+        item.head_img = data[i]['head_img'];
+        this.groupMemberList.push(item)
+      }
+    })
+  }
+
+  isAddMemberVisible = false;
+  showAddMemberModal(){
+    let list = this.ws.address_book.contact_list;
+      if(list.length==0){alert("列表无联系人，群不可加人");return;}
+   
+      this.us.getGroupMember(this.to_id).subscribe(data => {
+        this.groupMemberList = [];
+        console.log(data)
+        for(let i=0;i<data['length'];i++){
+          let item = new com.AddressBookItem;
+          item.id = data[i]['id'];
+          item.name = data[i]['name'];
+          item.head_img = data[i]['head_img'];
+          this.groupMemberList.push(item)
+        }
+        
+        this.addMemberList = []
+        for(let i=0;i<list.length;i++){
+          if(list[i].is_group==false){
+            let item = new com.AddMemberItem;
+            item.id = list[i].id;
+            item.name = list[i].name;
+            item.head_img =list[i].head_img;
+            item.selected = false;
+            item.existed = false;
+            if (this.groupMemberList.findIndex(e => e.id == item.id)>0){
+              item.existed = true;
+            }
+            this.addMemberList.push(item);
+          }
+        }
+        this.isAddMemberVisible = true;
+      })
+  }
+  handleAddMemberCancel(){
+    this.isAddMemberVisible = false;
+  }
+  handleAddMemberOK(){
+    let msg = new(Protocol.Message)
+    msg.type = Protocol.Message.Type.REQUEST;
+    msg.cmd = Protocol.Message.CtrlType.GROUP_ADDMEMBERS;
+    msg.from =  this.us.MyUserId;
+    msg.to =  this.to_id;
+    msg.isgroup = true;
+    msg.userlist = [];
+    for(let i=0;i<this.addMemberList.length;i++){
+      if(this.addMemberList[i].selected){
+        msg.userlist.push(this.addMemberList[i].id);
+      }
+    }
+    if(msg.userlist.length == 0){
+      alert("注意：至少选择一个人");
+      return;
+    }
+    console.log("选择添加的人:",msg.userlist)
+    this.ws.sendMessage(msg)
+    this.isAddMemberVisible = false;
+  }
+  addMember(){
+    
+  }
 }
   
-export class AddGroupUserItem{
-	ID :number; 
-	Name :string;
-  Headimg :string;
-  Check: boolean;
-}
-export class AddGroupUserlist{
-	AGlist: AddGroupUserItem[];
-}
+
 

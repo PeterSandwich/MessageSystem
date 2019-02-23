@@ -8,8 +8,6 @@ import (
 	"MessageSystem/IM/session"
 	"database/sql"
 	"encoding/json"
-	"fmt"
-
 	"github.com/julienschmidt/httprouter"
 	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
@@ -26,7 +24,8 @@ func RegisterRouterHandlers() *httprouter.Router {
 	router.POST("/api/quit", quitHandle)//退出
 	router.POST("/api/upload", uploadFileHandler)//上传文件
 	router.GET("/api/user-info/:id", getUserInfo)// 获取个人信息
-	router.GET("/api/group-info/:gid", getGroupInfo)// 获取群的信息
+	router.GET("/api/group-members/:gid", getGroupMember)// 获取群的信息
+	router.GET("/api/group-info/:gid", getGroupInfo)
 	router.GET("/api/users/:name", getUsers)// 获取用户列表
 	router.GET("/api/address-book",getAddressBook)//获取通讯录y
 	router.GET("/api/recent-contact",getNearestContact)	//获取最近联系人y
@@ -121,7 +120,7 @@ func quitHandle(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		return
 	}
 	session.DeleteSeesion(sess)
-	sendNormalResponse(w,"success quit.",200)
+	sendNormalResponse(w,"",200)
 }
 
 // 获取通讯录
@@ -208,7 +207,6 @@ func getNearestContactMessage(w http.ResponseWriter, r *http.Request, p httprout
 		Logger.Warn(err.Error())
 		goto ERR
 	}
-	fmt.Println(string(data))
 	bytes = string(data)
 	if err = json.Unmarshal([]byte(bytes), contact); err != nil {
 		Logger.Warn(err.Error())
@@ -324,4 +322,22 @@ func DealWithDbReturnErr(w http.ResponseWriter,err error){
 	}else{
 		sendNormalResponse(w,"",204) // 204代表无内容
 	}
+}
+
+func getGroupMember(w http.ResponseWriter, r *http.Request, p httprouter.Params){
+	rawId:=p.ByName("gid")
+	gid,err :=strconv.ParseInt(rawId,10,64)
+	if len(rawId)==0 || err!= nil {
+		sendErrorResponse(w,defs.ErrorParamsFaults)
+		return
+	}
+
+	item, err := dbops.GetGroupAllMemberInfo(gid)
+	if err!= nil {
+		DealWithDbReturnErr(w,err)
+		return
+	}
+	data, _ := json.Marshal(item)
+	sendNormalResponse(w,string(data),200)
+
 }

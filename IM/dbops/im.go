@@ -128,7 +128,7 @@ func NewChatSession(from, to int64) error {
 	hash_num := int(from % 4)
 	table_name := "im_message_counter_" + strconv.Itoa(hash_num)
 	_, err := dbConn.Exec("insert into "+table_name+" (master,sender,counter,isgroup,last_ack_msg) values($1,$2,$3,$4,$5)",
-		from, to, 0, false, 0)
+		from, to, 1, false, 0)
 	if err != nil {
 		logger.Warn("database control in InsertCouterTable(): "+err.Error())
 		return err
@@ -137,7 +137,7 @@ func NewChatSession(from, to int64) error {
 	hash_num = int(to % 4)
 	table_name = "im_message_counter_" + strconv.Itoa(hash_num)
 	_, err = dbConn.Exec("insert into "+table_name+" (master,sender,counter,isgroup,last_ack_msg) values($1,$2,$3,$4,$5)",
-		to, from, 0, false, 0)
+		to, from, 1, false, 0)
 	if err != nil {
 		logger.Warn("database control in InsertCouterTable(): "+err.Error())
 		return err

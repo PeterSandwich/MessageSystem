@@ -22,35 +22,28 @@ export class UserService {
     return this.http.post(this.signupUrl, data,{observe:'response'});
   }
   quit(){
-
-    return this.http.get(this.quitUrl,{headers:this.createSessionHeader()});
+    return this.http.post(this.quitUrl,"",{headers:this.createSessionHeader()});
   }
   getUserbyId(id){
-    let url = this.configUrl+'/user?id='+id
+    let url = this.configUrl+'/user-info/'+id
     return this.http.get(url)
   }
   getGroupById(id){
-    let url = this.configUrl+'/group?id='+id
-    let headers = new Headers();
-    //headers.append('X-Session-Id','')
-    return this.http.get(url)
-  }
-  getuserinfo(id){
-    let url = this.configUrl+'/user-info/'+id
+    let url = this.configUrl+'/group-info/'+id
     return this.http.get(url)
   }
   getuserlist(name){
     let url = this.configUrl + '/users/'+ name
     return this.http.get(url);
   }
-  getgroupinfo(id){
-    let url = this.configUrl+'/group-info/'+id
+  getGroupMember(id){
+    let url = this.configUrl+'/group-members/'+id
     return this.http.get(url)
   }
   createSessionHeader():HttpHeaders {
     let headers = new HttpHeaders();
     headers = headers.set('X-Session-Id', this.session_id);
-    // console.log("session=", this.session_id)
+   console.log("header session=", this.session_id)
     return headers
   }
   userList(name){

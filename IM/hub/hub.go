@@ -203,15 +203,28 @@ func createGroupRequest(in *pb.Message) {
 		errorRequestResponse(in,in.GetFrom(),pb.Message_GROUP_CREATION_FAILED)
 		return
 	}
-
+	in.Userlist = append(in.Userlist,in.GetFrom())
 	_ = dbops.GroupAddUsers(gid, in.Userlist)
 
+	ack := &pb.Message{
+		Type:    pb.Message_ACK,
+		Cmd:     pb.Message_CREATE_GROUP,
+		From:    in.GetFrom(),
+		ArriveTime: time.Now().Unix(),
+		SendTime:in.GetSendTime(),
+		To:      gid,
+		Isgroup: true,
+		Content: gname,
+	}
+	messageForward(ack,in.GetFrom())
+
 	for _, id := range in.Userlist {
+		if id==in.GetFrom() {continue}
 		resp := &pb.Message{
 			Type:    pb.Message_NOTIFICATION,
 			Cmd:     pb.Message_CREATE_GROUP,
 			From:    in.GetFrom(),
-			ArriveTime:    time.Now().Unix(),
+			ArriveTime: time.Now().Unix(),
 			SendTime:in.GetSendTime(),
 			To:      gid,
 			Isgroup: true,
@@ -228,7 +241,26 @@ func groupAddMemRequest(in *pb.Message) {
 		errorRequestResponse(in,in.GetFrom(),pb.Message_REQUEST_BODY_PARAMS_ERROR)
 		return
 	}
+
+	info, err := dbops.GetGroupById(in.To)
+	if err!=nil {
+		errorRequestResponse(in,in.GetFrom(),pb.Message_REQUEST_BODY_PARAMS_ERROR)
+		return
+	}
+
 	_ = dbops.GroupAddUsers(in.To, in.Userlist)
+
+	ack := &pb.Message{
+		Type:    pb.Message_ACK,
+		Cmd:     pb.Message_GROUP_ADDMEMBERS,
+		From:    in.GetFrom(),
+		ArriveTime:  time.Now().Unix(),
+		SendTime:in.GetSendTime(),
+		Isgroup: true,
+		Content: info.Name,
+		To:in.GetTo(),
+	}
+	messageForward(ack,in.GetFrom())
 
 	for _, id := range in.Userlist {
 		resp := &pb.Message{
@@ -238,7 +270,7 @@ func groupAddMemRequest(in *pb.Message) {
 			ArriveTime:    time.Now().Unix(),
 			SendTime:in.GetSendTime(),
 			Isgroup: true,
-			Content: "新的群组",
+			Content: info.Name,
 			To:in.GetTo(),
 		}
 		messageForward(resp,id)
@@ -323,7 +355,7 @@ func createChatSession(in *pb.Message) {
 		Cmd:     pb.Message_CREATE_SESSION,
 		To:      in.GetTo(),
 		From:    in.GetFrom(),
-		ArriveTime:    time.Now().Unix(),
+		ArriveTime: time.Now().Unix(),
 		SendTime:in.GetSendTime(),
 		Isgroup: false,
 	}
@@ -335,7 +367,7 @@ func createChatSession(in *pb.Message) {
 		Cmd:     pb.Message_CREATE_SESSION,
 		To:      in.GetTo(),
 		From:    in.GetFrom(),
-		ArriveTime:    time.Now().Unix(),
+		ArriveTime: time.Now().Unix(),
 		SendTime:in.GetSendTime(),
 		Isgroup: false,
 	}
