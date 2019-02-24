@@ -31,6 +31,7 @@ export class ChatComponent implements OnInit {
   to_name = ""
   to_img = "";
   content = "";
+  searchFriend='';
   list = [];
   showmsg : com.MessageItem[];
 
