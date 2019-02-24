@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { UploadService } from '../file.service';
 import { Protocol } from '../protocol/Protocol';
 import * as com from '../common/im'
+import { environment } from '../../environments/environment.prod';
 
 
 @Injectable()
@@ -287,7 +288,7 @@ export class ChatComponent implements OnInit {
     
   picpath: string
   picurl: string
-  fileurl = 'http://localhost:9988/api/upload'
+  fileurl = environment.apiUrl+'/upload'
   dfileurl='http://localhost:9988/files/9edbe55433e4_compress.jpg'
   filep = ""
   aaaa="9edbe55433e4_compress.jpg"
