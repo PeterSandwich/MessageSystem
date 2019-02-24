@@ -20,19 +20,10 @@ export class HistoryMessage{
 }
 
 
-// 通讯录相关
-export class AddressBookItem{
-    id: number|Long
-    name: string
-    head_img: string
-    is_group: boolean
-}
-export class AddressBook{
-    friends_list: AddressBookItem[]
-}
+
 
 // 最近联系人
-export class NearestContactItem{
+export class ContactListItem{
     id: number|Long
     name: string
     head_img: string
@@ -41,7 +32,12 @@ export class NearestContactItem{
 }
 
 export class NearestContact{
-    contact_list: NearestContactItem[]
+    contact_list: ContactListItem[]
+}
+
+// 通讯录相关
+export class AddressBook{
+    contact_list: ContactListItem[]
 }
 
 

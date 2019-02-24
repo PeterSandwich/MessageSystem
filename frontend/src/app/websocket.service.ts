@@ -7,8 +7,8 @@ import { environment } from '../environments/environment';
 import { Long } from 'protobufjs';
 import { UserService } from './user.service';
 import * as com from './common/im';
-import { M } from 'ng-zorro-antd';
-// import { FriendItem, chatRoom } from './chat/data';
+
+
 
 @Injectable()
 export class WebsocketService {
@@ -18,11 +18,8 @@ export class WebsocketService {
 
   global_message: com.GlobalMessage;  //全局全部消息
   nearest_contact:com.NearestContact; // 最近联系人
-  address_book: com.NearestContact; // 通讯录
-  FriItem: com.NearestContactItem;
+  address_book: com.AddressBook;      // 通讯录
 
-
-  collection: Protocol.Message = new(Protocol.Message);
   constructor(private http:HttpClient,private us:UserService) { 
 
     this.global_message = new(com.GlobalMessage);
@@ -31,14 +28,10 @@ export class WebsocketService {
     this.nearest_contact = new(com.NearestContact);
     this.nearest_contact.contact_list = [];
 
-    this.address_book = new(com.NearestContact)
+    this.address_book = new(com.AddressBook)
     this.address_book.contact_list = [];
 
-    this.FriItem = new(com.NearestContactItem);
-
   }
-
-
 
   // 建立websocket链接
   createSocket(url:string){
@@ -53,7 +46,6 @@ export class WebsocketService {
       reader.onload = function (e) {
       let buf = new Uint8Array(reader.result as ArrayBuffer);
       let conn = Protocol.Message.decode(buf);
-      // console.log(conn)
       that.parseNotification(conn)    //收到消息解析后分析消息
     }};
     this.ws.onclose = function() {console.log("WebSocket关闭")};
@@ -70,7 +62,6 @@ export class WebsocketService {
   createSessionHeader():HttpHeaders {
     let headers = new HttpHeaders();
     headers = headers.set('X-Session-Id', this.us.session_id);
-    // console.log("session=", this.us.session_id)
     return headers
   }
 
@@ -166,8 +157,18 @@ export class WebsocketService {
   //下面是处理消息的
   DisplayMessagesLocally(m: Protocol.Message,room_id: number|Long){
     if (!this.global_message.chat_room_list.has(room_id)){
-      console.log("没有这个会话，无法插入消息");
-      return
+      console.log("没有这个会话，本地创建会话");
+      let chat = new com.ChatRoom;
+      chat.id = room_id;
+      chat.is_group = m.isgroup;
+      chat.message_list = [];
+      let index = this.address_book.contact_list.findIndex(e => e.id==room_id);
+      chat.name = this.address_book.contact_list[index].name;
+      //加入全局消息
+      this.global_message.chat_room_list.set(m.from,chat);
+      //加入最近联系人
+      this.nearest_contact.contact_list.unshift(this.address_book.contact_list[index])
+
     }
     let chat_room = this.global_message.chat_room_list.get(room_id);
     if (!(chat_room.id == room_id && chat_room.is_group == m.isgroup)){
@@ -188,8 +189,6 @@ export class WebsocketService {
     newMsg.send_time = m.sendTime;
 
     chat_room.message_list.push(newMsg);
-    // console.log(chat_room);
-    // console.log(this.global_message.chat_room_list.get(room_id));
   }
 
   callBackMessage(who: number|Long,mid:number|Long){
@@ -216,7 +215,7 @@ export class WebsocketService {
     if(i>=0||this.global_message.chat_room_list.has(room_id)){
       console.log("会话已存在，不创建会话");return;}
     
-    let item = new com.NearestContactItem
+    let item = new com.ContactListItem
     this.us.getUserbyId(room_id).subscribe(data =>{
       console.log("创建会话时",data);
       item.id = room_id;
@@ -225,6 +224,7 @@ export class WebsocketService {
       item.count=1;
       item.is_group = false;
 
+      this.address_book.contact_list.unshift(item);
       this.nearest_contact.contact_list.unshift(item);
       let chat_room = new com.ChatRoom;
       chat_room.id = room_id;
@@ -241,7 +241,7 @@ export class WebsocketService {
     if(i>=0||this.global_message.chat_room_list.has(room_id)){
       console.log("会话已存在，不创建会话");return;}
     
-    let item = new com.NearestContactItem
+    let item = new com.ContactListItem
     this.us.getGroupById(room_id).subscribe(data =>{
       console.log("创建群会话时",data);
       item.id = room_id;
@@ -250,7 +250,10 @@ export class WebsocketService {
       item.count=1;
       item.is_group = true;
 
+      this.address_book.contact_list.unshift(item);
       this.nearest_contact.contact_list.unshift(item);
+      
+
       let chat_room = new com.ChatRoom;
       chat_room.id = room_id;
       chat_room.name = item.name;
