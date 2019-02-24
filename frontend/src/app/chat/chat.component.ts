@@ -331,7 +331,7 @@ export class ChatComponent implements OnInit {
       return
     }
     let file: File = files[0];
-    if(file.size>10*1024*1024){
+    if(file.size>200*1024*1024){
       console.log("file is too big!")
       return
     }

@@ -46,6 +46,7 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 		}
 		// 解析文件
 		fileType := r.PostFormValue("type")
+		fmt.Println(fileType)
 		file, _, err := r.FormFile("uploadFile")
 		if err != nil {
 			sendErrorResponse(w,defs.ErrorFileInvalid)
@@ -59,6 +60,7 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 		}
 		// 获取文件类型，只需读取文件前512位
 		filetype := http.DetectContentType(fileBytes)
+		fmt.Println(filetype)
 		//判断文件类型
 		switch filetype {
 		case "image/jpeg", "image/jpg":returnp.Filetype=1
