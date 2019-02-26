@@ -49,9 +49,14 @@
                         </div>
                         <div *ngIf="item.content_type == 2"  (mouseup)="he($event, item, i, item.msgid)" (contextmenu)="his($event)">
                             <img src="/files/uknow.png" class="picture" >
-                            <button class="upload-btn" (click)=" downloadFile()"> 下载
+                            <button class="upload-btn" (click)=" downloadFile(item.content)"> 下载
                             </button>
                         </div>
+                        <div *ngIf="item.content_type == 3"  (mouseup)="he($event, item, i, item.msgid)" (contextmenu)="his($event)">
+                                <img src="/files/video.png" class="picture" >
+                                <button class="upload-btn" (click)=“showvideoModal(item.content)> 播放
+                                </button>
+                            </div>
                     </div>
                     <div *ngIf="item.from == my_id && item.content != ''" id="box1"><!--发送的消息-->
                         <div *ngIf="item.content_type != 1 && item.content_type != 2"  (contextmenu)="his($event)" (mouseup)="he($event, item)" >{{item.content}}</div>
@@ -68,6 +73,11 @@
                             <button class="upload-btn" (click)=" downloadFile(item.content)"> 下载
                             </button>
                         </div>
+                        <div *ngIf="item.content_type == 3"  (mouseup)="he($event, item)" (contextmenu)="his($event)">
+                                <img src="/files/video.png" class="picture" >
+                                <button class="upload-btn" (click)=“showvideoModal(item.content)> 播放
+                                </button>
+                            </div>
                     </div>
                     <span *ngIf="last">{{scollbuttom()}}</span>
                   </div>
@@ -268,7 +278,43 @@
 
 
 
+<button type="button"  (click)="showvideoModal()" >查看比赛视频</button>
+
 <nz-modal [(nzVisible)]="isshowpicVisible"   (nzOnCancel)="handleshowpicCancel()" (nzOnOk)="handleshowpicCancel()">
-  <div class="picture2" [ngStyle]="{ 'background-image': 'url('+a+')'}"></div>
+   <div class="picture2" [ngStyle]="{ 'background-image': 'url('+a+')'}"></div>
 </nz-modal>
 
+
+<nz-modal [(nzVisible)]="isshowvideoVisible"   (nzOnCancel)="handleshowvideoCancel()" (nzOnOk)="handleshowvideoCancel()">
+    <div >
+        <div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="video" aria-hidden="true" (blur)="theVideo.pause()">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content" >
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">播放视频</h5>
+                      </div>
+                      <div class="modal-body">
+                        <div >
+                          <video [src]="videourl" controls="controls" #theVideo></video>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+    </div>
+  </nz-modal>
+
+
+
+<!-- <button type="button"  data-toggle="modal" data-target="#video" >查看比赛视频</button>-->
+<div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="video" aria-hidden="true" (blur)="theVideo.pause()">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" >
+          <div class="modal-body">
+            <div >
+              <video [src]="videourl" controls="controls" #theVideo></video>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>

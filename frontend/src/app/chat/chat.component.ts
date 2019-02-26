@@ -314,7 +314,7 @@ export class ChatComponent implements OnInit {
   picpath: string
   picurl: string
   fileurl = 'http://localhost:9988/api/upload'
-  dfileurl='http://localhost:9988/files/9edbe55433e4_compress.jpg'
+  dfileurl='http://localhost:9988/files/2ebf04979056.mp4'
   filep = ""
   aaaa="9edbe55433e4_compress.jpg"
   
@@ -324,7 +324,7 @@ export class ChatComponent implements OnInit {
     let fileList: FileList = event.target.files;
     this.uploadFile(fileList);
   }
-
+  imgurl:string[]
   uploadFile(files: FileList) {
     if (files.length == 0) {
       console.log("No file selected!");
@@ -336,7 +336,7 @@ export class ChatComponent implements OnInit {
       return
     }
     //console.log(file.type)
-    //console.log(file.name)
+    console.log(file.name)
     this.filename = file.name;
     this.upload.uploadFile(this.fileurl, file).subscribe((response: any) => {
           //.log(response);
@@ -374,7 +374,28 @@ export class ChatComponent implements OnInit {
         }
       )
   }
-
+  switchpng(url:string):any{
+  this.imgurl=url.split(".")
+  let src:string
+switch(this.imgurl[1]){
+  case 'doc':
+    src="/files/DOC.png";
+    break;
+  case 'pdf':
+    src="/files/pdf.png";
+    break;
+  case 'ppt':
+    src="/files/ppt.png";
+  break;
+  case 'zip':
+    src="/files/RAR.png";
+  break;
+  case 'txt':
+    src="/files/txt.png";
+  break;
+}
+return src;
+}
 
   isshowpicVisible = false;
   aaa:string[]
@@ -390,8 +411,21 @@ export class ChatComponent implements OnInit {
   handleshowpicCancel(): void {
     this.isshowpicVisible = false;
   }
-  download() {
-    window.open(this.fileurl, '_blank');
+  videourl:string
+  isshowvideoVisible = false;
+  showvideoModal(url:string): void {
+    this.videourl=url;
+    this.isshowvideoVisible = true;
+  }
+  handleshowvideoCancel(): void {
+    this.isshowvideoVisible = false;
+  }
+
+
+
+
+  download(filepath:string) {
+    window.open(filepath, '_blank');
     return;
   }
     // 调用浏览器的下载
@@ -404,7 +438,7 @@ export class ChatComponent implements OnInit {
       a.download = name;
       a.click();
       a.remove();
-      // console.log('download:' + a.href);
+      console.log('download:' + a.href);
     }
 
 
