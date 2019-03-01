@@ -182,7 +182,8 @@ export namespace Protocol {
         enum ContentType {
             TEXT = 0,
             IMG = 1,
-            FILE = 2
+            FILE = 2,
+            VIDEO = 3
         }
 
         /** ErrorCode enum. */

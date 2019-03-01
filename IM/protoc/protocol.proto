@@ -22,6 +22,7 @@ enum ContentType {
 TEXT = 0;
 IMG  = 1;
 FILE = 2;
+VIDEO = 3;
 }
 enum ErrorCode {
 REQUEST_BODY_PARAMS_ERROR=0;

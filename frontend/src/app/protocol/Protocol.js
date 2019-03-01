@@ -351,6 +351,7 @@ $root.Protocol = (function() {
                 case 0:
                 case 1:
                 case 2:
+                case 3:
                     break;
                 }
             if (message.isgroup != null && message.hasOwnProperty("isgroup"))
@@ -469,6 +470,10 @@ $root.Protocol = (function() {
             case "FILE":
             case 2:
                 message.contentType = 2;
+                break;
+            case "VIDEO":
+            case 3:
+                message.contentType = 3;
                 break;
             }
             if (object.isgroup != null)
@@ -687,12 +692,14 @@ $root.Protocol = (function() {
          * @property {number} TEXT=0 TEXT value
          * @property {number} IMG=1 IMG value
          * @property {number} FILE=2 FILE value
+         * @property {number} VIDEO=3 VIDEO value
          */
         Message.ContentType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "TEXT"] = 0;
             values[valuesById[1] = "IMG"] = 1;
             values[valuesById[2] = "FILE"] = 2;
+            values[valuesById[3] = "VIDEO"] = 3;
             return values;
         })();
 

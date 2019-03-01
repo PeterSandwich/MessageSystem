@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  websocketUrl: "ws://im.surpass2018.cn/ws",
-  apiUrl: "http://im.surpass2018.cn/api"
+  websocketUrl: "ws://139.199.196.31:9988/ws",
+  apiUrl: "http://139.199.196.31:9988/api"
 };

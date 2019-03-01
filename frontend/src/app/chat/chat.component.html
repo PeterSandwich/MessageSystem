@@ -117,10 +117,10 @@
       </tr>
       <tr class = "bar">
         <td class = "bartool">
-            <button class = "grad" (click) = "getNear()">聊天</button>|
+            <button class = "grad" (click) = "showNearestContactList()">聊天</button>|
         </td>
         <td class = "bartool">
-            <button class = "grad" (click) = "getAddress()">通讯录</button>|
+            <button class = "grad" (click) = "showAddressBook()">通讯录</button>|
         </td>
         <td class = "bartool">
             <nz-dropdown class = "dropdown">
@@ -142,10 +142,11 @@
         <td rowspan="3" colspan="3">
             <!-- 4 -->
             <div class = "list" >
-                <li  class = "item" [class.selected]="item == friend" *ngFor="let item of  this.ws.nearest_contact.contact_list; let i = index" (click) = "test2(i, item.id,item.name, item.head_img, item.is_group)">
+                <li  class = "item" [class.selected]="item == friend" *ngFor="let item of  userListDisplay; let i = index" (click) = "selectOneUser(i, item.id,item.name, item.head_img, item.is_group)">
                     <nz-badge [nzCount]="item.count" *ngIf="list!=NULL">
                         <img src = "{{item.head_img}}" class = "img">
                     </nz-badge>
+                    <i style="color:tomato" *ngIf="item.is_group">群 </i>
                  {{item.name}}
                 </li>
             </div>

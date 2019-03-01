@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 import { UploadService } from '../file.service';
 import { Protocol } from '../protocol/Protocol';
 import * as com from '../common/im'
-import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment.prod';
+
 
 @Injectable()
 @Component({
@@ -18,7 +19,7 @@ import { Observable } from 'rxjs';
 
 
 export class ChatComponent implements OnInit {
-  // @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+
   from_id = 1;
   to_id = 0;
 
@@ -26,35 +27,27 @@ export class ChatComponent implements OnInit {
   my_img_url : string;
   my_name : string;
 
-  addressList : com.AddressBookItem[];
-  addressItem : com.AddressBookItem;
 
   id: number  = 0;
   to_name = ""
   to_img = "";
-  // group = 0;
-  // addgtoup_id = 0;
   content = "";
-  // group_name = '';
+  searchFriend='';
   list = [];
   showmsg : com.MessageItem[];
 
   searchContent : string = "";
-  // searchFriend : string = "";
-  // groupName : string = "";
+
 
   isVisible : boolean = false;
   isselect: boolean;
   isgroup: boolean = false;
 
-  friendlist : com.NearestContact;
-  addressbook : com.AddressBook;
-  friend : com.NearestContactItem;
-  userlist : com.NearestContact;;
-  messagelist : com.MessageItem[];
-  createGroupList:com.CreateGroup;
-  groupMemberList:com.AddressBookItem[];
-  addMemberList:com.AddMemberItem[];
+  userlist : com.NearestContact;
+  userListDisplay:com.ContactListItem[];    //最近联系人和通讯录在前端切换显示需要的结构体
+  createGroupList:com.CreateGroup;          //创建群组时，需要使用的结构体
+  groupMemberList:com.ContactListItem[];    //群成员信息列表
+  addMemberList:com.AddMemberItem[];        //群添加成员时，需要的结构体
 
   pressBoolean : boolean = false;
   px : string = "";
@@ -74,34 +67,29 @@ export class ChatComponent implements OnInit {
     private el: ElementRef,
     public _d: DomSanitizer
     ) {
+      this.userListDisplay = [];
       this.createGroupList=new(com.CreateGroup);
       this.createGroupList.contact_list = [];
       this.groupMemberList = [];
       this.addMemberList = [];
-      // this.userlist = [];
      }
 
 
     ngAfterViewInit() {
-      // this.elementRef.nativeElement.focus();
       this.el.nativeElement.focus();
     }
     
     ngOnInit(){
 
       // 初始化最近聊天列表及其聊天历史消息
-      this.getNearestListAndMessage()
-      this.getAddress()
+      this.getNearestListAndMessage();
+      this.getAddress();
+      this.showNearestContactList();
 
-      // this.friendlist = data.nearContractList;
-      //this.addressList = data.addressList;
-      // this.messagelist = data.chatRoom;
-      this.friendlist = this.ws.nearest_contact;
-      // console.log("friendlist = ", this.friendlist)
       this.my_id = this.us.MyUserId;
       this.my_img_url = this.us.myImg;
       this.my_name = this.us.myName;
-      // console.log("id, name = ", this.my_id, this.my_name)
+
 
       this.scollbuttom();
       this.show=false
@@ -109,14 +97,15 @@ export class ChatComponent implements OnInit {
       this.isPress = false;
     }
 
-    getNear(){
-      this.friendlist = this.ws.nearest_contact;
-      // console.log("getNear", this.friendlist);
+    // 显示 最近联系人列表
+    showNearestContactList(){
+      this.userListDisplay = this.ws.nearest_contact.contact_list
     }
-    // getAddress(){
-    //   this.friendlist = this.ws.address_book;
-    //   // console.log("getAddreses", this.friendlist);
-    // }
+
+    // 显示 通讯录列表
+    showAddressBook(){
+      this.userListDisplay =this.ws.address_book.contact_list
+    }
 
     his(event){//防止右键点击是弹出默认面板
       event.preventDefault();
@@ -135,13 +124,13 @@ export class ChatComponent implements OnInit {
       this.isPress = true;
       this.backMes = item;
       this.id = Number(item.id);
-      // console.log("this.id", item)
+
       this.pressBoolean = true;
       var px = event.clientX;
       var py = event.clientY;
       this.px = String(px) + 'px';
       this.py = String(py) + 'px';
-      // console.log("style=", this.px, this.py)
+   
     }
     backdata(){
       ///////////////////////////////////////////////////////////
@@ -158,13 +147,12 @@ export class ChatComponent implements OnInit {
       msg.isgroup = this.backMes.is_group;                       //是不是群组消息
       msg.msgid = this.backMes.id;
       msg.sendTime = Date.now();
-      // console.log("this.msg && this.to_id = ", msg, this.to_id);
+
       this.ws.sendMessage(msg);
-      // this.test2(this.index, this.to_id, this.to_name, this.to_img, this.isgroup)
-      // window.onload
+
     }
 
-    test2(index: number, id: number,name : string, img: string, isgroup: boolean){
+    selectOneUser(index: number, id: number,name : string, img: string, isgroup: boolean){
       
       // 发送ACK消息回后端，让后端知道这消息已读，徽标数清零
       //////////////////////////////////////////
@@ -269,6 +257,7 @@ export class ChatComponent implements OnInit {
       //   console.log("data2 = ", data.Ulist);
       //   this.userlist = data.Ulist;
       // })
+      if(this.searchContent=='')return;
       this.us.getuserlist(this.searchContent).subscribe(data => {
         // this.userlist = data
         console.log("userlist=", data);
@@ -280,21 +269,7 @@ export class ChatComponent implements OnInit {
       })
     }
 
-    // clickMe(){
-    //     var btn = document.getElementById("search");
-    //     btn.focus();
-    //     this.isVisible = document.hasFocus();
-    //     // this.userlist = [];
-    // }
-    // outMe(){
-    //   var btn = document.getElementById("search");
-    //   btn.blur();
-    //   this.isVisible = document.hasFocus();
-    //   // this.userlist = [];
-    // }
-    // cancelEditingTodo(){
-    //   this.isVisible = false;
-    // }
+
     
     search(){
       // console.log("search=", this.searchContent);
@@ -313,8 +288,8 @@ export class ChatComponent implements OnInit {
     
   picpath: string
   picurl: string
-  fileurl = 'http://localhost:9988/api/upload'
-  dfileurl='http://localhost:9988/files/2ebf04979056.mp4'
+  fileurl = environment.apiUrl+'/upload'
+  dfileurl='http://localhost:9988/files/9edbe55433e4_compress.jpg'
   filep = ""
   aaaa="9edbe55433e4_compress.jpg"
   
@@ -459,12 +434,13 @@ return src;
       for(let i=0;i<data.body['chat_room_list'].length;i++){
 
         //最近联系人的（相当与一个chat room）
-        let FriItem:com.NearestContactItem = new(com.NearestContactItem);
+        let FriItem:com.ContactListItem = new(com.ContactListItem);
         FriItem.id=data.body['chat_room_list'][i].id;
         FriItem.name=data.body['chat_room_list'][i].name;
         FriItem.head_img=data.body['chat_room_list'][i].head_img;
         FriItem.is_group=data.body['chat_room_list'][i].is_group;
         FriItem.count=data.body['chat_room_list'][i].count;
+
         this.ws.nearest_contact.contact_list.push(FriItem);
 
          //历史消息 使用 this.global_message.chat_room_list[人或群的ID]获取历史消息
@@ -473,6 +449,7 @@ return src;
          chat_room.name = data.body['chat_room_list'][i].name;
          chat_room.is_group = data.body['chat_room_list'][i].is_group;
          chat_room.message_list=data.body['chat_room_list'][i].message_list;
+
          this.ws.global_message.chat_room_list.set(chat_room.id,chat_room);
 
       }
@@ -487,7 +464,7 @@ return src;
       if(this.ws.address_book.contact_list.length>0){this.ws.address_book.contact_list = [];}
       if(data==null){console.log("通讯录为空");return;}
       for(let i = 0; i < data.friends_list.length; i++){
-          let  FriItem:com.NearestContactItem = new(com.NearestContactItem);
+          let  FriItem:com.ContactListItem = new(com.ContactListItem);
           FriItem.id=data['friends_list'][i].id;
           FriItem.name=data['friends_list'][i].name;
           FriItem.head_img=data['friends_list'][i].head_img;
@@ -596,7 +573,7 @@ return src;
       this.groupMemberList = [];
       console.log(data)
       for(let i=0;i<data['length'];i++){
-        let item = new com.AddressBookItem;
+        let item = new com.ContactListItem;
         item.id = data[i]['id'];
         item.name = data[i]['name'];
         item.head_img = data[i]['head_img'];
@@ -614,7 +591,7 @@ return src;
         this.groupMemberList = [];
         console.log(data)
         for(let i=0;i<data['length'];i++){
-          let item = new com.AddressBookItem;
+          let item = new com.ContactListItem;
           item.id = data[i]['id'];
           item.name = data[i]['name'];
           item.head_img = data[i]['head_img'];

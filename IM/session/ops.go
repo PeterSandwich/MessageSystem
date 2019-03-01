@@ -16,6 +16,11 @@ var (
 
 func init(){
 	redisConn = redis.NewClient(&redis.Options{Addr: "localhost:6379", Password: "", DB: 0})
+	_, err := redisConn.Ping().Result()
+	if err!=nil{
+		panic(err)
+	}
+
 	Logger, _ = zap.NewDevelopment()
 }
 
