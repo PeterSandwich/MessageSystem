@@ -31,8 +31,7 @@ COPY . $GOPATH/src
 
 EXPOSE 9988
 
-CMD src/IM/IM
 
-#WORKDIR /go/src/IM
+WORKDIR /go/src/IM
 
-#CMD ./IM
+CMD ./IM
