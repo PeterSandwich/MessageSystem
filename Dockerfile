@@ -29,6 +29,5 @@ WORKDIR $GOPATH
 
 COPY . $GOPATH/src
 
-WORKDIR ./IM/
 
-CMD ./IM
+CMD ["src/IM/IM"]
