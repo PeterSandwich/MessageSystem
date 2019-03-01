@@ -15,7 +15,7 @@ var (
 )
 
 func init(){
-	redisConn = redis.NewClient(&redis.Options{Addr: "172.17.0.4:6379", Password: "", DB: 0})
+	redisConn = redis.NewClient(&redis.Options{Addr: "redishost:6379", Password: "", DB: 0})
 	_, err := redisConn.Ping().Result()
 	if err!=nil{
 		panic(err)
