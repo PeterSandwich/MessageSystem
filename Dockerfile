@@ -29,5 +29,6 @@ WORKDIR $GOPATH
 
 COPY . $GOPATH/src
 
+WORKDIR /go/src/MessageSystem/IM
 
-CMD src/IM/IM --config '$GOPATH/src/MessageSystem/IM/config/im.config'
+CMD ./IM
