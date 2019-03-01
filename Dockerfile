@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     libc6-dev \
     make \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 ENV GO_VERSION 1.12
