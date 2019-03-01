@@ -1,7 +1,7 @@
 FROM alpine
 
 MAINTAINER PJW 1120491948@qq.com
-
+RUN apk update && apk add apt-get curl && rm -rf /var/cache/apk/*
 RUN apt-get update && apt-get install -y --no-install-recommends \
     g++ \
     gcc \
