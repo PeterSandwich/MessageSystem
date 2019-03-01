@@ -29,4 +29,6 @@ WORKDIR $GOPATH
 
 COPY . $GOPATH/src
 
+RUN ls
+
 CMD ["ls","$GOPATH/src"]
