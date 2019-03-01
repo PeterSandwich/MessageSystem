@@ -29,6 +29,6 @@ WORKDIR $GOPATH
 
 COPY . $GOPATH/src
 
-RUN ls && ls src
+WORKDIR ./IM/
 
-CMD ["ls","$GOPATH/src"]
+CMD ./IM
