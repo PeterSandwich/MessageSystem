@@ -29,6 +29,10 @@ WORKDIR $GOPATH
 
 COPY . $GOPATH/src
 
-WORKDIR /go/src/IM
+EXPOSE 9988
 
-CMD ./IM
+CMD src/IM/IM
+
+#WORKDIR /go/src/IM
+
+#CMD ./IM
