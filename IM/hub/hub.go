@@ -17,7 +17,7 @@ var (
 
 func init() {
 	Clients = make(map[int64]*Client)
-	redisConn = redis.NewClient(&redis.Options{Addr: "redishost:6379", Password: "", DB: 0})
+	redisConn = redis.NewClient(&redis.Options{Addr: "backend.redis:6379", Password: "", DB: 0})
 }
 
 
