@@ -17,21 +17,21 @@ services:
     ports:
       - "6379:6379"
 
-  psql:
-    image: postgres:11
-    container_name: im_psql
-    networks:
-      backend:
-        aliases:
-          - backend.psql
-    volumes:
-      -  /tmp/psql/data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: imdb
-      POSTGRES_USER: dbuser
-      POSTGRES_PASSWORD: 319079
-    ports:
-      - 5432:5432
+#  psql:
+#    image: postgres:11
+#    container_name: im_psql
+#    networks:
+#      backend:
+#        aliases:
+#          - backend.psql
+#    volumes:
+#      -  /tmp/psql/data:/var/lib/postgresql/data
+#    environment:
+#      POSTGRES_DB: imdb
+#      POSTGRES_USER: dbuser
+#      POSTGRES_PASSWORD: 319079
+#    ports:
+#      - 5432:5432
 
   webim:
     build: ./
@@ -43,10 +43,8 @@ services:
       - ./frontend:/frontend
     links:
       - "redis:im_redis"
-      - psql
     depends_on:
       - redis
-      - psql
     ports:
       - 9988:9988
 
@@ -65,7 +63,6 @@ services:
       - webim
     ports:
       - 80:80
-      - 90:90
 
 
 
