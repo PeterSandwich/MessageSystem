@@ -25,7 +25,7 @@ services:
         aliases:
           - backend.psql
     volumes:
-      -  ./psql/data:/var/lib/postgresql/data
+      -  /tmp/psql/data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: imdb
       POSTGRES_USER: dbuser
