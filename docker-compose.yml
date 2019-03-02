@@ -10,7 +10,7 @@ services:
       backend:
         aliases:
           - backend.redis
-    volumes:
+ #   volumes:
 #      - ./redis/redis.conf:/etc/redis/redis.conf:ro
 #      - ./redis/data:/data
     command: ["redis-server"]
