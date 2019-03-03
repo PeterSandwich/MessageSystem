@@ -56,7 +56,6 @@ services:
 
   nginx:
     image: nginx:latest
-    container_name: im_nginx
     restart: always
     networks:
       - backend
