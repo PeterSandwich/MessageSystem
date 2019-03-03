@@ -33,6 +33,7 @@ services:
       POSTGRES_DB: imdb
       POSTGRES_USER: dbuser
       POSTGRES_PASSWORD: 319079
+      FATHOM_DATABASE_SSLMODE: disable
     ports:
       - 5432:5432
 
