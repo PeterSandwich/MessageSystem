@@ -2,7 +2,6 @@ package hub
 
 import (
 	"MessageSystem/IM/session"
-	"fmt"
 	"github.com/gorilla/websocket"
 	"net/http"
 	"strconv"
@@ -95,9 +94,7 @@ func ServeWs(w http.ResponseWriter, r *http.Request) {
 		Logger.Warn("session Expired")
 		return
 	}
-	fmt.Println(r.Header)
-	Logger.Debug(r.Header.Get("Connection"))
-	Logger.Debug(r.Header.Get("Upgrade"))
+
 	conn, err := upGrader.Upgrade(w, r, nil)
 	if err != nil {
 		Logger.Error("WebSocket UpGrader :" + err.Error())

@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 import { UploadService } from '../file.service';
 import { Protocol } from '../protocol/Protocol';
 import * as com from '../common/im'
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
+
 
 
 @Injectable()
@@ -288,6 +289,7 @@ export class ChatComponent implements OnInit {
     
   picpath: string
   picurl: string
+  
   fileurl = environment.apiUrl+'/upload'
   dfileurl='http://localhost:9988/files/9edbe55433e4_compress.jpg'
   filep = ""
@@ -407,7 +409,10 @@ export class ChatComponent implements OnInit {
     this.ws.getNearestContactAndMessage().subscribe((data) => {
 
       console.log("一登录获取最近联系人及其历史消息",data);
-
+      if(data.status == 255){
+        alert(data.body["Error"]);
+        return
+      }
       for(let i=0;i<data.body['chat_room_list'].length;i++){
 
         //最近联系人的（相当与一个chat room）

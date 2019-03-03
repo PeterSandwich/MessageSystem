@@ -28,7 +28,6 @@ func Run(logger *zap.Logger) {
 		result, err := subscribe.Receive()
 		if err != nil {
 			Logger.Error("message queue receive data :"+err.Error())
-			return
 		}
 		switch msg := result.(type) {
 		case *redis.Message:
