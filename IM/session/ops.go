@@ -13,10 +13,11 @@ var (
 	Logger 	   *zap.Logger
 )
 
-func init(){
+func InitSession(){
 	redisConn = redis.NewClient(&redis.Options{Addr: config.RedisUrlCfg(), Password: "", DB: 0})
 	_, err := redisConn.Ping().Result()
 	if err!=nil{
+		return
 		panic(err)
 	}
 

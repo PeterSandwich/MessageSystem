@@ -2,6 +2,7 @@ package config
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 )
 
@@ -26,6 +27,8 @@ func InitConfig(filename string){
 	if err != nil {
 		panic("config file error： "+err.Error())
 	}
+
+	fmt.Println("解析出来的数据",temp)
 	configuration = temp
 }
 
@@ -34,10 +37,12 @@ func Port()int{
 }
 
 func RedisUrlCfg()string {
+
 	return configuration.RedisUrl
 }
 
 func PsqlUrlCfg() string {
+
 	return configuration.PsqlUrl
 }
 

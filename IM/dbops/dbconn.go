@@ -3,8 +3,8 @@ package dbops
 import (
 	"MessageSystem/IM/config"
 	"database/sql"
+	_ "github.com/lib/pq"
 	"go.uber.org/zap"
-	_"github.com/lib/pq"
 )
 
 var (
@@ -13,7 +13,9 @@ var (
 	logger *zap.Logger
 )
 
-func init(){
+
+
+func InitDB(){
 	//
 	//sql.Open("postgres", "user=dbuser password=319079 dbname=test sslmode=disable")
 	dbConn,err =  sql.Open("postgres", config.PsqlUrlCfg())

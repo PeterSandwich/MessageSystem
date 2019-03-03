@@ -16,11 +16,10 @@ var (
 	redisConn *redis.Client
 )
 
-func init() {
+func InitHup(){
 	Clients = make(map[int64]*Client)
 	redisConn = redis.NewClient(&redis.Options{Addr: config.RedisUrlCfg(), Password: "", DB: 0})
 }
-
 
 func Run(logger *zap.Logger) {
 	Logger = logger
@@ -29,6 +28,7 @@ func Run(logger *zap.Logger) {
 		result, err := subscribe.Receive()
 		if err != nil {
 			Logger.Error("message queue receive data :"+err.Error())
+			return
 		}
 		switch msg := result.(type) {
 		case *redis.Message:
