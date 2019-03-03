@@ -15,10 +15,10 @@ var (
 func init(){
 	//
 	//sql.Open("postgres", "user=dbuser password=319079 dbname=test sslmode=disable")
-	logger.Debug("postgres://dbuser:319079@139.199.196.31/imdb?sslmode=disable")
 	dbConn,err =  sql.Open("postgres", "postgres://dbuser:319079@139.199.196.31/imdb?sslmode=disable")
 	if err != nil {
 		panic(err.Error())
 	}
 	logger,_= zap.NewDevelopment()
+	logger.Debug("postgres://dbuser:319079@139.199.196.31/imdb?sslmode=disable")
 }
