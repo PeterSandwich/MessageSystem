@@ -8,7 +8,9 @@ import (
 	"MessageSystem/IM/session"
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"github.com/julienschmidt/httprouter"
+	"go.uber.org/zap"
 	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
 	"net/http"
@@ -195,10 +197,11 @@ func getNearestContactMessage(w http.ResponseWriter, r *http.Request, p httprout
 		data []byte
 	)
 	contact := &defs.NearestContact{}
-
+	fmt.Println("header:",r)
 	param := r.Header.Get(defs.HEADER_FIELD_UID)
 	myId ,err := strconv.ParseInt(param,10,64)
 	if len(param)==0 || err !=nil {
+		Logger.Warn("r.Header.Get(defs.HEADER_FIELD_UID)",zap.String("param",param))
 		sendErrorResponse(w,defs.ErrorNotAuthUser)
 		return
 	}

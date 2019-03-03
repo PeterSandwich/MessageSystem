@@ -1,6 +1,7 @@
 package hub
 
 import (
+	"MessageSystem/IM/config"
 	"MessageSystem/IM/dbops"
 	pb "MessageSystem/IM/protoc"
 	"github.com/go-redis/redis"
@@ -15,11 +16,10 @@ var (
 	redisConn *redis.Client
 )
 
-func init() {
+func InitHup(){
 	Clients = make(map[int64]*Client)
-	redisConn = redis.NewClient(&redis.Options{Addr: "localhost:6379", Password: "", DB: 0})
+	redisConn = redis.NewClient(&redis.Options{Addr: config.RedisUrlCfg(), Password: "", DB: 0})
 }
-
 
 func Run(logger *zap.Logger) {
 	Logger = logger

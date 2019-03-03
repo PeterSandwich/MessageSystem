@@ -1,11 +1,10 @@
 package session
 
 import (
-	"MessageSystem/IM/defs"
+	"MessageSystem/IM/config"
 	"github.com/go-redis/redis"
 	"github.com/satori/go.uuid"
 	"go.uber.org/zap"
-	"net/http"
 	"time"
 )
 
@@ -14,10 +13,11 @@ var (
 	Logger 	   *zap.Logger
 )
 
-func init(){
-	redisConn = redis.NewClient(&redis.Options{Addr: "localhost:6379", Password: "", DB: 0})
+func InitSession(){
+	redisConn = redis.NewClient(&redis.Options{Addr: config.RedisUrlCfg(), Password: "", DB: 0})
 	_, err := redisConn.Ping().Result()
 	if err!=nil{
+		return
 		panic(err)
 	}
 
@@ -31,13 +31,14 @@ func GenerateNewSessionId(uid int64) string {
 	return sessionid.String()
 }
 
-func IsSessionExpired(r *http.Request) (string, bool) {
-	sid := r.Header.Get(defs.HEADER_FIELD_SESSION)
+func IsSessionExpired(sid string) (string, bool) {
 	if len(sid) == 0 {
+		Logger.Warn("IsSessionExpired session id: nil")
 		return "",true
 	}
 	val, err := redisConn.Get(sid).Result()
 	if err != nil  {// 当过期处理
+		Logger.Warn("redis 过期")
 		if err != redis.Nil{
 			redisConn.Del(sid)
 			Logger.Warn("redis get session in IsSessionExpired() : "+err.Error())

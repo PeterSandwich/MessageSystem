@@ -4,6 +4,7 @@ import (
 	"MessageSystem/IM/defs"
 	"MessageSystem/IM/session"
 	"github.com/julienschmidt/httprouter"
+	"go.uber.org/zap"
 	"net/http"
 )
 
@@ -18,19 +19,21 @@ func NewMiddleWareHandler(r *httprouter.Router) http.Handler {
 }
 
 func (m middleWareHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	//check session
-	//var ok bool
-	r,_ = validateUserSession(r)
+	r,uid := validateUserSession(r)
+	r.Header.Add(defs.HEADER_FIELD_UID, uid)
 	m.r.ServeHTTP(w, r)
 }
 
-func validateUserSession(r *http.Request)(*http.Request,bool){
-
-	//Logger.Debug(r.URL.Path)
-	uid, ok := session.IsSessionExpired(r)
-	if ok {
-		return r,false
+func validateUserSession(r *http.Request)(*http.Request,string){
+	str := r.Header.Get(defs.HEADER_FIELD_SESSION)
+	if len(str)==0 {
+		str = r.URL.Query().Get("session_id")
 	}
-	r.Header.Add(defs.HEADER_FIELD_UID, uid)
-	return r,true
+	uid, ok := session.IsSessionExpired(str)
+	Logger.Debug("get uid from IsSessionExpired",zap.String("uid",uid),zap.String("url",r.URL.Path))
+	if ok {
+		Logger.Warn(" session.IsSessionExpired")
+		return r,""
+	}
+	return r,uid
 }

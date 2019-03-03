@@ -1,0 +1,70 @@
+version: "3"
+
+networks:
+  backend:
+  frontend:
+
+volumes:
+  psql_data: {}
+
+services:
+  redis:
+    image: redis:5.0
+    networks:
+      backend:
+        aliases:
+          - backend.redis
+ #   volumes:
+#      - ./redis/redis.conf:/etc/redis/redis.conf:ro
+#      - ./redis/data:/data
+    command: ["redis-server"]
+    ports:
+      - "6379:6379"
+
+  psql:
+    image: postgres:11
+    container_name: im_psql
+    networks:
+      backend:
+        aliases:
+          - backend.psql
+    volumes:
+      -  psql_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: imdb
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: 319079
+      FATHOM_DATABASE_SSLMODE: disable
+    ports:
+      - 5432:5432
+
+  webim:
+    build: ./
+    networks:
+      frontend:
+      backend:
+    volumes:
+      - ./IM:/IM
+      - ./frontend:/frontend
+    links:
+      - "redis:im_redis"
+    depends_on:
+      - redis
+    ports:
+      - 9988:9988
+
+  nginx:
+    image: nginx:latest
+    networks:
+      - frontend
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./frontend/dist/frontend:/usr/share/nginx/html
+    depends_on:
+      - webim
+    ports:
+      - 80:80
+
+
+
