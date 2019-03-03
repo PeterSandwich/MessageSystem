@@ -13,9 +13,9 @@ var (
 )
 
 func init(){
-	//sql.Open("postgres", "postgres://dbuser:319079@backend.psql/imdb")
-
-	dbConn,err =  sql.Open("postgres", "user=dbuser password=319079 dbname=test sslmode=disable")
+	//
+	//sql.Open("postgres", "user=dbuser password=319079 dbname=test sslmode=disable")
+	dbConn,err =  sql.Open("postgres", "postgres://dbuser:319079@backend.psql/imdb?sslmode=disable")
 	if err != nil {
 		panic(err.Error())
 	}
