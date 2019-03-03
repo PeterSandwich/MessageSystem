@@ -64,11 +64,10 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./frontend/dist/frontend:/usr/share/nginx/html
+    command: ["./wait-for-web.sh"]
     depends_on:
       - webim
     links:
-      - webim
-    volumes_from:
       - webim
     ports:
       - 80:80
