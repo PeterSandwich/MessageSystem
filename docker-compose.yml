@@ -64,7 +64,8 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./frontend/dist/frontend:/usr/share/nginx/html
     depends_on:
-      - webim
+      webim:
+          condition: service_started
     links:
       - webim
     ports:
