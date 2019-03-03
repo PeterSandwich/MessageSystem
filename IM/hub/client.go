@@ -1,7 +1,6 @@
 package hub
 
 import (
-	"MessageSystem/IM/defs"
 	"MessageSystem/IM/session"
 	"github.com/gorilla/websocket"
 	"net/http"
@@ -89,15 +88,14 @@ func ServeWs(w http.ResponseWriter, r *http.Request) {
 			return true
 		},
 	}
-	r.Header.Add(defs.HEADER_FIELD_SESSION, r.URL.Query().Get("session_id"))
-	rawId, Expired := session.IsSessionExpired(r)
+	rawId, Expired := session.IsSessionExpired( r.URL.Query().Get("session_id"))
 	uid, err := strconv.ParseInt(rawId, 10, 64)
 	if Expired || err != nil {
 		Logger.Warn("session Expired")
 		return
 	}
 	Logger.Debug(r.Header.Get("Connection"))
-	Logger.Debug(r.Header.Get(defs.HEADER_FIELD_SESSION))
+	Logger.Debug(r.Header.Get("Upgrade"))
 	conn, err := upGrader.Upgrade(w, r, nil)
 	if err != nil {
 		Logger.Error("WebSocket UpGrader :" + err.Error())

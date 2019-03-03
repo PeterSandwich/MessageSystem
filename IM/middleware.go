@@ -27,7 +27,7 @@ func (m middleWareHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func validateUserSession(r *http.Request)(*http.Request,bool){
 
 	//Logger.Debug(r.URL.Path)
-	uid, ok := session.IsSessionExpired(r)
+	uid, ok := session.IsSessionExpired(r.URL.Query().Get("session_id"))
 	if ok {
 		return r,false
 	}

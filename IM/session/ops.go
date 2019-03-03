@@ -1,11 +1,9 @@
 package session
 
 import (
-	"MessageSystem/IM/defs"
 	"github.com/go-redis/redis"
 	"github.com/satori/go.uuid"
 	"go.uber.org/zap"
-	"net/http"
 	"time"
 )
 
@@ -31,8 +29,7 @@ func GenerateNewSessionId(uid int64) string {
 	return sessionid.String()
 }
 
-func IsSessionExpired(r *http.Request) (string, bool) {
-	sid := r.Header.Get(defs.HEADER_FIELD_SESSION)
+func IsSessionExpired(sid string) (string, bool) {
 	if len(sid) == 0 {
 		return "",true
 	}
