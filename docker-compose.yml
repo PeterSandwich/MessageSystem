@@ -68,6 +68,8 @@ services:
       - webim
     links:
       - webim
+    volumes_from:
+      - webim
     ports:
       - 80:80
 
