@@ -1,6 +1,7 @@
 package session
 
 import (
+	"MessageSystem/IM/config"
 	"github.com/go-redis/redis"
 	"github.com/satori/go.uuid"
 	"go.uber.org/zap"
@@ -13,7 +14,7 @@ var (
 )
 
 func init(){
-	redisConn = redis.NewClient(&redis.Options{Addr: "backend.redis:6379", Password: "", DB: 0})
+	redisConn = redis.NewClient(&redis.Options{Addr: config.RedisUrlCfg(), Password: "", DB: 0})
 	_, err := redisConn.Ping().Result()
 	if err!=nil{
 		panic(err)
