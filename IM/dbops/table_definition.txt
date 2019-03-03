@@ -83,7 +83,7 @@ create table users(
 	name varchar(200),
 	pw	varchar(200),
 	headimg varchar(500)
-)
+);
 CREATE SEQUENCE user_id
 START WITH 100000
 INCREMENT BY 1
@@ -99,7 +99,7 @@ create table groups(
 	headimg varchar(500),
 	creater bigint,
 	owner bigint
-)
+);
 CREATE SEQUENCE group_id
 START WITH 1000
 INCREMENT BY 1
@@ -113,7 +113,7 @@ create table membership(
 	uid bigint,
 	gid bigint,
 	primary key(uid,gid)
-)
+);
 
 //////////////////////////////////////////////////////////////////////////////////////////
 create table im_message_counter_0 (
