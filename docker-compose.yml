@@ -57,6 +57,7 @@ services:
   nginx:
     image: nginx:latest
     container_name: im_nginx
+    restart: always
     networks:
       - backend
     volumes:
@@ -64,8 +65,7 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./frontend/dist/frontend:/usr/share/nginx/html
     depends_on:
-      webim:
-          condition: service_started
+      - webim
     links:
       - webim
     ports:
