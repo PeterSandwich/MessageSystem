@@ -96,6 +96,8 @@ func ServeWs(w http.ResponseWriter, r *http.Request) {
 		Logger.Warn("session Expired")
 		return
 	}
+	Logger.Debug(r.Header.Get("Connection"))
+	Logger.Debug(r.Header.Get(defs.HEADER_FIELD_SESSION))
 	conn, err := upGrader.Upgrade(w, r, nil)
 	if err != nil {
 		Logger.Error("WebSocket UpGrader :" + err.Error())
