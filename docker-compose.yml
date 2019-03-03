@@ -3,6 +3,9 @@ version: "3"
 networks:
   backend:
 
+volumes:
+  psql_data: {}
+
 services:
   redis:
     image: redis:5.0
