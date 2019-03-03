@@ -2,6 +2,7 @@ version: "3"
 
 networks:
   backend:
+  frontend:
 
 volumes:
   psql_data: {}
@@ -39,11 +40,9 @@ services:
 
   webim:
     build: ./
-    container_name: im_webim
     networks:
+      frontend:
       backend:
-        aliases:
-          - backend.web
     volumes:
       - ./IM:/IM
       - ./frontend:/frontend
@@ -56,16 +55,13 @@ services:
 
   nginx:
     image: nginx:latest
-    restart: always
     networks:
-      - backend
+      - frontend
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./frontend/dist/frontend:/usr/share/nginx/html
     depends_on:
-      - webim
-    links:
       - webim
     ports:
       - 80:80
