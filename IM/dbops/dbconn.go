@@ -13,7 +13,7 @@ var (
 )
 
 func init(){
-	dbConn,err =  sql.Open("postgres", "postgres://dbuser:319079@139.199.196.31/imdb")
+	dbConn,err =  sql.Open("postgres", "postgres://dbuser:319079@backend.psql/imdb")
 	if err != nil {
 		panic(err.Error())
 	}
