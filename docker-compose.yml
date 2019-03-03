@@ -41,7 +41,9 @@ services:
     build: ./
     container_name: im_webim
     networks:
-      - backend
+      backend:
+        aliases:
+          - backend.web
     volumes:
       - ./IM:/IM
       - ./frontend:/frontend
