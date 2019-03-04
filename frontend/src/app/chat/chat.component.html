@@ -1,6 +1,6 @@
 
 
-<div class="container" (mouseup) = "his($event)" >
+<div class="container" >
     <!--聊天窗口-->
     <table class = "table">
       <tr>
@@ -54,7 +54,16 @@
                         </div>
                     </div>
                     <div *ngIf="item.from == my_id && item.content != ''" id="box1"><!--发送的消息-->
-                        <div *ngIf="item.content_type != 1 && item.content_type != 2"  (contextmenu)="his($event)" (mouseup)="he($event, item)" >{{item.content}}</div>
+                        <div *ngIf="item.content_type != 1 && item.content_type != 2"  >
+                          <div (contextmenu)="contextMenu($event,template)">
+                            <ng-template #template>
+                              <ul nz-menu nzInDropDown (nzClick)="close($event)">
+                                <li nz-menu-item (click)="backdata(item)">撤回</li>
+                              </ul>
+                            </ng-template>
+                            <span >{{item.content}}</span>
+                          </div>
+                        </div>
                         <div *ngIf="item.content_type == 1"  (mouseup)="he($event, item)" (contextmenu)="his($event)">     
                           <div class="headportrait">
                             <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.content+')'}"></div>
@@ -251,25 +260,11 @@
   </nz-modal>
 
 
-  <!-- <div *ngIf="show">
-      <div style="display: -webkit-box;">
-          <div class="hint">
-              {{filename}}
-          </div>
-          <div class="action-box">
-              <button class="upload-btn" (click)=" downloadFile()"> 下载
-              </button>
-          </div>
-      </div>
-  </div> -->
-  
   <div  id = "mesback1"  *ngIf="pressBoolean">
       <input type = button value="撤回" class = "mesback" (click) = "backdata(id)" [ngStyle]="{'left': px, 'top':py, 'z-index':'400', 'background-color':'red'}" >
   </div>
 
 
-
 <nz-modal [(nzVisible)]="isshowpicVisible"   (nzOnCancel)="handleshowpicCancel()" (nzOnOk)="handleshowpicCancel()">
   <div class="picture2" [ngStyle]="{ 'background-image': 'url('+a+')'}"></div>
 </nz-modal>
-

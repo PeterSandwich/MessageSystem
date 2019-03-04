@@ -30,9 +30,8 @@ func validateUserSession(r *http.Request)(*http.Request,string){
 		str = r.URL.Query().Get("session_id")
 	}
 	uid, ok := session.IsSessionExpired(str)
-	Logger.Debug("get uid from IsSessionExpired",zap.String("uid",uid),zap.String("url",r.URL.Path))
 	if ok {
-		Logger.Warn(" session.IsSessionExpired")
+		Logger.Debug("IsSessionExpired",zap.String("uid",uid),zap.String("url",r.URL.Path))
 		return r,""
 	}
 	return r,uid

@@ -33,7 +33,7 @@ func GenerateNewSessionId(uid int64) string {
 
 func IsSessionExpired(sid string) (string, bool) {
 	if len(sid) == 0 {
-		Logger.Warn("IsSessionExpired session id: nil")
+		Logger.Debug("IsSessionExpired session id: nil")
 		return "",true
 	}
 	val, err := redisConn.Get(sid).Result()

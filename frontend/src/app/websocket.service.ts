@@ -139,6 +139,7 @@ export class WebsocketService {
           let index = this.global_message.chat_room_list.get(m.to).message_list.findIndex((e)=>{return e.send_time==m.sendTime})
           if(index<0){console.log("找不到那条消息记录",this.global_message.chat_room_list.get(m.to).message_list);return;}
           this.global_message.chat_room_list.get(m.to).message_list[index].id = m.msgid;
+          this.global_message.chat_room_list.get(m.to).message_list[index].arrive_time = m.arriveTime;
           console.log("收到自己发消息的确认",this.global_message.chat_room_list.get(m.to).message_list)
         }
       }else if(m.cmd == Protocol.Message.CtrlType.CREATE_SESSION){
@@ -187,6 +188,7 @@ export class WebsocketService {
     newMsg.content_type = m.contentType;
     newMsg.is_group = m.isgroup;
     newMsg.send_time = m.sendTime;
+    newMsg.arrive_time = m.arriveTime;
 
     chat_room.message_list.push(newMsg);
   }

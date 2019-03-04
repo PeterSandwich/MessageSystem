@@ -108,6 +108,7 @@ NO MAXVALUE
 CACHE 1;
 
 alter table groups alter column id set default nextval('group_id');
+alter table groups alter column headimg set default 'http://imgmini.dfshurufa.com/mobile/20160327145723_62474fa7b0f1d367e007f32f22221eff_3.jpeg';
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 create table membership(
 	uid bigint,

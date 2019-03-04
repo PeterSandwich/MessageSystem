@@ -1,4 +1,6 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef,TemplateRef } from '@angular/core';
+import { NzDropdownContextComponent, NzDropdownService, NzMenuItemDirective } from 'ng-zorro-antd';
+import { NzMessageService } from 'ng-zorro-antd';
 import { DomSanitizer } from '@angular/platform-browser'
 import { WebsocketService } from '../websocket.service';
 import { UserService } from '../user.service';
@@ -7,7 +9,7 @@ import { UploadService } from '../file.service';
 import { Protocol } from '../protocol/Protocol';
 import * as com from '../common/im'
 import { environment } from '../../environments/environment';
-
+import { Long } from 'protobufjs';
 
 
 @Injectable()
@@ -66,13 +68,11 @@ export class ChatComponent implements OnInit {
     private us:UserService,    // 里面有 我的Id: this.us.MyUserId
     private upload: UploadService ,
     private el: ElementRef,
-    public _d: DomSanitizer
+    public _d: DomSanitizer,
+    private nzDropdownService: NzDropdownService,
+    private message: NzMessageService
     ) {
-      this.userListDisplay = [];
-      this.createGroupList=new(com.CreateGroup);
-      this.createGroupList.contact_list = [];
-      this.groupMemberList = [];
-      this.addMemberList = [];
+      
      }
 
 
@@ -81,7 +81,16 @@ export class ChatComponent implements OnInit {
     }
     
     ngOnInit(){
+    this.ws.createSocket(environment.websocketUrl+"?session_id="+this.us.session_id);
+    this.ws.global_message.chat_room_list = new Map<number|Long,com.ChatRoom>();
+    this.ws.nearest_contact.contact_list = [];
+    this.ws.address_book.contact_list = [];
 
+      this.userListDisplay = [];
+      this.createGroupList=new(com.CreateGroup);
+      this.createGroupList.contact_list = [];
+      this.groupMemberList = [];
+      this.addMemberList = [];
       // 初始化最近聊天列表及其聊天历史消息
       this.getNearestListAndMessage();
       this.getAddress();
@@ -108,14 +117,7 @@ export class ChatComponent implements OnInit {
       this.userListDisplay =this.ws.address_book.contact_list
     }
 
-    his(event){//防止右键点击是弹出默认面板
-      event.preventDefault();
-      if(event.button != 2 || !this.isPress){
-        this.pressBoolean = false;
-        this.isPress= false;
-        return;
-      }
-    }
+
     he(event, item: com.MessageItem, id: number){//可自定义右键事件
       if(event.button != 2){
         this.pressBoolean = false;
@@ -124,29 +126,28 @@ export class ChatComponent implements OnInit {
       }
       this.isPress = true;
       this.backMes = item;
-      this.id = Number(item.id);
-
-      this.pressBoolean = true;
-      var px = event.clientX;
-      var py = event.clientY;
-      this.px = String(px) + 'px';
-      this.py = String(py) + 'px';
-   
     }
-    backdata(){
+    backdata(item: com.MessageItem){
       ///////////////////////////////////////////////////////////
       //有一个bug需解决，撤回消息后聊天框仍存在，以后再改23333333333333//
       ///////////////////////////////////////////////////////////
-      console.log("撤回")
+      console.log("撤回",item)
+      let at :number = parseInt(item.arrive_time.toString())
+      let now :number = Date.now()
+      if (now-at>120000){
+        this.message.create('warning', `时间超过两分钟，无法撤回`);
+        return
+      }
+      
       let msg = new(Protocol.Message)
       msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
       msg.cmd = Protocol.Message.CtrlType.MSG_BACK;// 消息撤回
       msg.from = this.us.MyUserId;              // 消息发送方
-      msg.to = this.backMes.to;                   //消息接收方
-      msg.content = this.backMes.content;             //消息内容
-      msg.contentType = this.backMes.content_type;　  //消息类型
-      msg.isgroup = this.backMes.is_group;                       //是不是群组消息
-      msg.msgid = this.backMes.id;
+      msg.to = item.to;                   //消息接收方
+      msg.content = item.content;             //消息内容
+      msg.contentType = item.content_type;　  //消息类型
+      msg.isgroup = item.is_group;                       //是不是群组消息
+      msg.msgid = item.id;
       msg.sendTime = Date.now();
 
       this.ws.sendMessage(msg);
@@ -625,6 +626,19 @@ export class ChatComponent implements OnInit {
   addMember(){
     
   }
+
+
+  private dropdown: NzDropdownContextComponent;
+
+  contextMenu($event: MouseEvent, template: TemplateRef<void>): void {
+    this.dropdown = this.nzDropdownService.create($event, template);
+  }
+
+  close(e: NzMenuItemDirective): void {
+    console.log(e);
+    this.dropdown.close();
+  }
+
 }
   
 
