@@ -69,16 +69,15 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 		case "image/jpeg", "image/jpg":returnp.Filetype=1
 		case "image/gif", "image/png":returnp.Filetype=1
 		case "application/pdf":
-
 			returnp.Filetype=2
 		case "application/octet-stream":
 			filetype="application/x-zip-compressed"
 			returnp.Filetype=2
 		case "video/mp4":
-			returnp.Filetype=2
+			returnp.Filetype=3
 			filetype = "video/mp4"
 		case "audio/mpeg":
-			returnp.Filetype=2
+			returnp.Filetype=3
 			filetype = "audio/mpeg"
 		case "text/plain; charset=utf-8":
 			returnp.Filetype=2

@@ -53,13 +53,13 @@
                             </button>
                         </div>
                         <div *ngIf="item.content_type == 3"  (mouseup)="he($event, item, i, item.msgid)" (contextmenu)="his($event)">
-                                <img src="/files/video.png" class="picture" >
-                                <button class="upload-btn" (click)=“showvideoModal(item.content)> 播放
+                                <i class="fa fa-file-video-o" aria-hidden="true"></i>
+                                <button class="upload-btn" (click)="showvideoModal(item.content)"> 播
                                 </button>
                             </div>
                     </div>
                     <div *ngIf="item.from == my_id && item.content != ''" id="box1"><!--发送的消息-->
-                        <div *ngIf="item.content_type != 1 && item.content_type != 2"  (contextmenu)="his($event)" (mouseup)="he($event, item)" >{{item.content}}</div>
+                        <div *ngIf="item.content_type != 1 && item.content_type != 2 && item.content_type != 3"  (contextmenu)="his($event)" (mouseup)="he($event, item)" >{{item.content}}</div>
                         <div *ngIf="item.content_type == 1"  (mouseup)="he($event, item)" (contextmenu)="his($event)">     
                           <div class="headportrait">
                             <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.content+')'}"></div>
@@ -74,8 +74,8 @@
                             </button>
                         </div>
                         <div *ngIf="item.content_type == 3"  (mouseup)="he($event, item)" (contextmenu)="his($event)">
-                                <img src="/files/video.png" class="picture" >
-                                <button class="upload-btn" (click)=“showvideoModal(item.content)> 播放
+                                 <i class="fa fa-file-video-o" aria-hidden="true"></i>
+                                <button class="upload-btn" (click)="showvideoModal(item.content)"> 播
                                 </button>
                             </div>
                     </div>
@@ -308,14 +308,6 @@
 
 
 <!-- <button type="button"  data-toggle="modal" data-target="#video" >查看比赛视频</button>-->
-<div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="video" aria-hidden="true" (blur)="theVideo.pause()">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" >
-          <div class="modal-body">
-            <div >
-              <video [src]="videourl" controls="controls" #theVideo></video>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
+
+
+<i class="fa fa-file-video-o fa-6" aria-hidden="true"></i>

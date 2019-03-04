@@ -332,7 +332,7 @@ export class ChatComponent implements OnInit {
              msg.from =  this.us.MyUserId;
              msg.to = this.to_id;
              msg.content = this.dfileurl;
-             if(filetype == 2){
+             if(filetype == 2||filetype == 3){
               msg.content = this.filep;
              }
              msg.contentType = filetype; 
