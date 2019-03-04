@@ -1,13 +1,4 @@
 <nz-layout class="layout">
-  <nz-header>
-    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;">
-      <li nz-menu-item routerLink="" routerLinkActive="active" >首页</li>
-      <li nz-menu-item routerLink="/login" routerLinkActive="active" [hidden]="login.isLogin">登录</li>
-      <li nz-menu-item routerLink="/signup" routerLinkActive="active" [hidden]="login.isLogin">注册</li>
-      <li nz-menu-item routerLink="/chat" routerLinkActive="active" [hidden]="!login.isLogin"> <nz-badge nzDot style="color:white"><a>消息</a></nz-badge></li>
-      <li nz-menu-item  (click)="quit()" [hidden]="!login.isLogin">退出</li>
-    </ul>
-  </nz-header>
   <nz-content style="padding:0 50px;">
     <div style=" padding: 24px; min-height: 1000px;">
       <router-outlet></router-outlet>

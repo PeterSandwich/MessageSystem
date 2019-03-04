@@ -27,10 +27,12 @@ func Run(logger *zap.Logger) {
 	for {
 		result, err := subscribe.Receive()
 		if err != nil {
-			Logger.Error("message queue receive data :"+err.Error())
+			Logger.Panic("message queue receive data :"+err.Error())
 		}
+
 		switch msg := result.(type) {
 		case *redis.Message:
+			logger.Debug("收到一条消息")
 			MessageScheduling([]byte(msg.Payload))
 		default:
 		}
@@ -65,11 +67,11 @@ func errorRequestResponse(in *pb.Message, who int64,code pb.Message_ErrorCode){
 	resp := &pb.Message{
 		Type:    pb.Message_ERROR,
 		Errcode: code,
-		Cmd:     pb.Message_NONE,
+		Cmd:     in.Cmd,
 		Msgid:   -1,
 		To:      in.GetTo(),
 		From:    in.GetFrom(),
-		ArriveTime:    time.Now().Unix(),
+		ArriveTime: time.Now().UnixNano() / 1e6,
 		SendTime:in.GetSendTime(),
 		ContentType:in.ContentType,
 		Isgroup: in.GetIsgroup(),
@@ -102,7 +104,8 @@ func messageForward(resp *pb.Message, who int64){
 
 // 消息处理：存储，分发
 func sendRequestDispose(in *pb.Message){
-	ctime := time.Now().Unix()
+	Logger.Debug("这条消息：单发或群发消息处理")
+	ctime := time.Now().UnixNano() / 1e6
 	messageId, err := dbops.MessageStore(in.From, in.To, in.Content, int(in.ContentType), ctime, in.Isgroup)
 	if err != nil {
 		Logger.Warn(err.Error())
@@ -197,6 +200,7 @@ func sendRequestDispose(in *pb.Message){
 
 // 创建群聊
 func createGroupRequest(in *pb.Message) {
+	Logger.Debug("这条消息：创建群聊")
 	gid, gname, err := dbops.CreateGroupStore(in.GetFrom(), in.GetContent())
 	if err != nil {
 		Logger.Warn(err.Error())
@@ -210,7 +214,7 @@ func createGroupRequest(in *pb.Message) {
 		Type:    pb.Message_ACK,
 		Cmd:     pb.Message_CREATE_GROUP,
 		From:    in.GetFrom(),
-		ArriveTime: time.Now().Unix(),
+		ArriveTime: time.Now().UnixNano() / 1e6,
 		SendTime:in.GetSendTime(),
 		To:      gid,
 		Isgroup: true,
@@ -224,7 +228,7 @@ func createGroupRequest(in *pb.Message) {
 			Type:    pb.Message_NOTIFICATION,
 			Cmd:     pb.Message_CREATE_GROUP,
 			From:    in.GetFrom(),
-			ArriveTime: time.Now().Unix(),
+			ArriveTime: time.Now().UnixNano() / 1e6,
 			SendTime:in.GetSendTime(),
 			To:      gid,
 			Isgroup: true,
@@ -237,6 +241,7 @@ func createGroupRequest(in *pb.Message) {
 
 // 拉人进群
 func groupAddMemRequest(in *pb.Message) {
+	Logger.Debug("这条消息：拉人进群")
 	if !in.GetIsgroup() {
 		errorRequestResponse(in,in.GetFrom(),pb.Message_REQUEST_BODY_PARAMS_ERROR)
 		return
@@ -254,7 +259,7 @@ func groupAddMemRequest(in *pb.Message) {
 		Type:    pb.Message_ACK,
 		Cmd:     pb.Message_GROUP_ADDMEMBERS,
 		From:    in.GetFrom(),
-		ArriveTime:  time.Now().Unix(),
+		ArriveTime:  time.Now().UnixNano() / 1e6,
 		SendTime:in.GetSendTime(),
 		Isgroup: true,
 		Content: info.Name,
@@ -267,7 +272,7 @@ func groupAddMemRequest(in *pb.Message) {
 			Type:    pb.Message_NOTIFICATION,
 			Cmd:     pb.Message_GROUP_ADDMEMBERS,
 			From:    in.GetFrom(),
-			ArriveTime:    time.Now().Unix(),
+			ArriveTime:    time.Now().UnixNano() / 1e6,
 			SendTime:in.GetSendTime(),
 			Isgroup: true,
 			Content: info.Name,
@@ -279,18 +284,14 @@ func groupAddMemRequest(in *pb.Message) {
 
 // 消息撤回
 func withdrawMessage(in *pb.Message){
-
+	Logger.Debug("这条消息：消息撤回")
 
 	if in.GetMsgid() < 1 {
 		errorRequestResponse(in,in.GetFrom(),pb.Message_REQUEST_BODY_PARAMS_ERROR)
 		return
 	}
-	t,err:=dbops.GetMessageArriveTime(in.Msgid)
-	if err!=nil ||time.Now().Sub(time.Unix(t,0))>time.Minute*2{
-		errorRequestResponse(in,in.GetFrom(),pb.Message_WITHDRAW_MESSAGE_FAILED)
-		return
-	}
-	err = dbops.DeleteMsgById(in.GetMsgid())
+
+	err := dbops.DeleteMsgById(in.GetMsgid())
 	if err != nil {
 		Logger.Warn(err.Error())
 		errorRequestResponse(in,in.GetFrom(),pb.Message_WITHDRAW_MESSAGE_FAILED)
@@ -303,7 +304,7 @@ func withdrawMessage(in *pb.Message){
 		Msgid:       in.GetMsgid(),
 		To:          in.GetTo(),
 		From:        in.GetFrom(),
-		ArriveTime:    time.Now().Unix(),
+		ArriveTime:    time.Now().UnixNano() / 1e6,
 		SendTime:in.GetSendTime(),
 		ContentType: in.ContentType,
 		Isgroup:     in.GetIsgroup(),
@@ -326,7 +327,7 @@ func withdrawMessage(in *pb.Message){
 				Msgid:       in.GetMsgid(),
 				From:        in.GetFrom(),
 				To:          in.GetTo(),
-				ArriveTime:    time.Now().Unix(),
+				ArriveTime:    time.Now().UnixNano() / 1e6,
 				SendTime:in.GetSendTime(),
 				ContentType: in.ContentType,
 				Isgroup:     in.GetIsgroup(),
@@ -340,7 +341,7 @@ func withdrawMessage(in *pb.Message){
 			Msgid:   in.GetMsgid(),
 			To:      in.GetTo(),
 			From:    in.GetFrom(),
-			ArriveTime: time.Now().Unix(),
+			ArriveTime: time.Now().UnixNano() / 1e6,
 			SendTime:in.GetSendTime(),
 			ContentType:in.ContentType,
 			Isgroup: in.GetIsgroup(),
@@ -351,6 +352,7 @@ func withdrawMessage(in *pb.Message){
 
 // 添加好友
 func createChatSession(in *pb.Message) {
+	Logger.Debug("这条消息：添加好友")
 	if in.GetIsgroup() {
 		errorRequestResponse(in,in.GetFrom(),pb.Message_REQUEST_BODY_PARAMS_ERROR)
 		return
@@ -368,7 +370,7 @@ func createChatSession(in *pb.Message) {
 		Cmd:     pb.Message_CREATE_SESSION,
 		To:      in.GetTo(),
 		From:    in.GetFrom(),
-		ArriveTime: time.Now().Unix(),
+		ArriveTime: time.Now().UnixNano() / 1e6,
 		SendTime:in.GetSendTime(),
 		Isgroup: false,
 	}
@@ -380,7 +382,7 @@ func createChatSession(in *pb.Message) {
 		Cmd:     pb.Message_CREATE_SESSION,
 		To:      in.GetTo(),
 		From:    in.GetFrom(),
-		ArriveTime: time.Now().Unix(),
+		ArriveTime: time.Now().UnixNano() / 1e6,
 		SendTime:in.GetSendTime(),
 		Isgroup: false,
 	}
