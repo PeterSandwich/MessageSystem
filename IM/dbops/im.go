@@ -14,7 +14,7 @@ func MessageStore(from,to int64, content string,content_type int,ctime int64, is
 		return -1,errors.New("Illegal parameter 'from' and 'to'")
 	}
 
-	if content_type<0 || content_type>2 {
+	if content_type<0 || content_type>4 {
 		logger.Warn("Illegal parameter 'content_type' ,Make sure it is in [0,2]")
 		return -1,errors.New("Illegal parameter 'content_type'")
 	}

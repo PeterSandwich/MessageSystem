@@ -175,7 +175,7 @@ export class ChatComponent implements OnInit {
       this.isselect = true;
       console.log("this.id", id)
       this.to_name = name;
-      this.to_img = img;
+      this.to_img = img;              //对方头像
       this.isgroup = isgroup;
       var flag : boolean = false;
 
@@ -300,45 +300,42 @@ export class ChatComponent implements OnInit {
   show:boolean
   selectFile(event: any) {
     let fileList: FileList = event.target.files;
-    // console.log("fileList=", fileList)
-    // console.log("event.target", event.target)
     this.uploadFile(fileList);
   }
-
+  imgurl:string[]
   uploadFile(files: FileList) {
     if (files.length == 0) {
       console.log("No file selected!");
       return
     }
     let file: File = files[0];
-    if(file.size>10*1024*1024){
+    if(file.size>200*1024*1024){
       console.log("file is too big!")
       return
     }
     //console.log(file.type)
-    //console.log(file.name)
+    console.log(file.name)
+    console.log(file.type)
     this.filename = file.name;
+    
     this.upload.uploadFile(this.fileurl, file).subscribe((response: any) => {
           //.log(response);
           let filetype = -1;
           if (response["body"] != null) {
             // console.log(response)
             if (response["body"] != null) {
-              console.log(response["body"]);
               this.filep = response["body"]["originalfile"];
               this.dfileurl=response["body"]["thumbnail"];
               filetype = response["body"]["filetype"];
-              console.log(this.dfileurl)
               this.show = true;
             }
-            console.log("####",this.us.MyUserId,this.to_id,this.filep,this.dfileurl,filetype)
              let msg = new(Protocol.Message)
              msg.type = Protocol.Message.Type.REQUEST;
              msg.cmd = Protocol.Message.CtrlType.NONE;
              msg.from =  this.us.MyUserId;
              msg.to = this.to_id;
              msg.content = this.dfileurl;
-             if(filetype == 2){
+             if(filetype == 2||filetype == 3){
               msg.content = this.filep;
              }
              msg.contentType = filetype; 
@@ -356,10 +353,29 @@ export class ChatComponent implements OnInit {
           console.log("Upload done");
         }
       )
-    //this.getpath();
-
   }
-
+  switchpng(url:string):any{
+  this.imgurl=url.split(".")
+  let src:string
+switch(this.imgurl[1]){
+  case 'doc':
+    src="/files/DOC.png";
+    break;
+  case 'pdf':
+    src="/files/pdf.png";
+    break;
+  case 'ppt':
+    src="/files/ppt.png";
+  break;
+  case 'zip':
+    src="/files/RAR.png";
+  break;
+  case 'txt':
+    src="/files/txt.png";
+  break;
+}
+return src;
+}
 
   isshowpicVisible = false;
   aaa:string[]
@@ -375,12 +391,23 @@ export class ChatComponent implements OnInit {
   handleshowpicCancel(): void {
     this.isshowpicVisible = false;
   }
-  getpath() {
-    this.filep = "getpic/3ea62ac5fb0758efadb15e36_compress.jpg"
-    // console.log(this.filep);
+  videourl:string
+  isshowvideoVisible = false;
+  showvideoModal(url:string): void {
+    console.log(url);
+
+    this.videourl=url;
+    this.isshowvideoVisible = true;
   }
-  download() {
-    window.open(this.fileurl, '_blank');
+  handleshowvideoCancel(): void {
+    this.isshowvideoVisible = false;
+  }
+
+
+
+
+  download(filepath:string) {
+    window.open(filepath, '_blank');
     return;
   }
     // 调用浏览器的下载
@@ -393,7 +420,7 @@ export class ChatComponent implements OnInit {
       a.download = name;
       a.click();
       a.remove();
-      // console.log('download:' + a.href);
+      console.log('download:' + a.href);
     }
 
 

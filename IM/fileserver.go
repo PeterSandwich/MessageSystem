@@ -29,7 +29,7 @@ import (
 //   3, 图片或文件上传成功后，如果是图片 返回{原文件：“/img/xxxxxxx.png”,缩略图："/img/xxxxxx_compress.png",文件类型：（0为文字，1为图片，2为文件）}
 
 
-const maxUploadSize = 10 * 1024 * 1024 // 10 mb
+const maxUploadSize = 20 * 1024 * 1024 // 10 mb
 const uploadPath = "/tmp/files/"
 //const uploadPath = "C:/Users/User/Desktop/GoProject/files/"
 
@@ -46,6 +46,7 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 		}
 		// 解析文件
 		fileType := r.PostFormValue("type")
+		fmt.Println(fileType)
 		file, _, err := r.FormFile("uploadFile")
 		if err != nil {
 			sendErrorResponse(w,defs.ErrorFileInvalid)
@@ -59,16 +60,22 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 		}
 		// 获取文件类型，只需读取文件前512位
 		filetype := http.DetectContentType(fileBytes)
+		fmt.Println(filetype)
 		//判断文件类型
 		switch filetype {
 		case "image/jpeg", "image/jpg":returnp.Filetype=1
 		case "image/gif", "image/png":returnp.Filetype=1
 		case "application/pdf":
-
 			returnp.Filetype=2
-		case "application/octet-stream":
+		case "application/octet-stream","application/zip":
 			filetype="application/x-zip-compressed"
 			returnp.Filetype=2
+		case "video/mp4":
+			returnp.Filetype=3
+			filetype = "video/mp4"
+		case "audio/mpeg":
+			returnp.Filetype=3
+			filetype = "audio/mpeg"
 		case "text/plain; charset=utf-8":
 			returnp.Filetype=2
 			filetype = "text/plain"
@@ -78,12 +85,20 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 		}
 		//读文件类型
 		fileEndings, err := mime.ExtensionsByType(fileType)
+		fmt.Println(fileEndings)
 		if err != nil {
+			fmt.Println(err)
 			sendErrorResponse(w,defs.ErrorReadFileType)
 			return
 		}
-		if fileEndings[0]==".asm"||fileEndings[0]==".asc"{
+		if fileEndings[0]==".asm" || fileEndings[0]==".asc"{
 			fileEndings[0]=".txt"
+		}
+		if fileEndings[0]==".m4v"{
+			fileEndings[0]=".mp4"
+		}
+		if fileEndings[0]==".mp2"{
+			fileEndings[0]=".mp3"
 		}
 		typew := strings.Split(fileEndings[0], ".")
 		//生成文件名
@@ -151,8 +166,6 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 			sendNormalResponse(w,string(resp),200)
 		}
 	}
-
-
 //获取可执行文件的绝对路径
 func exepath(ftype string) (string, error) {
 	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))

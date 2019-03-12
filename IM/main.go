@@ -17,7 +17,6 @@ var (
 	redisConn *redis.Client
 	Logger *zap.Logger
 	configFile string
-
 )
 
 func init(){
