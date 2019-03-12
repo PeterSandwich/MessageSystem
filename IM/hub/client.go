@@ -25,13 +25,15 @@ const (
 type Client struct {
 	Conn *websocket.Conn
 	send chan []byte
+	Stop chan int
 }
 
 func (c *Client) readPump() {
 	defer func() {
+		Logger.Info("connection closed")
 		e := c.Conn.Close()
 		if e != nil {
-			Logger.Error("a websocket connection close after read:" + e.Error())
+			Logger.Info("a websocket connection had closed")
 		}
 	}()
 
@@ -76,6 +78,7 @@ func (c *Client) writePump() {
 		case <-ticker.C:
 			_ = c.Conn.SetWriteDeadline(time.Now().Add(writeWait))
 			if err := c.Conn.WriteMessage(websocket.PingMessage, nil); err != nil {
+				Logger.Info("websocket.Ping： client close the connection")
 				return
 			}
 		}

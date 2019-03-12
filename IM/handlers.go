@@ -8,7 +8,6 @@ import (
 	"MessageSystem/IM/session"
 	"database/sql"
 	"encoding/json"
-	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"go.uber.org/zap"
 	"golang.org/x/crypto/bcrypt"
@@ -86,7 +85,6 @@ func loginHandle(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	var user defs.LoginReq
 	body, _ := ioutil.ReadAll(r.Body)
 	err := json.Unmarshal(body, &user)
-	Logger.Debug("user login:"+user.Name)
 	if err != nil {
 		Logger.Warn("Request body is not correct in loginHandle : "+err.Error())
 		sendErrorResponse(w,defs.ErrorRequestBodyParseFailed)
@@ -197,7 +195,7 @@ func getNearestContactMessage(w http.ResponseWriter, r *http.Request, p httprout
 		data []byte
 	)
 	contact := &defs.NearestContact{}
-	fmt.Println("header:",r)
+	Logger.Debug("http header",zap.String("X-Session-Id",r.Header.Get("X-Session-Id")))
 	param := r.Header.Get(defs.HEADER_FIELD_UID)
 	myId ,err := strconv.ParseInt(param,10,64)
 	if len(param)==0 || err !=nil {
