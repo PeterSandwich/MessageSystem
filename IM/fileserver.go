@@ -85,7 +85,7 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 		}
 		//读文件类型
 		fileEndings, err := mime.ExtensionsByType(fileType)
-		fmt.Println(fileEndings)
+		fmt.Println(fileType,fileEndings)
 		if err != nil {
 			fmt.Println(err)
 			sendErrorResponse(w,defs.ErrorReadFileType)
