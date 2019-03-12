@@ -46,6 +46,7 @@ services:
     volumes:
       - ./IM:/IM
       - ./frontend:/frontend
+      - /tmp/files:/tmp/files
     links:
       - "redis:im_redis"
     depends_on:
