@@ -30,27 +30,24 @@ import (
 
 
 const maxUploadSize = 20 * 1024 * 1024 // 10 mb
-//const uploadPath = "/tmp/files/"
-const uploadPath = "C:/Users/User/Desktop/GoProject/files/"
+const uploadPath = "/tmp/files/"
+//const uploadPath = "C:/Users/User/Desktop/GoProject/files/"
 
 var inputArgs defs.InputArgs
 
 func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Params) {
 		//返回内容
 		returnp := defs.ReturnPath{}
-		fmt.Println("a")
 		// 检查文件大小
 		r.Body = http.MaxBytesReader(w, r.Body, maxUploadSize)
 		if err := r.ParseMultipartForm(maxUploadSize); err != nil {
 			sendErrorResponse(w,defs.ErrorFileSize)
 			return
 		}
-		fmt.Println("b")
 		// 解析文件
 		fileType := r.PostFormValue("type")
 		fmt.Println(fileType)
 		file, _, err := r.FormFile("uploadFile")
-		fmt.Println("c")
 		if err != nil {
 			sendErrorResponse(w,defs.ErrorFileInvalid)
 			return
@@ -90,10 +87,11 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 		fileEndings, err := mime.ExtensionsByType(fileType)
 		fmt.Println(fileEndings)
 		if err != nil {
+			fmt.Println(err)
 			sendErrorResponse(w,defs.ErrorReadFileType)
 			return
 		}
-		if fileEndings[0]==".asm"||fileEndings[0]==".asc"{
+		if fileEndings[0]==".asm" || fileEndings[0]==".asc"{
 			fileEndings[0]=".txt"
 		}
 		if fileEndings[0]==".m4v"{
@@ -168,8 +166,6 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 			sendNormalResponse(w,string(resp),200)
 		}
 	}
-
-
 //获取可执行文件的绝对路径
 func exepath(ftype string) (string, error) {
 	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))

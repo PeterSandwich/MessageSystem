@@ -48,21 +48,18 @@
                           </div>                          
                         </div>
                         <div *ngIf="item.content_type == 2"  (mouseup)="he($event, item, i, item.msgid)" (contextmenu)="his($event)">
-                            <img src="/files/uknow.png" class="picture" >
+                            <img [src]="switchpng(item.content)" class="picture" >
                             <button class="upload-btn" (click)=" downloadFile(item.content)"> 下载
                             </button>
                         </div>
                         <div *ngIf="item.content_type == 3"  (mouseup)="he($event, item, i, item.msgid)" (contextmenu)="his($event)">
                                 <i class="fa fa-file-video-o" aria-hidden="true"></i>
-                                <button class="upload-btn" (click)="showvideoModal(item.content)"> 播
+                                <button class="upload-btn" (click)="showvideoModal(item.content)"> 播放
                                 </button>
                             </div>
                     </div>
                     <div *ngIf="item.from == my_id && item.content != ''" id="box1"><!--发送的消息-->
-<<<<<<< HEAD
-                        <div *ngIf="item.content_type != 1 && item.content_type != 2 && item.content_type != 3"  (contextmenu)="his($event)" (mouseup)="he($event, item)" >{{item.content}}</div>
-=======
-                        <div *ngIf="item.content_type != 1 && item.content_type != 2"  >
+                        <div *ngIf="item.content_type != 1 && item.content_type != 2 && item.content_type != 3"  >
                           <div (contextmenu)="contextMenu($event,template)">
                             <ng-template #template>
                               <ul nz-menu nzInDropDown (nzClick)="close($event)">
@@ -72,7 +69,6 @@
                             <span >{{item.content}}</span>
                           </div>
                         </div>
->>>>>>> d9cb1f2d0330321d7807a9fb4a3fcac346b9b382
                         <div *ngIf="item.content_type == 1"  (mouseup)="he($event, item)" (contextmenu)="his($event)">     
                           <div class="headportrait">
                             <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.content+')'}"></div>
@@ -82,13 +78,13 @@
                           </div>
                         </div>
                         <div *ngIf="item.content_type == 2"  (mouseup)="he($event, item)" (contextmenu)="his($event)">
-                            <img src="/files/uknow.png" class="picture" >
+                          <img [src]="switchpng(item.content)" class="picture" >
                             <button class="upload-btn" (click)=" downloadFile(item.content)"> 下载
                             </button>
                         </div>
                         <div *ngIf="item.content_type == 3"  (mouseup)="he($event, item)" (contextmenu)="his($event)">
                                  <i class="fa fa-file-video-o" aria-hidden="true"></i>
-                                <button class="upload-btn" (click)="showvideoModal(item.content)"> 播
+                                <button class="upload-btn" (click)="showvideoModal(item.content)"> 播放
                                 </button>
                             </div>
                     </div>
@@ -174,7 +170,8 @@
                 <i nz-icon type="picture" theme="outline" style="font-size: 25px" class = "icon"></i>        -->
                 <input id="upfile" type="file" style="display: none;" (change)="selectFile($event)" accept=".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt,.mp4,.mp3">
                 <div class="action-box">
-                  <button  nz-button nzType="primary" onclick = "upfile.click()" >点击上传</button>
+                    
+                  <button  nz-button nzType="primary" onclick = "upfile.click()" ><i nz-icon type="upload"></i>点击上传</button>
                 </div>
               </div>
             </div>
@@ -283,26 +280,18 @@
 <button type="button"  (click)="showvideoModal()" >查看比赛视频</button>
 
 <nz-modal [(nzVisible)]="isshowpicVisible"   (nzOnCancel)="handleshowpicCancel()" (nzOnOk)="handleshowpicCancel()">
-   <div class="picture2" [ngStyle]="{ 'background-image': 'url('+a+')'}"></div>
+   <div  >
+     <img class="picture2" src="{{a}}">
+   </div>
 </nz-modal>
 
 
 <nz-modal [(nzVisible)]="isshowvideoVisible"   (nzOnCancel)="handleshowvideoCancel()" (nzOnOk)="handleshowvideoCancel()">
     <div >
-        <div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="video" aria-hidden="true" (blur)="theVideo.pause()">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content" >
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">播放视频</h5>
-                      </div>
-                      <div class="modal-body">
-                        <div >
-                          <video [src]="videourl" controls="controls" #theVideo></video>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              </div>
+        <div >
+          <h5>sadasdasdassdas</h5>
+          <video [src]="videourl" controls="controls" #theVideo></video>
+        </div>
     </div>
   </nz-modal>
 
@@ -310,5 +299,22 @@
 
 <!-- <button type="button"  data-toggle="modal" data-target="#video" >查看比赛视频</button>-->
 
-
+<!-- 
 <i class="fa fa-file-video-o fa-6" aria-hidden="true"></i>
+
+<div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="video" aria-hidden="true" (blur)="theVideo.pause()">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" >
+          <h5>sadasdasdassdas</h5>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">播放视频</h5>
+          </div>
+          <div class="modal-body">
+            <div >
+              <h5>sadasdasdassdas</h5>
+              <video [src]="videourl" controls="controls" #theVideo></video>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div> -->

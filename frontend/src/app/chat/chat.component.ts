@@ -175,7 +175,7 @@ export class ChatComponent implements OnInit {
       this.isselect = true;
       console.log("this.id", id)
       this.to_name = name;
-      this.to_img = img;
+      this.to_img = img;              //对方头像
       this.isgroup = isgroup;
       var flag : boolean = false;
 
@@ -315,7 +315,9 @@ export class ChatComponent implements OnInit {
     }
     //console.log(file.type)
     console.log(file.name)
+    console.log(file.type)
     this.filename = file.name;
+    
     this.upload.uploadFile(this.fileurl, file).subscribe((response: any) => {
           //.log(response);
           let filetype = -1;
@@ -392,6 +394,8 @@ return src;
   videourl:string
   isshowvideoVisible = false;
   showvideoModal(url:string): void {
+    console.log(url);
+
     this.videourl=url;
     this.isshowvideoVisible = true;
   }
