@@ -67,7 +67,7 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 		case "image/gif", "image/png":returnp.Filetype=1
 		case "application/pdf":
 			returnp.Filetype=2
-		case "application/octet-stream":
+		case "application/octet-stream","application/zip":
 			filetype="application/x-zip-compressed"
 			returnp.Filetype=2
 		case "video/mp4":
@@ -90,7 +90,7 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 			return
 		}
 		fileEndings, err := mime.ExtensionsByType(fileType)
-		fmt.Println(fileEndings)
+		fmt.Println(fileType,fileEndings)
 		if err != nil {
 			fmt.Println(err)
 			sendErrorResponse(w,defs.ErrorReadFileType)
