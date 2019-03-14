@@ -336,7 +336,7 @@ export class ChatComponent implements OnInit {
              msg.to = this.to_id;
              msg.content = this.dfileurl;
              if(filetype == 2||filetype == 3){
-              msg.content = this.filep;
+              msg.content = this.filep+"+"+file.name;
              }
              msg.contentType = filetype; 
              this.contentType = msg.contentType;
@@ -355,7 +355,8 @@ export class ChatComponent implements OnInit {
       )
   }
   switchpng(url:string):any{
-  this.imgurl=url.split(".")
+  this.imgurl=url.split("+");
+  this.imgurl=this.imgurl[0].split(".");
   let src:string
 switch(this.imgurl[1]){
   case 'doc':
@@ -410,14 +411,18 @@ return src;
     window.open(filepath, '_blank');
     return;
   }
+  getfilename(filepath:string):any{
+    let name:string[] = filepath.split("+");
+    return name[1]
+  }
     // 调用浏览器的下载
     downloadFile(filepath:string) {
       const a: HTMLAnchorElement = document.createElement('a');
-      a.href = filepath;
-      let Removesuffix:string[] = filepath.split(".");
-      let Removeprefix:string[] = Removesuffix[0].split("/");
-      let name:string = Removeprefix[1];
-      a.download = name;
+      let Removesuffix:string[] = filepath.split("+");
+      a.href = Removesuffix[0];
+      let Removeprefix:string[] = Removesuffix[1].split(".");
+      a.download = Removeprefix[0];
+      a.name=Removesuffix[0];
       a.click();
       a.remove();
       console.log('download:' + a.href);

@@ -1,7 +1,7 @@
 .container{
-  background-color: #DDDDDD;
-  width: 1024px;
-  height: 675px;
+  background-color: #fafafa;
+  width: 1110px;
+  height: 780px;
   position: absolute;
   margin: auto;
   top: 0;
@@ -16,6 +16,9 @@
   height: 40px;
   width: 240px;
   height: 30px;
+}
+.filename{
+max-width: 90px;
 }
 .him{
   /* 2 */
@@ -141,7 +144,7 @@
 
 
     position: relative;
-    left:30px; 
+    left:5%; 
     /* width: 140px; */
     min-height: 30px;
     max-width: 300px;
@@ -178,7 +181,7 @@
   /* margin-right: 10px;         */
   /* right: 10px; */
   /* float: right; */
-  right: 30px;
+  right: 0px;
   margin: 0 0 0 auto;
   word-break: break-word;        
   color: white;        
@@ -199,6 +202,7 @@
   border-radius: 4px;
   /* padding: 10px; */
   margin-top:15px;
+  margin-right: 37px;
   vertical-align: middle;
   text-align: left;
 }
@@ -230,6 +234,7 @@
 .upload-btn {
   background-color: #337ab7;
   color: #fff;
+  margin-left:15px; 
   border-radius: 2px;
   border: none;
   /* padding: .5rem 1.3rem; */
@@ -242,6 +247,46 @@
   height: 7rem;
   margin-right: 1rem;
   background-size: cover;
+  }
+  .headportraitonright{
+    width: 30px;
+    height: 30px;
+    top:45px;
+    left: 97%;
+    margin: 0 0 0 auto;
+    margin-right: 10px;
+    background-size: cover;
+    position: relative;
+    overflow:hidden;
+  }
+  .headportraitonleft{
+    width: 30px;
+    height: 30px;
+    top:45px;
+    left: 0%;
+    margin: 0 0 0 auto;
+    margin-right: 10px;
+    background-size: cover;
+    position: relative;
+    overflow:hidden;
+  }
+  .timeonleft{
+    max-width: 140px;
+    left: 6%;
+    top:42px;
+    margin-right: 10px;
+    background-size: cover;
+    position: relative;
+    overflow:hidden;
+}
+  .timeonright{
+      max-width: 140px;
+      top:42px;
+      left:81%;
+      margin-right: 10px;
+      background-size: cover;
+      position: relative;
+      overflow:hidden;
   }
   .picture2 {
      max-width: 100%; 

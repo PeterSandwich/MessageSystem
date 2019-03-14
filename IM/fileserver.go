@@ -84,6 +84,11 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 			return
 		}
 		//读文件类型
+		err=AddExtensionType()
+		if err!=nil{
+			sendErrorResponse(w,defs.ErrorAddExtensionType)
+			return
+		}
 		fileEndings, err := mime.ExtensionsByType(fileType)
 		fmt.Println(fileEndings)
 		if err != nil {
@@ -99,6 +104,9 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 		}
 		if fileEndings[0]==".mp2"{
 			fileEndings[0]=".mp3"
+		}
+		if fileEndings[0]==".pot"{
+			fileEndings[0]=".ppt"
 		}
 		typew := strings.Split(fileEndings[0], ".")
 		//生成文件名
@@ -334,4 +342,38 @@ func Substr(str string, start int, length int) (string, error) {
 	}
 
 	return string(RuneStr[start:end]), nil
+}
+
+func AddExtensionType() error{
+	err:=mime.AddExtensionType(".txt","text/plain")
+	if err!=nil{
+		fmt.Println("AddExtensionType:txt error",err)
+		return err
+	}
+	err=mime.AddExtensionType(".zip","application/x-zip-compressed")
+	if err!=nil{
+		fmt.Println("AddExtensionType:zip error",err)
+		return err
+	}
+	err=mime.AddExtensionType(".mp3","audio/mp3")
+	if err!=nil{
+		fmt.Println("AddExtensionType:mp3 error",err)
+		return err
+	}
+	err=mime.AddExtensionType(".mp4","video/mp4")
+	if err!=nil{
+		fmt.Println("AddExtensionType:mp4 error",err)
+		return err
+	}
+	err=mime.AddExtensionType(".ppt","application/vnd.ms-powerpoint")
+	if err!=nil{
+		fmt.Println("AddExtensionType:ppt error",err)
+		return err
+	}
+	err=mime.AddExtensionType(".doc","application/msword")
+	if err!=nil{
+		fmt.Println("AddExtensionType:doc error",err)
+		return err
+	}
+	return nil
 }

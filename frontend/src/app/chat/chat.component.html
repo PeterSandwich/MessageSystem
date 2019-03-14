@@ -37,6 +37,8 @@
             <!-- 3 -->
             <div class = "message1" id="scrolldIV" >
                 <div *ngFor="let item of showmsg; let i = index; let last = last" >
+                    <div *ngIf="item.from != my_id" class="timeonleft">{{item.arrive_time}}</div>
+                    <img  *ngIf="item.from != my_id" class="headportraitonleft" src = "{{to_img}}" >
                     <div *ngIf="item.from != my_id" id = "box"><!--接受的消息-->
                         <div *ngIf="item.content_type == 0">{{item.content}}</div>
                         <div *ngIf="item.content_type == 1">     
@@ -49,6 +51,7 @@
                         </div>
                         <div *ngIf="item.content_type == 2"  (mouseup)="he($event, item, i, item.msgid)" (contextmenu)="his($event)">
                             <img [src]="switchpng(item.content)" class="picture" >
+                            <div class="filename">{{getfilename(item.content)}}</div>
                             <button class="upload-btn" (click)=" downloadFile(item.content)"> 下载
                             </button>
                         </div>
@@ -58,7 +61,10 @@
                                 </button>
                             </div>
                     </div>
+                    <div *ngIf="item.from == my_id && item.content != ''" class="timeonright">{{item.arrive_time}}</div>
+                    <img  *ngIf="item.from == my_id && item.content != ''" class="headportraitonright" src = "{{my_img_url}}" >
                     <div *ngIf="item.from == my_id && item.content != ''" id="box1"><!--发送的消息-->
+                      
                         <div *ngIf="item.content_type != 1 && item.content_type != 2 && item.content_type != 3"  >
                           <div (contextmenu)="contextMenu($event,template)">
                             <ng-template #template>
@@ -79,6 +85,7 @@
                         </div>
                         <div *ngIf="item.content_type == 2"  (mouseup)="he($event, item)" (contextmenu)="his($event)">
                           <img [src]="switchpng(item.content)" class="picture" >
+                          <div class="filename">{{getfilename(item.content)}}</div>
                             <button class="upload-btn" (click)=" downloadFile(item.content)"> 下载
                             </button>
                         </div>
@@ -88,6 +95,7 @@
                                 </button>
                             </div>
                     </div>
+                 
                     <span *ngIf="last">{{scollbuttom()}}</span>
                   </div>
               </div>

@@ -27,6 +27,7 @@ var (
 	ErrorSubstrFileName = ErrResponse{HttpSC:406,Error:Err{Error:"Substr File Name Error",ErrorCode:"014"}}
 	ErrorMkdir = ErrResponse{HttpSC:406,Error:Err{Error:"Mkdir_Error",ErrorCode:"015"}}
 	ErrorCreateFile = ErrResponse{HttpSC:406,Error:Err{Error:"Create File Error",ErrorCode:"016"}}
+	ErrorAddExtensionType = ErrResponse{HttpSC:406,Error:Err{Error:"Add Extension Type",ErrorCode:"017"}}
 )
 
 
