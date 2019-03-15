@@ -83,7 +83,7 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 			sendErrorResponse(w,defs.ErrorIinvaidType)
 			return
 		}
-		if filetype=="text/plain; charset=utf-8"&&fileType=="video/mp4"{
+		if filetype=="text/plain"&&fileType=="video/mp4"{
 			returnp.Filetype=3
 			filetype = "video/mp4"
 		}
@@ -387,6 +387,11 @@ func AddExtensionType() error{
 	err=mime.AddExtensionType(".doc","application/msword")
 	if err!=nil{
 		fmt.Println("AddExtensionType:doc error",err)
+		return err
+	}
+	err=mime.AddExtensionType(".ppt","application/wps-office.ppt")
+	if err!=nil{
+		fmt.Println("AddExtensionType:ppt error",err)
 		return err
 	}
 	return nil
