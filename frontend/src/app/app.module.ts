@@ -16,6 +16,9 @@ import en from '@angular/common/locales/en';
 import { UserService } from './user.service';
 import { UploadService } from '../app/file.service';
 import { TimePipe } from './common/time_pipe';
+import { DatePipe } from './common/date_pipe';
+import { DevComponent } from './dev/dev.component';
+import { ChatItemComponent } from './chat/chat-item/chat-item.component';
 registerLocaleData(en);
 
 @NgModule({
@@ -24,7 +27,10 @@ registerLocaleData(en);
     LoginComponent,
     ChatComponent,
     SignupComponent,
-    TimePipe
+    TimePipe,
+    DatePipe,
+    DevComponent,
+    ChatItemComponent
   ],
   imports: [
     BrowserModule,

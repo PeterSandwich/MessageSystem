@@ -159,13 +159,13 @@
         <td rowspan="3" colspan="3">
             <!-- 4 -->
             <div class = "list" >
-                <li  class = "item" [class.selected]="item == friend" *ngFor="let item of  userListDisplay; let i = index" (click) = "selectOneUser(i, item.id,item.name, item.head_img, item.is_group)">
-                    <nz-badge [nzCount]="item.count" *ngIf="list!=NULL">
-                        <img src = "{{item.head_img}}" class = "img">
-                    </nz-badge>
-                    <i style="color:tomato" *ngIf="item.is_group">群 </i>
-                 {{item.name}}
-                </li>
+                <div [class.selected]="item == friend" *ngFor="let item of  userListDisplay; let i = index" (click) = "selectOneUser(i, item.id,item.name, item.head_img, item.is_group)">
+                 <app-chat-item 
+                      [name]="item.name" 
+                      [head_img]="item.head_img"
+                      [count]="'8'"
+                 ></app-chat-item>
+                </div>
             </div>
         </td>
       </tr>
@@ -285,7 +285,6 @@
 
 
 
-<!-- <button type="button"  (click)="showvideoModal()" >查看比赛视频</button> -->
 
 <nz-modal [(nzVisible)]="isshowpicVisible"   (nzOnCancel)="handleshowpicCancel()" (nzOnOk)="handleshowpicCancel()">
    <div  >
@@ -305,24 +304,3 @@
 
 
 
-<!-- <button type="button"  data-toggle="modal" data-target="#video" >查看比赛视频</button>-->
-
-<!-- 
-<i class="fa fa-file-video-o fa-6" aria-hidden="true"></i>
-
-<div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="video" aria-hidden="true" (blur)="theVideo.pause()">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" >
-          <h5>sadasdasdassdas</h5>
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitleapplication/zip">播放视频</h5>
-          </div>
-          <div class="modal-body">
-            <div >
-              <h5>sadasdasdassdas</h5>
-              <video [src]="videourl" controls="controls" #theVideo></video>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div> -->
