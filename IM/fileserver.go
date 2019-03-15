@@ -83,6 +83,10 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 			sendErrorResponse(w,defs.ErrorIinvaidType)
 			return
 		}
+		if filetype=="text/plain; charset=utf-8"&&fileType=="video/mp4"{
+			returnp.Filetype=3
+			filetype = "video/mp4"
+		}
 		//读文件类型
 		err=AddExtensionType()
 		if err!=nil{
@@ -355,6 +359,11 @@ func AddExtensionType() error{
 		fmt.Println("AddExtensionType:zip error",err)
 		return err
 	}
+	err=mime.AddExtensionType(".zip","application/zip")
+	if err!=nil{
+		fmt.Println("AddExtensionType:zip error",err)
+		return err
+	}
 	err=mime.AddExtensionType(".mp3","audio/mp3")
 	if err!=nil{
 		fmt.Println("AddExtensionType:mp3 error",err)
@@ -363,6 +372,11 @@ func AddExtensionType() error{
 	err=mime.AddExtensionType(".mp4","video/mp4")
 	if err!=nil{
 		fmt.Println("AddExtensionType:mp4 error",err)
+		return err
+	}
+	err=mime.AddExtensionType(".doc","application/wps-office.doc")
+	if err!=nil{
+		fmt.Println("AddExtensionType:DOC error",err)
 		return err
 	}
 	err=mime.AddExtensionType(".ppt","application/vnd.ms-powerpoint")

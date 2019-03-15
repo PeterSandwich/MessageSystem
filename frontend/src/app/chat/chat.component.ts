@@ -395,9 +395,11 @@ return src;
   videourl:string
   isshowvideoVisible = false;
   showvideoModal(url:string): void {
-    console.log(url);
+    let fileurl:string[] = url.split("+");
 
-    this.videourl=url;
+    console.log(fileurl[0]);
+
+    this.videourl=fileurl[0];
     this.isshowvideoVisible = true;
   }
   handleshowvideoCancel(): void {
