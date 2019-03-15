@@ -322,12 +322,7 @@ export class ChatComponent implements OnInit {
     
     this.upload.uploadFile(this.fileurl, file).subscribe((response: any) => {
           //.log(response);
-          // if (response.type === HttpEventType.UploadProgress) {
-          //   // This is an download progress event. Compute and show the % done:
-          //   const percentDone = Math.round(100 * response.loaded / response.total);
-          //   console.log(`File is ${percentDone}% downloaded.`);
-          // } else if (event instanceof HttpResponse) {
-            let filetype = -1;
+          let filetype = -1;
           if (response["body"] != null) {
             // console.log(response)
             if (response["body"] != null) {
@@ -350,9 +345,7 @@ export class ChatComponent implements OnInit {
              msg.isgroup = this.isgroup;
               this.ws.sendMessage(msg);
              this.content = "";
-          
           }
-          
          
             
         },
@@ -363,6 +356,54 @@ export class ChatComponent implements OnInit {
         }
       )
   }
+  // uploadFile(files: FileList) {
+  //   if (files.length == 0) {
+  //     console.log("No file selected!");
+  //     return
+  //   }
+  //   let file: File = files[0];
+  //   if(file.size>200*1024*1024){
+  //     console.log("file is too big!")
+  //     return
+  //   }
+  //   //console.log(file.type)
+  //   console.log(file.name)
+  //   console.log(file.type)
+  //   this.filename = file.name;
+    
+  //   this.upload.uploadFile(this.fileurl, file).subscribe((response: any) => {
+  //         let filetype = -1;
+  //         if (response["body"] != null) {
+  //           // console.log(response)
+  //           if (response["body"] != null) {
+  //             this.filep = response["body"]["originalfile"];
+  //             this.dfileurl=response["body"]["thumbnail"];
+  //             filetype = response["body"]["filetype"];
+  //             this.show = true;
+  //           }
+  //            let msg = new(Protocol.Message)
+  //            msg.type = Protocol.Message.Type.REQUEST;
+  //            msg.cmd = Protocol.Message.CtrlType.NONE;
+  //            msg.from =  this.us.MyUserId;
+  //            msg.to = this.to_id;
+  //            msg.content = this.dfileurl;
+  //            if(filetype == 2||filetype == 3){
+  //             msg.content = this.filep+"+"+file.name;
+  //            }
+  //            msg.contentType = filetype; 
+  //            this.contentType = msg.contentType;
+  //            msg.isgroup = this.isgroup;
+  //             this.ws.sendMessage(msg);
+  //            this.content = "";
+  //         }    
+  //       },
+  //       (err) => {
+  //         console.log("Upload Error:", err);
+  //       }, () => {
+  //         console.log("Upload done");
+  //       }
+  //     )
+  // }
   switchpng(url:string):any{
   this.imgurl=url.split("+");
   this.imgurl=this.imgurl[0].split(".");
