@@ -322,7 +322,7 @@ export class ChatComponent implements OnInit {
     
     this.upload.uploadFile(this.fileurl, file).subscribe((response: any) => {
           //.log(response);
-          if (response.type === HttpEventType.DownloadProgress) {
+          if (response.type === HttpEventType.UploadProgress) {
             // This is an download progress event. Compute and show the % done:
             const percentDone = Math.round(100 * response.loaded / response.total);
             console.log(`File is ${percentDone}% downloaded.`);
