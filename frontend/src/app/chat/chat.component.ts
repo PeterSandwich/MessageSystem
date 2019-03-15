@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef,TemplateRef } from '@angular/core';
+import {HttpEventType,HttpResponse}  from '@angular/common/http';
 import { NzDropdownContextComponent, NzDropdownService, NzMenuItemDirective } from 'ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd';
 import { DomSanitizer } from '@angular/platform-browser'
@@ -11,6 +12,7 @@ import * as com from '../common/im'
 import { environment } from '../../environments/environment';
 import { Long } from 'protobufjs';
 import { TimePipe } from '../common/time_pipe';
+
 
 @Injectable()
 @Component({
@@ -320,7 +322,12 @@ export class ChatComponent implements OnInit {
     
     this.upload.uploadFile(this.fileurl, file).subscribe((response: any) => {
           //.log(response);
-          let filetype = -1;
+          if (response.type === HttpEventType.DownloadProgress) {
+            // This is an download progress event. Compute and show the % done:
+            const percentDone = Math.round(100 * response.loaded / response.total);
+            console.log(`File is ${percentDone}% downloaded.`);
+          } else if (event instanceof HttpResponse) {
+            let filetype = -1;
           if (response["body"] != null) {
             // console.log(response)
             if (response["body"] != null) {
@@ -344,6 +351,8 @@ export class ChatComponent implements OnInit {
               this.ws.sendMessage(msg);
              this.content = "";
           }
+          }
+          
          
             
         },
