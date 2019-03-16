@@ -1,0 +1,21 @@
+.list{
+    overflow-x: none;
+    overflow-y: scroll;
+    vertical-align: top;
+    height: 550px;
+    background:#2e3238;
+}
+
+
+#scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+#scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #ffffff3d;
+}
+
+#scrollbar::-webkit-scrollbar-track {
+    background-color: #292c33;
+}

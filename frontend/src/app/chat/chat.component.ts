@@ -25,6 +25,15 @@ import { TimePipe } from '../common/time_pipe';
 
 export class ChatComponent implements OnInit {
 
+
+  selected_contact_list_item: com.ContactListItem
+
+
+
+
+
+
+
   from_id = 1;
   to_id = 0;
 
@@ -88,6 +97,8 @@ export class ChatComponent implements OnInit {
     this.ws.nearest_contact.contact_list = [];
     this.ws.address_book.contact_list = [];
 
+    this.selected_contact_list_item = new(com.ContactListItem)
+    this.selected_contact_list_item.name = "未选择"
       this.userListDisplay = [];
       this.createGroupList=new(com.CreateGroup);
       this.createGroupList.contact_list = [];
@@ -96,7 +107,6 @@ export class ChatComponent implements OnInit {
       // 初始化最近聊天列表及其聊天历史消息
       this.getNearestListAndMessage();
       this.getAddress();
-      this.showNearestContactList();
 
       this.my_id = this.us.MyUserId;
       this.my_img_url = this.us.myImg;
@@ -109,26 +119,33 @@ export class ChatComponent implements OnInit {
       this.isPress = false;
     }
 
-    // 显示 最近联系人列表
-    showNearestContactList(){
-      this.userListDisplay = this.ws.nearest_contact.contact_list
+
+    
+    // 通讯录选择
+    selectOneUser(contact_list_item: com.ContactListItem){
+      
+      // 选择了
+      this.selected_contact_list_item = contact_list_item;
+
+      // 发送ACK消息回后端，让后端知道这消息已读，徽标数清零
+      let msg = new(Protocol.Message)
+      msg.type = Protocol.Message.Type.ACK;
+      msg.cmd = Protocol.Message.CtrlType.NONE;
+      msg.from =  this.us.MyUserId;
+      msg.to = contact_list_item.id;
+      msg.content = this.content;
+      msg.contentType = Protocol.Message.ContentType.TEXT;
+      this.contentType = msg.contentType;
+      msg.isgroup = contact_list_item.is_group;
+      msg.sendTime = Date.now();
+      this.ws.sendMessage(msg);
+
+       // 徽标数清零
+       let i = this.ws.nearest_contact.contact_list.findIndex(e => e.id == contact_list_item.id)
+       this.ws.nearest_contact.contact_list[i].count = 0;
+
     }
 
-    // 显示 通讯录列表
-    showAddressBook(){
-      this.userListDisplay =this.ws.address_book.contact_list
-    }
-
-
-    he(event, item: com.MessageItem, id: number){//可自定义右键事件
-      if(event.button != 2){
-        this.pressBoolean = false;
-        this.isPress = false;
-        return ;
-      }
-      this.isPress = true;
-      this.backMes = item;
-    }
     backdata(item: com.MessageItem){
       ///////////////////////////////////////////////////////////
       //有一个bug需解决，撤回消息后聊天框仍存在，以后再改23333333333333//
@@ -153,49 +170,6 @@ export class ChatComponent implements OnInit {
       msg.sendTime = Date.now();
 
       this.ws.sendMessage(msg);
-
-    }
-
-    selectOneUser(index: number, id: number,name : string, img: string, isgroup: boolean){
-      
-      // 发送ACK消息回后端，让后端知道这消息已读，徽标数清零
-      //////////////////////////////////////////
-      let msg = new(Protocol.Message)
-      msg.type = Protocol.Message.Type.ACK;
-      msg.cmd = Protocol.Message.CtrlType.NONE;
-      msg.from =  this.us.MyUserId;
-      msg.to = id;
-      msg.content = this.content;
-      msg.contentType = Protocol.Message.ContentType.TEXT;
-      this.contentType = msg.contentType;
-      msg.isgroup = isgroup;
-      msg.sendTime = Date.now();
-      this.ws.sendMessage(msg);
-      ///////////////////////////////////
-      this.to_id = id;
-      this.index = index;
-      this.isselect = true;
-      console.log("this.id", id)
-      this.to_name = name;
-      this.to_img = img;              //对方头像
-      this.isgroup = isgroup;
-      var flag : boolean = false;
-
-      if(this.ws.global_message.chat_room_list.has(id)){
-        this.showmsg = this.ws.global_message.chat_room_list.get(id).message_list;
-        this.isgroup = this.ws.global_message.chat_room_list.get(id).is_group;
-        console.log("showmsg = ", this.showmsg);
-          flag = true;
-      }
-
-      // 徽标数清零
-      let i = this.ws.nearest_contact.contact_list.findIndex(e => e.id == id)
-      this.ws.nearest_contact.contact_list[i].count = 0;
-
-      if(!flag){
-          this.showmsg = [];
-      }
-      this.scollbuttom();
 
     }
 
@@ -356,77 +330,30 @@ export class ChatComponent implements OnInit {
         }
       )
   }
-  // uploadFile(files: FileList) {
-  //   if (files.length == 0) {
-  //     console.log("No file selected!");
-  //     return
-  //   }
-  //   let file: File = files[0];
-  //   if(file.size>200*1024*1024){
-  //     console.log("file is too big!")
-  //     return
-  //   }
-  //   //console.log(file.type)
-  //   console.log(file.name)
-  //   console.log(file.type)
-  //   this.filename = file.name;
-    
-  //   this.upload.uploadFile(this.fileurl, file).subscribe((response: any) => {
-  //         let filetype = -1;
-  //         if (response["body"] != null) {
-  //           // console.log(response)
-  //           if (response["body"] != null) {
-  //             this.filep = response["body"]["originalfile"];
-  //             this.dfileurl=response["body"]["thumbnail"];
-  //             filetype = response["body"]["filetype"];
-  //             this.show = true;
-  //           }
-  //            let msg = new(Protocol.Message)
-  //            msg.type = Protocol.Message.Type.REQUEST;
-  //            msg.cmd = Protocol.Message.CtrlType.NONE;
-  //            msg.from =  this.us.MyUserId;
-  //            msg.to = this.to_id;
-  //            msg.content = this.dfileurl;
-  //            if(filetype == 2||filetype == 3){
-  //             msg.content = this.filep+"+"+file.name;
-  //            }
-  //            msg.contentType = filetype; 
-  //            this.contentType = msg.contentType;
-  //            msg.isgroup = this.isgroup;
-  //             this.ws.sendMessage(msg);
-  //            this.content = "";
-  //         }    
-  //       },
-  //       (err) => {
-  //         console.log("Upload Error:", err);
-  //       }, () => {
-  //         console.log("Upload done");
-  //       }
-  //     )
-  // }
+
   switchpng(url:string):any{
-  this.imgurl=url.split("+");
-  this.imgurl=this.imgurl[0].split(".");
-  let src:string
-switch(this.imgurl[1]){
-  case 'doc':
-    src="/files/DOC.png";
+    this.imgurl=url.split("+");
+    this.imgurl=this.imgurl[0].split(".");
+    let src:string
+  switch(this.imgurl[1]){
+    case 'doc':
+      src="/files/DOC.png";
+      break;
+    case 'pdf':
+      src="/files/pdf.png";
+      break;
+    case 'ppt':
+      src="/files/ppt.png";
     break;
-  case 'pdf':
-    src="/files/pdf.png";
+    case 'zip':
+      src="/files/RAR.png";
     break;
-  case 'ppt':
-    src="/files/ppt.png";
-  break;
-  case 'zip':
-    src="/files/RAR.png";
-  break;
-  case 'txt':
-    src="/files/txt.png";
-  break;
-}
-return src;
-}
+    case 'txt':
+      src="/files/txt.png";
+    break;
+  }
+  return src;
+  }
 
   isshowpicVisible = false;
   aaa:string[]

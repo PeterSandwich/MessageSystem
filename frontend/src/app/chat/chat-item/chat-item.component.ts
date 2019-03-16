@@ -13,6 +13,8 @@ export class ChatItemComponent implements OnInit {
   @Input() time :number;
   @Input() tips :string;
   @Input() min_message :string;
+  @Input() selected: boolean;
+
 
 
   constructor() {

@@ -12,6 +12,7 @@ type Configuration struct {
 	PsqlUrl string `json:"psql_url"`
 	StaticFilePath string `json:"static_file_path"`
 	ServerFilePath string `json:"server_file_path"`
+	ServerAssetsFilePath string `json:"server_assets_file_path"`
 }
 
 var configuration *Configuration
@@ -51,4 +52,9 @@ func StaticFilePath()string{
 }
 func ServerFilePath()string{
 	return configuration.ServerFilePath
+}
+
+
+func ServerAssetsFilePath() string {
+	return configuration.ServerAssetsFilePath
 }

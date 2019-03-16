@@ -17,8 +17,9 @@ import { UserService } from './user.service';
 import { UploadService } from '../app/file.service';
 import { TimePipe } from './common/time_pipe';
 import { DatePipe } from './common/date_pipe';
-import { DevComponent } from './dev/dev.component';
 import { ChatItemComponent } from './chat/chat-item/chat-item.component';
+import { ChatListComponent } from './chat/chat-list/chat-list.component';
+import { ChatPlanelComponent } from './chat/chat-planel/chat-planel.component';
 registerLocaleData(en);
 
 @NgModule({
@@ -29,8 +30,9 @@ registerLocaleData(en);
     SignupComponent,
     TimePipe,
     DatePipe,
-    DevComponent,
-    ChatItemComponent
+    ChatItemComponent,
+    ChatListComponent,
+    ChatPlanelComponent
   ],
   imports: [
     BrowserModule,

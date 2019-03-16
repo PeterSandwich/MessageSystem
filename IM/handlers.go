@@ -34,6 +34,7 @@ func RegisterRouterHandlers() *httprouter.Router {
 	router.GET("/api/history-message/:type/:id",getHistoryMessage)//获取历史消息
 	router.ServeFiles("/static/*filepath",http.Dir(config.StaticFilePath()))
 	router.ServeFiles("/files/*filepath",http.Dir(config.ServerFilePath()))
+	router.ServeFiles("/assets/*filepath",http.Dir(config.ServerAssetsFilePath()))
 	router.GET("/",indexFileServer)
 	router.GET("/ws",func(w http.ResponseWriter, r *http.Request,p httprouter.Params) {hub.ServeWs(w, r)})
 	router.NotFound = &NotFoundServerHandler{}

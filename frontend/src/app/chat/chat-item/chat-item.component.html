@@ -1,6 +1,6 @@
 <div  style="position: relative;">
-    <div id="all" style='line-height:60px;background:#2e3238;border-bottom: 1px solid #292c33;'>
-        <nz-badge  style="vertical-align: middle;margin-left: 14px">
+    <div id="all" [ngStyle]="{'background-color':selected ? '#3a3f44' : '#2e3238' }" style='line-height:65px;border-bottom: 1px solid #292c33;'>
+        <nz-badge [nzCount]="count" style="vertical-align: middle;margin-left: 14px">
            <nz-avatar [nzSize]="42" [nzShape]="'square'" [nzIcon]="'user'" [nzSrc]="head_img"></nz-avatar>
         </nz-badge>
         <h5 style="position: absolute;top: 12px;left:70px;color: white">{{name}}</h5>
