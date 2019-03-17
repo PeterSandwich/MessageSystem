@@ -26,8 +26,9 @@ import { TimePipe } from '../common/time_pipe';
 export class ChatComponent implements OnInit {
 
 
-  selected_contact_list_item: com.ContactListItem
-
+  selected_contact_list_item: com.ContactListItem;
+  selected_address_list_item: com.ContactListItem;
+  char_or_adress: boolean;
 
 
 
@@ -83,6 +84,7 @@ export class ChatComponent implements OnInit {
     private nzDropdownService: NzDropdownService,
     private message: NzMessageService
     ) {
+      this.char_or_adress = true;
       
      }
 
@@ -97,8 +99,11 @@ export class ChatComponent implements OnInit {
     this.ws.nearest_contact.contact_list = [];
     this.ws.address_book.contact_list = [];
 
-    this.selected_contact_list_item = new(com.ContactListItem)
+    this.selected_contact_list_item = new(com.ContactListItem);
     this.selected_contact_list_item.name = "未选择"
+    
+    this.selected_address_list_item = new(com.ContactListItem);
+
       this.userListDisplay = [];
       this.createGroupList=new(com.CreateGroup);
       this.createGroupList.contact_list = [];
@@ -121,7 +126,7 @@ export class ChatComponent implements OnInit {
 
 
     
-    // 通讯录选择
+    //1. 最近联系人选择会话
     selectOneUser(contact_list_item: com.ContactListItem){
       
       // 选择了
@@ -145,6 +150,17 @@ export class ChatComponent implements OnInit {
        this.ws.nearest_contact.contact_list[i].count = 0;
 
     }
+
+    // 2.
+    swichChatAndAddress(arg :boolean){
+      this.char_or_adress = arg;
+    }
+
+    // 3.
+    selectOneAddress(item: com.ContactListItem){
+      this.selected_address_list_item = item;
+    }
+
 
     backdata(item: com.MessageItem){
       ///////////////////////////////////////////////////////////

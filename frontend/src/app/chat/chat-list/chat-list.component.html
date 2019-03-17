@@ -25,7 +25,7 @@
     </div>
     <div style="background:#2e3238;padding:10px;height: 50px;border-bottom: 1px solid black">
       <div style="float:left;width: 33%; text-align: center">
-      <a (click)="atChat=true">
+      <a (click)="swichChatAndAddress(true)">
         <img *ngIf="!atChat" style="width: 30px;height: 30px;margin-left: 10%" src="../../../assets/chat.png">
         <img *ngIf="atChat" style="width: 30px;height: 30px;margin-left: 10%" src="../../../assets/chat_bright.png">
       </a>
@@ -34,7 +34,7 @@
         |
       </div>
      <div style="float:left;width: 33%; text-align: center">
-       <a (click)="atChat=false">
+       <a (click)="swichChatAndAddress(false)">
          <img *ngIf="atChat" style="width: 30px;height: 25px;margin-right: 10%" src="../../../assets/userlist.png">
          <img *ngIf="!atChat" style="width: 30px;height: 25px;margin-right: 10%" src="../../../assets/userlist_bright.png">
         </a>
@@ -64,13 +64,26 @@
     <!-- 通讯录 -->
     <div *ngIf="!atChat" class="list" id="scrollbar">
         <ng-container *ngIf="addressbook; else elseTemplate1">
+           <div class="address_title">好友</div>
            <div  *ngFor="let item of  addressbook; let i = index">
-               <app-chat-item 
+               <app-address-item *ngIf="item.is_group==false"
                     [name]="item.name" 
                     [head_img]="item.head_img"
-                    count=0
-               ></app-chat-item>
-              </div>
+                    [selected]="item.id==selectAddressID"
+                    (click)="selectToAddress(item)"
+               ></app-address-item>
+            </div>
+            <div class="address_title">群组</div>
+            <div  *ngFor="let item of  addressbook; let i = index">
+              <app-address-item *ngIf="item.is_group==true"
+                   [name]="item.name" 
+                   [head_img]="item.head_img"
+                   [selected]="item.id==selectAddressID"
+                   (click)="selectToAddress(item)"
+              ></app-address-item>
+           </div>
+
+
          </ng-container>
          <ng-template #elseTemplate1 >
            <div  style="text-align: center;">

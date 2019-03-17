@@ -5,14 +5,21 @@
         [addressbook]="this.ws.address_book.contact_list"
         [head_img]="my_img_url" 
         [name]="my_name"
-        (change)="selectOneUser($event)"
+        (userchange)="selectOneUser($event)"
+        (addresschange)="selectOneAddress($event)"
+        (address_user_swich)="swichChatAndAddress($event)"
         ></app-chat-list>
     </div>
     <div style="width: 732px;float:left; display:inline">
-    <app-chat-planel
-      [my_head_img]="my_img_url"
-      [your_info]="selected_contact_list_item"
-    ></app-chat-planel>
+        <app-chat-planel *ngIf="char_or_adress"
+          [my_head_img]="my_img_url"
+          [your_info]="selected_contact_list_item"
+        ></app-chat-planel>
+        <app-info-planel *ngIf="!char_or_adress"
+          [your_info]="selected_address_list_item"
+          [name]="selected_address_list_item.name"
+          [head_img]="selected_address_list_item.head_img"
+        ></app-info-planel>
       </div>
   </div>
   
