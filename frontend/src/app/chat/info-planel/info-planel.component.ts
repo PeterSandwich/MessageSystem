@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,Output, EventEmitter } from '@angular/core';
 import * as com from '../../common/im';
 
 @Component({
@@ -12,6 +12,7 @@ export class InfoPlanelComponent implements OnInit {
   @Input() name:string;
   @Input() head_img:string;
   @Input() your_info:com.ContactListItem;
+  @Output() sendmsg: EventEmitter<com.ContactListItem> = new EventEmitter<com.ContactListItem>();
 
   constructor() {
 
@@ -26,4 +27,7 @@ export class InfoPlanelComponent implements OnInit {
         this.name=this.your_info.name;
   }
 
+  startChat(){
+    this.sendmsg.emit(this.your_info)
+  }
 }

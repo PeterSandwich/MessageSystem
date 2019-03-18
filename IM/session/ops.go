@@ -5,7 +5,6 @@ import (
 	"github.com/go-redis/redis"
 	"github.com/satori/go.uuid"
 	"go.uber.org/zap"
-	"time"
 )
 
 var (
@@ -27,7 +26,7 @@ func InitSession(){
 
 func GenerateNewSessionId(uid int64) string {
 	sessionid, _ := uuid.NewV4()
-	redisConn.Set(sessionid.String(),uid,120*time.Minute)
+	redisConn.Set(sessionid.String(),uid,0)//,	120*time.Minute)
 	return sessionid.String()
 }
 
@@ -38,9 +37,9 @@ func IsSessionExpired(sid string) (string, bool) {
 	}
 	val, err := redisConn.Get(sid).Result()
 	if err != nil  {// 当过期处理
-		Logger.Warn("redis 过期")
+		Logger.Warn(sid+" : redis 过期"+err.Error())
 		if err != redis.Nil{
-			redisConn.Del(sid)
+
 			Logger.Warn("redis get session in IsSessionExpired() : "+err.Error())
 		}
 		return "",true
@@ -52,6 +51,7 @@ func DeleteSeesion(sid string){
 	_, err := redisConn.Get(sid).Result()
 	if err != nil {
 		Logger.Warn("Delete session in DeleteSeesion()"+err.Error())
+		return
 	}
 	redisConn.Del(sid)
 }

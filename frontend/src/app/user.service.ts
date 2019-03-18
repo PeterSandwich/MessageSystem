@@ -15,6 +15,11 @@ export class UserService {
   loginUrl = this.configUrl+"/login"
   signupUrl = this.configUrl+'/register'
   quitUrl = this.configUrl+'/quit'
+
+
+
+
+
   postLoginData(data) {
     return this.http.post(this.loginUrl, data,{observe:'response'});
   }
@@ -43,12 +48,17 @@ export class UserService {
   createSessionHeader():HttpHeaders {
     let headers = new HttpHeaders();
     headers = headers.set('X-Session-Id', this.session_id);
-   console.log("header session=", this.session_id)
     return headers
   }
   userList(name){
     this.getuserlist(name).subscribe((data) => {
       console.log("getuserlist=", data)
     })
+  }
+
+  searchAddress(key:string){
+    if(key.length==0) return;
+    let url  = this.configUrl+'/search-friend/'+key;
+    return this.http.get(url,{headers:this.createSessionHeader()});
   }
 }

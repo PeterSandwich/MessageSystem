@@ -21,7 +21,10 @@
     </nz-dropdown>
     </div>
     <div style="background:#2e3238;padding-left:15px;padding-right:15px;padding-top: 5px;padding-bottom:5px">
-        <input placeholder="搜索" nzSize="small" style="color: white;background-color:#26292e;border: 0; "  type="text" nz-input >
+        <input placeholder="输入按回车键搜索" nzSize="small"  
+        #search_input (keyup.enter)="searchMonitorList(search_input.value)"
+        
+        style="color: white;background-color:#26292e;border: 0; "  type="text" nz-input >
     </div>
     <div style="background:#2e3238;padding:10px;height: 50px;border-bottom: 1px solid black">
       <div style="float:left;width: 33%; text-align: center">
@@ -44,7 +47,7 @@
     <!-- 最近联系人 -->
     <div *ngIf="atChat" class="list" id="scrollbar">
      <ng-container *ngIf="userlist; else elseTemplate">
-        <div  *ngFor="let item of  userlist; let i = index">
+        <div  *ngFor="let item of  userlist?.slice()?.reverse(); let i = index">
             <app-chat-item 
                  [name]="item.name" 
                  [head_img]="item.head_img"
@@ -91,6 +94,37 @@
             </div>
          </ng-template>
        </div>
+
+
+       <!-- 搜索-通讯录 -->
+    <div *ngIf="searching" class="list1" id="search_scrollbar"  (focus)="searching=true">
+        <ng-container *ngIf="searchResp && searchResp.length>0; else elseTemplate2">
+           <div class="address_title">好友</div>
+           <div  *ngFor="let item of  searchResp; let i = index">
+               <app-address-item *ngIf="item.is_group==false"
+                    [name]="item.name" 
+                    [head_img]="item.head_img"
+                    (click)="selectToChat(item)"
+               ></app-address-item>
+            </div>
+            <div class="address_title">群组</div>
+            <div  *ngFor="let item of  searchResp; let i = index">
+              <app-address-item *ngIf="item.is_group==true"
+                   [name]="item.name" 
+                   [head_img]="item.head_img"
+                   (click)="selectToChat(item)"
+              ></app-address-item>
+           </div>
+
+
+         </ng-container>
+         <ng-template #elseTemplate2 >
+           <div  style="text-align: center;">
+             <div style="color:#989898;margin-top: 20px">无内容</div>
+            </div>
+         </ng-template>
+       </div>
+
 
   </div>
   

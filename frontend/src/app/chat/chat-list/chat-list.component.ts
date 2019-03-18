@@ -1,5 +1,6 @@
 import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
-import * as com from '../../common/im'
+import * as com from '../../common/im';
+import { UserService } from '../../user.service';
 @Component({
   selector: 'app-chat-list',
   templateUrl: './chat-list.component.html',
@@ -11,6 +12,8 @@ export class ChatListComponent implements OnInit {
   @Input() name:string;
   @Input() userlist;
   @Input() addressbook;
+  @Input() searchResp;
+  @Input() searching: boolean;
   @Output() userchange: EventEmitter<com.ContactListItem> = new EventEmitter<com.ContactListItem>();
   @Output() address_user_swich: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() addresschange: EventEmitter<com.ContactListItem> = new EventEmitter<com.ContactListItem>();
@@ -18,7 +21,8 @@ export class ChatListComponent implements OnInit {
   atChat: boolean = true;
   selectID: number;
   selectAddressID: number;
-  constructor() {
+  friend_keyword: string;
+  constructor(private us:UserService) {
     this.head_img = '';
     this.name = ""
    }
@@ -39,11 +43,25 @@ export class ChatListComponent implements OnInit {
     this.addresschange.emit(item)
   }
 
+  // 聊天和通讯录切换
   swichChatAndAddress(arg :boolean){
     this.atChat = arg;
     this.address_user_swich.emit(arg);
   }
 
+  searchMonitorList(keyword){
+    this.searchResp = [];
+    if(keyword){
+      this.us.searchAddress(keyword).subscribe((data)=>{
+        console.log(data);
+        if(data&&data['friends_list']){
+          this.searchResp = data['friends_list'];
+          this.searching = true;
+        }
+      });  
+    }
+    
+  }
 
 
 }

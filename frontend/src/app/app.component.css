@@ -3,11 +3,4 @@
     height: 100%;
     position: fixed;
     z-index: -1;
-    -moz-filter: blur(70px);
-    -webkit-filter: blur(70px);
-    -o-filter: blur(70px);
-    -ms-filter: blur(70px);
-    filter: blur(70px);
-
-
   }

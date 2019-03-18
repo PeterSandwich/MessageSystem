@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef,TemplateRef } from '@angular/core';
+import { AfterViewInit, ViewChild } from '@angular/core';
 import {HttpEventType,HttpResponse}  from '@angular/common/http';
 import { NzDropdownContextComponent, NzDropdownService, NzMenuItemDirective } from 'ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd';
@@ -12,7 +13,7 @@ import * as com from '../common/im'
 import { environment } from '../../environments/environment';
 import { Long } from 'protobufjs';
 import { TimePipe } from '../common/time_pipe';
-
+import { ChatListComponent } from './chat-list/chat-list.component';
 
 @Injectable()
 @Component({
@@ -25,10 +26,12 @@ import { TimePipe } from '../common/time_pipe';
 
 export class ChatComponent implements OnInit {
 
+  selected_contact_list_item: com.ContactListItem; // 已选择的聊天会话人
+  selected_address_list_item: com.ContactListItem;  // 已选择的通讯率人
+  char_or_adress: boolean;        // 是在最近联系人列表还是通讯率列表里面
 
-  selected_contact_list_item: com.ContactListItem;
-  selected_address_list_item: com.ContactListItem;
-  char_or_adress: boolean;
+  @ViewChild(ChatListComponent)
+  private chatListComponent: ChatListComponent;
 
 
 
@@ -160,6 +163,23 @@ export class ChatComponent implements OnInit {
     selectOneAddress(item: com.ContactListItem){
       this.selected_address_list_item = item;
     }
+
+
+    // 4.  在通讯录选择一个人并且发送消息，需要跳转到聊天界面，并且在最近通讯录置顶该联系人
+    startToChat(item: com.ContactListItem){
+      this.chatListComponent.swichChatAndAddress(true);
+      this.chatListComponent.selectToChat(item);
+      this.chatToTop(item);
+    }
+
+    //5. 将一个联系人放在最顶上，如果没有则加上
+    chatToTop(item: com.ContactListItem){
+      this.ws.nearest_contact.contact_list = this.ws.nearest_contact.contact_list.filter((e)=>{return e.id!=item.id||e.name!=item.name});
+      this.ws.nearest_contact.contact_list.push(item);
+    }
+
+
+
 
 
     backdata(item: com.MessageItem){

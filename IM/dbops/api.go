@@ -155,6 +155,51 @@ func GetAddressBook(uid int64) (*defs.AddressBook,error) {
 	return AddressBook,nil
 }
 
+// 搜索通讯录
+func SearchAddressBook(uid int64, keyword string) (*defs.AddressBook,error) {
+	if uid <=0 {
+		logger.Warn("Illegal parameter 'uid'")
+		return nil,errors.New("Illegal parameter 'uid' ")
+	}
+
+	AddressBook := &defs.AddressBook{}
+	AddressBook.FriendsList = make([]defs.AddressBookItem,0)
+	table := "im_message_counter_"+strconv.FormatInt(uid%4,10)
+
+	// user
+	stmt, _ := dbConn.Prepare("select id,name,headimg,isgroup from " + table + ",users where sender = users.id and isgroup=false and master=$1 and name like '%"+keyword+"%' order by name")
+	rows,err := stmt.Query(uid)
+	if err != nil && err != sql.ErrNoRows {
+		logger.Warn(err.Error())
+		return nil,err
+	}
+	for rows.Next() {
+		var item defs.AddressBookItem
+		err := rows.Scan(&item.Id, &item.Name, &item.HeadImg, &item.IsGroup)
+		if err != nil {
+			logger.Warn(err.Error())
+		}
+		AddressBook.FriendsList = append(AddressBook.FriendsList,item)
+	}
+
+	// groups
+	stmt2, _ := dbConn.Prepare("select id,name,headimg,isgroup from "+table+",groups where sender = groups.id and isgroup=true and master=$1 and name like '%"+keyword+"%' order by name")
+	rows2,err := stmt2.Query(uid)
+	if err != nil && err != sql.ErrNoRows {
+		logger.Warn(err.Error())
+		return nil,err
+	}
+	for rows2.Next() {
+		var item defs.AddressBookItem
+		err := rows2.Scan(&item.Id, &item.Name, &item.HeadImg, &item.IsGroup)
+		if err != nil {
+			logger.Warn(err.Error())
+		}
+		AddressBook.FriendsList = append(AddressBook.FriendsList,item)
+	}
+
+	return AddressBook,nil
+}
 
 // 获取最近联系人
 func GetRecentContactList(uid int64)(*defs.NearestContact,error){

@@ -1,5 +1,5 @@
 <div class="main">
-    <div style="width: 295px;float:left; display:inline">
+    <div style="width: 280px;float:left; display:inline">
         <app-chat-list 
         [userlist]="this.ws.nearest_contact.contact_list" 
         [addressbook]="this.ws.address_book.contact_list"
@@ -10,7 +10,7 @@
         (address_user_swich)="swichChatAndAddress($event)"
         ></app-chat-list>
     </div>
-    <div style="width: 732px;float:left; display:inline">
+    <div style="width: 700px;float:left; display:inline">
         <app-chat-planel *ngIf="char_or_adress"
           [my_head_img]="my_img_url"
           [your_info]="selected_contact_list_item"
@@ -19,6 +19,7 @@
           [your_info]="selected_address_list_item"
           [name]="selected_address_list_item.name"
           [head_img]="selected_address_list_item.head_img"
+          (sendmsg)="startToChat($event)"
         ></app-info-planel>
       </div>
   </div>

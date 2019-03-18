@@ -12,7 +12,7 @@
             {{name}}
         </div>
         <div *ngIf="your_info.name">
-          <a class="button" >发消息</a>
+          <a class="button" (click)="startChat()">发消息</a>
         </div>
     </div>
   </div>
