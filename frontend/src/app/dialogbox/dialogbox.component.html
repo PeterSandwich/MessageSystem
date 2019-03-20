@@ -1,0 +1,89 @@
+
+<br>
+<div  *ngIf="isme != true " class="timeonleft">{{msgitem.arrive_time}}</div>
+<img  *ngIf="isme != true " class="headportraitonleft" src="{{img}}">
+<!-- 左边文本 -->
+<div *ngIf="msgitem.content_type == 0 && isme != true" class="content">
+    <div id="box">{{msgitem.content}}</div>
+</div>
+<!-- 左边图片 -->
+<div *ngIf="msgitem.content_type == 1 && isme != true" class="content">
+    <div class="fileheadportraitonleft">
+        <div class="picture" [ngStyle]="{ 'background-image': 'url('+msgitem.content+')'}"></div>
+        <!-- <img class="picture" src="../chat/icon/RAR.png"> -->
+        <div class="mask">
+            <p (click)="showpicModal(msgitem.content)">查看原图</p>
+        </div>
+    </div>
+</div>
+<!-- 左边文件 -->
+<div *ngIf="msgitem.content_type == 2 && isme != true" class="content">
+    <div class="bubble">
+        <div class="bubble_cont">
+            <div class="attach">
+                <div>
+                    <div class="cover">
+                        <img [src]="switchpng(msgitem.content)" class="pic">
+                    </div>
+                    <div class="cont">
+                        <p class="title">{{getfilename(msgitem.content)}}</p>
+                        <!-- <p class="title">调试文本.zip</p> -->
+                        <div class="opr">
+                            <span class="title">1.2kb </span>
+                            <span>|</span>
+                            <a class="a" (click)=" downloadFile(msgitem.content)"> 下载</a>
+                            <!-- <nz-progress  [nzPercent]="70" nzSize="small" nzStatus="active" [nzStrokeColor]="green"></nz-progress> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 左边视频 -->
+<div *ngIf="msgitem.content_type == 3 && isme != true">
+    <i class="fa fa-file-video-o" aria-hidden="true"></i>
+    <button class="upload-btn" (click)="showvideoModal(msgitem.content)"> 播放
+    </button>
+</div>
+<div  *ngIf="isme == true " class="timeonright">{{msgitem.arrive_time}}</div>
+<img  *ngIf="isme == true " class="headportraitonright" src="{{img}}">
+<!-- 右边文字 -->
+<div *ngIf="msgitem.content_type == 0 && isme == true" class="content">
+    <div id="box1">{{msgitem.content}}</div>
+</div>
+<!-- 右边图片 -->
+<div *ngIf="msgitem.content_type == 1 && isme == true" class="content">
+    <div class="fileheadportraitonright">
+        <!-- <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.content+')'}"></div> -->
+        <div class="picture" [ngStyle]="{ 'background-image': 'url('+msgitem.content+')'}"></div>
+        <div class="mask">
+            <p (click)="showpicModal(msgitem.content)">查看原图</p>
+        </div>
+    </div>
+</div>
+<!-- 右边文件 -->
+<div *ngIf="msgitem.content_type == 2 && isme == true" class="content">
+    <div class="bubbleright">
+        <div class="bubble_cont">
+            <div class="attach">
+                <div>
+                    <div class="cover">
+                        <img [src]="switchpng(msgitem.content)" class="pic">
+                    </div>
+                    <div class="cont">
+                        <p class="title">{{getfilename(msgitem.content)}}</p>
+                        <!-- <p class="title">调试文本.zip</p> -->
+                        <div class="opr">
+                            <span class="title">1.2kb </span>
+                            <span>|</span>
+                            <a class="a" (click)=" downloadFile(msgitem.content)"> 下载</a>
+                            <nz-progress *ngIf="percent != 100"[nzPercent]="percent" nzSize="small" nzStatus="active" [nzStrokeColor]="green">
+                            </nz-progress>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
