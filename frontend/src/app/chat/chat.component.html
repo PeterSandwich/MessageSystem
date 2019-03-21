@@ -1,4 +1,6 @@
-<div class="main">
+
+ <ng-container *ngIf="loadDataOk; else elseTemplate">
+  <div class="main">
     <div style="width: 280px;float:left; display:inline">
         <app-chat-list 
         [userlist]="this.ws.nearest_contact.contact_list" 
@@ -24,4 +26,13 @@
       </div>
   </div>
   
+</ng-container>
+<ng-template #elseTemplate>
+    <div class="loading">
+      <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+    </div>
+</ng-template>
+  
+
+
   

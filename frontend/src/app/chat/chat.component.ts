@@ -29,6 +29,7 @@ export class ChatComponent implements OnInit {
   selected_contact_list_item: com.ContactListItem; // 已选择的聊天会话人
   selected_address_list_item: com.ContactListItem;  // 已选择的通讯率人
   char_or_adress: boolean;        // 是在最近联系人列表还是通讯率列表里面
+  loadDataOk:boolean = false;
 
   @ViewChild(ChatListComponent)
   private chatListComponent: ChatListComponent;
@@ -479,12 +480,15 @@ export class ChatComponent implements OnInit {
          chat_room.name = data.body['chat_room_list'][i].name;
          chat_room.is_group = data.body['chat_room_list'][i].is_group;
          chat_room.message_list=data.body['chat_room_list'][i].message_list;
-
+          for(let i=0;i<chat_room.message_list.length;i++){
+            chat_room.message_list[i].loading_present =-1;
+          }
          this.ws.global_message.chat_room_list.set(chat_room.id,chat_room);
 
       }
-      console.log("contact_list = ", this.ws.nearest_contact.contact_list);
-      console.log("global_messgae = ", this.ws.global_message.chat_room_list);
+      this.loadDataOk = true;
+      console.log("最近联系人列表contact_list = ", this.ws.nearest_contact.contact_list);
+      console.log("全局消息global_messgae = ", this.ws.global_message.chat_room_list);
     })
   }
 
