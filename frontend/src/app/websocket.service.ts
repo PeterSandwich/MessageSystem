@@ -165,6 +165,7 @@ export class WebsocketService {
       chat.message_list = [];
       let index = this.address_book.contact_list.findIndex(e => e.id==room_id);
       chat.name = this.address_book.contact_list[index].name;
+  
       //加入全局消息
       this.global_message.chat_room_list.set(m.from,chat);
       //加入最近联系人
@@ -189,6 +190,7 @@ export class WebsocketService {
     newMsg.is_group = m.isgroup;
     newMsg.send_time = m.sendTime;
     newMsg.arrive_time = m.arriveTime;
+    newMsg.loading_present = -1;
 
     chat_room.message_list.push(newMsg);
   }
