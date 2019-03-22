@@ -1,0 +1,131 @@
+<div  style="position: relative;">
+    <div id="all" style='padding: 15px;background:#2e3238;'>
+           <nz-avatar [nzSize]="42" [nzShape]="'square'" [nzIcon]="'user'" [nzSrc]="head_img"></nz-avatar>
+        <h4 style="position: absolute;top: 25px;left:70px;color: white">{{name}}</h4>
+       <!-- <a><img style="width: 30px;height: 30px;float:right;"src="../../../assets/dropdown.png"></a> -->
+       <nz-dropdown style="float:right;">
+          <a nz-dropdown>
+              <img style="width: 30px;height: 30px;"src="../../../assets/dropdown.png">
+          </a>
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item>
+              <a>添加好友</a>
+            </li>
+            <li nz-menu-item>
+              <a>创建群组</a>
+            </li>
+            <li nz-menu-item>
+              <a>退出</a>
+            </li>
+          </ul>
+    </nz-dropdown>
+    </div>
+    <div style="background:#2e3238;padding-left:15px;padding-right:15px;padding-top: 5px;padding-bottom:5px">
+        <input placeholder="输入按回车键搜索" nzSize="small"  
+        #search_input (keyup.enter)="searchMonitorList(search_input.value)"
+        
+        style="color: white;background-color:#26292e;border: 0; "  type="text" nz-input >
+    </div>
+    <div style="background:#2e3238;padding:10px;height: 50px;border-bottom: 1px solid black">
+      <div style="float:left;width: 33%; text-align: center">
+      <a (click)="swichChatAndAddress(true)">
+        <img *ngIf="!atChat" style="width: 30px;height: 30px;margin-left: 10%" src="../../../assets/chat.png">
+        <img *ngIf="atChat" style="width: 30px;height: 30px;margin-left: 10%" src="../../../assets/chat_bright.png">
+      </a>
+      </div>
+      <div style="float:left;width: 33%; text-align: center">
+        |
+      </div>
+     <div style="float:left;width: 33%; text-align: center">
+       <a (click)="swichChatAndAddress(false)">
+         <img *ngIf="atChat" style="width: 30px;height: 25px;margin-right: 10%" src="../../../assets/userlist.png">
+         <img *ngIf="!atChat" style="width: 30px;height: 25px;margin-right: 10%" src="../../../assets/userlist_bright.png">
+        </a>
+      </div>
+    </div>
+    
+    <!-- 最近联系人 -->
+    <div *ngIf="atChat" class="list" id="scrollbar">
+     <ng-container *ngIf="userlist; else elseTemplate">
+        <div  *ngFor="let item of  userlist?.slice()?.reverse(); let i = index">
+            <app-chat-item 
+                 [name]="item.name" 
+                 [head_img]="item.head_img"
+                 [selected]="item.id==selectID"
+                 (click)="selectToChat(item)"
+                 [count]="item.count"
+            ></app-chat-item>
+           </div>
+      </ng-container>
+      <ng-template #elseTemplate >
+          <div  style="text-align: center;">
+            <div style="color:#989898;margin-top: 20px">无联系人</div>
+          </div>
+      </ng-template>
+    </div>
+
+    <!-- 通讯录 -->
+    <div *ngIf="!atChat" class="list" id="scrollbar">
+        <ng-container *ngIf="addressbook; else elseTemplate1">
+           <div class="address_title">好友</div>
+           <div  *ngFor="let item of  addressbook; let i = index">
+               <app-address-item *ngIf="item.is_group==false"
+                    [name]="item.name" 
+                    [head_img]="item.head_img"
+                    [selected]="item.id==selectAddressID"
+                    (click)="selectToAddress(item)"
+               ></app-address-item>
+            </div>
+            <div class="address_title">群组</div>
+            <div  *ngFor="let item of  addressbook; let i = index">
+              <app-address-item *ngIf="item.is_group==true"
+                   [name]="item.name" 
+                   [head_img]="item.head_img"
+                   [selected]="item.id==selectAddressID"
+                   (click)="selectToAddress(item)"
+              ></app-address-item>
+           </div>
+
+
+         </ng-container>
+         <ng-template #elseTemplate1 >
+           <div  style="text-align: center;">
+             <div style="color:#989898;margin-top: 20px">无联系人</div>
+            </div>
+         </ng-template>
+       </div>
+
+
+       <!-- 搜索-通讯录 -->
+    <div *ngIf="searching" class="list1" id="search_scrollbar"  (focus)="searching=true">
+        <ng-container *ngIf="searchResp && searchResp.length>0; else elseTemplate2">
+           <div class="address_title">好友</div>
+           <div  *ngFor="let item of  searchResp; let i = index">
+               <app-address-item *ngIf="item.is_group==false"
+                    [name]="item.name" 
+                    [head_img]="item.head_img"
+                    (click)="selectToChat(item)"
+               ></app-address-item>
+            </div>
+            <div class="address_title">群组</div>
+            <div  *ngFor="let item of  searchResp; let i = index">
+              <app-address-item *ngIf="item.is_group==true"
+                   [name]="item.name" 
+                   [head_img]="item.head_img"
+                   (click)="selectToChat(item)"
+              ></app-address-item>
+           </div>
+
+
+         </ng-container>
+         <ng-template #elseTemplate2 >
+           <div  style="text-align: center;">
+             <div style="color:#989898;margin-top: 20px">无内容</div>
+            </div>
+         </ng-template>
+       </div>
+
+
+  </div>
+  
+

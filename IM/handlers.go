@@ -30,10 +30,12 @@ func RegisterRouterHandlers() *httprouter.Router {
 	router.GET("/api/users/:name", getUsers)// 获取用户列表
 	router.GET("/api/address-book",getAddressBook)//获取通讯录y
 	router.GET("/api/recent-contact",getNearestContact)	//获取最近联系人y
+	router.GET("/api/search-friend/:keyword",getFriendByKeyword)	//获取最近联系人y
 	router.GET("/api/recent-contact-message",getNearestContactMessage)//获取最近联系人的最近聊天信息
 	router.GET("/api/history-message/:type/:id",getHistoryMessage)//获取历史消息
 	router.ServeFiles("/static/*filepath",http.Dir(config.StaticFilePath()))
 	router.ServeFiles("/files/*filepath",http.Dir(config.ServerFilePath()))
+	router.ServeFiles("/assets/*filepath",http.Dir(config.ServerAssetsFilePath()))
 	router.GET("/",indexFileServer)
 	router.GET("/ws",func(w http.ResponseWriter, r *http.Request,p httprouter.Params) {hub.ServeWs(w, r)})
 	router.NotFound = &NotFoundServerHandler{}
@@ -106,6 +108,10 @@ func loginHandle(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	//登录成功
 	sess := session.GenerateNewSessionId(info.Id)
+
+	cookie := http.Cookie{Name: "sessionid", Value:sess, Path: "/", MaxAge: 86400}
+	http.SetCookie(w, &cookie)
+
 	resp, _ := json.Marshal(&defs.LoginResp{Id:info.Id,Name:info.Name,HeadImg:info.HeadImg,SessionId:sess})
 	Logger.Debug("user login success:"+string(resp))
 	sendNormalResponse(w,string(resp),200)
@@ -145,6 +151,34 @@ func getAddressBook(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 	sendNormalResponse(w,string(data),200)
 }
 
+func getFriendByKeyword(w http.ResponseWriter, r *http.Request, p httprouter.Params){
+	param := r.Header.Get(defs.HEADER_FIELD_UID)
+	uid ,err := strconv.ParseInt(param,10,64)
+	if len(param)==0 || err !=nil {
+		sendErrorResponse(w,defs.ErrorNotAuthUser)
+		return
+	}
+
+	keyword := p.ByName("keyword")
+	if len(keyword) == 0 {
+		sendErrorResponse(w,defs.ErrorParamsFaults)
+		return
+	}
+
+
+	list, err := dbops.SearchAddressBook(uid,keyword)
+	if err != nil {
+		DealWithDbReturnErr(w,err)
+		return
+	}
+	if len(list.FriendsList) == 0 {
+		sendNormalResponse(w,"",204)
+		return
+	}
+	data, _ := json.Marshal(list)
+	sendNormalResponse(w,string(data),200)
+
+}
 
 func ComputeNearestContact(uid int64)(data []byte,err error){
 	var contact *defs.NearestContact

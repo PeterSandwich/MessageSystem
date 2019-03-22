@@ -1,0 +1,65 @@
+.list{
+    overflow-x: none;
+    overflow-y: scroll;
+    vertical-align: top;
+    height: 550px;
+    background:#2e3238;
+}
+
+.list1{
+    overflow-x: none;
+    overflow-y: scroll;
+    vertical-align: top;
+    background:#2e3238;
+}
+
+/* 通讯录 */
+#scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+#scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #ffffff3d;
+}
+
+#scrollbar::-webkit-scrollbar-track {
+    background-color: #292c33;
+}
+
+/* 搜索-通讯录 */
+#search_scrollbar{
+    position: absolute;
+    width: 244px;
+    overflow-x: none;
+    overflow-y: scroll;
+    vertical-align: top;
+    max-height: 350px;
+    background:#2e3238;
+    top: 108px;
+    left: 17px;
+    box-shadow: 0 1px 10px #999;
+    -moz-box-shadow: #999 0 1px 10px;
+    -webkit-box-shadow: #999 0 1px 10px;
+}
+#search_scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+#search_scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #ffffff3d;
+}
+
+#search_scrollbar::-webkit-scrollbar-track {
+    background-color: #292c33;
+}
+
+
+.address_title {
+    padding: 1px 18px;
+    font-weight: 400;
+    color: #787b87;
+    background: #292d32;
+    font-size: 14px;
+}

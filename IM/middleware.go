@@ -25,9 +25,13 @@ func (m middleWareHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func validateUserSession(r *http.Request)(*http.Request,string){
-	str := r.Header.Get(defs.HEADER_FIELD_SESSION)
-	if len(str)==0 {
+	//str := r.Header.Get(defs.HEADER_FIELD_SESSION)
+	cookie, err := r.Cookie("sessionid")
+	str:=""
+	if err!=nil||len(str)==0 {
 		str = r.URL.Query().Get("session_id")
+	}else{
+		str =  cookie.Value
 	}
 	uid, ok := session.IsSessionExpired(str)
 	if ok {

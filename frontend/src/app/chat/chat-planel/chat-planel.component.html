@@ -1,0 +1,28 @@
+<div style="position: relative;background-color: #eee;">
+    <div>
+      <div style="text-align:center;padding: 0 19px;">
+        <h4 style="padding:15px 0 ;border-bottom: 1px solid #d6d6d6;">{{your_info?.name}}</h4>
+      </div>
+   </div>
+    <div id="show_msg" style="height:480px">
+      <app-dialogbox [msgitem]="msg1" [isme]=false ></app-dialogbox>
+      <app-dialogbox [msgitem]="msg1" [isme]=true ></app-dialogbox>
+      <app-dialogbox [msgitem]="msg2" [isme]=false ></app-dialogbox>
+      <app-dialogbox [msgitem]="msg2" [isme]=true ></app-dialogbox>
+      <app-dialogbox [msgitem]="msg3" [isme]=false ></app-dialogbox>
+      <app-dialogbox [msgitem]="msg3" [isme]=true ></app-dialogbox>
+    </div>
+    <div>
+      <div style="border-top: 1px solid #d6d6d6;height:168px">
+        <div style=" padding:10px 17px;">
+          <a><img style="width: 25px;height: 25px;" src="../../../assets/biaoqing.png"></a>
+          <a><img style="width: 25px;height: 25px; margin-left: 15px" src="../../../assets/files.png"></a>
+        </div>
+        <div class="send_input"  contenteditable="true"></div>
+          <div style="height:30px;text-align: right; padding-right: 20px;">
+              <span style="color:#c3c3c3;">按下Ctrl+Enter换行  </span>
+              <a class="btn-send" >发送</a>
+          </div>
+      </div>
+    </div>
+  </div>

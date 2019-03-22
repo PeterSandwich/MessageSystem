@@ -30,8 +30,8 @@ import (
 
 
 const maxUploadSize = 20 * 1024 * 1024 // 10 mb
-//const uploadPath = "/tmp/files/"
-const uploadPath = "C:/Users/User/Desktop/GoProject/files/"
+const uploadPath = "/tmp/files/"
+//const uploadPath = "C:/Users/User/Desktop/GoProject/files/"
 
 var inputArgs defs.InputArgs
 
@@ -82,6 +82,10 @@ func uploadFileHandler(w http.ResponseWriter, r *http.Request,p httprouter.Param
 		default:
 			sendErrorResponse(w,defs.ErrorIinvaidType)
 			return
+		}
+		if filetype=="text/plain"&&fileType=="video/mp4"{
+			returnp.Filetype=3
+			filetype = "video/mp4"
 		}
 		//读文件类型
 		err=AddExtensionType()
@@ -355,6 +359,11 @@ func AddExtensionType() error{
 		fmt.Println("AddExtensionType:zip error",err)
 		return err
 	}
+	err=mime.AddExtensionType(".zip","application/zip")
+	if err!=nil{
+		fmt.Println("AddExtensionType:zip error",err)
+		return err
+	}
 	err=mime.AddExtensionType(".mp3","audio/mp3")
 	if err!=nil{
 		fmt.Println("AddExtensionType:mp3 error",err)
@@ -365,6 +374,11 @@ func AddExtensionType() error{
 		fmt.Println("AddExtensionType:mp4 error",err)
 		return err
 	}
+	err=mime.AddExtensionType(".doc","application/wps-office.doc")
+	if err!=nil{
+		fmt.Println("AddExtensionType:DOC error",err)
+		return err
+	}
 	err=mime.AddExtensionType(".ppt","application/vnd.ms-powerpoint")
 	if err!=nil{
 		fmt.Println("AddExtensionType:ppt error",err)
@@ -373,6 +387,11 @@ func AddExtensionType() error{
 	err=mime.AddExtensionType(".doc","application/msword")
 	if err!=nil{
 		fmt.Println("AddExtensionType:doc error",err)
+		return err
+	}
+	err=mime.AddExtensionType(".ppt","application/wps-office.ppt")
+	if err!=nil{
+		fmt.Println("AddExtensionType:ppt error",err)
 		return err
 	}
 	return nil

@@ -1,6 +1,6 @@
 
 <br>
-<div  *ngIf="isme != true " class="timeonleft">{{msgitem.arrive_time}}</div>
+<div  *ngIf="isme != true " class="timeonleft">{{msgitem.arrive_time|dateSwich}}</div>
 <img  *ngIf="isme != true " class="headportraitonleft" src="{{img}}">
 <!-- 左边文本 -->
 <div *ngIf="msgitem.content_type == 0 && isme != true" class="content">
