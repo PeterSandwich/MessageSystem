@@ -20,7 +20,7 @@ export class ChatPlanelComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+    this.scollbuttom()
   }
 
   send(content:string){
@@ -38,6 +38,14 @@ export class ChatPlanelComponent implements OnInit {
   msg.isgroup = this.your_info.is_group;
   msg.sendTime = Date.now();
   this.ws.sendMessage(msg);
+  this.scollbuttom();
+    
+  }
+
+  scollbuttom(){
+    var div = document.getElementById('show_msg');
+    div.scrollTop = div.scrollHeight;
+  
   }
   
 }

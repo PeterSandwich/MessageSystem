@@ -4,7 +4,7 @@
         <h4 style="padding:15px 0 ;border-bottom: 1px solid #d6d6d6;">{{your_info?.name}}</h4>
       </div>
    </div>
-    <div id="show_msg" style="height:480px">
+    <div id="show_msg" style="height:480px" >
      <ng-container *ngIf="this.ws.global_message.chat_room_list.get(this.your_info.id); else elseTemplate">
       <div *ngFor="let item of this.ws.global_message.chat_room_list.get(this.your_info.id)?.message_list">
 
@@ -15,12 +15,12 @@
             <app-dialogbox [msgitem]="item" [isme]="item&&false" [img]='"/api/head-img/"+item.from'></app-dialogbox>
         </ng-template>
         
-        
       </div>
       </ng-container>
       <ng-template #elseTemplate style="text-align: center">
         <p style="width: 100%;;text-align: center;margin-top: 100px;color: #999999c9;">暂无消息</p>
       </ng-template>
+
     </div>
     <div>
       <div style="border-top: 1px solid #d6d6d6;height:168px">
