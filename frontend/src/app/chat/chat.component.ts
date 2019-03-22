@@ -211,41 +211,21 @@ export class ChatComponent implements OnInit {
 
     }
 
-    //在输入框回车发送消息
-    enterToSendMsg(event: KeyboardEvent) {
-      if(event.keyCode != (13 || 108)){
-          return;
-      }
-      this.sendTextMessage()
-    }
+    // //在输入框回车发送消息
+    // enterToSendMsg(event: KeyboardEvent) {
+    //   if(event.keyCode != (13 || 108)){
+    //       return;
+    //   }
+    //   this.sendTextMessage()
+    // }
 
-    //点击 发送 按钮发送消息
-    clickToSendMsg(){
-      this.sendTextMessage()
-    }
+    // //点击 发送 按钮发送消息
+    // clickToSendMsg(){
+    //   this.sendTextMessage()
+    // }
 
   
-    //发送文本消息
-    sendTextMessage(){
-      this.content = this.content.replace(/^\s*/,'');//去除左边空格
-      if(this.content == ""){
-        console.log("内容不能为空")
-        return;
-      }
-      let msg = new(Protocol.Message)
-      msg.type = Protocol.Message.Type.REQUEST;
-      msg.cmd = Protocol.Message.CtrlType.NONE;
-      msg.from = this.us.MyUserId;
-      msg.to = this.to_id;
-      msg.content = this.content;
-      msg.contentType = Protocol.Message.ContentType.TEXT;
-      this.contentType = msg.contentType;
-      msg.isgroup = this.isgroup;
-      msg.sendTime = Date.now();
-      this.ws.sendMessage(msg);
-      this.content = "";
-      this.scollbuttom();
-    }
+    
     
 
     addfriend(to: number){

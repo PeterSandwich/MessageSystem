@@ -1,7 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import * as com from '../../common/im';
-import { MessageItem } from '../../common/im';
 import { WebsocketService } from '../../websocket.service';
+import { Protocol } from '../../protocol/Protocol';
 
 @Component({
   selector: 'app-chat-planel',
@@ -15,50 +15,7 @@ export class ChatPlanelComponent implements OnInit {
   @Input() my_id:number;
   @Input() your_info:com.ContactListItem;
   @Input() who;
-  msg1:MessageItem ={
-    id:1,
-    from:1,
-    to:2,
-    content:"asdsad",
-    content_type:0,
-    arrive_time:1111111,
-    send_time:123321,
-    is_group:false,
-    loading_percent:0
-  };
-  msg2:MessageItem ={
-    id:1,
-    from:1,
-    to:2,
-    content:"asdsad",
-    content_type:1,
-    arrive_time:1111111,
-    send_time:123321,
-    is_group:false,
-    loading_percent:0
-  };
-  msg3:MessageItem ={
-    id:1,
-    from:1,
-    to:2,
-    content:"asdsad",
-    content_type:2,
-    arrive_time:1111111,
-    send_time:123321,
-    is_group:false,
-    loading_percent:0
-  };
-  msg4:MessageItem ={
-    id:1,
-    from:1,
-    to:2,
-    content:"asdsad",
-    content_type:3,
-    arrive_time:1111111,
-    send_time:123321,
-    is_group:false,
-    loading_percent:0
-  };
+
   constructor(private ws: WebsocketService) { 
   }
 
@@ -66,9 +23,21 @@ export class ChatPlanelComponent implements OnInit {
    
   }
 
-  send(){
-    console.log("who:",this.ws.global_message.chat_room_list.get(this.your_info.id).message_list);
-    
+  send(content:string){
+    content = content.replace(/^\s*/,'');//去除左边空格
+    if(content == ""||this.your_info.id==-1){
+      return;
+    }
+  let msg = new(Protocol.Message)
+  msg.type = Protocol.Message.Type.REQUEST;
+  msg.cmd = Protocol.Message.CtrlType.NONE;
+  msg.from = this.my_id;
+  msg.to = this.your_info.id;
+  msg.content =content;
+  msg.contentType = Protocol.Message.ContentType.TEXT;
+  msg.isgroup = this.your_info.is_group;
+  msg.sendTime = Date.now();
+  this.ws.sendMessage(msg);
   }
   
 }

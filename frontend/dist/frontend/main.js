@@ -559,7 +559,7 @@ module.exports = ".btn-send{\n    display: inline-block;\n    border: 1px solid 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"position: relative;background-color: #eee;\">\n    <div>\n      <div style=\"text-align:center;padding: 0 19px;\">\n        <h4 style=\"padding:15px 0 ;border-bottom: 1px solid #d6d6d6;\">{{your_info?.name}}</h4>\n      </div>\n   </div>\n    <div id=\"show_msg\" style=\"height:480px\">\n     <ng-container *ngIf=\"this.ws.global_message.chat_room_list.get(this.your_info.id); else elseTemplate\">\n      <div *ngFor=\"let item of this.ws.global_message.chat_room_list.get(this.your_info.id)?.message_list\">\n\n        <ng-container *ngIf=\"item&&my_id==item?.from; else elseTemplate1\">\n            <app-dialogbox [msgitem]=\"item\" [isme]=\"item&&true\" [img]=\"my_head_img\"></app-dialogbox>\n        </ng-container>\n        <ng-template #elseTemplate1>\n            <app-dialogbox [msgitem]=\"item\" [isme]=\"item&&false\" [img]='\"/api/head-img/\"+item.from'></app-dialogbox>\n        </ng-template>\n        \n        \n      </div>\n      </ng-container>\n      <ng-template #elseTemplate style=\"text-align: center\">\n        <p>暂无消息</p>\n      </ng-template>\n    \n      \n     \n      <!-- <app-dialogbox [msgitem]=\"msg1\" [isme]=true ></app-dialogbox>\n      <app-dialogbox [msgitem]=\"msg2\" [isme]=false ></app-dialogbox>\n      <app-dialogbox [msgitem]=\"msg2\" [isme]=true ></app-dialogbox>\n      <app-dialogbox [msgitem]=\"msg3\" [isme]=false ></app-dialogbox>\n      <app-dialogbox [msgitem]=\"msg3\" [isme]=true ></app-dialogbox> -->\n    </div>\n    <div>\n      <div style=\"border-top: 1px solid #d6d6d6;height:168px\">\n        <div style=\" padding:10px 17px;\">\n          <a><img style=\"width: 25px;height: 25px;\" src=\"../../../assets/biaoqing.png\"></a>\n          <a><img style=\"width: 25px;height: 25px; margin-left: 15px\" src=\"../../../assets/files.png\"></a>\n        </div>\n        <div class=\"send_input\"  contenteditable=\"true\"></div>\n          <div style=\"height:30px;text-align: right; padding-right: 20px;\">\n              <span style=\"color:#c3c3c3;\">按下Ctrl+Enter换行</span>\n              <a class=\"btn-send\" (click)=\"send()\">发送</a>\n          </div>\n      </div>\n    </div>\n  </div>"
+module.exports = "<div style=\"position: relative;background-color: #eee;\">\n    <div>\n      <div style=\"text-align:center;padding: 0 19px;\">\n        <h4 style=\"padding:15px 0 ;border-bottom: 1px solid #d6d6d6;\">{{your_info?.name}}</h4>\n      </div>\n   </div>\n    <div id=\"show_msg\" style=\"height:480px\">\n     <ng-container *ngIf=\"this.ws.global_message.chat_room_list.get(this.your_info.id); else elseTemplate\">\n      <div *ngFor=\"let item of this.ws.global_message.chat_room_list.get(this.your_info.id)?.message_list\">\n\n        <ng-container *ngIf=\"item&&my_id==item?.from; else elseTemplate1\">\n            <app-dialogbox [msgitem]=\"item\" [isme]=\"item&&true\" [img]=\"my_head_img\"></app-dialogbox>\n        </ng-container>\n        <ng-template #elseTemplate1>\n            <app-dialogbox [msgitem]=\"item\" [isme]=\"item&&false\" [img]='\"/api/head-img/\"+item.from'></app-dialogbox>\n        </ng-template>\n        \n        \n      </div>\n      </ng-container>\n      <ng-template #elseTemplate style=\"text-align: center\">\n        <p style=\"width: 100%;;text-align: center;margin-top: 100px;color: #999999c9;\">暂无消息</p>\n      </ng-template>\n    </div>\n    <div>\n      <div style=\"border-top: 1px solid #d6d6d6;height:168px\">\n        <div style=\" padding:10px 17px;\">\n          <a><img style=\"width: 25px;height: 25px;\" src=\"../../../assets/biaoqing.png\"></a>\n          <a><img style=\"width: 25px;height: 25px; margin-left: 15px\" src=\"../../../assets/files.png\"></a>\n        </div>\n        <div class=\"send_input\"  contenteditable=\"true\"  #editbox ></div>\n          <div style=\"height:30px;text-align: right; padding-right: 20px;\">\n              <span style=\"color:#c3c3c3;\">按下Ctrl+Enter换行</span>\n              <a class=\"btn-send\" (click)=\"send(editbox.innerText);editbox.innerText=''\">发送</a>\n          </div>\n      </div>\n    </div>\n  </div>"
 
 /***/ }),
 
@@ -577,6 +577,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _common_im__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../common/im */ "./src/app/common/im.ts");
 /* harmony import */ var _websocket_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../websocket.service */ "./src/app/websocket.service.ts");
+/* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../protocol/Protocol */ "./src/app/protocol/Protocol.js");
+/* harmony import */ var _protocol_Protocol__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_protocol_Protocol__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -584,55 +587,24 @@ __webpack_require__.r(__webpack_exports__);
 var ChatPlanelComponent = /** @class */ (function () {
     function ChatPlanelComponent(ws) {
         this.ws = ws;
-        this.msg1 = {
-            id: 1,
-            from: 1,
-            to: 2,
-            content: "asdsad",
-            content_type: 0,
-            arrive_time: 1111111,
-            send_time: 123321,
-            is_group: false,
-            loading_percent: 0
-        };
-        this.msg2 = {
-            id: 1,
-            from: 1,
-            to: 2,
-            content: "asdsad",
-            content_type: 1,
-            arrive_time: 1111111,
-            send_time: 123321,
-            is_group: false,
-            loading_percent: 0
-        };
-        this.msg3 = {
-            id: 1,
-            from: 1,
-            to: 2,
-            content: "asdsad",
-            content_type: 2,
-            arrive_time: 1111111,
-            send_time: 123321,
-            is_group: false,
-            loading_percent: 0
-        };
-        this.msg4 = {
-            id: 1,
-            from: 1,
-            to: 2,
-            content: "asdsad",
-            content_type: 3,
-            arrive_time: 1111111,
-            send_time: 123321,
-            is_group: false,
-            loading_percent: 0
-        };
     }
     ChatPlanelComponent.prototype.ngOnInit = function () {
     };
-    ChatPlanelComponent.prototype.send = function () {
-        console.log("who:", this.ws.global_message.chat_room_list.get(this.your_info.id).message_list);
+    ChatPlanelComponent.prototype.send = function (content) {
+        content = content.replace(/^\s*/, ''); //去除左边空格
+        if (content == "" || this.your_info.id == -1) {
+            return;
+        }
+        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_4__["Protocol"].Message);
+        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_4__["Protocol"].Message.Type.REQUEST;
+        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_4__["Protocol"].Message.CtrlType.NONE;
+        msg.from = this.my_id;
+        msg.to = this.your_info.id;
+        msg.content = content;
+        msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_4__["Protocol"].Message.ContentType.TEXT;
+        msg.isgroup = this.your_info.is_group;
+        msg.sendTime = Date.now();
+        this.ws.sendMessage(msg);
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -862,38 +834,17 @@ var ChatComponent = /** @class */ (function () {
         msg.sendTime = Date.now();
         this.ws.sendMessage(msg);
     };
-    //在输入框回车发送消息
-    ChatComponent.prototype.enterToSendMsg = function (event) {
-        if (event.keyCode != (13 || false)) {
-            return;
-        }
-        this.sendTextMessage();
-    };
-    //点击 发送 按钮发送消息
-    ChatComponent.prototype.clickToSendMsg = function () {
-        this.sendTextMessage();
-    };
-    //发送文本消息
-    ChatComponent.prototype.sendTextMessage = function () {
-        this.content = this.content.replace(/^\s*/, ''); //去除左边空格
-        if (this.content == "") {
-            console.log("内容不能为空");
-            return;
-        }
-        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_7__["Protocol"].Message);
-        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_7__["Protocol"].Message.Type.REQUEST;
-        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_7__["Protocol"].Message.CtrlType.NONE;
-        msg.from = this.us.MyUserId;
-        msg.to = this.to_id;
-        msg.content = this.content;
-        msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_7__["Protocol"].Message.ContentType.TEXT;
-        this.contentType = msg.contentType;
-        msg.isgroup = this.isgroup;
-        msg.sendTime = Date.now();
-        this.ws.sendMessage(msg);
-        this.content = "";
-        this.scollbuttom();
-    };
+    // //在输入框回车发送消息
+    // enterToSendMsg(event: KeyboardEvent) {
+    //   if(event.keyCode != (13 || 108)){
+    //       return;
+    //   }
+    //   this.sendTextMessage()
+    // }
+    // //点击 发送 按钮发送消息
+    // clickToSendMsg(){
+    //   this.sendTextMessage()
+    // }
     ChatComponent.prototype.addfriend = function (to) {
         if (to == this.us.MyUserId) {
             alert("不能添加自己为好友");
