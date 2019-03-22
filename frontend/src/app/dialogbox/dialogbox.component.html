@@ -78,7 +78,7 @@
                             <span class="title">1.2kb </span>
                             <span>|</span>
                             <a class="a" (click)=" downloadFile(msgitem.content)"> 下载</a>
-                            <nz-progress *ngIf="percent != 100"[nzPercent]="percent" nzSize="small" nzStatus="active" [nzStrokeColor]="green">
+                            <nz-progress *ngIf="percent != 100 && percent != -1 && percent != undefined " [nzPercent]="percent" nzSize="small" nzStatus="active" [nzStrokeColor]="green">
                             </nz-progress>
                         </div>
                     </div>

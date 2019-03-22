@@ -23,19 +23,19 @@ export class DialogboxComponent {
     let src: string
     switch (this.imgUrl[1]) {
       case 'doc':
-        src = "/files/DOC.png";
+        src = "../../assets/DOC.png";
         break;
       case 'pdf':
-        src = "/files/pdf.png";
+        src = "../../assets/pdf.png";
         break;
       case 'ppt':
-        src = "/files/ppt.png";
+        src = "../../assets/ppt.png";
         break;
       case 'zip':
-        src = "/files/RAR.png";
+        src = "../../assets/RAR.png";
         break;
       case 'txt':
-        src = "/files/txt.png";
+        src = "../../assets/txt.png";
         break;
     }
     return src;

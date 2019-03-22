@@ -36,6 +36,7 @@
   }
   .content{
     overflow: hidden;
+    padding: 0 0 10px 0;
   }
   .bubble{
     left:5%;
@@ -52,7 +53,7 @@
     background-color: #b2e281;
   }
   .bubbleright{
-    left:52%;/*52%*/
+    left:44%;/*52%*/
     max-width: 500px;
     min-height: 1em;
     display: inline-block;
@@ -286,7 +287,7 @@
     }
       .timeonright{
           max-width: 140px;
-          left:84%;/*84%*/
+          left:76%;/*84%*/
           margin-right: 10px;
           background-size: cover;
           position: relative;
