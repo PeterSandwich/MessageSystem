@@ -104,7 +104,8 @@ export class ChatComponent implements OnInit {
     this.ws.address_book.contact_list = [];
 
     this.selected_contact_list_item = new(com.ContactListItem);
-    this.selected_contact_list_item.name = "未选择"
+    this.selected_contact_list_item.name = "未选择";
+    this.selected_contact_list_item.id = -1;
     
     this.selected_address_list_item = new(com.ContactListItem);
 
@@ -484,7 +485,7 @@ export class ChatComponent implements OnInit {
          chat_room.is_group = data.body['chat_room_list'][i].is_group;
          chat_room.message_list=data.body['chat_room_list'][i].message_list;
           for(let i=0;i<chat_room.message_list.length;i++){
-            chat_room.message_list[i].loading_present =-1;
+            chat_room.message_list[i].loading_percent =-1;
           }
          this.ws.global_message.chat_room_list.set(chat_room.id,chat_room);
 

@@ -1,6 +1,6 @@
 
 <br>
-<div  *ngIf="isme != true " class="timeonleft">{{msgitem.arrive_time|dateSwich}}</div>
+<div  *ngIf="isme != true " class="timeonleft">{{msgitem.arrive_time|timeSwich}}</div>
 <img  *ngIf="isme != true " class="headportraitonleft" src="{{img}}">
 <!-- 左边文本 -->
 <div *ngIf="msgitem.content_type == 0 && isme != true" class="content">
@@ -46,7 +46,7 @@
     <button class="upload-btn" (click)="showvideoModal(msgitem.content)"> 播放
     </button>
 </div>
-<div  *ngIf="isme == true " class="timeonright">{{msgitem.arrive_time}}</div>
+<div  *ngIf="isme == true " class="timeonright">{{msgitem.arrive_time|timeSwich}}</div>
 <img  *ngIf="isme == true " class="headportraitonright" src="{{img}}">
 <!-- 右边文字 -->
 <div *ngIf="msgitem.content_type == 0 && isme == true" class="content">

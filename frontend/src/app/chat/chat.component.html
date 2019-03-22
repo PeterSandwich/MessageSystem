@@ -15,7 +15,9 @@
     <div style="width: 700px;float:left; display:inline">
         <app-chat-planel *ngIf="char_or_adress"
           [my_head_img]="my_img_url"
+          [my_id]="my_id"
           [your_info]="selected_contact_list_item"
+          [who]="this.selected_contact_list_item"
         ></app-chat-planel>
         <app-info-planel *ngIf="!char_or_adress"
           [your_info]="selected_address_list_item"

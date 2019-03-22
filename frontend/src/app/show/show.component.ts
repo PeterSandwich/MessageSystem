@@ -15,7 +15,7 @@ export class ShowComponent implements OnInit {
     arrive_time:1111111,
     send_time:123321,
     is_group:false,
-    loading_present:0
+    loading_percent:0
   };
   msg2:MessageItem ={
     id:1,
@@ -26,7 +26,7 @@ export class ShowComponent implements OnInit {
     arrive_time:1111111,
     send_time:123321,
     is_group:false,
-    loading_present:0
+    loading_percent:0
   };
   msg3:MessageItem ={
     id:1,
@@ -37,7 +37,7 @@ export class ShowComponent implements OnInit {
     arrive_time:1111111,
     send_time:123321,
     is_group:false,
-    loading_present:0
+    loading_percent:0
   };
   msg4:MessageItem ={
     id:1,
@@ -48,7 +48,7 @@ export class ShowComponent implements OnInit {
     arrive_time:1111111,
     send_time:123321,
     is_group:false,
-    loading_present:0
+    loading_percent:0
   };
   constructor() { }
 

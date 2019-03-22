@@ -190,7 +190,7 @@ export class WebsocketService {
     newMsg.is_group = m.isgroup;
     newMsg.send_time = m.sendTime;
     newMsg.arrive_time = m.arriveTime;
-    newMsg.loading_present = -1;
+    newMsg.loading_percent = -1;
 
     chat_room.message_list.push(newMsg);
   }

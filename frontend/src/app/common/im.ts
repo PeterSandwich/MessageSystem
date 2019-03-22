@@ -11,7 +11,7 @@ export class MessageItem{
     arrive_time: number|Long
     send_time: number|Long
     is_group: boolean
-    loading_present: number
+    loading_percent: number
 }
 
 
