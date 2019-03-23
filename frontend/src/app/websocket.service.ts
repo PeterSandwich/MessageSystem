@@ -35,7 +35,10 @@ export class WebsocketService {
 
   // 建立websocket链接
   createSocket(url:string){
-
+    this.global_message.chat_room_list = new Map<number|Long,com.ChatRoom>();
+    this.address_book.contact_list = [];
+    this.nearest_contact.contact_list = [];
+    
     let that = this
     this.ws = new WebSocket(url);
 
@@ -53,9 +56,7 @@ export class WebsocketService {
 
   // 断开websocket连接
   closeSocket(){
-    if(!(this.ws.CLOSED&&this.ws.CLOSING)){
       this.ws.close()
-    }
   }
 
   // 请求头部设置x-session-id
@@ -86,7 +87,6 @@ export class WebsocketService {
 
   // 发送信息，不在这里构造消息体
   sendMessage(m: Protocol.Message){
-    
     //先发送出数据
     console.log("websocket发送前的数据:",m)
     this.ws.send(Protocol.Message.encode(m).finish());

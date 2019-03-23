@@ -14,6 +14,8 @@ import { environment } from '../../environments/environment';
 import { Long } from 'protobufjs';
 import { TimePipe } from '../common/time_pipe';
 import { ChatListComponent } from './chat-list/chat-list.component';
+import { Router } from '@angular/router';
+
 
 @Injectable()
 @Component({
@@ -86,7 +88,8 @@ export class ChatComponent implements OnInit {
     private el: ElementRef,
     public _d: DomSanitizer,
     private nzDropdownService: NzDropdownService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private router: Router
     ) {
       this.char_or_adress = true;
       
@@ -98,6 +101,7 @@ export class ChatComponent implements OnInit {
     }
     
     ngOnInit(){
+    if(!this.us.isLogin){this.router.navigateByUrl("/login")}
     this.ws.createSocket(environment.websocketUrl+"?session_id="+this.us.session_id);
     this.ws.global_message.chat_room_list = new Map<number|Long,com.ChatRoom>();
     this.ws.nearest_contact.contact_list = [];

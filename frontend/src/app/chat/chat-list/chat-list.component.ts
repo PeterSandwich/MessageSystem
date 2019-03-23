@@ -4,6 +4,8 @@ import { UserService } from '../../user.service';
 import { WebsocketService } from '../../websocket.service';
 import { Protocol } from '../../protocol/Protocol';
 import { NzMessageService } from 'ng-zorro-antd';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-chat-list',
   templateUrl: './chat-list.component.html',
@@ -27,12 +29,22 @@ export class ChatListComponent implements OnInit {
   friend_keyword: string;
   searchuserlist : com.NearestContact;
 
-  searchVisible:boolean;
+  searchVisible:boolean;  // 添加好友显示弹框
+  createGroupVisible:boolean; // 创建群聊显示弹框
+  createGroupList:com.CreateGroup;  //创建群组时，显示给用户选择，需要使用的结构体
+  GroupList:com.CreateGroup;
 
-
-  constructor(private us:UserService,private ws:WebsocketService,private message: NzMessageService) {
+  constructor(
+    private us:UserService,
+    private ws:WebsocketService,
+    private message: NzMessageService,
+    private router:Router) {
     this.head_img = '';
-    this.name = ""
+    this.name = "";
+    this.createGroupList=new(com.CreateGroup);
+    this.createGroupList.contact_list = [];
+    this.GroupList=new(com.CreateGroup);
+    this.GroupList.contact_list = [];
    }
 
   ngOnInit() {
@@ -111,4 +123,68 @@ export class ChatListComponent implements OnInit {
       this.message.create("success",'添加好友已发送邀请');
   }
 
+
+  //创建群组相关
+  handleCreateGroupCancel(){
+    this.createGroupVisible = false;
+  }
+
+  filteruser(name:string){
+    name = name.trim();
+    if(name==""){
+      this.createGroupList.contact_list=this.GroupList.contact_list;
+      return
+    }
+    this.createGroupList.contact_list = this.GroupList.contact_list.filter(e => {
+      return  e.name.includes(name)
+    })
+  }
+
+  showAddGroupModal() {
+    this.createGroupList.contact_list = [];
+    let list = this.ws.address_book.contact_list;
+    if(list.length==0){this.message.create('warning',"列表无联系人，不可创建群");return;}
+    for(let i=0;i<list.length;i++){
+      if(list[i].is_group==false){
+        let item = new com.CreateGroupItem;
+        item.id = list[i].id;
+        item.name = list[i].name;
+        item.head_img =list[i].head_img;
+        item.selected = false;
+        this.createGroupList.contact_list.push(item);
+      }
+   }
+   this.GroupList.contact_list = this.createGroupList.contact_list
+   console.log("创建群组显示列表：",this.createGroupList.contact_list);
+   this.createGroupVisible = true;
+  }
+
+  creategroup(name: string){
+    name=name.trim()
+    if(name==""){this.message.create('warning',"群名不能为空");return;}
+    let useridlist = [];
+    for(let i=0;i<this.createGroupList.contact_list.length;i++){
+      if(this.createGroupList.contact_list[i].selected){
+        useridlist.push(this.createGroupList.contact_list[i].id);
+      }
+    }
+    if(useridlist.length==0){this.message.create('warning',"未选择群成员");return;}
+    let msg = new(Protocol.Message)
+      msg.type = Protocol.Message.Type.REQUEST;
+      msg.cmd = Protocol.Message.CtrlType.CREATE_GROUP;
+      msg.from =  this.us.MyUserId;
+      msg.content =  name;
+      msg.contentType = Protocol.Message.ContentType.TEXT; 
+      msg.isgroup = true;
+      msg.userlist = useridlist;
+      this.ws.sendMessage(msg)
+  
+      this.createGroupVisible = false;   
+  }
+
+  quit(){
+    this.us.isLogin = false;
+    this.ws.closeSocket();
+    this.router.navigateByUrl("/login");
+  }
 }

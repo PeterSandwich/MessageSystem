@@ -63,3 +63,24 @@
     background: #292d32;
     font-size: 14px;
 }
+
+
+.memberlist{
+    padding-top: 20px;
+    max-height: 450px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.memberlist::-webkit-scrollbar {
+    width: 6px;
+}
+
+.memberlist::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #ffffff3d;
+}
+
+.memberlist::-webkit-scrollbar-track {
+    background-color: #292c33;
+}
