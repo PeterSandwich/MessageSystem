@@ -1,9 +1,11 @@
 <div style="position: relative;background-color: #eee;">
+  <!-- 头部 -->
     <div>
       <div style="text-align:center;padding: 0 19px;">
-        <h4 style="padding:15px 0 ;border-bottom: 1px solid #d6d6d6;">{{your_info?.name}}</h4>
+        <h4 style="padding:15px 0 ;border-bottom: 1px solid #d6d6d6;">{{your_info?.name}}<img *ngIf="your_info.is_group" src="../../../assets/down-circle.png" style="display: inline;width: 15px;height: 15px;" (click)="show_members=!show_members"></h4>
       </div>
    </div>
+<!-- 消息显示窗口 -->
     <div id="show_msg" style="height:480px" >
      <ng-container *ngIf="this.ws.global_message.chat_room_list.get(this.your_info.id); else elseTemplate">
       <div *ngFor="let item of this.ws.global_message.chat_room_list.get(this.your_info.id)?.message_list">
@@ -20,6 +22,7 @@
         <p style="width: 100%;;text-align: center;margin-top: 100px;color: #999999c9;">暂无消息</p>
       </ng-template>
     </div>
+    <!-- 发送消息窗口 -->
     <div>
       <div style="border-top: 1px solid #d6d6d6;height:168px">
         <div style=" padding:10px 17px;">
@@ -32,5 +35,18 @@
               <a class="btn-send" (click)="send(editbox.innerText);editbox.innerText=''">发送</a>
           </div>
       </div>
+    </div>
+
+    <!-- 头部下拉显示成员 -->
+    <div *ngIf="your_info.is_group&&show_members" class="show_members">
+      <div class="members">
+          <div *ngFor="let item of group_members">
+            <div class="member">
+                <img [src]="item.head_img" class="avatar">
+                <p class="nickname">{{item.name}}</p>
+            </div>
+          </div>
+      </div>
+      
     </div>
   </div>

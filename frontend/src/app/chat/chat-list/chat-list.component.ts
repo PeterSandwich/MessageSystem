@@ -1,6 +1,9 @@
 import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
 import * as com from '../../common/im';
 import { UserService } from '../../user.service';
+import { WebsocketService } from '../../websocket.service';
+import { Protocol } from '../../protocol/Protocol';
+import { NzMessageService } from 'ng-zorro-antd';
 @Component({
   selector: 'app-chat-list',
   templateUrl: './chat-list.component.html',
@@ -22,7 +25,12 @@ export class ChatListComponent implements OnInit {
   selectID: number;
   selectAddressID: number;
   friend_keyword: string;
-  constructor(private us:UserService) {
+  searchuserlist : com.NearestContact;
+
+  searchVisible:boolean;
+
+
+  constructor(private us:UserService,private ws:WebsocketService,private message: NzMessageService) {
     this.head_img = '';
     this.name = ""
    }
@@ -63,5 +71,44 @@ export class ChatListComponent implements OnInit {
     
   }
 
+
+  handleSearchCancel(){
+    console.log("handleSearchCancel");
+    this.searchVisible = false;
+    this.searchuserlist=null;
+  }
+
+  search(name:string){
+    console.log(name);
+    this.searchuserlist=null;
+    if(name=='')return;
+      this.us.getuserlist(name).subscribe(data => {
+        console.log("userlist=", data);
+        if(data['user_list'].length == 0){
+          this.searchuserlist=null;
+          return
+        }
+        this.searchuserlist = data['user_list'];
+      })
+  }
+
+  addfriend(to){
+    if(to == this.us.MyUserId){this.message.create("warning",'不能添加自己为好友');return;}
+      for(let i=0;i<this.ws.nearest_contact.contact_list.length;i++){
+        if(this.ws.address_book.contact_list[i].id == to){
+          this.message.create("warning",'好友已存在');
+          return;
+        }
+      }
+
+      let msg = new(Protocol.Message)
+      msg.type = Protocol.Message.Type.REQUEST;
+      msg.cmd = Protocol.Message.CtrlType.CREATE_SESSION;
+      msg.from = this.us.MyUserId;
+      msg.to = to;
+      msg.sendTime = Date.now();
+      this.ws.sendMessage(msg);
+      this.message.create("success",'添加好友已发送邀请');
+  }
 
 }

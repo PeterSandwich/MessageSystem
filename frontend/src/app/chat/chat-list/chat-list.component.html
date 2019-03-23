@@ -2,14 +2,13 @@
     <div id="all" style='padding: 15px;background:#2e3238;'>
            <nz-avatar [nzSize]="42" [nzShape]="'square'" [nzIcon]="'user'" [nzSrc]="head_img"></nz-avatar>
         <h4 style="position: absolute;top: 25px;left:70px;color: white">{{name}}</h4>
-       <!-- <a><img style="width: 30px;height: 30px;float:right;"src="../../../assets/dropdown.png"></a> -->
        <nz-dropdown style="float:right;">
           <a nz-dropdown>
               <img style="width: 30px;height: 30px;"src="../../../assets/dropdown.png">
           </a>
           <ul nz-menu nzSelectable>
             <li nz-menu-item>
-              <a>添加好友</a>
+              <a (click)="searchVisible=true">添加好友</a>
             </li>
             <li nz-menu-item>
               <a>创建群组</a>
@@ -23,8 +22,8 @@
     <div style="background:#2e3238;padding-left:15px;padding-right:15px;padding-top: 5px;padding-bottom:5px">
         <input placeholder="输入按回车键搜索" nzSize="small"  
         #search_input (keyup.enter)="searchMonitorList(search_input.value)"
-        
         style="color: white;background-color:#26292e;border: 0; "  type="text" nz-input >
+
     </div>
     <div style="background:#2e3238;padding:10px;height: 50px;border-bottom: 1px solid black">
       <div style="float:left;width: 33%; text-align: center">
@@ -127,5 +126,34 @@
 
 
   </div>
+
+<!-- 添加朋友弹框 -->
+  <nz-modal [(nzVisible)]="searchVisible"  [nzFooter]="null" nzTitle="添加朋友" (nzOnCancel)="handleSearchCancel();searchbox.value=''" (nzOnOk)="handleSearchCancel();searchbox.value=''">
+      <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+          <input type="text" nz-input  #searchbox/>
+        </nz-input-group>
+        <ng-template #suffixButton>
+            <button nz-button nzType="primary" nzSearch (click)="search(searchbox.value)"><i nz-icon type="search"></i></button>
+        </ng-template>
+        <div style="padding-top: 20px;">
+          <ng-container *ngIf="searchuserlist; else elseTemplate">
+              <div *ngFor="let item of searchuserlist">
+                <div  style='padding: 15px;'>
+                    <nz-avatar [nzSize]="42" [nzShape]="'square'" [nzIcon]="'user'" [nzSrc]="item.head_img"></nz-avatar>
+                    <h4 style="position: relative; display: inline;left: 20px;color: black;">{{item.name}}</h4>
+                    <button (click)="addfriend(item.id)" nz-button nzType="primary" style="position: relative; display: inline;float: right;">加为好友</button>
+                </div>
+                
+              </div>
+          </ng-container>
+          <ng-template #elseTemplate>
+              <div  style="text-align: center;">
+                <div style="color:#989898;margin-top: 5px">无搜索结果</div>
+              </div>
+          </ng-template>
+        
+        </div>
+  </nz-modal>
   
+
 
