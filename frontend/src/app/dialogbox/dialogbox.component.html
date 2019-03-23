@@ -4,17 +4,11 @@
 <!-- 左边文本 -->
 <div *ngIf="msgitem.content_type == 0 && isme != true" class="content">
         
-        <div class="bubble">
-                <div class="bubble_cont">
-                    <div class="plain">
-                        <div class="loadingonleft">
-                            <ng-template #indicatorTemplate><i nz-icon type="loading" style="font-size: 24px;float:left;"></i> </ng-template>
-                            <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
-                        </div>
-                            <div >{{msgitem.content}}</div>
-                    </div>
-                </div>
-            </div>
+    <div id="box">{{msgitem.content}}</div>
+    <div class="loading">
+    <ng-template #indicatorTemplate><i nz-icon type="loading" style="font-size: 24px;float: left;"></i> </ng-template>
+        <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
+    </div>
 </div>
 <!-- 左边图片 -->
 <div *ngIf="msgitem.content_type == 1 && isme != true" class="content">
@@ -65,15 +59,9 @@
         <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
         </div>
     <div id="box1">{{msgitem.content}}</div> -->
-    <div class="bubblerightword">
+    <div class="bubble">
         <div class="bubble_cont">
-            <div class="plain">
-                <div class="loadingonright">
-                    <ng-template #indicatorTemplate><i nz-icon type="loading" style="font-size: 24px;float:left;"></i> </ng-template>
-                    <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
-                </div>
-                    <div >{{msgitem.content}}</div>
-            </div>
+            <div></div>
         </div>
     </div>
 
