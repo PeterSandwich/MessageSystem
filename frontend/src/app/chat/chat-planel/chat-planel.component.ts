@@ -3,6 +3,9 @@ import * as com from '../../common/im';
 import { WebsocketService } from '../../websocket.service';
 import { Protocol } from '../../protocol/Protocol';
 import { UserService } from '../../user.service';
+import { EmojiService } from '../../emoji.service';
+import { Emojis } from './emoji-model';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-chat-planel',
@@ -18,20 +21,79 @@ export class ChatPlanelComponent implements OnInit {
   @Input() who;
   show_members:boolean = false;
   group_members;
-  constructor(private ws: WebsocketService,private us:UserService) { 
+  // public messageString: string = "";
+  emojis: Emojis[];
+
+
+
+  constructor(
+    private ws: WebsocketService,
+    private us:UserService,
+    private es:EmojiService,
+    private nms :NzMessageService
+    ) { 
   }
 
   ngOnInit() {
+
     this.scollbuttom();
+    this.emojis = [];
+    this.es.initData().subscribe(data=>{
+      if(data){
+        for (let d in data) {
+            let temp = new Emojis;
+            temp.annotation = data[d]["annotation"];
+            temp.name = data[d]["name"];
+            temp.hexcode = data[d]["hexcode"];
+            temp.shortcodes = data[d]["shortcodes"];
+            temp.tags = data[d]["tags"];
+            temp.emoji = data[d]["emoji"];
+            temp.text = data[d]["text"];
+            temp.type = data[d]["type"];
+            temp.order = data[d]["order"];
+            temp.group = data[d]["group"];
+            temp.subgroup = data[d]["subgroup"];
+            temp.version = data[d]["version"];
+            this.emojis.push(temp);
+        }
+      }
+    })
+    
+
   }
+
+  listenEdit(e){
+    console.log(e);
+    console.log(e.key)
+    console.log(e.keyCode)
+    if (e.keyCode == 13 && !(e.ctrlKey)) {
+      this.send();
+      return;
+    } 
+    if (e.ctrlKey && e.keyCode == 13) {// ctrl+回车-->换行
+      document.getElementById("divinput").innerHTML = document.getElementById("divinput").innerHTML + '<div><br></div>';
+      if (window.getSelection) {//ie11 10 9 ff safari
+        document.getElementById("divinput").focus(); //解决ff不获取焦点无法定位问题
+        var range = window.getSelection();//创建range
+        range.selectAllChildren(document.getElementById("divinput"));//range 选择obj下所有子内容
+        range.collapseToEnd();//光标移至最后
+        
+      }
+    }
+
+    
+    
+  }
+
   ngOnChanges(){
     this.showGroupMember();
     console.log("ngOnInit:",this.your_info)
   }
 
-  send(content:string){
-    content = content.replace(/^\s*/,'');//去除左边空格
+  send(){
+    let content = document.getElementById("divinput").innerText.trim();//去除左边空格
     if(content == ""||this.your_info.id==-1){
+      this.nms.create("warning","输入内容不能为空")
       return;
     }
     let msg = new(Protocol.Message)
@@ -45,6 +107,7 @@ export class ChatPlanelComponent implements OnInit {
     msg.sendTime = Date.now();
     this.ws.sendMessage(msg);
     this.scollbuttom();
+    document.getElementById("divinput").innerText = '';
       
   }
 
@@ -68,6 +131,16 @@ export class ChatPlanelComponent implements OnInit {
       })
     }
     
+  }
+
+  // 表情相关
+  isEmojiVisible:boolean = false;
+  handleEmojiCancel(){
+    this.isEmojiVisible = false;
+  }
+  addEmoji(emoji:string){
+    document.getElementById("divinput").innerText = document.getElementById("divinput").innerText+ emoji ;
+    this.isEmojiVisible = false;
   }
   
 }
