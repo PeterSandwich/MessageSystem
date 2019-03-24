@@ -31,7 +31,7 @@ export class ChatPlanelComponent implements OnInit {
 
 
   constructor(
-    private ws: WebsocketService,
+    public ws: WebsocketService,
     private us:UserService,
     private es:EmojiService,
     private upload: UploadService,
@@ -40,6 +40,7 @@ export class ChatPlanelComponent implements OnInit {
 
   }
 
+ 
   ngOnInit() {
 
     this.scollbuttom();
@@ -68,30 +69,30 @@ export class ChatPlanelComponent implements OnInit {
 
   }
 
+  // 移动编辑框的光标在最后面
+  movePonterToEnd(){ 
+    if (window.getSelection) {//ie11 10 9 ff safari
+      document.getElementById("divinput").focus(); //解决ff不获取焦点无法定位问题
+      var range = window.getSelection();//创建range
+      range.selectAllChildren(document.getElementById("divinput"));//range 选择obj下所有子内容
+      range.collapseToEnd();//光标移至最后
+    }
+  }
+
+
   listenEdit(e){
-    console.log(e);
-    console.log(e.key)
-    console.log(e.keyCode)
     if (e.keyCode == 13 && !(e.ctrlKey)) {
       this.send();
       return;
     } 
     if (e.ctrlKey && e.keyCode == 13) {// ctrl+回车-->换行
       document.getElementById("divinput").innerHTML = document.getElementById("divinput").innerHTML + '<div><br></div>';
-      if (window.getSelection) {//ie11 10 9 ff safari
-        document.getElementById("divinput").focus(); //解决ff不获取焦点无法定位问题
-        var range = window.getSelection();//创建range
-        range.selectAllChildren(document.getElementById("divinput"));//range 选择obj下所有子内容
-        range.collapseToEnd();//光标移至最后
-        
-      }
+      this.movePonterToEnd()
     }
-
-    
-    
   }
 
   ngOnChanges(){
+    this.scollbuttom();
     this.showGroupMember();
     console.log("ngOnInit:",this.your_info)
   }
@@ -118,8 +119,7 @@ export class ChatPlanelComponent implements OnInit {
   }
 
   scollbuttom(){
-    var div = document.getElementById('show_msg');
-    div.scrollTop = div.scrollHeight;
+    document.getElementById("show_msg").scrollTop = document.getElementById("show_msg").scrollHeight
   }
 
   showGroupMember(){
@@ -189,6 +189,7 @@ export class ChatPlanelComponent implements OnInit {
     newMsg.arrive_time = 0;
     newMsg.loading_percent = this.percent;
     this.ws.global_message.chat_room_list.get(this.your_info.id).message_list.push(newMsg);
+    this.scollbuttom();
     // console.log("newMsg:",newMsg); 
     let idx=this.ws.global_message.chat_room_list.get(this.your_info.id).message_list.findIndex(e=>{return e.send_time==newMsg.send_time})
 
@@ -200,7 +201,7 @@ export class ChatPlanelComponent implements OnInit {
           //.log(response);
           if (response.type== HttpEventType.UploadProgress){
           this.percent =   Math.round(100*response.loaded/response.total);
-          console.log(`File is ${this.percent}% loaded.`);
+            this.ws.global_message.chat_room_list.get(this.your_info.id).message_list[idx].loading_percent = this.percent;
         }
           let filetype = -1;
           if (response["body"] != null) {
@@ -225,10 +226,7 @@ export class ChatPlanelComponent implements OnInit {
              msg.isgroup = this.your_info.is_group;
               this.ws.sendMessage(msg);
               this.ws.global_message.chat_room_list.get(this.your_info.id).message_list[idx].content = msg.content;
-              if (this.percent&&this.percent>=0){
-              this.delay(3000).then(any=>{
-              this.ws.global_message.chat_room_list.get(this.your_info.id).message_list[idx].loading_percent=this.percent;});
-              }
+              
             }
          
           
@@ -248,10 +246,12 @@ export class ChatPlanelComponent implements OnInit {
   isEmojiVisible:boolean = false;
   handleEmojiCancel(){
     this.isEmojiVisible = false;
+    this.movePonterToEnd()
   }
   addEmoji(emoji:string){
     document.getElementById("divinput").innerText = document.getElementById("divinput").innerText+ emoji ;
     this.isEmojiVisible = false;
+    this.movePonterToEnd();
   }
   
 }

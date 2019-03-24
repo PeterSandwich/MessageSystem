@@ -8,7 +8,7 @@ import (
 
 // 消息存储
 func MessageStore(from,to int64, content string,content_type int,ctime int64, isgroup bool)(int64, error){
-
+	logger.Debug("xxxxxxxxxxxxxxxxx MessageStore xxxxxxxxxxxxxxxx")
 	if from <=0 || to <= 0 {
 		logger.Warn("Illegal parameter 'from' and 'to' ,Make sure it is an integer and greater than 0")
 		return -1,errors.New("Illegal parameter 'from' and 'to'")

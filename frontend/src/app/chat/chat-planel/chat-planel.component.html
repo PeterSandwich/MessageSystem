@@ -56,16 +56,24 @@
 
 
 
-
+<!-- 表情模块 -->
 <nz-modal  [(nzVisible)]="isEmojiVisible"    [nzContent]="modalContent" nzTitle="表情选择" [nzFooter]="null" (nzOnCancel)="handleEmojiCancel()" (nzOnOk)="handleEmojiCancel()">
 <ng-template #modalContent >
   <div class="emojibody">
-     <div *ngFor="let emoji of emojis" class="emoji">
-       <a [innerHTML]="emoji.emoji" (click)="addEmoji(emoji.emoji)"></a>
-     </div>
+    <ng-container *ngIf="emojis && emojis.length>0; else elseemojiTemplate">
+      <div *ngFor="let emoji of emojis" class="emoji">
+        <a [innerHTML]="emoji.emoji" (click)="addEmoji(emoji.emoji)"></a>
+      </div>
+    </ng-container>
+    <ng-template #elseemojiTemplate>
+      <nz-skeleton [nzActive]="true"></nz-skeleton>
+      <nz-skeleton [nzActive]="true"></nz-skeleton>
+    </ng-template>  
   </div>
- 
 </ng-template>
-    
-
 </nz-modal>
+
+<div class="unselect" *ngIf="your_info.id==-1">
+  <img style="position: relative;top: 100px;" src="../../../assets/chaticon.png">
+  <h3 style="position: relative;top: 140px;color: white">开始聊天吧(｡･∀･)ﾉﾞ</h3>
+</div>

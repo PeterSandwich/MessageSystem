@@ -140,3 +140,12 @@ max-height: 500px;
 .emojibody::-webkit-scrollbar-track {
   background-color: #eee;
 }
+
+.unselect{
+    position: absolute;
+    height: 719px;
+    width: 700px;
+    background-color: rgba(0, 0, 0, 0.4);
+    top: 0px;
+    text-align: center;
+}
