@@ -371,27 +371,7 @@
       "version": 1,
       "emoticon": ":*"
     },
-    {
-      "annotation": "smiling face",
-      "name": "WHITE SMILING FACE",
-      "hexcode": "263A",
-      "shortcodes": [
-        "relaxed"
-      ],
-      "tags": [
-        "face",
-        "outlined",
-        "relaxed",
-        "smile"
-      ],
-      "emoji": "☺️",
-      "text": "☺︎",
-      "type": 1,
-      "order": 20,
-      "group": 0,
-      "subgroup": 0,
-      "version": 1
-    },
+
     {
       "annotation": "slightly smiling face",
       "name": "SLIGHTLY SMILING FACE",

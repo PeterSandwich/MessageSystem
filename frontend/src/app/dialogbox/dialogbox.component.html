@@ -7,10 +7,7 @@
         <div class="bubble">
                 <div class="bubble_cont">
                     <div class="plain">
-                        <div class="loadingonleft">
-                            <ng-template #indicatorTemplate><i nz-icon type="loading" style="font-size: 24px;float:left;"></i> </ng-template>
-                            <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
-                        </div>
+                           <img *ngIf="-msgitem.id > 0" class="loadingonleft" src="../../assets/loading1.gif">
                             <div >{{msgitem.content}}</div>
                     </div>
                 </div>
@@ -56,22 +53,14 @@
     <button class="upload-btn" (click)="showvideoModal(msgitem.content)"> 播放
     </button>
 </div>
-<div  *ngIf="isme == true " class="timeonright">{{msgitem.arrive_time|timeSwich}}</div>
+<div  *ngIf="isme == true " class="timeonright"><span *ngIf="msgitem.id&&msgitem.id > 0">{{msgitem.arrive_time|timeSwich}}</span></div>
 <img  *ngIf="isme == true " class="headportraitonright" src="{{img}}">
 <!-- 右边文字 -->
 <div *ngIf="msgitem.content_type == 0 && isme == true" class="content">
-        <!-- <div class="loading">
-        <ng-template #indicatorTemplate><i nz-icon type="loading" style="font-size: 24px;float:left;"></i> </ng-template>
-        <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
-        </div>
-    <div id="box1">{{msgitem.content}}</div> -->
     <div class="bubblerightword">
         <div class="bubble_cont">
             <div class="plain">
-                <div class="loadingonright">
-                    <ng-template #indicatorTemplate><i nz-icon type="loading" style="font-size: 24px;float:left;"></i> </ng-template>
-                    <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
-                </div>
+                    <img *ngIf="!msgitem.id||msgitem.id == 0" class="loadingonright" src="../../assets/loading1.gif">
                     <div >{{msgitem.content}}</div>
             </div>
         </div>
@@ -104,7 +93,7 @@
                             <span class="title">1.2kb </span>
                             <span>|</span>
                             <a class="a" (click)=" downloadFile(msgitem.content)"> 下载</a>
-                            <nz-progress *ngIf="percent != 100 && percent != -1 && percent != undefined " [nzPercent]="percent" nzSize="small" nzStatus="active" [nzStrokeColor]="green">
+                            <nz-progress *ngIf="msgitem.loading_percent != 100 && msgitem.loading_percent != -1 && msgitem.loading_percent != undefined " [nzPercent]="msgitem.loading_percent" nzSize="small" nzStatus="active" [nzStrokeColor]="green">
                             </nz-progress>
                         </div>
                     </div>

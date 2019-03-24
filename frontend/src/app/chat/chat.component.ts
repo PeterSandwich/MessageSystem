@@ -7,7 +7,6 @@ import { DomSanitizer } from '@angular/platform-browser'
 import { WebsocketService } from '../websocket.service';
 import { UserService } from '../user.service';
 import { Injectable } from '@angular/core';
-import { UploadService } from '../file.service';
 import { Protocol } from '../protocol/Protocol';
 import * as com from '../common/im'
 import { environment } from '../../environments/environment';
@@ -84,7 +83,6 @@ export class ChatComponent implements OnInit {
   constructor(
     public ws:WebsocketService, 
     private us:UserService,    // 里面有 我的Id: this.us.MyUserId
-    private upload: UploadService ,
     private el: ElementRef,
     public _d: DomSanitizer,
     private nzDropdownService: NzDropdownService,
@@ -128,7 +126,7 @@ export class ChatComponent implements OnInit {
 
 
       this.scollbuttom();
-      this.show=false
+      //this.show=false
       this.pressBoolean = false;
       this.isPress = false;
     }
@@ -286,99 +284,31 @@ export class ChatComponent implements OnInit {
     }
     
     
-  picpath: string
-  picurl: string
-  
-  fileurl = environment.apiUrl+'/upload'
-  dfileurl='http://localhost:9988/files/9edbe55433e4_compress.jpg'
-  filep = ""
-  aaaa="9edbe55433e4_compress.jpg"
-  
-  filename: string
-  show:boolean
-  selectFile(event: any) {
-    let fileList: FileList = event.target.files;
-    this.uploadFile(fileList);
-  }
-  imgurl:string[]
-  uploadFile(files: FileList) {
-    if (files.length == 0) {
-      console.log("No file selected!");
-      return
-    }
-    let file: File = files[0];
-    if(file.size>200*1024*1024){
-      console.log("file is too big!")
-      return
-    }
-    //console.log(file.type)
-    console.log(file.name)
-    console.log(file.type)
-    this.filename = file.name;
-    
-    this.upload.uploadFile(this.fileurl, file).subscribe((response: any) => {
-      //还未实现二次秒传
-      //上传多个文件
-      //
-          //.log(response);
-          let filetype = -1;
-          if (response["body"] != null) {
-            // console.log(response)
-            if (response["body"] != null) {
-              this.filep = response["body"]["originalfile"];
-              this.dfileurl=response["body"]["thumbnail"];
-              filetype = response["body"]["filetype"];
-              this.show = true;
-            }
-             let msg = new(Protocol.Message)
-             msg.type = Protocol.Message.Type.REQUEST;
-             msg.cmd = Protocol.Message.CtrlType.NONE;
-             msg.from =  this.us.MyUserId;
-             msg.to = this.to_id;
-             msg.content = this.dfileurl;
-             if(filetype == 2||filetype == 3){
-              msg.content = this.filep+"+"+file.name;
-             }
-             msg.contentType = filetype; 
-             this.contentType = msg.contentType;
-             msg.isgroup = this.isgroup;
-              this.ws.sendMessage(msg);
-             this.content = "";
-          }
-         
-            
-        },
-        (err) => {
-          console.log("Upload Error:", err);
-        }, () => {
-          console.log("Upload done");
-        }
-      )
-  }
+ 
 
-  switchpng(url:string):any{
-    this.imgurl=url.split("+");
-    this.imgurl=this.imgurl[0].split(".");
-    let src:string
-  switch(this.imgurl[1]){
-    case 'doc':
-      src="/files/DOC.png";
-      break;
-    case 'pdf':
-      src="/files/pdf.png";
-      break;
-    case 'ppt':
-      src="/files/ppt.png";
-    break;
-    case 'zip':
-      src="/files/RAR.png";
-    break;
-    case 'txt':
-      src="/files/txt.png";
-    break;
-  }
-  return src;
-  }
+  // switchpng(url:string):any{
+  //   this.imgurl=url.split("+");
+  //   this.imgurl=this.imgurl[0].split(".");
+  //   let src:string
+  // switch(this.imgurl[1]){
+  //   case 'doc':
+  //     src="/files/DOC.png";
+  //     break;
+  //   case 'pdf':
+  //     src="/files/pdf.png";
+  //     break;
+  //   case 'ppt':
+  //     src="/files/ppt.png";
+  //   break;
+  //   case 'zip':
+  //     src="/files/RAR.png";
+  //   break;
+  //   case 'txt':
+  //     src="/files/txt.png";
+  //   break;
+  // }
+  // return src;
+  // }
 
   isshowpicVisible = false;
   aaa:string[]

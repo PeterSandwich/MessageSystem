@@ -46,7 +46,7 @@
     vertical-align: top;
     position: relative;
     text-align: left;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -317,6 +317,7 @@
         margin-right: 10px;
         background-size: cover;
         position: relative;
+        color: rgba(0, 0, 0, 0.65);
     }
       .timeonright{
           max-width: 140px;
@@ -324,6 +325,7 @@
           margin-right: 10px;
           background-size: cover;
           position: relative;
+          color: rgba(0,0,0,0.65);
       }
       .loadingonright{
         position: absolute;
@@ -341,4 +343,5 @@
       }
       .plain{
         padding: 9px 13px;
+        font-size: 16px;
       }
