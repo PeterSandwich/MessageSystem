@@ -27,7 +27,9 @@
       <div style="border-top: 1px solid #d6d6d6;height:168px">
         <div style=" padding:10px 17px;">
           <a><img style="width: 25px;height: 25px;" src="../../../assets/biaoqing.png"></a>
-          <a><img style="width: 25px;height: 25px; margin-left: 15px" src="../../../assets/files.png"></a>
+          <input #upfile type="file" style="display: none;" (change)="selectFile($event)" accept=".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt">
+          <!-- <button  (click)="upfile.click()"></button> -->
+          <a (click)="upfile.click()"><img  style="width: 25px;height: 25px; margin-left: 15px" src="../../../assets/files.png"></a>
         </div>
         <div class="send_input"  contenteditable="true"  #editbox ></div>
           <div style="height:30px;text-align: right; padding-right: 20px;">

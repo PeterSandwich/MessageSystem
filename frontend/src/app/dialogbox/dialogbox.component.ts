@@ -11,7 +11,7 @@ export class DialogboxComponent {
   @Input() isme: boolean;
   @Input() img: string;
   @Input() percent: number;
-  OnInit() { console.log("this.id", this.isme); }
+  // OnInit() { console.log("this.id", this.isme); }
 
   constructor() { }
   showProgressBar:boolean = false;
@@ -19,8 +19,9 @@ export class DialogboxComponent {
   imgUrl: string[];
   switchpng(url: string) {
     this.imgUrl = url.split("+");
-    this.imgUrl = this.imgUrl[0].split(".");
+    this.imgUrl = this.imgUrl[1].split(".");
     let src: string
+    // console.log("this.imgurl:",this.imgUrl[1])
     switch (this.imgUrl[1]) {
       case 'doc':
         src = "../../assets/DOC.png";

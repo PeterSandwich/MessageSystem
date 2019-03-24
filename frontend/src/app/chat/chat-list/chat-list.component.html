@@ -11,10 +11,10 @@
               <a (click)="searchVisible=true">添加好友</a>
             </li>
             <li nz-menu-item>
-              <a>创建群组</a>
+              <a (click)="showAddGroupModal()">创建群组</a>
             </li>
             <li nz-menu-item>
-              <a>退出</a>
+              <a (click)="quit()">退出</a>
             </li>
           </ul>
     </nz-dropdown>
@@ -155,5 +155,37 @@
         </div>
   </nz-modal>
   
+  <nz-modal [(nzVisible)]="createGroupVisible"   [nzFooter]="modalFooter" nzTitle="创建群聊" (nzOnCancel)="handleCreateGroupCancel();" (nzOnOk)="handleCreateGroupCancel()">
+      <nz-input-group nzSearch nzSize="large" >
+          <input type="text" nz-input  placeholder="输入搜索" #cg (keyup)="filteruser(cg.value)"/>
+      </nz-input-group>
+      <div class="memberlist">
+          <ng-container *ngIf="createGroupList.contact_list; else elseTemplate1">
+              <div *ngFor="let item of createGroupList.contact_list">
+                <div  style='padding: 15px;'>
+                    <nz-avatar [nzSize]="42" [nzShape]="'square'" [nzIcon]="'user'" [nzSrc]="item.head_img"></nz-avatar>
+                    <h4 style="position: relative; display: inline;left: 20px;color: black;">{{item.name}}</h4>
+                    <label nz-checkbox [(ngModel)]="item.selected" style="position: relative;margin-right: 50px; display: inline;float: right;"></label>
+                </div>
+                
+              </div>
+          </ng-container>
+          <ng-template #elseTemplate1>
+              <div  style="text-align: center;">
+                <div style="color:#989898;margin-top: 5px">无搜索结果</div>
+              </div>
+          </ng-template>
+        
+        </div>
+
+        <ng-template #modalFooter>
+            <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton1">
+                <input type="text" nz-input placeholder="输入群名" #groupname/>
+              </nz-input-group>
+              <ng-template #suffixButton1>
+                <button nz-button nzType="primary" nzSize="large" nzSearch (click)="creategroup(groupname.value)">创建</button>
+              </ng-template>
+          </ng-template>
+  </nz-modal>
 
 
