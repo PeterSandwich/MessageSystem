@@ -30,7 +30,7 @@ export class ChatPlanelComponent implements OnInit {
 
 
   constructor(
-    private ws: WebsocketService,
+    public ws: WebsocketService,
     private us:UserService,
     private es:EmojiService,
     private upload: UploadService,
@@ -245,6 +245,13 @@ export class ChatPlanelComponent implements OnInit {
   addEmoji(emoji:string){
     document.getElementById("divinput").innerText = document.getElementById("divinput").innerText+ emoji ;
     this.isEmojiVisible = false;
+    if (window.getSelection) {//ie11 10 9 ff safari
+      document.getElementById("divinput").focus(); //解决ff不获取焦点无法定位问题
+      var range = window.getSelection();//创建range
+      range.selectAllChildren(document.getElementById("divinput"));//range 选择obj下所有子内容
+      range.collapseToEnd();//光标移至最后
+
+    }
   }
   
 }
