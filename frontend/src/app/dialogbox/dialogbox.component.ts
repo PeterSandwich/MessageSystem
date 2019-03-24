@@ -22,7 +22,7 @@ export class DialogboxComponent {
     this.imgUrl = this.imgUrl[1].split(".");
     let src: string
     // console.log("this.imgurl:",this.imgUrl[1])
-    switch (this.imgUrl[1]) {
+    switch (this.imgUrl[this.imgUrl.length-1]) {
       case 'doc':
         src = "../../assets/DOC.png";
         break;

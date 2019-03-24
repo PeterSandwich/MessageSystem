@@ -199,6 +199,7 @@ export class ChatPlanelComponent implements OnInit {
           //.log(response);
           if (response.type== HttpEventType.UploadProgress){
           this.percent =   Math.round(100*response.loaded/response.total);
+            this.ws.global_message.chat_room_list.get(this.your_info.id).message_list[idx].loading_percent = this.percent;
           console.log(`File is ${this.percent}% loaded.`);
         }
           let filetype = -1;
@@ -224,7 +225,7 @@ export class ChatPlanelComponent implements OnInit {
              msg.isgroup = this.your_info.is_group;
               this.ws.sendMessage(msg);
               this.ws.global_message.chat_room_list.get(this.your_info.id).message_list[idx].content = msg.content;
-              this.ws.global_message.chat_room_list.get(this.your_info.id).message_list[idx].loading_percent=this.percent;
+              
             }
          
           
