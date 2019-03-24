@@ -32,7 +32,7 @@ func Run(logger *zap.Logger) {
 
 		switch msg := result.(type) {
 		case *redis.Message:
-			logger.Debug("收到一条消息")
+			logger.Debug("收到一条消息:"+msg.String())
 			MessageScheduling([]byte(msg.Payload))
 		default:
 		}

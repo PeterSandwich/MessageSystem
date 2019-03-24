@@ -24,6 +24,7 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
 import { ChatPlanelComponent } from './chat/chat-planel/chat-planel.component';
 import { AddressItemComponent } from './chat/address-item/address-item.component';
 import { InfoPlanelComponent } from './chat/info-planel/info-planel.component';
+
 registerLocaleData(en);
 
 @NgModule({
@@ -48,7 +49,7 @@ registerLocaleData(en);
     HttpClientModule,
     FormsModule,
     NgZorroAntdModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [WebsocketService,UserService, { provide: NZ_I18N, useValue: en_US },UploadService],
   bootstrap: [AppComponent]

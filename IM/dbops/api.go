@@ -257,8 +257,8 @@ func GetNearestContactHistoryMessage(myId int64, contact *defs.NearestContact)(r
 		ChatRoomList:make([]defs.ChatRoom,0),
 	}
 
-
-	for _,per:=range contact.ContactList{
+	for i:=contact.ContactList.Len()-1;i>=0;i--{
+		per:=contact.ContactList[i]
 		if per.Count > limitCount {
 			limitCount = per.Count
 		}
