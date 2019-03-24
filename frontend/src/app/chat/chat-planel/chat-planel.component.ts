@@ -6,6 +6,7 @@ import { UserService } from '../../user.service';
 import { environment } from '../../../environments/environment';
 import { UploadService } from '../../file.service';
 import { HttpEventType } from '@angular/common/http';
+import { timeout, delay } from 'q';
 @Component({
   selector: 'app-chat-planel',
   templateUrl: './chat-planel.component.html',
@@ -86,7 +87,7 @@ export class ChatPlanelComponent implements OnInit {
   
   filename: string
   show:boolean
-  percent:number = 50
+  percent:number 
   selectFile(event: any) {
     let fileList: FileList = event.target.files;
     this.uploadFile(fileList);
@@ -161,7 +162,10 @@ export class ChatPlanelComponent implements OnInit {
              msg.isgroup = this.your_info.is_group;
               this.ws.sendMessage(msg);
               this.ws.global_message.chat_room_list.get(this.your_info.id).message_list[idx].content = msg.content;
-              this.ws.global_message.chat_room_list.get(this.your_info.id).message_list[idx].loading_percent=this.percent;
+              if (this.percent&&this.percent>=0){
+              this.delay(3000).then(any=>{
+              this.ws.global_message.chat_room_list.get(this.your_info.id).message_list[idx].loading_percent=this.percent;});
+              }
             }
          
           
@@ -173,5 +177,7 @@ export class ChatPlanelComponent implements OnInit {
         }
       )
   }
-  
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
+}
 }

@@ -730,7 +730,6 @@ var ChatPlanelComponent = /** @class */ (function () {
         this.dfileurl = 'http://localhost:9988/files/9edbe55433e4_compress.jpg';
         this.filep = "";
         this.aaaa = "9edbe55433e4_compress.jpg";
-        this.percent = 50;
     }
     ChatPlanelComponent.prototype.ngOnInit = function () {
         this.scollbuttom();
@@ -847,12 +846,28 @@ var ChatPlanelComponent = /** @class */ (function () {
                 msg.isgroup = _this.your_info.is_group;
                 _this.ws.sendMessage(msg);
                 _this.ws.global_message.chat_room_list.get(_this.your_info.id).message_list[idx].content = msg.content;
-                _this.ws.global_message.chat_room_list.get(_this.your_info.id).message_list[idx].loading_percent = _this.percent;
+                if (_this.percent && _this.percent >= 0) {
+                    _this.delay(3000).then(function (any) {
+                        _this.ws.global_message.chat_room_list.get(_this.your_info.id).message_list[idx].loading_percent = _this.percent;
+                    });
+                }
             }
         }, function (err) {
             console.log("Upload Error:", err);
         }, function () {
             console.log("Upload done");
+        });
+    };
+    ChatPlanelComponent.prototype.delay = function (ms) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(function () { return resolve(); }, ms); }).then(function () { return console.log("fired"); })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
         });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
