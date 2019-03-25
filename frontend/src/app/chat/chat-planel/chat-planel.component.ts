@@ -182,7 +182,7 @@ export class ChatPlanelComponent implements OnInit {
     newMsg.id = 0;
     newMsg.from = this.us.MyUserId;
     newMsg.to = this.your_info.id;
-    newMsg.content = "1+"+file.name;
+    newMsg.content = "1+"+file.name+"&"+file.size;
     newMsg.content_type = Protocol.Message.ContentType.FILE;
     newMsg.is_group = this.your_info.is_group;
     newMsg.send_time = sendtime;
@@ -221,7 +221,7 @@ export class ChatPlanelComponent implements OnInit {
              msg.contentType=filetype;
              msg.sendTime = sendtime;
              if(filetype == 2||filetype == 3){
-              msg.content = this.filep+"+"+file.name;
+              msg.content = this.filep+"+"+file.name+"&"+file.size;
              }
              msg.isgroup = this.your_info.is_group;
               this.ws.sendMessage(msg);

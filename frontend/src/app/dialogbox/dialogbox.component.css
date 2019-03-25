@@ -40,7 +40,7 @@
   }
   .bubble{
     left:5%;
-    max-width: 500px;
+    max-width: 254px;
     min-height: 1em;
     display: inline-block;
     vertical-align: top;
@@ -53,8 +53,8 @@
     background-color: #fff;
   }
   .bubbleright{
-    left:44%;/*52%*/
-    max-width: 500px;
+    left:51%;/*52%*/
+    max-width: 254px;
     min-height: 1em;
     display: inline-block;
     vertical-align: top;
@@ -72,7 +72,7 @@
     width: 0;
     height: 0;
     left: 100%;
-    top: 14px;
+    top: 5px;
     border-top: 5px solid transparent;
     border-left: 7px solid #b2e281;
     border-bottom: 6px solid transparent;
