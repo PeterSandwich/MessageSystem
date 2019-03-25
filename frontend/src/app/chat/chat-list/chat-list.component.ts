@@ -45,6 +45,7 @@ export class ChatListComponent implements OnInit {
     this.createGroupList.contact_list = [];
     this.GroupList=new(com.CreateGroup);
     this.GroupList.contact_list = [];
+    this.searchResp = this.ws.address_book.contact_list;
    }
 
   ngOnInit() {
@@ -53,14 +54,17 @@ export class ChatListComponent implements OnInit {
 
   // 最近联系人选一个人
   selectToChat(item){
+    this.searching = false;
     this.selectID=item.id
     this.userchange.emit(item)
   }
 
   //通讯录里面选一个人
   selectToAddress(item){
+    
     this.selectAddressID=item.id
-    this.addresschange.emit(item)
+    this.addresschange.emit(item);
+
   }
 
   // 聊天和通讯录切换
@@ -69,16 +73,15 @@ export class ChatListComponent implements OnInit {
     this.address_user_swich.emit(arg);
   }
 
-  searchMonitorList(keyword){
-    this.searchResp = [];
+  searchMonitorList(keyword:string){
+  
     if(keyword){
-      this.us.searchAddress(keyword).subscribe((data)=>{
-        console.log(data);
-        if(data&&data['friends_list']){
-          this.searchResp = data['friends_list'];
-          this.searching = true;
-        }
-      });  
+      keyword = keyword.trim()
+      if (keyword == "") {  this.searching = false;;return;}
+      this.searchResp = this.ws.address_book.contact_list.filter(e => {return e.name.includes(keyword)});
+      this.searching =true;
+    }else{
+      this.searching = false;
     }
     
   }

@@ -11,20 +11,24 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: "login",component:LoginComponent
+    path: "login",
+    component:LoginComponent
   },
   {
     path: "chat",
     component:ChatComponent,
   },
   {
-    path: "signup",component:SignupComponent
+    path: "signup",
+    component:SignupComponent
   },
   {
-    path: "box",component:DialogboxComponent
+    path: "box",
+    component:DialogboxComponent
   },
   {
-    path: "show",component:ShowComponent
+    path: "show",
+    component:ShowComponent
   }
 ];
 

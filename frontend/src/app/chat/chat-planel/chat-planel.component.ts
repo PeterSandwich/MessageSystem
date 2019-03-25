@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import * as com from '../../common/im';
 import { WebsocketService } from '../../websocket.service';
 import { Protocol } from '../../protocol/Protocol';
@@ -6,34 +6,34 @@ import { UserService } from '../../user.service';
 import { EmojiService } from '../../emoji.service';
 import { Emojis } from './emoji-model';
 import { NzMessageService } from 'ng-zorro-antd';
-
 import { environment } from '../../../environments/environment';
 import { UploadService } from '../../file.service';
 import { HttpEventType } from '@angular/common/http';
+import { NzDropdownContextComponent, NzDropdownService, NzMenuItemDirective } from 'ng-zorro-antd';
+
 @Component({
   selector: 'app-chat-planel',
   templateUrl: './chat-planel.component.html',
   styleUrls: ['./chat-planel.component.css']
 })
+
+
 export class ChatPlanelComponent implements OnInit {
-
-
   @Input() my_head_img:string;
   @Input() my_id:number;
   @Input() your_info:com.ContactListItem;
   @Input() who;
   show_members:boolean = false;
   group_members;
-  // public messageString: string = "";
   emojis: Emojis[];
-
-
-
+  private dropdown: NzDropdownContextComponent;
+  
   constructor(
     public ws: WebsocketService,
     private us:UserService,
     private es:EmojiService,
     private upload: UploadService,
+    private nzDropdownService: NzDropdownService,
     private nms :NzMessageService
     ) { 
 
@@ -68,6 +68,38 @@ export class ChatPlanelComponent implements OnInit {
 
   }
 
+
+  drawbackdata(item: com.MessageItem) {
+    let at: number = parseInt(item.arrive_time.toString())
+    let now: number = Date.now()
+    if (now - at > 120000) {
+      this.nms.create('warning', `时间超过两分钟，无法撤回`);
+      return
+    }
+    let msg = new (Protocol.Message)
+    msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
+    msg.cmd = Protocol.Message.CtrlType.MSG_BACK;// 消息撤回
+    msg.from = this.us.MyUserId;              // 消息发送方
+    msg.to = item.to;                   //消息接收方
+    msg.content = item.content;             //消息内容
+    msg.contentType = item.content_type;　  //消息类型
+    msg.isgroup = item.is_group;                       //是不是群组消息
+    msg.msgid = item.id;
+    msg.sendTime = Date.now();
+
+    this.ws.sendMessage(msg);
+
+  }
+
+  contextMenu($event: MouseEvent, template: TemplateRef<void>): void {
+    this.dropdown = this.nzDropdownService.create($event, template);
+  }
+
+  close(e: NzMenuItemDirective): void {
+    console.log(e);
+    this.dropdown.close();
+  }
+
   // 移动编辑框的光标在最后面
   movePonterToEnd(){ 
     if (window.getSelection) {//ie11 10 9 ff safari
@@ -91,9 +123,8 @@ export class ChatPlanelComponent implements OnInit {
   }
 
   ngOnChanges(){
-    this.scollbuttom();
     this.showGroupMember();
-    console.log("ngOnInit:",this.your_info)
+    this.scollbuttom();
   }
 
   send(){

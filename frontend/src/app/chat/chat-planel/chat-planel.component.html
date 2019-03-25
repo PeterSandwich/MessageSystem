@@ -9,13 +9,18 @@
     <div id="show_msg" style="height:480px" >
      <ng-container *ngIf="this.ws.global_message.chat_room_list.get(this.your_info.id); else elseTemplate">
       <div *ngFor="let item of this.ws.global_message.chat_room_list.get(this.your_info.id)?.message_list">
-
-        <ng-container *ngIf="item&&my_id==item?.from; else elseTemplate1">
-            <app-dialogbox [msgitem]="item" [isme]="item&&true" [img]="my_head_img"></app-dialogbox>
-        </ng-container>
-        <ng-template #elseTemplate1>
-            <app-dialogbox [msgitem]="item" [isme]="item&&false" [img]='"/api/head-img/"+item.from'></app-dialogbox>
-        </ng-template>
+          <ng-container *ngIf="item&&my_id==item?.from; else elseTemplate1">
+              <app-dialogbox [msgitem]="item" [isme]="item&&true" [img]="my_head_img"
+                (contextmenu)="contextMenu($event, template)"></app-dialogbox>
+          </ng-container>
+          <ng-template #elseTemplate1>
+              <app-dialogbox [msgitem]="item" [isme]="item&&false" [img]='"/api/head-img/"+item.from'></app-dialogbox>
+          </ng-template>
+           <ng-template #template>
+             <ul nz-menu nzInDropDown (nzClick)="close($event)">
+               <li nz-menu-item (click)="drawbackdata(item)">撤回</li>
+             </ul>
+           </ng-template>
       </div>
       </ng-container>
       <ng-template #elseTemplate style="text-align: center">
@@ -77,3 +82,5 @@
   <img style="position: relative;top: 100px;" src="../../../assets/chaticon.png">
   <h3 style="position: relative;top: 140px;color: white">开始聊天吧(｡･∀･)ﾉﾞ</h3>
 </div>
+
+

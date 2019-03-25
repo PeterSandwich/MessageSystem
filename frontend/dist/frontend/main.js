@@ -55,20 +55,24 @@ var routes = [
         pathMatch: 'full'
     },
     {
-        path: "login", component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]
+        path: "login",
+        component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]
     },
     {
         path: "chat",
         component: _chat_chat_component__WEBPACK_IMPORTED_MODULE_4__["ChatComponent"],
     },
     {
-        path: "signup", component: _signup_signup_component__WEBPACK_IMPORTED_MODULE_5__["SignupComponent"]
+        path: "signup",
+        component: _signup_signup_component__WEBPACK_IMPORTED_MODULE_5__["SignupComponent"]
     },
     {
-        path: "box", component: _dialogbox_dialogbox_component__WEBPACK_IMPORTED_MODULE_6__["DialogboxComponent"]
+        path: "box",
+        component: _dialogbox_dialogbox_component__WEBPACK_IMPORTED_MODULE_6__["DialogboxComponent"]
     },
     {
-        path: "show", component: _show_show_component__WEBPACK_IMPORTED_MODULE_7__["ShowComponent"]
+        path: "show",
+        component: _show_show_component__WEBPACK_IMPORTED_MODULE_7__["ShowComponent"]
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -430,7 +434,7 @@ module.exports = ".list{\n    overflow-x: none;\n    overflow-y: scroll;\n    ve
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div  style=\"position: relative;\">\n    <div id=\"all\" style='padding: 15px;background:#2e3238;'>\n           <nz-avatar [nzSize]=\"42\" [nzShape]=\"'square'\" [nzIcon]=\"'user'\" [nzSrc]=\"head_img\"></nz-avatar>\n        <h4 style=\"position: absolute;top: 25px;left:70px;color: white\">{{name}}</h4>\n       <nz-dropdown style=\"float:right;\">\n          <a nz-dropdown>\n              <img style=\"width: 30px;height: 30px;\"src=\"../../../assets/dropdown.png\">\n          </a>\n          <ul nz-menu nzSelectable>\n            <li nz-menu-item>\n              <a (click)=\"searchVisible=true\">添加好友</a>\n            </li>\n            <li nz-menu-item>\n              <a (click)=\"showAddGroupModal()\">创建群组</a>\n            </li>\n            <li nz-menu-item>\n              <a (click)=\"quit()\">退出</a>\n            </li>\n          </ul>\n    </nz-dropdown>\n    </div>\n    <div style=\"background:#2e3238;padding-left:15px;padding-right:15px;padding-top: 5px;padding-bottom:5px\">\n        <input placeholder=\"输入按回车键搜索\" nzSize=\"small\"  \n        #search_input (keyup.enter)=\"searchMonitorList(search_input.value)\"\n        style=\"color: white;background-color:#26292e;border: 0; \"  type=\"text\" nz-input >\n\n    </div>\n    <div style=\"background:#2e3238;padding:10px;height: 50px;border-bottom: 1px solid black\">\n      <div style=\"float:left;width: 33%; text-align: center\">\n      <a (click)=\"swichChatAndAddress(true)\">\n        <img *ngIf=\"!atChat\" style=\"width: 30px;height: 30px;margin-left: 10%\" src=\"../../../assets/chat.png\">\n        <img *ngIf=\"atChat\" style=\"width: 30px;height: 30px;margin-left: 10%\" src=\"../../../assets/chat_bright.png\">\n      </a>\n      </div>\n      <div style=\"float:left;width: 33%; text-align: center\">\n        |\n      </div>\n     <div style=\"float:left;width: 33%; text-align: center\">\n       <a (click)=\"swichChatAndAddress(false)\">\n         <img *ngIf=\"atChat\" style=\"width: 30px;height: 25px;margin-right: 10%\" src=\"../../../assets/userlist.png\">\n         <img *ngIf=\"!atChat\" style=\"width: 30px;height: 25px;margin-right: 10%\" src=\"../../../assets/userlist_bright.png\">\n        </a>\n      </div>\n    </div>\n    \n    <!-- 最近联系人 -->\n    <div *ngIf=\"atChat\" class=\"list\" id=\"scrollbar\">\n     <ng-container *ngIf=\"userlist; else elseTemplate\">\n        <div  *ngFor=\"let item of  userlist?.slice()?.reverse(); let i = index\">\n            <app-chat-item \n                 [name]=\"item.name\" \n                 [head_img]=\"item.head_img\"\n                 [selected]=\"item.id==selectID\"\n                 (click)=\"selectToChat(item)\"\n                 [count]=\"item.count\"\n            ></app-chat-item>\n           </div>\n      </ng-container>\n      <ng-template #elseTemplate >\n          <div  style=\"text-align: center;\">\n            <div style=\"color:#989898;margin-top: 20px\">无联系人</div>\n          </div>\n      </ng-template>\n    </div>\n\n    <!-- 通讯录 -->\n    <div *ngIf=\"!atChat\" class=\"list\" id=\"scrollbar\">\n        <ng-container *ngIf=\"addressbook; else elseTemplate1\">\n           <div class=\"address_title\">好友</div>\n           <div  *ngFor=\"let item of  addressbook; let i = index\">\n               <app-address-item *ngIf=\"item.is_group==false\"\n                    [name]=\"item.name\" \n                    [head_img]=\"item.head_img\"\n                    [selected]=\"item.id==selectAddressID\"\n                    (click)=\"selectToAddress(item)\"\n               ></app-address-item>\n            </div>\n            <div class=\"address_title\">群组</div>\n            <div  *ngFor=\"let item of  addressbook; let i = index\">\n              <app-address-item *ngIf=\"item.is_group==true\"\n                   [name]=\"item.name\" \n                   [head_img]=\"item.head_img\"\n                   [selected]=\"item.id==selectAddressID\"\n                   (click)=\"selectToAddress(item)\"\n              ></app-address-item>\n           </div>\n\n\n         </ng-container>\n         <ng-template #elseTemplate1 >\n           <div  style=\"text-align: center;\">\n             <div style=\"color:#989898;margin-top: 20px\">无联系人</div>\n            </div>\n         </ng-template>\n       </div>\n\n\n       <!-- 搜索-通讯录 -->\n    <div *ngIf=\"searching\" class=\"list1\" id=\"search_scrollbar\"  (focus)=\"searching=true\">\n        <ng-container *ngIf=\"searchResp && searchResp.length>0; else elseTemplate2\">\n           <div class=\"address_title\">好友</div>\n           <div  *ngFor=\"let item of  searchResp; let i = index\">\n               <app-address-item *ngIf=\"item.is_group==false\"\n                    [name]=\"item.name\" \n                    [head_img]=\"item.head_img\"\n                    (click)=\"selectToChat(item)\"\n               ></app-address-item>\n            </div>\n            <div class=\"address_title\">群组</div>\n            <div  *ngFor=\"let item of  searchResp; let i = index\">\n              <app-address-item *ngIf=\"item.is_group==true\"\n                   [name]=\"item.name\" \n                   [head_img]=\"item.head_img\"\n                   (click)=\"selectToChat(item)\"\n              ></app-address-item>\n           </div>\n\n\n         </ng-container>\n         <ng-template #elseTemplate2 >\n           <div  style=\"text-align: center;\">\n             <div style=\"color:#989898;margin-top: 20px\">无内容</div>\n            </div>\n         </ng-template>\n       </div>\n\n\n  </div>\n\n<!-- 添加朋友弹框 -->\n  <nz-modal [(nzVisible)]=\"searchVisible\"  [nzFooter]=\"null\" nzTitle=\"添加朋友\" (nzOnCancel)=\"handleSearchCancel();searchbox.value=''\" (nzOnOk)=\"handleSearchCancel();searchbox.value=''\">\n      <nz-input-group nzSearch nzSize=\"large\" [nzAddOnAfter]=\"suffixButton\">\n          <input type=\"text\" nz-input  #searchbox/>\n        </nz-input-group>\n        <ng-template #suffixButton>\n            <button nz-button nzType=\"primary\" nzSearch (click)=\"search(searchbox.value)\"><i nz-icon type=\"search\"></i></button>\n        </ng-template>\n        <div style=\"padding-top: 20px;\">\n          <ng-container *ngIf=\"searchuserlist; else elseTemplate\">\n              <div *ngFor=\"let item of searchuserlist\">\n                <div  style='padding: 15px;'>\n                    <nz-avatar [nzSize]=\"42\" [nzShape]=\"'square'\" [nzIcon]=\"'user'\" [nzSrc]=\"item.head_img\"></nz-avatar>\n                    <h4 style=\"position: relative; display: inline;left: 20px;color: black;\">{{item.name}}</h4>\n                    <button (click)=\"addfriend(item.id)\" nz-button nzType=\"primary\" style=\"position: relative; display: inline;float: right;\">加为好友</button>\n                </div>\n                \n              </div>\n          </ng-container>\n          <ng-template #elseTemplate>\n              <div  style=\"text-align: center;\">\n                <div style=\"color:#989898;margin-top: 5px\">无搜索结果</div>\n              </div>\n          </ng-template>\n        \n        </div>\n  </nz-modal>\n  \n  <nz-modal [(nzVisible)]=\"createGroupVisible\"   [nzFooter]=\"modalFooter\" nzTitle=\"创建群聊\" (nzOnCancel)=\"handleCreateGroupCancel();\" (nzOnOk)=\"handleCreateGroupCancel()\">\n      <nz-input-group nzSearch nzSize=\"large\" >\n          <input type=\"text\" nz-input  placeholder=\"输入搜索\" #cg (keyup)=\"filteruser(cg.value)\"/>\n      </nz-input-group>\n      <div class=\"memberlist\">\n          <ng-container *ngIf=\"createGroupList.contact_list; else elseTemplate1\">\n              <div *ngFor=\"let item of createGroupList.contact_list\">\n                <div  style='padding: 15px;'>\n                    <nz-avatar [nzSize]=\"42\" [nzShape]=\"'square'\" [nzIcon]=\"'user'\" [nzSrc]=\"item.head_img\"></nz-avatar>\n                    <h4 style=\"position: relative; display: inline;left: 20px;color: black;\">{{item.name}}</h4>\n                    <label nz-checkbox [(ngModel)]=\"item.selected\" style=\"position: relative;margin-right: 50px; display: inline;float: right;\"></label>\n                </div>\n                \n              </div>\n          </ng-container>\n          <ng-template #elseTemplate1>\n              <div  style=\"text-align: center;\">\n                <div style=\"color:#989898;margin-top: 5px\">无搜索结果</div>\n              </div>\n          </ng-template>\n        \n        </div>\n\n        <ng-template #modalFooter>\n            <nz-input-group nzSearch nzSize=\"large\" [nzAddOnAfter]=\"suffixButton1\">\n                <input type=\"text\" nz-input placeholder=\"输入群名\" #groupname/>\n              </nz-input-group>\n              <ng-template #suffixButton1>\n                <button nz-button nzType=\"primary\" nzSize=\"large\" nzSearch (click)=\"creategroup(groupname.value)\">创建</button>\n              </ng-template>\n          </ng-template>\n  </nz-modal>\n\n\n"
+module.exports = "<div  style=\"position: relative;\">\n    <div id=\"all\" style='padding: 15px;background:#2e3238;'>\n           <nz-avatar [nzSize]=\"42\" [nzShape]=\"'square'\" [nzIcon]=\"'user'\" [nzSrc]=\"head_img\"></nz-avatar>\n        <h4 style=\"position: absolute;top: 25px;left:70px;color: white\">{{name}}</h4>\n       <nz-dropdown style=\"float:right;\">\n          <a nz-dropdown>\n              <img style=\"width: 30px;height: 30px;\"src=\"../../../assets/dropdown.png\">\n          </a>\n          <ul nz-menu nzSelectable>\n            <li nz-menu-item>\n              <a (click)=\"searchVisible=true\">添加好友</a>\n            </li>\n            <li nz-menu-item>\n              <a (click)=\"showAddGroupModal()\">创建群组</a>\n            </li>\n            <li nz-menu-item>\n              <a (click)=\"quit()\">退出</a>\n            </li>\n          </ul>\n    </nz-dropdown>\n    </div>\n    <div style=\"background:#2e3238;padding-left:15px;padding-right:15px;padding-top: 5px;padding-bottom:5px\">\n        <input placeholder=\"输入按回车键搜索\" nzSize=\"small\"  \n        #search_input (keyup)=\"searchMonitorList(search_input.value)\"\n        style=\"color: white;background-color:#26292e;border: 0; \"  type=\"text\" nz-input >\n\n    </div>\n    <div style=\"background:#2e3238;padding:10px;height: 50px;border-bottom: 1px solid black\">\n      <div style=\"float:left;width: 33%; text-align: center\">\n      <a (click)=\"swichChatAndAddress(true)\">\n        <img *ngIf=\"!atChat\" style=\"width: 30px;height: 30px;margin-left: 10%\" src=\"../../../assets/chat.png\">\n        <img *ngIf=\"atChat\" style=\"width: 30px;height: 30px;margin-left: 10%\" src=\"../../../assets/chat_bright.png\">\n      </a>\n      </div>\n      <div style=\"float:left;width: 33%; text-align: center\">\n        |\n      </div>\n     <div style=\"float:left;width: 33%; text-align: center\">\n       <a (click)=\"swichChatAndAddress(false)\">\n         <img *ngIf=\"atChat\" style=\"width: 30px;height: 25px;margin-right: 10%\" src=\"../../../assets/userlist.png\">\n         <img *ngIf=\"!atChat\" style=\"width: 30px;height: 25px;margin-right: 10%\" src=\"../../../assets/userlist_bright.png\">\n        </a>\n      </div>\n    </div>\n    \n    <!-- 最近联系人 -->\n    <div *ngIf=\"atChat\" class=\"list\" id=\"scrollbar\">\n     <ng-container *ngIf=\"userlist; else elseTemplate\">\n        <div  *ngFor=\"let item of  userlist?.slice()?.reverse(); let i = index\">\n            <app-chat-item \n                 [name]=\"item.name\" \n                 [head_img]=\"item.head_img\"\n                 [selected]=\"item.id==selectID\"\n                 (click)=\"selectToChat(item)\"\n                 [count]=\"item.count\"\n            ></app-chat-item>\n           </div>\n      </ng-container>\n      <ng-template #elseTemplate >\n          <div  style=\"text-align: center;\">\n            <div style=\"color:#989898;margin-top: 20px\">无联系人</div>\n          </div>\n      </ng-template>\n    </div>\n\n    <!-- 通讯录 -->\n    <div *ngIf=\"!atChat\" class=\"list\" id=\"scrollbar\">\n        <ng-container *ngIf=\"addressbook; else elseTemplate1\">\n           <div class=\"address_title\">好友</div>\n           <div  *ngFor=\"let item of  addressbook; let i = index\">\n               <app-address-item *ngIf=\"item.is_group==false\"\n                    [name]=\"item.name\" \n                    [head_img]=\"item.head_img\"\n                    [selected]=\"item.id==selectAddressID\"\n                    (click)=\"selectToAddress(item)\"\n               ></app-address-item>\n            </div>\n            <div class=\"address_title\">群组</div>\n            <div  *ngFor=\"let item of  addressbook; let i = index\">\n              <app-address-item *ngIf=\"item.is_group==true\"\n                   [name]=\"item.name\" \n                   [head_img]=\"item.head_img\"\n                   [selected]=\"item.id==selectAddressID\"\n                   (click)=\"selectToAddress(item)\"\n              ></app-address-item>\n           </div>\n\n\n         </ng-container>\n         <ng-template #elseTemplate1 >\n           <div  style=\"text-align: center;\">\n             <div style=\"color:#989898;margin-top: 20px\">无联系人</div>\n            </div>\n         </ng-template>\n       </div>\n\n\n       <!-- 搜索-通讯录 -->\n    <div *ngIf=\"searching\" class=\"list1\" id=\"search_scrollbar\"  (focus)=\"searching=true\">\n        <ng-container *ngIf=\"searchResp && searchResp.length>0; else elseTemplate2\">\n           <div class=\"address_title\">好友</div>\n           <div  *ngFor=\"let item of  searchResp; let i = index\">\n               <app-address-item *ngIf=\"item.is_group==false\"\n                    [name]=\"item.name\" \n                    [head_img]=\"item.head_img\"\n                    (click)=\"selectToChat(item)\"\n               ></app-address-item>\n            </div>\n            <div class=\"address_title\">群组</div>\n            <div  *ngFor=\"let item of  searchResp; let i = index\">\n              <app-address-item *ngIf=\"item.is_group==true\"\n                   [name]=\"item.name\" \n                   [head_img]=\"item.head_img\"\n                   (click)=\"selectToChat(item)\"\n              ></app-address-item>\n           </div>\n\n\n         </ng-container>\n         <ng-template #elseTemplate2 >\n           <div  style=\"text-align: center;\">\n             <div style=\"color:#989898;margin-top: 20px\">无内容</div>\n            </div>\n         </ng-template>\n       </div>\n\n\n  </div>\n\n<!-- 添加朋友弹框 -->\n  <nz-modal [(nzVisible)]=\"searchVisible\"  [nzFooter]=\"null\" nzTitle=\"添加朋友\" (nzOnCancel)=\"handleSearchCancel();searchbox.value=''\" (nzOnOk)=\"handleSearchCancel();searchbox.value=''\">\n      <nz-input-group nzSearch nzSize=\"large\" [nzAddOnAfter]=\"suffixButton\">\n          <input type=\"text\" nz-input  #searchbox/>\n        </nz-input-group>\n        <ng-template #suffixButton>\n            <button nz-button nzType=\"primary\" nzSearch (click)=\"search(searchbox.value)\"><i nz-icon type=\"search\"></i></button>\n        </ng-template>\n        <div style=\"padding-top: 20px;\">\n          <ng-container *ngIf=\"searchuserlist; else elseTemplate\">\n              <div *ngFor=\"let item of searchuserlist\">\n                <div  style='padding: 15px;'>\n                    <nz-avatar [nzSize]=\"42\" [nzShape]=\"'square'\" [nzIcon]=\"'user'\" [nzSrc]=\"item.head_img\"></nz-avatar>\n                    <h4 style=\"position: relative; display: inline;left: 20px;color: black;\">{{item.name}}</h4>\n                    <button (click)=\"addfriend(item.id)\" nz-button nzType=\"primary\" style=\"position: relative; display: inline;float: right;\">加为好友</button>\n                </div>\n                \n              </div>\n          </ng-container>\n          <ng-template #elseTemplate>\n              <div  style=\"text-align: center;\">\n                <div style=\"color:#989898;margin-top: 5px\">无搜索结果</div>\n              </div>\n          </ng-template>\n        \n        </div>\n  </nz-modal>\n  \n  <nz-modal [(nzVisible)]=\"createGroupVisible\"   [nzFooter]=\"modalFooter\" nzTitle=\"创建群聊\" (nzOnCancel)=\"handleCreateGroupCancel();\" (nzOnOk)=\"handleCreateGroupCancel()\">\n      <nz-input-group nzSearch nzSize=\"large\" >\n          <input type=\"text\" nz-input  placeholder=\"输入搜索\" #cg (keyup)=\"filteruser(cg.value)\"/>\n      </nz-input-group>\n      <div class=\"memberlist\">\n          <ng-container *ngIf=\"createGroupList.contact_list; else elseTemplate1\">\n              <div *ngFor=\"let item of createGroupList.contact_list\">\n                <div  style='padding: 15px;'>\n                    <nz-avatar [nzSize]=\"42\" [nzShape]=\"'square'\" [nzIcon]=\"'user'\" [nzSrc]=\"item.head_img\"></nz-avatar>\n                    <h4 style=\"position: relative; display: inline;left: 20px;color: black;\">{{item.name}}</h4>\n                    <label nz-checkbox [(ngModel)]=\"item.selected\" style=\"position: relative;margin-right: 50px; display: inline;float: right;\"></label>\n                </div>\n                \n              </div>\n          </ng-container>\n          <ng-template #elseTemplate1>\n              <div  style=\"text-align: center;\">\n                <div style=\"color:#989898;margin-top: 5px\">无搜索结果</div>\n              </div>\n          </ng-template>\n        \n        </div>\n\n        <ng-template #modalFooter>\n            <nz-input-group nzSearch nzSize=\"large\" [nzAddOnAfter]=\"suffixButton1\">\n                <input type=\"text\" nz-input placeholder=\"输入群名\" #groupname/>\n              </nz-input-group>\n              <ng-template #suffixButton1>\n                <button nz-button nzType=\"primary\" nzSize=\"large\" nzSearch (click)=\"creategroup(groupname.value)\">创建</button>\n              </ng-template>\n          </ng-template>\n  </nz-modal>\n\n\n"
 
 /***/ }),
 
@@ -477,11 +481,13 @@ var ChatListComponent = /** @class */ (function () {
         this.createGroupList.contact_list = [];
         this.GroupList = new (_common_im__WEBPACK_IMPORTED_MODULE_2__["CreateGroup"]);
         this.GroupList.contact_list = [];
+        this.searchResp = this.ws.address_book.contact_list;
     }
     ChatListComponent.prototype.ngOnInit = function () {
     };
     // 最近联系人选一个人
     ChatListComponent.prototype.selectToChat = function (item) {
+        this.searching = false;
         this.selectID = item.id;
         this.userchange.emit(item);
     };
@@ -496,16 +502,18 @@ var ChatListComponent = /** @class */ (function () {
         this.address_user_swich.emit(arg);
     };
     ChatListComponent.prototype.searchMonitorList = function (keyword) {
-        var _this = this;
-        this.searchResp = [];
         if (keyword) {
-            this.us.searchAddress(keyword).subscribe(function (data) {
-                console.log(data);
-                if (data && data['friends_list']) {
-                    _this.searchResp = data['friends_list'];
-                    _this.searching = true;
-                }
-            });
+            keyword = keyword.trim();
+            if (keyword == "") {
+                this.searching = false;
+                ;
+                return;
+            }
+            this.searchResp = this.ws.address_book.contact_list.filter(function (e) { return e.name.includes(keyword); });
+            this.searching = true;
+        }
+        else {
+            this.searching = false;
         }
     };
     ChatListComponent.prototype.handleSearchCancel = function () {
@@ -687,7 +695,7 @@ module.exports = ".btn-send{\n    display: inline-block;\n    border: 1px solid 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"position: relative;background-color: #eee;\">\n  <!-- 头部 -->\n    <div>\n      <div style=\"text-align:center;padding: 0 19px;\">\n        <h4 style=\"padding:15px 0 ;border-bottom: 1px solid #d6d6d6;\">{{your_info?.name}}<img *ngIf=\"your_info.is_group\" src=\"../../../assets/down-circle.png\" style=\"display: inline;width: 15px;height: 15px;\" (click)=\"show_members=!show_members\"></h4>\n      </div>\n   </div>\n<!-- 消息显示窗口 -->\n    <div id=\"show_msg\" style=\"height:480px\" >\n     <ng-container *ngIf=\"this.ws.global_message.chat_room_list.get(this.your_info.id); else elseTemplate\">\n      <div *ngFor=\"let item of this.ws.global_message.chat_room_list.get(this.your_info.id)?.message_list\">\n\n        <ng-container *ngIf=\"item&&my_id==item?.from; else elseTemplate1\">\n            <app-dialogbox [msgitem]=\"item\" [isme]=\"item&&true\" [img]=\"my_head_img\"></app-dialogbox>\n        </ng-container>\n        <ng-template #elseTemplate1>\n            <app-dialogbox [msgitem]=\"item\" [isme]=\"item&&false\" [img]='\"/api/head-img/\"+item.from'></app-dialogbox>\n        </ng-template>\n      </div>\n      </ng-container>\n      <ng-template #elseTemplate style=\"text-align: center\">\n        <p style=\"width: 100%;;text-align: center;margin-top: 100px;color: #999999c9;\">暂无消息</p>\n      </ng-template>\n      \n    </div>\n    <!-- 发送消息窗口 -->\n    <div>\n      <div style=\"border-top: 1px solid #d6d6d6;height:180px\">\n        <div style=\" padding:10px 17px;\">\n          <a><img style=\"width: 25px;height: 25px;\" src=\"../../../assets/biaoqing.png\" (click)=\"isEmojiVisible=true\"></a>\n          <input #upfile type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\" accept=\".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt\">\n          <a (click)=\"upfile.click()\"><img  style=\"width: 25px;height: 25px; margin-left: 15px\" src=\"../../../assets/files.png\"></a>\n        </div>\n        <div id=\"divinput\" class=\"send_input\" contenteditable=\"true\" #editbox  (keyup)=\"listenEdit($event)\"></div>\n          <div style=\"height:30px;text-align: right; padding-right: 20px;\">\n              <span style=\"color:#c3c3c3;\">按下Ctrl+Enter换行</span>\n              <a class=\"btn-send\" (click)=\"send();\">发送</a>\n          </div>\n      </div>\n      \n    </div>\n\n    <!-- 头部下拉显示成员 -->\n    <div *ngIf=\"your_info.is_group&&show_members\" class=\"show_members\">\n      <div class=\"members\">\n          <div *ngFor=\"let item of group_members\">\n            <div class=\"member\">\n                <img [src]=\"item.head_img\" class=\"avatar\">\n                <p class=\"nickname\">{{item.name}}</p>\n            </div>\n          </div>\n      </div>\n      \n    </div>\n  </div>\n\n\n\n<!-- 表情模块 -->\n<nz-modal  [(nzVisible)]=\"isEmojiVisible\"    [nzContent]=\"modalContent\" nzTitle=\"表情选择\" [nzFooter]=\"null\" (nzOnCancel)=\"handleEmojiCancel()\" (nzOnOk)=\"handleEmojiCancel()\">\n<ng-template #modalContent >\n  <div class=\"emojibody\">\n    <ng-container *ngIf=\"emojis && emojis.length>0; else elseemojiTemplate\">\n      <div *ngFor=\"let emoji of emojis\" class=\"emoji\">\n        <a [innerHTML]=\"emoji.emoji\" (click)=\"addEmoji(emoji.emoji)\"></a>\n      </div>\n    </ng-container>\n    <ng-template #elseemojiTemplate>\n      <nz-skeleton [nzActive]=\"true\"></nz-skeleton>\n      <nz-skeleton [nzActive]=\"true\"></nz-skeleton>\n    </ng-template>  \n  </div>\n</ng-template>\n</nz-modal>\n\n<div class=\"unselect\" *ngIf=\"your_info.id==-1\">\n  <img style=\"position: relative;top: 100px;\" src=\"../../../assets/chaticon.png\">\n  <h3 style=\"position: relative;top: 140px;color: white\">开始聊天吧(｡･∀･)ﾉﾞ</h3>\n</div>"
+module.exports = "<div style=\"position: relative;background-color: #eee;\">\n  <!-- 头部 -->\n    <div>\n      <div style=\"text-align:center;padding: 0 19px;\">\n        <h4 style=\"padding:15px 0 ;border-bottom: 1px solid #d6d6d6;\">{{your_info?.name}}<img *ngIf=\"your_info.is_group\" src=\"../../../assets/down-circle.png\" style=\"display: inline;width: 15px;height: 15px;\" (click)=\"show_members=!show_members\"></h4>\n      </div>\n   </div>\n<!-- 消息显示窗口 -->\n    <div id=\"show_msg\" style=\"height:480px\" >\n     <ng-container *ngIf=\"this.ws.global_message.chat_room_list.get(this.your_info.id); else elseTemplate\">\n      <div *ngFor=\"let item of this.ws.global_message.chat_room_list.get(this.your_info.id)?.message_list\">\n          <ng-container *ngIf=\"item&&my_id==item?.from; else elseTemplate1\">\n              <app-dialogbox [msgitem]=\"item\" [isme]=\"item&&true\" [img]=\"my_head_img\"\n                (contextmenu)=\"contextMenu($event, template)\"></app-dialogbox>\n          </ng-container>\n          <ng-template #elseTemplate1>\n              <app-dialogbox [msgitem]=\"item\" [isme]=\"item&&false\" [img]='\"/api/head-img/\"+item.from'></app-dialogbox>\n          </ng-template>\n           <ng-template #template>\n             <ul nz-menu nzInDropDown (nzClick)=\"close($event)\">\n               <li nz-menu-item (click)=\"drawbackdata(item)\">撤回</li>\n             </ul>\n           </ng-template>\n      </div>\n      </ng-container>\n      <ng-template #elseTemplate style=\"text-align: center\">\n        <p style=\"width: 100%;;text-align: center;margin-top: 100px;color: #999999c9;\">暂无消息</p>\n      </ng-template>\n      \n    </div>\n    <!-- 发送消息窗口 -->\n    <div>\n      <div style=\"border-top: 1px solid #d6d6d6;height:180px\">\n        <div style=\" padding:10px 17px;\">\n          <a><img style=\"width: 25px;height: 25px;\" src=\"../../../assets/biaoqing.png\" (click)=\"isEmojiVisible=true\"></a>\n          <input #upfile type=\"file\" style=\"display: none;\" (change)=\"selectFile($event)\" accept=\".pdf,.doc,.txt,.jpg,.zip,.jpeg,.ppt\">\n          <a (click)=\"upfile.click()\"><img  style=\"width: 25px;height: 25px; margin-left: 15px\" src=\"../../../assets/files.png\"></a>\n        </div>\n        <div id=\"divinput\" class=\"send_input\" contenteditable=\"true\" #editbox  (keyup)=\"listenEdit($event)\"></div>\n          <div style=\"height:30px;text-align: right; padding-right: 20px;\">\n              <span style=\"color:#c3c3c3;\">按下Ctrl+Enter换行</span>\n              <a class=\"btn-send\" (click)=\"send();\">发送</a>\n          </div>\n      </div>\n      \n    </div>\n\n    <!-- 头部下拉显示成员 -->\n    <div *ngIf=\"your_info.is_group&&show_members\" class=\"show_members\">\n      <div class=\"members\">\n          <div *ngFor=\"let item of group_members\">\n            <div class=\"member\">\n                <img [src]=\"item.head_img\" class=\"avatar\">\n                <p class=\"nickname\">{{item.name}}</p>\n            </div>\n          </div>\n      </div>\n      \n    </div>\n  </div>\n\n\n\n<!-- 表情模块 -->\n<nz-modal  [(nzVisible)]=\"isEmojiVisible\"    [nzContent]=\"modalContent\" nzTitle=\"表情选择\" [nzFooter]=\"null\" (nzOnCancel)=\"handleEmojiCancel()\" (nzOnOk)=\"handleEmojiCancel()\">\n<ng-template #modalContent >\n  <div class=\"emojibody\">\n    <ng-container *ngIf=\"emojis && emojis.length>0; else elseemojiTemplate\">\n      <div *ngFor=\"let emoji of emojis\" class=\"emoji\">\n        <a [innerHTML]=\"emoji.emoji\" (click)=\"addEmoji(emoji.emoji)\"></a>\n      </div>\n    </ng-container>\n    <ng-template #elseemojiTemplate>\n      <nz-skeleton [nzActive]=\"true\"></nz-skeleton>\n      <nz-skeleton [nzActive]=\"true\"></nz-skeleton>\n    </ng-template>  \n  </div>\n</ng-template>\n</nz-modal>\n\n<div class=\"unselect\" *ngIf=\"your_info.id==-1\">\n  <img style=\"position: relative;top: 100px;\" src=\"../../../assets/chaticon.png\">\n  <h3 style=\"position: relative;top: 140px;color: white\">开始聊天吧(｡･∀･)ﾉﾞ</h3>\n</div>\n\n\n"
 
 /***/ }),
 
@@ -726,12 +734,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var ChatPlanelComponent = /** @class */ (function () {
-    function ChatPlanelComponent(ws, us, es, upload, nms) {
+    function ChatPlanelComponent(ws, us, es, upload, nzDropdownService, nms) {
         this.ws = ws;
         this.us = us;
         this.es = es;
         this.upload = upload;
+        this.nzDropdownService = nzDropdownService;
         this.nms = nms;
         this.show_members = false;
         this.fileurl = _environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].apiUrl + '/upload';
@@ -767,6 +777,32 @@ var ChatPlanelComponent = /** @class */ (function () {
             }
         });
     };
+    ChatPlanelComponent.prototype.drawbackdata = function (item) {
+        var at = parseInt(item.arrive_time.toString());
+        var now = Date.now();
+        if (now - at > 120000) {
+            this.nms.create('warning', "\u65F6\u95F4\u8D85\u8FC7\u4E24\u5206\u949F\uFF0C\u65E0\u6CD5\u64A4\u56DE");
+            return;
+        }
+        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_4__["Protocol"].Message);
+        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_4__["Protocol"].Message.Type.REQUEST; //消息的类型的请求类型
+        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_4__["Protocol"].Message.CtrlType.MSG_BACK; // 消息撤回
+        msg.from = this.us.MyUserId; // 消息发送方
+        msg.to = item.to; //消息接收方
+        msg.content = item.content; //消息内容
+        msg.contentType = item.content_type; //消息类型
+        msg.isgroup = item.is_group; //是不是群组消息
+        msg.msgid = item.id;
+        msg.sendTime = Date.now();
+        this.ws.sendMessage(msg);
+    };
+    ChatPlanelComponent.prototype.contextMenu = function ($event, template) {
+        this.dropdown = this.nzDropdownService.create($event, template);
+    };
+    ChatPlanelComponent.prototype.close = function (e) {
+        console.log(e);
+        this.dropdown.close();
+    };
     // 移动编辑框的光标在最后面
     ChatPlanelComponent.prototype.movePonterToEnd = function () {
         if (window.getSelection) { //ie11 10 9 ff safari
@@ -787,9 +823,8 @@ var ChatPlanelComponent = /** @class */ (function () {
         }
     };
     ChatPlanelComponent.prototype.ngOnChanges = function () {
-        this.scollbuttom();
         this.showGroupMember();
-        console.log("ngOnInit:", this.your_info);
+        this.scollbuttom();
     };
     ChatPlanelComponent.prototype.send = function () {
         var content = document.getElementById("divinput").innerText.trim(); //去除左边空格
@@ -943,6 +978,7 @@ var ChatPlanelComponent = /** @class */ (function () {
             _user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"],
             _emoji_service__WEBPACK_IMPORTED_MODULE_6__["EmojiService"],
             _file_service__WEBPACK_IMPORTED_MODULE_10__["UploadService"],
+            ng_zorro_antd__WEBPACK_IMPORTED_MODULE_8__["NzDropdownService"],
             ng_zorro_antd__WEBPACK_IMPORTED_MODULE_8__["NzMessageService"]])
     ], ChatPlanelComponent);
     return ChatPlanelComponent;
@@ -1041,61 +1077,8 @@ var ChatComponent = /** @class */ (function () {
         this.message = message;
         this.router = router;
         this.loadDataOk = false;
-        this.from_id = 1;
-        this.to_id = 0;
-        this.id = 0;
-        this.to_name = "";
-        this.to_img = "";
-        this.content = "";
-        this.searchFriend = '';
-        this.list = [];
-        this.searchContent = "";
-        this.isVisible = false;
-        this.isgroup = false;
-        this.pressBoolean = false;
-        this.px = "";
-        this.py = "";
-        // mesItem = MessageItem;
-        this.contentType = 0;
-        this.isPress = false;
-        this.index = 0;
-        this.flag = false;
-        // switchpng(url:string):any{
-        //   this.imgurl=url.split("+");
-        //   this.imgurl=this.imgurl[0].split(".");
-        //   let src:string
-        // switch(this.imgurl[1]){
-        //   case 'doc':
-        //     src="/files/DOC.png";
-        //     break;
-        //   case 'pdf':
-        //     src="/files/pdf.png";
-        //     break;
-        //   case 'ppt':
-        //     src="/files/ppt.png";
-        //   break;
-        //   case 'zip':
-        //     src="/files/RAR.png";
-        //   break;
-        //   case 'txt':
-        //     src="/files/txt.png";
-        //   break;
-        // }
-        // return src;
-        // }
         this.isshowpicVisible = false;
         this.isshowvideoVisible = false;
-        /////////////////////////////////////////
-        //// 创建群//////////////////////////////
-        ////////////////////////////////////////
-        this.GroupName = '';
-        this.isAddGroupVisible = false;
-        /////////////////////////////////////////
-        //// 添加成员//////////////////////////////
-        ////////////////////////////////////////
-        this.isAddFriendVisible = false;
-        this.isAddFriendConfirmLoading = false;
-        this.isAddMemberVisible = false;
         this.char_or_adress = true;
     }
     ChatComponent.prototype.ngAfterViewInit = function () {
@@ -1124,12 +1107,8 @@ var ChatComponent = /** @class */ (function () {
         this.my_id = this.us.MyUserId;
         this.my_img_url = this.us.myImg;
         this.my_name = this.us.myName;
-        this.scollbuttom();
-        //this.show=false
-        this.pressBoolean = false;
-        this.isPress = false;
     };
-    //1. 最近联系人选择会话
+    //1. 最近联系人选择会话，在最近联系人列表选择联系人进行聊天
     ChatComponent.prototype.selectOneUser = function (contact_list_item) {
         // 选择了
         this.selected_contact_list_item = contact_list_item;
@@ -1139,9 +1118,8 @@ var ChatComponent = /** @class */ (function () {
         msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.CtrlType.NONE;
         msg.from = this.us.MyUserId;
         msg.to = contact_list_item.id;
-        msg.content = this.content;
         msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.ContentType.TEXT;
-        this.contentType = msg.contentType;
+        // this.contentType = msg.contentType;
         msg.isgroup = contact_list_item.is_group;
         msg.sendTime = Date.now();
         this.ws.sendMessage(msg);
@@ -1167,91 +1145,6 @@ var ChatComponent = /** @class */ (function () {
     ChatComponent.prototype.chatToTop = function (item) {
         this.ws.nearest_contact.contact_list = this.ws.nearest_contact.contact_list.filter(function (e) { return e.id != item.id || e.name != item.name; });
         this.ws.nearest_contact.contact_list.push(item);
-    };
-    ChatComponent.prototype.backdata = function (item) {
-        ///////////////////////////////////////////////////////////
-        //有一个bug需解决，撤回消息后聊天框仍存在，以后再改23333333333333//
-        ///////////////////////////////////////////////////////////
-        console.log("撤回", item);
-        var at = parseInt(item.arrive_time.toString());
-        var now = Date.now();
-        if (now - at > 120000) {
-            this.message.create('warning', "\u65F6\u95F4\u8D85\u8FC7\u4E24\u5206\u949F\uFF0C\u65E0\u6CD5\u64A4\u56DE");
-            return;
-        }
-        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message);
-        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.Type.REQUEST; //消息的类型的请求类型
-        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.CtrlType.MSG_BACK; // 消息撤回
-        msg.from = this.us.MyUserId; // 消息发送方
-        msg.to = item.to; //消息接收方
-        msg.content = item.content; //消息内容
-        msg.contentType = item.content_type; //消息类型
-        msg.isgroup = item.is_group; //是不是群组消息
-        msg.msgid = item.id;
-        msg.sendTime = Date.now();
-        this.ws.sendMessage(msg);
-    };
-    // //在输入框回车发送消息
-    // enterToSendMsg(event: KeyboardEvent) {
-    //   if(event.keyCode != (13 || 108)){
-    //       return;
-    //   }
-    //   this.sendTextMessage()
-    // }
-    // //点击 发送 按钮发送消息
-    // clickToSendMsg(){
-    //   this.sendTextMessage()
-    // }
-    ChatComponent.prototype.addfriend = function (to) {
-        if (to == this.us.MyUserId) {
-            alert("不能添加自己为好友");
-            return;
-        }
-        for (var i = 0; i < this.ws.nearest_contact.contact_list.length; i++) {
-            if (this.ws.nearest_contact.contact_list[i].id == to) {
-                alert("已是好友");
-                return;
-            }
-        }
-        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message);
-        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.Type.REQUEST;
-        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.CtrlType.CREATE_SESSION;
-        msg.from = this.us.MyUserId;
-        msg.to = to;
-        msg.sendTime = Date.now();
-        this.ws.sendMessage(msg);
-    };
-    ChatComponent.prototype.keyUpSearch = function (name) {
-        var _this = this;
-        // this.ws.
-        // this.ws.getUserList(this.searchContent).subscribe(data => {
-        //   console.log("data2 = ", data.Ulist);
-        //   this.userlist = data.Ulist;
-        // })
-        if (this.searchContent == '')
-            return;
-        this.us.getuserlist(this.searchContent).subscribe(function (data) {
-            // this.userlist = data
-            console.log("userlist=", data);
-            if (data['user_list'].length == 0) {
-                _this.flag = true;
-            }
-            _this.userlist = data['user_list'];
-            _this.flag = false;
-        });
-    };
-    ChatComponent.prototype.search = function () {
-        // console.log("search=", this.searchContent);
-        // this.ws.getAddress(this.searchContent).subscribe(data => {
-        //   this.userlist = data.Ulist;
-        //   this.flag = false;
-        // })
-        // if(this.searchContent == ""){
-        //   return;
-        // }
-        // if(this.userlist.length == 0) {
-        //   this.flag = true;
-        // }
     };
     ChatComponent.prototype.showpicModal = function (aaaa) {
         this.aaa = aaaa.split(".");
@@ -1292,9 +1185,6 @@ var ChatComponent = /** @class */ (function () {
         a.remove();
         console.log('download:' + a.href);
     };
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //  by: pjw    
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //获取最近联系人及其历史消息
     ChatComponent.prototype.getNearestListAndMessage = function () {
         var _this = this;
@@ -1351,162 +1241,6 @@ var ChatComponent = /** @class */ (function () {
             }
             console.log("this.address_book=", _this.ws.address_book);
         });
-    };
-    ChatComponent.prototype.showAddGroupModal = function () {
-        var list = this.ws.address_book.contact_list;
-        if (list.length == 0) {
-            alert("列表无联系人，不可创建群");
-            return;
-        }
-        console.log("list:", this.ws.address_book.contact_list);
-        for (var i = 0; i < list.length; i++) {
-            if (list[i].is_group == false) {
-                var item = new _common_im__WEBPACK_IMPORTED_MODULE_7__["CreateGroupItem"];
-                item.id = list[i].id;
-                item.name = list[i].name;
-                item.head_img = list[i].head_img;
-                item.selected = false;
-                this.createGroupList.contact_list.push(item);
-            }
-        }
-        this.isAddGroupVisible = true;
-        console.log("创建群组显示列表：", this.createGroupList.contact_list);
-    };
-    ChatComponent.prototype.handleAddGroupCancel = function () {
-        this.isAddGroupVisible = false;
-        this.createGroupList.contact_list = [];
-        this.GroupName = '';
-    };
-    ChatComponent.prototype.handleAddGroupOk = function () {
-        if (this.GroupName == '') {
-            alert("注意：群名不能为空");
-            this.GroupName = '';
-            this.createGroupList.contact_list = [];
-            return;
-        }
-        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message);
-        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.Type.REQUEST;
-        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.CtrlType.CREATE_GROUP;
-        msg.from = this.us.MyUserId;
-        msg.content = this.GroupName;
-        msg.contentType = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.ContentType.TEXT;
-        msg.isgroup = true;
-        msg.userlist = [];
-        for (var i = 0; i < this.createGroupList.contact_list.length; i++) {
-            if (this.createGroupList.contact_list[i].selected) {
-                msg.userlist.push(this.createGroupList.contact_list[i].id);
-            }
-        }
-        if (msg.userlist.length == 0) {
-            alert("注意：至少选择一个人");
-            return;
-        }
-        this.createGroupList.contact_list = [];
-        this.GroupName = '';
-        this.isAddGroupVisible = false;
-        this.ws.sendMessage(msg);
-    };
-    ChatComponent.prototype.showAddFriendModal = function () {
-        this.isAddFriendVisible = true;
-    };
-    ChatComponent.prototype.handleAddFriendCancel = function () {
-        this.isAddFriendVisible = false;
-    };
-    ChatComponent.prototype.handleAddFriendOk = function () {
-    };
-    ChatComponent.prototype.scollbuttom = function () {
-        var dis = document.getElementById('scrolldIV');
-        // var now = new Date(); //设置滚动条保持在最底部
-        // now.getTime();
-        try {
-            dis.scrollTop = dis.scrollHeight;
-        }
-        catch (err) { }
-    };
-    ChatComponent.prototype.showGroupMember = function () {
-        var _this = this;
-        this.us.getGroupMember(this.to_id).subscribe(function (data) {
-            _this.groupMemberList = [];
-            console.log(data);
-            for (var i = 0; i < data['length']; i++) {
-                var item = new _common_im__WEBPACK_IMPORTED_MODULE_7__["ContactListItem"];
-                item.id = data[i]['id'];
-                item.name = data[i]['name'];
-                item.head_img = data[i]['head_img'];
-                _this.groupMemberList.push(item);
-            }
-        });
-    };
-    ChatComponent.prototype.showAddMemberModal = function () {
-        var _this = this;
-        var list = this.ws.address_book.contact_list;
-        if (list.length == 0) {
-            alert("列表无联系人，群不可加人");
-            return;
-        }
-        this.us.getGroupMember(this.to_id).subscribe(function (data) {
-            _this.groupMemberList = [];
-            console.log(data);
-            for (var i = 0; i < data['length']; i++) {
-                var item = new _common_im__WEBPACK_IMPORTED_MODULE_7__["ContactListItem"];
-                item.id = data[i]['id'];
-                item.name = data[i]['name'];
-                item.head_img = data[i]['head_img'];
-                _this.groupMemberList.push(item);
-            }
-            _this.addMemberList = [];
-            var _loop_1 = function (i) {
-                if (list[i].is_group == false) {
-                    var item_1 = new _common_im__WEBPACK_IMPORTED_MODULE_7__["AddMemberItem"];
-                    item_1.id = list[i].id;
-                    item_1.name = list[i].name;
-                    item_1.head_img = list[i].head_img;
-                    item_1.selected = false;
-                    item_1.existed = false;
-                    if (_this.groupMemberList.findIndex(function (e) { return e.id == item_1.id; }) > 0) {
-                        item_1.existed = true;
-                    }
-                    _this.addMemberList.push(item_1);
-                }
-            };
-            for (var i = 0; i < list.length; i++) {
-                _loop_1(i);
-            }
-            _this.isAddMemberVisible = true;
-        });
-    };
-    ChatComponent.prototype.handleAddMemberCancel = function () {
-        this.isAddMemberVisible = false;
-    };
-    ChatComponent.prototype.handleAddMemberOK = function () {
-        var msg = new (_protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message);
-        msg.type = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.Type.REQUEST;
-        msg.cmd = _protocol_Protocol__WEBPACK_IMPORTED_MODULE_6__["Protocol"].Message.CtrlType.GROUP_ADDMEMBERS;
-        msg.from = this.us.MyUserId;
-        msg.to = this.to_id;
-        msg.isgroup = true;
-        msg.userlist = [];
-        for (var i = 0; i < this.addMemberList.length; i++) {
-            if (this.addMemberList[i].selected) {
-                msg.userlist.push(this.addMemberList[i].id);
-            }
-        }
-        if (msg.userlist.length == 0) {
-            alert("注意：至少选择一个人");
-            return;
-        }
-        console.log("选择添加的人:", msg.userlist);
-        this.ws.sendMessage(msg);
-        this.isAddMemberVisible = false;
-    };
-    ChatComponent.prototype.addMember = function () {
-    };
-    ChatComponent.prototype.contextMenu = function ($event, template) {
-        this.dropdown = this.nzDropdownService.create($event, template);
-    };
-    ChatComponent.prototype.close = function (e) {
-        console.log(e);
-        this.dropdown.close();
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_chat_list_chat_list_component__WEBPACK_IMPORTED_MODULE_9__["ChatListComponent"]),
@@ -2038,7 +1772,6 @@ var LoginComponent = /** @class */ (function () {
         var _this = this;
         var body = { name: this.name, password: this.password };
         this.us.postLoginData(body).subscribe(function (data) {
-            // console.log("data.status=", data.status)
             if (data.status == 200) {
                 var respond = data["body"];
                 console.log("登录成功");
@@ -2048,7 +1781,6 @@ var LoginComponent = /** @class */ (function () {
                 _this.us.myName = respond['name'];
                 _this.us.session_id = respond['session_id'];
                 _this.router.navigate(['chat']);
-                // console.log("data=", data, this.us.MyUserId, this.us.myName);
             }
             else {
                 alert("登录失败");
