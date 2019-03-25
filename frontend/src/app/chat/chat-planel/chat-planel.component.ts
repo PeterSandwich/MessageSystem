@@ -171,7 +171,7 @@ export class ChatPlanelComponent implements OnInit {
     console.log(file.name)
     console.log(file.type)
     this.filename = file.name;
-    
+    let namesuffix :string[] = this.filename.split(".")
     let chat_room = this.ws.global_message.chat_room_list.get(this.your_info.id);
     if (!(chat_room.id == this.your_info.id && chat_room.is_group ==this.your_info.is_group)){
       console.log("消息与会话的信息不符合");
@@ -183,7 +183,13 @@ export class ChatPlanelComponent implements OnInit {
     newMsg.from = this.us.MyUserId;
     newMsg.to = this.your_info.id;
     newMsg.content = "1+"+file.name+"&"+file.size;
-    newMsg.content_type = Protocol.Message.ContentType.FILE;
+    if(namesuffix[namesuffix.length-1]=="jpg"){
+      newMsg.content_type = Protocol.Message.ContentType.IMG;
+    }else if(namesuffix[namesuffix.length-1]=="mp3"||namesuffix[namesuffix.length-1]=="mp4"){
+      newMsg.content_type = Protocol.Message.ContentType.VIDEO;
+    }else{
+      newMsg.content_type = Protocol.Message.ContentType.FILE;
+    }
     newMsg.is_group = this.your_info.is_group;
     newMsg.send_time = sendtime;
     newMsg.arrive_time = 0;

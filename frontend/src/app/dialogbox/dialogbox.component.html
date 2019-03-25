@@ -3,7 +3,6 @@
 <img  *ngIf="isme != true " class="headportraitonleft" src="{{img}}">
 <!-- 左边文本 -->
 <div *ngIf="msgitem.content_type == 0 && isme != true" class="content">
-        
         <div class="bubble">
                 <div class="bubble_cont">
                     <div class="plain">
@@ -102,3 +101,44 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+<!-- 显示图片与视频 -->
+<!-- <nz-modal [(nzVisible)]="isshowpicVisible"   (nzOnCancel)="handleshowpicCancel()" (nzOnOk)="handleshowpicCancel()">
+    <div class="picture2" [ngStyle]="{ 'background-image': 'url('+a+')'}"></div>
+  </nz-modal> -->
+  <nz-modal
+        [nzVisible]="isshowpicVisible"
+        [nzContent]="modalContent"
+        [nzFooter]="null"
+        (nzOnCancel)="handleshowpicCancel()"
+      >
+        <ng-template #modalContent>
+          <img [src]="a" [ngStyle]="{ width: '100%' }" />
+        </ng-template>
+      </nz-modal>
+  
+  <nz-modal [(nzVisible)]="isshowvideoVisible"   (nzOnCancel)="handleshowvideoCancel()" (nzOnOk)="handleshowvideoCancel()">
+      <div >
+          <div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="video" aria-hidden="true" (blur)="theVideo.pause()">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content" >
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">播放视频</h5>
+                        </div>
+                        <div class="modal-body">
+                          <div >
+                            <video [src]="videourl" controls="controls" #theVideo></video>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+      </div>
+    </nz-modal>
+  

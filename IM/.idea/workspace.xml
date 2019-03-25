@@ -27,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/fileserver.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="320">
-              <caret line="33" column="59" lean-forward="false" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="59" />
+              <caret line="33" column="61" lean-forward="false" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="61" />
               <folding>
                 <element signature="e#14#295#0" expanded="true" />
               </folding>
@@ -100,8 +100,8 @@
       <file leaf-file-name="handlers.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/handlers.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="161" column="0" lean-forward="true" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+            <state relative-caret-position="260">
+              <caret line="152" column="1" lean-forward="false" selection-start-line="152" selection-start-column="1" selection-end-line="152" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -656,7 +656,7 @@
     <entry file="file://$PROJECT_DIR$/fileserver.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
-          <caret line="33" column="59" lean-forward="false" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="59" />
+          <caret line="33" column="61" lean-forward="false" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="61" />
           <folding>
             <element signature="e#14#295#0" expanded="true" />
           </folding>
@@ -675,8 +675,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/handlers.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="161" column="0" lean-forward="true" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+        <state relative-caret-position="260">
+          <caret line="152" column="1" lean-forward="false" selection-start-line="152" selection-start-column="1" selection-end-line="152" selection-end-column="1" />
           <folding />
         </state>
       </provider>
