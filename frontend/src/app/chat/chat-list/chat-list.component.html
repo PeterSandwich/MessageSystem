@@ -21,7 +21,7 @@
     </div>
     <div style="background:#2e3238;padding-left:15px;padding-right:15px;padding-top: 5px;padding-bottom:5px">
         <input placeholder="输入按回车键搜索" nzSize="small"  
-        #search_input (keyup.enter)="searchMonitorList(search_input.value)"
+        #search_input (keyup)="searchMonitorList(search_input.value)"
         style="color: white;background-color:#26292e;border: 0; "  type="text" nz-input >
 
     </div>

@@ -15,6 +15,7 @@
 <!-- 左边图片 -->
 <div *ngIf="msgitem.content_type == 1 && isme != true" class="content">
     <div class="fileheadportraitonleft">
+        <!-- <div class="picture" [ngStyle]="{ 'background-image': 'url('+msgitem.content+')'}"></div> -->
         <div class="picture" [ngStyle]="{ 'background-image': 'url('+msgitem.content+')'}"></div>
         <!-- <img class="picture" src="../chat/icon/RAR.png"> -->
         <div class="mask">
@@ -47,10 +48,26 @@
     </div>
 </div>
 <!-- 左边视频 -->
-<div *ngIf="msgitem.content_type == 3 && isme != true">
-    <i class="fa fa-file-video-o" aria-hidden="true"></i>
-    <button class="upload-btn" (click)="showvideoModal(msgitem.content)"> 播放
-    </button>
+<div *ngIf="msgitem.content_type == 3 && isme != true" class="content">
+        <div class="bubble">
+                <div class="bubble_cont">
+                    <div class="attach">
+                        <div>
+                            <div class="cover">
+                                <img [src]="switchpng(msgitem.content)" class="pic">
+                            </div>
+                            <div class="cont">
+                                <p class="title">{{getvideoname(msgitem.content)}}</p>
+                                <!-- <p class="title">调试文本.zip</p> -->
+                                <div class="opr">
+                                    <a class="a" (click)=" showvideoModal(msgitem.content)"> 播放</a>
+                                    <!-- <nz-progress  [nzPercent]="70" nzSize="small" nzStatus="active" [nzStrokeColor]="green"></nz-progress> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </div>
 <div  *ngIf="isme == true " class="timeonright"><span *ngIf="msgitem.id&&msgitem.id > 0">{{msgitem.arrive_time|timeSwich}}</span></div>
 <img  *ngIf="isme == true " class="headportraitonright" src="{{img}}">
@@ -70,11 +87,34 @@
 <div *ngIf="msgitem.content_type == 1 && isme == true" class="content">
     <div class="fileheadportraitonright">
         <!-- <div class="picture" [ngStyle]="{ 'background-image': 'url('+item.content+')'}"></div> -->
-        <div class="picture" [ngStyle]="{ 'background-image': 'url('+msgitem.content+')'}"></div>
-        <div class="mask">
+        <div *ngIf="msgitem.id >0 " class="picture" [ngStyle]="{ 'background-image': 'url('+msgitem.content+')'}"></div>
+        <div *ngIf="!msgitem.id >0 " class="pictureloading">
+            <div >
+                    <div class="windows8">
+                            <div class="wBall" id="wBall_1">
+                                <div class="wInnerBall"></div>
+                            </div>
+                            <div class="wBall" id="wBall_2">
+                                <div class="wInnerBall"></div>
+                            </div>
+                            <div class="wBall" id="wBall_3">
+                                <div class="wInnerBall"></div>
+                            </div>
+                            <div class="wBall" id="wBall_4">
+                                <div class="wInnerBall"></div>
+                            </div>
+                            <div class="wBall" id="wBall_5">
+                                <div class="wInnerBall"></div>
+                            </div>
+                        </div>
+            </div>
+        <img  [src]="msgitem.content">
+        </div>
+        <div *ngIf="msgitem.id >0 " class="mask">
             <p (click)="showpicModal(msgitem.content)">查看原图</p>
         </div>
     </div>
+
 </div>
 <!-- 右边文件 -->
 <div *ngIf="msgitem.content_type == 2 && isme == true" class="content">
@@ -101,7 +141,29 @@
         </div>
     </div>
 </div>
-
+<!-- 右边视频 -->
+<div *ngIf="msgitem.content_type == 3 && isme == true" class="content">
+        <div class="bubbleright">
+                <div class="bubble_cont">
+                    <div class="attach">
+                        <div>
+                            <div class="cover">
+                                <img [src]="switchpng(msgitem.content)" class="pic">
+                            </div>
+                            <div class="cont">
+                                <p class="title">{{getvideoname(msgitem.content)}}</p>
+                                <!-- <p class="title">调试文本.zip</p> -->
+                                <div class="opr">
+                                    <a *ngIf="msgitem.loading_percent==100||msgitem.loading_percent==-1||msgitem.loading_percent==undefined" class="a" (click)=" showvideoModal(msgitem.content)"> 播放</a>
+                                    <nz-progress *ngIf="msgitem.loading_percent != 100 && msgitem.loading_percent != -1 && msgitem.loading_percent != undefined " [nzPercent]="msgitem.loading_percent" nzSize="small" nzStatus="active" [nzStrokeColor]="green">
+                                    </nz-progress>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
 
 
 
@@ -125,20 +187,9 @@
   
   <nz-modal [(nzVisible)]="isshowvideoVisible"   (nzOnCancel)="handleshowvideoCancel()" (nzOnOk)="handleshowvideoCancel()">
       <div >
-          <div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="video" aria-hidden="true" (blur)="theVideo.pause()">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content" >
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle">播放视频</h5>
-                        </div>
-                        <div class="modal-body">
-                          <div >
-                            <video [src]="videourl" controls="controls" #theVideo></video>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-      </div>
+            <div >
+                    <video [src]="videourl" controls="controls" #theVideo></video>
+            </div>
+          </div>
     </nz-modal>
   

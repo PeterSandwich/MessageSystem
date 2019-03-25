@@ -1,6 +1,5 @@
 import { Component, OnInit, ElementRef,TemplateRef } from '@angular/core';
-import { AfterViewInit, ViewChild } from '@angular/core';
-import {HttpEventType,HttpResponse}  from '@angular/common/http';
+import { ViewChild } from '@angular/core';
 import { NzDropdownContextComponent, NzDropdownService, NzMenuItemDirective } from 'ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd';
 import { DomSanitizer } from '@angular/platform-browser'
@@ -11,7 +10,6 @@ import { Protocol } from '../protocol/Protocol';
 import * as com from '../common/im'
 import { environment } from '../../environments/environment';
 import { Long } from 'protobufjs';
-import { TimePipe } from '../common/time_pipe';
 import { ChatListComponent } from './chat-list/chat-list.component';
 import { Router } from '@angular/router';
 
@@ -35,33 +33,11 @@ export class ChatComponent implements OnInit {
   @ViewChild(ChatListComponent)
   private chatListComponent: ChatListComponent;
 
-
-
-
-
-
-  from_id = 1;
-  to_id = 0;
-
   my_id : number;
   my_img_url : string;
   my_name : string;
 
-
-  id: number  = 0;
-  to_name = ""
-  to_img = "";
-  content = "";
-  searchFriend='';
-  list = [];
   showmsg : com.MessageItem[];
-
-  searchContent : string = "";
-
-
-  isVisible : boolean = false;
-  isselect: boolean;
-  isgroup: boolean = false;
 
   userlist : com.NearestContact;
   userListDisplay:com.ContactListItem[];    //最近联系人和通讯录在前端切换显示需要的结构体
@@ -69,16 +45,6 @@ export class ChatComponent implements OnInit {
   groupMemberList:com.ContactListItem[];    //群成员信息列表
   addMemberList:com.AddMemberItem[];        //群添加成员时，需要的结构体
 
-  pressBoolean : boolean = false;
-  px : string = "";
-  py : string = "";
-  // mesItem = MessageItem;
-  contentType : number = 0;
-  backMes : com.MessageItem ;
-  isPress : boolean = false;
-  index : number = 0;
-
-  flag : boolean = false;
 
   constructor(
     public ws:WebsocketService, 
@@ -123,17 +89,11 @@ export class ChatComponent implements OnInit {
       this.my_id = this.us.MyUserId;
       this.my_img_url = this.us.myImg;
       this.my_name = this.us.myName;
-
-
-      this.scollbuttom();
-      //this.show=false
-      this.pressBoolean = false;
-      this.isPress = false;
     }
 
 
     
-    //1. 最近联系人选择会话
+    //1. 最近联系人选择会话，在最近联系人列表选择联系人进行聊天
     selectOneUser(contact_list_item: com.ContactListItem){
       
       // 选择了
@@ -145,9 +105,8 @@ export class ChatComponent implements OnInit {
       msg.cmd = Protocol.Message.CtrlType.NONE;
       msg.from =  this.us.MyUserId;
       msg.to = contact_list_item.id;
-      msg.content = this.content;
       msg.contentType = Protocol.Message.ContentType.TEXT;
-      this.contentType = msg.contentType;
+      // this.contentType = msg.contentType;
       msg.isgroup = contact_list_item.is_group;
       msg.sendTime = Date.now();
       this.ws.sendMessage(msg);
@@ -181,134 +140,7 @@ export class ChatComponent implements OnInit {
       this.ws.nearest_contact.contact_list = this.ws.nearest_contact.contact_list.filter((e)=>{return e.id!=item.id||e.name!=item.name});
       this.ws.nearest_contact.contact_list.push(item);
     }
-
-
-
-
-
-    backdata(item: com.MessageItem){
-      ///////////////////////////////////////////////////////////
-      //有一个bug需解决，撤回消息后聊天框仍存在，以后再改23333333333333//
-      ///////////////////////////////////////////////////////////
-      console.log("撤回",item)
-      let at :number = parseInt(item.arrive_time.toString())
-      let now :number = Date.now()
-      if (now-at>120000){
-        this.message.create('warning', `时间超过两分钟，无法撤回`);
-        return
-      }
-      
-      let msg = new(Protocol.Message)
-      msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
-      msg.cmd = Protocol.Message.CtrlType.MSG_BACK;// 消息撤回
-      msg.from = this.us.MyUserId;              // 消息发送方
-      msg.to = item.to;                   //消息接收方
-      msg.content = item.content;             //消息内容
-      msg.contentType = item.content_type;　  //消息类型
-      msg.isgroup = item.is_group;                       //是不是群组消息
-      msg.msgid = item.id;
-      msg.sendTime = Date.now();
-
-      this.ws.sendMessage(msg);
-
-    }
-
-    // //在输入框回车发送消息
-    // enterToSendMsg(event: KeyboardEvent) {
-    //   if(event.keyCode != (13 || 108)){
-    //       return;
-    //   }
-    //   this.sendTextMessage()
-    // }
-
-    // //点击 发送 按钮发送消息
-    // clickToSendMsg(){
-    //   this.sendTextMessage()
-    // }
-
   
-    
-    
-
-    addfriend(to: number){
-      
-      if(to == this.us.MyUserId){alert("不能添加自己为好友");return;}
-      for(let i=0;i<this.ws.nearest_contact.contact_list.length;i++){
-        if(this.ws.nearest_contact.contact_list[i].id == to){
-          alert("已是好友");
-          return;
-        }
-      }
-
-      let msg = new(Protocol.Message)
-      msg.type = Protocol.Message.Type.REQUEST;
-      msg.cmd = Protocol.Message.CtrlType.CREATE_SESSION;
-      msg.from = this.us.MyUserId;
-      msg.to = to;
-      msg.sendTime = Date.now();
-      this.ws.sendMessage(msg)
-    }
-
-    keyUpSearch(name: string){ //搜索添加好友
-      // this.ws.
-      // this.ws.getUserList(this.searchContent).subscribe(data => {
-      //   console.log("data2 = ", data.Ulist);
-      //   this.userlist = data.Ulist;
-      // })
-      if(this.searchContent=='')return;
-      this.us.getuserlist(this.searchContent).subscribe(data => {
-        // this.userlist = data
-        console.log("userlist=", data);
-        if(data['user_list'].length == 0){
-          this.flag = true;
-        }
-        this.userlist = data['user_list'];
-        this.flag = false;
-      })
-    }
-
-
-    
-    search(){
-      // console.log("search=", this.searchContent);
-      // this.ws.getAddress(this.searchContent).subscribe(data => {
-      //   this.userlist = data.Ulist;
-      //   this.flag = false;
-      // })
-      // if(this.searchContent == ""){
-      //   return;
-      // }
-      // if(this.userlist.length == 0) {
-      //   this.flag = true;
-      // }
-    }
-    
-    
- 
-
-  // switchpng(url:string):any{
-  //   this.imgurl=url.split("+");
-  //   this.imgurl=this.imgurl[0].split(".");
-  //   let src:string
-  // switch(this.imgurl[1]){
-  //   case 'doc':
-  //     src="/files/DOC.png";
-  //     break;
-  //   case 'pdf':
-  //     src="/files/pdf.png";
-  //     break;
-  //   case 'ppt':
-  //     src="/files/ppt.png";
-  //   break;
-  //   case 'zip':
-  //     src="/files/RAR.png";
-  //   break;
-  //   case 'txt':
-  //     src="/files/txt.png";
-  //   break;
-  // }
-  // return src;
-  // }
 
   isshowpicVisible = false;
   aaa:string[]
@@ -338,9 +170,6 @@ export class ChatComponent implements OnInit {
     this.isshowvideoVisible = false;
   }
 
-
-
-
   download(filepath:string) {
     window.open(filepath, '_blank');
     return;
@@ -362,14 +191,6 @@ export class ChatComponent implements OnInit {
       console.log('download:' + a.href);
     }
 
-
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                                  //  by: pjw    
-
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //获取最近联系人及其历史消息
   getNearestListAndMessage(){
@@ -428,185 +249,6 @@ export class ChatComponent implements OnInit {
     })
   }
 
-
-    /////////////////////////////////////////
-    //// 创建群//////////////////////////////
-    ////////////////////////////////////////
-    
-    GroupName = ''
-    isAddGroupVisible = false;
-    showAddGroupModal() {
-
-      let list = this.ws.address_book.contact_list;
-      if(list.length==0){alert("列表无联系人，不可创建群");return;}
-
-      console.log("list:",this.ws.address_book.contact_list)
-      for(let i=0;i<list.length;i++){
-        if(list[i].is_group==false){
-          let item = new com.CreateGroupItem;
-          item.id = list[i].id;
-          item.name = list[i].name;
-          item.head_img =list[i].head_img;
-          item.selected = false;
-          this.createGroupList.contact_list.push(item);
-        }
-     }
-     this.isAddGroupVisible = true;
-     console.log("创建群组显示列表：",this.createGroupList.contact_list);
-    }
-
-
-    handleAddGroupCancel(): void {
-      this.isAddGroupVisible = false;
-      this.createGroupList.contact_list = [];
-      this.GroupName = '';
-    }
-    handleAddGroupOk(){
-      if(this.GroupName=='' ){
-        alert("注意：群名不能为空");
-        this.GroupName='';
-        this.createGroupList.contact_list = [];
-        return;
-      }
-
-      let msg = new(Protocol.Message)
-      msg.type = Protocol.Message.Type.REQUEST;
-      msg.cmd = Protocol.Message.CtrlType.CREATE_GROUP;
-      msg.from =  this.us.MyUserId;
-      msg.content =  this.GroupName;
-      msg.contentType = Protocol.Message.ContentType.TEXT; 
-      msg.isgroup = true;
-      msg.userlist = [];
-      for(let i=0;i<this.createGroupList.contact_list.length;i++){
-        if(this.createGroupList.contact_list[i].selected){
-          msg.userlist.push(this.createGroupList.contact_list[i].id);
-        }
-      }
-      if(msg.userlist.length == 0){
-        alert("注意：至少选择一个人");
-        return;
-      }
-
-      this.createGroupList.contact_list = [];
-      this.GroupName = '';
-      this.isAddGroupVisible = false;
-
-      this.ws.sendMessage(msg)
-    }
-
-
-    
-    /////////////////////////////////////////
-    //// 添加成员//////////////////////////////
-    ////////////////////////////////////////
-    isAddFriendVisible = false;
-    isAddFriendConfirmLoading = false;
-    showAddFriendModal(): void {
-      this.isAddFriendVisible = true;
-    }
-    handleAddFriendCancel(): void {
-      this.isAddFriendVisible = false;
-    }
-    handleAddFriendOk(){
-
-    }
-    scollbuttom(){
-      var dis = document.getElementById('scrolldIV');
-      // var now = new Date(); //设置滚动条保持在最底部
-      // now.getTime();
-      try {
-        dis.scrollTop = dis.scrollHeight;
-    } catch(err) { }   
-  }
-
-
-  showGroupMember(){
-    this.us.getGroupMember(this.to_id).subscribe(data => {
-      this.groupMemberList = [];
-      console.log(data)
-      for(let i=0;i<data['length'];i++){
-        let item = new com.ContactListItem;
-        item.id = data[i]['id'];
-        item.name = data[i]['name'];
-        item.head_img = data[i]['head_img'];
-        this.groupMemberList.push(item)
-      }
-    })
-  }
-
-  isAddMemberVisible = false;
-  showAddMemberModal(){
-    let list = this.ws.address_book.contact_list;
-      if(list.length==0){alert("列表无联系人，群不可加人");return;}
-   
-      this.us.getGroupMember(this.to_id).subscribe(data => {
-        this.groupMemberList = [];
-        console.log(data)
-        for(let i=0;i<data['length'];i++){
-          let item = new com.ContactListItem;
-          item.id = data[i]['id'];
-          item.name = data[i]['name'];
-          item.head_img = data[i]['head_img'];
-          this.groupMemberList.push(item)
-        }
-        
-        this.addMemberList = []
-        for(let i=0;i<list.length;i++){
-          if(list[i].is_group==false){
-            let item = new com.AddMemberItem;
-            item.id = list[i].id;
-            item.name = list[i].name;
-            item.head_img =list[i].head_img;
-            item.selected = false;
-            item.existed = false;
-            if (this.groupMemberList.findIndex(e => e.id == item.id)>0){
-              item.existed = true;
-            }
-            this.addMemberList.push(item);
-          }
-        }
-        this.isAddMemberVisible = true;
-      })
-  }
-  handleAddMemberCancel(){
-    this.isAddMemberVisible = false;
-  }
-  handleAddMemberOK(){
-    let msg = new(Protocol.Message)
-    msg.type = Protocol.Message.Type.REQUEST;
-    msg.cmd = Protocol.Message.CtrlType.GROUP_ADDMEMBERS;
-    msg.from =  this.us.MyUserId;
-    msg.to =  this.to_id;
-    msg.isgroup = true;
-    msg.userlist = [];
-    for(let i=0;i<this.addMemberList.length;i++){
-      if(this.addMemberList[i].selected){
-        msg.userlist.push(this.addMemberList[i].id);
-      }
-    }
-    if(msg.userlist.length == 0){
-      alert("注意：至少选择一个人");
-      return;
-    }
-    console.log("选择添加的人:",msg.userlist)
-    this.ws.sendMessage(msg)
-    this.isAddMemberVisible = false;
-  }
-  addMember(){
-    
-  }
-
-
-  private dropdown: NzDropdownContextComponent;
-
-  contextMenu($event: MouseEvent, template: TemplateRef<void>): void {
-    this.dropdown = this.nzDropdownService.create($event, template);
-  }
-
-  close(e: NzMenuItemDirective): void {
-    console.log(e);
-    this.dropdown.close();
-  }
 
 
   

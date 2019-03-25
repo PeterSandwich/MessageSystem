@@ -39,6 +39,12 @@ export class DialogboxComponent {
       case 'txt':
         src = "../../assets/txt.png";
         break;
+      case 'mp3':
+        src = "../../assets/video.png";
+      break;
+      case 'mp4':
+        src = "../../assets/video.png";
+      break;
     }
     return src;
   }
@@ -46,6 +52,17 @@ export class DialogboxComponent {
     let name: string[] = filepath.split("+");
     name=name[1].split("&");
     return name[0]
+  }
+  getvideoname(filepath: string) {
+    let name: string[] = filepath.split("+");
+    name=name[1].split("&");
+    return name[0]
+  }
+  getlocalpic(filepath:string){
+    let localurl:string[] = filepath.split(" (see");
+    localurl = localurl[0].split("binding: ");
+    console.log("filedata:",localurl[1]);
+    return localurl[1]
   }
   getFileSize(filepath:string){
     let filesize:string[]=filepath.split("&");

@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import * as com from '../../common/im';
 import { WebsocketService } from '../../websocket.service';
 import { Protocol } from '../../protocol/Protocol';
@@ -6,36 +6,36 @@ import { UserService } from '../../user.service';
 import { EmojiService } from '../../emoji.service';
 import { Emojis } from './emoji-model';
 import { NzMessageService } from 'ng-zorro-antd';
-
 import { environment } from '../../../environments/environment';
 import { UploadService } from '../../file.service';
 import { HttpEventType } from '@angular/common/http';
-import { timeout, delay } from 'q';
+import { NzDropdownContextComponent, NzDropdownService, NzMenuItemDirective } from 'ng-zorro-antd';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-chat-planel',
   templateUrl: './chat-planel.component.html',
   styleUrls: ['./chat-planel.component.css']
 })
+
+
 export class ChatPlanelComponent implements OnInit {
-
-
   @Input() my_head_img:string;
   @Input() my_id:number;
   @Input() your_info:com.ContactListItem;
   @Input() who;
   show_members:boolean = false;
   group_members;
-  // public messageString: string = "";
   emojis: Emojis[];
-
-
-
+  private dropdown: NzDropdownContextComponent;
+  
   constructor(
     public ws: WebsocketService,
     private us:UserService,
     private es:EmojiService,
     private upload: UploadService,
-    private nms :NzMessageService
+    private nzDropdownService: NzDropdownService,
+    private nms :NzMessageService,
+    private sanitizer: DomSanitizer
     ) { 
 
   }
@@ -69,6 +69,38 @@ export class ChatPlanelComponent implements OnInit {
 
   }
 
+
+  drawbackdata(item: com.MessageItem) {
+    let at: number = parseInt(item.arrive_time.toString())
+    let now: number = Date.now()
+    if (now - at > 120000) {
+      this.nms.create('warning', `时间超过两分钟，无法撤回`);
+      return
+    }
+    let msg = new (Protocol.Message)
+    msg.type = Protocol.Message.Type.REQUEST; //消息的类型的请求类型
+    msg.cmd = Protocol.Message.CtrlType.MSG_BACK;// 消息撤回
+    msg.from = this.us.MyUserId;              // 消息发送方
+    msg.to = item.to;                   //消息接收方
+    msg.content = item.content;             //消息内容
+    msg.contentType = item.content_type;　  //消息类型
+    msg.isgroup = item.is_group;                       //是不是群组消息
+    msg.msgid = item.id;
+    msg.sendTime = Date.now();
+
+    this.ws.sendMessage(msg);
+
+  }
+
+  contextMenu($event: MouseEvent, template: TemplateRef<void>): void {
+    this.dropdown = this.nzDropdownService.create($event, template);
+  }
+
+  close(e: NzMenuItemDirective): void {
+    console.log(e);
+    this.dropdown.close();
+  }
+
   // 移动编辑框的光标在最后面
   movePonterToEnd(){ 
     if (window.getSelection) {//ie11 10 9 ff safari
@@ -92,9 +124,8 @@ export class ChatPlanelComponent implements OnInit {
   }
 
   ngOnChanges(){
-    this.scollbuttom();
     this.showGroupMember();
-    console.log("ngOnInit:",this.your_info)
+    this.scollbuttom();
   }
 
   send(){
@@ -153,11 +184,16 @@ export class ChatPlanelComponent implements OnInit {
   percent:number 
   selectFile(event: any) {
     let fileList: FileList = event.target.files;
-    this.uploadFile(fileList);
+    let filelocalurl=event.currentTarget.files[0];
+    // filelocalurl = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file))
+
+    let filepath = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(filelocalurl)); 
+    console.log("==========filedata:",filepath);
+    this.uploadFile(fileList,filepath);
   }
   
   imgurl:string[]
-  uploadFile(files: FileList) {
+  uploadFile(files: FileList,filelocalurl:any) {
     if (files.length == 0) {
       console.log("No file selected!");
       return
@@ -167,6 +203,7 @@ export class ChatPlanelComponent implements OnInit {
       console.log("file is too big!")
       return
     }
+    
     //console.log(file.type)
     console.log(file.name)
     console.log(file.type)
@@ -182,13 +219,21 @@ export class ChatPlanelComponent implements OnInit {
     newMsg.id = 0;
     newMsg.from = this.us.MyUserId;
     newMsg.to = this.your_info.id;
+
     newMsg.content = "1+"+file.name+"&"+file.size;
     if(namesuffix[namesuffix.length-1]=="jpg"){
       newMsg.content_type = Protocol.Message.ContentType.IMG;
+      
+      // let path:string[]=filelocalurl.split(" (see");
+      // path = path[0].split("=binding: ");
+      newMsg.content = filelocalurl;
+      console.log("newmsgcontent:",newMsg.content);
     }else if(namesuffix[namesuffix.length-1]=="mp3"||namesuffix[namesuffix.length-1]=="mp4"){
       newMsg.content_type = Protocol.Message.ContentType.VIDEO;
+      newMsg.content = "1+"+file.name+"&";
     }else{
       newMsg.content_type = Protocol.Message.ContentType.FILE;
+      newMsg.content = "1+"+file.name+"&"+file.size;
     }
     newMsg.is_group = this.your_info.is_group;
     newMsg.send_time = sendtime;
@@ -207,6 +252,7 @@ export class ChatPlanelComponent implements OnInit {
           //.log(response);
           if (response.type== HttpEventType.UploadProgress){
           this.percent =   Math.round(100*response.loaded/response.total);
+          console.log(this.percent);
             this.ws.global_message.chat_room_list.get(this.your_info.id).message_list[idx].loading_percent = this.percent;
         }
           let filetype = -1;

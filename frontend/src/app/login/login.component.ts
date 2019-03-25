@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { UserService } from '../user.service';
 import { WebsocketService } from '../websocket.service';
 import {  Router } from '@angular/router';
-import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,6 @@ export class LoginComponent {
   submit(){
       let body = {name:this.name,password:this.password}
       this.us.postLoginData(body).subscribe(data => {
-        // console.log("data.status=", data.status)
         if(data.status==200){
           let respond:any = data["body"];
           console.log("登录成功");
@@ -29,10 +27,7 @@ export class LoginComponent {
           this.us.myName = respond['name']
           this.us.session_id=respond['session_id'];
           this.router.navigate(['chat']);
-          // console.log("data=", data, this.us.MyUserId, this.us.myName);
-          
-        }
-        else{
+        }else{
           alert("登录失败")
         }
       })
