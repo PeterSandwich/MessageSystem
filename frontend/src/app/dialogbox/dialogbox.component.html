@@ -36,7 +36,7 @@
                         <p class="title">{{getfilename(msgitem.content)}}</p>
                         <!-- <p class="title">调试文本.zip</p> -->
                         <div class="opr">
-                            <span class="title">1.2kb </span>
+                            <span class="title">{{getFileSize(msgitem.content)}} </span>
                             <span>|</span>
                             <a class="a" (click)=" downloadFile(msgitem.content)"> 下载</a>
                             <!-- <nz-progress  [nzPercent]="70" nzSize="small" nzStatus="active" [nzStrokeColor]="green"></nz-progress> -->
@@ -90,9 +90,9 @@
                         <p class="title">{{getfilename(msgitem.content)}}</p>
                         <!-- <p class="title">调试文本.zip</p> -->
                         <div class="opr">
-                            <span class="title">1.2kb </span>
+                            <span class="title">{{getFileSize(msgitem.content)}} </span>
                             <span>|</span>
-                            <a class="a" (click)=" downloadFile(msgitem.content)"> 下载</a>
+                            <a *ngIf="msgitem.loading_percent==100||msgitem.loading_percent==-1||msgitem.loading_percent==undefined" class="a" (click)=" downloadFile(msgitem.content)"> 下载</a>
                             <nz-progress *ngIf="msgitem.loading_percent != 100 && msgitem.loading_percent != -1 && msgitem.loading_percent != undefined " [nzPercent]="msgitem.loading_percent" nzSize="small" nzStatus="active" [nzStrokeColor]="green">
                             </nz-progress>
                         </div>

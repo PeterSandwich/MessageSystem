@@ -29,7 +29,7 @@ import (
 //   3, 图片或文件上传成功后，如果是图片 返回{原文件：“/img/xxxxxxx.png”,缩略图："/img/xxxxxx_compress.png",文件类型：（0为文字，1为图片，2为文件）}
 
 
-const maxUploadSize = 20 * 1024 * 1024 // 10 mb
+const maxUploadSize = 20 * 1024 * 1024 // 20 mb
 const uploadPath = "/tmp/files/"
 //const uploadPath = "C:/Users/User/Desktop/GoProject/files/"
 

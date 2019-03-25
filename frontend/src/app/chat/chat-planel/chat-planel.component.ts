@@ -10,7 +10,6 @@ import { environment } from '../../../environments/environment';
 import { UploadService } from '../../file.service';
 import { HttpEventType } from '@angular/common/http';
 import { NzDropdownContextComponent, NzDropdownService, NzMenuItemDirective } from 'ng-zorro-antd';
-
 @Component({
   selector: 'app-chat-planel',
   templateUrl: './chat-planel.component.html',
@@ -180,7 +179,7 @@ export class ChatPlanelComponent implements OnInit {
   
   filename: string
   show:boolean
-  percent:number = 10
+  percent:number 
   selectFile(event: any) {
     let fileList: FileList = event.target.files;
     this.uploadFile(fileList);
@@ -212,7 +211,7 @@ export class ChatPlanelComponent implements OnInit {
     newMsg.id = 0;
     newMsg.from = this.us.MyUserId;
     newMsg.to = this.your_info.id;
-    newMsg.content = "1+"+file.name;
+    newMsg.content = "1+"+file.name+"&"+file.size;
     newMsg.content_type = Protocol.Message.ContentType.FILE;
     newMsg.is_group = this.your_info.is_group;
     newMsg.send_time = sendtime;
@@ -251,7 +250,7 @@ export class ChatPlanelComponent implements OnInit {
              msg.contentType=filetype;
              msg.sendTime = sendtime;
              if(filetype == 2||filetype == 3){
-              msg.content = this.filep+"+"+file.name;
+              msg.content = this.filep+"+"+file.name+"&"+file.size;
              }
              msg.isgroup = this.your_info.is_group;
               this.ws.sendMessage(msg);
@@ -268,6 +267,9 @@ export class ChatPlanelComponent implements OnInit {
         }
       )
   }
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
+}
 
   // 表情相关
   isEmojiVisible:boolean = false;

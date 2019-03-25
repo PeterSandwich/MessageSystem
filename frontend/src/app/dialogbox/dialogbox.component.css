@@ -40,7 +40,7 @@
   }
   .bubble{
     left:5%;
-    max-width: 500px;
+    max-width: 254px;
     min-height: 1em;
     display: inline-block;
     vertical-align: top;
@@ -50,11 +50,11 @@
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-    background-color: #b2e281;
+    background-color: #fff;
   }
   .bubbleright{
-    left:44%;/*52%*/
-    max-width: 500px;
+    left:51%;/*52%*/
+    max-width: 254px;
     min-height: 1em;
     display: inline-block;
     vertical-align: top;
@@ -72,9 +72,9 @@
     width: 0;
     height: 0;
     left: 100%;
-    top: 14px;
+    top: 5px;
     border-top: 5px solid transparent;
-    border-left: 13px solid #b2e281;
+    border-left: 7px solid #b2e281;
     border-bottom: 6px solid transparent;
     /* left: 0%;
     border-left-color: #b2e281;
@@ -105,7 +105,7 @@
     width: 0;
     height: 0;
     left: 100%;
-    top: 14px;
+    top: 5px;
     border-top: 5px solid transparent;
     border-left: 13px solid #b2e281;
     border-bottom: 6px solid transparent;
@@ -168,11 +168,11 @@
     width: 0;
     height: 0;
     right: 100%;
-    top: 9px;
+    top: 5px;
     border-top: 5px solid transparent;
-    border-right: 13px solid #b2e281;
+    border-right: 7px solid #fff;
     border-bottom: 6px solid transparent;
-    border-left-color: #b2e281;
+    border-left-color: #fff;
     border-left-width: 4px;
     /* left: 0%;
     border-left-color: #b2e281;
@@ -280,13 +280,6 @@
           border-bottom: 6px solid transparent;
       }
       .headportraitonright{
-        /* width: 40px;
-        height: 40px;
-        top:40px;
-        margin: 0 0 0 auto;
-        margin-right: 10px;
-        background-size: cover;
-        overflow:hidden; */
         left: 93%;/*93%*/
         position: relative;
         float: right;
@@ -298,6 +291,7 @@
         float: left;
         cursor: pointer;
         text-align: right;
+        bottom: 15px;
       }
       .headportraitonleft{
         left: 3%;
@@ -310,6 +304,7 @@
         float: left;
         cursor: pointer;
         text-align: right;
+        bottom: 12px;
       }
       .timeonleft{
         max-width: 140px;
@@ -318,14 +313,16 @@
         background-size: cover;
         position: relative;
         color: rgba(0, 0, 0, 0.65);
+        font-size: 12px;
     }
       .timeonright{
           max-width: 140px;
-          left:76%;/*84%*/
+          left:76%;/*73%*/
           margin-right: 10px;
           background-size: cover;
           position: relative;
           color: rgba(0,0,0,0.65);
+          font-size: 12px;
       }
       .loadingonright{
         position: absolute;
