@@ -92,6 +92,7 @@ export class WebsocketService {
     this.ws.send(Protocol.Message.encode(m).finish());
     if (m.type ==  Protocol.Message.Type.REQUEST) {
       if(m.cmd == Protocol.Message.CtrlType.NONE){  
+        if(m.contentType!=Protocol.Message.ContentType.TEXT){return}
         this.DisplayMessagesLocally(m,m.to) // 说明是一条 单发或群发消息，在本地显示
       }else if(m.cmd == Protocol.Message.CtrlType.MSG_BACK){  
         if(m.msgid == 0){
@@ -157,7 +158,6 @@ export class WebsocketService {
 
   //下面是处理消息的
   DisplayMessagesLocally(m: Protocol.Message,room_id: number|Long){
-    if(m.contentType!=Protocol.Message.ContentType.TEXT){return}
     if (!this.global_message.chat_room_list.has(room_id)){
       console.log("没有这个会话，本地创建会话");
       let chat = new com.ChatRoom;
